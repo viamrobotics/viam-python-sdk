@@ -1,37 +1,35 @@
-:py:mod:`viam.components.power_sensor`
-======================================
+viam.components.power_sensor
+============================
 
 .. py:module:: viam.components.power_sensor
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   power_sensor/index.rst
-   service/index.rst
+   /autoapi/viam/components/power_sensor/client/index
+   /autoapi/viam/components/power_sensor/power_sensor/index
+   /autoapi/viam/components/power_sensor/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.power_sensor.PowerSensor
 
 
-
+Package Contents
+----------------
 
 .. py:class:: PowerSensor(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    PowerSensor reports information about voltage, current and power.
 
@@ -42,14 +40,16 @@ Classes
 
        from viam.components.power_sensor import PowerSensor
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
       :abstractmethod:
+
       :async:
+
 
       Return the voltage reading of a specified device and whether it is AC or DC.
 
@@ -66,9 +66,12 @@ Classes
       :rtype: Tuple[float, bool]
 
 
+
    .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
       :abstractmethod:
+
       :async:
+
 
       Return the current of a specified device and whether it is AC or DC.
 
@@ -85,9 +88,12 @@ Classes
       :rtype: Tuple[float, bool]
 
 
+
    .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :abstractmethod:
+
       :async:
+
 
       Return the power reading in watts.
 
@@ -103,8 +109,10 @@ Classes
       :rtype: float
 
 
+
    .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.SensorReading]
       :async:
+
 
       Get the measurements or readings that this power sensor provides. If a sensor is not configured correctly or fails to read a
       piece of data, it will not appear in the readings dictionary.
@@ -123,8 +131,10 @@ Classes
       :rtype: Mapping[str, Any]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -137,9 +147,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -157,8 +170,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -175,8 +190,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -190,6 +207,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -207,8 +225,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.servo`
-====================================
+viam.proto.component.servo
+==========================
 
 .. py:module:: viam.proto.component.servo
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -32,80 +29,97 @@ Classes
    viam.proto.component.servo.StopResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: ServoServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedServoServiceBase
 
-
    Bases: :py:obj:`ServoServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -115,8 +129,8 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -124,17 +138,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      the name of the servo, as registered
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -154,8 +171,8 @@ Classes
 
 .. py:class:: GetPositionResponse(*, position_deg: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -163,16 +180,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: position_deg
-      :type: int
+      :type:  int
 
       the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
 
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -180,16 +198,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -197,39 +214,42 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
+   .. py:attribute:: angle_deg
+      :type:  int
+
+      the degrees by which to rotate the servo. Accepted values are between 0 and 180
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      the name of the servo, as registered
-
-   .. py:attribute:: angle_deg
-      :type: int
-
-      the degrees by which to rotate the servo. Accepted values are between 0 and 180
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -249,8 +269,8 @@ Classes
 
 .. py:class:: MoveResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -261,8 +281,8 @@ Classes
 
 .. py:class:: Status(*, position_deg: int = ..., is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -270,39 +290,40 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: position_deg
-      :type: int
 
-      
+   .. py:attribute:: position_deg
+      :type:  int
+
 
    .. py:attribute:: is_moving
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a servo
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a servo
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -322,8 +343,8 @@ Classes
 
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

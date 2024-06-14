@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.rpc.webrtc.signaling`
-=========================================
+viam.proto.rpc.webrtc.signaling
+===============================
 
 .. py:module:: viam.proto.rpc.webrtc.signaling
 
@@ -10,11 +10,8 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -44,62 +41,73 @@ Classes
    viam.proto.rpc.webrtc.signaling.WebRTCConfig
 
 
-
+Module Contents
+---------------
 
 .. py:class:: SignalingServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: SignalingServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedSignalingServiceBase
 
-
    Bases: :py:obj:`SignalingServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :async:
+
 
 
    .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :async:
 
 
+
    .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :async:
+
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
@@ -109,18 +117,25 @@ Classes
 
 .. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerRequest is the SDP offer that the controlling side is making via the answering
    stream.
+
+
+   .. py:attribute:: uuid
+      :type:  str
+
 
    .. py:property:: init
       :type: global___AnswerRequestInitStage
 
 
+
    .. py:property:: update
       :type: global___AnswerRequestUpdateStage
+
 
 
    .. py:property:: done
@@ -128,17 +143,14 @@ Classes
 
       done is sent when the requester is done sending information
 
+
    .. py:property:: error
       :type: global___AnswerRequestErrorStage
 
       error is sent any time before done
 
-   .. py:attribute:: uuid
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -155,7 +167,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update, done, error] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -173,24 +186,26 @@ Classes
 
 .. py:class:: AnswerRequestDoneStage
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerRequestDoneStage indicates the controller is done responding with candidates.
 
 
 .. py:class:: AnswerRequestErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    AnswerRequestErrorStage indicates the exchange has failed with an error.
+
 
    .. py:property:: status
       :type: google.rpc.status_pb2.Status
 
 
-   .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -210,26 +225,28 @@ Classes
 
 .. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerRequestInitStage is the first and a one time stage that represents the
    callers initial SDP request to the controlled (answerer) side.
 
+
+   .. py:attribute:: sdp
+      :type:  str
+
+
    .. py:property:: optional_config
       :type: global___WebRTCConfig
+
 
 
    .. py:property:: deadline
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: sdp
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[_deadline, b'_deadline', deadline, b'deadline', optional_config, b'optional_config']) -> bool
+   .. py:method:: HasField(field_name: Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -246,7 +263,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_deadline, b'_deadline']) -> Literal[deadline] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_deadline', b'_deadline']) -> Literal['deadline'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -264,17 +282,19 @@ Classes
 
 .. py:class:: AnswerRequestUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
    the controlled (answerer) side.
+
 
    .. py:property:: candidate
       :type: global___ICECandidate
 
 
-   .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -294,17 +314,24 @@ Classes
 
 .. py:class:: AnswerResponse(*, uuid: str = ..., init: global___AnswerResponseInitStage | None = ..., update: global___AnswerResponseUpdateStage | None = ..., done: global___AnswerResponseDoneStage | None = ..., error: global___AnswerResponseErrorStage | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    AnswerResponse is the SDP answer that an answerer responds with.
+
+
+   .. py:attribute:: uuid
+      :type:  str
+
 
    .. py:property:: init
       :type: global___AnswerResponseInitStage
 
 
+
    .. py:property:: update
       :type: global___AnswerResponseUpdateStage
+
 
 
    .. py:property:: done
@@ -312,17 +339,14 @@ Classes
 
       done is sent when the answerer is done sending information
 
+
    .. py:property:: error
       :type: global___AnswerResponseErrorStage
 
       error is sent any time before done
 
-   .. py:attribute:: uuid
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -339,7 +363,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update, done, error] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -357,24 +382,26 @@ Classes
 
 .. py:class:: AnswerResponseDoneStage
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerResponseDoneStage indicates the answerer is done responding with candidates.
 
 
 .. py:class:: AnswerResponseErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    AnswerResponseErrorStage indicates the exchange has failed with an error.
+
 
    .. py:property:: status
       :type: google.rpc.status_pb2.Status
 
 
-   .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -394,31 +421,32 @@ Classes
 
 .. py:class:: AnswerResponseInitStage(*, sdp: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerResponseInitStage is the first and a one time stage that represents the
    answerers initial SDP response to the controlling side.
 
-   .. py:attribute:: sdp
-      :type: str
 
-      
+   .. py:attribute:: sdp
+      :type:  str
 
 
 .. py:class:: AnswerResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
    the controlling side.
+
 
    .. py:property:: candidate
       :type: global___ICECandidate
 
 
-   .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -438,18 +466,18 @@ Classes
 
 .. py:class:: CallRequest(*, sdp: str = ..., disable_trickle: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallRequest is the SDP offer that the controlling side is making.
 
-   .. py:attribute:: sdp
-      :type: str
 
-      
+   .. py:attribute:: sdp
+      :type:  str
+
 
    .. py:attribute:: disable_trickle
-      :type: bool
+      :type:  bool
 
       when disable_trickle is true, the init stage will be the only stage
       to be received in the response and the caller can expect the SDP
@@ -458,25 +486,27 @@ Classes
 
 .. py:class:: CallResponse(*, uuid: str = ..., init: global___CallResponseInitStage | None = ..., update: global___CallResponseUpdateStage | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallResponse is the SDP answer that the controlled side responds with.
 
+
+   .. py:attribute:: uuid
+      :type:  str
+
+
    .. py:property:: init
       :type: global___CallResponseInitStage
+
 
 
    .. py:property:: update
       :type: global___CallResponseUpdateStage
 
 
-   .. py:attribute:: uuid
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: Literal['init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -493,7 +523,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -511,31 +542,32 @@ Classes
 
 .. py:class:: CallResponseInitStage(*, sdp: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallResponseInitStage is the first and a one time stage that represents
    the initial response to starting a call.
 
-   .. py:attribute:: sdp
-      :type: str
 
-      
+   .. py:attribute:: sdp
+      :type:  str
 
 
 .. py:class:: CallResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallResponseUpdateStage is multiply used to trickle in ICE candidates from
    the controlled (answering) side.
+
 
    .. py:property:: candidate
       :type: global___ICECandidate
 
 
-   .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['candidate', b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -555,30 +587,31 @@ Classes
 
 .. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallUpdateRequest updates the call with additional info to the controlled side.
 
+
+   .. py:attribute:: uuid
+      :type:  str
+
+
+   .. py:attribute:: done
+      :type:  bool
+
+
    .. py:property:: candidate
       :type: global___ICECandidate
+
 
 
    .. py:property:: error
       :type: google.rpc.status_pb2.Status
 
 
-   .. py:attribute:: uuid
-      :type: str
 
-      
-
-   .. py:attribute:: done
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[candidate, b'candidate', done, b'done', error, b'error', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: Literal['candidate', b'candidate', 'done', b'done', 'error', b'error', 'update', b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -595,7 +628,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[update, b'update']) -> Literal[candidate, done, error] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['update', b'update']) -> Literal['candidate', 'done', 'error'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -613,41 +647,38 @@ Classes
 
 .. py:class:: CallUpdateResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CallUpdateResponse contains nothing in response to a call update.
 
 
 .. py:class:: ICECandidate(*, candidate: str = ..., sdp_mid: str | None = ..., sdpm_line_index: int | None = ..., username_fragment: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ICECandidate represents an ICE candidate.
    From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
 
-   .. py:attribute:: candidate
-      :type: str
 
-      
+   .. py:attribute:: candidate
+      :type:  str
+
 
    .. py:attribute:: sdp_mid
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: sdpm_line_index
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: username_fragment
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_sdp_mid, b'_sdp_mid', _sdpm_line_index, b'_sdpm_line_index', _username_fragment, b'_username_fragment', sdp_mid, b'sdp_mid', sdpm_line_index, b'sdpm_line_index', username_fragment, b'username_fragment']) -> bool
+   .. py:method:: HasField(field_name: Literal['_sdp_mid', b'_sdp_mid', '_sdpm_line_index', b'_sdpm_line_index', '_username_fragment', b'_username_fragment', 'sdp_mid', b'sdp_mid', 'sdpm_line_index', b'sdpm_line_index', 'username_fragment', b'username_fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -664,9 +695,10 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_sdp_mid, b'_sdp_mid']) -> Literal[sdp_mid] | None
-                  WhichOneof(oneof_group: Literal[_sdpm_line_index, b'_sdpm_line_index']) -> Literal[sdpm_line_index] | None
-                  WhichOneof(oneof_group: Literal[_username_fragment, b'_username_fragment']) -> Literal[username_fragment] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_sdp_mid', b'_sdp_mid']) -> Literal['sdp_mid'] | None
+                  WhichOneof(oneof_group: Literal['_sdpm_line_index', b'_sdpm_line_index']) -> Literal['sdpm_line_index'] | None
+                  WhichOneof(oneof_group: Literal['_username_fragment', b'_username_fragment']) -> Literal['username_fragment'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -684,30 +716,29 @@ Classes
 
 .. py:class:: ICEServer(*, urls: collections.abc.Iterable[str] | None = ..., username: str = ..., credential: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    ICEServer describes an ICE server.
+
+
+   .. py:attribute:: username
+      :type:  str
+
+
+   .. py:attribute:: credential
+      :type:  str
+
 
    .. py:property:: urls
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: username
-      :type: str
-
-      
-
-   .. py:attribute:: credential
-      :type: str
-
-      
-
 
 .. py:class:: OptionalWebRTCConfigRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
    to use for the peer connection.
@@ -715,17 +746,19 @@ Classes
 
 .. py:class:: OptionalWebRTCConfigResponse(*, config: global___WebRTCConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    OptionalWebRTCConfigResponse contains the optional WebRTC config
    to use for the peer connection.
+
 
    .. py:property:: config
       :type: global___WebRTCConfig
 
 
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -745,19 +778,21 @@ Classes
 
 .. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[global___ICEServer] | None = ..., disable_trickle: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    WebRTCConfig represents parts of a WebRTC config.
+
+
+   .. py:attribute:: disable_trickle
+      :type:  bool
+
+      disable_trickle indicates if Trickle ICE should be used. Currently, both
+      sides must both respect this setting.
+
 
    .. py:property:: additional_ice_servers
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
 
-
-   .. py:attribute:: disable_trickle
-      :type: bool
-
-      disable_trickle indicates if Trickle ICE should be used. Currently, both
-      sides must both respect this setting.
 
 

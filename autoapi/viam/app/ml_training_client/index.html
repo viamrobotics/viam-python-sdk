@@ -55,45 +55,121 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">viam.app</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../app_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.app_client</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../billing_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.billing_client</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../data_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.data_client</span></code></a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.ml_training_client</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../app_client/index.html">viam.app.app_client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../billing_client/index.html">viam.app.billing_client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_client/index.html">viam.app.data_client</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">viam.app.ml_training_client</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.submit_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.submit_training_job()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.submit_custom_training_job()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.get_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.get_training_job()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.list_training_jobs"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.list_training_jobs()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.cancel_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.cancel_training_job()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.delete_completed_training_job()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.CancelTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">CancelTrainingJobRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.CancelTrainingJobRequest.id"><code class="docutils literal notranslate"><span class="pre">CancelTrainingJobRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.DeleteCompletedTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">DeleteCompletedTrainingJobRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.DeleteCompletedTrainingJobRequest.id"><code class="docutils literal notranslate"><span class="pre">DeleteCompletedTrainingJobRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">GetTrainingJobRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobRequest.id"><code class="docutils literal notranslate"><span class="pre">GetTrainingJobRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobResponse"><code class="docutils literal notranslate"><span class="pre">GetTrainingJobResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobResponse.metadata"><code class="docutils literal notranslate"><span class="pre">GetTrainingJobResponse.metadata</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetTrainingJobResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsRequest"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsRequest.organization_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsRequest.status"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsRequest.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsResponse"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsResponse.jobs"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsResponse.jobs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingServiceStub"><code class="docutils literal notranslate"><span class="pre">MLTrainingServiceStub</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.ModelType"><code class="docutils literal notranslate"><span class="pre">ModelType</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.dataset_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_id"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.registry_item_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_version"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.registry_item_version</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.organization_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_name"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.model_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_version"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest.model_version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobResponse"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobResponse.id"><code class="docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobResponse.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.dataset_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.organization_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_name"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.model_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_version"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.model_version</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_type"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.model_type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.tags"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.tags</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobResponse"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobResponse.id"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobResponse.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.id"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.dataset_id"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.dataset_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.organization_id"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.organization_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.model_name"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.model_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.model_version"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.model_version</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.model_type"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.model_type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.model_framework"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.model_framework</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.is_custom_job"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.is_custom_job</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.registry_item_id"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.registry_item_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.registry_item_version"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.registry_item_version</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.status"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.status</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.synced_model_id"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.synced_model_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.request"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.request</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.error_status"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.error_status</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.created_on"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.created_on</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.last_modified"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.last_modified</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.training_started"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.training_started</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.training_ended"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.training_ended</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.tags"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.tags</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata.HasField"><code class="docutils literal notranslate"><span class="pre">TrainingJobMetadata.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.TrainingStatus"><code class="docutils literal notranslate"><span class="pre">TrainingStatus</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.submit_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.submit_training_job()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.submit_custom_training_job()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.get_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.get_training_job()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.list_training_jobs"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.list_training_jobs()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.cancel_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.cancel_training_job()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job"><code class="docutils literal notranslate"><span class="pre">MLTrainingClient.delete_completed_training_job()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../provisioning_client/index.html">viam.app.provisioning_client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viam_client/index.html">viam.app.viam_client</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../provisioning_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.provisioning_client</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../viam_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.viam_client</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -110,8 +186,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.ml_training_client</span></code></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.app</a></li>
+      <li class="breadcrumb-item active">viam.app.ml_training_client</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/app/ml_training_client/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,21 +198,9 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.app.ml_training_client">
-<span id="viam-app-ml-training-client"></span><h1><a class="reference internal" href="#module-viam.app.ml_training_client" title="viam.app.ml_training_client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.ml_training_client</span></code></a><a class="headerlink" href="#module-viam.app.ml_training_client" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient" title="viam.app.ml_training_client.MLTrainingClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLTrainingClient</span></code></a></p></td>
-<td><p>gRPC client for working with ML training jobs.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
+<span id="viam-app-ml-training-client"></span><h1>viam.app.ml_training_client<a class="headerlink" href="#module-viam.app.ml_training_client" title="Permalink to this heading"></a></h1>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.LOGGER" title="viam.app.ml_training_client.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
@@ -144,6 +208,434 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.CancelTrainingJobRequest" title="viam.app.ml_training_client.CancelTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancelTrainingJobRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.DeleteCompletedTrainingJobRequest" title="viam.app.ml_training_client.DeleteCompletedTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteCompletedTrainingJobRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobRequest" title="viam.app.ml_training_client.GetTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTrainingJobRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.GetTrainingJobResponse" title="viam.app.ml_training_client.GetTrainingJobResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetTrainingJobResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsRequest" title="viam.app.ml_training_client.ListTrainingJobsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListTrainingJobsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.ListTrainingJobsResponse" title="viam.app.ml_training_client.ListTrainingJobsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListTrainingJobsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingServiceStub" title="viam.app.ml_training_client.MLTrainingServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLTrainingServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.ModelType" title="viam.app.ml_training_client.ModelType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest" title="viam.app.ml_training_client.SubmitCustomTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.SubmitCustomTrainingJobResponse" title="viam.app.ml_training_client.SubmitCustomTrainingJobResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitCustomTrainingJobResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobRequest" title="viam.app.ml_training_client.SubmitTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.SubmitTrainingJobResponse" title="viam.app.ml_training_client.SubmitTrainingJobResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.TrainingJobMetadata" title="viam.app.ml_training_client.TrainingJobMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingJobMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.ml_training_client.TrainingStatus" title="viam.app.ml_training_client.TrainingStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStatus</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.ml_training_client.MLTrainingClient" title="viam.app.ml_training_client.MLTrainingClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLTrainingClient</span></code></a></p></td>
+<td><p>gRPC client for working with ML training jobs.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.CancelTrainingJobRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">CancelTrainingJobRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.CancelTrainingJobRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.CancelTrainingJobRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.CancelTrainingJobRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.DeleteCompletedTrainingJobRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">DeleteCompletedTrainingJobRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.DeleteCompletedTrainingJobRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.DeleteCompletedTrainingJobRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.DeleteCompletedTrainingJobRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.GetTrainingJobRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">GetTrainingJobRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.GetTrainingJobRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.GetTrainingJobRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.GetTrainingJobRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.GetTrainingJobResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">GetTrainingJobResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TrainingJobMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.GetTrainingJobResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.GetTrainingJobResponse.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TrainingJobMetadata</span></em><a class="headerlink" href="#viam.app.ml_training_client.GetTrainingJobResponse.metadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.GetTrainingJobResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'metadata'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.app.ml_training_client.GetTrainingJobResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ListTrainingJobsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">ListTrainingJobsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TrainingStatus</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.ListTrainingJobsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ListTrainingJobsRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.ListTrainingJobsRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ListTrainingJobsRequest.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TrainingStatus</span></em><a class="headerlink" href="#viam.app.ml_training_client.ListTrainingJobsRequest.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ListTrainingJobsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">ListTrainingJobsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jobs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TrainingJobMetadata</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.ListTrainingJobsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ListTrainingJobsResponse.jobs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">jobs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TrainingJobMetadata</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.app.ml_training_client.ListTrainingJobsResponse.jobs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">MLTrainingServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/gen/app/mltraining/v1/ml_training_grpc.html#MLTrainingServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.ModelType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">ModelType</span></span><a class="headerlink" href="#viam.app.ml_training_client.ModelType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_ModelType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">SubmitCustomTrainingJobRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.dataset_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_id">
+<span class="sig-name descname"><span class="pre">registry_item_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_version">
+<span class="sig-name descname"><span class="pre">registry_item_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.registry_item_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_version">
+<span class="sig-name descname"><span class="pre">model_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobRequest.model_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">SubmitCustomTrainingJobResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitCustomTrainingJobResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitCustomTrainingJobResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">SubmitTrainingJobRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ModelType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.dataset_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.model_version">
+<span class="sig-name descname"><span class="pre">model_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.model_type">
+<span class="sig-name descname"><span class="pre">model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ModelType</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.model_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobRequest.tags">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobRequest.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">SubmitTrainingJobResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.SubmitTrainingJobResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.SubmitTrainingJobResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">TrainingJobMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___SubmitTrainingJobRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ModelType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_framework</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ModelFramework</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_custom_job</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TrainingStatus</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.rpc.status_pb2.Status</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_on</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_modified</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_started</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training_ended</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">synced_model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.dataset_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.model_name">
+<span class="sig-name descname"><span class="pre">model_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.model_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.model_version">
+<span class="sig-name descname"><span class="pre">model_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.model_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.model_type">
+<span class="sig-name descname"><span class="pre">model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ModelType</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.model_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.model_framework">
+<span class="sig-name descname"><span class="pre">model_framework</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ModelFramework</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.model_framework" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.is_custom_job">
+<span class="sig-name descname"><span class="pre">is_custom_job</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.is_custom_job" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.registry_item_id">
+<span class="sig-name descname"><span class="pre">registry_item_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.registry_item_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.registry_item_version">
+<span class="sig-name descname"><span class="pre">registry_item_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.registry_item_version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TrainingStatus</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.synced_model_id">
+<span class="sig-name descname"><span class="pre">synced_model_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.synced_model_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.request">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___SubmitTrainingJobRequest</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.request" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.error_status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">error_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.rpc.status_pb2.Status</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.error_status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.created_on">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.created_on" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.last_modified">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">last_modified</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.last_modified" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.training_started">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">training_started</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.training_started" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.training_ended">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">training_ended</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.training_ended" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.tags">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingJobMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'created_on'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'created_on'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'error_status'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'error_status'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'last_modified'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'last_modified'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'request'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'training_ended'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'training_ended'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'training_started'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'training_started'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.app.ml_training_client.TrainingJobMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.ml_training_client.TrainingStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">TrainingStatus</span></span><a class="headerlink" href="#viam.app.ml_training_client.TrainingStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TrainingStatus</span></code></p>
+</dd></dl>
+
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.app.ml_training_client.LOGGER">
 <span class="sig-prename descclassname"><span class="pre">viam.app.ml_training_client.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#viam.app.ml_training_client.LOGGER" title="Permalink to this definition"></a></dt>
@@ -263,7 +755,7 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – the id of the org to request training job data from.</p></li>
-<li><p><strong>training_status</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../gen/app/mltraining/v1/ml_training_pb2/index.html#viam.gen.app.mltraining.v1.ml_training_pb2.TrainingStatus" title="viam.gen.app.mltraining.v1.ml_training_pb2.TrainingStatus"><em>TrainingStatus</em></a><em>]</em>) – status of training jobs to filter the list by.
+<li><p><strong>training_status</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#viam.app.ml_training_client.TrainingStatus" title="viam.app.ml_training_client.TrainingStatus"><em>TrainingStatus</em></a><em>]</em>) – status of training jobs to filter the list by.
 If unspecified, all training jobs will be returned.</p></li>
 </ul>
 </dd>
@@ -304,7 +796,6 @@ If unspecified, all training jobs will be returned.</p></li>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

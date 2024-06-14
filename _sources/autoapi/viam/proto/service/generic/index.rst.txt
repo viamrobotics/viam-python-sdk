@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.service.generic`
-====================================
+viam.proto.service.generic
+==========================
 
 .. py:module:: viam.proto.service.generic
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -23,36 +20,38 @@ Classes
    viam.proto.service.generic.UnimplementedGenericServiceBase
 
 
-
+Package Contents
+----------------
 
 .. py:class:: GenericServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedGenericServiceBase
 
-
    Bases: :py:obj:`GenericServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:

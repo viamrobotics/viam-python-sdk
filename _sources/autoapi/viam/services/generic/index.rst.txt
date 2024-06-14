@@ -1,37 +1,35 @@
-:py:mod:`viam.services.generic`
-===============================
+viam.services.generic
+=====================
 
 .. py:module:: viam.services.generic
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   generic/index.rst
-   service/index.rst
+   /autoapi/viam/services/generic/client/index
+   /autoapi/viam/services/generic/generic/index
+   /autoapi/viam/services/generic/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.services.generic.Generic
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Generic(name: str)
 
-
    Bases: :py:obj:`viam.services.service_base.ServiceBase`
+
 
    Generic service, which represents any type of service that can execute arbitrary commands
 
@@ -78,13 +76,14 @@ Classes
        await service.do_command({'set_val': 5})
        service.val  # 5
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the service named ``name`` from the provided robot.
 
@@ -112,9 +111,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/receive arbitrary commands.
 
@@ -137,8 +139,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -152,6 +156,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -169,8 +174,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

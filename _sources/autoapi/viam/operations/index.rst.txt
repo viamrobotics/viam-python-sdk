@@ -1,33 +1,11 @@
-:py:mod:`viam.operations`
-=========================
+viam.operations
+===============
 
 .. py:module:: viam.operations
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.operations.Operation
-
-
-
-Functions
-~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.operations.opid_from_metadata
-   viam.operations.run_with_operation
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -36,36 +14,54 @@ Attributes
    viam.operations.METADATA_KEY
 
 
-.. py:class:: Operation(method: str, cancel_event: asyncio.Event, opid: Optional[uuid.UUID] = None)
+Classes
+-------
 
+.. autoapisummary::
+
+   viam.operations.Operation
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.operations.opid_from_metadata
+   viam.operations.run_with_operation
+
+
+Module Contents
+---------------
+
+.. py:class:: Operation(method: str, cancel_event: asyncio.Event, opid: Optional[uuid.UUID] = None)
 
    An Operation represents a running operation.
 
    Every request made to a robot's components will create a new Operation on the server. For custom components built with this python-sdk,
    you should check whether the operation has been cancelled to prevent long-running tasks from leaking.
 
+
    .. py:attribute:: ARG_NAME
       :value: 'viam_operation'
 
-      
+
 
    .. py:attribute:: id
-      :type: uuid.UUID
+      :type:  uuid.UUID
 
-      
 
    .. py:attribute:: method
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: time_started
-      :type: float
+      :type:  float
 
-      
 
    .. py:method:: is_cancelled() -> bool
       :async:
+
 
 
    .. py:method:: __str__() -> str
@@ -76,19 +72,13 @@ Attributes
 
 .. py:data:: P
 
-   
-
 .. py:data:: T
-
-   
 
 .. py:data:: METADATA_KEY
    :value: 'opid'
 
-   
 
 .. py:function:: opid_from_metadata(metadata: Optional[Mapping[str, str]]) -> Optional[uuid.UUID]
-
 
 .. py:function:: run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]
 

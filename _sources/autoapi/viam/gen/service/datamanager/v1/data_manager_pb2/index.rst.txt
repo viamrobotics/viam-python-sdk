@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.service.datamanager.v1.data_manager_pb2`
-==========================================================
+viam.gen.service.datamanager.v1.data_manager_pb2
+================================================
 
 .. py:module:: viam.gen.service.datamanager.v1.data_manager_pb2
 
@@ -10,22 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.service.datamanager.v1.data_manager_pb2.SyncRequest
-   viam.gen.service.datamanager.v1.data_manager_pb2.SyncResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -34,15 +20,25 @@ Attributes
    viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.service.datamanager.v1.data_manager_pb2.SyncRequest
+   viam.gen.service.datamanager.v1.data_manager_pb2.SyncResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: SyncRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -50,17 +46,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -80,12 +77,10 @@ Attributes
 
 .. py:data:: global___SyncRequest
 
-   
-
 .. py:class:: SyncResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -95,6 +90,4 @@ Attributes
 
 
 .. py:data:: global___SyncResponse
-
-   
 

@@ -1,36 +1,1674 @@
-:py:mod:`viam.robot.client`
-===========================
+viam.robot.client
+=================
 
 .. py:module:: viam.robot.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.robot.client.RESOURCE_TYPE_COMPONENT
+   viam.robot.client.RESOURCE_TYPE_SERVICE
+   viam.robot.client.LOGGER
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   viam.robot.client.ResourceNotFoundError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.robot.client.ComponentBase
+   viam.robot.client.LogEntry
+   viam.robot.client.PoseInFrame
+   viam.robot.client.ResourceName
+   viam.robot.client.Transform
+   viam.robot.client.BlockForOperationRequest
+   viam.robot.client.CancelOperationRequest
+   viam.robot.client.DiscoverComponentsRequest
+   viam.robot.client.DiscoverComponentsResponse
+   viam.robot.client.Discovery
+   viam.robot.client.DiscoveryQuery
+   viam.robot.client.FrameSystemConfig
+   viam.robot.client.FrameSystemConfigRequest
+   viam.robot.client.FrameSystemConfigResponse
+   viam.robot.client.GetCloudMetadataRequest
+   viam.robot.client.GetCloudMetadataResponse
+   viam.robot.client.GetOperationsRequest
+   viam.robot.client.GetOperationsResponse
+   viam.robot.client.GetStatusRequest
+   viam.robot.client.GetStatusResponse
+   viam.robot.client.LogRequest
+   viam.robot.client.Operation
+   viam.robot.client.ResourceNamesRequest
+   viam.robot.client.ResourceNamesResponse
+   viam.robot.client.RobotServiceStub
+   viam.robot.client.ShutdownRequest
+   viam.robot.client.StopAllRequest
+   viam.robot.client.StopExtraParameters
+   viam.robot.client.TransformPoseRequest
+   viam.robot.client.TransformPoseResponse
+   viam.robot.client.ResourceBase
+   viam.robot.client.ResourceManager
+   viam.robot.client.Registry
+   viam.robot.client.ReconfigurableResourceRPCClientBase
+   viam.robot.client.ResourceRPCClientBase
+   viam.robot.client.Subtype
+   viam.robot.client.DialOptions
+   viam.robot.client.ViamChannel
+   viam.robot.client.ServiceBase
+   viam.robot.client.SessionsClient
+   viam.robot.client.RobotClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.robot.client.dial
+   viam.robot.client.datetime_to_timestamp
+   viam.robot.client.dict_to_struct
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: ComponentBase(name: str)
 
-.. autoapisummary::
-
-   viam.robot.client.RobotClient
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.resource.base.ResourceBase`
 
 
+   Base component.
+   All components must inherit from this class.
 
 
-Attributes
-~~~~~~~~~~
+   .. py:attribute:: SUBTYPE
+      :type:  ClassVar[viam.resource.types.Subtype]
 
-.. autoapisummary::
 
-   viam.robot.client.LOGGER
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
 
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:exception:: ResourceNotFoundError(resource: str, name: str)
+
+   Bases: :py:obj:`ViamGRPCError`
+
+
+   Exception raised when a resource is not found in the registry
+
+
+.. py:class:: LogEntry(*, host: str = ..., level: str = ..., time: google.protobuf.timestamp_pb2.Timestamp | None = ..., logger_name: str = ..., message: str = ..., caller: google.protobuf.struct_pb2.Struct | None = ..., stack: str = ..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: host
+      :type:  str
+
+
+   .. py:attribute:: level
+      :type:  str
+
+
+   .. py:attribute:: logger_name
+      :type:  str
+
+
+   .. py:attribute:: message
+      :type:  str
+
+
+   .. py:attribute:: stack
+      :type:  str
+
+
+   .. py:property:: time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: caller
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:property:: fields
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
+
+
+
+   .. py:method:: HasField(field_name: Literal['caller', b'caller', 'time', b'time']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: global___Pose | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   PoseInFrame contains a pose and the and the reference frame in which it was observed
+
+
+   .. py:attribute:: reference_frame
+      :type:  str
+
+
+   .. py:property:: pose
+      :type: global___Pose
+
+
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: namespace
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+
+   .. py:attribute:: subtype
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ..., physical_object: global___Geometry | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
+   frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
+   reference frame as observed within the second reference frame.
+
+
+   .. py:attribute:: reference_frame
+      :type:  str
+
+      the name of a given reference frame
+
+
+   .. py:property:: pose_in_observer_frame
+      :type: global___PoseInFrame
+
+      the pose of the above reference frame with respect to a different observer reference frame
+
+
+   .. py:property:: physical_object
+      :type: global___Geometry
+
+
+
+   .. py:method:: HasField(field_name: Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_physical_object', b'_physical_object']) -> Literal['physical_object'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: BlockForOperationRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: CancelOperationRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: DiscoverComponentsRequest(*, queries: collections.abc.Iterable[global___DiscoveryQuery] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: queries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
+
+
+
+.. py:class:: DiscoverComponentsResponse(*, discovery: collections.abc.Iterable[global___Discovery] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: discovery
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
+
+
+
+.. py:class:: Discovery(*, query: global___DiscoveryQuery | None = ..., results: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: query
+      :type: global___DiscoveryQuery
+
+
+
+   .. py:property:: results
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['query', b'query', 'results', b'results']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DiscoveryQuery(*, subtype: str = ..., model: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Discovery
+
+
+   .. py:attribute:: subtype
+      :type:  str
+
+
+   .. py:attribute:: model
+      :type:  str
+
+
+.. py:class:: FrameSystemConfig(*, frame: viam.gen.common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   this is an experimental API message
+
+
+   .. py:property:: frame
+      :type: viam.gen.common.v1.common_pb2.Transform
+
+
+
+   .. py:property:: kinematics
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['frame', b'frame', 'kinematics', b'kinematics']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: supplemental_transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
+
+      pose information on any additional reference frames that are needed
+      to supplement the robot's frame system
+
+
+.. py:class:: FrameSystemConfigResponse(*, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: frame_system_configs
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
+
+
+
+.. py:class:: GetCloudMetadataRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: GetCloudMetadataResponse(*, robot_part_id: str = ..., primary_org_id: str = ..., location_id: str = ..., machine_id: str = ..., machine_part_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: robot_part_id
+      :type:  str
+
+      use machine_part_id field.
+
+      :type: Deprecated
+
+
+   .. py:attribute:: primary_org_id
+      :type:  str
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+   .. py:attribute:: machine_id
+      :type:  str
+
+
+   .. py:attribute:: machine_part_id
+      :type:  str
+
+
+.. py:class:: GetOperationsRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: GetOperationsResponse(*, operations: collections.abc.Iterable[global___Operation] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: operations
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
+
+
+
+.. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: resource_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+
+.. py:class:: GetStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
+
+
+
+.. py:class:: LogRequest(*, logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: logs
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
+
+
+
+.. py:class:: Operation(*, id: str = ..., method: str = ..., arguments: google.protobuf.struct_pb2.Struct | None = ..., started: google.protobuf.timestamp_pb2.Timestamp | None = ..., session_id: str | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: method
+      :type:  str
+
+
+   .. py:attribute:: session_id
+      :type:  str
+
+
+   .. py:property:: arguments
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:property:: started
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_session_id', b'_session_id', 'arguments', b'arguments', 'session_id', b'session_id', 'started', b'started']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_session_id', b'_session_id']) -> Literal['session_id'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: ResourceNamesRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: resources
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+
+.. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: ShutdownRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: StopAllRequest(*, extra: collections.abc.Iterable[global___StopExtraParameters] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: extra
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
+
+
+
+.. py:class:: StopExtraParameters(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., params: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+
+   .. py:property:: params
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['name', b'name', 'params', b'params']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: TransformPoseRequest(*, source: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., destination: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: destination
+      :type:  str
+
+      the reference frame into which the source pose should be transformed,
+      if unset this defaults to the "world" reference frame
+
+
+   .. py:property:: source
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+      the original pose to transform along with the reference frame in
+      which it was observed
+
+
+   .. py:property:: supplemental_transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
+
+      pose information on any additional reference frames that are needed
+      to perform the transform
+
+
+   .. py:method:: HasField(field_name: Literal['source', b'source']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: TransformPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ResourceBase
+
+   Bases: :py:obj:`Protocol`
+
+
+   The base requirements for a Resource.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  ClassVar[viam.resource.types.Subtype]
+
+      The Subtype of the Resource
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the Resource
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      :abstractmethod:
+
+
+      Get the Resource named ``name`` from the provided robot.
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm = Arm.from_robot(robot, "my_arm")
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The Resource, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:class:: ResourceManager(components: List[viam.resource.base.ResourceBase] = [])
+
+   Registry containing all components registered to this server.
+
+
+   .. py:attribute:: resources
+      :type:  Dict[viam.proto.common.ResourceName, viam.resource.base.ResourceBase]
+
+
+   .. py:method:: register(resource: viam.resource.base.ResourceBase)
+
+      Register a new resource with the registry.
+      Resources may not have the same name.
+      If a resource is remote and the short name is unique, save a short name version.
+
+      :raises DuplicateResourceError: Error if attempting to register resource
+          with the name of an existing resource
+      :raises ResourceNotFoundError: Raised if the subtype of the resource is not registered
+
+      :param resource: The resource to register
+      :type resource: ResourceBase
+
+
+
+   .. py:method:: get_resource(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType
+
+      Return a resource from the registry.
+      If a unique short name version is given, return a remote resource with the name.
+
+      :param of_type: The type of the resource
+      :type of_type: Type[ResourceType]
+      :param name: The name of the resource
+      :type name: viam.proto.common.ResourceName
+
+      :raises ResourceNotFoundError: Error if resource with the given type
+          and name does not exist in the registry
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+
+   .. py:method:: remove_resource(name: viam.proto.common.ResourceName)
+      :async:
+
+
+      Remove the resource with the specified ```ResourceName```.
+
+      :param name: The ResourceName of the resource
+      :type name: viam.proto.common.ResourceName
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Close the resourcce manager by removing all resources.
+      Please note that any errors will not raise an exception. Errors will still be logged.
+
+
+
+.. py:class:: Registry
+
+   The global registry of robotic parts.
+
+   **NB** The Registry should almost never be used directly
+
+   The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
+   pre-registered (e.g. Arm, Motor).
+
+   If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+   resource using ``Registry.register(...)``.
+
+
+   .. py:method:: register_subtype(registration: ResourceRegistration[Resource])
+      :classmethod:
+
+
+      Register a Subtype with the Registry
+
+      :param registration: Object containing registration data for the subtype
+      :type registration: ResourceRegistration
+
+      :raises DuplicateResourceError: Raised if the Subtype to register is already in the registry
+      :raises ValidationError: Raised if registration is missing any necessary parameters
+
+
+
+   .. py:method:: register_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, registration: ResourceCreatorRegistration)
+      :classmethod:
+
+
+      Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+      :param registration: The registration functions of the model
+      :type registration: ResourceCreatorRegistration
+
+      :raises DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+      :raises ValidationError: Raised if registration does not have creator
+
+
+
+   .. py:method:: lookup_subtype(subtype: viam.resource.types.Subtype) -> ResourceRegistration
+      :classmethod:
+
+
+      Lookup and retrieve a registered Subtype by its name
+
+      :param subtype: The subtype of the resource
+      :type subtype: str
+
+      :raises ResourceNotFoundError: Raised if the Subtype is not registered
+
+      :returns: The registration object of the resource
+      :rtype: ResourceRegistration
+
+
+
+   .. py:method:: lookup_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ResourceCreator
+      :classmethod:
+
+
+      Lookup and retrieve a registered resource creator by its subtype and model
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+
+      :raises ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+
+      :returns: The function to create the resource
+      :rtype: ResourceCreator
+
+
+
+   .. py:method:: lookup_validator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.Validator
+      :classmethod:
+
+
+      Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+
+      :returns: The function to validate the resource
+      :rtype: Validator
+
+
+
+   .. py:method:: REGISTERED_SUBTYPES() -> Mapping[viam.resource.types.Subtype, ResourceRegistration]
+      :classmethod:
+
+
+      The dictionary of all registered resources
+      - Key: Subtype of the resource
+      - Value: The registration object for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[Subtype, ResourceRegistration]
+
+
+
+   .. py:method:: REGISTERED_RESOURCE_CREATORS() -> Mapping[str, ResourceCreatorRegistration]
+      :classmethod:
+
+
+      The dictionary of all registered resources
+      - Key: subtype/model
+      - Value: The ResourceCreatorRegistration for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[str, ResourceCreatorRegistration]
+
+
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:class:: ResourceRPCClientBase
+
+   Bases: :py:obj:`Protocol`
+
+
+   Base RPC client for a resource.
+   Resource RPC clients must inherit from this class
+
+
+   .. py:attribute:: channel
+      :type:  grpclib.client.Channel
+
+
+   .. py:attribute:: client
+      :type:  Any
+
+
+.. py:data:: RESOURCE_TYPE_COMPONENT
+   :value: 'component'
+
+
+.. py:data:: RESOURCE_TYPE_SERVICE
+   :value: 'service'
+
+
+.. py:class:: Subtype(namespace: str, resource_type: str, resource_subtype: str)
+
+   Represents a known component/service (resource) API
+
+
+   .. py:attribute:: namespace
+      :type:  str
+
+      The namespace of the resource
+
+
+   .. py:attribute:: resource_type
+      :type:  str
+
+      The type of the resource, e.g. `component` or `service`
+
+
+   .. py:attribute:: resource_subtype
+      :type:  str
+
+      The subtype of the resource e.g. `servo`, `arm`, `vision`
+
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+
+   .. py:method:: __repr__() -> str
+
+      Return repr(self).
+
+
+
+   .. py:method:: __hash__() -> int
+
+      Return hash(self).
+
+
+
+   .. py:method:: __eq__(other: object) -> bool
+
+      Return self==value.
+
+
+
+   .. py:method:: from_resource_name(resource_name: viam.proto.common.ResourceName) -> typing_extensions.Self
+      :classmethod:
+
+
+      Convert a ```ResourceName``` into a ```Subtype```
+
+      :param resource_name: The ResourceName to convert
+      :type resource_name: viam.proto.common.ResourceName
+
+      :returns: A new Subtype
+      :rtype: Self
+
+
+
+   .. py:method:: from_string(string: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)
+
+      :param string: The Subtype as a string
+      :type string: str
+
+      :raises ValueError: Raised if the string does not represent a valid Subtype
+
+      :returns: A new Subtype
+      :rtype: Self
+
+
+
+.. py:class:: DialOptions(*, disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20)
+
+   .. py:attribute:: disable_webrtc
+      :type:  bool
+
+      Bypass Web RTC and connect directly to the robot.
+
+
+   .. py:attribute:: auth_entity
+      :type:  Optional[str]
+
+      The URL to authenticate against. Should be used if the address passed in and FQDN of the server do not match.
+
+
+   .. py:attribute:: credentials
+      :type:  Optional[Credentials]
+
+      Credentials for connecting to the robot
+
+
+   .. py:attribute:: insecure
+      :type:  bool
+      :value: False
+
+
+      Determine if the RPC connection is TLS based. Must be provided to
+      establish an insecure connection. Otherwise, a TLS based connection
+      will be assumed.
+
+
+   .. py:attribute:: allow_insecure_downgrade
+      :type:  bool
+      :value: False
+
+
+      Allow the RPC connection to be downgraded to an insecure connection
+      if detected. This is only used when credentials are not present.
+
+
+   .. py:attribute:: allow_insecure_with_creds_downgrade
+      :type:  bool
+      :value: False
+
+
+      Allow the RPC connection to be downgraded to an insecure connection
+      if detected, even with credentials present. This is generally
+      unsafe to use, but can be requested.
+
+
+   .. py:attribute:: max_reconnect_attempts
+      :type:  int
+      :value: 3
+
+
+      Max number of times the client attempts to reconnect when connection is lost
+
+
+   .. py:attribute:: timeout
+      :type:  float
+      :value: 20
+
+
+      Number of seconds before the dial connection times out
+      Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
+
+
+   .. py:method:: with_api_key(api_key: str, api_key_id: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Create DialOptions with an API key for credentials and default values for other arguments.
+
+      :param api_key: your API key
+      :type api_key: str
+      :param api_key_id: your API key ID. Must be a valid UUID
+      :type api_key_id: str
+
+      :raises ValueError: Raised if the api_key_id is not a valid UUID
+
+      :returns: the DialOptions
+      :rtype: Self
+
+
+
+.. py:class:: ViamChannel
+
+   .. py:attribute:: channel
+      :type:  grpclib.client.Channel
+
+
+   .. py:attribute:: release
+      :type:  Callable[[], None]
+
+
+   .. py:method:: close()
+
+
+   .. py:method:: __del__()
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+
+   .. py:method:: __aexit__(exc_type, exc_value, traceback)
+      :async:
+
+
+
+.. py:function:: dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel
+   :async:
+
+
+.. py:class:: ServiceBase(name: str)
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.resource.base.ResourceBase`
+
+
+   This class describes the base functionality required for a Viam Service.
+   All services must inherit from this class.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  ClassVar[viam.resource.types.Subtype]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:class:: SessionsClient(channel: grpclib.client.Channel, direct_dial_address: str, dial_options: Optional[viam.rpc.dial.DialOptions], *, disabled: bool = False)
+
+   A Session allows a client to express that it is actively connected and
+   supports stopping actuating components when it's not.
+
+
+   .. py:attribute:: channel
+      :type:  grpclib.client.Channel
+
+
+   .. py:attribute:: client
+      :type:  viam.proto.robot.RobotServiceStub
+
+
+   .. py:method:: reset()
+
+
+   .. py:property:: metadata
+      :type: grpclib.metadata._MetadataLike
+
+
+
+.. py:function:: datetime_to_timestamp(dt: Optional[datetime.datetime]) -> Optional[google.protobuf.timestamp_pb2.Timestamp]
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
 
 .. py:data:: LOGGER
 
-   
-
 .. py:class:: RobotClient
-
 
    gRPC client for a Robot. This class should be used for all interactions with a robot.
 
@@ -77,46 +1715,59 @@ Attributes
        if __name__ == '__main__':
            asyncio.run(main())
 
+
    .. py:class:: Options
 
-
       .. py:attribute:: refresh_interval
-         :type: int
+         :type:  int
          :value: 0
+
 
          How often to refresh the status/parts of the robot in seconds.
          If not set, the robot will not be refreshed automatically
 
+
       .. py:attribute:: dial_options
-         :type: Optional[viam.rpc.dial.DialOptions]
+         :type:  Optional[viam.rpc.dial.DialOptions]
+         :value: None
+
 
          Options used to connect clients to gRPC servers
 
+
       .. py:attribute:: log_level
-         :type: int
+         :type:  int
 
          The log level to output
 
+
       .. py:attribute:: check_connection_interval
-         :type: int
+         :type:  int
          :value: 10
+
 
          The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks
 
+
       .. py:attribute:: attempt_reconnect_interval
-         :type: int
+         :type:  int
          :value: 1
+
 
          The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
 
+
       .. py:attribute:: disable_sessions
-         :type: bool
+         :type:  bool
          :value: False
+
 
          Whether sessions are disabled
 
+
       .. py:method:: with_api_key(api_key: str, api_key_id: str, **kwargs) -> typing_extensions.Self
          :classmethod:
+
 
          Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
@@ -143,21 +1794,12 @@ Attributes
 
 
 
-   .. py:property:: resource_names
-      :type: List[viam.proto.common.ResourceName]
-
-      Get a list of all resource names
-
-      ::
-
-          resource_names = robot.resource_names
-
-      :returns: The list of resource names
-      :rtype: List[viam.proto.common.ResourceName]
 
    .. py:method:: at_address(address: str, options: Options) -> typing_extensions.Self
       :classmethod:
+
       :async:
+
 
       Create a robot client that is connected to the robot at the provided address.
 
@@ -187,9 +1829,12 @@ Attributes
       :rtype: Self
 
 
+
    .. py:method:: with_channel(channel: Union[grpclib.client.Channel, viam.rpc.dial.ViamChannel], options: Options) -> typing_extensions.Self
       :classmethod:
+
       :async:
+
 
       Create a robot that is connected to a robot over the given channel.
 
@@ -216,14 +1861,17 @@ Attributes
       :rtype: Self
 
 
+
    .. py:method:: refresh()
       :async:
+
 
       Manually refresh the underlying parts of this robot
 
       ::
 
           await robot.refresh()
+
 
 
    .. py:method:: get_component(name: viam.proto.common.ResourceName) -> viam.components.component_base.ComponentBase
@@ -271,6 +1919,7 @@ Attributes
       :rtype: ComponentBase
 
 
+
    .. py:method:: get_service(name: viam.proto.common.ResourceName) -> viam.services.service_base.ServiceBase
 
       Get a service using its ResourceName
@@ -312,8 +1961,23 @@ Attributes
       :rtype: ServiceBase
 
 
+
+   .. py:property:: resource_names
+      :type: List[viam.proto.common.ResourceName]
+
+      Get a list of all resource names
+
+      ::
+
+          resource_names = robot.resource_names
+
+      :returns: The list of resource names
+      :rtype: List[viam.proto.common.ResourceName]
+
+
    .. py:method:: close()
       :async:
+
 
       Cleanly close the underlying connections and stop any periodic tasks.
 
@@ -322,16 +1986,20 @@ Attributes
           await robot.close()
 
 
+
    .. py:method:: __aenter__()
       :async:
+
 
 
    .. py:method:: __aexit__(exc_type, exc_value, traceback)
       :async:
 
 
+
    .. py:method:: get_status(components: Optional[List[viam.proto.common.ResourceName]] = None)
       :async:
+
 
       Get the status of the robot's components. You can optionally
       provide a list of ``ResourceName`` for which you want statuses.
@@ -346,8 +2014,10 @@ Attributes
       :type components: Optional[List[viam.proto.common.ResourceName]]
 
 
+
    .. py:method:: get_operations() -> List[viam.proto.robot.Operation]
       :async:
+
 
       Get the list of operations currently running on the robot.
 
@@ -359,8 +2029,10 @@ Attributes
       :rtype: List[viam.proto.robot.Operation]
 
 
+
    .. py:method:: cancel_operation(id: str)
       :async:
+
 
       Cancels the specified operation on the robot.
 
@@ -372,8 +2044,10 @@ Attributes
       :type id: str
 
 
+
    .. py:method:: block_for_operation(id: str)
       :async:
+
 
       Blocks on the specified operation on the robot. This function will only return when the specific operation
       has finished or has been cancelled.
@@ -386,8 +2060,10 @@ Attributes
       :type id: str
 
 
+
    .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> List[viam.proto.robot.FrameSystemConfig]
       :async:
+
 
       Get the configuration of the frame system of a given robot.
 
@@ -401,8 +2077,10 @@ Attributes
       :rtype: List[viam.proto.robot.FrameSystemConfig]
 
 
+
    .. py:method:: transform_pose(query: viam.proto.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> viam.proto.common.PoseInFrame
       :async:
+
 
       Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
 
@@ -419,13 +2097,17 @@ Attributes
       :rtype: PoseInFrame
 
 
+
    .. py:method:: transform_point_cloud()
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: discover_components(queries: List[viam.proto.robot.DiscoveryQuery]) -> List[viam.proto.robot.Discovery]
       :async:
+
 
       Get the list of discovered component configurations.
 
@@ -447,8 +2129,10 @@ Attributes
       :rtype: List[Discovery]
 
 
+
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
       :async:
+
 
       Cancel all current and outstanding operations for the robot and stop all actuators and movement.
 
@@ -466,8 +2150,10 @@ Attributes
       :type extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]]
 
 
+
    .. py:method:: log(name: str, level: str, time: datetime.datetime, log: str, stack: str)
       :async:
+
 
       Send log from Python module over gRPC.
 
@@ -485,8 +2171,10 @@ Attributes
       :type stack: str
 
 
+
    .. py:method:: get_cloud_metadata() -> viam.proto.robot.GetCloudMetadataResponse
       :async:
+
 
       Get app-related information about the robot.
 
@@ -494,8 +2182,10 @@ Attributes
       :rtype: viam.proto.robot.GetCloudMetadataResponse
 
 
+
    .. py:method:: shutdown()
       :async:
+
 
       Shutdown shuts down the robot.
 

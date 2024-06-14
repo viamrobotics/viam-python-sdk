@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.base.v1.base_grpc`
-==============================================
+viam.gen.component.base.v1.base_grpc
+====================================
 
 .. py:module:: viam.gen.component.base.v1.base_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,103 +14,131 @@ Classes
    viam.gen.component.base.v1.base_grpc.BaseServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: BaseServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: MoveStraight(stream: grpclib.server.Stream[component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Spin(stream: grpclib.server.Stream[component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetPower(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetVelocity(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedBaseServiceBase
 
-
    Bases: :py:obj:`BaseServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: MoveStraight(stream: grpclib.server.Stream[component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse]) -> None
       :async:
+
 
 
    .. py:method:: Spin(stream: grpclib.server.Stream[component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse]) -> None
       :async:
 
 
+
    .. py:method:: SetPower(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetVelocity(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse]) -> None
@@ -122,6 +147,4 @@ Classes
 
 
 .. py:class:: BaseServiceStub(channel: grpclib.client.Channel)
-
-
 

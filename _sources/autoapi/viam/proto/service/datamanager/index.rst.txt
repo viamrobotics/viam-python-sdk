@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.service.datamanager`
-========================================
+viam.proto.service.datamanager
+==============================
 
 .. py:module:: viam.proto.service.datamanager
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -25,44 +22,49 @@ Classes
    viam.proto.service.datamanager.SyncResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: DataManagerServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Sync(stream: grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: DataManagerServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedDataManagerServiceBase
 
-
    Bases: :py:obj:`DataManagerServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Sync(stream: grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
@@ -72,8 +74,8 @@ Classes
 
 .. py:class:: SyncRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -81,17 +83,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -111,8 +114,8 @@ Classes
 
 .. py:class:: SyncResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

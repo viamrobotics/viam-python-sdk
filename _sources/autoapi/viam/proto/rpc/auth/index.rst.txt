@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.rpc.auth`
-=============================
+viam.proto.rpc.auth
+===================
 
 .. py:module:: viam.proto.rpc.auth
 
@@ -10,11 +10,8 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -31,57 +28,59 @@ Classes
    viam.proto.rpc.auth.Credentials
 
 
-
+Module Contents
+---------------
 
 .. py:class:: AuthServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Authenticate(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]) -> None
       :abstractmethod:
+
       :async:
 
 
-   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 .. py:class:: AuthServiceStub(channel: grpclib.client.Channel)
 
-
-
 .. py:class:: ExternalAuthServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: AuthenticateTo(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: ExternalAuthServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedAuthServiceBase
 
-
    Bases: :py:obj:`AuthServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: Authenticate(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]) -> None
       :async:
@@ -90,11 +89,12 @@ Classes
 
 .. py:class:: UnimplementedExternalAuthServiceBase
 
-
    Bases: :py:obj:`ExternalAuthServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: AuthenticateTo(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]) -> None
       :async:
@@ -103,21 +103,22 @@ Classes
 
 .. py:class:: AuthenticateRequest(*, entity: str = ..., credentials: global___Credentials | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    An AuthenticateRequest contains the credentials used to authenticate.
+
+
+   .. py:attribute:: entity
+      :type:  str
+
 
    .. py:property:: credentials
       :type: global___Credentials
 
 
-   .. py:attribute:: entity
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[credentials, b'credentials']) -> bool
+   .. py:method:: HasField(field_name: Literal['credentials', b'credentials']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -137,13 +138,14 @@ Classes
 
 .. py:class:: AuthenticateResponse(*, access_token: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    An AuthenticateResponse is returned after successful authentication.
 
+
    .. py:attribute:: access_token
-      :type: str
+      :type:  str
 
       access_token is a JWT where only the expiration should be deemed
       important.
@@ -152,26 +154,26 @@ Classes
 
 .. py:class:: AuthenticateToRequest(*, entity: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    An AuthenticateToRequest contains the entity to authenticate to.
 
-   .. py:attribute:: entity
-      :type: str
 
-      
+   .. py:attribute:: entity
+      :type:  str
 
 
 .. py:class:: AuthenticateToResponse(*, access_token: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    An AuthenticateResponse is returned after successful authentication.
 
+
    .. py:attribute:: access_token
-      :type: str
+      :type:  str
 
       access_token is a JWT where only the expiration should be deemed
       important.
@@ -180,8 +182,8 @@ Classes
 
 .. py:class:: Credentials(*, type: str = ..., payload: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -189,13 +191,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: type
-      :type: str
+      :type:  str
 
       type is the type of credentials being used.
 
+
    .. py:attribute:: payload
-      :type: str
+      :type:  str
 
       payload is an opaque string used that are of the given type above.
 

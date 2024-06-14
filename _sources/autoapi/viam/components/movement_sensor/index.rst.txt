@@ -1,25 +1,22 @@
-:py:mod:`viam.components.movement_sensor`
-=========================================
+viam.components.movement_sensor
+===============================
 
 .. py:module:: viam.components.movement_sensor
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   movement_sensor/index.rst
-   service/index.rst
+   /autoapi/viam/components/movement_sensor/client/index
+   /autoapi/viam/components/movement_sensor/movement_sensor/index
+   /autoapi/viam/components/movement_sensor/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -28,12 +25,13 @@ Classes
    viam.components.movement_sensor.Vector3
 
 
-
+Package Contents
+----------------
 
 .. py:class:: GeoPoint(*, latitude: float = ..., longitude: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -41,21 +39,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: latitude
-      :type: float
 
-      
+   .. py:attribute:: latitude
+      :type:  float
+
 
    .. py:attribute:: longitude
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:class:: Orientation(*, o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -63,31 +59,35 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: o_x
-      :type: float
+      :type:  float
 
       x component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_y
-      :type: float
+      :type:  float
 
       y component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_z
-      :type: float
+      :type:  float
 
       z component of a vector defining axis of rotation
 
+
    .. py:attribute:: theta
-      :type: float
+      :type:  float
 
       degrees
 
 
 .. py:class:: Vector3(*, x: float = ..., y: float = ..., z: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -95,19 +95,16 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: x
-      :type: float
 
-      
+   .. py:attribute:: x
+      :type:  float
+
 
    .. py:attribute:: y
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: z
-      :type: float
-
-      
+      :type:  float
 
 

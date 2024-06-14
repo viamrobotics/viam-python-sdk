@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.base`
-===================================
+viam.proto.component.base
+=========================
 
 .. py:module:: viam.proto.component.base
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -37,107 +34,133 @@ Classes
    viam.proto.component.base.StopResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: BaseServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: MoveStraight(stream: grpclib.server.Stream[component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Spin(stream: grpclib.server.Stream[component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetPower(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetVelocity(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: BaseServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedBaseServiceBase
 
-
    Bases: :py:obj:`BaseServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: MoveStraight(stream: grpclib.server.Stream[component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse]) -> None
       :async:
+
 
 
    .. py:method:: Spin(stream: grpclib.server.Stream[component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse]) -> None
       :async:
 
 
+
    .. py:method:: SetPower(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetVelocity(stream: grpclib.server.Stream[component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.base.v1.base_pb2.GetPropertiesRequest, component.base.v1.base_pb2.GetPropertiesResponse]) -> None
@@ -147,8 +170,8 @@ Classes
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -156,16 +179,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the base
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the base
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -185,8 +211,8 @@ Classes
 
 .. py:class:: GetPropertiesResponse(*, width_meters: float = ..., turning_radius_meters: float = ..., wheel_circumference_meters: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -194,26 +220,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: width_meters
-      :type: float
 
-      
+   .. py:attribute:: width_meters
+      :type:  float
+
 
    .. py:attribute:: turning_radius_meters
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: wheel_circumference_meters
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -221,16 +244,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -238,44 +260,48 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:class:: MoveStraightRequest(*, name: str = ..., distance_mm: int = ..., mm_per_sec: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a base
+
+
+   .. py:attribute:: distance_mm
+      :type:  int
+
+      Desired travel distance in millimeters
+
+
+   .. py:attribute:: mm_per_sec
+      :type:  float
+
+      Desired travel velocity in millimeters/second
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a base
-
-   .. py:attribute:: distance_mm
-      :type: int
-
-      Desired travel distance in millimeters
-
-   .. py:attribute:: mm_per_sec
-      :type: float
-
-      Desired travel velocity in millimeters/second
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -295,8 +321,8 @@ Classes
 
 .. py:class:: MoveStraightResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -307,8 +333,8 @@ Classes
 
 .. py:class:: SetPowerRequest(*, name: str = ..., linear: viam.gen.common.v1.common_pb2.Vector3 | None = ..., angular: viam.gen.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -316,27 +342,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a base
+
+
    .. py:property:: linear
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Desired linear power percentage as -1 -> 1
+
 
    .. py:property:: angular
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Desired angular power percentage % as -1 -> 1
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a base
-
-   .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -356,8 +387,8 @@ Classes
 
 .. py:class:: SetPowerResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -368,8 +399,8 @@ Classes
 
 .. py:class:: SetVelocityRequest(*, name: str = ..., linear: viam.gen.common.v1.common_pb2.Vector3 | None = ..., angular: viam.gen.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -377,27 +408,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a base
+
+
    .. py:property:: linear
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Desired linear velocity in mm per second
+
 
    .. py:property:: angular
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Desired angular velocity in degrees per second
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a base
-
-   .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -417,8 +453,8 @@ Classes
 
 .. py:class:: SetVelocityResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -429,8 +465,8 @@ Classes
 
 .. py:class:: SpinRequest(*, name: str = ..., angle_deg: float = ..., degs_per_sec: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -438,27 +474,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a base
+
+
+   .. py:attribute:: angle_deg
+      :type:  float
+
+      Desired angle
+
+
+   .. py:attribute:: degs_per_sec
+      :type:  float
+
+      Desired angular velocity
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a base
-
-   .. py:attribute:: angle_deg
-      :type: float
-
-      Desired angle
-
-   .. py:attribute:: degs_per_sec
-      :type: float
-
-      Desired angular velocity
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -478,8 +519,8 @@ Classes
 
 .. py:class:: SpinResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -490,8 +531,8 @@ Classes
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -499,17 +540,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a base
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a base
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -529,8 +573,8 @@ Classes
 
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

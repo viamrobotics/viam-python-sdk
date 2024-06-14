@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.movementsensor.v1.movementsensor_pb2`
-=================================================================
+viam.gen.component.movementsensor.v1.movementsensor_pb2
+=======================================================
 
 .. py:module:: viam.gen.component.movementsensor.v1.movementsensor_pb2
 
@@ -10,36 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -62,15 +34,39 @@ Attributes
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: GetLinearVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -78,17 +74,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -108,12 +107,10 @@ Attributes
 
 .. py:data:: global___GetLinearVelocityRequest
 
-   
-
 .. py:class:: GetLinearVelocityResponse(*, linear_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -121,12 +118,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: linear_velocity
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Linear velocity in m/s across x/y/z axes
 
-   .. py:method:: HasField(field_name: Literal[linear_velocity, b'linear_velocity']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['linear_velocity', b'linear_velocity']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -146,12 +145,10 @@ Attributes
 
 .. py:data:: global___GetLinearVelocityResponse
 
-   
-
 .. py:class:: GetAngularVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -159,17 +156,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -189,12 +189,10 @@ Attributes
 
 .. py:data:: global___GetAngularVelocityRequest
 
-   
-
 .. py:class:: GetAngularVelocityResponse(*, angular_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -202,12 +200,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: angular_velocity
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Angular velocity in degrees/s across x/y/z axes
 
-   .. py:method:: HasField(field_name: Literal[angular_velocity, b'angular_velocity']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['angular_velocity', b'angular_velocity']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -227,12 +227,10 @@ Attributes
 
 .. py:data:: global___GetAngularVelocityResponse
 
-   
-
 .. py:class:: GetCompassHeadingRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -240,17 +238,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -270,12 +271,10 @@ Attributes
 
 .. py:data:: global___GetCompassHeadingRequest
 
-   
-
 .. py:class:: GetCompassHeadingResponse(*, value: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -283,8 +282,9 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: value
-      :type: float
+      :type:  float
 
       A number from 0-359 in degrees where
       0 is North, 90 is East, 180 is South, and 270 is   West
@@ -292,12 +292,10 @@ Attributes
 
 .. py:data:: global___GetCompassHeadingResponse
 
-   
-
 .. py:class:: GetOrientationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -305,17 +303,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -335,12 +336,10 @@ Attributes
 
 .. py:data:: global___GetOrientationRequest
 
-   
-
 .. py:class:: GetOrientationResponse(*, orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -348,13 +347,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: orientation
       :type: viam.gen.common.v1.common_pb2.Orientation
 
       Orientation is returned as an orientation message with
       OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
 
-   .. py:method:: HasField(field_name: Literal[orientation, b'orientation']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['orientation', b'orientation']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -374,12 +375,10 @@ Attributes
 
 .. py:data:: global___GetOrientationResponse
 
-   
-
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -387,17 +386,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -417,12 +419,10 @@ Attributes
 
 .. py:data:: global___GetPositionRequest
 
-   
-
 .. py:class:: GetPositionResponse(*, coordinate: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -430,18 +430,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: altitude_m
+      :type:  float
+
+
    .. py:property:: coordinate
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
       Position is returned in a coordinate of latitute and longitude
       and an altidue in meters
 
-   .. py:attribute:: altitude_m
-      :type: float
 
-      
-
-   .. py:method:: HasField(field_name: Literal[coordinate, b'coordinate']) -> bool
+   .. py:method:: HasField(field_name: Literal['coordinate', b'coordinate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -461,12 +462,10 @@ Attributes
 
 .. py:data:: global___GetPositionResponse
 
-   
-
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -474,17 +473,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -504,12 +506,10 @@ Attributes
 
 .. py:data:: global___GetPropertiesRequest
 
-   
-
 .. py:class:: GetPropertiesResponse(*, linear_velocity_supported: bool = ..., angular_velocity_supported: bool = ..., orientation_supported: bool = ..., position_supported: bool = ..., compass_heading_supported: bool = ..., linear_acceleration_supported: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -517,63 +517,58 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: linear_velocity_supported
-      :type: bool
 
-      
+   .. py:attribute:: linear_velocity_supported
+      :type:  bool
+
 
    .. py:attribute:: angular_velocity_supported
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: orientation_supported
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: position_supported
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: compass_heading_supported
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: linear_acceleration_supported
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:data:: global___GetPropertiesResponse
 
-   
-
 .. py:class:: GetAccuracyRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -593,12 +588,10 @@ Attributes
 
 .. py:data:: global___GetAccuracyRequest
 
-   
-
 .. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ..., position_hdop: float | None = ..., position_vdop: float | None = ..., position_nmea_gga_fix: int | None = ..., compass_degrees_error: float | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -606,10 +599,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: AccuracyEntry(*, key: str = ..., value: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -617,42 +611,38 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: float
+         :type:  float
 
-         
+
+
+   .. py:attribute:: position_hdop
+      :type:  float
+
+
+   .. py:attribute:: position_vdop
+      :type:  float
+
+
+   .. py:attribute:: position_nmea_gga_fix
+      :type:  int
+
+
+   .. py:attribute:: compass_degrees_error
+      :type:  float
 
 
    .. py:property:: accuracy
       :type: google.protobuf.internal.containers.ScalarMap[str, float]
 
 
-   .. py:attribute:: position_hdop
-      :type: float
 
-      
-
-   .. py:attribute:: position_vdop
-      :type: float
-
-      
-
-   .. py:attribute:: position_nmea_gga_fix
-      :type: int
-
-      
-
-   .. py:attribute:: compass_degrees_error
-      :type: float
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_compass_degrees_error, b'_compass_degrees_error', _position_hdop, b'_position_hdop', _position_nmea_gga_fix, b'_position_nmea_gga_fix', _position_vdop, b'_position_vdop', compass_degrees_error, b'compass_degrees_error', position_hdop, b'position_hdop', position_nmea_gga_fix, b'position_nmea_gga_fix', position_vdop, b'position_vdop']) -> bool
+   .. py:method:: HasField(field_name: Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -669,10 +659,11 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_compass_degrees_error, b'_compass_degrees_error']) -> Literal[compass_degrees_error] | None
-                  WhichOneof(oneof_group: Literal[_position_hdop, b'_position_hdop']) -> Literal[position_hdop] | None
-                  WhichOneof(oneof_group: Literal[_position_nmea_gga_fix, b'_position_nmea_gga_fix']) -> Literal[position_nmea_gga_fix] | None
-                  WhichOneof(oneof_group: Literal[_position_vdop, b'_position_vdop']) -> Literal[position_vdop] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_compass_degrees_error', b'_compass_degrees_error']) -> Literal['compass_degrees_error'] | None
+                  WhichOneof(oneof_group: Literal['_position_hdop', b'_position_hdop']) -> Literal['position_hdop'] | None
+                  WhichOneof(oneof_group: Literal['_position_nmea_gga_fix', b'_position_nmea_gga_fix']) -> Literal['position_nmea_gga_fix'] | None
+                  WhichOneof(oneof_group: Literal['_position_vdop', b'_position_vdop']) -> Literal['position_vdop'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -690,12 +681,10 @@ Attributes
 
 .. py:data:: global___GetAccuracyResponse
 
-   
-
 .. py:class:: GetLinearAccelerationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -703,17 +692,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a movement sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -733,12 +725,10 @@ Attributes
 
 .. py:data:: global___GetLinearAccelerationRequest
 
-   
-
 .. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -746,12 +736,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: linear_acceleration
       :type: viam.gen.common.v1.common_pb2.Vector3
 
       Linear acceleration in m/s across x/y/z axes
 
-   .. py:method:: HasField(field_name: Literal[linear_acceleration, b'linear_acceleration']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['linear_acceleration', b'linear_acceleration']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -770,6 +762,4 @@ Attributes
 
 
 .. py:data:: global___GetLinearAccelerationResponse
-
-   
 

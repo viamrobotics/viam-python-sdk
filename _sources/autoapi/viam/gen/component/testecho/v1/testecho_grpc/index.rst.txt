@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.testecho.v1.testecho_grpc`
-======================================================
+viam.gen.component.testecho.v1.testecho_grpc
+============================================
 
 .. py:module:: viam.gen.component.testecho.v1.testecho_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,58 +14,71 @@ Classes
    viam.gen.component.testecho.v1.testecho_grpc.TestEchoServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: TestEchoServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Echo(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoRequest, component.testecho.v1.testecho_pb2.EchoResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoMultiple(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoMultipleRequest, component.testecho.v1.testecho_pb2.EchoMultipleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoBiDi(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoBiDiRequest, component.testecho.v1.testecho_pb2.EchoBiDiResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.StopRequest, component.testecho.v1.testecho_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedTestEchoServiceBase
 
-
    Bases: :py:obj:`TestEchoServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Echo(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoRequest, component.testecho.v1.testecho_pb2.EchoResponse]) -> None
       :async:
+
 
 
    .. py:method:: EchoMultiple(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoMultipleRequest, component.testecho.v1.testecho_pb2.EchoMultipleResponse]) -> None
       :async:
 
 
+
    .. py:method:: EchoBiDi(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoBiDiRequest, component.testecho.v1.testecho_pb2.EchoBiDiResponse]) -> None
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.StopRequest, component.testecho.v1.testecho_pb2.StopResponse]) -> None
@@ -77,6 +87,4 @@ Classes
 
 
 .. py:class:: TestEchoServiceStub(channel: grpclib.client.Channel)
-
-
 

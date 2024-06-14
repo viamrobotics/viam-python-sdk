@@ -55,31 +55,167 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.services</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.mlmodel</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.services.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html">viam.services.mlmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html">viam.services.motion</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.services.navigation</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation.client</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="../navigation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation.navigation</span></code></a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation.service</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html">viam.services.navigation.client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../navigation/index.html">viam.services.navigation.navigation</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.services.navigation.service</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.RESOURCE_TYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetPaths"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetPaths()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetLocation"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetLocation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetObstacles"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetObstacles()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetWaypoints"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetWaypoints()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.AddWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.AddWaypoint()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.RemoveWaypoint()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetMode"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetMode()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.SetMode"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.SetMode()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetProperties"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetProperties()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.DoCommand"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.DoCommand()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.DoCommandRequest.name"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.DoCommandRequest.command"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.command</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.DoCommandRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest.name"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest.location"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.location</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest.extra"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest.HasField"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.AddWaypointResponse"><code class="docutils literal notranslate"><span class="pre">AddWaypointResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetLocationRequest"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationRequest.name"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetLocationResponse"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationResponse.compass_heading"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse.compass_heading</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationResponse.location"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse.location</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetLocationResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetModeRequest"><code class="docutils literal notranslate"><span class="pre">GetModeRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetModeRequest.name"><code class="docutils literal notranslate"><span class="pre">GetModeRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetModeRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetModeRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetModeRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetModeRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetModeResponse"><code class="docutils literal notranslate"><span class="pre">GetModeResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetModeResponse.mode"><code class="docutils literal notranslate"><span class="pre">GetModeResponse.mode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesRequest"><code class="docutils literal notranslate"><span class="pre">GetObstaclesRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetObstaclesRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetObstaclesRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetObstaclesRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesResponse"><code class="docutils literal notranslate"><span class="pre">GetObstaclesResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesResponse.obstacles"><code class="docutils literal notranslate"><span class="pre">GetObstaclesResponse.obstacles</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetPathsRequest"><code class="docutils literal notranslate"><span class="pre">GetPathsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPathsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPathsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPathsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPathsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPathsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPathsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetPathsResponse"><code class="docutils literal notranslate"><span class="pre">GetPathsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPathsResponse.paths"><code class="docutils literal notranslate"><span class="pre">GetPathsResponse.paths</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesResponse"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesResponse.map_type"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.map_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsRequest"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsResponse"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsResponse.waypoints"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse.waypoints</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetMode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.SetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.SetMode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetLocation"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetLocation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetWaypoints"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetWaypoints()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.AddWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.AddWaypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.RemoveWaypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetObstacles"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetObstacles()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetPaths"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetPaths()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetProperties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest.id"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest.extra"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest.HasField"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointResponse"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest"><code class="docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest.name"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest.mode"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.mode</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.SetModeResponse"><code class="docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.ResourceRPCServiceBase"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.ResourceRPCServiceBase.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.ResourceRPCServiceBase.manager"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.manager</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.ResourceRPCServiceBase.get_resource"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.get_resource()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.dict_to_struct"><code class="docutils literal notranslate"><span class="pre">dict_to_struct()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.struct_to_dict"><code class="docutils literal notranslate"><span class="pre">struct_to_dict()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.Navigation"><code class="docutils literal notranslate"><span class="pre">Navigation</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Navigation.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_paths"><code class="docutils literal notranslate"><span class="pre">Navigation.get_paths()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_location"><code class="docutils literal notranslate"><span class="pre">Navigation.get_location()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_obstacles"><code class="docutils literal notranslate"><span class="pre">Navigation.get_obstacles()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_waypoints"><code class="docutils literal notranslate"><span class="pre">Navigation.get_waypoints()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.add_waypoint"><code class="docutils literal notranslate"><span class="pre">Navigation.add_waypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.remove_waypoint"><code class="docutils literal notranslate"><span class="pre">Navigation.remove_waypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_mode"><code class="docutils literal notranslate"><span class="pre">Navigation.get_mode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.set_mode"><code class="docutils literal notranslate"><span class="pre">Navigation.set_mode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_properties"><code class="docutils literal notranslate"><span class="pre">Navigation.get_properties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.from_robot"><code class="docutils literal notranslate"><span class="pre">Navigation.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.do_command"><code class="docutils literal notranslate"><span class="pre">Navigation.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Navigation.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.get_operation"><code class="docutils literal notranslate"><span class="pre">Navigation.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.Navigation.close"><code class="docutils literal notranslate"><span class="pre">Navigation.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetPaths"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetPaths()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetLocation"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetLocation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetObstacles"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetObstacles()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetWaypoints"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetWaypoints()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.AddWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.AddWaypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.RemoveWaypoint()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetMode"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetMode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.SetMode"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.SetMode()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.GetProperties"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.GetProperties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService.DoCommand"><code class="docutils literal notranslate"><span class="pre">NavigationRPCService.DoCommand()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -88,26 +224,25 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html">viam.services.sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html">viam.services.slam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html">viam.services.vision</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -124,9 +259,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation.service</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.services</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.services.navigation</a></li>
+      <li class="breadcrumb-item active">viam.services.navigation.service</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/services/navigation/service/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -137,18 +272,1260 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.services.navigation.service">
-<span id="viam-services-navigation-service"></span><h1><a class="reference internal" href="#module-viam.services.navigation.service" title="viam.services.navigation.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation.service</span></code></a><a class="headerlink" href="#module-viam.services.navigation.service" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<span id="viam-services-navigation-service"></span><h1>viam.services.navigation.service<a class="headerlink" href="#module-viam.services.navigation.service" title="Permalink to this heading"></a></h1>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService" title="viam.services.navigation.service.NavigationRPCService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NavigationRPCService</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.DoCommandRequest" title="viam.services.navigation.service.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<td><p>DoCommandRequest represents a generic DoCommand input</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.DoCommandResponse" title="viam.services.navigation.service.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<td><p>DoCommandResponse represents a generic DoCommand output</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.AddWaypointRequest" title="viam.services.navigation.service.AddWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddWaypointRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.AddWaypointResponse" title="viam.services.navigation.service.AddWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddWaypointResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetLocationRequest" title="viam.services.navigation.service.GetLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetLocationResponse" title="viam.services.navigation.service.GetLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetModeRequest" title="viam.services.navigation.service.GetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModeRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetModeResponse" title="viam.services.navigation.service.GetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModeResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesRequest" title="viam.services.navigation.service.GetObstaclesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObstaclesRequest</span></code></a></p></td>
+<td><p>GetObstacles will return the geopoint location and geometry of all</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetObstaclesResponse" title="viam.services.navigation.service.GetObstaclesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObstaclesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetPathsRequest" title="viam.services.navigation.service.GetPathsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPathsRequest</span></code></a></p></td>
+<td><p>Returns all the paths known to the navigation service</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetPathsResponse" title="viam.services.navigation.service.GetPathsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPathsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesRequest" title="viam.services.navigation.service.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetPropertiesResponse" title="viam.services.navigation.service.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
+<td><p>Returns properties information for the named navigation service</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsRequest" title="viam.services.navigation.service.GetWaypointsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWaypointsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.GetWaypointsResponse" title="viam.services.navigation.service.GetWaypointsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWaypointsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.NavigationServiceBase" title="viam.services.navigation.service.NavigationServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NavigationServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointRequest" title="viam.services.navigation.service.RemoveWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.RemoveWaypointResponse" title="viam.services.navigation.service.RemoveWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.SetModeRequest" title="viam.services.navigation.service.SetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.SetModeResponse" title="viam.services.navigation.service.SetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.ResourceRPCServiceBase" title="viam.services.navigation.service.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a></p></td>
+<td><p>Base RPC service for a resource.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.Navigation" title="viam.services.navigation.service.Navigation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigation</span></code></a></p></td>
+<td><p>Navigation represents a Navigation service.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.NavigationRPCService" title="viam.services.navigation.service.NavigationRPCService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NavigationRPCService</span></code></a></p></td>
 <td><p>gRPC Service for a Navigation service</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.service.dict_to_struct" title="viam.services.navigation.service.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.service.struct_to_dict" title="viam.services.navigation.service.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.DoCommandRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandRequest represents a generic DoCommand input</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'command'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.DoCommandResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandResponse represents a generic DoCommand output</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'result'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">AddWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.AddWaypointRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.AddWaypointRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointRequest.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.services.navigation.service.AddWaypointRequest.location" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.AddWaypointRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'location'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'location'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.AddWaypointRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.AddWaypointResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">AddWaypointResponse</span></span><a class="headerlink" href="#viam.services.navigation.service.AddWaypointResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetLocationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetLocationRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetLocationRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.GetLocationRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetLocationRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetLocationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_heading</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetLocationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationResponse.compass_heading">
+<span class="sig-name descname"><span class="pre">compass_heading</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.navigation.service.GetLocationResponse.compass_heading" title="Permalink to this definition"></a></dt>
+<dd><p>A number from [0-360) where 0 is north
+90 is east, 180 is south, 270 is west</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationResponse.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.services.navigation.service.GetLocationResponse.location" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetLocationResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'location'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'location'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetLocationResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetModeRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetModeRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.GetModeRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetModeRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetModeResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Mode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetModeResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetModeResponse.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Mode</span></em><a class="headerlink" href="#viam.services.navigation.service.GetModeResponse.mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetObstaclesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetObstacles will return the geopoint location and geometry of all
+known obstacles on the navigation map. Obstacles that are detected
+through the vision service will only be returned if this endpoint is called
+when the robot is sensing the obstacle</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetObstaclesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoGeometry" title="viam.gen.common.v1.common_pb2.GeoGeometry"><span class="pre">viam.gen.common.v1.common_pb2.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetObstaclesResponse.obstacles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoGeometry" title="viam.gen.common.v1.common_pb2.GeoGeometry"><span class="pre">viam.gen.common.v1.common_pb2.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.navigation.service.GetObstaclesResponse.obstacles" title="Permalink to this definition"></a></dt>
+<dd><p>List of all known geometries</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetPathsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetPathsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Returns all the paths known to the navigation service</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetPathsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the navigation service</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.GetPathsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetPathsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetPathsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Path</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetPathsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPathsResponse.paths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Path</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.navigation.service.GetPathsResponse.paths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the navigation service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___MapType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Returns properties information for the named navigation service</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetPropertiesResponse.map_type">
+<span class="sig-name descname"><span class="pre">map_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___MapType</span></em><a class="headerlink" href="#viam.services.navigation.service.GetPropertiesResponse.map_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetWaypointsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">GetWaypointsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waypoints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Waypoint</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.GetWaypointsResponse.waypoints">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">waypoints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Waypoint</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.navigation.service.GetWaypointsResponse.waypoints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">NavigationServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetMode">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetModeRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetModeRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetModeRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetModeResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetModeResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetModeResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetMode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.SetMode">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.SetModeRequest" title="viam.gen.service.navigation.v1.navigation_pb2.SetModeRequest"><span class="pre">service.navigation.v1.navigation_pb2.SetModeRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.SetModeResponse" title="viam.gen.service.navigation.v1.navigation_pb2.SetModeResponse"><span class="pre">service.navigation.v1.navigation_pb2.SetModeResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.SetMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.SetMode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetLocation">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetLocation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetLocationRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetLocationRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetLocationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetLocationResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetLocationResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetLocationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetLocation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetLocation" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetWaypoints">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetWaypoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetWaypointsRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetWaypointsRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetWaypointsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetWaypointsResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetWaypointsResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetWaypointsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetWaypoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetWaypoints" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.AddWaypoint">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddWaypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.AddWaypointRequest" title="viam.gen.service.navigation.v1.navigation_pb2.AddWaypointRequest"><span class="pre">service.navigation.v1.navigation_pb2.AddWaypointRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.AddWaypointResponse" title="viam.gen.service.navigation.v1.navigation_pb2.AddWaypointResponse"><span class="pre">service.navigation.v1.navigation_pb2.AddWaypointResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.AddWaypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.AddWaypoint" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.RemoveWaypoint">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveWaypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointRequest" title="viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointRequest"><span class="pre">service.navigation.v1.navigation_pb2.RemoveWaypointRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointResponse" title="viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointResponse"><span class="pre">service.navigation.v1.navigation_pb2.RemoveWaypointResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.RemoveWaypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.RemoveWaypoint" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetObstacles">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetObstacles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetObstaclesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetObstaclesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetObstacles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetObstacles" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetPaths">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPathsRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetPathsRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetPathsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPathsResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetPathsResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetPathsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetPaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetPaths" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.GetProperties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetPropertiesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetPropertiesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.GetProperties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.DoCommand">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.NavigationServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">RemoveWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.RemoveWaypointResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">RemoveWaypointResponse</span></span><a class="headerlink" href="#viam.services.navigation.service.RemoveWaypointResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">SetModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Mode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.SetModeRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.service.SetModeRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeRequest.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Mode</span></em><a class="headerlink" href="#viam.services.navigation.service.SetModeRequest.mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.navigation.service.SetModeRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.navigation.service.SetModeRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.SetModeResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">SetModeResponse</span></span><a class="headerlink" href="#viam.services.navigation.service.SetModeResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.ResourceRPCServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCServiceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.ResourceRPCServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../../../rpc/types/index.html#viam.rpc.types.RPCServiceBase" title="viam.rpc.types.RPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.rpc.types.RPCServiceBase</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code>[<a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceType" title="viam.resource.manager.ResourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.manager.ResourceType</span></code></a>]</p>
+<p>Base RPC service for a resource.
+All resource RPC services must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.ResourceRPCServiceBase.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.services.navigation.service.ResourceRPCServiceBase.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.ResourceRPCServiceBase.manager">
+<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></em><a class="headerlink" href="#viam.services.navigation.service.ResourceRPCServiceBase.manager" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.ResourceRPCServiceBase.get_resource">
+<span class="sig-name descname"><span class="pre">get_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.manager.ResourceType</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase.get_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.ResourceRPCServiceBase.get_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Return the resource with the given name if it exists in the registry.
+If the resource does not exist in the registry,
+this function will raise an error</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the resource</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError with the status code Status.NOT_FOUND</strong> – </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ResourceType</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.navigation.service.dict_to_struct">
+<span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.dict_to_struct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.navigation.service.struct_to_dict">
+<span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">Navigation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a></p>
+<p>Navigation represents a Navigation service.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+navigation service implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
+overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.navigation.service.Navigation.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_paths">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.Path" title="viam.services.navigation.Path"><span class="pre">viam.services.navigation.Path</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_paths" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get each path, the series of geo points the robot plans to travel through
+to get to a destination waypoint, in the machine’s motion planning.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each path stored by the navigation service</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_paths</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array comprised of Paths, where each path is either a user-provided destination or
+a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
+reach the specified destination or Waypoint.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path">navigation.Path</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_location">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><span class="pre">viam.services.navigation.GeoPoint</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_location" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the current location of the robot in the navigation service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current location of the robot in the navigation service</span>
+<span class="n">location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_location</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current location of the robot in the navigation service,
+represented in a GeoPoint with latitude and longitude values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint">navigation.GeoPoint</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_obstacles">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obstacles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.GeoGeometry" title="viam.services.navigation.GeoGeometry"><span class="pre">viam.services.navigation.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_obstacles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_obstacles" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get an array or list of the obstacles currently in the service’s data storage.
+These are objects designated for the robot to avoid when navigating.
+These include all transient obstacles which are discovered by the vision services configured for the navigation service,
+in addition to the obstacles that are configured as a part of the service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each obstacle stored by the navigation service</span>
+<span class="n">obstacles</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_obstacles</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list comprised of each GeoGeometry in the service’s data storage.
+These are objects designated for the robot to avoid when navigating.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoGeometry" title="viam.services.navigation.GeoGeometry">navigation.GeoGeometry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_waypoints">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_waypoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.Waypoint" title="viam.services.navigation.Waypoint"><span class="pre">viam.services.navigation.Waypoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_waypoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_waypoints" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get an array of waypoints currently in the service’s data storage.
+These are locations designated within a path for the robot to navigate to.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each waypoint stored by the navigation service</span>
+<span class="n">waypoints</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_waypoints</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array comprised of each Waypoint in the service’s data storage.
+These are locations designated within a path for the robot to navigate to.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint">navigation.Waypoint</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.add_waypoint">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_waypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><span class="pre">viam.services.navigation.GeoPoint</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.add_waypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.add_waypoint" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Add a waypoint to the service’s data storage.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Create a new waypoint with latitude and longitude values of 0 degrees</span>
+ <span class="n">location</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+ <span class="c1"># Add your waypoint to the service&#39;s data storage</span>
+ <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">add_waypoint</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><em>navigation.GeoPoint</em></a>) – The current location of the robot in the navigation service,
+represented in a GeoPoint with latitude and longitude values.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.remove_waypoint">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_waypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.remove_waypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.remove_waypoint" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
+the motion will be canceled, and the robot will proceed to the next waypoint.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Remove the waypoint matching that ObjectID from the service&#39;s data storage</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">remove_waypoint</span><span class="p">(</span><span class="n">waypoint_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_mode">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.navigation.Mode.ValueType</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_mode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the Mode the service is operating in.</p>
+<p>There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</p>
+<blockquote>
+<div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
+MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the Mode the service is operating in</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Mode the service is operating in.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>navigation.Mode.ValueType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.set_mode">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.services.navigation.Mode.ValueType</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.set_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.set_mode" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Set the Mode the service is operating in.</p>
+<p>There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</p>
+<blockquote>
+<div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
+MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="o">.</span><span class="n">MODE_WAYPOINT</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+<li><p><strong>mode</strong> (<em>navigation.Mode.ValueType</em>) – The Mode for the service to operate in.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_properties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.navigation.MapType.ValueType</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_properties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get information about the navigation service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the properties of the current navigation service.</span>
+<span class="n">nav_properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Information about the type of map the service is using.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MapType.ValueType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.navigation.service.Navigation.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Can be used with any resource, using the motion service as an example</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+    <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.services.navigation.service.Navigation.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/receive arbitrary commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;someparameter&quot;</span><span class="p">:</span> <span class="mi">52</span>
+<span class="p">}</span>
+
+<span class="c1"># Can be used with any resource, using the motion service as an example</span>
+<span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">my_command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the executed command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.navigation.service.Navigation.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.service.Navigation.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.service.Navigation.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.navigation.service.NavigationRPCService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.service.</span></span><span class="sig-name descname"><span class="pre">NavigationRPCService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/service.html#NavigationRPCService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.service.NavigationRPCService" title="Permalink to this definition"></a></dt>
@@ -211,7 +1588,6 @@
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

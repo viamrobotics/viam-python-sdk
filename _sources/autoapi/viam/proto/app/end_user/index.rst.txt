@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.end_user`
-=================================
+viam.proto.app.end_user
+=======================
 
 .. py:module:: viam.proto.app.end_user
 
@@ -10,11 +10,8 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -33,71 +30,85 @@ Classes
    viam.proto.app.end_user.UpdateAuthApplicationResponse
 
 
-
+Module Contents
+---------------
 
 .. py:class:: EndUserServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: IsLegalAccepted(stream: grpclib.server.Stream[app.v1.end_user_pb2.IsLegalAcceptedRequest, app.v1.end_user_pb2.IsLegalAcceptedResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: AcceptLegal(stream: grpclib.server.Stream[app.v1.end_user_pb2.AcceptLegalRequest, app.v1.end_user_pb2.AcceptLegalResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RegisterAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.RegisterAuthApplicationRequest, app.v1.end_user_pb2.RegisterAuthApplicationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.UpdateAuthApplicationRequest, app.v1.end_user_pb2.UpdateAuthApplicationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.GetAuthApplicationRequest, app.v1.end_user_pb2.GetAuthApplicationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: EndUserServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedEndUserServiceBase
 
-
    Bases: :py:obj:`EndUserServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: IsLegalAccepted(stream: grpclib.server.Stream[app.v1.end_user_pb2.IsLegalAcceptedRequest, app.v1.end_user_pb2.IsLegalAcceptedResponse]) -> None
       :async:
+
 
 
    .. py:method:: AcceptLegal(stream: grpclib.server.Stream[app.v1.end_user_pb2.AcceptLegalRequest, app.v1.end_user_pb2.AcceptLegalResponse]) -> None
       :async:
 
 
+
    .. py:method:: RegisterAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.RegisterAuthApplicationRequest, app.v1.end_user_pb2.RegisterAuthApplicationResponse]) -> None
       :async:
 
 
+
    .. py:method:: UpdateAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.UpdateAuthApplicationRequest, app.v1.end_user_pb2.UpdateAuthApplicationResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.GetAuthApplicationRequest, app.v1.end_user_pb2.GetAuthApplicationResponse]) -> None
@@ -107,8 +118,8 @@ Classes
 
 .. py:class:: AcceptLegalRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -119,8 +130,8 @@ Classes
 
 .. py:class:: AcceptLegalResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -131,8 +142,8 @@ Classes
 
 .. py:class:: GetAuthApplicationRequest(*, org_id: str = ..., application_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -140,21 +151,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
+
 
    .. py:attribute:: application_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: GetAuthApplicationResponse(*, application_id: str = ..., application_name: str = ..., client_secret: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -162,39 +171,37 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: application_id
+      :type:  str
+
+
+   .. py:attribute:: application_name
+      :type:  str
+
+
+   .. py:attribute:: client_secret
+      :type:  str
+
+
+   .. py:attribute:: logout_uri
+      :type:  str
+
+
    .. py:property:: origin_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
    .. py:property:: redirect_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: application_id
-      :type: str
-
-      
-
-   .. py:attribute:: application_name
-      :type: str
-
-      
-
-   .. py:attribute:: client_secret
-      :type: str
-
-      
-
-   .. py:attribute:: logout_uri
-      :type: str
-
-      
-
 
 .. py:class:: IsLegalAcceptedRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -205,8 +212,8 @@ Classes
 
 .. py:class:: IsLegalAcceptedResponse(*, accepted_legal: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -214,16 +221,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: accepted_legal
-      :type: bool
+      :type:  bool
 
       If false, the user should not be able to use the application.
 
 
 .. py:class:: RegisterAuthApplicationRequest(*, application_name: str = ..., org_id: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -231,34 +239,33 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: application_name
+      :type:  str
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: logout_uri
+      :type:  str
+
+
    .. py:property:: origin_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
    .. py:property:: redirect_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
-
-   .. py:attribute:: application_name
-      :type: str
-
-      
-
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-   .. py:attribute:: logout_uri
-      :type: str
-
-      
 
 
 .. py:class:: RegisterAuthApplicationResponse(*, application_id: str = ..., application_name: str = ..., client_secret: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -266,26 +273,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: application_id
-      :type: str
 
-      
+   .. py:attribute:: application_id
+      :type:  str
+
 
    .. py:attribute:: application_name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: client_secret
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: UpdateAuthApplicationRequest(*, org_id: str = ..., application_id: str = ..., application_name: str = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -293,39 +297,37 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: application_id
+      :type:  str
+
+
+   .. py:attribute:: application_name
+      :type:  str
+
+
+   .. py:attribute:: logout_uri
+      :type:  str
+
+
    .. py:property:: origin_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
    .. py:property:: redirect_uris
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-   .. py:attribute:: application_id
-      :type: str
-
-      
-
-   .. py:attribute:: application_name
-      :type: str
-
-      
-
-   .. py:attribute:: logout_uri
-      :type: str
-
-      
-
 
 .. py:class:: UpdateAuthApplicationResponse(*, application_id: str = ..., application_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -333,14 +335,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: application_id
-      :type: str
 
-      
+   .. py:attribute:: application_id
+      :type:  str
+
 
    .. py:attribute:: application_name
-      :type: str
-
-      
+      :type:  str
 
 

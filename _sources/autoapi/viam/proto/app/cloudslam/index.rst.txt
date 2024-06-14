@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.cloudslam`
-==================================
+viam.proto.app.cloudslam
+========================
 
 .. py:module:: viam.proto.app.cloudslam
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -40,80 +37,97 @@ Classes
    viam.proto.app.cloudslam.StopMappingSessionResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: CloudSLAMServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: StartMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetActiveMappingSessionsForRobot(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest, app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetMappingSessionPointCloud(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListMappingSessions(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest, app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StopMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetMappingSessionMetadataByID(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: CloudSLAMServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedCloudSLAMServiceBase
 
-
    Bases: :py:obj:`CloudSLAMServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: StartMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetActiveMappingSessionsForRobot(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest, app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetMappingSessionPointCloud(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListMappingSessions(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest, app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse]) -> None
       :async:
 
 
+
    .. py:method:: StopMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetMappingSessionMetadataByID(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse]) -> None
@@ -123,8 +137,8 @@ Classes
 
 .. py:class:: CaptureInterval(*, start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -132,8 +146,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: start_time
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: end_time
@@ -141,7 +157,8 @@ Classes
 
       if no end_time specified cloud slam will be run using live sensors
 
-   .. py:method:: HasField(field_name: Literal[end_time, b'end_time', start_time, b'start_time']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['end_time', b'end_time', 'start_time', b'start_time']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -161,27 +178,27 @@ Classes
 
 .. py:class:: EndStatus
 
-
    Bases: :py:obj:`_EndStatus`
 
 
 .. py:class:: GetActiveMappingSessionsForRobotRequest(*, robot_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    GetActiveMappingSessionsForRobot
 
+
    .. py:attribute:: robot_id
-      :type: str
+      :type:  str
 
       assumes only one active mapping session on a robot
 
 
 .. py:class:: GetActiveMappingSessionsForRobotResponse(*, session_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -189,41 +206,41 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: session_id
-      :type: str
 
-      
+   .. py:attribute:: session_id
+      :type:  str
 
 
 .. py:class:: GetMappingSessionMetadataByIDRequest(*, session_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    GetMappingSessionMetadataByID
 
-   .. py:attribute:: session_id
-      :type: str
 
-      
+   .. py:attribute:: session_id
+      :type:  str
 
 
 .. py:class:: GetMappingSessionMetadataByIDResponse(*, session_metadata: global___MappingMetadata | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: session_metadata
       :type: global___MappingMetadata
 
 
-   .. py:method:: HasField(field_name: Literal[session_metadata, b'session_metadata']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['session_metadata', b'session_metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -243,21 +260,20 @@ Classes
 
 .. py:class:: GetMappingSessionPointCloudRequest(*, session_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    GetMappingSessionPointCloud
 
-   .. py:attribute:: session_id
-      :type: str
 
-      
+   .. py:attribute:: session_id
+      :type:  str
 
 
 .. py:class:: GetMappingSessionPointCloudResponse(*, map_url: str = ..., pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -265,17 +281,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: map_url
+      :type:  str
+
+      url to the pointcloud map
+
+
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.Pose
 
       Current position within the SLAM Map
 
-   .. py:attribute:: map_url
-      :type: str
 
-      url to the pointcloud map
-
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -295,32 +314,31 @@ Classes
 
 .. py:class:: ListMappingSessionsRequest(*, organization_id: str = ..., location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ListMappingSessions
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: location_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: ListMappingSessionsResponse(*, session: collections.abc.Iterable[global___MappingMetadata] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: session
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MappingMetadata]
@@ -329,8 +347,8 @@ Classes
 
 .. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: global___EndStatus = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ..., error_msg: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -338,77 +356,92 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: org_id
+      :type:  str
+
+      org associated with the slam session
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+      location associated with the slam session
+
+
+   .. py:attribute:: robot_id
+      :type:  str
+
+      robot associated with slam session
+
+
+   .. py:attribute:: end_status
+      :type:  global___EndStatus
+
+      enums that represent “success”, “failed”, etc
+
+
+   .. py:attribute:: cloud_run_job_id
+      :type:  str
+
+      initially unset
+
+
+   .. py:attribute:: viam_server_version
+      :type:  str
+
+      version tag from request, defaults to stable
+
+
+   .. py:attribute:: map_name
+      :type:  str
+
+      name of the map package
+
+
+   .. py:attribute:: slam_version
+      :type:  str
+
+      version tag from request, defaults to stable
+
+
+   .. py:attribute:: config
+      :type:  str
+
+      a robot config for a slam session
+
+
+   .. py:attribute:: error_msg
+      :type:  str
+
+      additional details on the end status if needed, such as errors
+
+
    .. py:property:: time_start_submitted
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       time this document was created
+
 
    .. py:property:: time_cloud_run_job_started
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       time the cloud run job started
 
+
    .. py:property:: time_end_submitted
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       time StopSlamSession was called
+
 
    .. py:property:: time_cloud_run_job_ended
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       time the cloud run job ended
 
-   .. py:attribute:: org_id
-      :type: str
 
-      org associated with the slam session
-
-   .. py:attribute:: location_id
-      :type: str
-
-      location associated with the slam session
-
-   .. py:attribute:: robot_id
-      :type: str
-
-      robot associated with slam session
-
-   .. py:attribute:: end_status
-      :type: global___EndStatus
-
-      enums that represent “success”, “failed”, etc
-
-   .. py:attribute:: cloud_run_job_id
-      :type: str
-
-      initially unset
-
-   .. py:attribute:: viam_server_version
-      :type: str
-
-      version tag from request, defaults to stable
-
-   .. py:attribute:: map_name
-      :type: str
-
-      name of the map package
-
-   .. py:attribute:: slam_version
-      :type: str
-
-      version tag from request, defaults to stable
-
-   .. py:attribute:: config
-      :type: str
-
-      a robot config for a slam session
-
-   .. py:attribute:: error_msg
-      :type: str
-
-      additional details on the end status if needed, such as errors
-
-   .. py:method:: HasField(field_name: Literal[time_cloud_run_job_ended, b'time_cloud_run_job_ended', time_cloud_run_job_started, b'time_cloud_run_job_started', time_end_submitted, b'time_end_submitted', time_start_submitted, b'time_start_submitted']) -> bool
+   .. py:method:: HasField(field_name: Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended', 'time_cloud_run_job_started', b'time_cloud_run_job_started', 'time_end_submitted', b'time_end_submitted', 'time_start_submitted', b'time_start_submitted']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -428,8 +461,8 @@ Classes
 
 .. py:class:: Module(*, name: str = ..., module_id: str = ..., version: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -437,26 +470,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: module_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: version
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: SensorInfo(*, source_component_name: str = ..., type: str = ..., data_frequency_hz: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -464,81 +494,82 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: source_component_name
-      :type: str
 
-      
+   .. py:attribute:: source_component_name
+      :type:  str
+
 
    .. py:attribute:: type
-      :type: str
+      :type:  str
 
       type is the RDK component type
 
-   .. py:attribute:: data_frequency_hz
-      :type: str
 
-      
+   .. py:attribute:: data_frequency_hz
+      :type:  str
 
 
 .. py:class:: StartMappingSessionRequest(*, slam_version: str = ..., viam_server_version: str = ..., map_name: str = ..., organization_id: str = ..., location_id: str = ..., robot_id: str = ..., capture_interval: global___CaptureInterval | None = ..., sensors: collections.abc.Iterable[global___SensorInfo] | None = ..., slam_config: google.protobuf.struct_pb2.Struct | None = ..., existing_map_version: str = ..., module: global___Module | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    StartMappingSession
 
+
+   .. py:attribute:: slam_version
+      :type:  str
+
+      Version to use for slam, defaults stable
+
+
+   .. py:attribute:: viam_server_version
+      :type:  str
+
+      Version to use for viam, defaults stable
+
+
+   .. py:attribute:: map_name
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+   .. py:attribute:: robot_id
+      :type:  str
+
+
+   .. py:attribute:: existing_map_version
+      :type:  str
+
+
    .. py:property:: capture_interval
       :type: global___CaptureInterval
+
 
 
    .. py:property:: sensors
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]
 
 
+
    .. py:property:: slam_config
       :type: google.protobuf.struct_pb2.Struct
+
 
 
    .. py:property:: module
       :type: global___Module
 
 
-   .. py:attribute:: slam_version
-      :type: str
 
-      Version to use for slam, defaults stable
-
-   .. py:attribute:: viam_server_version
-      :type: str
-
-      Version to use for viam, defaults stable
-
-   .. py:attribute:: map_name
-      :type: str
-
-      
-
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
-   .. py:attribute:: location_id
-      :type: str
-
-      
-
-   .. py:attribute:: robot_id
-      :type: str
-
-      
-
-   .. py:attribute:: existing_map_version
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[capture_interval, b'capture_interval', module, b'module', slam_config, b'slam_config']) -> bool
+   .. py:method:: HasField(field_name: Literal['capture_interval', b'capture_interval', 'module', b'module', 'slam_config', b'slam_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -558,8 +589,8 @@ Classes
 
 .. py:class:: StartMappingSessionResponse(*, session_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -567,29 +598,27 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: session_id
-      :type: str
 
-      
+   .. py:attribute:: session_id
+      :type:  str
 
 
 .. py:class:: StopMappingSessionRequest(*, session_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    StopMappingSession
 
-   .. py:attribute:: session_id
-      :type: str
 
-      
+   .. py:attribute:: session_id
+      :type:  str
 
 
 .. py:class:: StopMappingSessionResponse(*, package_id: str = ..., version: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -597,14 +626,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: package_id
-      :type: str
 
-      
+   .. py:attribute:: package_id
+      :type:  str
+
 
    .. py:attribute:: version
-      :type: str
-
-      
+      :type:  str
 
 

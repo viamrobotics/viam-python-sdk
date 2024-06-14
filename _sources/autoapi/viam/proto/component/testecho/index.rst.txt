@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.testecho`
-=======================================
+viam.proto.component.testecho
+=============================
 
 .. py:module:: viam.proto.component.testecho
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -31,62 +28,73 @@ Classes
    viam.proto.component.testecho.StopResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: TestEchoServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Echo(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoRequest, component.testecho.v1.testecho_pb2.EchoResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoMultiple(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoMultipleRequest, component.testecho.v1.testecho_pb2.EchoMultipleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoBiDi(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoBiDiRequest, component.testecho.v1.testecho_pb2.EchoBiDiResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.StopRequest, component.testecho.v1.testecho_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: TestEchoServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedTestEchoServiceBase
 
-
    Bases: :py:obj:`TestEchoServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Echo(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoRequest, component.testecho.v1.testecho_pb2.EchoResponse]) -> None
       :async:
+
 
 
    .. py:method:: EchoMultiple(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoMultipleRequest, component.testecho.v1.testecho_pb2.EchoMultipleResponse]) -> None
       :async:
 
 
+
    .. py:method:: EchoBiDi(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoBiDiRequest, component.testecho.v1.testecho_pb2.EchoBiDiResponse]) -> None
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.StopRequest, component.testecho.v1.testecho_pb2.StopResponse]) -> None
@@ -96,8 +104,8 @@ Classes
 
 .. py:class:: EchoBiDiRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -105,21 +113,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoBiDiResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -127,16 +133,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 
 .. py:class:: EchoMultipleRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -144,21 +149,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoMultipleResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -166,16 +169,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 
 .. py:class:: EchoRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -183,21 +185,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -205,16 +205,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 
 .. py:class:: StopRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -222,16 +221,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

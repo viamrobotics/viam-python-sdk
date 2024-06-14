@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.robot`
-==============================
+viam.proto.app.robot
+====================
 
 .. py:module:: viam.proto.app.robot
 
@@ -10,11 +10,8 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -55,62 +52,73 @@ Classes
    viam.proto.app.robot.Translation
 
 
-
+Module Contents
+---------------
 
 .. py:class:: RobotServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Config(stream: grpclib.server.Stream[app.v1.robot_pb2.ConfigRequest, app.v1.robot_pb2.ConfigResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Certificate(stream: grpclib.server.Stream[app.v1.robot_pb2.CertificateRequest, app.v1.robot_pb2.CertificateResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Log(stream: grpclib.server.Stream[app.v1.robot_pb2.LogRequest, app.v1.robot_pb2.LogResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: NeedsRestart(stream: grpclib.server.Stream[app.v1.robot_pb2.NeedsRestartRequest, app.v1.robot_pb2.NeedsRestartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedRobotServiceBase
 
-
    Bases: :py:obj:`RobotServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Config(stream: grpclib.server.Stream[app.v1.robot_pb2.ConfigRequest, app.v1.robot_pb2.ConfigResponse]) -> None
       :async:
+
 
 
    .. py:method:: Certificate(stream: grpclib.server.Stream[app.v1.robot_pb2.CertificateRequest, app.v1.robot_pb2.CertificateResponse]) -> None
       :async:
 
 
+
    .. py:method:: Log(stream: grpclib.server.Stream[app.v1.robot_pb2.LogRequest, app.v1.robot_pb2.LogResponse]) -> None
       :async:
+
 
 
    .. py:method:: NeedsRestart(stream: grpclib.server.Stream[app.v1.robot_pb2.NeedsRestartRequest, app.v1.robot_pb2.NeedsRestartResponse]) -> None
@@ -120,8 +128,8 @@ Classes
 
 .. py:class:: AgentInfo(*, host: str = ..., os: str = ..., ips: collections.abc.Iterable[str] | None = ..., version: str = ..., git_revision: str = ..., platform: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -129,37 +137,40 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: host
+      :type:  str
+
+
+   .. py:attribute:: os
+      :type:  str
+
+      Will soon be deprecated, use platform instead
+
+
+   .. py:attribute:: version
+      :type:  str
+
+      RDK version
+
+
+   .. py:attribute:: git_revision
+      :type:  str
+
+
+   .. py:attribute:: platform
+      :type:  str
+
+      The platform the RDK is running on. For example linux/amd64
+
+
    .. py:property:: ips
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       list of all ipv4 ips.
 
-   .. py:attribute:: host
-      :type: str
 
-      
-
-   .. py:attribute:: os
-      :type: str
-
-      Will soon be deprecated, use platform instead
-
-   .. py:attribute:: version
-      :type: str
-
-      RDK version
-
-   .. py:attribute:: git_revision
-      :type: str
-
-      
-
-   .. py:attribute:: platform
-      :type: str
-
-      The platform the RDK is running on. For example linux/amd64
-
-   .. py:method:: HasField(field_name: Literal[_platform, b'_platform', platform, b'platform']) -> bool
+   .. py:method:: HasField(field_name: Literal['_platform', b'_platform', 'platform', b'platform']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -176,7 +187,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> Literal[platform] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -194,8 +206,8 @@ Classes
 
 .. py:class:: AppValidationStatus(*, error: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -203,16 +215,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: error
-      :type: str
 
-      
+   .. py:attribute:: error
+      :type:  str
 
 
 .. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[str] | None = ..., external_auth_config: global___ExternalAuthConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -220,19 +231,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: handlers
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthHandlerConfig]
+
 
 
    .. py:property:: tls_auth_entities
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+
    .. py:property:: external_auth_config
       :type: global___ExternalAuthConfig
 
 
-   .. py:method:: HasField(field_name: Literal[_external_auth_config, b'_external_auth_config', external_auth_config, b'external_auth_config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -249,7 +264,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_external_auth_config, b'_external_auth_config']) -> Literal[external_auth_config] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_external_auth_config', b'_external_auth_config']) -> Literal['external_auth_config'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -267,8 +283,8 @@ Classes
 
 .. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -276,16 +292,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: type
+      :type:  global___CredentialsType
+
+
    .. py:property:: config
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: type
-      :type: global___CredentialsType
 
-      
-
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -305,8 +322,8 @@ Classes
 
 .. py:class:: CertificateRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -314,16 +331,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
       Robot part id.
 
 
 .. py:class:: CertificateResponse(*, id: str = ..., tls_certificate: str = ..., tls_private_key: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -331,98 +349,93 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
       Robot part id.
 
-   .. py:attribute:: tls_certificate
-      :type: str
 
-      
+   .. py:attribute:: tls_certificate
+      :type:  str
+
 
    .. py:attribute:: tls_private_key
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None = ..., primary_org_id: str = ..., location_id: str = ..., machine_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      Robot part id.
+
+
+   .. py:attribute:: fqdn
+      :type:  str
+
+
+   .. py:attribute:: local_fqdn
+      :type:  str
+
+
+   .. py:attribute:: managed_by
+      :type:  str
+
+
+   .. py:attribute:: signaling_address
+      :type:  str
+
+
+   .. py:attribute:: signaling_insecure
+      :type:  bool
+
+
+   .. py:attribute:: location_secret
+      :type:  str
+
+      Deprecated use location_secrets
+
+
+   .. py:attribute:: secret
+      :type:  str
+
+      Robot part secret
+
+
+   .. py:attribute:: primary_org_id
+      :type:  str
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+   .. py:attribute:: machine_id
+      :type:  str
+
 
    .. py:property:: location_secrets
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]
 
       All valid location secrets.
 
-   .. py:attribute:: id
-      :type: str
-
-      Robot part id.
-
-   .. py:attribute:: fqdn
-      :type: str
-
-      
-
-   .. py:attribute:: local_fqdn
-      :type: str
-
-      
-
-   .. py:attribute:: managed_by
-      :type: str
-
-      
-
-   .. py:attribute:: signaling_address
-      :type: str
-
-      
-
-   .. py:attribute:: signaling_insecure
-      :type: bool
-
-      
-
-   .. py:attribute:: location_secret
-      :type: str
-
-      Deprecated use location_secrets
-
-   .. py:attribute:: secret
-      :type: str
-
-      Robot part secret
-
-   .. py:attribute:: primary_org_id
-      :type: str
-
-      
-
-   .. py:attribute:: location_id
-      :type: str
-
-      
-
-   .. py:attribute:: machine_id
-      :type: str
-
-      
-
 
 .. py:class:: ComponentConfig(*, name: str = ..., namespace: str = ..., type: str = ..., model: str = ..., frame: global___Frame | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., api: str = ..., log_configuration: global___LogConfiguration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -430,52 +443,57 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: namespace
+      :type:  str
+
+      deprecated; use api
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      deprecated; use api
+
+
+   .. py:attribute:: model
+      :type:  str
+
+
+   .. py:attribute:: api
+      :type:  str
+
+
    .. py:property:: frame
       :type: global___Frame
+
 
 
    .. py:property:: depends_on
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+
    .. py:property:: service_configs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
+
 
 
    .. py:property:: attributes
       :type: google.protobuf.struct_pb2.Struct
 
 
+
    .. py:property:: log_configuration
       :type: global___LogConfiguration
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: namespace
-      :type: str
-
-      deprecated; use api
-
-   .. py:attribute:: type
-      :type: str
-
-      deprecated; use api
-
-   .. py:attribute:: model
-      :type: str
-
-      
-
-   .. py:attribute:: api
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[attributes, b'attributes', frame, b'frame', log_configuration, b'log_configuration']) -> bool
+   .. py:method:: HasField(field_name: Literal['attributes', b'attributes', 'frame', b'frame', 'log_configuration', b'log_configuration']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -495,8 +513,8 @@ Classes
 
 .. py:class:: ConfigRequest(*, id: str = ..., agent_info: global___AgentInfo | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -504,17 +522,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+      Robot part id.
+
+
    .. py:property:: agent_info
       :type: global___AgentInfo
 
       Details about the RDK (os, version) are updated during this request.
 
-   .. py:attribute:: id
-      :type: str
 
-      Robot part id.
-
-   .. py:method:: HasField(field_name: Literal[_agent_info, b'_agent_info', agent_info, b'agent_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['_agent_info', b'_agent_info', 'agent_info', b'agent_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -531,7 +552,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_agent_info, b'_agent_info']) -> Literal[agent_info] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_agent_info', b'_agent_info']) -> Literal['agent_info'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -549,8 +571,8 @@ Classes
 
 .. py:class:: ConfigResponse(*, config: global___RobotConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -558,11 +580,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: config
       :type: global___RobotConfig
 
 
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -582,23 +606,24 @@ Classes
 
 .. py:class:: CredentialsType
 
-
    Bases: :py:obj:`_CredentialsType`
 
 
 .. py:class:: ExternalAuthConfig(*, jwks: global___JWKSFile | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ExternalAuthConfig describes how a viam managed robot can accept
    credentials signed by the cloud app.
+
 
    .. py:property:: jwks
       :type: global___JWKSFile
 
 
-   .. py:method:: HasField(field_name: Literal[jwks, b'jwks']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['jwks', b'jwks']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -618,8 +643,8 @@ Classes
 
 .. py:class:: Frame(*, parent: str = ..., translation: global___Translation | None = ..., orientation: global___Orientation | None = ..., geometry: viam.gen.common.v1.common_pb2.Geometry | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -627,24 +652,27 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: parent
+      :type:  str
+
+
    .. py:property:: translation
       :type: global___Translation
+
 
 
    .. py:property:: orientation
       :type: global___Orientation
 
 
+
    .. py:property:: geometry
       :type: viam.gen.common.v1.common_pb2.Geometry
 
 
-   .. py:attribute:: parent
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[geometry, b'geometry', orientation, b'orientation', translation, b'translation']) -> bool
+   .. py:method:: HasField(field_name: Literal['geometry', b'geometry', 'orientation', b'orientation', 'translation', b'translation']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -664,8 +692,8 @@ Classes
 
 .. py:class:: JWKSFile(*, json: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -673,13 +701,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: json
       :type: google.protobuf.struct_pb2.Struct
 
       JSON Web Keys (JWKS) file as arbitary json.
       See https://www.rfc-editor.org/rfc/rfc7517
 
-   .. py:method:: HasField(field_name: Literal[json, b'json']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['json', b'json']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -699,26 +729,26 @@ Classes
 
 .. py:class:: LocationSecret(*, id: str = ..., secret: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Valid location secret that can be used for authentication to the robot.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: secret
-      :type: str
+      :type:  str
 
       secret payload
 
 
 .. py:class:: LogConfiguration(*, level: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -726,37 +756,38 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: level
-      :type: str
 
-      
+   .. py:attribute:: level
+      :type:  str
 
 
 .. py:class:: LogRequest(*, id: str = ..., logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      Robot part id.
+
 
    .. py:property:: logs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
 
 
-   .. py:attribute:: id
-      :type: str
-
-      Robot part id.
-
 
 .. py:class:: LogResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -767,15 +798,16 @@ Classes
 
 .. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ..., type: str = ..., module_id: str = ..., env: collections.abc.Mapping[str, str] | None = ..., status: global___AppValidationStatus | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ModuleConfig is the configuration for a module.
 
+
    .. py:class:: EnvEntry(*, key: str = ..., value: str = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -783,15 +815,42 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: str
+         :type:  str
 
-         
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: path
+      :type:  str
+
+      path to the executable
+
+
+   .. py:attribute:: log_level
+      :type:  str
+
+      log level for module
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      type of the module ("local" or "registry")
+
+
+   .. py:attribute:: module_id
+      :type:  str
+
+      the id of the module if it is a registry module
 
 
    .. py:property:: env
@@ -799,37 +858,14 @@ Classes
 
       additional environment variables passed to the module process
 
+
    .. py:property:: status
       :type: global___AppValidationStatus
 
       info about the validity of the module
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: path
-      :type: str
-
-      path to the executable
-
-   .. py:attribute:: log_level
-      :type: str
-
-      log level for module
-
-   .. py:attribute:: type
-      :type: str
-
-      type of the module ("local" or "registry")
-
-   .. py:attribute:: module_id
-      :type: str
-
-      the id of the module if it is a registry module
-
-   .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -849,8 +885,8 @@ Classes
 
 .. py:class:: NeedsRestartRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -858,16 +894,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
       Robot part id.
 
 
 .. py:class:: NeedsRestartResponse(*, id: str = ..., must_restart: bool = ..., restart_check_interval: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -875,21 +912,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+      Robot part id.
+
+
+   .. py:attribute:: must_restart
+      :type:  bool
+
+
    .. py:property:: restart_check_interval
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:attribute:: id
-      :type: str
 
-      Robot part id.
-
-   .. py:attribute:: must_restart
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[restart_check_interval, b'restart_check_interval']) -> bool
+   .. py:method:: HasField(field_name: Literal['restart_check_interval', b'restart_check_interval']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -909,8 +948,8 @@ Classes
 
 .. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ..., sessions: global___SessionsConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -918,31 +957,29 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: fqdn
+      :type:  str
+
+
+   .. py:attribute:: bind_address
+      :type:  str
+
+
+   .. py:attribute:: tls_cert_file
+      :type:  str
+
+
+   .. py:attribute:: tls_key_file
+      :type:  str
+
+
    .. py:property:: sessions
       :type: global___SessionsConfig
 
 
-   .. py:attribute:: fqdn
-      :type: str
 
-      
-
-   .. py:attribute:: bind_address
-      :type: str
-
-      
-
-   .. py:attribute:: tls_cert_file
-      :type: str
-
-      
-
-   .. py:attribute:: tls_key_file
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[sessions, b'sessions']) -> bool
+   .. py:method:: HasField(field_name: Literal['sessions', b'sessions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -962,8 +999,8 @@ Classes
 
 .. py:class:: Orientation(*, no_orientation: global___Orientation | None = ..., vector_radians: global___Orientation | None = ..., vector_degrees: global___Orientation | None = ..., euler_angles: global___Orientation | None = ..., axis_angles: global___Orientation | None = ..., quaternion: global___Orientation | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -971,10 +1008,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: NoOrientation
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -983,10 +1021,11 @@ Classes
       shown below.
 
 
+
    .. py:class:: OrientationVectorRadians(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       OrientationVector containing ox, oy, oz, theta represents an orientation vector
       Structured similarly to an angle axis, an orientation vector works differently. Rather than representing an orientation
@@ -998,84 +1037,76 @@ Classes
       point, and the plane defined by the origin, the rx,ry,rz point, and the new local Z axis. So if theta is kept at
       zero as the north/south pole is circled, the Roll will correct itself to remain in-line.
 
-      .. py:attribute:: theta
-         :type: float
 
-         
+      .. py:attribute:: theta
+         :type:  float
+
 
       .. py:attribute:: x
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: y
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: z
-         :type: float
+         :type:  float
 
-         
 
 
    .. py:class:: OrientationVectorDegrees(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       OrientationVectorDegrees is the orientation vector between two objects, but expressed in degrees rather than radians.
       Because protobuf Pose is in degrees, this is necessary.
 
-      .. py:attribute:: theta
-         :type: float
 
-         
+      .. py:attribute:: theta
+         :type:  float
+
 
       .. py:attribute:: x
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: y
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: z
-         :type: float
+         :type:  float
 
-         
 
 
    .. py:class:: EulerAngles(*, roll: float = ..., pitch: float = ..., yaw: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       EulerAngles are three angles (in radians) used to represent the rotation of an object in 3D Euclidean space
       The Tait–Bryan angle formalism is used, with rotations around three distinct axes in the z-y′-x″ sequence.
 
-      .. py:attribute:: roll
-         :type: float
 
-         
+      .. py:attribute:: roll
+         :type:  float
+
 
       .. py:attribute:: pitch
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: yaw
-         :type: float
+         :type:  float
 
-         
 
 
    .. py:class:: AxisAngles(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       See here for a thorough explanation: https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation
       Basic explanation: Imagine a 3d cartesian grid centered at 0,0,0, and a sphere of radius 1 centered at
@@ -1085,80 +1116,80 @@ Classes
       the unit sphere components to give a vector whose length is theta and whose direction is the original axis.
       AxisAngles represents an R4 axis angle.
 
-      .. py:attribute:: theta
-         :type: float
 
-         
+      .. py:attribute:: theta
+         :type:  float
+
 
       .. py:attribute:: x
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: y
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: z
-         :type: float
+         :type:  float
 
-         
 
 
    .. py:class:: Quaternion(*, w: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Quaternion is a float64 precision quaternion.
 
-      .. py:attribute:: w
-         :type: float
 
-         
+      .. py:attribute:: w
+         :type:  float
+
 
       .. py:attribute:: x
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: y
-         :type: float
+         :type:  float
 
-         
 
       .. py:attribute:: z
-         :type: float
+         :type:  float
 
-         
 
 
    .. py:property:: no_orientation
       :type: global___Orientation
 
 
+
    .. py:property:: vector_radians
       :type: global___Orientation
+
 
 
    .. py:property:: vector_degrees
       :type: global___Orientation
 
 
+
    .. py:property:: euler_angles
       :type: global___Orientation
+
 
 
    .. py:property:: axis_angles
       :type: global___Orientation
 
 
+
    .. py:property:: quaternion
       :type: global___Orientation
 
 
-   .. py:method:: HasField(field_name: Literal[axis_angles, b'axis_angles', euler_angles, b'euler_angles', no_orientation, b'no_orientation', quaternion, b'quaternion', type, b'type', vector_degrees, b'vector_degrees', vector_radians, b'vector_radians']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'no_orientation', b'no_orientation', 'quaternion', b'quaternion', 'type', b'type', 'vector_degrees', b'vector_degrees', 'vector_radians', b'vector_radians']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1175,7 +1206,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[no_orientation, vector_radians, vector_degrees, euler_angles, axis_angles, quaternion] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['no_orientation', 'vector_radians', 'vector_degrees', 'euler_angles', 'axis_angles', 'quaternion'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1193,37 +1225,43 @@ Classes
 
 .. py:class:: PackageConfig(*, name: str = ..., package: str = ..., version: str = ..., type: str = ..., status: global___AppValidationStatus | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    PackageConfig is the configration for deployed Packages.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.
+
+
+   .. py:attribute:: package
+      :type:  str
+
+      Package is the unique package name hosted by Viam. Must not be empty.
+
+
+   .. py:attribute:: version
+      :type:  str
+
+      version of the package ID hosted by Viam. If not specified "latest" is assumed.
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      type of the package
+
 
    .. py:property:: status
       :type: global___AppValidationStatus
 
       info about the validity of the package
 
-   .. py:attribute:: name
-      :type: str
 
-      Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.
-
-   .. py:attribute:: package
-      :type: str
-
-      Package is the unique package name hosted by Viam. Must not be empty.
-
-   .. py:attribute:: version
-      :type: str
-
-      version of the package ID hosted by Viam. If not specified "latest" is assumed.
-
-   .. py:attribute:: type
-      :type: str
-
-      type of the package
-
-   .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1243,15 +1281,16 @@ Classes
 
 .. py:class:: ProcessConfig(*, id: str = ..., name: str = ..., args: collections.abc.Iterable[str] | None = ..., cwd: str = ..., one_shot: bool = ..., log: bool = ..., stop_signal: int = ..., stop_timeout: google.protobuf.duration_pb2.Duration | None = ..., env: collections.abc.Mapping[str, str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A ProcessConfig describes how to manage a system process.
 
+
    .. py:class:: EnvEntry(*, key: str = ..., value: str = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -1259,23 +1298,48 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: str
+         :type:  str
 
-         
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: cwd
+      :type:  str
+
+
+   .. py:attribute:: one_shot
+      :type:  bool
+
+
+   .. py:attribute:: log
+      :type:  bool
+
+
+   .. py:attribute:: stop_signal
+      :type:  int
 
 
    .. py:property:: args
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+
    .. py:property:: stop_timeout
       :type: google.protobuf.duration_pb2.Duration
+
 
 
    .. py:property:: env
@@ -1283,37 +1347,8 @@ Classes
 
       additional environment variables passed to the process
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: cwd
-      :type: str
-
-      
-
-   .. py:attribute:: one_shot
-      :type: bool
-
-      
-
-   .. py:attribute:: log
-      :type: bool
-
-      
-
-   .. py:attribute:: stop_signal
-      :type: int
-
-      
-
-   .. py:method:: HasField(field_name: Literal[stop_timeout, b'stop_timeout']) -> bool
+   .. py:method:: HasField(field_name: Literal['stop_timeout', b'stop_timeout']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1333,42 +1368,42 @@ Classes
 
 .. py:class:: RemoteAuth(*, credentials: global___RemoteAuth | None = ..., entity: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    RemoteAuth specifies how to authenticate against a remote. If no credentials are
    specified, authentication does not happen. If an entity is specified, the
    authentication request will specify it.
 
+
    .. py:class:: Credentials(*, type: global___CredentialsType = ..., payload: str = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Credentials packages up both a type of credential along with its payload which
       is formatted specific to the type.
 
-      .. py:attribute:: type
-         :type: global___CredentialsType
 
-         
+      .. py:attribute:: type
+         :type:  global___CredentialsType
+
 
       .. py:attribute:: payload
-         :type: str
+         :type:  str
 
-         
+
+
+   .. py:attribute:: entity
+      :type:  str
 
 
    .. py:property:: credentials
       :type: global___RemoteAuth
 
 
-   .. py:attribute:: entity
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[credentials, b'credentials']) -> bool
+   .. py:method:: HasField(field_name: Literal['credentials', b'credentials']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1388,60 +1423,63 @@ Classes
 
 .. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: global___Frame | None = ..., auth: global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., secret: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A RemoteConfig describes a remote robot that should be integrated.
    The Frame field defines how the "world" node of the remote robot should be reconciled with the "world" node of the
    the current robot. All components of the remote robot who have Parent as "world" will be attached to the parent defined
    in Frame, and with the given offset as well.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: address
+      :type:  str
+
+
+   .. py:attribute:: managed_by
+      :type:  str
+
+
+   .. py:attribute:: insecure
+      :type:  bool
+
+
+   .. py:attribute:: secret
+      :type:  str
+
+      Secret is a helper for a robot location secret.
+
+
    .. py:property:: frame
       :type: global___Frame
+
 
 
    .. py:property:: auth
       :type: global___RemoteAuth
 
 
+
    .. py:property:: connection_check_interval
       :type: google.protobuf.duration_pb2.Duration
+
 
 
    .. py:property:: reconnect_interval
       :type: google.protobuf.duration_pb2.Duration
 
 
+
    .. py:property:: service_configs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: address
-      :type: str
-
-      
-
-   .. py:attribute:: managed_by
-      :type: str
-
-      
-
-   .. py:attribute:: insecure
-      :type: bool
-
-      
-
-   .. py:attribute:: secret
-      :type: str
-
-      Secret is a helper for a robot location secret.
-
-   .. py:method:: HasField(field_name: Literal[auth, b'auth', connection_check_interval, b'connection_check_interval', frame, b'frame', reconnect_interval, b'reconnect_interval']) -> bool
+   .. py:method:: HasField(field_name: Literal['auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'reconnect_interval', b'reconnect_interval']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1461,10 +1499,15 @@ Classes
 
 .. py:class:: ResourceLevelServiceConfig(*, type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    A ResourceLevelServiceConfig describes component or remote configuration for a service.
+
+
+   .. py:attribute:: type
+      :type:  str
+
 
    .. py:property:: attributes
       :type: google.protobuf.struct_pb2.Struct
@@ -1473,12 +1516,8 @@ Classes
 
       :type: TODO(adam)
 
-   .. py:attribute:: type
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[attributes, b'attributes']) -> bool
+   .. py:method:: HasField(field_name: Literal['attributes', b'attributes']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1498,8 +1537,8 @@ Classes
 
 .. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1507,62 +1546,74 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: debug
+      :type:  bool
+
+      Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
+
+
+   .. py:attribute:: disable_partial_start
+      :type:  bool
+
+
+   .. py:attribute:: enable_web_profile
+      :type:  bool
+
+      Turns on pprof http server on localhost. By default false.
+
+
    .. py:property:: cloud
       :type: global___CloudConfig
+
 
 
    .. py:property:: remotes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RemoteConfig]
 
 
+
    .. py:property:: components
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ComponentConfig]
+
 
 
    .. py:property:: processes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ProcessConfig]
 
 
+
    .. py:property:: services
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ServiceConfig]
+
 
 
    .. py:property:: network
       :type: global___NetworkConfig
 
 
+
    .. py:property:: auth
       :type: global___AuthConfig
+
 
 
    .. py:property:: modules
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ModuleConfig]
 
 
+
    .. py:property:: packages
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PackageConfig]
+
 
 
    .. py:property:: overwrite_fragment_status
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AppValidationStatus]
 
 
-   .. py:attribute:: debug
-      :type: bool
 
-      Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart
-
-   .. py:attribute:: disable_partial_start
-      :type: bool
-
-      
-
-   .. py:attribute:: enable_web_profile
-      :type: bool
-
-      Turns on pprof http server on localhost. By default false.
-
-   .. py:method:: HasField(field_name: Literal[_auth, b'_auth', _debug, b'_debug', _disable_partial_start, b'_disable_partial_start', _network, b'_network', auth, b'auth', cloud, b'cloud', debug, b'debug', disable_partial_start, b'disable_partial_start', network, b'network']) -> bool
+   .. py:method:: HasField(field_name: Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1579,10 +1630,11 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_auth, b'_auth']) -> Literal[auth] | None
-                  WhichOneof(oneof_group: Literal[_debug, b'_debug']) -> Literal[debug] | None
-                  WhichOneof(oneof_group: Literal[_disable_partial_start, b'_disable_partial_start']) -> Literal[disable_partial_start] | None
-                  WhichOneof(oneof_group: Literal[_network, b'_network']) -> Literal[network] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_auth', b'_auth']) -> Literal['auth'] | None
+                  WhichOneof(oneof_group: Literal['_debug', b'_debug']) -> Literal['debug'] | None
+                  WhichOneof(oneof_group: Literal['_disable_partial_start', b'_disable_partial_start']) -> Literal['disable_partial_start'] | None
+                  WhichOneof(oneof_group: Literal['_network', b'_network']) -> Literal['network'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1600,8 +1652,8 @@ Classes
 
 .. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., model: str = ..., api: str = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1609,44 +1661,47 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: namespace
+      :type:  str
+
+      deprecated; use api
+
+
+   .. py:attribute:: type
+      :type:  str
+
+      deprecated; use api
+
+
+   .. py:attribute:: model
+      :type:  str
+
+
+   .. py:attribute:: api
+      :type:  str
+
+
    .. py:property:: attributes
       :type: google.protobuf.struct_pb2.Struct
+
 
 
    .. py:property:: depends_on
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+
    .. py:property:: service_configs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: namespace
-      :type: str
-
-      deprecated; use api
-
-   .. py:attribute:: type
-      :type: str
-
-      deprecated; use api
-
-   .. py:attribute:: model
-      :type: str
-
-      
-
-   .. py:attribute:: api
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[attributes, b'attributes']) -> bool
+   .. py:method:: HasField(field_name: Literal['attributes', b'attributes']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1666,8 +1721,8 @@ Classes
 
 .. py:class:: SessionsConfig(*, heartbeat_window: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1675,11 +1730,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: heartbeat_window
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:method:: HasField(field_name: Literal[heartbeat_window, b'heartbeat_window']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['heartbeat_window', b'heartbeat_window']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1699,8 +1756,8 @@ Classes
 
 .. py:class:: Translation(*, x: float = ..., y: float = ..., z: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1708,19 +1765,16 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: x
-      :type: float
 
-      
+   .. py:attribute:: x
+      :type:  float
+
 
    .. py:attribute:: y
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: z
-      :type: float
-
-      
+      :type:  float
 
 

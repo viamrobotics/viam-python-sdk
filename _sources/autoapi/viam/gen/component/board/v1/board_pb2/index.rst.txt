@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.board.v1.board_pb2`
-===============================================
+viam.gen.component.board.v1.board_pb2
+=====================================
 
 .. py:module:: viam.gen.component.board.v1.board_pb2
 
@@ -10,44 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.board.v1.board_pb2.PowerMode
-   viam.gen.component.board.v1.board_pb2.Status
-   viam.gen.component.board.v1.board_pb2.SetGPIORequest
-   viam.gen.component.board.v1.board_pb2.SetGPIOResponse
-   viam.gen.component.board.v1.board_pb2.GetGPIORequest
-   viam.gen.component.board.v1.board_pb2.GetGPIOResponse
-   viam.gen.component.board.v1.board_pb2.PWMRequest
-   viam.gen.component.board.v1.board_pb2.PWMResponse
-   viam.gen.component.board.v1.board_pb2.SetPWMRequest
-   viam.gen.component.board.v1.board_pb2.SetPWMResponse
-   viam.gen.component.board.v1.board_pb2.PWMFrequencyRequest
-   viam.gen.component.board.v1.board_pb2.PWMFrequencyResponse
-   viam.gen.component.board.v1.board_pb2.SetPWMFrequencyRequest
-   viam.gen.component.board.v1.board_pb2.SetPWMFrequencyResponse
-   viam.gen.component.board.v1.board_pb2.ReadAnalogReaderRequest
-   viam.gen.component.board.v1.board_pb2.ReadAnalogReaderResponse
-   viam.gen.component.board.v1.board_pb2.WriteAnalogRequest
-   viam.gen.component.board.v1.board_pb2.WriteAnalogResponse
-   viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueRequest
-   viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueResponse
-   viam.gen.component.board.v1.board_pb2.StreamTicksRequest
-   viam.gen.component.board.v1.board_pb2.StreamTicksResponse
-   viam.gen.component.board.v1.board_pb2.SetPowerModeRequest
-   viam.gen.component.board.v1.board_pb2.SetPowerModeResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -81,42 +45,66 @@ Attributes
    viam.gen.component.board.v1.board_pb2.global___SetPowerModeResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.board.v1.board_pb2.PowerMode
+   viam.gen.component.board.v1.board_pb2.Status
+   viam.gen.component.board.v1.board_pb2.SetGPIORequest
+   viam.gen.component.board.v1.board_pb2.SetGPIOResponse
+   viam.gen.component.board.v1.board_pb2.GetGPIORequest
+   viam.gen.component.board.v1.board_pb2.GetGPIOResponse
+   viam.gen.component.board.v1.board_pb2.PWMRequest
+   viam.gen.component.board.v1.board_pb2.PWMResponse
+   viam.gen.component.board.v1.board_pb2.SetPWMRequest
+   viam.gen.component.board.v1.board_pb2.SetPWMResponse
+   viam.gen.component.board.v1.board_pb2.PWMFrequencyRequest
+   viam.gen.component.board.v1.board_pb2.PWMFrequencyResponse
+   viam.gen.component.board.v1.board_pb2.SetPWMFrequencyRequest
+   viam.gen.component.board.v1.board_pb2.SetPWMFrequencyResponse
+   viam.gen.component.board.v1.board_pb2.ReadAnalogReaderRequest
+   viam.gen.component.board.v1.board_pb2.ReadAnalogReaderResponse
+   viam.gen.component.board.v1.board_pb2.WriteAnalogRequest
+   viam.gen.component.board.v1.board_pb2.WriteAnalogResponse
+   viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueRequest
+   viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueResponse
+   viam.gen.component.board.v1.board_pb2.StreamTicksRequest
+   viam.gen.component.board.v1.board_pb2.StreamTicksResponse
+   viam.gen.component.board.v1.board_pb2.SetPowerModeRequest
+   viam.gen.component.board.v1.board_pb2.SetPowerModeResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: PowerMode
 
-
    Bases: :py:obj:`_PowerMode`
+
 
    Power Management API
 
 
 .. py:data:: POWER_MODE_UNSPECIFIED
-   :type: PowerMode
-
-   
+   :type:  PowerMode
 
 .. py:data:: POWER_MODE_NORMAL
-   :type: PowerMode
-
-   
+   :type:  PowerMode
 
 .. py:data:: POWER_MODE_OFFLINE_DEEP
-   :type: PowerMode
-
-   
+   :type:  PowerMode
 
 .. py:data:: global___PowerMode
 
-   
-
 .. py:class:: Status(*, analogs: collections.abc.Mapping[str, int] | None = ..., digital_interrupts: collections.abc.Mapping[str, int] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -124,10 +112,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: AnalogsEntry(*, key: str = ..., value: int = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -135,21 +124,20 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: int
+         :type:  int
 
-         
 
 
    .. py:class:: DigitalInterruptsEntry(*, key: str = ..., value: int = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -157,19 +145,19 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: int
+         :type:  int
 
-         
 
 
    .. py:property:: analogs
       :type: google.protobuf.internal.containers.ScalarMap[str, int]
+
 
 
    .. py:property:: digital_interrupts
@@ -179,12 +167,10 @@ Attributes
 
 .. py:data:: global___Status
 
-   
-
 .. py:class:: SetGPIORequest(*, name: str = ..., pin: str = ..., high: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -192,27 +178,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: high
+      :type:  bool
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:attribute:: high
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -232,12 +217,10 @@ Attributes
 
 .. py:data:: global___SetGPIORequest
 
-   
-
 .. py:class:: SetGPIOResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -248,12 +231,10 @@ Attributes
 
 .. py:data:: global___SetGPIOResponse
 
-   
-
 .. py:class:: GetGPIORequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -261,22 +242,22 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -296,12 +277,10 @@ Attributes
 
 .. py:data:: global___GetGPIORequest
 
-   
-
 .. py:class:: GetGPIOResponse(*, high: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -309,43 +288,40 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: high
-      :type: bool
 
-      
+   .. py:attribute:: high
+      :type:  bool
 
 
 .. py:data:: global___GetGPIOResponse
 
-   
-
 .. py:class:: PWMRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -365,12 +341,10 @@ Attributes
 
 .. py:data:: global___PWMRequest
 
-   
-
 .. py:class:: PWMResponse(*, duty_cycle_pct: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -378,20 +352,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: duty_cycle_pct
-      :type: float
+      :type:  float
 
       0-1
 
 
 .. py:data:: global___PWMResponse
 
-   
-
 .. py:class:: SetPWMRequest(*, name: str = ..., pin: str = ..., duty_cycle_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -399,27 +372,28 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: duty_cycle_pct
+      :type:  float
+
+      0-1
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:attribute:: duty_cycle_pct
-      :type: float
-
-      0-1
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -439,12 +413,10 @@ Attributes
 
 .. py:data:: global___SetPWMRequest
 
-   
-
 .. py:class:: SetPWMResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -455,12 +427,10 @@ Attributes
 
 .. py:data:: global___SetPWMResponse
 
-   
-
 .. py:class:: PWMFrequencyRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -468,22 +438,22 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -503,12 +473,10 @@ Attributes
 
 .. py:data:: global___PWMFrequencyRequest
 
-   
-
 .. py:class:: PWMFrequencyResponse(*, frequency_hz: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -516,48 +484,44 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: frequency_hz
-      :type: int
 
-      
+   .. py:attribute:: frequency_hz
+      :type:  int
 
 
 .. py:data:: global___PWMFrequencyResponse
 
-   
-
 .. py:class:: SetPWMFrequencyRequest(*, name: str = ..., pin: str = ..., frequency_hz: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: frequency_hz
+      :type:  int
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:attribute:: frequency_hz
-      :type: int
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -577,12 +541,10 @@ Attributes
 
 .. py:data:: global___SetPWMFrequencyRequest
 
-   
-
 .. py:class:: SetPWMFrequencyResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -593,31 +555,29 @@ Attributes
 
 .. py:data:: global___SetPWMFrequencyResponse
 
-   
-
 .. py:class:: ReadAnalogReaderRequest(*, board_name: str = ..., analog_reader_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Analog Reader
+
+
+   .. py:attribute:: board_name
+      :type:  str
+
+
+   .. py:attribute:: analog_reader_name
+      :type:  str
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: board_name
-      :type: str
 
-      
-
-   .. py:attribute:: analog_reader_name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -637,12 +597,10 @@ Attributes
 
 .. py:data:: global___ReadAnalogReaderRequest
 
-   
-
 .. py:class:: ReadAnalogReaderResponse(*, value: int = ..., min_range: float = ..., max_range: float = ..., step_size: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -650,59 +608,52 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: value
-      :type: int
 
-      
+   .. py:attribute:: value
+      :type:  int
+
 
    .. py:attribute:: min_range
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: max_range
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: step_size
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:data:: global___ReadAnalogReaderResponse
 
-   
-
 .. py:class:: WriteAnalogRequest(*, name: str = ..., pin: str = ..., value: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Analog Writer
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: value
+      :type:  int
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: pin
-      :type: str
-
-      
-
-   .. py:attribute:: value
-      :type: int
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -722,12 +673,10 @@ Attributes
 
 .. py:data:: global___WriteAnalogRequest
 
-   
-
 .. py:class:: WriteAnalogResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -738,31 +687,29 @@ Attributes
 
 .. py:data:: global___WriteAnalogResponse
 
-   
-
 .. py:class:: GetDigitalInterruptValueRequest(*, board_name: str = ..., digital_interrupt_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Digital Interrupt
+
+
+   .. py:attribute:: board_name
+      :type:  str
+
+
+   .. py:attribute:: digital_interrupt_name
+      :type:  str
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: board_name
-      :type: str
 
-      
-
-   .. py:attribute:: digital_interrupt_name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -782,12 +729,10 @@ Attributes
 
 .. py:data:: global___GetDigitalInterruptValueRequest
 
-   
-
 .. py:class:: GetDigitalInterruptValueResponse(*, value: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -795,43 +740,44 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: value
-      :type: int
 
-      
+   .. py:attribute:: value
+      :type:  int
 
 
 .. py:data:: global___GetDigitalInterruptValueResponse
 
-   
-
 .. py:class:: StreamTicksRequest(*, name: str = ..., pin_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Board name
+
 
    .. py:property:: pin_names
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Name of digital interrupts to recieve ticks from
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Board name
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -851,12 +797,10 @@ Attributes
 
 .. py:data:: global___StreamTicksRequest
 
-   
-
 .. py:class:: StreamTicksResponse(*, pin_name: str = ..., time: int = ..., high: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -864,30 +808,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: pin_name
-      :type: str
+      :type:  str
 
       name of interrupt
 
+
    .. py:attribute:: time
-      :type: int
+      :type:  int
 
       Time in nanoseconds of a tick
 
+
    .. py:attribute:: high
-      :type: bool
+      :type:  bool
 
       Value high or low of the tick
 
 
 .. py:data:: global___StreamTicksResponse
 
-   
-
 .. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -895,27 +840,32 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of board
+
+
+   .. py:attribute:: power_mode
+      :type:  global___PowerMode
+
+      Requested power mode
+
+
    .. py:property:: duration
       :type: google.protobuf.duration_pb2.Duration
 
       Requested duration to stay in `power_mode`
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      name of board
-
-   .. py:attribute:: power_mode
-      :type: global___PowerMode
-
-      Requested power mode
-
-   .. py:method:: HasField(field_name: Literal[_duration, b'_duration', duration, b'duration', extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -932,7 +882,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_duration, b'_duration']) -> Literal[duration] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_duration', b'_duration']) -> Literal['duration'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -950,12 +901,10 @@ Attributes
 
 .. py:data:: global___SetPowerModeRequest
 
-   
-
 .. py:class:: SetPowerModeResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -965,6 +914,4 @@ Attributes
 
 
 .. py:data:: global___SetPowerModeResponse
-
-   
 

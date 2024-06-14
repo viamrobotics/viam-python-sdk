@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.agent`
-==============================
+viam.proto.app.agent
+====================
 
 .. py:module:: viam.proto.app.agent
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -29,36 +26,38 @@ Classes
    viam.proto.app.agent.SubsystemUpdateInfo
 
 
-
+Package Contents
+----------------
 
 .. py:class:: AgentDeviceServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: DeviceAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: AgentDeviceServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedAgentDeviceServiceBase
 
-
    Bases: :py:obj:`AgentDeviceServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: DeviceAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse]) -> None
       :async:
@@ -67,15 +66,16 @@ Classes
 
 .. py:class:: DeviceAgentConfigRequest(*, id: str = ..., host_info: global___HostInfo | None = ..., subsystem_versions: collections.abc.Mapping[str, str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Device side
 
+
    .. py:class:: SubsystemVersionsEntry(*, key: str = ..., value: str = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -83,15 +83,20 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: key
-         :type: str
 
-         
+      .. py:attribute:: key
+         :type:  str
+
 
       .. py:attribute:: value
-         :type: str
+         :type:  str
 
-         
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      robot partID
 
 
    .. py:property:: host_info
@@ -99,17 +104,14 @@ Classes
 
       info about the host system
 
+
    .. py:property:: subsystem_versions
       :type: google.protobuf.internal.containers.ScalarMap[str, str]
 
       current subsystems and versions
 
-   .. py:attribute:: id
-      :type: str
 
-      robot partID
-
-   .. py:method:: HasField(field_name: Literal[host_info, b'host_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['host_info', b'host_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -129,8 +131,8 @@ Classes
 
 .. py:class:: DeviceAgentConfigResponse(*, subsystem_configs: collections.abc.Mapping[str, global___DeviceSubsystemConfig] | None = ..., check_interval: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -138,10 +140,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: SubsystemConfigsEntry(*, key: str = ..., value: global___DeviceSubsystemConfig | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -149,16 +152,17 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: global___DeviceSubsystemConfig
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -176,18 +180,21 @@ Classes
 
 
 
+
    .. py:property:: subsystem_configs
       :type: google.protobuf.internal.containers.MessageMap[str, global___DeviceSubsystemConfig]
 
       subsystems to be installed/configured/updated
       note: previously installed subsystems will be removed from the system if removed from this list
 
+
    .. py:property:: check_interval
       :type: google.protobuf.duration_pb2.Duration
 
       how often this request should be repeated
 
-   .. py:method:: HasField(field_name: Literal[check_interval, b'check_interval']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['check_interval', b'check_interval']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -207,8 +214,8 @@ Classes
 
 .. py:class:: DeviceSubsystemConfig(*, update_info: global___SubsystemUpdateInfo | None = ..., disable: bool = ..., force_restart: bool = ..., attributes: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -216,27 +223,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: disable
+      :type:  bool
+
+      if this subsystem is disabled and should not be started by the agent
+
+
+   .. py:attribute:: force_restart
+      :type:  bool
+
+      force_restart will restart the subsystem, even if no updates are available
+
+
    .. py:property:: update_info
       :type: global___SubsystemUpdateInfo
 
       data needed to download/validate the subsystem
+
 
    .. py:property:: attributes
       :type: google.protobuf.struct_pb2.Struct
 
       arbitrary config sections
 
-   .. py:attribute:: disable
-      :type: bool
 
-      if this subsystem is disabled and should not be started by the agent
-
-   .. py:attribute:: force_restart
-      :type: bool
-
-      force_restart will restart the subsystem, even if no updates are available
-
-   .. py:method:: HasField(field_name: Literal[attributes, b'attributes', update_info, b'update_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['attributes', b'attributes', 'update_info', b'update_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -256,8 +268,8 @@ Classes
 
 .. py:class:: HostInfo(*, platform: str = ..., distro: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -265,21 +277,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      additional tags for specific hardware or software that's present and may affect software selection
-      ex: "jetson", "rpi4", "systemd", etc.
 
    .. py:attribute:: platform
-      :type: str
+      :type:  str
 
       linux/amd64, darwin/arm64
 
       :type: platform is the docker styled combination of kernel and architecture. Ex
 
+
    .. py:attribute:: distro
-      :type: str
+      :type:  str
 
       22.04, debian:11
 
@@ -288,16 +296,22 @@ Classes
       :type: ubuntu
 
 
-.. py:class:: PackageFormat
+   .. py:property:: tags
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+      additional tags for specific hardware or software that's present and may affect software selection
+      ex: "jetson", "rpi4", "systemd", etc.
+
+
+.. py:class:: PackageFormat
 
    Bases: :py:obj:`_PackageFormat`
 
 
 .. py:class:: SubsystemUpdateInfo(*, filename: str = ..., url: str = ..., version: str = ..., sha256: bytes = ..., format: global___PackageFormat = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -305,28 +319,33 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: filename
-      :type: str
+      :type:  str
 
       unpacked filename as it is expected on disk (regardless of url)
 
+
    .. py:attribute:: url
-      :type: str
+      :type:  str
 
       url to download from
 
+
    .. py:attribute:: version
-      :type: str
+      :type:  str
 
       version expected at the url
 
+
    .. py:attribute:: sha256
-      :type: bytes
+      :type:  bytes
 
       sha256 sum of file as downloaded
 
+
    .. py:attribute:: format
-      :type: global___PackageFormat
+      :type:  global___PackageFormat
 
       determines if decompression or executable permissions are needed
 

@@ -1,37 +1,35 @@
-:py:mod:`viam.components.generic`
-=================================
+viam.components.generic
+=======================
 
 .. py:module:: viam.components.generic
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   generic/index.rst
-   service/index.rst
+   /autoapi/viam/components/generic/client/index
+   /autoapi/viam/components/generic/generic/index
+   /autoapi/viam/components/generic/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.generic.Generic
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Generic(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Generic component, which represents any type of component that can executes arbitrary commands
 
@@ -94,13 +92,14 @@ Classes
        await asyncio.sleep(10)
        component.power  # 0
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -113,9 +112,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -133,8 +135,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -151,8 +155,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -166,6 +172,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -183,8 +190,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

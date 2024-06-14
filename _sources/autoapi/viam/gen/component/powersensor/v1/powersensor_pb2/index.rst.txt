@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.powersensor.v1.powersensor_pb2`
-===========================================================
+viam.gen.component.powersensor.v1.powersensor_pb2
+=================================================
 
 .. py:module:: viam.gen.component.powersensor.v1.powersensor_pb2
 
@@ -10,26 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetVoltageRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetVoltageResponse
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetCurrentRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetCurrentResponse
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetPowerRequest
-   viam.gen.component.powersensor.v1.powersensor_pb2.GetPowerResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -42,15 +24,29 @@ Attributes
    viam.gen.component.powersensor.v1.powersensor_pb2.global___GetPowerResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetVoltageRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetVoltageResponse
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetCurrentRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetCurrentResponse
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetPowerRequest
+   viam.gen.component.powersensor.v1.powersensor_pb2.GetPowerResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: GetVoltageRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -58,17 +54,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a power sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a power sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -88,12 +87,10 @@ Attributes
 
 .. py:data:: global___GetVoltageRequest
 
-   
-
 .. py:class:: GetVoltageResponse(*, volts: float = ..., is_ac: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -101,25 +98,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: volts
-      :type: float
+      :type:  float
 
       Voltage in volts
 
+
    .. py:attribute:: is_ac
-      :type: bool
+      :type:  bool
 
       Bool describing whether the voltage is DC or AC
 
 
 .. py:data:: global___GetVoltageResponse
 
-   
-
 .. py:class:: GetCurrentRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -127,17 +124,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a power sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a power sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -157,12 +157,10 @@ Attributes
 
 .. py:data:: global___GetCurrentRequest
 
-   
-
 .. py:class:: GetCurrentResponse(*, amperes: float = ..., is_ac: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -170,25 +168,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: amperes
-      :type: float
+      :type:  float
 
       Current in amperes
 
+
    .. py:attribute:: is_ac
-      :type: bool
+      :type:  bool
 
       Bool descibing whether the current is DC or AC
 
 
 .. py:data:: global___GetCurrentResponse
 
-   
-
 .. py:class:: GetPowerRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -196,17 +194,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a power sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a power sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -226,12 +227,10 @@ Attributes
 
 .. py:data:: global___GetPowerRequest
 
-   
-
 .. py:class:: GetPowerResponse(*, watts: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -239,13 +238,12 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: watts
-      :type: float
+      :type:  float
 
       Power in watts
 
 
 .. py:data:: global___GetPowerResponse
-
-   
 

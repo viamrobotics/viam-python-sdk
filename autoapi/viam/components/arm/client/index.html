@@ -55,70 +55,166 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.components.arm</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.arm</span></code></a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.client</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../arm/index.html">viam.components.arm.arm</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.components.arm.client</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient"><code class="docutils literal notranslate"><span class="pre">ArmClient</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_end_position"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_end_position()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_to_position"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_to_position()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_joint_positions()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_to_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_to_joint_positions()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.stop"><code class="docutils literal notranslate"><span class="pre">ArmClient.stop()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.is_moving"><code class="docutils literal notranslate"><span class="pre">ArmClient.is_moving()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.do_command"><code class="docutils literal notranslate"><span class="pre">ArmClient.do_command()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_kinematics"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_kinematics()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_geometries()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.from_robot"><code class="docutils literal notranslate"><span class="pre">ArmClient.from_robot()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_resource_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_operation"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_operation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.client.ArmClient.close"><code class="docutils literal notranslate"><span class="pre">ArmClient.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.DoCommandRequest.name"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.DoCommandRequest.command"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.command</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.DoCommandRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.capsule"><code class="docutils literal notranslate"><span class="pre">Geometry.capsule</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsRequest"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetKinematicsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsResponse"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsResponse.format"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.format</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetKinematicsResponse.kinematics_data"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.kinematics_data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.ArmServiceStub"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse.pose</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetEndPositionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsResponse"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsResponse.positions"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse.positions</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.IsMovingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.IsMovingResponse"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.IsMovingResponse.is_moving"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse.is_moving</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.JointPositions"><code class="docutils literal notranslate"><span class="pre">JointPositions</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.JointPositions.values"><code class="docutils literal notranslate"><span class="pre">JointPositions.values</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest.positions"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.positions</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest.to"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.to</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.ReconfigurableResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ReconfigurableResourceRPCClientBase.reset_channel"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase.reset_channel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.ValueTypes"><code class="docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.dict_to_struct"><code class="docutils literal notranslate"><span class="pre">dict_to_struct()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.get_geometries"><code class="docutils literal notranslate"><span class="pre">get_geometries()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.struct_to_dict"><code class="docutils literal notranslate"><span class="pre">struct_to_dict()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.client.ArmClient"><code class="docutils literal notranslate"><span class="pre">ArmClient</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_end_position"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_end_position()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_to_position"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_to_position()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_joint_positions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.move_to_joint_positions"><code class="docutils literal notranslate"><span class="pre">ArmClient.move_to_joint_positions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.stop"><code class="docutils literal notranslate"><span class="pre">ArmClient.stop()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.is_moving"><code class="docutils literal notranslate"><span class="pre">ArmClient.is_moving()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.do_command"><code class="docutils literal notranslate"><span class="pre">ArmClient.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_kinematics"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_kinematics()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_geometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.from_robot"><code class="docutils literal notranslate"><span class="pre">ArmClient.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.get_operation"><code class="docutils literal notranslate"><span class="pre">ArmClient.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.client.ArmClient.close"><code class="docutils literal notranslate"><span class="pre">ArmClient.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="../service/index.html">viam.components.arm.service</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.service</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.encoder</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.movement_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html">viam.components.audio_input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../base/index.html">viam.components.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../board/index.html">viam.components.board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html">viam.components.camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html">viam.components.encoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html">viam.components.gantry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.components.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html">viam.components.gripper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../input/index.html">viam.components.input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html">viam.components.motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html">viam.components.movement_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html">viam.components.pose_tracker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html">viam.components.power_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html">viam.components.sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html">viam.components.servo</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -135,9 +231,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.client</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.components</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.components.arm</a></li>
+      <li class="breadcrumb-item active">viam.components.arm.client</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/components/arm/client/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -148,18 +244,726 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.arm.client">
-<span id="viam-components-arm-client"></span><h1><a class="reference internal" href="#module-viam.components.arm.client" title="viam.components.arm.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.client</span></code></a><a class="headerlink" href="#module-viam.components.arm.client" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-components-arm-client"></span><h1>viam.components.arm.client<a class="headerlink" href="#module-viam.components.arm.client" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.ArmClient" title="viam.components.arm.client.ArmClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArmClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.ValueTypes" title="viam.components.arm.client.ValueTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></p></td>
+<td><p>Types that can be encoded into a protobuf <cite>Value</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.DoCommandRequest" title="viam.components.arm.client.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<td><p>DoCommandRequest represents a generic DoCommand input</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.DoCommandResponse" title="viam.components.arm.client.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<td><p>DoCommandResponse represents a generic DoCommand output</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.GetKinematicsRequest" title="viam.components.arm.client.GetKinematicsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.GetKinematicsResponse" title="viam.components.arm.client.GetKinematicsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.ArmServiceStub" title="viam.components.arm.client.ArmServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArmServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.GetEndPositionRequest" title="viam.components.arm.client.GetEndPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEndPositionRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.GetEndPositionResponse" title="viam.components.arm.client.GetEndPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetEndPositionResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsRequest" title="viam.components.arm.client.GetJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetJointPositionsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.GetJointPositionsResponse" title="viam.components.arm.client.GetJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetJointPositionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.IsMovingRequest" title="viam.components.arm.client.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.IsMovingResponse" title="viam.components.arm.client.IsMovingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.JointPositions" title="viam.components.arm.client.JointPositions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointPositions</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.MoveToJointPositionsRequest" title="viam.components.arm.client.MoveToJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.MoveToPositionRequest" title="viam.components.arm.client.MoveToPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a></p></td>
+<td><p>Moves an arm to the specified pose that is within the reference frame of the arm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.StopRequest" title="viam.components.arm.client.StopRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.ReconfigurableResourceRPCClientBase" title="viam.components.arm.client.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a></p></td>
+<td><p>A base RPC client that can reset its channel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.ArmClient" title="viam.components.arm.client.ArmClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArmClient</span></code></a></p></td>
 <td><p>gRPC client for an Arm component.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.dict_to_struct" title="viam.components.arm.client.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.client.get_geometries" title="viam.components.arm.client.get_geometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_geometries</span></code></a>(→ List[viam.proto.common.Geometry])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.client.struct_to_dict" title="viam.components.arm.client.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.DoCommandRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandRequest represents a generic DoCommand input</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'command'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.DoCommandResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandResponse represents a generic DoCommand output</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'result'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Sphere</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RectangularPrism</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Capsule</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.Geometry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.Geometry.label" title="Permalink to this definition"></a></dt>
+<dd><p>Label of the geometry. If none supplied, will be an empty string.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.components.arm.client.Geometry.center" title="Permalink to this definition"></a></dt>
+<dd><p>Pose of a geometries center point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.sphere">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Sphere</span></em><a class="headerlink" href="#viam.components.arm.client.Geometry.sphere" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.box">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">box</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___RectangularPrism</span></em><a class="headerlink" href="#viam.components.arm.client.Geometry.box" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.capsule">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">capsule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Capsule</span></em><a class="headerlink" href="#viam.components.arm.client.Geometry.capsule" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'box'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'box'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'capsule'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'capsule'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'center'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'center'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'geometry_type'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'sphere'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'sphere'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.Geometry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.Geometry.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'geometry_type'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'sphere'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'box'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'capsule'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.arm.client.Geometry.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetKinematicsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.GetKinematicsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>The component name</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.GetKinematicsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.GetKinematicsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetKinematicsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___KinematicsFileFormat</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinematics_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetKinematicsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsResponse.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___KinematicsFileFormat</span></em><a class="headerlink" href="#viam.components.arm.client.GetKinematicsResponse.format" title="Permalink to this definition"></a></dt>
+<dd><p>The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
+<a class="reference external" href="https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters">https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetKinematicsResponse.kinematics_data">
+<span class="sig-name descname"><span class="pre">kinematics_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.components.arm.client.GetKinematicsResponse.kinematics_data" title="Permalink to this definition"></a></dt>
+<dd><p>The byte contents of the file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.ArmServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">ArmServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/component/arm/v1/arm_grpc.html#ArmServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.ArmServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetEndPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetEndPositionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.GetEndPositionRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.GetEndPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.GetEndPositionRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetEndPositionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetEndPositionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionResponse.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a></em><a class="headerlink" href="#viam.components.arm.client.GetEndPositionResponse.pose" title="Permalink to this definition"></a></dt>
+<dd><p>Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
+millimeters and theta, ox, oy, oz coordinates which express an orientation vector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetEndPositionResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pose'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.GetEndPositionResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetJointPositionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">GetJointPositionsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___JointPositions</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsResponse.positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___JointPositions</span></em><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsResponse.positions" title="Permalink to this definition"></a></dt>
+<dd><p>a list JointPositions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.GetJointPositionsResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'positions'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'positions'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.GetJointPositionsResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.IsMovingRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">IsMovingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.IsMovingRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.IsMovingRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.IsMovingRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.IsMovingResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">IsMovingResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.IsMovingResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.IsMovingResponse.is_moving">
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.arm.client.IsMovingResponse.is_moving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.JointPositions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">JointPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.JointPositions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.JointPositions.values">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.arm.client.JointPositions.values" title="Permalink to this definition"></a></dt>
+<dd><p>A list of joint positions. Rotations values are in degrees, translational values in mm.
+The numbers are ordered spatially from the base toward the end effector
+This is used in GetJointPositionsResponse and MoveToJointPositionsRequest</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToJointPositionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">MoveToJointPositionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___JointPositions</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.MoveToJointPositionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToJointPositionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.MoveToJointPositionsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToJointPositionsRequest.positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___JointPositions</span></em><a class="headerlink" href="#viam.components.arm.client.MoveToJointPositionsRequest.positions" title="Permalink to this definition"></a></dt>
+<dd><p>A list of joint positions
+There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToJointPositionsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.MoveToJointPositionsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToJointPositionsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'positions'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'positions'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.MoveToJointPositionsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToPositionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">MoveToPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.MoveToPositionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Moves an arm to the specified pose that is within the reference frame of the arm.
+Move request in Motion API has the same behavior except that it performs obstacle avoidance when a world_state
+message is specified.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToPositionRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.MoveToPositionRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToPositionRequest.to">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a></em><a class="headerlink" href="#viam.components.arm.client.MoveToPositionRequest.to" title="Permalink to this definition"></a></dt>
+<dd><p>The destination to move the arm to; this is from the reference frame of the arm.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.MoveToPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.MoveToPositionRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'to'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'to'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.MoveToPositionRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.StopRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">StopRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.StopRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.client.StopRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.arm.client.StopRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.arm.client.StopRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.components.arm.client.StopRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.StopRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.arm.client.StopRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.arm.client.ReconfigurableResourceRPCClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">ReconfigurableResourceRPCClientBase</span></span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.ReconfigurableResourceRPCClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></p>
+<p>A base RPC client that can reset its channel.</p>
+<p>Useful if connection is lost and then regained.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.arm.client.ReconfigurableResourceRPCClientBase.reset_channel">
+<span class="sig-name descname"><span class="pre">reset_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase.reset_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.ReconfigurableResourceRPCClientBase.reset_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Called when the RPC channel was reset. Passes in the new channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>Channel</em>) – The new RPC Channel</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.arm.client.ValueTypes">
+<span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">ValueTypes</span></span><a class="headerlink" href="#viam.components.arm.client.ValueTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Types that can be encoded into a protobuf <cite>Value</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.components.arm.client.dict_to_struct">
+<span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.dict_to_struct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.components.arm.client.get_geometries">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/types/index.html#viam.resource.types.SupportsGetGeometries" title="viam.resource.types.SupportsGetGeometries"><span class="pre">viam.resource.types.SupportsGetGeometries</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.get_geometries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.components.arm.client.struct_to_dict">
+<span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.arm.client.ArmClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.client.</span></span><span class="sig-name descname"><span class="pre">ArmClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/arm/client.html#ArmClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.client.ArmClient" title="Permalink to this definition"></a></dt>
@@ -184,7 +988,7 @@ Location is expressed as distance, which is represented by x, y, and z coordinat
 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.arm.Pose" title="viam.components.arm.Pose">Pose</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../arm/index.html#viam.components.arm.arm.Pose" title="viam.components.arm.arm.Pose">Pose</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -204,7 +1008,7 @@ Orientation is expressed as an orientation vector, which is represented by o_x, 
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pose</strong> (<a class="reference internal" href="../index.html#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination <code class="docutils literal notranslate"><span class="pre">Pose</span></code> for the arm. The <code class="docutils literal notranslate"><span class="pre">Pose</span></code> is composed of values for location and orientation
+<dd class="field-odd"><p><strong>pose</strong> (<a class="reference internal" href="../arm/index.html#viam.components.arm.arm.Pose" title="viam.components.arm.arm.Pose"><em>Pose</em></a>) – The destination <code class="docutils literal notranslate"><span class="pre">Pose</span></code> for the arm. The <code class="docutils literal notranslate"><span class="pre">Pose</span></code> is composed of values for location and orientation
 with respect to the origin.
 Location is expressed as distance, which is represented by x, y, and z coordinate values.
 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</p>
@@ -229,7 +1033,7 @@ Orientation is expressed as an orientation vector, which is represented by o_x, 
 and translational values (mm).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.client.JointPositions" title="viam.components.arm.client.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -254,7 +1058,7 @@ and translational values (mm).</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="../index.html#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <code class="docutils literal notranslate"><span class="pre">JointPositions</span></code> for the arm.</p>
+<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.client.JointPositions" title="viam.components.arm.client.JointPositions"><em>JointPositions</em></a>) – The destination <code class="docutils literal notranslate"><span class="pre">JointPositions</span></code> for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -363,7 +1167,7 @@ represents the byte contents of the file.</p>
 <dd class="field-odd"><p>The geometries associated with the Component.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Geometry" title="viam.gen.common.v1.common_pb2.Geometry">Geometry</a>]</p>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -375,7 +1179,7 @@ represents the byte contents of the file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
 </ul>
 </dd>
@@ -443,7 +1247,6 @@ non-Close methods are called.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

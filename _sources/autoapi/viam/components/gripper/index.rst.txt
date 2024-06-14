@@ -1,37 +1,35 @@
-:py:mod:`viam.components.gripper`
-=================================
+viam.components.gripper
+=======================
 
 .. py:module:: viam.components.gripper
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   gripper/index.rst
-   service/index.rst
+   /autoapi/viam/components/gripper/client/index
+   /autoapi/viam/components/gripper/gripper/index
+   /autoapi/viam/components/gripper/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.gripper.Gripper
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Gripper(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Gripper represents a physical robotic gripper.
 
@@ -43,14 +41,16 @@ Classes
 
        from viam.components.gripper import Gripper
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:method:: open(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Open the gripper.
 
@@ -62,9 +62,12 @@ Classes
           await my_gripper.open()
 
 
+
    .. py:method:: grab(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
       :abstractmethod:
+
       :async:
+
 
       Instruct the gripper to grab.
 
@@ -79,9 +82,12 @@ Classes
       :rtype: bool
 
 
+
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Stop the gripper. It is assumed the gripper stops immediately.
 
@@ -93,9 +99,12 @@ Classes
           await my_gripper.stop()
 
 
+
    .. py:method:: is_moving() -> bool
       :abstractmethod:
+
       :async:
+
 
       Get if the gripper is currently moving.
 
@@ -111,8 +120,10 @@ Classes
       :rtype: bool
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -125,9 +136,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -145,8 +159,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -163,8 +179,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -178,6 +196,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -195,8 +214,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

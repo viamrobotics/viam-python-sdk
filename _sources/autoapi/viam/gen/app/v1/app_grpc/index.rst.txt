@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.app.v1.app_grpc`
-==================================
+viam.gen.app.v1.app_grpc
+========================
 
 .. py:module:: viam.gen.app.v1.app_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,661 +14,875 @@ Classes
    viam.gen.app.v1.app_grpc.AppServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: AppServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetUserIDByEmail(stream: grpclib.server.Stream[app.v1.app_pb2.GetUserIDByEmailRequest, app.v1.app_pb2.GetUserIDByEmailResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationRequest, app.v1.app_pb2.CreateOrganizationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListOrganizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsRequest, app.v1.app_pb2.ListOrganizationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetOrganizationsWithAccessToLocation(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationsWithAccessToLocationRequest, app.v1.app_pb2.GetOrganizationsWithAccessToLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListOrganizationsByUser(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsByUserRequest, app.v1.app_pb2.ListOrganizationsByUserResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationRequest, app.v1.app_pb2.GetOrganizationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetOrganizationNamespaceAvailability(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationNamespaceAvailabilityRequest, app.v1.app_pb2.GetOrganizationNamespaceAvailabilityResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationRequest, app.v1.app_pb2.UpdateOrganizationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationRequest, app.v1.app_pb2.DeleteOrganizationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListOrganizationMembers(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationMembersRequest, app.v1.app_pb2.ListOrganizationMembersResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationInviteRequest, app.v1.app_pb2.CreateOrganizationInviteResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateOrganizationInviteAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest, app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteOrganizationMember(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationMemberRequest, app.v1.app_pb2.DeleteOrganizationMemberResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationInviteRequest, app.v1.app_pb2.DeleteOrganizationInviteResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ResendOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.ResendOrganizationInviteRequest, app.v1.app_pb2.ResendOrganizationInviteResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateLocation(stream: grpclib.server.Stream[app.v1.app_pb2.CreateLocationRequest, app.v1.app_pb2.CreateLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetLocation(stream: grpclib.server.Stream[app.v1.app_pb2.GetLocationRequest, app.v1.app_pb2.GetLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateLocation(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateLocationRequest, app.v1.app_pb2.UpdateLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteLocation(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteLocationRequest, app.v1.app_pb2.DeleteLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListLocations(stream: grpclib.server.Stream[app.v1.app_pb2.ListLocationsRequest, app.v1.app_pb2.ListLocationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ShareLocation(stream: grpclib.server.Stream[app.v1.app_pb2.ShareLocationRequest, app.v1.app_pb2.ShareLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UnshareLocation(stream: grpclib.server.Stream[app.v1.app_pb2.UnshareLocationRequest, app.v1.app_pb2.UnshareLocationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: LocationAuth(stream: grpclib.server.Stream[app.v1.app_pb2.LocationAuthRequest, app.v1.app_pb2.LocationAuthResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateLocationSecret(stream: grpclib.server.Stream[app.v1.app_pb2.CreateLocationSecretRequest, app.v1.app_pb2.CreateLocationSecretResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteLocationSecret(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteLocationSecretRequest, app.v1.app_pb2.DeleteLocationSecretResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobot(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotRequest, app.v1.app_pb2.GetRobotResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRoverRentalRobots(stream: grpclib.server.Stream[app.v1.app_pb2.GetRoverRentalRobotsRequest, app.v1.app_pb2.GetRoverRentalRobotsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobotParts(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartsRequest, app.v1.app_pb2.GetRobotPartsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartRequest, app.v1.app_pb2.GetRobotPartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartLogsRequest, app.v1.app_pb2.GetRobotPartLogsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TailRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.TailRobotPartLogsRequest, app.v1.app_pb2.TailRobotPartLogsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobotPartHistory(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartHistoryRequest, app.v1.app_pb2.GetRobotPartHistoryResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotPartRequest, app.v1.app_pb2.UpdateRobotPartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: NewRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotPartRequest, app.v1.app_pb2.NewRobotPartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartRequest, app.v1.app_pb2.DeleteRobotPartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRobotAPIKeys(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotAPIKeysRequest, app.v1.app_pb2.GetRobotAPIKeysResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MarkPartAsMain(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartAsMainRequest, app.v1.app_pb2.MarkPartAsMainResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MarkPartForRestart(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartForRestartRequest, app.v1.app_pb2.MarkPartForRestartResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateRobotPartSecret(stream: grpclib.server.Stream[app.v1.app_pb2.CreateRobotPartSecretRequest, app.v1.app_pb2.CreateRobotPartSecretResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteRobotPartSecret(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartSecretRequest, app.v1.app_pb2.DeleteRobotPartSecretResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListRobots(stream: grpclib.server.Stream[app.v1.app_pb2.ListRobotsRequest, app.v1.app_pb2.ListRobotsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: NewRobot(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotRequest, app.v1.app_pb2.NewRobotResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateRobot(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotRequest, app.v1.app_pb2.UpdateRobotResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteRobot(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotRequest, app.v1.app_pb2.DeleteRobotResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListFragments(stream: grpclib.server.Stream[app.v1.app_pb2.ListFragmentsRequest, app.v1.app_pb2.ListFragmentsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetFragment(stream: grpclib.server.Stream[app.v1.app_pb2.GetFragmentRequest, app.v1.app_pb2.GetFragmentResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateFragment(stream: grpclib.server.Stream[app.v1.app_pb2.CreateFragmentRequest, app.v1.app_pb2.CreateFragmentResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateFragment(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateFragmentRequest, app.v1.app_pb2.UpdateFragmentResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteFragment(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteFragmentRequest, app.v1.app_pb2.DeleteFragmentResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: AddRole(stream: grpclib.server.Stream[app.v1.app_pb2.AddRoleRequest, app.v1.app_pb2.AddRoleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RemoveRole(stream: grpclib.server.Stream[app.v1.app_pb2.RemoveRoleRequest, app.v1.app_pb2.RemoveRoleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ChangeRole(stream: grpclib.server.Stream[app.v1.app_pb2.ChangeRoleRequest, app.v1.app_pb2.ChangeRoleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListAuthorizationsRequest, app.v1.app_pb2.ListAuthorizationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CheckPermissions(stream: grpclib.server.Stream[app.v1.app_pb2.CheckPermissionsRequest, app.v1.app_pb2.CheckPermissionsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.GetRegistryItemRequest, app.v1.app_pb2.GetRegistryItemResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.CreateRegistryItemRequest, app.v1.app_pb2.CreateRegistryItemResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRegistryItemRequest, app.v1.app_pb2.UpdateRegistryItemResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListRegistryItems(stream: grpclib.server.Stream[app.v1.app_pb2.ListRegistryItemsRequest, app.v1.app_pb2.ListRegistryItemsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRegistryItemRequest, app.v1.app_pb2.DeleteRegistryItemResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TransferRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.TransferRegistryItemRequest, app.v1.app_pb2.TransferRegistryItemResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateModule(stream: grpclib.server.Stream[app.v1.app_pb2.CreateModuleRequest, app.v1.app_pb2.CreateModuleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UpdateModule(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateModuleRequest, app.v1.app_pb2.UpdateModuleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: UploadModuleFile(stream: grpclib.server.Stream[app.v1.app_pb2.UploadModuleFileRequest, app.v1.app_pb2.UploadModuleFileResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetModule(stream: grpclib.server.Stream[app.v1.app_pb2.GetModuleRequest, app.v1.app_pb2.GetModuleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListModules(stream: grpclib.server.Stream[app.v1.app_pb2.ListModulesRequest, app.v1.app_pb2.ListModulesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateKey(stream: grpclib.server.Stream[app.v1.app_pb2.CreateKeyRequest, app.v1.app_pb2.CreateKeyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeleteKey(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteKeyRequest, app.v1.app_pb2.DeleteKeyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListKeys(stream: grpclib.server.Stream[app.v1.app_pb2.ListKeysRequest, app.v1.app_pb2.ListKeysResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RenameKey(stream: grpclib.server.Stream[app.v1.app_pb2.RenameKeyRequest, app.v1.app_pb2.RenameKeyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RotateKey(stream: grpclib.server.Stream[app.v1.app_pb2.RotateKeyRequest, app.v1.app_pb2.RotateKeyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CreateKeyFromExistingKeyAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest, app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedAppServiceBase
 
-
    Bases: :py:obj:`AppServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetUserIDByEmail(stream: grpclib.server.Stream[app.v1.app_pb2.GetUserIDByEmailRequest, app.v1.app_pb2.GetUserIDByEmailResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationRequest, app.v1.app_pb2.CreateOrganizationResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListOrganizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsRequest, app.v1.app_pb2.ListOrganizationsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetOrganizationsWithAccessToLocation(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationsWithAccessToLocationRequest, app.v1.app_pb2.GetOrganizationsWithAccessToLocationResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListOrganizationsByUser(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsByUserRequest, app.v1.app_pb2.ListOrganizationsByUserResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationRequest, app.v1.app_pb2.GetOrganizationResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetOrganizationNamespaceAvailability(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationNamespaceAvailabilityRequest, app.v1.app_pb2.GetOrganizationNamespaceAvailabilityResponse]) -> None
       :async:
+
 
 
    .. py:method:: UpdateOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationRequest, app.v1.app_pb2.UpdateOrganizationResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationRequest, app.v1.app_pb2.DeleteOrganizationResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListOrganizationMembers(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationMembersRequest, app.v1.app_pb2.ListOrganizationMembersResponse]) -> None
       :async:
 
 
+
    .. py:method:: CreateOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationInviteRequest, app.v1.app_pb2.CreateOrganizationInviteResponse]) -> None
       :async:
+
 
 
    .. py:method:: UpdateOrganizationInviteAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest, app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteOrganizationMember(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationMemberRequest, app.v1.app_pb2.DeleteOrganizationMemberResponse]) -> None
       :async:
+
 
 
    .. py:method:: DeleteOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationInviteRequest, app.v1.app_pb2.DeleteOrganizationInviteResponse]) -> None
       :async:
 
 
+
    .. py:method:: ResendOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.ResendOrganizationInviteRequest, app.v1.app_pb2.ResendOrganizationInviteResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateLocation(stream: grpclib.server.Stream[app.v1.app_pb2.CreateLocationRequest, app.v1.app_pb2.CreateLocationResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetLocation(stream: grpclib.server.Stream[app.v1.app_pb2.GetLocationRequest, app.v1.app_pb2.GetLocationResponse]) -> None
       :async:
+
 
 
    .. py:method:: UpdateLocation(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateLocationRequest, app.v1.app_pb2.UpdateLocationResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteLocation(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteLocationRequest, app.v1.app_pb2.DeleteLocationResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListLocations(stream: grpclib.server.Stream[app.v1.app_pb2.ListLocationsRequest, app.v1.app_pb2.ListLocationsResponse]) -> None
       :async:
 
 
+
    .. py:method:: ShareLocation(stream: grpclib.server.Stream[app.v1.app_pb2.ShareLocationRequest, app.v1.app_pb2.ShareLocationResponse]) -> None
       :async:
+
 
 
    .. py:method:: UnshareLocation(stream: grpclib.server.Stream[app.v1.app_pb2.UnshareLocationRequest, app.v1.app_pb2.UnshareLocationResponse]) -> None
       :async:
 
 
+
    .. py:method:: LocationAuth(stream: grpclib.server.Stream[app.v1.app_pb2.LocationAuthRequest, app.v1.app_pb2.LocationAuthResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateLocationSecret(stream: grpclib.server.Stream[app.v1.app_pb2.CreateLocationSecretRequest, app.v1.app_pb2.CreateLocationSecretResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteLocationSecret(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteLocationSecretRequest, app.v1.app_pb2.DeleteLocationSecretResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetRobot(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotRequest, app.v1.app_pb2.GetRobotResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetRoverRentalRobots(stream: grpclib.server.Stream[app.v1.app_pb2.GetRoverRentalRobotsRequest, app.v1.app_pb2.GetRoverRentalRobotsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetRobotParts(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartsRequest, app.v1.app_pb2.GetRobotPartsResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartRequest, app.v1.app_pb2.GetRobotPartResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartLogsRequest, app.v1.app_pb2.GetRobotPartLogsResponse]) -> None
       :async:
 
 
+
    .. py:method:: TailRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.TailRobotPartLogsRequest, app.v1.app_pb2.TailRobotPartLogsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetRobotPartHistory(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartHistoryRequest, app.v1.app_pb2.GetRobotPartHistoryResponse]) -> None
       :async:
 
 
+
    .. py:method:: UpdateRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotPartRequest, app.v1.app_pb2.UpdateRobotPartResponse]) -> None
       :async:
+
 
 
    .. py:method:: NewRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotPartRequest, app.v1.app_pb2.NewRobotPartResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartRequest, app.v1.app_pb2.DeleteRobotPartResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetRobotAPIKeys(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotAPIKeysRequest, app.v1.app_pb2.GetRobotAPIKeysResponse]) -> None
       :async:
 
 
+
    .. py:method:: MarkPartAsMain(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartAsMainRequest, app.v1.app_pb2.MarkPartAsMainResponse]) -> None
       :async:
+
 
 
    .. py:method:: MarkPartForRestart(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartForRestartRequest, app.v1.app_pb2.MarkPartForRestartResponse]) -> None
       :async:
 
 
+
    .. py:method:: CreateRobotPartSecret(stream: grpclib.server.Stream[app.v1.app_pb2.CreateRobotPartSecretRequest, app.v1.app_pb2.CreateRobotPartSecretResponse]) -> None
       :async:
+
 
 
    .. py:method:: DeleteRobotPartSecret(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartSecretRequest, app.v1.app_pb2.DeleteRobotPartSecretResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListRobots(stream: grpclib.server.Stream[app.v1.app_pb2.ListRobotsRequest, app.v1.app_pb2.ListRobotsResponse]) -> None
       :async:
+
 
 
    .. py:method:: NewRobot(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotRequest, app.v1.app_pb2.NewRobotResponse]) -> None
       :async:
 
 
+
    .. py:method:: UpdateRobot(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotRequest, app.v1.app_pb2.UpdateRobotResponse]) -> None
       :async:
+
 
 
    .. py:method:: DeleteRobot(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotRequest, app.v1.app_pb2.DeleteRobotResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListFragments(stream: grpclib.server.Stream[app.v1.app_pb2.ListFragmentsRequest, app.v1.app_pb2.ListFragmentsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetFragment(stream: grpclib.server.Stream[app.v1.app_pb2.GetFragmentRequest, app.v1.app_pb2.GetFragmentResponse]) -> None
       :async:
 
 
+
    .. py:method:: CreateFragment(stream: grpclib.server.Stream[app.v1.app_pb2.CreateFragmentRequest, app.v1.app_pb2.CreateFragmentResponse]) -> None
       :async:
+
 
 
    .. py:method:: UpdateFragment(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateFragmentRequest, app.v1.app_pb2.UpdateFragmentResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteFragment(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteFragmentRequest, app.v1.app_pb2.DeleteFragmentResponse]) -> None
       :async:
+
 
 
    .. py:method:: AddRole(stream: grpclib.server.Stream[app.v1.app_pb2.AddRoleRequest, app.v1.app_pb2.AddRoleResponse]) -> None
       :async:
 
 
+
    .. py:method:: RemoveRole(stream: grpclib.server.Stream[app.v1.app_pb2.RemoveRoleRequest, app.v1.app_pb2.RemoveRoleResponse]) -> None
       :async:
+
 
 
    .. py:method:: ChangeRole(stream: grpclib.server.Stream[app.v1.app_pb2.ChangeRoleRequest, app.v1.app_pb2.ChangeRoleResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListAuthorizationsRequest, app.v1.app_pb2.ListAuthorizationsResponse]) -> None
       :async:
+
 
 
    .. py:method:: CheckPermissions(stream: grpclib.server.Stream[app.v1.app_pb2.CheckPermissionsRequest, app.v1.app_pb2.CheckPermissionsResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.GetRegistryItemRequest, app.v1.app_pb2.GetRegistryItemResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.CreateRegistryItemRequest, app.v1.app_pb2.CreateRegistryItemResponse]) -> None
       :async:
 
 
+
    .. py:method:: UpdateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRegistryItemRequest, app.v1.app_pb2.UpdateRegistryItemResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListRegistryItems(stream: grpclib.server.Stream[app.v1.app_pb2.ListRegistryItemsRequest, app.v1.app_pb2.ListRegistryItemsResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRegistryItemRequest, app.v1.app_pb2.DeleteRegistryItemResponse]) -> None
       :async:
+
 
 
    .. py:method:: TransferRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.TransferRegistryItemRequest, app.v1.app_pb2.TransferRegistryItemResponse]) -> None
       :async:
 
 
+
    .. py:method:: CreateModule(stream: grpclib.server.Stream[app.v1.app_pb2.CreateModuleRequest, app.v1.app_pb2.CreateModuleResponse]) -> None
       :async:
+
 
 
    .. py:method:: UpdateModule(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateModuleRequest, app.v1.app_pb2.UpdateModuleResponse]) -> None
       :async:
 
 
+
    .. py:method:: UploadModuleFile(stream: grpclib.server.Stream[app.v1.app_pb2.UploadModuleFileRequest, app.v1.app_pb2.UploadModuleFileResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetModule(stream: grpclib.server.Stream[app.v1.app_pb2.GetModuleRequest, app.v1.app_pb2.GetModuleResponse]) -> None
       :async:
 
 
+
    .. py:method:: ListModules(stream: grpclib.server.Stream[app.v1.app_pb2.ListModulesRequest, app.v1.app_pb2.ListModulesResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateKey(stream: grpclib.server.Stream[app.v1.app_pb2.CreateKeyRequest, app.v1.app_pb2.CreateKeyResponse]) -> None
       :async:
 
 
+
    .. py:method:: DeleteKey(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteKeyRequest, app.v1.app_pb2.DeleteKeyResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListKeys(stream: grpclib.server.Stream[app.v1.app_pb2.ListKeysRequest, app.v1.app_pb2.ListKeysResponse]) -> None
       :async:
 
 
+
    .. py:method:: RenameKey(stream: grpclib.server.Stream[app.v1.app_pb2.RenameKeyRequest, app.v1.app_pb2.RenameKeyResponse]) -> None
       :async:
 
 
+
    .. py:method:: RotateKey(stream: grpclib.server.Stream[app.v1.app_pb2.RotateKeyRequest, app.v1.app_pb2.RotateKeyResponse]) -> None
       :async:
+
 
 
    .. py:method:: CreateKeyFromExistingKeyAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest, app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse]) -> None
@@ -680,6 +891,4 @@ Classes
 
 
 .. py:class:: AppServiceStub(channel: grpclib.client.Channel)
-
-
 

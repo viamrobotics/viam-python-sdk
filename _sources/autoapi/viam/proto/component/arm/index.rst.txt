@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.arm`
-==================================
+viam.proto.component.arm
+========================
 
 .. py:module:: viam.proto.component.arm
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -37,107 +34,133 @@ Classes
    viam.proto.component.arm.StopResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: ArmServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetEndPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetEndPositionRequest, component.arm.v1.arm_pb2.GetEndPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToPositionRequest, component.arm.v1.arm_pb2.MoveToPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetJointPositionsRequest, component.arm.v1.arm_pb2.GetJointPositionsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MoveToJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToJointPositionsRequest, component.arm.v1.arm_pb2.MoveToJointPositionsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.StopRequest, component.arm.v1.arm_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.IsMovingRequest, component.arm.v1.arm_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: ArmServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedArmServiceBase
 
-
    Bases: :py:obj:`ArmServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetEndPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetEndPositionRequest, component.arm.v1.arm_pb2.GetEndPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToPositionRequest, component.arm.v1.arm_pb2.MoveToPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetJointPositionsRequest, component.arm.v1.arm_pb2.GetJointPositionsResponse]) -> None
       :async:
+
 
 
    .. py:method:: MoveToJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToJointPositionsRequest, component.arm.v1.arm_pb2.MoveToJointPositionsResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.StopRequest, component.arm.v1.arm_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.IsMovingRequest, component.arm.v1.arm_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -147,8 +170,8 @@ Classes
 
 .. py:class:: GetEndPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -156,17 +179,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an arm
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an arm
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -186,8 +212,8 @@ Classes
 
 .. py:class:: GetEndPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -195,13 +221,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.Pose
 
       Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
       millimeters and theta, ox, oy, oz coordinates which express an orientation vector
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -221,8 +249,8 @@ Classes
 
 .. py:class:: GetJointPositionsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -230,17 +258,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an arm
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an arm
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -260,8 +291,8 @@ Classes
 
 .. py:class:: GetJointPositionsResponse(*, positions: global___JointPositions | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -269,12 +300,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: positions
       :type: global___JointPositions
 
       a list JointPositions
 
-   .. py:method:: HasField(field_name: Literal[positions, b'positions']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['positions', b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -294,8 +327,8 @@ Classes
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -303,16 +336,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -320,22 +352,22 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:class:: JointPositions(*, values: collections.abc.Iterable[float] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: values
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
@@ -347,8 +379,8 @@ Classes
 
 .. py:class:: MoveToJointPositionsRequest(*, name: str = ..., positions: global___JointPositions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -356,23 +388,27 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an arm
+
+
    .. py:property:: positions
       :type: global___JointPositions
 
       A list of joint positions
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an arm
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra', positions, b'positions']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'positions', b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -392,8 +428,8 @@ Classes
 
 .. py:class:: MoveToJointPositionsResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -404,29 +440,33 @@ Classes
 
 .. py:class:: MoveToPositionRequest(*, name: str = ..., to: viam.gen.common.v1.common_pb2.Pose | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Moves an arm to the specified pose that is within the reference frame of the arm.
    Move request in Motion API has the same behavior except that it performs obstacle avoidance when a world_state
    message is specified.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an arm
+
 
    .. py:property:: to
       :type: viam.gen.common.v1.common_pb2.Pose
 
       The destination to move the arm to; this is from the reference frame of the arm.
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an arm
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra', to, b'to']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'to', b'to']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -446,8 +486,8 @@ Classes
 
 .. py:class:: MoveToPositionResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -458,8 +498,8 @@ Classes
 
 .. py:class:: Status(*, end_position: viam.gen.common.v1.common_pb2.Pose | None = ..., joint_positions: global___JointPositions | None = ..., is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -467,20 +507,22 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: is_moving
+      :type:  bool
+
+
    .. py:property:: end_position
       :type: viam.gen.common.v1.common_pb2.Pose
+
 
 
    .. py:property:: joint_positions
       :type: global___JointPositions
 
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
-
-   .. py:method:: HasField(field_name: Literal[end_position, b'end_position', joint_positions, b'joint_positions']) -> bool
+   .. py:method:: HasField(field_name: Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -500,8 +542,8 @@ Classes
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -509,17 +551,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an arm
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an arm
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -539,8 +584,8 @@ Classes
 
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

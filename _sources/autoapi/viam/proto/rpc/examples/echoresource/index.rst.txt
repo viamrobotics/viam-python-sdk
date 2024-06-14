@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.rpc.examples.echoresource`
-==============================================
+viam.proto.rpc.examples.echoresource
+====================================
 
 .. py:module:: viam.proto.rpc.examples.echoresource
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -29,53 +26,61 @@ Classes
    viam.proto.rpc.examples.echoresource.EchoResourceResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: EchoResourceServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: EchoResource(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoResourceMultiple(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: EchoResourceBiDi(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: EchoResourceServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedEchoResourceServiceBase
 
-
    Bases: :py:obj:`EchoResourceServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: EchoResource(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceResponse]) -> None
       :async:
 
 
+
    .. py:method:: EchoResourceMultiple(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleResponse]) -> None
       :async:
+
 
 
    .. py:method:: EchoResourceBiDi(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiResponse]) -> None
@@ -85,8 +90,8 @@ Classes
 
 .. py:class:: EchoResourceBiDiRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -94,21 +99,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoResourceBiDiResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -116,16 +119,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 
 .. py:class:: EchoResourceMultipleRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -133,21 +135,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoResourceMultipleResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -155,16 +155,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 
 .. py:class:: EchoResourceRequest(*, name: str = ..., message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -172,21 +171,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: message
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: EchoResourceResponse(*, message: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -194,9 +191,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: message
-      :type: str
 
-      
+   .. py:attribute:: message
+      :type:  str
 
 

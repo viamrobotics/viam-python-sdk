@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.app.datasync.v1.data_sync_grpc`
-=================================================
+viam.gen.app.datasync.v1.data_sync_grpc
+=======================================
 
 .. py:module:: viam.gen.app.datasync.v1.data_sync_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,49 +14,59 @@ Classes
    viam.gen.app.datasync.v1.data_sync_grpc.DataSyncServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: DataSyncServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: DataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: FileUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.FileUploadRequest, app.datasync.v1.data_sync_pb2.FileUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamingDataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedDataSyncServiceBase
-
 
    Bases: :py:obj:`DataSyncServiceBase`
 
+
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: DataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse]) -> None
       :async:
 
 
+
    .. py:method:: FileUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.FileUploadRequest, app.datasync.v1.data_sync_pb2.FileUploadResponse]) -> None
       :async:
+
 
 
    .. py:method:: StreamingDataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse]) -> None
@@ -68,6 +75,4 @@ Classes
 
 
 .. py:class:: DataSyncServiceStub(channel: grpclib.client.Channel)
-
-
 

@@ -1,37 +1,35 @@
-:py:mod:`viam.components.board`
-===============================
+viam.components.board
+=====================
 
 .. py:module:: viam.components.board
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   board/index.rst
-   client/index.rst
-   service/index.rst
+   /autoapi/viam/components/board/board/index
+   /autoapi/viam/components/board/client/index
+   /autoapi/viam/components/board/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.board.Board
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Board(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Board represents a physical general purpose compute board that contains various
    components such as analog readers/writers, and digital interrupts.
@@ -44,26 +42,37 @@ Classes
 
        from viam.components.board import Board
 
-   .. py:class:: Analog(name: str)
 
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:class:: Analog(name: str)
 
       Analog represents an analog pin reader or writer that resides on a Board.
 
+
       .. py:attribute:: name
-         :type: str
+         :type:  str
 
          The name of the analog pin
 
+
       .. py:attribute:: Value
-         :type: TypeAlias
+         :type:  TypeAlias
+         :value: ReadAnalogReaderResponse
+
 
          Value contains the result of reading an analog reader. It contains the raw data read,
          the reader's minimum and maximum possible values, and its step size (the minimum possible
          change between values it can read).
 
+
       .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value
          :abstractmethod:
+
          :async:
+
 
          Read the current value from the reader.
 
@@ -83,9 +92,12 @@ Classes
          :rtype: Value
 
 
+
       .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
          :abstractmethod:
+
          :async:
+
 
          Write a value to the Analog writer.
 
@@ -104,21 +116,25 @@ Classes
 
 
 
-   .. py:class:: DigitalInterrupt(name: str)
 
+   .. py:class:: DigitalInterrupt(name: str)
 
       DigitalInterrupt represents a configured interrupt on the Board that
       when interrupted, calls the added callbacks. Post processors can
       be added to modify what Value it ultimately returns.
 
+
       .. py:attribute:: name
-         :type: str
+         :type:  str
 
          The name of the digital interrupt.
 
+
       .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
          :abstractmethod:
+
          :async:
+
 
          Get the current value of the interrupt,
          which is based on the type of interrupt.
@@ -140,19 +156,23 @@ Classes
 
 
 
-   .. py:class:: GPIOPin(name: str)
 
+   .. py:class:: GPIOPin(name: str)
 
       Abstract representation of an individual GPIO pin on a board.
 
+
       .. py:attribute:: name
-         :type: str
+         :type:  str
 
          The name of the GPIO pin.
 
+
       .. py:method:: set(high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
          :abstractmethod:
+
          :async:
+
 
          Set the pin to either low or high.
 
@@ -170,9 +190,12 @@ Classes
          :type high: bool
 
 
+
       .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
          :abstractmethod:
+
          :async:
+
 
          Get the high/low state of the pin.
 
@@ -190,9 +213,12 @@ Classes
          :rtype: bool
 
 
+
       .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
          :abstractmethod:
+
          :async:
+
 
          Get the pin's given duty cycle.
 
@@ -210,9 +236,12 @@ Classes
          :rtype: float
 
 
+
       .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
          :abstractmethod:
+
          :async:
+
 
          Set the pin to the given ``duty_cycle``.
 
@@ -231,9 +260,12 @@ Classes
          :type duty_cycle: float
 
 
+
       .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
          :abstractmethod:
+
          :async:
+
 
          Get the PWM frequency of the pin.
 
@@ -251,9 +283,12 @@ Classes
          :rtype: int
 
 
+
       .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
          :abstractmethod:
+
          :async:
+
 
          Set the pin to the given PWM ``frequency`` (in Hz).
          When ``frequency`` is 0, it will use the board's default PWM frequency.
@@ -273,14 +308,12 @@ Classes
 
 
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
-
-      
 
    .. py:method:: analog_by_name(name: str) -> Analog
       :abstractmethod:
+
       :async:
+
 
       Get an Analog (reader or writer) by ``name``.
 
@@ -298,9 +331,12 @@ Classes
       :rtype: Analog
 
 
+
    .. py:method:: digital_interrupt_by_name(name: str) -> DigitalInterrupt
       :abstractmethod:
+
       :async:
+
 
       Get a DigitalInterrupt by ``name``.
 
@@ -319,9 +355,12 @@ Classes
       :rtype: DigitalInterrupt
 
 
+
    .. py:method:: gpio_pin_by_name(name: str) -> GPIOPin
       :abstractmethod:
+
       :async:
+
 
       Get a GPIO Pin by ``name``.
 
@@ -339,9 +378,12 @@ Classes
       :rtype: GPIOPin
 
 
+
    .. py:method:: analog_names() -> List[str]
       :abstractmethod:
+
       :async:
+
 
       Get the names of all known analog readers and/or writers.
 
@@ -356,9 +398,12 @@ Classes
       :rtype: List[str]
 
 
+
    .. py:method:: digital_interrupt_names() -> List[str]
       :abstractmethod:
+
       :async:
+
 
       Get the names of all known digital interrupts.
 
@@ -373,9 +418,12 @@ Classes
       :rtype: List[str]
 
 
+
    .. py:method:: set_power_mode(mode: viam.proto.component.board.PowerMode.ValueType, duration: Optional[datetime.timedelta] = None, *, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Set the board to the indicated power mode.
 
@@ -392,9 +440,12 @@ Classes
       :type duration: Optional[timedelta]
 
 
+
    .. py:method:: stream_ticks(interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream
       :abstractmethod:
+
       :async:
+
 
       Stream digital interrupt ticks.
 
@@ -417,8 +468,10 @@ Classes
       :rtype: TickStream
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -431,9 +484,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -451,8 +507,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -469,8 +527,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -484,6 +544,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -501,8 +562,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

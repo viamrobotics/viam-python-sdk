@@ -55,58 +55,110 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.services</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.mlmodel</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../navigation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.services.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html">viam.services.mlmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html">viam.services.motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../navigation/index.html">viam.services.navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html">viam.services.sensors</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.services.slam</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam.client</span></code></a><ul>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.services.slam.client</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient"><code class="docutils literal notranslate"><span class="pre">SLAMClient</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.client"><code class="docutils literal notranslate"><span class="pre">SLAMClient.client</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_position"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_position()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_point_cloud_map"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_point_cloud_map()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_internal_state"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_internal_state()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_properties"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_properties()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.do_command"><code class="docutils literal notranslate"><span class="pre">SLAMClient.do_command()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.from_robot"><code class="docutils literal notranslate"><span class="pre">SLAMClient.from_robot()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_resource_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_operation"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_operation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.close"><code class="docutils literal notranslate"><span class="pre">SLAMClient.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.DoCommandRequest.name"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.DoCommandRequest.command"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.command</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.DoCommandRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetInternalStateRequest"><code class="docutils literal notranslate"><span class="pre">GetInternalStateRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetInternalStateRequest.name"><code class="docutils literal notranslate"><span class="pre">GetInternalStateRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetInternalStateResponse"><code class="docutils literal notranslate"><span class="pre">GetInternalStateResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetInternalStateResponse.internal_state_chunk"><code class="docutils literal notranslate"><span class="pre">GetInternalStateResponse.internal_state_chunk</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest.return_edited_map"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapRequest.return_edited_map</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapResponse"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapResponse.point_cloud_pcd_chunk"><code class="docutils literal notranslate"><span class="pre">GetPointCloudMapResponse.point_cloud_pcd_chunk</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPositionResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.pose</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPositionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.SLAMServiceStub"><code class="docutils literal notranslate"><span class="pre">SLAMServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.ReconfigurableResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.ReconfigurableResourceRPCClientBase.reset_channel"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase.reset_channel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.ValueTypes"><code class="docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.dict_to_struct"><code class="docutils literal notranslate"><span class="pre">dict_to_struct()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.struct_to_dict"><code class="docutils literal notranslate"><span class="pre">struct_to_dict()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.client.SLAMClient"><code class="docutils literal notranslate"><span class="pre">SLAMClient</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.client"><code class="docutils literal notranslate"><span class="pre">SLAMClient.client</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_position"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_position()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_point_cloud_map"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_point_cloud_map()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_internal_state"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_internal_state()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_properties"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_properties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.do_command"><code class="docutils literal notranslate"><span class="pre">SLAMClient.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.from_robot"><code class="docutils literal notranslate"><span class="pre">SLAMClient.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_operation"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.close"><code class="docutils literal notranslate"><span class="pre">SLAMClient.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="../service/index.html">viam.services.slam.service</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../slam/index.html">viam.services.slam.slam</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam.service</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam.slam</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html">viam.services.vision</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -123,9 +175,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam.client</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.services</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.services.slam</a></li>
+      <li class="breadcrumb-item active">viam.services.slam.client</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/services/slam/client/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,18 +188,392 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.services.slam.client">
-<span id="viam-services-slam-client"></span><h1><a class="reference internal" href="#module-viam.services.slam.client" title="viam.services.slam.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam.client</span></code></a><a class="headerlink" href="#module-viam.services.slam.client" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-services-slam-client"></span><h1>viam.services.slam.client<a class="headerlink" href="#module-viam.services.slam.client" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.SLAMClient" title="viam.services.slam.client.SLAMClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.ValueTypes" title="viam.services.slam.client.ValueTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></p></td>
+<td><p>Types that can be encoded into a protobuf <cite>Value</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.DoCommandRequest" title="viam.services.slam.client.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<td><p>DoCommandRequest represents a generic DoCommand input</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.DoCommandResponse" title="viam.services.slam.client.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<td><p>DoCommandResponse represents a generic DoCommand output</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.GetInternalStateRequest" title="viam.services.slam.client.GetInternalStateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.GetInternalStateResponse" title="viam.services.slam.client.GetInternalStateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapRequest" title="viam.services.slam.client.GetPointCloudMapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapResponse" title="viam.services.slam.client.GetPointCloudMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.GetPositionRequest" title="viam.services.slam.client.GetPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.GetPositionResponse" title="viam.services.slam.client.GetPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.GetPropertiesRequest" title="viam.services.slam.client.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.SLAMServiceStub" title="viam.services.slam.client.SLAMServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.ReconfigurableResourceRPCClientBase" title="viam.services.slam.client.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a></p></td>
+<td><p>A base RPC client that can reset its channel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.SLAMClient" title="viam.services.slam.client.SLAMClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMClient</span></code></a></p></td>
 <td><p>Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.client.dict_to_struct" title="viam.services.slam.client.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.client.struct_to_dict" title="viam.services.slam.client.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.DoCommandRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandRequest represents a generic DoCommand input</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.slam.client.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.slam.client.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'command'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.slam.client.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.DoCommandResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandResponse represents a generic DoCommand output</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.slam.client.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'result'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.slam.client.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetInternalStateRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetInternalStateRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetInternalStateRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetInternalStateRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.slam.client.GetInternalStateRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of slam service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetInternalStateResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetInternalStateResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_state_chunk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetInternalStateResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetInternalStateResponse.internal_state_chunk">
+<span class="sig-name descname"><span class="pre">internal_state_chunk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.services.slam.client.GetInternalStateResponse.internal_state_chunk" title="Permalink to this definition"></a></dt>
+<dd><p>Chunk of the internal state of the SLAM algorithm required to continue
+mapping/localization</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetPointCloudMapRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_edited_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of slam service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapRequest.return_edited_map">
+<span class="sig-name descname"><span class="pre">return_edited_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapRequest.return_edited_map" title="Permalink to this definition"></a></dt>
+<dd><p>For SLAM services that implement handling an edited map, this boolean
+should indicate whether to return that edited map. If the SLAM service
+does not handle edited maps, the unedited map will be returned instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_return_edited_map'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_return_edited_map'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'return_edited_map'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'return_edited_map'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_return_edited_map'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_return_edited_map'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'return_edited_map'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetPointCloudMapResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd_chunk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPointCloudMapResponse.point_cloud_pcd_chunk">
+<span class="sig-name descname"><span class="pre">point_cloud_pcd_chunk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.services.slam.client.GetPointCloudMapResponse.point_cloud_pcd_chunk" title="Permalink to this definition"></a></dt>
+<dd><p>One chunk of the PointCloud.
+For a given GetPointCloudMap request, concatenating all
+GetPointCloudMapResponse.point_cloud_pcd_chunk values in the
+order received result in the complete pointcloud in standard PCD
+format where XY is the ground plane and positive Z is up, following
+the Right Hand Rule.</p>
+<p>Read more about the pointcloud format here:
+<a class="reference external" href="https://pointclouds.org/documentation/tutorials/pcd_file_format.html">https://pointclouds.org/documentation/tutorials/pcd_file_format.html</a></p>
+<p>Viam expects pointcloud data with fields “x y z” or “x y z rgb”, and for
+this to be specified in the pointcloud header in the FIELDS entry. If color
+data is included in the pointcloud, Viam’s services assume that the color
+value encodes a confidence score for that data point. Viam expects the
+confidence score to be encoded in the blue parameter of the RGB value, on a
+scale from 1-100.</p>
+<p>Pointclouds are little endian encoded.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPositionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetPositionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPositionRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.slam.client.GetPositionRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of slam service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPositionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetPositionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetPositionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPositionResponse.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a></em><a class="headerlink" href="#viam.services.slam.client.GetPositionResponse.pose" title="Permalink to this definition"></a></dt>
+<dd><p>Current position of the specified component in the SLAM Map</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPositionResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pose'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.slam.client.GetPositionResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.client.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.client.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.slam.client.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the slam service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.SLAMServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">SLAMServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#SLAMServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.client.ReconfigurableResourceRPCClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">ReconfigurableResourceRPCClientBase</span></span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.ReconfigurableResourceRPCClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></p>
+<p>A base RPC client that can reset its channel.</p>
+<p>Useful if connection is lost and then regained.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.ReconfigurableResourceRPCClientBase.reset_channel">
+<span class="sig-name descname"><span class="pre">reset_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase.reset_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.ReconfigurableResourceRPCClientBase.reset_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Called when the RPC channel was reset. Passes in the new channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>Channel</em>) – The new RPC Channel</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.services.slam.client.ValueTypes">
+<span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">ValueTypes</span></span><a class="headerlink" href="#viam.services.slam.client.ValueTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Types that can be encoded into a protobuf <cite>Value</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.slam.client.dict_to_struct">
+<span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.dict_to_struct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.slam.client.struct_to_dict">
+<span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.client.</span></span><span class="sig-name descname"><span class="pre">SLAMClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient" title="Permalink to this definition"></a></dt>
@@ -173,7 +599,7 @@
 <dd class="field-odd"><p>The current position of the specified component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../../components/arm/index.html#viam.components.arm.Pose" title="viam.components.arm.Pose">Pose</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../../../components/arm/arm/index.html#viam.components.arm.arm.Pose" title="viam.components.arm.arm.Pose">Pose</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -198,7 +624,7 @@ the SLAM service supports the feature</p>
 GetPointCloudMapResponse.point_cloud_pcd_chunk values.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse">GetPointCloudMapResponse</a>]</p>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#viam.services.slam.client.GetPointCloudMapResponse" title="viam.services.slam.client.GetPointCloudMapResponse">GetPointCloudMapResponse</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -218,7 +644,7 @@ GetPointCloudMapResponse.point_cloud_pcd_chunk values.</p>
 <dd class="field-odd"><p>Chunks of the internal state of the SLAM algorithm</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse" title="viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse">GetInternalStateResponse</a>]</p>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.services.slam.client.GetInternalStateResponse" title="viam.services.slam.client.GetInternalStateResponse">GetInternalStateResponse</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -292,7 +718,7 @@ GetPointCloudMapResponse.point_cloud_pcd_chunk values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
 </ul>
 </dd>
@@ -360,7 +786,6 @@ non-Close methods are called.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

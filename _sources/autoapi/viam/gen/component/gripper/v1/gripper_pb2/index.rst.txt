@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.gripper.v1.gripper_pb2`
-===================================================
+viam.gen.component.gripper.v1.gripper_pb2
+=========================================
 
 .. py:module:: viam.gen.component.gripper.v1.gripper_pb2
 
@@ -10,28 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.gripper.v1.gripper_pb2.OpenRequest
-   viam.gen.component.gripper.v1.gripper_pb2.OpenResponse
-   viam.gen.component.gripper.v1.gripper_pb2.GrabRequest
-   viam.gen.component.gripper.v1.gripper_pb2.GrabResponse
-   viam.gen.component.gripper.v1.gripper_pb2.StopRequest
-   viam.gen.component.gripper.v1.gripper_pb2.StopResponse
-   viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest
-   viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -46,15 +26,31 @@ Attributes
    viam.gen.component.gripper.v1.gripper_pb2.global___IsMovingResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.gripper.v1.gripper_pb2.OpenRequest
+   viam.gen.component.gripper.v1.gripper_pb2.OpenResponse
+   viam.gen.component.gripper.v1.gripper_pb2.GrabRequest
+   viam.gen.component.gripper.v1.gripper_pb2.GrabResponse
+   viam.gen.component.gripper.v1.gripper_pb2.StopRequest
+   viam.gen.component.gripper.v1.gripper_pb2.StopResponse
+   viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest
+   viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: OpenRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -62,16 +58,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -91,12 +88,10 @@ Attributes
 
 .. py:data:: global___OpenRequest
 
-   
-
 .. py:class:: OpenResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -107,12 +102,10 @@ Attributes
 
 .. py:data:: global___OpenResponse
 
-   
-
 .. py:class:: GrabRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -120,16 +113,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -149,12 +143,10 @@ Attributes
 
 .. py:data:: global___GrabRequest
 
-   
-
 .. py:class:: GrabResponse(*, success: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -162,16 +154,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: success
+      :type:  bool
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: success
-      :type: bool
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -191,12 +184,10 @@ Attributes
 
 .. py:data:: global___GrabResponse
 
-   
-
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -204,16 +195,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a gripper
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a gripper
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -233,12 +227,10 @@ Attributes
 
 .. py:data:: global___StopRequest
 
-   
-
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -249,12 +241,10 @@ Attributes
 
 .. py:data:: global___StopResponse
 
-   
-
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -262,20 +252,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:data:: global___IsMovingRequest
 
-   
-
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -283,13 +270,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:data:: global___IsMovingResponse
-
-   
 

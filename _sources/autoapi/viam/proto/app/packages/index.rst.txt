@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.packages`
-=================================
+viam.proto.app.packages
+=======================
 
 .. py:module:: viam.proto.app.packages
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -35,62 +32,73 @@ Classes
    viam.proto.app.packages.PackageType
 
 
-
+Package Contents
+----------------
 
 .. py:class:: PackageServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: CreatePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.CreatePackageRequest, app.packages.v1.packages_pb2.CreatePackageResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DeletePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.DeletePackageRequest, app.packages.v1.packages_pb2.DeletePackageResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.GetPackageRequest, app.packages.v1.packages_pb2.GetPackageResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListPackages(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.ListPackagesRequest, app.packages.v1.packages_pb2.ListPackagesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: PackageServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedPackageServiceBase
 
-
    Bases: :py:obj:`PackageServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: CreatePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.CreatePackageRequest, app.packages.v1.packages_pb2.CreatePackageResponse]) -> None
       :async:
+
 
 
    .. py:method:: DeletePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.DeletePackageRequest, app.packages.v1.packages_pb2.DeletePackageResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetPackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.GetPackageRequest, app.packages.v1.packages_pb2.GetPackageResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListPackages(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.ListPackagesRequest, app.packages.v1.packages_pb2.ListPackagesResponse]) -> None
@@ -100,8 +108,8 @@ Classes
 
 .. py:class:: CreatePackageRequest(*, info: global___PackageInfo | None = ..., contents: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -109,16 +117,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: contents
+      :type:  bytes
+
+      .tar.gz file
+
+
    .. py:property:: info
       :type: global___PackageInfo
 
 
-   .. py:attribute:: contents
-      :type: bytes
 
-      .tar.gz file
-
-   .. py:method:: HasField(field_name: Literal[contents, b'contents', info, b'info', package, b'package']) -> bool
+   .. py:method:: HasField(field_name: Literal['contents', b'contents', 'info', b'info', 'package', b'package']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -135,7 +146,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[package, b'package']) -> Literal[info, contents] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['package', b'package']) -> Literal['info', 'contents'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -153,27 +165,25 @@ Classes
 
 .. py:class:: CreatePackageResponse(*, id: str = ..., version: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Returns the package ID and version which are populated in GetPackageRequest and DeletePackageRequest to
    retrieve or delete this package.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: version
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: DeletePackageRequest(*, id: str = ..., version: str = ..., type: global___PackageType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -181,26 +191,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: version
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: type
-      :type: global___PackageType
-
-      
+      :type:  global___PackageType
 
 
 .. py:class:: DeletePackageResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -211,8 +218,8 @@ Classes
 
 .. py:class:: FileInfo(*, name: str = ..., size: int = ..., is_directory: bool | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -220,22 +227,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: size
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: is_directory
-      :type: bool
+      :type:  bool
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_is_directory, b'_is_directory', is_directory, b'is_directory']) -> bool
+   .. py:method:: HasField(field_name: Literal['_is_directory', b'_is_directory', 'is_directory', b'is_directory']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -252,7 +257,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_is_directory, b'_is_directory']) -> Literal[is_directory] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_is_directory', b'_is_directory']) -> Literal['is_directory'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -270,8 +276,8 @@ Classes
 
 .. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: bool | None = ..., type: global___PackageType | None = ..., platform: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -279,32 +285,28 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: version
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: include_url
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: type
-      :type: global___PackageType
+      :type:  global___PackageType
 
-      
 
    .. py:attribute:: platform
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', _platform, b'_platform', _type, b'_type', include_url, b'include_url', platform, b'platform', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: Literal['_include_url', b'_include_url', '_platform', b'_platform', '_type', b'_type', 'include_url', b'include_url', 'platform', b'platform', 'type', b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -321,9 +323,10 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> Literal[include_url] | None
-                  WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> Literal[platform] | None
-                  WhichOneof(oneof_group: Literal[_type, b'_type']) -> Literal[type] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_url', b'_include_url']) -> Literal['include_url'] | None
+                  WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
+                  WhichOneof(oneof_group: Literal['_type', b'_type']) -> Literal['type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -341,8 +344,8 @@ Classes
 
 .. py:class:: GetPackageResponse(*, package: global___Package | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -350,11 +353,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: package
       :type: global___Package
 
 
-   .. py:method:: HasField(field_name: Literal[package, b'package']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['package', b'package']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -374,8 +379,8 @@ Classes
 
 .. py:class:: ListPackagesRequest(*, organization_id: str = ..., name: str | None = ..., version: str | None = ..., type: global___PackageType | None = ..., include_url: bool | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -383,32 +388,28 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: version
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: type
-      :type: global___PackageType
+      :type:  global___PackageType
 
-      
 
    .. py:attribute:: include_url
-      :type: bool
+      :type:  bool
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', _name, b'_name', _type, b'_type', _version, b'_version', include_url, b'include_url', name, b'name', type, b'type', version, b'version']) -> bool
+   .. py:method:: HasField(field_name: Literal['_include_url', b'_include_url', '_name', b'_name', '_type', b'_type', '_version', b'_version', 'include_url', b'include_url', 'name', b'name', 'type', b'type', 'version', b'version']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -425,10 +426,11 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> Literal[include_url] | None
-                  WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
-                  WhichOneof(oneof_group: Literal[_type, b'_type']) -> Literal[type] | None
-                  WhichOneof(oneof_group: Literal[_version, b'_version']) -> Literal[version] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_url', b'_include_url']) -> Literal['include_url'] | None
+                  WhichOneof(oneof_group: Literal['_name', b'_name']) -> Literal['name'] | None
+                  WhichOneof(oneof_group: Literal['_type', b'_type']) -> Literal['type'] | None
+                  WhichOneof(oneof_group: Literal['_version', b'_version']) -> Literal['version'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -446,14 +448,15 @@ Classes
 
 .. py:class:: ListPackagesResponse(*, packages: collections.abc.Iterable[global___Package] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: packages
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Package]
@@ -462,8 +465,8 @@ Classes
 
 .. py:class:: Package(*, info: global___PackageInfo | None = ..., url: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., checksum: str = ..., id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -471,30 +474,30 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: url
+      :type:  str
+
+
+   .. py:attribute:: checksum
+      :type:  str
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
    .. py:property:: info
       :type: global___PackageInfo
+
 
 
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: url
-      :type: str
 
-      
-
-   .. py:attribute:: checksum
-      :type: str
-
-      
-
-   .. py:attribute:: id
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', info, b'info']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'info', b'info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -514,8 +517,8 @@ Classes
 
 .. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., platform: str | None = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -523,40 +526,38 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: version
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  global___PackageType
+
+
+   .. py:attribute:: platform
+      :type:  str
+
+
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileInfo]
+
 
 
    .. py:property:: metadata
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: version
-      :type: str
-
-      
-
-   .. py:attribute:: type
-      :type: global___PackageType
-
-      
-
-   .. py:attribute:: platform
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_platform, b'_platform', metadata, b'metadata', platform, b'platform']) -> bool
+   .. py:method:: HasField(field_name: Literal['_platform', b'_platform', 'metadata', b'metadata', 'platform', b'platform']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -573,7 +574,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> Literal[platform] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -590,7 +592,6 @@ Classes
 
 
 .. py:class:: PackageType
-
 
    Bases: :py:obj:`_PackageType`
 

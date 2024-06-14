@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.servo.v1.servo_grpc`
-================================================
+viam.gen.component.servo.v1.servo_grpc
+======================================
 
 .. py:module:: viam.gen.component.servo.v1.servo_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,76 +14,95 @@ Classes
    viam.gen.component.servo.v1.servo_grpc.ServoServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: ServoServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedServoServiceBase
 
-
    Bases: :py:obj:`ServoServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -95,6 +111,4 @@ Classes
 
 
 .. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
-
-
 

@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.service.shell.v1.shell_grpc`
-==============================================
+viam.gen.service.shell.v1.shell_grpc
+====================================
 
 .. py:module:: viam.gen.service.shell.v1.shell_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,58 +14,71 @@ Classes
    viam.gen.service.shell.v1.shell_grpc.ShellServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: ShellServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CopyFilesToMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesToMachineRequest, service.shell.v1.shell_pb2.CopyFilesToMachineResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CopyFilesFromMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesFromMachineRequest, service.shell.v1.shell_pb2.CopyFilesFromMachineResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedShellServiceBase
 
-
    Bases: :py:obj:`ShellServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
       :async:
+
 
 
    .. py:method:: CopyFilesToMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesToMachineRequest, service.shell.v1.shell_pb2.CopyFilesToMachineResponse]) -> None
       :async:
 
 
+
    .. py:method:: CopyFilesFromMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesFromMachineRequest, service.shell.v1.shell_pb2.CopyFilesFromMachineResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
@@ -77,6 +87,4 @@ Classes
 
 
 .. py:class:: ShellServiceStub(channel: grpclib.client.Channel)
-
-
 

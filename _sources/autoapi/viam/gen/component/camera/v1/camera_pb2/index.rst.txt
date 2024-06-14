@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.camera.v1.camera_pb2`
-=================================================
+viam.gen.component.camera.v1.camera_pb2
+=======================================
 
 .. py:module:: viam.gen.component.camera.v1.camera_pb2
 
@@ -10,36 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.camera.v1.camera_pb2.Format
-   viam.gen.component.camera.v1.camera_pb2.GetImageRequest
-   viam.gen.component.camera.v1.camera_pb2.GetImageResponse
-   viam.gen.component.camera.v1.camera_pb2.GetImagesRequest
-   viam.gen.component.camera.v1.camera_pb2.GetImagesResponse
-   viam.gen.component.camera.v1.camera_pb2.Image
-   viam.gen.component.camera.v1.camera_pb2.RenderFrameRequest
-   viam.gen.component.camera.v1.camera_pb2.GetPointCloudRequest
-   viam.gen.component.camera.v1.camera_pb2.GetPointCloudResponse
-   viam.gen.component.camera.v1.camera_pb2.GetPropertiesRequest
-   viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse
-   viam.gen.component.camera.v1.camera_pb2.Webcams
-   viam.gen.component.camera.v1.camera_pb2.Webcam
-   viam.gen.component.camera.v1.camera_pb2.Property
-   viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters
-   viam.gen.component.camera.v1.camera_pb2.DistortionParameters
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -67,50 +39,61 @@ Attributes
    viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.camera.v1.camera_pb2.Format
+   viam.gen.component.camera.v1.camera_pb2.GetImageRequest
+   viam.gen.component.camera.v1.camera_pb2.GetImageResponse
+   viam.gen.component.camera.v1.camera_pb2.GetImagesRequest
+   viam.gen.component.camera.v1.camera_pb2.GetImagesResponse
+   viam.gen.component.camera.v1.camera_pb2.Image
+   viam.gen.component.camera.v1.camera_pb2.RenderFrameRequest
+   viam.gen.component.camera.v1.camera_pb2.GetPointCloudRequest
+   viam.gen.component.camera.v1.camera_pb2.GetPointCloudResponse
+   viam.gen.component.camera.v1.camera_pb2.GetPropertiesRequest
+   viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse
+   viam.gen.component.camera.v1.camera_pb2.Webcams
+   viam.gen.component.camera.v1.camera_pb2.Webcam
+   viam.gen.component.camera.v1.camera_pb2.Property
+   viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters
+   viam.gen.component.camera.v1.camera_pb2.DistortionParameters
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: Format
-
 
    Bases: :py:obj:`_Format`
 
 
 .. py:data:: FORMAT_UNSPECIFIED
-   :type: Format
-
-   
+   :type:  Format
 
 .. py:data:: FORMAT_RAW_RGBA
-   :type: Format
-
-   
+   :type:  Format
 
 .. py:data:: FORMAT_RAW_DEPTH
-   :type: Format
-
-   
+   :type:  Format
 
 .. py:data:: FORMAT_JPEG
-   :type: Format
-
-   
+   :type:  Format
 
 .. py:data:: FORMAT_PNG
-   :type: Format
-
-   
+   :type:  Format
 
 .. py:data:: global___Format
 
-   
-
 .. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -118,22 +101,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a camera
-
-   .. py:attribute:: mime_type
-      :type: str
-
-      Requested MIME type of response
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -153,12 +140,10 @@ Attributes
 
 .. py:data:: global___GetImageRequest
 
-   
-
 .. py:class:: GetImageResponse(*, mime_type: str = ..., image: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -166,25 +151,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: mime_type
-      :type: str
+      :type:  str
 
       Actual MIME type of response
 
+
    .. py:attribute:: image
-      :type: bytes
+      :type:  bytes
 
       Frame in bytes
 
 
 .. py:data:: global___GetImageResponse
 
-   
-
 .. py:class:: GetImagesRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -192,20 +177,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of a camera
 
 
 .. py:data:: global___GetImagesRequest
 
-   
-
 .. py:class:: GetImagesResponse(*, images: collections.abc.Iterable[global___Image] | None = ..., response_metadata: viam.gen.common.v1.common_pb2.ResponseMetadata | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -213,17 +197,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: images
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Image]
 
       list of images returned from the camera system
+
 
    .. py:property:: response_metadata
       :type: viam.gen.common.v1.common_pb2.ResponseMetadata
 
       contains timestamp data
 
-   .. py:method:: HasField(field_name: Literal[response_metadata, b'response_metadata']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['response_metadata', b'response_metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -243,12 +230,10 @@ Attributes
 
 .. py:data:: global___GetImagesResponse
 
-   
-
 .. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -256,30 +241,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: source_name
-      :type: str
+      :type:  str
 
       the name of the sensor where the image came from
 
+
    .. py:attribute:: format
-      :type: global___Format
+      :type:  global___Format
 
       format of the response image bytes
 
+
    .. py:attribute:: image
-      :type: bytes
+      :type:  bytes
 
       image in bytes
 
 
 .. py:data:: global___Image
 
-   
-
 .. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -287,22 +273,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a camera
-
-   .. py:attribute:: mime_type
-      :type: str
-
-      Requested MIME type of response
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -322,12 +312,10 @@ Attributes
 
 .. py:data:: global___RenderFrameRequest
 
-   
-
 .. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -335,22 +323,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a camera
-
-   .. py:attribute:: mime_type
-      :type: str
-
-      Requested MIME type of response
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -370,12 +362,10 @@ Attributes
 
 .. py:data:: global___GetPointCloudRequest
 
-   
-
 .. py:class:: GetPointCloudResponse(*, mime_type: str = ..., point_cloud: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -383,25 +373,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: mime_type
-      :type: str
+      :type:  str
 
       Actual MIME type of response
 
+
    .. py:attribute:: point_cloud
-      :type: bytes
+      :type:  bytes
 
       Frame in bytes
 
 
 .. py:data:: global___GetPointCloudResponse
 
-   
-
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -409,26 +399,32 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of a camera
 
 
 .. py:data:: global___GetPropertiesRequest
 
-   
-
 .. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: supports_pcd
+      :type:  bool
+
+      A boolean property determining whether the camera supports the return of pointcloud data
+
 
    .. py:property:: intrinsic_parameters
       :type: global___IntrinsicParameters
@@ -437,6 +433,7 @@ Attributes
       If camera does not provide intrinsic parameters, leave the field empty
       Initializing the parameters with 0-values is considered an error
 
+
    .. py:property:: distortion_parameters
       :type: global___DistortionParameters
 
@@ -444,17 +441,14 @@ Attributes
       If camera does not provide distortion parameters, leave the field empty
       Initializing the parameters with 0-values is considered an error
 
+
    .. py:property:: mime_types
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Supported MIME types by the camera
 
-   .. py:attribute:: supports_pcd
-      :type: bool
 
-      A boolean property determining whether the camera supports the return of pointcloud data
-
-   .. py:method:: HasField(field_name: Literal[distortion_parameters, b'distortion_parameters', intrinsic_parameters, b'intrinsic_parameters']) -> bool
+   .. py:method:: HasField(field_name: Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -474,18 +468,17 @@ Attributes
 
 .. py:data:: global___GetPropertiesResponse
 
-   
-
 .. py:class:: Webcams(*, webcams: collections.abc.Iterable[global___Webcam] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: webcams
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
@@ -494,53 +487,54 @@ Attributes
 
 .. py:data:: global___Webcams
 
-   
-
 .. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ..., name: str = ..., id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Camera driver label (for internal use only)
+
+
+   .. py:attribute:: status
+      :type:  str
+
+      Camera driver status
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Camera human-readable driver name
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      Camera unique identifier
+
 
    .. py:property:: properties
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
 
       Camera properties
 
-   .. py:attribute:: label
-      :type: str
-
-      Camera driver label (for internal use only)
-
-   .. py:attribute:: status
-      :type: str
-
-      Camera driver status
-
-   .. py:attribute:: name
-      :type: str
-
-      Camera human-readable driver name
-
-   .. py:attribute:: id
-      :type: str
-
-      Camera unique identifier
-
 
 .. py:data:: global___Webcam
 
-   
-
 .. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ..., frame_rate: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -548,35 +542,37 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: width_px
-      :type: int
+      :type:  int
 
       Video resolution width in px
 
+
    .. py:attribute:: height_px
-      :type: int
+      :type:  int
 
       Video resolution height in px
 
+
    .. py:attribute:: frame_format
-      :type: str
+      :type:  str
 
       Video frame format
 
+
    .. py:attribute:: frame_rate
-      :type: float
+      :type:  float
 
       Video frame rate in fps
 
 
 .. py:data:: global___Property
 
-   
-
 .. py:class:: IntrinsicParameters(*, width_px: int = ..., height_px: int = ..., focal_x_px: float = ..., focal_y_px: float = ..., center_x_px: float = ..., center_y_px: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -584,63 +580,53 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: width_px
-      :type: int
 
-      
+   .. py:attribute:: width_px
+      :type:  int
+
 
    .. py:attribute:: height_px
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: focal_x_px
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: focal_y_px
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: center_x_px
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: center_y_px
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:data:: global___IntrinsicParameters
 
-   
-
 .. py:class:: DistortionParameters(*, model: str = ..., parameters: collections.abc.Iterable[float] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: model
+      :type:  str
+
 
    .. py:property:: parameters
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
-   .. py:attribute:: model
-      :type: str
-
-      
-
 
 .. py:data:: global___DistortionParameters
-
-   
 

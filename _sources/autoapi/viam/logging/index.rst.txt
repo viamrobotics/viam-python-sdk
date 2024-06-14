@@ -1,15 +1,20 @@
-:py:mod:`viam.logging`
-======================
+viam.logging
+============
 
 .. py:module:: viam.logging
 
 
-Module Contents
----------------
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.logging.LOG_LEVEL
+   viam.logging.LOGGERS
 
 
 Functions
-~~~~~~~~~
+---------
 
 .. autoapisummary::
 
@@ -20,37 +25,21 @@ Functions
    viam.logging.silence
 
 
-
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.logging.LOG_LEVEL
-   viam.logging.LOGGERS
-
+Module Contents
+---------------
 
 .. py:data:: LOG_LEVEL
 
-   
-
 .. py:data:: LOGGERS
-   :type: Dict[str, logging.Logger]
-
-   
+   :type:  Dict[str, logging.Logger]
 
 .. py:function:: getLogger(name: str) -> logging.Logger
 
-
 .. py:function:: addHandlers(logger: logging.Logger, use_default_handlers=False)
-
 
 .. py:function:: setParent(parent: viam.robot.client.RobotClient)
 
-
 .. py:function:: setLevel(level: int)
 
-
 .. py:function:: silence()
-
 

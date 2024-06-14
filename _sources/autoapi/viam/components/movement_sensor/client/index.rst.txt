@@ -1,31 +1,923 @@
-:py:mod:`viam.components.movement_sensor.client`
-================================================
+viam.components.movement_sensor.client
+======================================
 
 .. py:module:: viam.components.movement_sensor.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.components.movement_sensor.client.SensorReading
+   viam.components.movement_sensor.client.ValueTypes
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.movement_sensor.client.DoCommandRequest
+   viam.components.movement_sensor.client.DoCommandResponse
+   viam.components.movement_sensor.client.Geometry
+   viam.components.movement_sensor.client.GetReadingsRequest
+   viam.components.movement_sensor.client.GetReadingsResponse
+   viam.components.movement_sensor.client.GetAccuracyRequest
+   viam.components.movement_sensor.client.GetAngularVelocityRequest
+   viam.components.movement_sensor.client.GetAngularVelocityResponse
+   viam.components.movement_sensor.client.GetCompassHeadingRequest
+   viam.components.movement_sensor.client.GetCompassHeadingResponse
+   viam.components.movement_sensor.client.GetLinearAccelerationRequest
+   viam.components.movement_sensor.client.GetLinearAccelerationResponse
+   viam.components.movement_sensor.client.GetLinearVelocityRequest
+   viam.components.movement_sensor.client.GetLinearVelocityResponse
+   viam.components.movement_sensor.client.GetOrientationRequest
+   viam.components.movement_sensor.client.GetOrientationResponse
+   viam.components.movement_sensor.client.GetPositionRequest
+   viam.components.movement_sensor.client.GetPositionResponse
+   viam.components.movement_sensor.client.GetPropertiesRequest
+   viam.components.movement_sensor.client.GetPropertiesResponse
+   viam.components.movement_sensor.client.MovementSensorServiceStub
+   viam.components.movement_sensor.client.ReconfigurableResourceRPCClientBase
+   viam.components.movement_sensor.client.MovementSensorClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.movement_sensor.client.dict_to_struct
+   viam.components.movement_sensor.client.get_geometries
+   viam.components.movement_sensor.client.sensor_readings_value_to_native
+   viam.components.movement_sensor.client.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
-.. autoapisummary::
-
-   viam.components.movement_sensor.client.MovementSensorClient
+   Bases: :py:obj:`google.protobuf.message.Message`
 
 
+   DoCommandRequest represents a generic DoCommand input
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
+
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a geometries center point
+
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
+
+   .. py:property:: capsule
+      :type: global___Capsule
+
+
+
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GetReadingsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetReadingsResponse(*, readings: collections.abc.Mapping[str, google.protobuf.struct_pb2.Value] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: ReadingsEntry(*, key: str = ..., value: google.protobuf.struct_pb2.Value | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.struct_pb2.Value
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:property:: readings
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
+
+
+
+.. py:class:: GetAccuracyRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetAngularVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetAngularVelocityResponse(*, angular_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: angular_velocity
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Angular velocity in degrees/s across x/y/z axes
+
+
+   .. py:method:: HasField(field_name: Literal['angular_velocity', b'angular_velocity']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetCompassHeadingRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetCompassHeadingResponse(*, value: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: value
+      :type:  float
+
+      A number from 0-359 in degrees where
+      0 is North, 90 is East, 180 is South, and 270 is   West
+
+
+.. py:class:: GetLinearAccelerationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: linear_acceleration
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Linear acceleration in m/s across x/y/z axes
+
+
+   .. py:method:: HasField(field_name: Literal['linear_acceleration', b'linear_acceleration']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetLinearVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetLinearVelocityResponse(*, linear_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: linear_velocity
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Linear velocity in m/s across x/y/z axes
+
+
+   .. py:method:: HasField(field_name: Literal['linear_velocity', b'linear_velocity']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetOrientationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetOrientationResponse(*, orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: orientation
+      :type: viam.gen.common.v1.common_pb2.Orientation
+
+      Orientation is returned as an orientation message with
+      OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
+
+
+   .. py:method:: HasField(field_name: Literal['orientation', b'orientation']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPositionResponse(*, coordinate: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: altitude_m
+      :type:  float
+
+
+   .. py:property:: coordinate
+      :type: viam.gen.common.v1.common_pb2.GeoPoint
+
+      Position is returned in a coordinate of latitute and longitude
+      and an altidue in meters
+
+
+   .. py:method:: HasField(field_name: Literal['coordinate', b'coordinate']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a movement sensor
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPropertiesResponse(*, linear_velocity_supported: bool = ..., angular_velocity_supported: bool = ..., orientation_supported: bool = ..., position_supported: bool = ..., compass_heading_supported: bool = ..., linear_acceleration_supported: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: linear_velocity_supported
+      :type:  bool
+
+
+   .. py:attribute:: angular_velocity_supported
+      :type:  bool
+
+
+   .. py:attribute:: orientation_supported
+      :type:  bool
+
+
+   .. py:attribute:: position_supported
+      :type:  bool
+
+
+   .. py:attribute:: compass_heading_supported
+      :type:  bool
+
+
+   .. py:attribute:: linear_acceleration_supported
+      :type:  bool
+
+
+.. py:class:: MovementSensorServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:data:: SensorReading
+
+   Types that can be returned from a sensor
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
+
+
+.. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, SensorReading]
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
 .. py:class:: MovementSensorClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.components.movement_sensor.movement_sensor.MovementSensor`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    gRPC client for the MovementSensor component.
 
+
    .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :async:
+
 
       Get the current GeoPoint (latitude, longitude) and altitude (m)
 
@@ -42,8 +934,10 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
+
    .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
       :async:
+
 
       Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
 
@@ -59,8 +953,10 @@ Classes
       :rtype: Vector3
 
 
+
    .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
       :async:
+
 
       Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
 
@@ -79,8 +975,10 @@ Classes
       :rtype: Vector3
 
 
+
    .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
       :async:
+
 
       Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
 
@@ -99,8 +997,10 @@ Classes
       :rtype: Vector3
 
 
+
    .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
       :async:
+
 
       Get the current compass heading in degrees
 
@@ -116,8 +1016,10 @@ Classes
       :rtype: float
 
 
+
    .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Orientation
       :async:
+
 
       Get the current orientation
 
@@ -133,8 +1035,10 @@ Classes
       :rtype: Orientation
 
 
+
    .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Properties
       :async:
+
 
       Get the supported properties of this sensor
 
@@ -150,8 +1054,10 @@ Classes
       :rtype: MovementSensor.Properties
 
 
+
    .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Accuracy
       :async:
+
 
       Get the accuracy of the various sensors
 
@@ -167,8 +1073,10 @@ Classes
       :rtype: MovementSensor.Accuracy
 
 
+
    .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
       :async:
+
 
       Obtain the measurements/data specific to this sensor.
       If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
@@ -185,8 +1093,10 @@ Classes
       :rtype: Mapping[str, Any]
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -204,8 +1114,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -222,8 +1134,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -236,8 +1150,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -251,6 +1167,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -268,8 +1185,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.module.v1.module_pb2`
-=======================================
+viam.gen.module.v1.module_pb2
+=============================
 
 .. py:module:: viam.gen.module.v1.module_pb2
 
@@ -10,32 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.module.v1.module_pb2.AddResourceRequest
-   viam.gen.module.v1.module_pb2.AddResourceResponse
-   viam.gen.module.v1.module_pb2.ReconfigureResourceRequest
-   viam.gen.module.v1.module_pb2.ReconfigureResourceResponse
-   viam.gen.module.v1.module_pb2.RemoveResourceRequest
-   viam.gen.module.v1.module_pb2.RemoveResourceResponse
-   viam.gen.module.v1.module_pb2.HandlerDefinition
-   viam.gen.module.v1.module_pb2.HandlerMap
-   viam.gen.module.v1.module_pb2.ReadyRequest
-   viam.gen.module.v1.module_pb2.ReadyResponse
-   viam.gen.module.v1.module_pb2.ValidateConfigRequest
-   viam.gen.module.v1.module_pb2.ValidateConfigResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -54,15 +30,35 @@ Attributes
    viam.gen.module.v1.module_pb2.global___ValidateConfigResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.module.v1.module_pb2.AddResourceRequest
+   viam.gen.module.v1.module_pb2.AddResourceResponse
+   viam.gen.module.v1.module_pb2.ReconfigureResourceRequest
+   viam.gen.module.v1.module_pb2.ReconfigureResourceResponse
+   viam.gen.module.v1.module_pb2.RemoveResourceRequest
+   viam.gen.module.v1.module_pb2.RemoveResourceResponse
+   viam.gen.module.v1.module_pb2.HandlerDefinition
+   viam.gen.module.v1.module_pb2.HandlerMap
+   viam.gen.module.v1.module_pb2.ReadyRequest
+   viam.gen.module.v1.module_pb2.ReadyResponse
+   viam.gen.module.v1.module_pb2.ValidateConfigRequest
+   viam.gen.module.v1.module_pb2.ValidateConfigResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: AddResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -70,15 +66,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: config
       :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+
 
 
    .. py:property:: dependencies
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -98,12 +97,10 @@ Attributes
 
 .. py:data:: global___AddResourceRequest
 
-   
-
 .. py:class:: AddResourceResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -114,12 +111,10 @@ Attributes
 
 .. py:data:: global___AddResourceResponse
 
-   
-
 .. py:class:: ReconfigureResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -127,15 +122,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: config
       :type: viam.gen.app.v1.robot_pb2.ComponentConfig
+
 
 
    .. py:property:: dependencies
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -155,12 +153,10 @@ Attributes
 
 .. py:data:: global___ReconfigureResourceRequest
 
-   
-
 .. py:class:: ReconfigureResourceResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -171,12 +167,10 @@ Attributes
 
 .. py:data:: global___ReconfigureResourceResponse
 
-   
-
 .. py:class:: RemoveResourceRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -184,20 +178,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:data:: global___RemoveResourceRequest
 
-   
-
 .. py:class:: RemoveResourceResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -208,12 +199,10 @@ Attributes
 
 .. py:data:: global___RemoveResourceResponse
 
-   
-
 .. py:class:: HandlerDefinition(*, subtype: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -221,15 +210,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: subtype
       :type: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype
+
 
 
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:method:: HasField(field_name: Literal[subtype, b'subtype']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['subtype', b'subtype']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -249,18 +241,17 @@ Attributes
 
 .. py:data:: global___HandlerDefinition
 
-   
-
 .. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[global___HandlerDefinition] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: handlers
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___HandlerDefinition]
@@ -269,12 +260,10 @@ Attributes
 
 .. py:data:: global___HandlerMap
 
-   
-
 .. py:class:: ReadyRequest(*, parent_address: str = ..., webrtc_offer: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -282,47 +271,43 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: parent_address
-      :type: str
 
-      
+   .. py:attribute:: parent_address
+      :type:  str
+
 
    .. py:attribute:: webrtc_offer
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___ReadyRequest
 
-   
-
 .. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ..., webrtc_answer: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: ready
+      :type:  bool
+
+
+   .. py:attribute:: webrtc_answer
+      :type:  str
+
 
    .. py:property:: handlermap
       :type: global___HandlerMap
 
 
-   .. py:attribute:: ready
-      :type: bool
 
-      
-
-   .. py:attribute:: webrtc_answer
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[handlermap, b'handlermap']) -> bool
+   .. py:method:: HasField(field_name: Literal['handlermap', b'handlermap']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -342,12 +327,10 @@ Attributes
 
 .. py:data:: global___ReadyResponse
 
-   
-
 .. py:class:: ValidateConfigRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -355,11 +338,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: config
       :type: viam.gen.app.v1.robot_pb2.ComponentConfig
 
 
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -379,12 +364,10 @@ Attributes
 
 .. py:data:: global___ValidateConfigRequest
 
-   
-
 .. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -392,12 +375,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: dependencies
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
 .. py:data:: global___ValidateConfigResponse
-
-   
 

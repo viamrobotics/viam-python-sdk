@@ -1,50 +1,85 @@
-:py:mod:`viam.resource.rpc_client_base`
-=======================================
+viam.resource.rpc_client_base
+=============================
 
 .. py:module:: viam.resource.rpc_client_base
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.resource.rpc_client_base.RPCServiceStubBase
+   viam.resource.rpc_client_base.ResourceRPCClientBase
+   viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: RPCServiceStubBase(channel: grpclib.client.Channel)
 
-.. autoapisummary::
-
-   viam.resource.rpc_client_base.ResourceRPCClientBase
-   viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase
+   Bases: :py:obj:`Protocol`
 
 
+   Base class for protocol classes.
+
+   Protocol classes are defined as::
+
+       class Proto(Protocol):
+           def meth(self) -> int:
+               ...
+
+   Such classes are primarily used with static type checkers that recognize
+   structural subtyping (static duck-typing).
+
+   For example::
+
+       class C:
+           def meth(self) -> int:
+               return 0
+
+       def func(x: Proto) -> int:
+           return x.meth()
+
+       func(C())  # Passes static type check
+
+   See PEP 544 for details. Protocol classes decorated with
+   @typing.runtime_checkable act as simple-minded runtime protocols that check
+   only the presence of given attributes, ignoring their type signatures.
+   Protocol classes can be generic, they are defined as::
+
+       class GenProto[T](Protocol):
+           def meth(self) -> T:
+               ...
 
 
 .. py:class:: ResourceRPCClientBase
 
-
    Bases: :py:obj:`Protocol`
+
 
    Base RPC client for a resource.
    Resource RPC clients must inherit from this class
 
-   .. py:attribute:: channel
-      :type: grpclib.client.Channel
 
-      
+   .. py:attribute:: channel
+      :type:  grpclib.client.Channel
+
 
    .. py:attribute:: client
-      :type: Any
-
-      
+      :type:  Any
 
 
 .. py:class:: ReconfigurableResourceRPCClientBase
 
-
    Bases: :py:obj:`ResourceRPCClientBase`
+
 
    A base RPC client that can reset its channel.
 
    Useful if connection is lost and then regained.
+
 
    .. py:method:: reset_channel(channel: grpclib.client.Channel)
 

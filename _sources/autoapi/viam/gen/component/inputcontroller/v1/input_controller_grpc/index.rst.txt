@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.inputcontroller.v1.input_controller_grpc`
-=====================================================================
+viam.gen.component.inputcontroller.v1.input_controller_grpc
+===========================================================
 
 .. py:module:: viam.gen.component.inputcontroller.v1.input_controller_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,76 +14,95 @@ Classes
    viam.gen.component.inputcontroller.v1.input_controller_grpc.InputControllerServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: InputControllerServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetControls(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TriggerEvent(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedInputControllerServiceBase
 
-
    Bases: :py:obj:`InputControllerServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetControls(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
       :async:
 
 
+
    .. py:method:: StreamEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
       :async:
+
 
 
    .. py:method:: TriggerEvent(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -95,6 +111,4 @@ Classes
 
 
 .. py:class:: InputControllerServiceStub(channel: grpclib.client.Channel)
-
-
 

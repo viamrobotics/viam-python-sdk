@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -109,7 +109,7 @@
 <span class="p">)</span>
 
 
-<div class="viewcode-block" id="flat_tensors_to_ndarrays"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.flat_tensors_to_ndarrays">[docs]</a><span class="k">def</span> <span class="nf">flat_tensors_to_ndarrays</span><span class="p">(</span><span class="n">flat_tensors</span><span class="p">:</span> <span class="n">FlatTensors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
+<div class="viewcode-block" id="flat_tensors_to_ndarrays"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.client.flat_tensors_to_ndarrays">[docs]</a><span class="k">def</span> <span class="nf">flat_tensors_to_ndarrays</span><span class="p">(</span><span class="n">flat_tensors</span><span class="p">:</span> <span class="n">FlatTensors</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">]:</span>
     <span class="n">property_name_to_dtype</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;float_tensor&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
         <span class="s2">&quot;double_tensor&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
@@ -139,7 +139,7 @@
     <span class="k">return</span> <span class="n">ndarrays</span></div>
 
 
-<div class="viewcode-block" id="ndarrays_to_flat_tensors"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.utils.ndarrays_to_flat_tensors">[docs]</a><span class="k">def</span> <span class="nf">ndarrays_to_flat_tensors</span><span class="p">(</span><span class="n">ndarrays</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FlatTensors</span><span class="p">:</span>
+<div class="viewcode-block" id="ndarrays_to_flat_tensors"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/utils/index.html#viam.services.mlmodel.client.ndarrays_to_flat_tensors">[docs]</a><span class="k">def</span> <span class="nf">ndarrays_to_flat_tensors</span><span class="p">(</span><span class="n">ndarrays</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NDArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">FlatTensors</span><span class="p">:</span>
     <span class="n">dtype_name_to_tensor_data_class</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;float32&quot;</span><span class="p">:</span> <span class="n">FlatTensorDataFloat</span><span class="p">,</span>
         <span class="s2">&quot;float64&quot;</span><span class="p">:</span> <span class="n">FlatTensorDataDouble</span><span class="p">,</span>

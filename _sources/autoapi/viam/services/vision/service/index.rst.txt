@@ -1,59 +1,1333 @@
-:py:mod:`viam.services.vision.service`
-======================================
+viam.services.vision.service
+============================
 
 .. py:module:: viam.services.vision.service
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.services.vision.service.CameraMimeType
+   viam.services.vision.service.ViamImage
+   viam.services.vision.service.DoCommandRequest
+   viam.services.vision.service.DoCommandResponse
+   viam.services.vision.service.Image
+   viam.services.vision.service.CaptureAllFromCameraRequest
+   viam.services.vision.service.CaptureAllFromCameraResponse
+   viam.services.vision.service.GetClassificationsFromCameraRequest
+   viam.services.vision.service.GetClassificationsFromCameraResponse
+   viam.services.vision.service.GetClassificationsRequest
+   viam.services.vision.service.GetClassificationsResponse
+   viam.services.vision.service.GetDetectionsFromCameraRequest
+   viam.services.vision.service.GetDetectionsFromCameraResponse
+   viam.services.vision.service.GetDetectionsRequest
+   viam.services.vision.service.GetDetectionsResponse
+   viam.services.vision.service.GetObjectPointCloudsRequest
+   viam.services.vision.service.GetObjectPointCloudsResponse
+   viam.services.vision.service.GetPropertiesRequest
+   viam.services.vision.service.GetPropertiesResponse
+   viam.services.vision.service.UnimplementedVisionServiceBase
+   viam.services.vision.service.ResourceRPCServiceBase
+   viam.services.vision.service.Vision
+   viam.services.vision.service.VisionRPCService
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.services.vision.service.dict_to_struct
+   viam.services.vision.service.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: CameraMimeType
 
-.. autoapisummary::
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
 
-   viam.services.vision.service.VisionRPCService
+
+   str(object='') -> str
+   str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+   Create a new string object from the given object. If encoding or
+   errors is specified, then the object must expose a data buffer
+   that will be decoded using the given encoding and error handler.
+   Otherwise, returns the result of object.__str__() (if defined)
+   or repr(object).
+   encoding defaults to sys.getdefaultencoding().
+   errors defaults to 'strict'.
+
+
+   .. py:attribute:: VIAM_RGBA
+      :value: 'image/vnd.viam.rgba'
+
+
+
+   .. py:attribute:: VIAM_RAW_DEPTH
+      :value: 'image/vnd.viam.dep'
+
+
+
+   .. py:attribute:: JPEG
+      :value: 'image/jpeg'
+
+
+
+   .. py:attribute:: PNG
+      :value: 'image/png'
+
+
+
+   .. py:attribute:: PCD
+      :value: 'pointcloud/pcd'
+
+
+
+   .. py:method:: from_string(value: str) -> typing_extensions.Self
+      :classmethod:
+
+
+
+   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
+      :classmethod:
+
+
+      Returns the mimetype from a proto enum.
+
+      :param format: The mimetype in a proto enum.
+      :type format: Format.ValueType
+
+      :returns: The mimetype.
+      :rtype: Self
+
+
+
+   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
+
+      Returns the mimetype in a proto enum.
+
+      :returns: The mimetype in a proto enum.
+      :rtype: Format.ValueType
+
+
+
+.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+
+   A native implementation of an image.
+
+   Provides the raw data and the mime type.
+
+
+   .. py:property:: data
+      :type: bytes
+
+      The raw bytes of the image
+
+
+   .. py:property:: mime_type
+      :type: CameraMimeType
+
+      The mime type of the image
+
+
+   .. py:property:: width
+      :type: Optional[int]
+
+      The width of the image
+
+
+   .. py:property:: height
+      :type: Optional[int]
+
+      The height of the image
+
+
+   .. py:method:: bytes_to_depth_array() -> List[List[int]]
+
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
+
+      :raises NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.
+
+      :returns: The standard representation of the image.
+      :rtype: List[List[int]]
+
+
+
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandRequest represents a generic DoCommand input
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: source_name
+      :type:  str
+
+      the name of the sensor where the image came from
+
+
+   .. py:attribute:: format
+      :type:  global___Format
+
+      format of the response image bytes
+
+
+   .. py:attribute:: image
+      :type:  bytes
+
+      image in bytes
+
+
+.. py:class:: CaptureAllFromCameraRequest(*, name: str = ..., camera_name: str = ..., return_image: bool = ..., return_classifications: bool = ..., return_detections: bool = ..., return_object_point_clouds: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: camera_name
+      :type:  str
+
+      name of camera source to use as input
+
+
+   .. py:attribute:: return_image
+      :type:  bool
+
+      whether or not including the image in the response
+
+
+   .. py:attribute:: return_classifications
+      :type:  bool
+
+      whether or not including classifications in the response
+
+
+   .. py:attribute:: return_detections
+      :type:  bool
+
+      whether or not including detections in the response
+
+
+   .. py:attribute:: return_object_point_clouds
+      :type:  bool
+
+      whether or not including pcd in the response
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: CaptureAllFromCameraResponse(*, image: viam.gen.component.camera.v1.camera_pb2.Image | None = ..., detections: collections.abc.Iterable[global___Detection] | None = ..., classifications: collections.abc.Iterable[global___Classification] | None = ..., objects: collections.abc.Iterable[viam.gen.common.v1.common_pb2.PointCloudObject] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: image
+      :type: viam.gen.component.camera.v1.camera_pb2.Image
+
+
+
+   .. py:property:: detections
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
+
+
+
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
+
+
+
+   .. py:property:: objects
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.PointCloudObject]
+
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra', 'image', b'image']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: camera_name
+      :type:  str
+
+      the image encoded as bytes
+
+
+   .. py:attribute:: n
+      :type:  int
+
+      the number of classifications desired
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetClassificationsFromCameraResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
+
+
+
+.. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: image
+      :type:  bytes
+
+      the image encoded as bytes
+
+
+   .. py:attribute:: width
+      :type:  int
+
+      the width of the image
+
+
+   .. py:attribute:: height
+      :type:  int
+
+      the height of the image
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      the actual MIME type of image
+
+
+   .. py:attribute:: n
+      :type:  int
+
+      the number of classifications desired
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetClassificationsResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
+
+
+
+.. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: camera_name
+      :type:  str
+
+      name of camera source to use as input
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetDetectionsFromCameraResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: detections
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
+
+      the bounding boxes and labels
+
+
+.. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:attribute:: image
+      :type:  bytes
+
+      the image, encoded as bytes
+
+
+   .. py:attribute:: width
+      :type:  int
+
+      the width of the image
+
+
+   .. py:attribute:: height
+      :type:  int
+
+      the height of the image
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      the actual MIME type of image
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetDetectionsResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: detections
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
+
+      the bounding boxes and labels
+
+
+.. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: camera_name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetObjectPointCloudsResponse(*, mime_type: str = ..., objects: collections.abc.Iterable[viam.gen.common.v1.common_pb2.PointCloudObject] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Actual MIME type of response
+
+
+   .. py:property:: objects
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.PointCloudObject]
+
+      List of objects in the scene
+
+
+.. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of the vision service
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPropertiesResponse(*, classifications_supported: bool = ..., detections_supported: bool = ..., object_point_clouds_supported: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: classifications_supported
+      :type:  bool
+
+      whether or not classifactions are supported by the vision service
+
+
+   .. py:attribute:: detections_supported
+      :type:  bool
+
+      whether or not detections are supported by the vision service
+
+
+   .. py:attribute:: object_point_clouds_supported
+      :type:  bool
+
+      whether or not 3d segmentation is supported by the vision service
+
+
+.. py:class:: UnimplementedVisionServiceBase
+
+   Bases: :py:obj:`VisionServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetDetectionsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest, service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetDetections(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectionsRequest, service.vision.v1.vision_pb2.GetDetectionsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetClassificationsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest, service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetClassifications(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsRequest, service.vision.v1.vision_pb2.GetClassificationsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetObjectPointClouds(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetObjectPointCloudsRequest, service.vision.v1.vision_pb2.GetObjectPointCloudsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetPropertiesRequest, service.vision.v1.vision_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CaptureAllFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.CaptureAllFromCameraRequest, service.vision.v1.vision_pb2.CaptureAllFromCameraResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+.. py:class:: ResourceRPCServiceBase(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.rpc.types.RPCServiceBase`, :py:obj:`Generic`\ [\ :py:obj:`viam.resource.manager.ResourceType`\ ]
+
+
+   Base RPC service for a resource.
+   All resource RPC services must inherit from this class.
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:attribute:: manager
+      :type:  viam.resource.manager.ResourceManager
+
+
+   .. py:method:: get_resource(name: str) -> viam.resource.manager.ResourceType
+
+      Return the resource with the given name if it exists in the registry.
+      If the resource does not exist in the registry,
+      this function will raise an error
+
+      :param name: Name of the resource
+      :type name: str
+
+      :raises GRPCError with the status code Status.NOT_FOUND:
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: Vision(name: str)
+
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
+
+
+   Vision represents a Vision service.
+
+   This acts as an abstract base class for any drivers representing specific
+   vision implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:attribute:: Properties
+      :type:  TypeAlias
+      :value: GetPropertiesResponse
+
+
+      Properties is a class that states what features are supported on the associated vision service.
+      Currently, these are the following properties:
+      - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
+      - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
+      - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
+
+
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> CaptureAllResult
+      :abstractmethod:
+
+      :async:
+
+
+      Get the next image, detections, classifications, and objects all together,
+      given a camera name. Used for visualization.
+
+      ::
+
+          camera_name = "cam1"
+
+          # Grab the detector you configured on your machine
+          my_detector = VisionClient.from_robot(robot, "my_detector")
+
+          # capture all from the next image from the camera
+          result = await my_detector.capture_all_from_camera(
+              camera_name,
+              return_image=True,
+              return_detections=True,
+          )
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+      :param return_image: Ask the vision service to return the camera's latest image
+      :type return_image: bool
+      :param return_classifications: Ask the vision service to return its latest classifications
+      :type return_classifications: bool
+      :param return_detections: Ask the vision service to return its latest detections
+      :type return_detections: bool
+      :param return_object_point_clouds: Ask the vision service to return its latest 3D segmentations
+      :type return_object_point_clouds: bool
+
+      :returns: A class that stores all potential returns from the vision service.
+                It can  return the image from the camera along with its associated detections, classifications,
+                and objects, as well as any extra info the model may provide.
+      :rtype: vision.CaptureAllResult
+
+
+
+   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+      :abstractmethod:
+
+      :async:
+
+
+      Get a list of detections in the next image given a camera and a detector
+
+      ::
+
+          camera_name = "cam1"
+
+          # Grab the detector you configured on your machine
+          my_detector = VisionClient.from_robot(robot, "my_detector")
+
+          # Get detections from the next image from the camera
+          detections = await my_detector.get_detections_from_camera(camera_name)
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+
+      :raises ViamError: Raised if given an image without a specified width and height
+
+      :returns: A list of 2D bounding boxes, their labels, and the
+                confidence score of the labels, around the found objects in the next 2D image
+                from the given camera, with the given detector applied to it.
+      :rtype: List[viam.proto.service.vision.Detection]
+
+
+
+   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+      :abstractmethod:
+
+      :async:
+
+
+      Get a list of detections in the given image using the specified detector
+
+      ::
+
+          # Grab camera from the machine
+          cam1 = Camera.from_robot(robot, "cam1")
+
+          # Get the detector you configured on your machine
+          my_detector = VisionClient.from_robot(robot, "my_detector")
+
+          # Get an image from the camera
+          img = await cam1.get_image()
+
+          # Get detections from that image
+          detections = await my_detector.get_detections(img)
+
+      :param image: The image to get detections from
+      :type image: Image | RawImage
+
+      :raises ViamError: Raised if given an image without a specified width and height
+
+      :returns: A list of 2D bounding boxes, their labels, and the
+                confidence score of the labels, around the found objects in the next 2D image
+                from the given camera, with the given detector applied to it.
+      :rtype: List[viam.proto.service.vision.Detection]
+
+
+
+   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+      :abstractmethod:
+
+      :async:
+
+
+      Get a list of classifications in the next image given a camera and a classifier
+
+      ::
+
+          camera_name = "cam1"
+
+          # Grab the classifier you configured on your machine
+          my_classifier = VisionClient.from_robot(robot, "my_classifier")
+
+          # Get the 2 classifications with the highest confidence scores from the next image from the camera
+          classifications = await my_classifier.get_classifications_from_camera(
+              camera_name, 2)
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+      :param count: The number of classifications desired
+      :type count: int
+
+      :returns: The list of Classifications
+      :rtype: List[viam.proto.service.vision.Classification]
+
+
+
+   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+      :abstractmethod:
+
+      :async:
+
+
+      Get a list of classifications in the given image using the specified classifier
+
+      ::
+
+          # Grab camera from the machine
+          cam1 = Camera.from_robot(robot, "cam1")
+
+          # Get the classifier you configured on your machine
+          my_classifier = VisionClient.from_robot(robot, "my_classifier")
+
+          # Get an image from the camera
+          img = await cam1.get_image()
+
+          # Get the 2 classifications with the highest confidence scores
+          classifications = await my_classifier.get_classifications(img, 2)
+
+      :param image: The image to get detections from
+      :type image: Image | RawImage
+      :param count: The number of classifications desired
+      :type count: int
+
+      :returns: The list of Classifications
+      :rtype: List[viam.proto.service.vision.Classification]
+
+
+
+   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
+      :abstractmethod:
+
+      :async:
+
+
+      Returns a list of the 3D point cloud objects and associated metadata in the latest
+      picture obtained from the specified 3D camera (using the specified segmenter).
+
+      To deserialize the returned information into a numpy array, use the Open3D library.
+
+      ::
+
+          import numpy as np
+          import open3d as o3d
+
+          # Grab the 3D camera from the machine
+          cam1 = Camera.from_robot(robot, "cam1")
+          # Grab the object segmenter you configured on your machine
+          my_segmenter = VisionClient.from_robot(robot, "my_segmenter")
+          # Get the objects from the camera output
+          objects = await my_segmenter.get_object_point_clouds(cam1)
+          # write the first object point cloud into a temporary file
+          with open("/tmp/pointcloud_data.pcd", "wb") as f:
+              f.write(objects[0].point_cloud)
+          pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
+          points = np.asarray(pcd.points)
+
+      :param camera_name: The name of the camera
+      :type camera_name: str
+
+      :returns: The pointcloud objects with metadata
+      :rtype: List[viam.proto.common.PointCloudObject]
+
+
+
+   .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Properties
+      :abstractmethod:
+
+      :async:
+
+
+      Get info about what vision methods the vision service provides. Currently returns boolean values that
+      state whether the service implements the classification, detection, and/or 3D object segmentation methods.
+
+      ::
+              # Grab the detector you configured on your machine
+              my_detector = VisionClient.from_robot(robot, "my_detector")
+              properties = await my_detector.get_properties()
+              properties.detections_supported      # returns True
+              properties.classifications_supported # returns False
+
+      :returns: The properties of the vision service
+      :rtype: Properties
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
 
 
 
 
 .. py:class:: VisionRPCService(manager: viam.resource.manager.ResourceManager)
 
-
    Bases: :py:obj:`viam.proto.service.vision.UnimplementedVisionServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
 
    gRPC service for a Vision service
 
+
    .. py:attribute:: RESOURCE_TYPE
 
-      
 
    .. py:method:: CaptureAllFromCamera(stream: grpclib.server.Stream[viam.proto.service.vision.CaptureAllFromCameraRequest, viam.proto.service.vision.CaptureAllFromCameraResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetDetectionsFromCamera(stream: grpclib.server.Stream[viam.proto.service.vision.GetDetectionsFromCameraRequest, viam.proto.service.vision.GetDetectionsFromCameraResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetDetections(stream: grpclib.server.Stream[viam.proto.service.vision.GetDetectionsRequest, viam.proto.service.vision.GetDetectionsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetClassificationsFromCamera(stream: grpclib.server.Stream[viam.proto.service.vision.GetClassificationsFromCameraRequest, viam.proto.service.vision.GetClassificationsFromCameraResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetClassifications(stream: grpclib.server.Stream[viam.proto.service.vision.GetClassificationsRequest, viam.proto.service.vision.GetClassificationsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetObjectPointClouds(stream: grpclib.server.Stream[viam.proto.service.vision.GetObjectPointCloudsRequest, viam.proto.service.vision.GetObjectPointCloudsResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[viam.proto.service.vision.GetPropertiesRequest, viam.proto.service.vision.GetPropertiesResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None

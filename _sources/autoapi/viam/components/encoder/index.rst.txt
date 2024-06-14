@@ -1,63 +1,60 @@
-:py:mod:`viam.components.encoder`
-=================================
+viam.components.encoder
+=======================
 
 .. py:module:: viam.components.encoder
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   encoder/index.rst
-   service/index.rst
+   /autoapi/viam/components/encoder/client/index
+   /autoapi/viam/components/encoder/encoder/index
+   /autoapi/viam/components/encoder/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.encoder.Encoder
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Encoder(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Base component.
    All components must inherit from this class.
 
+
    .. py:class:: Properties
 
-
       .. py:attribute:: ticks_count_supported
-         :type: bool
+         :type:  bool
 
-         
 
       .. py:attribute:: angle_degrees_supported
-         :type: bool
+         :type:  bool
 
-         
 
 
    .. py:attribute:: SUBTYPE
-      :type: Final
+      :type:  Final
 
-      
 
    .. py:method:: reset_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Set the current position to be the new zero (home) position.
 
@@ -70,9 +67,12 @@ Classes
 
 
 
+
    .. py:method:: get_position(position_type: Optional[viam.proto.component.encoder.PositionType.ValueType] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, viam.proto.component.encoder.PositionType.ValueType]
       :abstractmethod:
+
       :async:
+
 
       Report the position of the encoder.
       The value returned is the current position in terms of it's ``position_type``.
@@ -96,9 +96,12 @@ Classes
       :rtype: Tuple[float, PositionType]
 
 
+
    .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
       :abstractmethod:
+
       :async:
+
 
       Return a dictionary of the types of position reporting this encoder supports
 
@@ -113,8 +116,10 @@ Classes
       :rtype: Encoder.Properties
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -127,9 +132,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -147,8 +155,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -165,8 +175,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -180,6 +192,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -197,8 +210,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

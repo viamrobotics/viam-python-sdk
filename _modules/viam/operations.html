@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -103,7 +103,7 @@
     <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">ParamSpec</span>
 
 
-<div class="viewcode-block" id="Operation"><a class="viewcode-back" href="../../autoapi/viam/operations/index.html#viam.operations.Operation">[docs]</a><span class="k">class</span> <span class="nc">Operation</span><span class="p">:</span>
+<div class="viewcode-block" id="Operation"><a class="viewcode-back" href="../../autoapi/viam/resource/base/index.html#viam.operations.Operation">[docs]</a><span class="k">class</span> <span class="nc">Operation</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An Operation represents a running operation.</span>
 
 <span class="sd">    Every request made to a robot&#39;s components will create a new Operation on the server. For custom components built with this python-sdk,</span>
@@ -125,7 +125,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_cancel_event</span> <span class="o">=</span> <span class="n">cancel_event</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_cancelled</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Operation.is_cancelled"><a class="viewcode-back" href="../../autoapi/viam/operations/index.html#viam.operations.Operation.is_cancelled">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Operation.is_cancelled"><a class="viewcode-back" href="../../autoapi/viam/resource/base/index.html#viam.operations.Operation.is_cancelled">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">is_cancelled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancelled</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancelled</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancel_event</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
@@ -138,7 +138,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cancelled</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Operation.__str__"><a class="viewcode-back" href="../../autoapi/viam/operations/index.html#viam.operations.Operation.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Operation.__str__"><a class="viewcode-back" href="../../autoapi/viam/resource/base/index.html#viam.operations.Operation.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Operation </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
     <span class="nd">@classmethod</span>

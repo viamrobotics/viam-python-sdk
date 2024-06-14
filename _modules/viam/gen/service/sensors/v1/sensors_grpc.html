@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -128,7 +128,7 @@
 <div class="viewcode-block" id="UnimplementedSensorsServiceBase.DoCommand"><a class="viewcode-back" href="../../../../../../autoapi/viam/proto/service/sensors/index.html#viam.gen.service.sensors.v1.sensors_grpc.UnimplementedSensorsServiceBase.DoCommand">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">DoCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="s1">&#39;grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">GRPCError</span><span class="p">(</span><span class="n">grpclib</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="SensorsServiceStub"><a class="viewcode-back" href="../../../../../../autoapi/viam/proto/service/sensors/index.html#viam.gen.service.sensors.v1.sensors_grpc.SensorsServiceStub">[docs]</a><span class="k">class</span> <span class="nc">SensorsServiceStub</span><span class="p">:</span>
+<div class="viewcode-block" id="SensorsServiceStub"><a class="viewcode-back" href="../../../../../../autoapi/viam/services/sensors/client/index.html#viam.gen.service.sensors.v1.sensors_grpc.SensorsServiceStub">[docs]</a><span class="k">class</span> <span class="nc">SensorsServiceStub</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Channel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">GetSensors</span> <span class="o">=</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">UnaryUnaryMethod</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="s1">&#39;/viam.service.sensors.v1.SensorsService/GetSensors&#39;</span><span class="p">,</span> <span class="n">service</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">sensors_pb2</span><span class="o">.</span><span class="n">GetSensorsRequest</span><span class="p">,</span> <span class="n">service</span><span class="o">.</span><span class="n">sensors</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">sensors_pb2</span><span class="o">.</span><span class="n">GetSensorsResponse</span><span class="p">)</span>

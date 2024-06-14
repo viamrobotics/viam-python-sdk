@@ -1,40 +1,413 @@
-:py:mod:`viam.rpc.signaling`
-============================
+viam.rpc.signaling
+==================
 
 .. py:module:: viam.rpc.signaling
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.rpc.signaling.AnswerRequest
+   viam.rpc.signaling.AnswerResponse
+   viam.rpc.signaling.CallRequest
+   viam.rpc.signaling.CallResponse
+   viam.rpc.signaling.CallUpdateRequest
+   viam.rpc.signaling.CallUpdateResponse
+   viam.rpc.signaling.OptionalWebRTCConfigRequest
+   viam.rpc.signaling.OptionalWebRTCConfigResponse
+   viam.rpc.signaling.SignalingServiceBase
+   viam.rpc.signaling.SignalingService
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ...)
 
-.. autoapisummary::
-
-   viam.rpc.signaling.SignalingService
+   Bases: :py:obj:`google.protobuf.message.Message`
 
 
+   AnswerRequest is the SDP offer that the controlling side is making via the answering
+   stream.
 
 
-.. py:class:: SignalingService
+   .. py:attribute:: uuid
+      :type:  str
 
 
-   Bases: :py:obj:`viam.proto.rpc.webrtc.signaling.SignalingServiceBase`
+   .. py:property:: init
+      :type: global___AnswerRequestInitStage
+
+
+
+   .. py:property:: update
+      :type: global___AnswerRequestUpdateStage
+
+
+
+   .. py:property:: done
+      :type: global___AnswerRequestDoneStage
+
+      done is sent when the requester is done sending information
+
+
+   .. py:property:: error
+      :type: global___AnswerRequestErrorStage
+
+      error is sent any time before done
+
+
+   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: AnswerResponse(*, uuid: str = ..., init: global___AnswerResponseInitStage | None = ..., update: global___AnswerResponseUpdateStage | None = ..., done: global___AnswerResponseDoneStage | None = ..., error: global___AnswerResponseErrorStage | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   AnswerResponse is the SDP answer that an answerer responds with.
+
+
+   .. py:attribute:: uuid
+      :type:  str
+
+
+   .. py:property:: init
+      :type: global___AnswerResponseInitStage
+
+
+
+   .. py:property:: update
+      :type: global___AnswerResponseUpdateStage
+
+
+
+   .. py:property:: done
+      :type: global___AnswerResponseDoneStage
+
+      done is sent when the answerer is done sending information
+
+
+   .. py:property:: error
+      :type: global___AnswerResponseErrorStage
+
+      error is sent any time before done
+
+
+   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: CallRequest(*, sdp: str = ..., disable_trickle: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CallRequest is the SDP offer that the controlling side is making.
+
+
+   .. py:attribute:: sdp
+      :type:  str
+
+
+   .. py:attribute:: disable_trickle
+      :type:  bool
+
+      when disable_trickle is true, the init stage will be the only stage
+      to be received in the response and the caller can expect the SDP
+      to contain all ICE candidates.
+
+
+.. py:class:: CallResponse(*, uuid: str = ..., init: global___CallResponseInitStage | None = ..., update: global___CallResponseUpdateStage | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CallResponse is the SDP answer that the controlled side responds with.
+
+
+   .. py:attribute:: uuid
+      :type:  str
+
+
+   .. py:property:: init
+      :type: global___CallResponseInitStage
+
+
+
+   .. py:property:: update
+      :type: global___CallResponseUpdateStage
+
+
+
+   .. py:method:: HasField(field_name: Literal['init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CallUpdateRequest updates the call with additional info to the controlled side.
+
+
+   .. py:attribute:: uuid
+      :type:  str
+
+
+   .. py:attribute:: done
+      :type:  bool
+
+
+   .. py:property:: candidate
+      :type: global___ICECandidate
+
+
+
+   .. py:property:: error
+      :type: google.rpc.status_pb2.Status
+
+
+
+   .. py:method:: HasField(field_name: Literal['candidate', b'candidate', 'done', b'done', 'error', b'error', 'update', b'update']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['update', b'update']) -> Literal['candidate', 'done', 'error'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: CallUpdateResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CallUpdateResponse contains nothing in response to a call update.
+
+
+.. py:class:: OptionalWebRTCConfigRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
+   to use for the peer connection.
+
+
+.. py:class:: OptionalWebRTCConfigResponse(*, config: global___WebRTCConfig | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   OptionalWebRTCConfigResponse contains the optional WebRTC config
+   to use for the peer connection.
+
+
+   .. py:property:: config
+      :type: global___WebRTCConfig
+
+
+
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SignalingServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
+   .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: SignalingService
+
+   Bases: :py:obj:`viam.proto.rpc.webrtc.signaling.SignalingServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
    .. py:method:: Call(stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.CallRequest, viam.proto.rpc.webrtc.signaling.CallResponse]) -> None
       :async:
+
 
 
    .. py:method:: CallUpdate(stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.CallUpdateRequest, viam.proto.rpc.webrtc.signaling.CallUpdateResponse]) -> None
       :async:
 
 
+
    .. py:method:: Answer(stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.AnswerResponse, viam.proto.rpc.webrtc.signaling.AnswerRequest]) -> None
       :async:
+
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest, viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse]) -> None

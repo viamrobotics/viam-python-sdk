@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.encoder.v1.encoder_grpc`
-====================================================
+viam.gen.component.encoder.v1.encoder_grpc
+==========================================
 
 .. py:module:: viam.gen.component.encoder.v1.encoder_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,67 +14,83 @@ Classes
    viam.gen.component.encoder.v1.encoder_grpc.EncoderServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: EncoderServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPositionRequest, component.encoder.v1.encoder_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ResetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.ResetPositionRequest, component.encoder.v1.encoder_pb2.ResetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPropertiesRequest, component.encoder.v1.encoder_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedEncoderServiceBase
 
-
    Bases: :py:obj:`EncoderServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPositionRequest, component.encoder.v1.encoder_pb2.GetPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: ResetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.ResetPositionRequest, component.encoder.v1.encoder_pb2.ResetPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPropertiesRequest, component.encoder.v1.encoder_pb2.GetPropertiesResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -86,6 +99,4 @@ Classes
 
 
 .. py:class:: EncoderServiceStub(channel: grpclib.client.Channel)
-
-
 

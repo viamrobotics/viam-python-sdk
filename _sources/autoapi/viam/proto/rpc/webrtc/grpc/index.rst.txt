@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.rpc.webrtc.grpc`
-====================================
+viam.proto.rpc.webrtc.grpc
+==========================
 
 .. py:module:: viam.proto.rpc.webrtc.grpc
 
@@ -10,11 +10,8 @@
 
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -34,20 +31,22 @@ Classes
    viam.proto.rpc.webrtc.grpc.UnimplementedSignalingServiceBase
 
 
-
+Module Contents
+---------------
 
 .. py:class:: Metadata(*, md: collections.abc.Mapping[str, global___Strings] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Metadata is for custom key values provided by a client or server
    during a stream.
 
+
    .. py:class:: MdEntry(*, key: str = ..., value: global___Strings | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -55,16 +54,17 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: global___Strings
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -82,6 +82,7 @@ Classes
 
 
 
+
    .. py:property:: md
       :type: google.protobuf.internal.containers.MessageMap[str, global___Strings]
 
@@ -89,51 +90,52 @@ Classes
 
 .. py:class:: PacketMessage(*, data: bytes = ..., eom: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A PacketMessage is used to packetize large messages (> 64KiB) to be able to safely
    transmit over WebRTC data channels.
 
-   .. py:attribute:: data
-      :type: bytes
 
-      
+   .. py:attribute:: data
+      :type:  bytes
+
 
    .. py:attribute:: eom
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ..., rst_stream: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A Request is a frame coming from a client. It is always
    associated with a stream where the client assigns the stream
    identifier. Servers will drop frames where the stream identifier
    has no association (if a non-header frames are sent).
 
+
+   .. py:attribute:: rst_stream
+      :type:  bool
+
+
    .. py:property:: stream
       :type: global___Stream
+
 
 
    .. py:property:: headers
       :type: global___RequestHeaders
 
 
+
    .. py:property:: message
       :type: global___RequestMessage
 
 
-   .. py:attribute:: rst_stream
-      :type: bool
 
-      
-
-   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', rst_stream, b'rst_stream', stream, b'stream', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -150,7 +152,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[headers, message, rst_stream] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['headers', 'message', 'rst_stream'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -168,25 +171,27 @@ Classes
 
 .. py:class:: RequestHeaders(*, method: str = ..., metadata: global___Metadata | None = ..., timeout: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    RequestHeaders describe the unary or streaming call to make.
 
+
+   .. py:attribute:: method
+      :type:  str
+
+
    .. py:property:: metadata
       :type: global___Metadata
+
 
 
    .. py:property:: timeout
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:attribute:: method
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
+   .. py:method:: HasField(field_name: Literal['metadata', b'metadata', 'timeout', b'timeout']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -206,27 +211,27 @@ Classes
 
 .. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: global___PacketMessage | None = ..., eos: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A RequestMessage contains individual gRPC messages and a potential
    end-of-stream (EOS) marker.
+
+
+   .. py:attribute:: has_message
+      :type:  bool
+
+
+   .. py:attribute:: eos
+      :type:  bool
+
 
    .. py:property:: packet_message
       :type: global___PacketMessage
 
 
-   .. py:attribute:: has_message
-      :type: bool
 
-      
-
-   .. py:attribute:: eos
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: Literal['packet_message', b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -246,31 +251,36 @@ Classes
 
 .. py:class:: Response(*, stream: global___Stream | None = ..., headers: global___ResponseHeaders | None = ..., message: global___ResponseMessage | None = ..., trailers: global___ResponseTrailers | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A Response is a frame coming from a server. It is always
    associated with a stream where the client assigns the stream
    identifier. Clients will drop frames where the stream identifier
    has no association.
 
+
    .. py:property:: stream
       :type: global___Stream
+
 
 
    .. py:property:: headers
       :type: global___ResponseHeaders
 
 
+
    .. py:property:: message
       :type: global___ResponseMessage
+
 
 
    .. py:property:: trailers
       :type: global___ResponseTrailers
 
 
-   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -287,7 +297,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[headers, message, trailers] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['headers', 'message', 'trailers'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -305,17 +316,19 @@ Classes
 
 .. py:class:: ResponseHeaders(*, metadata: global___Metadata | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ResponseHeaders contain custom metadata that are sent to the client
    before any message or trailers (unless only trailers are sent).
+
 
    .. py:property:: metadata
       :type: global___Metadata
 
 
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -335,16 +348,18 @@ Classes
 
 .. py:class:: ResponseMessage(*, packet_message: global___PacketMessage | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    ResponseMessage contains the data of a response to a call.
+
 
    .. py:property:: packet_message
       :type: global___PacketMessage
 
 
-   .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['packet_message', b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -364,20 +379,23 @@ Classes
 
 .. py:class:: ResponseTrailers(*, status: google.rpc.status_pb2.Status | None = ..., metadata: global___Metadata | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ResponseTrailers contain the status of a response and any custom metadata.
 
+
    .. py:property:: status
       :type: google.rpc.status_pb2.Status
+
 
 
    .. py:property:: metadata
       :type: global___Metadata
 
 
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata', status, b'status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['metadata', b'metadata', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -397,24 +415,24 @@ Classes
 
 .. py:class:: Stream(*, id: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A Stream represents an instance of a gRPC stream between
    a client and a server.
 
-   .. py:attribute:: id
-      :type: int
 
-      
+   .. py:attribute:: id
+      :type:  int
 
 
 .. py:class:: Strings(*, values: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Strings are a series of values.
+
 
    .. py:property:: values
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -423,58 +441,68 @@ Classes
 
 .. py:class:: SignalingServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: SignalingServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedSignalingServiceBase
 
-
    Bases: :py:obj:`SignalingServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :async:
+
 
 
    .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :async:
 
 
+
    .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :async:
+
 
 
    .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None

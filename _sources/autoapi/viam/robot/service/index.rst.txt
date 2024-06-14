@@ -1,52 +1,731 @@
-:py:mod:`viam.robot.service`
-============================
+viam.robot.service
+==================
 
 .. py:module:: viam.robot.service
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.robot.service.RobotService
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
    viam.robot.service.LOGGER
 
 
-.. py:data:: LOGGER
+Exceptions
+----------
 
-   
+.. autoapisummary::
 
-.. py:class:: RobotService(manager: viam.resource.manager.ResourceManager)
+   viam.robot.service.ViamGRPCError
 
 
-   Bases: :py:obj:`viam.proto.robot.UnimplementedRobotServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.robot.service.Sensor
+   viam.robot.service.ResourceName
+   viam.robot.service.GetStatusRequest
+   viam.robot.service.GetStatusResponse
+   viam.robot.service.ResourceNamesRequest
+   viam.robot.service.ResourceNamesResponse
+   viam.robot.service.Status
+   viam.robot.service.StopAllRequest
+   viam.robot.service.StopAllResponse
+   viam.robot.service.StreamStatusRequest
+   viam.robot.service.StreamStatusResponse
+   viam.robot.service.UnimplementedRobotServiceBase
+   viam.robot.service.Registry
+   viam.robot.service.ResourceRPCServiceBase
+   viam.robot.service.RobotService
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.robot.service.resource_names_for_resource
+   viam.robot.service.struct_to_dict
+
+
+Module Contents
+---------------
+
+.. py:class:: Sensor(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Sensor represents a physical sensing device that can provide measurement readings.
+
+   This acts as an abstract base class for any drivers representing specific
+   sensor implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.sensor import Sensor
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:method:: get_readings(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.SensorReading]
+      :abstractmethod:
+
+      :async:
+
+
+      Obtain the measurements/data specific to this sensor.
+
+      ::
+
+          my_sensor = Sensor.from_robot(robot=robot, name='my_sensor')
+
+          # Get the readings provided by the sensor.
+          readings = await my_sensor.get_readings()
+
+      :returns: The measurements. Can be of any type.
+      :rtype: Mapping[str, Any]
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:exception:: ViamGRPCError(message: str = '', grpc_code: grpclib.Status = Status.INTERNAL)
+
+   Bases: :py:obj:`ViamError`
+
+
+   Exception raised if it could happen as a part of GRPC calls.
+
+
+   .. py:property:: grpc_error
+      :type: grpclib.GRPCError
+
+
+
+.. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: namespace
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+
+   .. py:attribute:: subtype
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: resource_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+
+.. py:class:: GetStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
+
+
+
+.. py:class:: ResourceNamesRequest
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: resources
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+
+.. py:class:: Status(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ..., last_reconfigured: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+
+   .. py:property:: status
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:property:: last_reconfigured
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['last_reconfigured', b'last_reconfigured', 'name', b'name', 'status', b'status']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: StopAllRequest(*, extra: collections.abc.Iterable[global___StopExtraParameters] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: extra
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
+
+
+
+.. py:class:: StopAllResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: StreamStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ..., every: google.protobuf.duration_pb2.Duration | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: resource_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+
+   .. py:property:: every
+      :type: google.protobuf.duration_pb2.Duration
+
+      how often to send a new status.
+
+
+   .. py:method:: HasField(field_name: Literal['every', b'every']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: StreamStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
+
+
+
+.. py:class:: UnimplementedRobotServiceBase
+
+   Bases: :py:obj:`RobotServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
+   .. py:method:: GetOperations(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetSessions(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ResourceNames(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CancelOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: BlockForOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[robot.v1.robot_pb2.DiscoverComponentsRequest, robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StreamStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StopAll(stream: grpclib.server.Stream[robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StartSession(stream: grpclib.server.Stream[robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Log(stream: grpclib.server.Stream[robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetCloudMetadata(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: RestartModule(stream: grpclib.server.Stream[robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Shutdown(stream: grpclib.server.Stream[robot.v1.robot_pb2.ShutdownRequest, robot.v1.robot_pb2.ShutdownResponse]) -> None
+      :async:
+
+
+
+.. py:class:: Registry
+
+   The global registry of robotic parts.
+
+   **NB** The Registry should almost never be used directly
+
+   The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
+   pre-registered (e.g. Arm, Motor).
+
+   If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+   resource using ``Registry.register(...)``.
+
+
+   .. py:method:: register_subtype(registration: ResourceRegistration[Resource])
+      :classmethod:
+
+
+      Register a Subtype with the Registry
+
+      :param registration: Object containing registration data for the subtype
+      :type registration: ResourceRegistration
+
+      :raises DuplicateResourceError: Raised if the Subtype to register is already in the registry
+      :raises ValidationError: Raised if registration is missing any necessary parameters
+
+
+
+   .. py:method:: register_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, registration: ResourceCreatorRegistration)
+      :classmethod:
+
+
+      Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+      :param registration: The registration functions of the model
+      :type registration: ResourceCreatorRegistration
+
+      :raises DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+      :raises ValidationError: Raised if registration does not have creator
+
+
+
+   .. py:method:: lookup_subtype(subtype: viam.resource.types.Subtype) -> ResourceRegistration
+      :classmethod:
+
+
+      Lookup and retrieve a registered Subtype by its name
+
+      :param subtype: The subtype of the resource
+      :type subtype: str
+
+      :raises ResourceNotFoundError: Raised if the Subtype is not registered
+
+      :returns: The registration object of the resource
+      :rtype: ResourceRegistration
+
+
+
+   .. py:method:: lookup_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ResourceCreator
+      :classmethod:
+
+
+      Lookup and retrieve a registered resource creator by its subtype and model
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+
+      :raises ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+
+      :returns: The function to create the resource
+      :rtype: ResourceCreator
+
+
+
+   .. py:method:: lookup_validator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.Validator
+      :classmethod:
+
+
+      Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+
+      :param subtype: The Subtype of the resource
+      :type subtype: Subtype
+      :param model: The Model of the resource
+      :type model: Model
+
+      :returns: The function to validate the resource
+      :rtype: Validator
+
+
+
+   .. py:method:: REGISTERED_SUBTYPES() -> Mapping[viam.resource.types.Subtype, ResourceRegistration]
+      :classmethod:
+
+
+      The dictionary of all registered resources
+      - Key: Subtype of the resource
+      - Value: The registration object for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[Subtype, ResourceRegistration]
+
+
+
+   .. py:method:: REGISTERED_RESOURCE_CREATORS() -> Mapping[str, ResourceCreatorRegistration]
+      :classmethod:
+
+
+      The dictionary of all registered resources
+      - Key: subtype/model
+      - Value: The ResourceCreatorRegistration for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[str, ResourceCreatorRegistration]
+
+
+
+.. py:class:: ResourceRPCServiceBase(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.rpc.types.RPCServiceBase`, :py:obj:`Generic`\ [\ :py:obj:`viam.resource.manager.ResourceType`\ ]
+
+
+   Base RPC service for a resource.
+   All resource RPC services must inherit from this class.
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:attribute:: manager
+      :type:  viam.resource.manager.ResourceManager
+
+
+   .. py:method:: get_resource(name: str) -> viam.resource.manager.ResourceType
+
+      Return the resource with the given name if it exists in the registry.
+      If the resource does not exist in the registry,
+      this function will raise an error
+
+      :param name: Name of the resource
+      :type name: str
+
+      :raises GRPCError with the status code Status.NOT_FOUND:
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+
+.. py:function:: resource_names_for_resource(resource: viam.resource.base.ResourceBase) -> List[viam.proto.common.ResourceName]
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:data:: LOGGER
+
+.. py:class:: RobotService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.robot.UnimplementedRobotServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
    .. py:method:: ResourceNames(stream: grpclib.server.Stream[viam.proto.robot.ResourceNamesRequest, viam.proto.robot.ResourceNamesResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetStatus(stream: grpclib.server.Stream[viam.proto.robot.GetStatusRequest, viam.proto.robot.GetStatusResponse]) -> None
       :async:
 
 
+
    .. py:method:: StreamStatus(stream: grpclib.server.Stream[viam.proto.robot.StreamStatusRequest, viam.proto.robot.StreamStatusResponse]) -> None
       :async:
+
 
 
    .. py:method:: StopAll(stream: grpclib.server.Stream[viam.proto.robot.StopAllRequest, viam.proto.robot.StopAllResponse]) -> None

@@ -1,43 +1,20 @@
-:py:mod:`viam.media.utils.pil`
-==============================
+viam.media.utils.pil
+====================
 
 .. py:module:: viam.media.utils.pil
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   viam_rgba_plugin/index.rst
-
-
-Package Contents
-----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.media.utils.pil.CameraMimeType
-   viam.media.utils.pil.ViamImage
-
-
-
-Functions
-~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.media.utils.pil.viam_to_pil_image
-   viam.media.utils.pil.pil_to_viam_image
-
+   /autoapi/viam/media/utils/pil/viam_rgba_plugin/index
 
 
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -45,10 +22,31 @@ Attributes
    viam.media.utils.pil.LIBRARY_SUPPORTED_FORMATS
 
 
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.media.utils.pil.CameraMimeType
+   viam.media.utils.pil.ViamImage
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.media.utils.pil.viam_to_pil_image
+   viam.media.utils.pil.pil_to_viam_image
+
+
+Package Contents
+----------------
+
 .. py:class:: CameraMimeType
 
-
    Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
 
    str(object='') -> str
    str(bytes_or_buffer[, encoding[, errors]]) -> str
@@ -61,37 +59,40 @@ Attributes
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
 
+
    .. py:attribute:: VIAM_RGBA
       :value: 'image/vnd.viam.rgba'
 
-      
+
 
    .. py:attribute:: VIAM_RAW_DEPTH
       :value: 'image/vnd.viam.dep'
 
-      
+
 
    .. py:attribute:: JPEG
       :value: 'image/jpeg'
 
-      
+
 
    .. py:attribute:: PNG
       :value: 'image/png'
 
-      
+
 
    .. py:attribute:: PCD
       :value: 'pointcloud/pcd'
 
-      
+
 
    .. py:method:: from_string(value: str) -> typing_extensions.Self
       :classmethod:
 
 
+
    .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
       :classmethod:
+
 
       Returns the mimetype from a proto enum.
 
@@ -100,6 +101,7 @@ Attributes
 
       :returns: The mimetype.
       :rtype: Self
+
 
 
    .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
@@ -113,30 +115,34 @@ Attributes
 
 .. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
 
-
    A native implementation of an image.
 
    Provides the raw data and the mime type.
+
 
    .. py:property:: data
       :type: bytes
 
       The raw bytes of the image
 
+
    .. py:property:: mime_type
       :type: CameraMimeType
 
       The mime type of the image
+
 
    .. py:property:: width
       :type: Optional[int]
 
       The width of the image
 
+
    .. py:property:: height
       :type: Optional[int]
 
       The height of the image
+
 
    .. py:method:: bytes_to_depth_array() -> List[List[int]]
 
@@ -152,11 +158,8 @@ Attributes
 .. py:data:: RGBA_FORMAT_LABEL
    :value: 'VIAM_RGBA'
 
-   
 
 .. py:data:: LIBRARY_SUPPORTED_FORMATS
-
-   
 
 .. py:function:: viam_to_pil_image(image: viam.media.video.ViamImage) -> PIL.Image.Image
 

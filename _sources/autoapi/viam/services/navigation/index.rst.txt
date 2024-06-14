@@ -1,25 +1,22 @@
-:py:mod:`viam.services.navigation`
-==================================
+viam.services.navigation
+========================
 
 .. py:module:: viam.services.navigation
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   navigation/index.rst
-   service/index.rst
+   /autoapi/viam/services/navigation/client/index
+   /autoapi/viam/services/navigation/navigation/index
+   /autoapi/viam/services/navigation/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -32,26 +29,30 @@ Classes
    viam.services.navigation.NavigationClient
 
 
-
+Package Contents
+----------------
 
 .. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+
 
    .. py:property:: location
       :type: global___GeoPoint
 
       Location of the geometry
 
+
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
 
       Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -71,8 +72,8 @@ Classes
 
 .. py:class:: GeoPoint(*, latitude: float = ..., longitude: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -80,38 +81,42 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: latitude
-      :type: float
 
-      
+   .. py:attribute:: latitude
+      :type:  float
+
 
    .. py:attribute:: longitude
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:class:: MapType
 
-
    Bases: :py:obj:`_MapType`
+
 
    MapType represents the various types of maps the navigation service can ingest.
 
 
 .. py:class:: Mode
 
-
    Bases: :py:obj:`_Mode`
 
 
 .. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoPoint] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A user provided destination and the set of geopoints that
    the robot is expected to take to get there
+
+
+   .. py:attribute:: destination_waypoint_id
+      :type:  str
+
+      The id of the user specified waypoint
+
 
    .. py:property:: geopoints
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoPoint]
@@ -119,16 +124,11 @@ Classes
       List of geopoints that the motion planner output to reach the destination
       The first geopoint is the starting position of the robot for that path
 
-   .. py:attribute:: destination_waypoint_id
-      :type: str
-
-      The id of the user specified waypoint
-
 
 .. py:class:: Waypoint(*, id: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -136,16 +136,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
    .. py:property:: location
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -165,18 +166,19 @@ Classes
 
 .. py:class:: NavigationClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.services.navigation.navigation.Navigation`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    Connect to the NavigationService, which allows the robot to navigate to specified locations.
 
-   .. py:attribute:: client
-      :type: viam.proto.service.navigation.NavigationServiceStub
 
-      
+   .. py:attribute:: client
+      :type:  viam.proto.service.navigation.NavigationServiceStub
+
 
    .. py:method:: get_paths(*, timeout: Optional[float] = None) -> List[viam.proto.service.navigation.Path]
       :async:
+
 
       Get each path, the series of geo points the robot plans to travel through
       to get to a destination waypoint, in the machine’s motion planning.
@@ -198,8 +200,10 @@ Classes
       :rtype: List[navigation.Path]
 
 
+
    .. py:method:: get_location(*, timeout: Optional[float] = None) -> viam.services.navigation.GeoPoint
       :async:
+
 
       Get the current location of the robot in the navigation service.
 
@@ -219,8 +223,10 @@ Classes
       :rtype: navigation.GeoPoint
 
 
+
    .. py:method:: get_obstacles(*, timeout: Optional[float] = None) -> List[viam.services.navigation.GeoGeometry]
       :async:
+
 
       Get an array or list of the obstacles currently in the service’s data storage.
       These are objects designated for the robot to avoid when navigating.
@@ -243,8 +249,10 @@ Classes
       :rtype: List[navigation.GeoGeometry]
 
 
+
    .. py:method:: get_waypoints(*, timeout: Optional[float] = None) -> List[viam.services.navigation.Waypoint]
       :async:
+
 
       Get an array of waypoints currently in the service’s data storage.
       These are locations designated within a path for the robot to navigate to.
@@ -265,8 +273,10 @@ Classes
       :rtype: List[navigation.Waypoint]
 
 
+
    .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float] = None)
       :async:
+
 
       Add a waypoint to the service’s data storage.
 
@@ -289,8 +299,10 @@ Classes
       :type timeout: Optional[float]
 
 
+
    .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float] = None)
       :async:
+
 
       Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
       the motion will be canceled, and the robot will proceed to the next waypoint.
@@ -309,8 +321,10 @@ Classes
       :type timeout: Optional[float]
 
 
+
    .. py:method:: get_mode(*, timeout: Optional[float] = None) -> viam.services.navigation.Mode.ValueType
       :async:
+
 
       Get the Mode the service is operating in.
 
@@ -334,8 +348,10 @@ Classes
       :rtype: navigation.Mode.ValueType
 
 
+
    .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float] = None)
       :async:
+
 
       Set the Mode the service is operating in.
 
@@ -358,8 +374,10 @@ Classes
       :type mode: navigation.Mode.ValueType
 
 
+
    .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.navigation.MapType.ValueType
       :async:
+
 
       Get information about the navigation service.
 
@@ -378,8 +396,10 @@ Classes
       :rtype: MapType.ValueType
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/receive arbitrary commands.
 
@@ -402,8 +422,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the service named ``name`` from the provided robot.
 
@@ -431,8 +453,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -446,6 +470,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -463,8 +488,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

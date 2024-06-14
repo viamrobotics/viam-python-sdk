@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.service.datamanager.v1.data_manager_grpc`
-===========================================================
+viam.gen.service.datamanager.v1.data_manager_grpc
+=================================================
 
 .. py:module:: viam.gen.service.datamanager.v1.data_manager_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,40 +14,47 @@ Classes
    viam.gen.service.datamanager.v1.data_manager_grpc.DataManagerServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: DataManagerServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Sync(stream: grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedDataManagerServiceBase
 
-
    Bases: :py:obj:`DataManagerServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Sync(stream: grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
@@ -59,6 +63,4 @@ Classes
 
 
 .. py:class:: DataManagerServiceStub(channel: grpclib.client.Channel)
-
-
 

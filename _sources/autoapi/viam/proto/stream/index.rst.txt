@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.stream`
-===========================
+viam.proto.stream
+=================
 
 .. py:module:: viam.proto.stream
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -29,53 +26,61 @@ Classes
    viam.proto.stream.RemoveStreamResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: StreamServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: ListStreams(stream: grpclib.server.Stream[stream.v1.stream_pb2.ListStreamsRequest, stream.v1.stream_pb2.ListStreamsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: AddStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.AddStreamRequest, stream.v1.stream_pb2.AddStreamResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RemoveStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.RemoveStreamRequest, stream.v1.stream_pb2.RemoveStreamResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: StreamServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedStreamServiceBase
 
-
    Bases: :py:obj:`StreamServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: ListStreams(stream: grpclib.server.Stream[stream.v1.stream_pb2.ListStreamsRequest, stream.v1.stream_pb2.ListStreamsResponse]) -> None
       :async:
 
 
+
    .. py:method:: AddStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.AddStreamRequest, stream.v1.stream_pb2.AddStreamResponse]) -> None
       :async:
+
 
 
    .. py:method:: RemoveStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.RemoveStreamRequest, stream.v1.stream_pb2.RemoveStreamResponse]) -> None
@@ -85,39 +90,39 @@ Classes
 
 .. py:class:: AddStreamRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A AddStreamRequest requests the given stream be added to the connection.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: AddStreamResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    AddStreamResponse is returned after a successful AddStreamRequest.
 
 
 .. py:class:: ListStreamsRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    ListStreamsRequest requests all streams registered.
 
 
 .. py:class:: ListStreamsResponse(*, names: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    A ListStreamsResponse details streams registered.
+
 
    .. py:property:: names
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -126,21 +131,20 @@ Classes
 
 .. py:class:: RemoveStreamRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    A RemoveStreamRequest requests the given stream be removed from the connection.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: RemoveStreamResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    RemoveStreamResponse is returned after a successful RemoveStreamRequest.
 

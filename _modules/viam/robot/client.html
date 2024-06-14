@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -143,7 +143,7 @@
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="RobotClient"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient">[docs]</a><span class="k">class</span> <span class="nc">RobotClient</span><span class="p">:</span>
+<div class="viewcode-block" id="RobotClient"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient">[docs]</a><span class="k">class</span> <span class="nc">RobotClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for a Robot. This class should be used for all interactions with a robot.</span>
 
 <span class="sd">    There are 2 ways to instantiate a robot client::</span>
@@ -190,7 +190,7 @@
 <span class="sd">            asyncio.run(main())</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RobotClient.Options"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.Options">[docs]</a>    <span class="nd">@dataclass</span>
+<div class="viewcode-block" id="RobotClient.Options"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.Options">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">Options</span><span class="p">:</span>
         <span class="n">refresh_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -223,7 +223,7 @@
 <span class="sd">        Whether sessions are disabled</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RobotClient.Options.with_api_key"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.Options.with_api_key">[docs]</a>        <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="RobotClient.Options.with_api_key"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.Options.with_api_key">[docs]</a>        <span class="nd">@classmethod</span>
         <span class="k">def</span> <span class="nf">with_api_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Create RobotClient.Options with an API key for credentials and default values for other arguments.</span>
@@ -254,7 +254,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dial_options</span> <span class="o">=</span> <span class="n">dial_opts</span>
             <span class="k">return</span> <span class="bp">self</span></div></div>
 
-<div class="viewcode-block" id="RobotClient.at_address"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.at_address">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="RobotClient.at_address"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.at_address">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">at_address</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot client that is connected to the robot at the provided address.</span>
 
@@ -288,7 +288,7 @@
         <span class="n">robot</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span>
         <span class="k">return</span> <span class="n">robot</span></div>
 
-<div class="viewcode-block" id="RobotClient.with_channel"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.with_channel">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="RobotClient.with_channel"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.with_channel">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">with_channel</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Channel</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">],</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot that is connected to a robot over the given channel.</span>
 
@@ -376,7 +376,7 @@
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">_sessions_client</span><span class="p">:</span> <span class="n">SessionsClient</span>
 
-<div class="viewcode-block" id="RobotClient.refresh"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.refresh">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.refresh"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.refresh">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Manually refresh the underlying parts of this robot</span>
 
@@ -510,7 +510,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">()</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">reconnect_every</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RobotClient.get_component"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
+<div class="viewcode-block" id="RobotClient.get_component"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a component using its ResourceName.</span>
 
 <span class="sd">        This function should not be called directly except in specific cases. The method ``Component.from_robot(...)`` is the preferred</span>
@@ -559,7 +559,7 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotClient.get_service"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ServiceBase</span><span class="p">:</span>
+<div class="viewcode-block" id="RobotClient.get_service"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ServiceBase</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a service using its ResourceName</span>
 
 <span class="sd">        This function should not be called directly except in specific cases. The method ``Service.from_robot(...)`` is the preferred</span>
@@ -628,7 +628,7 @@
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tabs</span><span class="si">}</span><span class="s2"> Closing grpc-lib Channel instance&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<div class="viewcode-block" id="RobotClient.close"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.close"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cleanly close the underlying connections and stop any periodic tasks.</span>
 
@@ -662,16 +662,16 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span></div>
 
-<div class="viewcode-block" id="RobotClient.__aenter__"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.__aenter__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.__aenter__"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.__aenter__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="RobotClient.__aexit__"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.__aexit__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.__aexit__"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.__aexit__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
     <span class="c1">##########</span>
     <span class="c1"># STATUS #</span>
     <span class="c1">##########</span>
-<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
 <span class="sd">        provide a list of ``ResourceName`` for which you want statuses.</span>
@@ -694,7 +694,7 @@
     <span class="c1"># OPERATIONS #</span>
     <span class="c1">##############</span>
 
-<div class="viewcode-block" id="RobotClient.get_operations"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_operations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Operation</span><span class="p">]:</span>
+<div class="viewcode-block" id="RobotClient.get_operations"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_operations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Operation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of operations currently running on the robot.</span>
 
@@ -709,7 +709,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOperationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetOperations</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">operations</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotClient.cancel_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.cancel_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.cancel_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.cancel_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cancels the specified operation on the robot.</span>
 
@@ -723,7 +723,7 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelOperationRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">CancelOperation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotClient.block_for_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.block_for_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_for_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.block_for_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.block_for_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_for_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Blocks on the specified operation on the robot. This function will only return when the specific operation</span>
 <span class="sd">        has finished or has been cancelled.</span>
@@ -742,7 +742,7 @@
     <span class="c1"># FRAME SYSTEM #</span>
     <span class="c1">################</span>
 
-<div class="viewcode-block" id="RobotClient.get_frame_system_config"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_frame_system_config">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame_system_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FrameSystemConfig</span><span class="p">]:</span>
+<div class="viewcode-block" id="RobotClient.get_frame_system_config"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_frame_system_config">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame_system_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FrameSystemConfig</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the configuration of the frame system of a given robot.</span>
 
@@ -759,7 +759,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">FrameSystemConfigResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">FrameSystemConfig</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">frame_system_configs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotClient.transform_pose"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_pose</span><span class="p">(</span>
+<div class="viewcode-block" id="RobotClient.transform_pose"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.transform_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_pose</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -781,14 +781,14 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">TransformPoseResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">TransformPose</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">pose</span></div>
 
-<div class="viewcode-block" id="RobotClient.transform_point_cloud"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_point_cloud">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.transform_point_cloud"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.transform_point_cloud">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
     <span class="c1">#######################</span>
     <span class="c1"># COMPONENT DISCOVERY #</span>
     <span class="c1">#######################</span>
 
-<div class="viewcode-block" id="RobotClient.discover_components"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.discover_components">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">discover_components</span><span class="p">(</span>
+<div class="viewcode-block" id="RobotClient.discover_components"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.discover_components">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">discover_components</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DiscoveryQuery</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Discovery</span><span class="p">]:</span>
@@ -821,7 +821,7 @@
     <span class="c1"># STOP ALL #</span>
     <span class="c1">############</span>
 
-<div class="viewcode-block" id="RobotClient.stop_all"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.stop_all">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}):</span>
+<div class="viewcode-block" id="RobotClient.stop_all"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.stop_all">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
 
@@ -849,7 +849,7 @@
     <span class="c1"># LOG #</span>
     <span class="c1">#######</span>
 
-<div class="viewcode-block" id="RobotClient.log"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.log">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.log"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.log">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Send log from Python module over gRPC.</span>
 
 <span class="sd">        Create a LogEntry object from the log to send to RDK.</span>
@@ -869,7 +869,7 @@
     <span class="c1"># Get Cloud Metadata #</span>
     <span class="c1">######################</span>
 
-<div class="viewcode-block" id="RobotClient.get_cloud_metadata"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_cloud_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_cloud_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCloudMetadataResponse</span><span class="p">:</span>
+<div class="viewcode-block" id="RobotClient.get_cloud_metadata"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.get_cloud_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_cloud_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCloudMetadataResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get app-related information about the robot.</span>
 
@@ -884,7 +884,7 @@
     <span class="c1"># Shutdown #</span>
     <span class="c1">############</span>
 
-<div class="viewcode-block" id="RobotClient.shutdown"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.shutdown">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.shutdown"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.module.module.RobotClient.shutdown">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Shutdown shuts down the robot.</span>
 

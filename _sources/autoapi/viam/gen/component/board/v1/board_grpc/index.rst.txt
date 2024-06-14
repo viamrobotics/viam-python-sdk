@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.board.v1.board_grpc`
-================================================
+viam.gen.component.board.v1.board_grpc
+======================================
 
 .. py:module:: viam.gen.component.board.v1.board_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,139 +14,179 @@ Classes
    viam.gen.component.board.v1.board_grpc.BoardServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: BoardServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: SetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetGPIORequest, component.board.v1.board_pb2.SetGPIOResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetGPIORequest, component.board.v1.board_pb2.GetGPIOResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: PWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMRequest, component.board.v1.board_pb2.PWMResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetPWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMRequest, component.board.v1.board_pb2.SetPWMResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: PWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMFrequencyRequest, component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMFrequencyRequest, component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: WriteAnalog(stream: grpclib.server.Stream[component.board.v1.board_pb2.WriteAnalogRequest, component.board.v1.board_pb2.WriteAnalogResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetDigitalInterruptValueRequest, component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamTicks(stream: grpclib.server.Stream[component.board.v1.board_pb2.StreamTicksRequest, component.board.v1.board_pb2.StreamTicksResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SetPowerMode(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPowerModeRequest, component.board.v1.board_pb2.SetPowerModeResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedBoardServiceBase
 
-
    Bases: :py:obj:`BoardServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: SetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetGPIORequest, component.board.v1.board_pb2.SetGPIOResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetGPIORequest, component.board.v1.board_pb2.GetGPIOResponse]) -> None
       :async:
 
 
+
    .. py:method:: PWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMRequest, component.board.v1.board_pb2.PWMResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetPWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMRequest, component.board.v1.board_pb2.SetPWMResponse]) -> None
       :async:
 
 
+
    .. py:method:: PWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMFrequencyRequest, component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMFrequencyRequest, component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
       :async:
 
 
+
    .. py:method:: WriteAnalog(stream: grpclib.server.Stream[component.board.v1.board_pb2.WriteAnalogRequest, component.board.v1.board_pb2.WriteAnalogResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetDigitalInterruptValueRequest, component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
       :async:
 
 
+
    .. py:method:: StreamTicks(stream: grpclib.server.Stream[component.board.v1.board_pb2.StreamTicksRequest, component.board.v1.board_pb2.StreamTicksResponse]) -> None
       :async:
 
 
+
    .. py:method:: SetPowerMode(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPowerModeRequest, component.board.v1.board_pb2.SetPowerModeResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -158,6 +195,4 @@ Classes
 
 
 .. py:class:: BoardServiceStub(channel: grpclib.client.Channel)
-
-
 

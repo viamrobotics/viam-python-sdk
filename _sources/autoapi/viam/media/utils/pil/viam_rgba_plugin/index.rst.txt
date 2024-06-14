@@ -1,14 +1,21 @@
-:py:mod:`viam.media.utils.pil.viam_rgba_plugin`
-===============================================
+viam.media.utils.pil.viam_rgba_plugin
+=====================================
 
 .. py:module:: viam.media.utils.pil.viam_rgba_plugin
 
 
-Module Contents
----------------
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.media.utils.pil.viam_rgba_plugin.RGBA_FORMAT_LABEL
+   viam.media.utils.pil.viam_rgba_plugin.RGBA_HEADER_LENGTH
+   viam.media.utils.pil.viam_rgba_plugin.RGBA_MAGIC_NUMBER
+
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,21 +24,32 @@ Classes
    viam.media.utils.pil.viam_rgba_plugin.RGBADecoder
 
 
+Module Contents
+---------------
 
+.. py:data:: RGBA_FORMAT_LABEL
+   :value: 'VIAM_RGBA'
+
+
+.. py:data:: RGBA_HEADER_LENGTH
+   :value: 12
+
+
+.. py:data:: RGBA_MAGIC_NUMBER
 
 .. py:class:: RGBAEncoder(mode, *args)
 
-
    Bases: :py:obj:`PIL.ImageFile.PyEncoder`
+
 
    Python implementation of a format encoder. Override this class and
    add the decoding logic in the :meth:`encode` method.
 
    See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
 
+
    .. py:attribute:: ENCODER_NAME
 
-      
 
    .. py:method:: encode(bufsize)
 
@@ -46,20 +64,20 @@ Classes
 
 .. py:class:: RGBAImage(fp=None, filename=None)
 
-
    Bases: :py:obj:`PIL.ImageFile.ImageFile`
+
 
    Base class for image file format handlers.
 
-   .. py:attribute:: format
-      :type: ClassVar[str]
 
-      
+   .. py:attribute:: format
+      :type:  ClassVar[str]
+
 
    .. py:attribute:: format_description
       :value: "Viam's Raw RGBA Format"
 
-      
+
 
    .. py:method:: close() -> None
 
@@ -77,13 +95,14 @@ Classes
 
 .. py:class:: RGBADecoder(mode, *args)
 
-
    Bases: :py:obj:`PIL.ImageFile.PyDecoder`
+
 
    Python implementation of a format decoder. Override this class and
    add the decoding logic in the :meth:`decode` method.
 
    See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
+
 
    .. py:method:: decode(buffer) -> Tuple[int, int]
 

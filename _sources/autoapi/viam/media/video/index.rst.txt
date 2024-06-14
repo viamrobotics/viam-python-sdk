@@ -1,28 +1,63 @@
-:py:mod:`viam.media.video`
-==========================
+viam.media.video
+================
 
 .. py:module:: viam.media.video
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
+Attributes
+----------
 
 .. autoapisummary::
 
+   viam.media.video.RGBA_HEADER_LENGTH
+   viam.media.video.RGBA_MAGIC_NUMBER
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   viam.media.video.NotSupportedError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.media.video.Format
    viam.media.video.CameraMimeType
    viam.media.video.ViamImage
    viam.media.video.NamedImage
 
 
+Module Contents
+---------------
 
+.. py:exception:: NotSupportedError(message: str)
+
+   Bases: :py:obj:`ViamGRPCError`
+
+
+   Exception raised when specific component functionality is not supported
+
+
+.. py:class:: Format
+
+   Bases: :py:obj:`_Format`
+
+
+.. py:data:: RGBA_HEADER_LENGTH
+   :value: 12
+
+
+.. py:data:: RGBA_MAGIC_NUMBER
 
 .. py:class:: CameraMimeType
 
-
    Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
 
    str(object='') -> str
    str(bytes_or_buffer[, encoding[, errors]]) -> str
@@ -35,37 +70,40 @@ Classes
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
 
+
    .. py:attribute:: VIAM_RGBA
       :value: 'image/vnd.viam.rgba'
 
-      
+
 
    .. py:attribute:: VIAM_RAW_DEPTH
       :value: 'image/vnd.viam.dep'
 
-      
+
 
    .. py:attribute:: JPEG
       :value: 'image/jpeg'
 
-      
+
 
    .. py:attribute:: PNG
       :value: 'image/png'
 
-      
+
 
    .. py:attribute:: PCD
       :value: 'pointcloud/pcd'
 
-      
+
 
    .. py:method:: from_string(value: str) -> typing_extensions.Self
       :classmethod:
 
 
+
    .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
       :classmethod:
+
 
       Returns the mimetype from a proto enum.
 
@@ -74,6 +112,7 @@ Classes
 
       :returns: The mimetype.
       :rtype: Self
+
 
 
    .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
@@ -87,30 +126,34 @@ Classes
 
 .. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
 
-
    A native implementation of an image.
 
    Provides the raw data and the mime type.
+
 
    .. py:property:: data
       :type: bytes
 
       The raw bytes of the image
 
+
    .. py:property:: mime_type
       :type: CameraMimeType
 
       The mime type of the image
+
 
    .. py:property:: width
       :type: Optional[int]
 
       The width of the image
 
+
    .. py:property:: height
       :type: Optional[int]
 
       The height of the image
+
 
    .. py:method:: bytes_to_depth_array() -> List[List[int]]
 
@@ -125,13 +168,14 @@ Classes
 
 .. py:class:: NamedImage(name: str, data: bytes, mime_type: CameraMimeType)
 
-
    Bases: :py:obj:`ViamImage`
+
 
    An implementation of ViamImage that contains a name attribute.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       The name of the image
 

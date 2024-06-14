@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.gantry`
-=====================================
+viam.proto.component.gantry
+===========================
 
 .. py:module:: viam.proto.component.gantry
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -36,98 +33,121 @@ Classes
    viam.proto.component.gantry.StopResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: GantryServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetPositionRequest, component.gantry.v1.gantry_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.MoveToPositionRequest, component.gantry.v1.gantry_pb2.MoveToPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Home(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.HomeRequest, component.gantry.v1.gantry_pb2.HomeResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetLengths(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetLengthsRequest, component.gantry.v1.gantry_pb2.GetLengthsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Stop(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.StopRequest, component.gantry.v1.gantry_pb2.StopResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.IsMovingRequest, component.gantry.v1.gantry_pb2.IsMovingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: GantryServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedGantryServiceBase
 
-
    Bases: :py:obj:`GantryServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetPositionRequest, component.gantry.v1.gantry_pb2.GetPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.MoveToPositionRequest, component.gantry.v1.gantry_pb2.MoveToPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: Home(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.HomeRequest, component.gantry.v1.gantry_pb2.HomeResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetLengths(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetLengthsRequest, component.gantry.v1.gantry_pb2.GetLengthsResponse]) -> None
       :async:
 
 
+
    .. py:method:: Stop(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.StopRequest, component.gantry.v1.gantry_pb2.StopResponse]) -> None
       :async:
+
 
 
    .. py:method:: IsMoving(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.IsMovingRequest, component.gantry.v1.gantry_pb2.IsMovingResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -137,8 +157,8 @@ Classes
 
 .. py:class:: GetLengthsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -146,17 +166,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -176,14 +197,15 @@ Classes
 
 .. py:class:: GetLengthsResponse(*, lengths_mm: collections.abc.Iterable[float] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: lengths_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
@@ -192,8 +214,8 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -201,17 +223,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -231,14 +254,15 @@ Classes
 
 .. py:class:: GetPositionResponse(*, positions_mm: collections.abc.Iterable[float] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: positions_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
@@ -247,8 +271,8 @@ Classes
 
 .. py:class:: HomeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -256,17 +280,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -286,8 +311,8 @@ Classes
 
 .. py:class:: HomeResponse(*, homed: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -295,16 +320,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: homed
-      :type: bool
+      :type:  bool
 
       A bool describing whether the gantry has completed homing
 
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -312,16 +338,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -329,44 +354,46 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[float] | None = ..., speeds_mm_per_sec: collections.abc.Iterable[float] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:property:: positions_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Number of millimeters to move the gantry by respective to each axis.
 
+
    .. py:property:: speeds_mm_per_sec
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       Speeds to move each gantry axis must match length and order of positions_mm.
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -386,8 +413,8 @@ Classes
 
 .. py:class:: MoveToPositionResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -398,8 +425,8 @@ Classes
 
 .. py:class:: Status(*, positions_mm: collections.abc.Iterable[float] | None = ..., lengths_mm: collections.abc.Iterable[float] | None = ..., is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -407,24 +434,25 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: is_moving
+      :type:  bool
+
+
    .. py:property:: positions_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
 
 
    .. py:property:: lengths_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
-   .. py:attribute:: is_moving
-      :type: bool
-
-      
-
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -432,17 +460,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a gantry
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a gantry
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -462,8 +493,8 @@ Classes
 
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

@@ -1,31 +1,493 @@
-:py:mod:`viam.components.audio_input.client`
-============================================
+viam.components.audio_input.client
+==================================
 
 .. py:module:: viam.components.audio_input.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.components.audio_input.client.ValueTypes
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.audio_input.client.Audio
+   viam.components.audio_input.client.DoCommandRequest
+   viam.components.audio_input.client.DoCommandResponse
+   viam.components.audio_input.client.Geometry
+   viam.components.audio_input.client.AudioInputServiceStub
+   viam.components.audio_input.client.ChunksRequest
+   viam.components.audio_input.client.ChunksResponse
+   viam.components.audio_input.client.PropertiesRequest
+   viam.components.audio_input.client.PropertiesResponse
+   viam.components.audio_input.client.SampleFormat
+   viam.components.audio_input.client.ReconfigurableResourceRPCClientBase
+   viam.components.audio_input.client.Stream
+   viam.components.audio_input.client.StreamWithIterator
+   viam.components.audio_input.client.AudioInput
+   viam.components.audio_input.client.AudioInputClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.audio_input.client.dict_to_struct
+   viam.components.audio_input.client.get_geometries
+   viam.components.audio_input.client.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: Audio
 
-.. autoapisummary::
-
-   viam.components.audio_input.client.AudioInputClient
+   A block of audio data containing information about the block and the audio data
 
 
+   .. py:attribute:: info
+      :type:  viam.proto.component.audioinput.AudioChunkInfo
 
 
-.. py:class:: AudioInputClient(name: str, channel: grpclib.client.Channel)
+   .. py:attribute:: chunk
+      :type:  viam.proto.component.audioinput.AudioChunk
 
 
-   Bases: :py:obj:`viam.components.audio_input.audio_input.AudioInput`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
-   gRPC client for the AudioInput component.
+   Bases: :py:obj:`google.protobuf.message.Message`
 
-   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.streams.Stream[viam.media.audio.Audio]
+
+   DoCommandRequest represents a generic DoCommand input
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
+
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a geometries center point
+
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
+
+   .. py:property:: capsule
+      :type: global___Capsule
+
+
+
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: AudioInputServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: ChunksRequest(*, name: str = ..., sample_format: global___SampleFormat = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an audio input
+
+
+   .. py:attribute:: sample_format
+      :type:  global___SampleFormat
+
+      Requested sample encoding format of the response
+
+
+.. py:class:: ChunksResponse(*, info: global___AudioChunkInfo | None = ..., chunk: global___AudioChunk | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: info
+      :type: global___AudioChunkInfo
+
+
+
+   .. py:property:: chunk
+      :type: global___AudioChunk
+
+
+
+   .. py:method:: HasField(field_name: Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['info', 'chunk'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: PropertiesRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an audio input
+
+
+.. py:class:: PropertiesResponse(*, channel_count: int = ..., latency: google.protobuf.duration_pb2.Duration | None = ..., sample_rate: int = ..., sample_size: int = ..., is_big_endian: bool = ..., is_float: bool = ..., is_interleaved: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: channel_count
+      :type:  int
+
+
+   .. py:attribute:: sample_rate
+      :type:  int
+
+
+   .. py:attribute:: sample_size
+      :type:  int
+
+
+   .. py:attribute:: is_big_endian
+      :type:  bool
+
+
+   .. py:attribute:: is_float
+      :type:  bool
+
+
+   .. py:attribute:: is_interleaved
+      :type:  bool
+
+
+   .. py:property:: latency
+      :type: google.protobuf.duration_pb2.Duration
+
+
+
+   .. py:method:: HasField(field_name: Literal['latency', b'latency']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SampleFormat
+
+   Bases: :py:obj:`_SampleFormat`
+
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:class:: Stream
+
+   Bases: :py:obj:`Protocol`\ [\ :py:obj:`StreamType`\ ]
+
+
+   .. py:method:: next() -> StreamType
       :async:
+
+
+
+   .. py:method:: __aiter__() -> collections.abc.AsyncIterator
+
+
+   .. py:method:: __anext__() -> StreamType
+      :async:
+
+
+
+.. py:class:: StreamWithIterator(stream: collections.abc.AsyncIterator[StreamType])
+
+   Bases: :py:obj:`Stream`\ [\ :py:obj:`StreamType`\ ]
+
+
+   .. py:method:: next() -> StreamType
+      :async:
+
+
+
+   .. py:method:: __aiter__()
+
+
+   .. py:method:: __anext__() -> StreamType
+      :async:
+
+
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
+
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: AudioInput(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`, :py:obj:`viam.streams.StreamSource`\ [\ :py:obj:`viam.media.audio.Audio`\ ]
+
+
+   AudioInput represents a component that can capture audio.
+
+   This acts as an abstract base class for any drivers representing specific
+   audio input implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:class:: Properties
+
+      .. py:attribute:: channel_count
+         :type:  int
+
+
+      .. py:attribute:: latency
+         :type:  datetime.timedelta
+
+
+      .. py:attribute:: sample_rate
+         :type:  int
+
+
+      .. py:attribute:: sample_size
+         :type:  int
+
+
+      .. py:attribute:: is_big_endian
+         :type:  bool
+
+
+      .. py:attribute:: is_float
+         :type:  bool
+
+
+      .. py:attribute:: is_interleaved
+         :type:  bool
+
+
+      .. py:property:: proto
+         :type: viam.proto.component.audioinput.PropertiesResponse
+
+
+
+      .. py:method:: from_proto(proto: viam.proto.component.audioinput.PropertiesResponse) -> typing_extensions.Self
+         :classmethod:
+
+
+
+
+   .. py:method:: stream(*, timeout: Optional[float] = None, **kwargs) -> viam.media.audio.AudioStream
+      :abstractmethod:
+
+      :async:
+
 
       Stream audio samples from the audio input of the underlying robot
 
@@ -33,8 +495,12 @@ Classes
       :rtype: Stream[Audio]
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.audio_input.audio_input.AudioInput.Properties
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
+      :abstractmethod:
+
       :async:
+
 
       Get the properties of the audio input of the underlying robot
 
@@ -42,8 +508,28 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -61,8 +547,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -79,22 +567,10 @@ Classes
       :rtype: List[Geometry]
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
-      :classmethod:
-
-      Get the component named ``name`` from the provided robot.
-
-      :param robot: The robot
-      :type robot: RobotClient
-      :param name: The name of the component
-      :type name: str
-
-      :returns: The component, if it exists on the robot
-      :rtype: Self
-
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -108,6 +584,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -125,8 +602,149 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:class:: AudioInputClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.components.audio_input.audio_input.AudioInput`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+
+   gRPC client for the AudioInput component.
+
+
+   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.streams.Stream[viam.media.audio.Audio]
+      :async:
+
+
+      Stream audio samples from the audio input of the underlying robot
+
+      :returns: The stream of audio chunks
+      :rtype: Stream[Audio]
+
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.audio_input.audio_input.AudioInput.Properties
+      :async:
+
+
+      Get the properties of the audio input of the underlying robot
+
+      :returns: The audio input properties
+      :rtype: Properties
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
 
       Safely shut down the resource and prevent further use.
 

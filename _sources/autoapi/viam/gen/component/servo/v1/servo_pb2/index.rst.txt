@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.servo.v1.servo_pb2`
-===============================================
+viam.gen.component.servo.v1.servo_pb2
+=====================================
 
 .. py:module:: viam.gen.component.servo.v1.servo_pb2
 
@@ -10,29 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.servo.v1.servo_pb2.MoveRequest
-   viam.gen.component.servo.v1.servo_pb2.MoveResponse
-   viam.gen.component.servo.v1.servo_pb2.GetPositionRequest
-   viam.gen.component.servo.v1.servo_pb2.GetPositionResponse
-   viam.gen.component.servo.v1.servo_pb2.StopRequest
-   viam.gen.component.servo.v1.servo_pb2.StopResponse
-   viam.gen.component.servo.v1.servo_pb2.Status
-   viam.gen.component.servo.v1.servo_pb2.IsMovingRequest
-   viam.gen.component.servo.v1.servo_pb2.IsMovingResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -48,15 +27,32 @@ Attributes
    viam.gen.component.servo.v1.servo_pb2.global___IsMovingResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.servo.v1.servo_pb2.MoveRequest
+   viam.gen.component.servo.v1.servo_pb2.MoveResponse
+   viam.gen.component.servo.v1.servo_pb2.GetPositionRequest
+   viam.gen.component.servo.v1.servo_pb2.GetPositionResponse
+   viam.gen.component.servo.v1.servo_pb2.StopRequest
+   viam.gen.component.servo.v1.servo_pb2.StopResponse
+   viam.gen.component.servo.v1.servo_pb2.Status
+   viam.gen.component.servo.v1.servo_pb2.IsMovingRequest
+   viam.gen.component.servo.v1.servo_pb2.IsMovingResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -64,22 +60,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
+   .. py:attribute:: angle_deg
+      :type:  int
+
+      the degrees by which to rotate the servo. Accepted values are between 0 and 180
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      the name of the servo, as registered
-
-   .. py:attribute:: angle_deg
-      :type: int
-
-      the degrees by which to rotate the servo. Accepted values are between 0 and 180
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -99,12 +99,10 @@ Attributes
 
 .. py:data:: global___MoveRequest
 
-   
-
 .. py:class:: MoveResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -115,12 +113,10 @@ Attributes
 
 .. py:data:: global___MoveResponse
 
-   
-
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -128,17 +124,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      the name of the servo, as registered
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -158,12 +157,10 @@ Attributes
 
 .. py:data:: global___GetPositionRequest
 
-   
-
 .. py:class:: GetPositionResponse(*, position_deg: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -171,20 +168,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: position_deg
-      :type: int
+      :type:  int
 
       the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
 
 
 .. py:data:: global___GetPositionResponse
 
-   
-
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -192,17 +188,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a servo
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a servo
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -222,12 +221,10 @@ Attributes
 
 .. py:data:: global___StopRequest
 
-   
-
 .. py:class:: StopResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -238,12 +235,10 @@ Attributes
 
 .. py:data:: global___StopResponse
 
-   
-
 .. py:class:: Status(*, position_deg: int = ..., is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -251,25 +246,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: position_deg
-      :type: int
 
-      
+   .. py:attribute:: position_deg
+      :type:  int
+
 
    .. py:attribute:: is_moving
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:data:: global___Status
 
-   
-
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -277,20 +268,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:data:: global___IsMovingRequest
 
-   
-
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -298,13 +286,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:data:: global___IsMovingResponse
-
-   
 

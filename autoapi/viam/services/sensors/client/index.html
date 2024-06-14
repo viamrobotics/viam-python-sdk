@@ -55,28 +55,103 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.services</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.mlmodel</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../navigation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.navigation</span></code></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.services.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html">viam.services.mlmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html">viam.services.motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../navigation/index.html">viam.services.navigation</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.services.sensors</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors.client</span></code></a><ul>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.services.sensors.client</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient"><code class="docutils literal notranslate"><span class="pre">SensorsClient</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">SensorsClient.SUBTYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.client"><code class="docutils literal notranslate"><span class="pre">SensorsClient.client</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_sensors"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_sensors()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_readings"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_readings()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.do_command"><code class="docutils literal notranslate"><span class="pre">SensorsClient.do_command()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.from_robot"><code class="docutils literal notranslate"><span class="pre">SensorsClient.from_robot()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_resource_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_operation"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_operation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.close"><code class="docutils literal notranslate"><span class="pre">SensorsClient.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.DoCommandRequest.name"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.DoCommandRequest.command"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.command</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.DoCommandRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.ResourceName"><code class="docutils literal notranslate"><span class="pre">ResourceName</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ResourceName.namespace"><code class="docutils literal notranslate"><span class="pre">ResourceName.namespace</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ResourceName.type"><code class="docutils literal notranslate"><span class="pre">ResourceName.type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ResourceName.subtype"><code class="docutils literal notranslate"><span class="pre">ResourceName.subtype</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ResourceName.name"><code class="docutils literal notranslate"><span class="pre">ResourceName.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.sensor_names</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsResponse"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsRequest"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsResponse"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.GetSensorsResponse.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse.sensor_names</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.SensorsServiceStub"><code class="docutils literal notranslate"><span class="pre">SensorsServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.ReconfigurableResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ReconfigurableResourceRPCClientBase.reset_channel"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase.reset_channel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.RESOURCE_NAMESPACE_RDK"><code class="docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.RESOURCE_TYPE_SERVICE"><code class="docutils literal notranslate"><span class="pre">RESOURCE_TYPE_SERVICE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.Subtype"><code class="docutils literal notranslate"><span class="pre">Subtype</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.namespace"><code class="docutils literal notranslate"><span class="pre">Subtype.namespace</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.resource_type"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.resource_subtype"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_subtype</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.__str__"><code class="docutils literal notranslate"><span class="pre">Subtype.__str__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.__repr__"><code class="docutils literal notranslate"><span class="pre">Subtype.__repr__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.__hash__"><code class="docutils literal notranslate"><span class="pre">Subtype.__hash__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.__eq__"><code class="docutils literal notranslate"><span class="pre">Subtype.__eq__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.from_resource_name"><code class="docutils literal notranslate"><span class="pre">Subtype.from_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.Subtype.from_string"><code class="docutils literal notranslate"><span class="pre">Subtype.from_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.channel"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.channel</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.do_command"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase.close"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.SensorReading"><code class="docutils literal notranslate"><span class="pre">SensorReading</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.ValueTypes"><code class="docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.dict_to_struct"><code class="docutils literal notranslate"><span class="pre">dict_to_struct()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.sensor_readings_value_to_native"><code class="docutils literal notranslate"><span class="pre">sensor_readings_value_to_native()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.struct_to_dict"><code class="docutils literal notranslate"><span class="pre">struct_to_dict()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient"><code class="docutils literal notranslate"><span class="pre">SensorsClient</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">SensorsClient.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.client"><code class="docutils literal notranslate"><span class="pre">SensorsClient.client</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_sensors"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_sensors()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_readings"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_readings()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.do_command"><code class="docutils literal notranslate"><span class="pre">SensorsClient.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.from_robot"><code class="docutils literal notranslate"><span class="pre">SensorsClient.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.get_operation"><code class="docutils literal notranslate"><span class="pre">SensorsClient.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.sensors.client.SensorsClient.close"><code class="docutils literal notranslate"><span class="pre">SensorsClient.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -85,25 +160,24 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html">viam.services.slam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html">viam.services.vision</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -120,9 +194,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors.client</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.services</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.services.sensors</a></li>
+      <li class="breadcrumb-item active">viam.services.sensors.client</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/services/sensors/client/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -133,18 +207,577 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.services.sensors.client">
-<span id="viam-services-sensors-client"></span><h1><a class="reference internal" href="#module-viam.services.sensors.client" title="viam.services.sensors.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors.client</span></code></a><a class="headerlink" href="#module-viam.services.sensors.client" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-services-sensors-client"></span><h1>viam.services.sensors.client<a class="headerlink" href="#module-viam.services.sensors.client" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.SensorsClient" title="viam.services.sensors.client.SensorsClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorsClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.RESOURCE_NAMESPACE_RDK" title="viam.services.sensors.client.RESOURCE_NAMESPACE_RDK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.RESOURCE_TYPE_SERVICE" title="viam.services.sensors.client.RESOURCE_TYPE_SERVICE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_TYPE_SERVICE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.SensorReading" title="viam.services.sensors.client.SensorReading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorReading</span></code></a></p></td>
+<td><p>Types that can be returned from a sensor</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.ValueTypes" title="viam.services.sensors.client.ValueTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></p></td>
+<td><p>Types that can be encoded into a protobuf <cite>Value</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.DoCommandRequest" title="viam.services.sensors.client.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<td><p>DoCommandRequest represents a generic DoCommand input</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.DoCommandResponse" title="viam.services.sensors.client.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<td><p>DoCommandResponse represents a generic DoCommand output</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.ResourceName" title="viam.services.sensors.client.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.GetReadingsRequest" title="viam.services.sensors.client.GetReadingsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.GetReadingsResponse" title="viam.services.sensors.client.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.GetSensorsRequest" title="viam.services.sensors.client.GetSensorsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSensorsRequest</span></code></a></p></td>
+<td><p>The sensors service messages are deprecated</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.GetSensorsResponse" title="viam.services.sensors.client.GetSensorsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSensorsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.SensorsServiceStub" title="viam.services.sensors.client.SensorsServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorsServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.ReconfigurableResourceRPCClientBase" title="viam.services.sensors.client.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a></p></td>
+<td><p>A base RPC client that can reset its channel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.Subtype" title="viam.services.sensors.client.Subtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subtype</span></code></a></p></td>
+<td><p>Represents a known component/service (resource) API</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.ServiceClientBase" title="viam.services.sensors.client.ServiceClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceClientBase</span></code></a></p></td>
+<td><p>Base service client.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.SensorsClient" title="viam.services.sensors.client.SensorsClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorsClient</span></code></a></p></td>
 <td><p>Connect to the SensorService, which centralizes all Sensors in a single place</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.dict_to_struct" title="viam.services.sensors.client.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.sensors.client.sensor_readings_value_to_native" title="viam.services.sensors.client.sensor_readings_value_to_native"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensor_readings_value_to_native</span></code></a>(→ Mapping[str, ...)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.client.struct_to_dict" title="viam.services.sensors.client.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.DoCommandRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandRequest represents a generic DoCommand input</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.sensors.client.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'command'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.sensors.client.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.DoCommandResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DoCommandResponse represents a generic DoCommand output</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.sensors.client.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'result'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.sensors.client.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ResourceName">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">ResourceName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.ResourceName" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ResourceName.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.ResourceName.namespace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ResourceName.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.ResourceName.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ResourceName.subtype">
+<span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.ResourceName.subtype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ResourceName.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.ResourceName.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">GetReadingsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.GetReadingsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.GetReadingsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsRequest.sensor_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.sensors.client.GetReadingsRequest.sensor_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.sensors.client.GetReadingsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.sensors.client.GetReadingsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">GetReadingsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">readings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Readings</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.GetReadingsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetReadingsResponse.readings">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Readings</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.sensors.client.GetReadingsResponse.readings" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">GetSensorsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.GetSensorsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>The sensors service messages are deprecated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.GetSensorsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.services.sensors.client.GetSensorsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.sensors.client.GetSensorsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">GetSensorsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.GetSensorsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.sensors.client.GetSensorsResponse.sensor_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.sensors.client.GetSensorsResponse.sensor_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.SensorsServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">SensorsServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/sensors/v1/sensors_grpc.html#SensorsServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.SensorsServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ReconfigurableResourceRPCClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">ReconfigurableResourceRPCClientBase</span></span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.ReconfigurableResourceRPCClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></p>
+<p>A base RPC client that can reset its channel.</p>
+<p>Useful if connection is lost and then regained.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ReconfigurableResourceRPCClientBase.reset_channel">
+<span class="sig-name descname"><span class="pre">reset_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase.reset_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.ReconfigurableResourceRPCClientBase.reset_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Called when the RPC channel was reset. Passes in the new channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>Channel</em>) – The new RPC Channel</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.services.sensors.client.RESOURCE_NAMESPACE_RDK">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_NAMESPACE_RDK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rdk'</span></em><a class="headerlink" href="#viam.services.sensors.client.RESOURCE_NAMESPACE_RDK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.services.sensors.client.RESOURCE_TYPE_SERVICE">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_TYPE_SERVICE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'service'</span></em><a class="headerlink" href="#viam.services.sensors.client.RESOURCE_TYPE_SERVICE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">Subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Represents a known component/service (resource) API</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.Subtype.namespace" title="Permalink to this definition"></a></dt>
+<dd><p>The namespace of the resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.Subtype.resource_type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of the resource, e.g. <cite>component</cite> or <cite>service</cite></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.resource_subtype">
+<span class="sig-name descname"><span class="pre">resource_subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.sensors.client.Subtype.resource_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>The subtype of the resource e.g. <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.__str__" title="Permalink to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.__hash__" title="Permalink to this definition"></a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.from_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.from_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code> into a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – The ResourceName to convert</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new Subtype</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.Subtype.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.Subtype.from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code> from its string representation (namespace:resource_type:resource_subtype)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The Subtype as a string</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised if the string does not represent a valid Subtype</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new Subtype</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">ServiceClientBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/service_client_base.html#ServiceClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.base.ResourceBase</span></code></a></p>
+<p>Base service client.
+All service clients must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../resource/base/index.html#viam.resource.base.Subtype" title="viam.resource.base.Subtype"><span class="pre">viam.resource.base.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span></em><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.channel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'builtin'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/service_client_base.html#ServiceClientBase.from_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service client named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service client</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service client, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/service_client_base.html#ServiceClientBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.services.sensors.client.ResourceName" title="viam.services.sensors.client.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ServiceClientBase.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.sensors.client.ServiceClientBase.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.services.sensors.client.SensorReading">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">SensorReading</span></span><a class="headerlink" href="#viam.services.sensors.client.SensorReading" title="Permalink to this definition"></a></dt>
+<dd><p>Types that can be returned from a sensor</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.services.sensors.client.ValueTypes">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">ValueTypes</span></span><a class="headerlink" href="#viam.services.sensors.client.ValueTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Types that can be encoded into a protobuf <cite>Value</cite></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.sensors.client.dict_to_struct">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.dict_to_struct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.sensors.client.sensor_readings_value_to_native">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">sensor_readings_value_to_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">readings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SensorReading</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#sensor_readings_value_to_native"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.sensor_readings_value_to_native" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.services.sensors.client.struct_to_dict">
+<span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.sensors.client.SensorsClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.client.</span></span><span class="sig-name descname"><span class="pre">SensorsClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/sensors/client.html#SensorsClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.client.SensorsClient" title="Permalink to this definition"></a></dt>
@@ -215,7 +848,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the service client</p></li>
 </ul>
 </dd>
@@ -244,7 +877,7 @@
 <dd class="field-even"><p>The ResourceName of this Resource</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.services.sensors.client.ResourceName" title="viam.services.sensors.client.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -283,7 +916,6 @@ non-Close methods are called.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.provisioning.v1.provisioning_pb2`
-===================================================
+viam.gen.provisioning.v1.provisioning_pb2
+=========================================
 
 .. py:module:: viam.gen.provisioning.v1.provisioning_pb2
 
@@ -10,31 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest
-   viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse
-   viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest
-   viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse
-   viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest
-   viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse
-   viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest
-   viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse
-   viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo
-   viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo
-   viam.gen.provisioning.v1.provisioning_pb2.CloudConfig
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -52,15 +29,34 @@ Attributes
    viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest
+   viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse
+   viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest
+   viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse
+   viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest
+   viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse
+   viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest
+   viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse
+   viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo
+   viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo
+   viam.gen.provisioning.v1.provisioning_pb2.CloudConfig
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: GetSmartMachineStatusRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -71,12 +67,10 @@ Attributes
 
 .. py:data:: global___GetSmartMachineStatusRequest
 
-   
-
 .. py:class:: GetSmartMachineStatusResponse(*, provisioning_info: global___ProvisioningInfo | None = ..., has_smart_machine_credentials: bool = ..., is_online: bool = ..., latest_connection_attempt: global___NetworkInfo | None = ..., errors: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -84,29 +78,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: has_smart_machine_credentials
+      :type:  bool
+
+
+   .. py:attribute:: is_online
+      :type:  bool
+
+
    .. py:property:: provisioning_info
       :type: global___ProvisioningInfo
+
 
 
    .. py:property:: latest_connection_attempt
       :type: global___NetworkInfo
 
 
+
    .. py:property:: errors
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: has_smart_machine_credentials
-      :type: bool
 
-      
-
-   .. py:attribute:: is_online
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[latest_connection_attempt, b'latest_connection_attempt', provisioning_info, b'provisioning_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -126,12 +122,10 @@ Attributes
 
 .. py:data:: global___GetSmartMachineStatusResponse
 
-   
-
 .. py:class:: SetNetworkCredentialsRequest(*, type: str = ..., ssid: str = ..., psk: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -139,30 +133,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: type
-      :type: str
 
-      
+   .. py:attribute:: type
+      :type:  str
+
 
    .. py:attribute:: ssid
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: psk
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___SetNetworkCredentialsRequest
 
-   
-
 .. py:class:: SetNetworkCredentialsResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -173,12 +162,10 @@ Attributes
 
 .. py:data:: global___SetNetworkCredentialsResponse
 
-   
-
 .. py:class:: SetSmartMachineCredentialsRequest(*, cloud: global___CloudConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -186,11 +173,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: cloud
       :type: global___CloudConfig
 
 
-   .. py:method:: HasField(field_name: Literal[cloud, b'cloud']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['cloud', b'cloud']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -210,12 +199,10 @@ Attributes
 
 .. py:data:: global___SetSmartMachineCredentialsRequest
 
-   
-
 .. py:class:: SetSmartMachineCredentialsResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -226,12 +213,10 @@ Attributes
 
 .. py:data:: global___SetSmartMachineCredentialsResponse
 
-   
-
 .. py:class:: GetNetworkListRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -242,18 +227,17 @@ Attributes
 
 .. py:data:: global___GetNetworkListRequest
 
-   
-
 .. py:class:: GetNetworkListResponse(*, networks: collections.abc.Iterable[global___NetworkInfo] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: networks
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___NetworkInfo]
@@ -262,12 +246,10 @@ Attributes
 
 .. py:data:: global___GetNetworkListResponse
 
-   
-
 .. py:class:: ProvisioningInfo(*, fragment_id: str = ..., model: str = ..., manufacturer: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -275,30 +257,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: fragment_id
-      :type: str
 
-      
+   .. py:attribute:: fragment_id
+      :type:  str
+
 
    .. py:attribute:: model
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: manufacturer
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___ProvisioningInfo
 
-   
-
 .. py:class:: NetworkInfo(*, type: str = ..., ssid: str = ..., security: str = ..., signal: int = ..., connected: bool = ..., last_error: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -306,65 +283,56 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: type
-      :type: str
 
-      
+   .. py:attribute:: type
+      :type:  str
+
 
    .. py:attribute:: ssid
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: security
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: signal
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: connected
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: last_error
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___NetworkInfo
 
-   
-
 .. py:class:: CloudConfig(*, id: str = ..., secret: str = ..., app_address: str = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    minimal CloudConfig to create /etc/viam.json
 
+
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
       SmartMachine part id
 
+
    .. py:attribute:: secret
-      :type: str
+      :type:  str
 
       SmartMachine part secret
 
-   .. py:attribute:: app_address
-      :type: str
 
-      
+   .. py:attribute:: app_address
+      :type:  str
 
 
 .. py:data:: global___CloudConfig
-
-   
 

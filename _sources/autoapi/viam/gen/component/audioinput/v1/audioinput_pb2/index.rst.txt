@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.audioinput.v1.audioinput_pb2`
-=========================================================
+viam.gen.component.audioinput.v1.audioinput_pb2
+===============================================
 
 .. py:module:: viam.gen.component.audioinput.v1.audioinput_pb2
 
@@ -10,28 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.audioinput.v1.audioinput_pb2.SampleFormat
-   viam.gen.component.audioinput.v1.audioinput_pb2.RecordRequest
-   viam.gen.component.audioinput.v1.audioinput_pb2.AudioChunkInfo
-   viam.gen.component.audioinput.v1.audioinput_pb2.AudioChunk
-   viam.gen.component.audioinput.v1.audioinput_pb2.ChunksRequest
-   viam.gen.component.audioinput.v1.audioinput_pb2.ChunksResponse
-   viam.gen.component.audioinput.v1.audioinput_pb2.PropertiesRequest
-   viam.gen.component.audioinput.v1.audioinput_pb2.PropertiesResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -49,40 +29,47 @@ Attributes
    viam.gen.component.audioinput.v1.audioinput_pb2.global___PropertiesResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.audioinput.v1.audioinput_pb2.SampleFormat
+   viam.gen.component.audioinput.v1.audioinput_pb2.RecordRequest
+   viam.gen.component.audioinput.v1.audioinput_pb2.AudioChunkInfo
+   viam.gen.component.audioinput.v1.audioinput_pb2.AudioChunk
+   viam.gen.component.audioinput.v1.audioinput_pb2.ChunksRequest
+   viam.gen.component.audioinput.v1.audioinput_pb2.ChunksResponse
+   viam.gen.component.audioinput.v1.audioinput_pb2.PropertiesRequest
+   viam.gen.component.audioinput.v1.audioinput_pb2.PropertiesResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: SampleFormat
-
 
    Bases: :py:obj:`_SampleFormat`
 
 
 .. py:data:: SAMPLE_FORMAT_UNSPECIFIED
-   :type: SampleFormat
-
-   
+   :type:  SampleFormat
 
 .. py:data:: SAMPLE_FORMAT_INT16_INTERLEAVED
-   :type: SampleFormat
-
-   
+   :type:  SampleFormat
 
 .. py:data:: SAMPLE_FORMAT_FLOAT32_INTERLEAVED
-   :type: SampleFormat
-
-   
+   :type:  SampleFormat
 
 .. py:data:: global___SampleFormat
 
-   
-
 .. py:class:: RecordRequest(*, name: str = ..., duration: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -90,16 +77,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an audio input
+
+
    .. py:property:: duration
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an audio input
-
-   .. py:method:: HasField(field_name: Literal[duration, b'duration']) -> bool
+   .. py:method:: HasField(field_name: Literal['duration', b'duration']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -119,12 +109,10 @@ Attributes
 
 .. py:data:: global___RecordRequest
 
-   
-
 .. py:class:: AudioChunkInfo(*, sample_format: global___SampleFormat = ..., channels: int = ..., sampling_rate: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -132,30 +120,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: sample_format
-      :type: global___SampleFormat
+      :type:  global___SampleFormat
 
       Actual sample encoding format of the response
 
-   .. py:attribute:: channels
-      :type: int
 
-      
+   .. py:attribute:: channels
+      :type:  int
+
 
    .. py:attribute:: sampling_rate
-      :type: int
-
-      
+      :type:  int
 
 
 .. py:data:: global___AudioChunkInfo
 
-   
-
 .. py:class:: AudioChunk(*, data: bytes = ..., length: int = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -163,27 +148,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: data
-      :type: bytes
+      :type:  bytes
 
       Data is PCM data that is organized according to the sample format
       along with its possible interleaving. Data in each format is
       Little Endian.
 
+
    .. py:attribute:: length
-      :type: int
+      :type:  int
 
       Length is the number of samples
 
 
 .. py:data:: global___AudioChunk
 
-   
-
 .. py:class:: ChunksRequest(*, name: str = ..., sample_format: global___SampleFormat = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -191,25 +176,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of an audio input
 
+
    .. py:attribute:: sample_format
-      :type: global___SampleFormat
+      :type:  global___SampleFormat
 
       Requested sample encoding format of the response
 
 
 .. py:data:: global___ChunksRequest
 
-   
-
 .. py:class:: ChunksResponse(*, info: global___AudioChunkInfo | None = ..., chunk: global___AudioChunk | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -217,15 +202,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: info
       :type: global___AudioChunkInfo
+
 
 
    .. py:property:: chunk
       :type: global___AudioChunk
 
 
-   .. py:method:: HasField(field_name: Literal[chunk, b'chunk', info, b'info', type, b'type']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -242,7 +230,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[info, chunk] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['type', b'type']) -> Literal['info', 'chunk'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -260,12 +249,10 @@ Attributes
 
 .. py:data:: global___ChunksResponse
 
-   
-
 .. py:class:: PropertiesRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -273,20 +260,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of an audio input
 
 
 .. py:data:: global___PropertiesRequest
 
-   
-
 .. py:class:: PropertiesResponse(*, channel_count: int = ..., latency: google.protobuf.duration_pb2.Duration | None = ..., sample_rate: int = ..., sample_size: int = ..., is_big_endian: bool = ..., is_float: bool = ..., is_interleaved: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -294,41 +280,37 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: channel_count
+      :type:  int
+
+
+   .. py:attribute:: sample_rate
+      :type:  int
+
+
+   .. py:attribute:: sample_size
+      :type:  int
+
+
+   .. py:attribute:: is_big_endian
+      :type:  bool
+
+
+   .. py:attribute:: is_float
+      :type:  bool
+
+
+   .. py:attribute:: is_interleaved
+      :type:  bool
+
+
    .. py:property:: latency
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:attribute:: channel_count
-      :type: int
 
-      
-
-   .. py:attribute:: sample_rate
-      :type: int
-
-      
-
-   .. py:attribute:: sample_size
-      :type: int
-
-      
-
-   .. py:attribute:: is_big_endian
-      :type: bool
-
-      
-
-   .. py:attribute:: is_float
-      :type: bool
-
-      
-
-   .. py:attribute:: is_interleaved
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[latency, b'latency']) -> bool
+   .. py:method:: HasField(field_name: Literal['latency', b'latency']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -347,6 +329,4 @@ Attributes
 
 
 .. py:data:: global___PropertiesResponse
-
-   
 

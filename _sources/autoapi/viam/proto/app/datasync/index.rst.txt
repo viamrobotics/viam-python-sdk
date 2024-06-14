@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.app.datasync`
-=================================
+viam.proto.app.datasync
+=======================
 
 .. py:module:: viam.proto.app.datasync
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -37,53 +34,61 @@ Classes
    viam.proto.app.datasync.UploadMetadata
 
 
-
+Package Contents
+----------------
 
 .. py:class:: DataSyncServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: DataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: FileUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.FileUploadRequest, app.datasync.v1.data_sync_pb2.FileUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamingDataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: DataSyncServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedDataSyncServiceBase
 
-
    Bases: :py:obj:`DataSyncServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: DataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse]) -> None
       :async:
 
 
+
    .. py:method:: FileUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.FileUploadRequest, app.datasync.v1.data_sync_pb2.FileUploadResponse]) -> None
       :async:
+
 
 
    .. py:method:: StreamingDataCaptureUpload(stream: grpclib.server.Stream[app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest, app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse]) -> None
@@ -93,20 +98,23 @@ Classes
 
 .. py:class:: CaptureInterval(*, start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    CaptureInterval specifies the start and end times of the data capture.
 
+
    .. py:property:: start
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: end
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:method:: HasField(field_name: Literal[end, b'end', start, b'start']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['end', b'end', 'start', b'start']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -126,15 +134,16 @@ Classes
 
 .. py:class:: DataCaptureMetadata(*, component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    DataCaptureMetadata contains the metadata for data captured by collectors.
 
+
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -142,16 +151,17 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: google.protobuf.any_pb2.Any
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -169,56 +179,56 @@ Classes
 
 
 
+
+   .. py:attribute:: component_type
+      :type:  str
+
+
+   .. py:attribute:: component_name
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  global___DataType
+
+
+   .. py:attribute:: file_extension
+      :type:  str
+
+
    .. py:property:: method_parameters
       :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
 
 
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: component_type
-      :type: str
-
-      
-
-   .. py:attribute:: component_name
-      :type: str
-
-      
-
-   .. py:attribute:: method_name
-      :type: str
-
-      
-
-   .. py:attribute:: type
-      :type: global___DataType
-
-      
-
-   .. py:attribute:: file_extension
-      :type: str
-
-      
-
 
 .. py:class:: DataCaptureUploadMetadata(*, upload_metadata: global___UploadMetadata | None = ..., sensor_metadata: global___SensorMetadata | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data.
 
+
    .. py:property:: upload_metadata
       :type: global___UploadMetadata
+
 
 
    .. py:property:: sensor_metadata
       :type: global___SensorMetadata
 
 
-   .. py:method:: HasField(field_name: Literal[sensor_metadata, b'sensor_metadata', upload_metadata, b'upload_metadata']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['sensor_metadata', b'sensor_metadata', 'upload_metadata', b'upload_metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -238,20 +248,23 @@ Classes
 
 .. py:class:: DataCaptureUploadRequest(*, metadata: global___UploadMetadata | None = ..., sensor_contents: collections.abc.Iterable[global___SensorData] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.
 
+
    .. py:property:: metadata
       :type: global___UploadMetadata
+
 
 
    .. py:property:: sensor_contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorData]
 
 
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['metadata', b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -271,55 +284,56 @@ Classes
 
 .. py:class:: DataCaptureUploadResponse(*, file_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.
 
-   .. py:attribute:: file_id
-      :type: str
 
-      
+   .. py:attribute:: file_id
+      :type:  str
 
 
 .. py:class:: DataType
 
-
    Bases: :py:obj:`_DataType`
+
 
    DataType specifies the type of data uploaded.
 
 
 .. py:class:: FileData(*, data: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    FileData contains the contents of binary (image + file) data.
 
-   .. py:attribute:: data
-      :type: bytes
 
-      
+   .. py:attribute:: data
+      :type:  bytes
 
 
 .. py:class:: FileUploadRequest(*, metadata: global___UploadMetadata | None = ..., file_contents: global___FileData | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
    The first packet must be the UploadMetadata associated with the binary data.
 
+
    .. py:property:: metadata
       :type: global___UploadMetadata
+
 
 
    .. py:property:: file_contents
       :type: global___FileData
 
 
-   .. py:method:: HasField(field_name: Literal[file_contents, b'file_contents', metadata, b'metadata', upload_packet, b'upload_packet']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['file_contents', b'file_contents', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -336,7 +350,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[upload_packet, b'upload_packet']) -> Literal[metadata, file_contents] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['upload_packet', b'upload_packet']) -> Literal['metadata', 'file_contents'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -354,38 +369,39 @@ Classes
 
 .. py:class:: FileUploadResponse(*, file_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.
 
-   .. py:attribute:: file_id
-      :type: str
 
-      
+   .. py:attribute:: file_id
+      :type:  str
 
 
 .. py:class:: SensorData(*, metadata: global___SensorMetadata | None = ..., struct: google.protobuf.struct_pb2.Struct | None = ..., binary: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    SensorData contains the contents and metadata for tabular data.
 
+
+   .. py:attribute:: binary
+      :type:  bytes
+
+
    .. py:property:: metadata
       :type: global___SensorMetadata
+
 
 
    .. py:property:: struct
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: binary
-      :type: bytes
 
-      
-
-   .. py:method:: HasField(field_name: Literal[binary, b'binary', data, b'data', metadata, b'metadata', struct, b'struct']) -> bool
+   .. py:method:: HasField(field_name: Literal['binary', b'binary', 'data', b'data', 'metadata', b'metadata', 'struct', b'struct']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -402,7 +418,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[data, b'data']) -> Literal[struct, binary] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['data', b'data']) -> Literal['struct', 'binary'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -420,20 +437,23 @@ Classes
 
 .. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    SensorMetadata contains the time the sensor data was requested and was received.
 
+
    .. py:property:: time_requested
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: time_received
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:method:: HasField(field_name: Literal[time_received, b'time_received', time_requested, b'time_requested']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -453,22 +473,23 @@ Classes
 
 .. py:class:: StreamingDataCaptureUploadRequest(*, metadata: global___DataCaptureUploadMetadata | None = ..., data: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
    The first packet must be the DataCaptureUploadMetadata associated with the data.
+
+
+   .. py:attribute:: data
+      :type:  bytes
+
 
    .. py:property:: metadata
       :type: global___DataCaptureUploadMetadata
 
 
-   .. py:attribute:: data
-      :type: bytes
 
-      
-
-   .. py:method:: HasField(field_name: Literal[data, b'data', metadata, b'metadata', upload_packet, b'upload_packet']) -> bool
+   .. py:method:: HasField(field_name: Literal['data', b'data', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -485,7 +506,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[upload_packet, b'upload_packet']) -> Literal[metadata, data] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['upload_packet', b'upload_packet']) -> Literal['metadata', 'data'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -503,28 +525,28 @@ Classes
 
 .. py:class:: StreamingDataCaptureUploadResponse(*, file_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.
 
-   .. py:attribute:: file_id
-      :type: str
 
-      
+   .. py:attribute:: file_id
+      :type:  str
 
 
 .. py:class:: UploadMetadata(*, part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., file_name: str = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    UploadMetadata contains the metadata for binary (image + file) data.
 
+
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -532,16 +554,17 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: google.protobuf.any_pb2.Any
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -559,47 +582,42 @@ Classes
 
 
 
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:attribute:: component_type
+      :type:  str
+
+
+   .. py:attribute:: component_name
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  global___DataType
+
+
+   .. py:attribute:: file_name
+      :type:  str
+
+
+   .. py:attribute:: file_extension
+      :type:  str
+
+
    .. py:property:: method_parameters
       :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
 
 
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
-
-   .. py:attribute:: part_id
-      :type: str
-
-      
-
-   .. py:attribute:: component_type
-      :type: str
-
-      
-
-   .. py:attribute:: component_name
-      :type: str
-
-      
-
-   .. py:attribute:: method_name
-      :type: str
-
-      
-
-   .. py:attribute:: type
-      :type: global___DataType
-
-      
-
-   .. py:attribute:: file_name
-      :type: str
-
-      
-
-   .. py:attribute:: file_extension
-      :type: str
-
-      
 
 

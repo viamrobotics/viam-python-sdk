@@ -1,37 +1,35 @@
-:py:mod:`viam.components.motor`
-===============================
+viam.components.motor
+=====================
 
 .. py:module:: viam.components.motor
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   motor/index.rst
-   service/index.rst
+   /autoapi/viam/components/motor/client/index
+   /autoapi/viam/components/motor/motor/index
+   /autoapi/viam/components/motor/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.motor.Motor
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Motor(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Motor represents a physical motor.
 
@@ -43,23 +41,23 @@ Classes
 
        from viam.components.motor import Motor
 
+
    .. py:class:: Properties
 
-
       .. py:attribute:: position_reporting
-         :type: bool
+         :type:  bool
 
-         
 
 
    .. py:attribute:: SUBTYPE
-      :type: Final
+      :type:  Final
 
-      
 
    .. py:method:: set_power(power: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Sets the "percentage" of power the motor should employ between -1 and 1.
       When ``power`` is negative, the rotation will be in the backward direction.
@@ -76,9 +74,12 @@ Classes
       :type power: float
 
 
+
    .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
       When ``rpm`` or ``revolutions`` is a negative value, the rotation will be in the backward direction.
@@ -99,9 +100,12 @@ Classes
       :type revolutions: float
 
 
+
    .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Spin the motor to the specified position (provided in revolutions from home/zero),
       at the specified speed, in revolutions per minute.
@@ -121,9 +125,12 @@ Classes
       :type position_revolutions: float
 
 
+
    .. py:method:: set_rpm(rpm: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Spin the motor indefinitely at the specified speed, in revolutions per minute.
       Positive ``rpm`` will result in forward movement and negative ``rpm`` will result in backwards movement
@@ -139,9 +146,12 @@ Classes
       :type rpm: float
 
 
+
    .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Set the current position (modified by ``offset``) to be the new zero (home) position.
 
@@ -156,9 +166,12 @@ Classes
       :type offset: float
 
 
+
    .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :abstractmethod:
+
       :async:
+
 
       Report the position of the motor based on its encoder.
       The value returned is the number of revolutions relative to its zero position.
@@ -175,9 +188,12 @@ Classes
       :rtype: float
 
 
+
    .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
       :abstractmethod:
+
       :async:
+
 
       Report a dictionary mapping optional properties to
       whether it is supported by this motor.
@@ -197,9 +213,12 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Stop the motor immediately, without any gradual step down.
 
@@ -211,9 +230,12 @@ Classes
           await my_motor.stop()
 
 
+
    .. py:method:: is_powered(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[bool, float]
       :abstractmethod:
+
       :async:
+
 
       Returns whether or not the motor is currently running.
 
@@ -233,9 +255,12 @@ Classes
       :rtype: Tuple[bool, float]
 
 
+
    .. py:method:: is_moving() -> bool
       :abstractmethod:
+
       :async:
+
 
       Get if the motor is currently moving.
 
@@ -251,8 +276,10 @@ Classes
       :rtype: bool
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -265,9 +292,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -285,8 +315,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -303,8 +335,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -318,6 +352,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -335,8 +370,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

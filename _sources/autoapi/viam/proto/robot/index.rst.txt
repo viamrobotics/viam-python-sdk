@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.robot`
-==========================
+viam.proto.robot
+================
 
 .. py:module:: viam.proto.robot
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -71,197 +68,253 @@ Classes
    viam.proto.robot.TransformPoseResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: RobotServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetOperations(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetSessions(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ResourceNames(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: CancelOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: BlockForOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[robot.v1.robot_pb2.DiscoverComponentsRequest, robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StopAll(stream: grpclib.server.Stream[robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StartSession(stream: grpclib.server.Stream[robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Log(stream: grpclib.server.Stream[robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetCloudMetadata(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: RestartModule(stream: grpclib.server.Stream[robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: Shutdown(stream: grpclib.server.Stream[robot.v1.robot_pb2.ShutdownRequest, robot.v1.robot_pb2.ShutdownResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedRobotServiceBase
 
-
    Bases: :py:obj:`RobotServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetOperations(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetSessions(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse]) -> None
       :async:
 
 
+
    .. py:method:: ResourceNames(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse]) -> None
       :async:
+
 
 
    .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
       :async:
 
 
+
    .. py:method:: CancelOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse]) -> None
       :async:
+
 
 
    .. py:method:: BlockForOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse]) -> None
       :async:
 
 
+
    .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[robot.v1.robot_pb2.DiscoverComponentsRequest, robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
       :async:
+
 
 
    .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
       :async:
 
 
+
    .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
       :async:
+
 
 
    .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
       :async:
+
 
 
    .. py:method:: StreamStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse]) -> None
       :async:
 
 
+
    .. py:method:: StopAll(stream: grpclib.server.Stream[robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse]) -> None
       :async:
+
 
 
    .. py:method:: StartSession(stream: grpclib.server.Stream[robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse]) -> None
       :async:
 
 
+
    .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse]) -> None
       :async:
+
 
 
    .. py:method:: Log(stream: grpclib.server.Stream[robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetCloudMetadata(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse]) -> None
       :async:
 
 
+
    .. py:method:: RestartModule(stream: grpclib.server.Stream[robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse]) -> None
       :async:
+
 
 
    .. py:method:: Shutdown(stream: grpclib.server.Stream[robot.v1.robot_pb2.ShutdownRequest, robot.v1.robot_pb2.ShutdownResponse]) -> None
@@ -271,8 +324,8 @@ Classes
 
 .. py:class:: BlockForOperationRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -280,16 +333,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:class:: BlockForOperationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -300,8 +352,8 @@ Classes
 
 .. py:class:: CancelOperationRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -309,16 +361,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:class:: CancelOperationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -329,14 +380,15 @@ Classes
 
 .. py:class:: DiscoverComponentsRequest(*, queries: collections.abc.Iterable[global___DiscoveryQuery] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: queries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
@@ -345,14 +397,15 @@ Classes
 
 .. py:class:: DiscoverComponentsResponse(*, discovery: collections.abc.Iterable[global___Discovery] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: discovery
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
@@ -361,8 +414,8 @@ Classes
 
 .. py:class:: Discovery(*, query: global___DiscoveryQuery | None = ..., results: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -370,15 +423,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: query
       :type: global___DiscoveryQuery
+
 
 
    .. py:property:: results
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:method:: HasField(field_name: Literal[query, b'query', results, b'results']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['query', b'query', 'results', b'results']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -398,38 +454,39 @@ Classes
 
 .. py:class:: DiscoveryQuery(*, subtype: str = ..., model: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Discovery
 
-   .. py:attribute:: subtype
-      :type: str
 
-      
+   .. py:attribute:: subtype
+      :type:  str
+
 
    .. py:attribute:: model
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: FrameSystemConfig(*, frame: viam.gen.common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    this is an experimental API message
 
+
    .. py:property:: frame
       :type: viam.gen.common.v1.common_pb2.Transform
+
 
 
    .. py:property:: kinematics
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:method:: HasField(field_name: Literal[frame, b'frame', kinematics, b'kinematics']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['frame', b'frame', 'kinematics', b'kinematics']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -449,14 +506,15 @@ Classes
 
 .. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: supplemental_transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
@@ -467,14 +525,15 @@ Classes
 
 .. py:class:: FrameSystemConfigResponse(*, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: frame_system_configs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
@@ -483,8 +542,8 @@ Classes
 
 .. py:class:: GetCloudMetadataRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -495,8 +554,8 @@ Classes
 
 .. py:class:: GetCloudMetadataResponse(*, robot_part_id: str = ..., primary_org_id: str = ..., location_id: str = ..., machine_id: str = ..., machine_part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -504,38 +563,35 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: robot_part_id
-      :type: str
+      :type:  str
 
       use machine_part_id field.
 
       :type: Deprecated
 
-   .. py:attribute:: primary_org_id
-      :type: str
 
-      
+   .. py:attribute:: primary_org_id
+      :type:  str
+
 
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: machine_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: machine_part_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:class:: GetOperationsRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -546,14 +602,15 @@ Classes
 
 .. py:class:: GetOperationsResponse(*, operations: collections.abc.Iterable[global___Operation] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: operations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
@@ -562,8 +619,8 @@ Classes
 
 .. py:class:: GetSessionsRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -574,14 +631,15 @@ Classes
 
 .. py:class:: GetSessionsResponse(*, sessions: collections.abc.Iterable[global___Session] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: sessions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Session]
@@ -590,14 +648,15 @@ Classes
 
 .. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: resource_names
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
@@ -606,14 +665,15 @@ Classes
 
 .. py:class:: GetStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: status
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
@@ -622,14 +682,15 @@ Classes
 
 .. py:class:: LogRequest(*, logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: logs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
@@ -638,8 +699,8 @@ Classes
 
 .. py:class:: LogResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -650,8 +711,8 @@ Classes
 
 .. py:class:: Operation(*, id: str = ..., method: str = ..., arguments: google.protobuf.struct_pb2.Struct | None = ..., started: google.protobuf.timestamp_pb2.Timestamp | None = ..., session_id: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -659,30 +720,30 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: method
+      :type:  str
+
+
+   .. py:attribute:: session_id
+      :type:  str
+
+
    .. py:property:: arguments
       :type: google.protobuf.struct_pb2.Struct
+
 
 
    .. py:property:: started
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: method
-      :type: str
-
-      
-
-   .. py:attribute:: session_id
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_session_id, b'_session_id', arguments, b'arguments', session_id, b'session_id', started, b'started']) -> bool
+   .. py:method:: HasField(field_name: Literal['_session_id', b'_session_id', 'arguments', b'arguments', 'session_id', b'session_id', 'started', b'started']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -699,7 +760,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_session_id, b'_session_id']) -> Literal[session_id] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_session_id', b'_session_id']) -> Literal['session_id'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -717,8 +779,8 @@ Classes
 
 .. py:class:: PeerConnectionInfo(*, type: global___PeerConnectionType = ..., remote_address: str | None = ..., local_address: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -726,22 +788,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: type
-      :type: global___PeerConnectionType
 
-      
+   .. py:attribute:: type
+      :type:  global___PeerConnectionType
+
 
    .. py:attribute:: remote_address
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: local_address
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_local_address, b'_local_address', _remote_address, b'_remote_address', local_address, b'local_address', remote_address, b'remote_address']) -> bool
+   .. py:method:: HasField(field_name: Literal['_local_address', b'_local_address', '_remote_address', b'_remote_address', 'local_address', b'local_address', 'remote_address', b'remote_address']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -758,8 +818,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_local_address, b'_local_address']) -> Literal[local_address] | None
-                  WhichOneof(oneof_group: Literal[_remote_address, b'_remote_address']) -> Literal[remote_address] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_local_address', b'_local_address']) -> Literal['local_address'] | None
+                  WhichOneof(oneof_group: Literal['_remote_address', b'_remote_address']) -> Literal['remote_address'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -777,14 +838,13 @@ Classes
 
 .. py:class:: PeerConnectionType
 
-
    Bases: :py:obj:`_PeerConnectionType`
 
 
 .. py:class:: ResourceNamesRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -795,14 +855,15 @@ Classes
 
 .. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: resources
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
@@ -811,8 +872,8 @@ Classes
 
 .. py:class:: ResourceRPCSubtype(*, subtype: viam.gen.common.v1.common_pb2.ResourceName | None = ..., proto_service: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -820,16 +881,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: proto_service
+      :type:  str
+
+
    .. py:property:: subtype
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
-   .. py:attribute:: proto_service
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[subtype, b'subtype']) -> bool
+   .. py:method:: HasField(field_name: Literal['subtype', b'subtype']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -849,8 +911,8 @@ Classes
 
 .. py:class:: ResourceRPCSubtypesRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -861,14 +923,15 @@ Classes
 
 .. py:class:: ResourceRPCSubtypesResponse(*, resource_rpc_subtypes: collections.abc.Iterable[global___ResourceRPCSubtype] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: resource_rpc_subtypes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]
@@ -877,8 +940,8 @@ Classes
 
 .. py:class:: RestartModuleRequest(*, module_id: str = ..., module_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -886,17 +949,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: module_id
-      :type: str
+      :type:  str
 
       ID is for registry modules, name for local modules
 
+
    .. py:attribute:: module_name
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[id_or_name, b'id_or_name', module_id, b'module_id', module_name, b'module_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['id_or_name', b'id_or_name', 'module_id', b'module_id', 'module_name', b'module_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -913,7 +977,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[id_or_name, b'id_or_name']) -> Literal[module_id, module_name] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['id_or_name', b'id_or_name']) -> Literal['module_id', 'module_name'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -931,8 +996,8 @@ Classes
 
 .. py:class:: RestartModuleResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -943,8 +1008,8 @@ Classes
 
 .. py:class:: SendSessionHeartbeatRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -952,16 +1017,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:class:: SendSessionHeartbeatResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -972,8 +1036,8 @@ Classes
 
 .. py:class:: Session(*, id: str = ..., peer_connection_info: global___PeerConnectionInfo | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -981,16 +1045,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
    .. py:property:: peer_connection_info
       :type: global___PeerConnectionInfo
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[_peer_connection_info, b'_peer_connection_info', peer_connection_info, b'peer_connection_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['_peer_connection_info', b'_peer_connection_info', 'peer_connection_info', b'peer_connection_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1007,7 +1072,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_peer_connection_info, b'_peer_connection_info']) -> Literal[peer_connection_info] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_peer_connection_info', b'_peer_connection_info']) -> Literal['peer_connection_info'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1025,8 +1091,8 @@ Classes
 
 .. py:class:: ShutdownRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1037,8 +1103,8 @@ Classes
 
 .. py:class:: ShutdownResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1049,8 +1115,8 @@ Classes
 
 .. py:class:: StartSessionRequest(*, resume: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1058,8 +1124,9 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: resume
-      :type: str
+      :type:  str
 
       resume can be used to attempt to continue a stream after a disconnection event. If
       a session is not found, a new one will be created and returned.
@@ -1067,8 +1134,8 @@ Classes
 
 .. py:class:: StartSessionResponse(*, id: str = ..., heartbeat_window: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1076,16 +1143,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
    .. py:property:: heartbeat_window
       :type: google.protobuf.duration_pb2.Duration
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[heartbeat_window, b'heartbeat_window']) -> bool
+   .. py:method:: HasField(field_name: Literal['heartbeat_window', b'heartbeat_window']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1105,8 +1173,8 @@ Classes
 
 .. py:class:: Status(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ..., last_reconfigured: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1114,19 +1182,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: name
       :type: viam.gen.common.v1.common_pb2.ResourceName
+
 
 
    .. py:property:: status
       :type: google.protobuf.struct_pb2.Struct
 
 
+
    .. py:property:: last_reconfigured
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:method:: HasField(field_name: Literal[last_reconfigured, b'last_reconfigured', name, b'name', status, b'status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['last_reconfigured', b'last_reconfigured', 'name', b'name', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1146,14 +1218,15 @@ Classes
 
 .. py:class:: StopAllRequest(*, extra: collections.abc.Iterable[global___StopExtraParameters] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: extra
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
@@ -1162,8 +1235,8 @@ Classes
 
 .. py:class:: StopAllResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1174,8 +1247,8 @@ Classes
 
 .. py:class:: StopExtraParameters(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., params: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1183,15 +1256,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: name
       :type: viam.gen.common.v1.common_pb2.ResourceName
+
 
 
    .. py:property:: params
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:method:: HasField(field_name: Literal[name, b'name', params, b'params']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['name', b'name', 'params', b'params']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1211,8 +1287,8 @@ Classes
 
 .. py:class:: StreamStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ..., every: google.protobuf.duration_pb2.Duration | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1220,8 +1296,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: resource_names
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
 
 
    .. py:property:: every
@@ -1229,7 +1307,8 @@ Classes
 
       how often to send a new status.
 
-   .. py:method:: HasField(field_name: Literal[every, b'every']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['every', b'every']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1249,14 +1328,15 @@ Classes
 
 .. py:class:: StreamStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: status
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
@@ -1265,8 +1345,8 @@ Classes
 
 .. py:class:: TransformPCDRequest(*, point_cloud_pcd: bytes = ..., source: str = ..., destination: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1274,19 +1354,22 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: point_cloud_pcd
-      :type: bytes
+      :type:  bytes
 
       the point clouds to transform. This should be in the PCD format
       encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 
+
    .. py:attribute:: source
-      :type: str
+      :type:  str
 
       the reference frame of the point cloud.
 
+
    .. py:attribute:: destination
-      :type: str
+      :type:  str
 
       the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
       Do not move the robot between the generation of the initial pointcloud and the receipt
@@ -1295,8 +1378,8 @@ Classes
 
 .. py:class:: TransformPCDResponse(*, point_cloud_pcd: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1304,22 +1387,29 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: point_cloud_pcd
-      :type: bytes
 
-      
+   .. py:attribute:: point_cloud_pcd
+      :type:  bytes
 
 
 .. py:class:: TransformPoseRequest(*, source: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., destination: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: destination
+      :type:  str
+
+      the reference frame into which the source pose should be transformed,
+      if unset this defaults to the "world" reference frame
+
 
    .. py:property:: source
       :type: viam.gen.common.v1.common_pb2.PoseInFrame
@@ -1327,19 +1417,15 @@ Classes
       the original pose to transform along with the reference frame in
       which it was observed
 
+
    .. py:property:: supplemental_transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
 
       pose information on any additional reference frames that are needed
       to perform the transform
 
-   .. py:attribute:: destination
-      :type: str
 
-      the reference frame into which the source pose should be transformed,
-      if unset this defaults to the "world" reference frame
-
-   .. py:method:: HasField(field_name: Literal[source, b'source']) -> bool
+   .. py:method:: HasField(field_name: Literal['source', b'source']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1359,8 +1445,8 @@ Classes
 
 .. py:class:: TransformPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1368,11 +1454,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

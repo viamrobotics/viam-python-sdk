@@ -1,37 +1,35 @@
-:py:mod:`viam.components.audio_input`
-=====================================
+viam.components.audio_input
+===========================
 
 .. py:module:: viam.components.audio_input
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   audio_input/index.rst
-   client/index.rst
-   service/index.rst
+   /autoapi/viam/components/audio_input/audio_input/index
+   /autoapi/viam/components/audio_input/client/index
+   /autoapi/viam/components/audio_input/service/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.audio_input.AudioInput
 
 
-
+Package Contents
+----------------
 
 .. py:class:: AudioInput(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`, :py:obj:`viam.streams.StreamSource`\ [\ :py:obj:`viam.media.audio.Audio`\ ]
+
 
    AudioInput represents a component that can capture audio.
 
@@ -39,61 +37,57 @@ Classes
    audio input implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
    .. py:class:: Properties
+
+      .. py:attribute:: channel_count
+         :type:  int
+
+
+      .. py:attribute:: latency
+         :type:  datetime.timedelta
+
+
+      .. py:attribute:: sample_rate
+         :type:  int
+
+
+      .. py:attribute:: sample_size
+         :type:  int
+
+
+      .. py:attribute:: is_big_endian
+         :type:  bool
+
+
+      .. py:attribute:: is_float
+         :type:  bool
+
+
+      .. py:attribute:: is_interleaved
+         :type:  bool
 
 
       .. py:property:: proto
          :type: viam.proto.component.audioinput.PropertiesResponse
 
 
-      .. py:attribute:: channel_count
-         :type: int
-
-         
-
-      .. py:attribute:: latency
-         :type: datetime.timedelta
-
-         
-
-      .. py:attribute:: sample_rate
-         :type: int
-
-         
-
-      .. py:attribute:: sample_size
-         :type: int
-
-         
-
-      .. py:attribute:: is_big_endian
-         :type: bool
-
-         
-
-      .. py:attribute:: is_float
-         :type: bool
-
-         
-
-      .. py:attribute:: is_interleaved
-         :type: bool
-
-         
 
       .. py:method:: from_proto(proto: viam.proto.component.audioinput.PropertiesResponse) -> typing_extensions.Self
          :classmethod:
 
 
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
-
-      
 
    .. py:method:: stream(*, timeout: Optional[float] = None, **kwargs) -> viam.media.audio.AudioStream
       :abstractmethod:
+
       :async:
+
 
       Stream audio samples from the audio input of the underlying robot
 
@@ -101,9 +95,12 @@ Classes
       :rtype: Stream[Audio]
 
 
+
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
       :abstractmethod:
+
       :async:
+
 
       Get the properties of the audio input of the underlying robot
 
@@ -111,8 +108,10 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -125,9 +124,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -145,8 +147,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -163,8 +167,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -178,6 +184,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -195,8 +202,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

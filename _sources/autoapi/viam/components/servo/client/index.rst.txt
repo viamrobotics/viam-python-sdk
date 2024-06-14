@@ -1,31 +1,448 @@
-:py:mod:`viam.components.servo.client`
-======================================
+viam.components.servo.client
+============================
 
 .. py:module:: viam.components.servo.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.components.servo.client.ValueTypes
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.servo.client.DoCommandRequest
+   viam.components.servo.client.DoCommandResponse
+   viam.components.servo.client.Geometry
+   viam.components.servo.client.GetPositionRequest
+   viam.components.servo.client.GetPositionResponse
+   viam.components.servo.client.IsMovingRequest
+   viam.components.servo.client.IsMovingResponse
+   viam.components.servo.client.MoveRequest
+   viam.components.servo.client.ServoServiceStub
+   viam.components.servo.client.StopRequest
+   viam.components.servo.client.ReconfigurableResourceRPCClientBase
+   viam.components.servo.client.Servo
+   viam.components.servo.client.ServoClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.servo.client.dict_to_struct
+   viam.components.servo.client.get_geometries
+   viam.components.servo.client.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
-.. autoapisummary::
-
-   viam.components.servo.client.ServoClient
+   Bases: :py:obj:`google.protobuf.message.Message`
 
 
+   DoCommandRequest represents a generic DoCommand input
 
 
-.. py:class:: ServoClient(name: str, channel: grpclib.client.Channel)
+   .. py:attribute:: name
+      :type:  str
 
 
-   Bases: :py:obj:`viam.components.servo.servo.Servo`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
 
-   gRPC client for the Servo component.
 
-   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
+
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a geometries center point
+
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
+
+   .. py:property:: capsule
+      :type: global___Capsule
+
+
+
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPositionResponse(*, position_deg: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: position_deg
+      :type:  int
+
+      the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
+
+
+.. py:class:: IsMovingRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:class:: IsMovingResponse(*, is_moving: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: is_moving
+      :type:  bool
+
+
+.. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      the name of the servo, as registered
+
+
+   .. py:attribute:: angle_deg
+      :type:  int
+
+      the degrees by which to rotate the servo. Accepted values are between 0 and 180
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a servo
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
+
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: Servo(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Servo represents a physical servo.
+
+   This acts as an abstract base class for any drivers representing specific
+   servo implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.servo import Servo
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
       :async:
+
+
+      Move the servo to the provided angle.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Move the servo from its origin to the desired angle of 90 degrees.
+          await my_servo.move(90)
+
+      :param angle: The desired angle of the servo in degrees.
+      :type angle: int
+
+
+
+   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+      :abstractmethod:
+
+      :async:
+
 
       Get the current angle (degrees) of the servo.
 
@@ -49,27 +466,12 @@ Classes
       :rtype: int
 
 
-   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
+
+   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
       :async:
 
-      Move the servo to the provided angle.
-
-      ::
-
-          my_servo = Servo.from_robot(robot=robot, name="my_servo")
-
-          # Move the servo from its origin to the desired angle of 10 degrees.
-          await my_servo.move(10)
-
-          # Move the servo from its origin to the desired angle of 90 degrees.
-          await my_servo.move(90)
-
-      :param angle: The desired angle of the servo in degrees.
-      :type angle: int
-
-
-   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
-      :async:
 
       Stop the servo. It is assumed that the servo stops immediately.
 
@@ -84,8 +486,12 @@ Classes
           await my_servo.stop()
 
 
-   .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+
       :async:
+
 
       Get if the servo is currently moving.
 
@@ -100,8 +506,28 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -119,8 +545,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -137,22 +565,10 @@ Classes
       :rtype: List[Geometry]
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
-      :classmethod:
-
-      Get the component named ``name`` from the provided robot.
-
-      :param robot: The robot
-      :type robot: RobotClient
-      :param name: The name of the component
-      :type name: str
-
-      :returns: The component, if it exists on the robot
-      :rtype: Self
-
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -166,6 +582,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -183,8 +600,211 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:class:: ServoClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.components.servo.servo.Servo`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+
+   gRPC client for the Servo component.
+
+
+   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
+      :async:
+
+
+      Get the current angle (degrees) of the servo.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Get the current set angle of the servo.
+          pos1 = await my_servo.get_position()
+
+          # Move the servo from its origin to the desired angle of 20 degrees.
+          await my_servo.move(20)
+
+          # Get the current set angle of the servo.
+          pos2 = await my_servo.get_position()
+
+      :returns: The current angle of the servo in degrees.
+      :rtype: int
+
+
+
+   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
+      :async:
+
+
+      Move the servo to the provided angle.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Move the servo from its origin to the desired angle of 90 degrees.
+          await my_servo.move(90)
+
+      :param angle: The desired angle of the servo in degrees.
+      :type angle: int
+
+
+
+   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
+      :async:
+
+
+      Stop the servo. It is assumed that the servo stops immediately.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Stop the servo. It is assumed that the servo stops moving immediately.
+          await my_servo.stop()
+
+
+
+   .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
+      :async:
+
+
+      Get if the servo is currently moving.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          print(my_servo.is_moving())
+
+
+      :returns: Whether the servo is moving.
+      :rtype: bool
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
 
       Safely shut down the resource and prevent further use.
 

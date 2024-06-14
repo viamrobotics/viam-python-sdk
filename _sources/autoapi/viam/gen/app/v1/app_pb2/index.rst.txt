@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.app.v1.app_pb2`
-=================================
+viam.gen.app.v1.app_pb2
+=======================
 
 .. py:module:: viam.gen.app.v1.app_pb2
 
@@ -10,196 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.app.v1.app_pb2.FragmentVisibility
-   viam.gen.app.v1.app_pb2.RegistryItemStatus
-   viam.gen.app.v1.app_pb2.Visibility
-   viam.gen.app.v1.app_pb2.Robot
-   viam.gen.app.v1.app_pb2.RobotPart
-   viam.gen.app.v1.app_pb2.RobotPartHistoryEntry
-   viam.gen.app.v1.app_pb2.ListOrganizationsRequest
-   viam.gen.app.v1.app_pb2.Organization
-   viam.gen.app.v1.app_pb2.OrganizationMember
-   viam.gen.app.v1.app_pb2.ListOrganizationsResponse
-   viam.gen.app.v1.app_pb2.OrganizationInvite
-   viam.gen.app.v1.app_pb2.CreateOrganizationRequest
-   viam.gen.app.v1.app_pb2.CreateOrganizationResponse
-   viam.gen.app.v1.app_pb2.GetOrganizationRequest
-   viam.gen.app.v1.app_pb2.GetOrganizationResponse
-   viam.gen.app.v1.app_pb2.GetOrganizationNamespaceAvailabilityRequest
-   viam.gen.app.v1.app_pb2.GetOrganizationNamespaceAvailabilityResponse
-   viam.gen.app.v1.app_pb2.UpdateOrganizationRequest
-   viam.gen.app.v1.app_pb2.UpdateOrganizationResponse
-   viam.gen.app.v1.app_pb2.DeleteOrganizationRequest
-   viam.gen.app.v1.app_pb2.DeleteOrganizationResponse
-   viam.gen.app.v1.app_pb2.ListOrganizationMembersRequest
-   viam.gen.app.v1.app_pb2.ListOrganizationMembersResponse
-   viam.gen.app.v1.app_pb2.CreateOrganizationInviteRequest
-   viam.gen.app.v1.app_pb2.CreateOrganizationInviteResponse
-   viam.gen.app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest
-   viam.gen.app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse
-   viam.gen.app.v1.app_pb2.DeleteOrganizationInviteRequest
-   viam.gen.app.v1.app_pb2.DeleteOrganizationInviteResponse
-   viam.gen.app.v1.app_pb2.ResendOrganizationInviteRequest
-   viam.gen.app.v1.app_pb2.ResendOrganizationInviteResponse
-   viam.gen.app.v1.app_pb2.DeleteOrganizationMemberRequest
-   viam.gen.app.v1.app_pb2.DeleteOrganizationMemberResponse
-   viam.gen.app.v1.app_pb2.OrganizationIdentity
-   viam.gen.app.v1.app_pb2.LocationOrganization
-   viam.gen.app.v1.app_pb2.LocationAuth
-   viam.gen.app.v1.app_pb2.StorageConfig
-   viam.gen.app.v1.app_pb2.Location
-   viam.gen.app.v1.app_pb2.SharedSecret
-   viam.gen.app.v1.app_pb2.CreateLocationRequest
-   viam.gen.app.v1.app_pb2.CreateLocationResponse
-   viam.gen.app.v1.app_pb2.GetLocationRequest
-   viam.gen.app.v1.app_pb2.GetLocationResponse
-   viam.gen.app.v1.app_pb2.UpdateLocationRequest
-   viam.gen.app.v1.app_pb2.UpdateLocationResponse
-   viam.gen.app.v1.app_pb2.DeleteLocationRequest
-   viam.gen.app.v1.app_pb2.DeleteLocationResponse
-   viam.gen.app.v1.app_pb2.GetOrganizationsWithAccessToLocationRequest
-   viam.gen.app.v1.app_pb2.GetOrganizationsWithAccessToLocationResponse
-   viam.gen.app.v1.app_pb2.ListLocationsRequest
-   viam.gen.app.v1.app_pb2.ShareLocationRequest
-   viam.gen.app.v1.app_pb2.ShareLocationResponse
-   viam.gen.app.v1.app_pb2.UnshareLocationRequest
-   viam.gen.app.v1.app_pb2.UnshareLocationResponse
-   viam.gen.app.v1.app_pb2.ListLocationsResponse
-   viam.gen.app.v1.app_pb2.CreateLocationSecretRequest
-   viam.gen.app.v1.app_pb2.CreateLocationSecretResponse
-   viam.gen.app.v1.app_pb2.DeleteLocationSecretRequest
-   viam.gen.app.v1.app_pb2.DeleteLocationSecretResponse
-   viam.gen.app.v1.app_pb2.LocationAuthRequest
-   viam.gen.app.v1.app_pb2.LocationAuthResponse
-   viam.gen.app.v1.app_pb2.GetRobotRequest
-   viam.gen.app.v1.app_pb2.GetRoverRentalRobotsRequest
-   viam.gen.app.v1.app_pb2.RoverRentalRobot
-   viam.gen.app.v1.app_pb2.GetRoverRentalRobotsResponse
-   viam.gen.app.v1.app_pb2.GetRobotResponse
-   viam.gen.app.v1.app_pb2.GetRobotPartsRequest
-   viam.gen.app.v1.app_pb2.GetRobotPartsResponse
-   viam.gen.app.v1.app_pb2.GetRobotPartRequest
-   viam.gen.app.v1.app_pb2.GetRobotPartResponse
-   viam.gen.app.v1.app_pb2.GetRobotPartLogsRequest
-   viam.gen.app.v1.app_pb2.GetRobotPartLogsResponse
-   viam.gen.app.v1.app_pb2.TailRobotPartLogsRequest
-   viam.gen.app.v1.app_pb2.TailRobotPartLogsResponse
-   viam.gen.app.v1.app_pb2.GetRobotPartHistoryRequest
-   viam.gen.app.v1.app_pb2.GetRobotPartHistoryResponse
-   viam.gen.app.v1.app_pb2.UpdateRobotPartRequest
-   viam.gen.app.v1.app_pb2.UpdateRobotPartResponse
-   viam.gen.app.v1.app_pb2.NewRobotPartRequest
-   viam.gen.app.v1.app_pb2.NewRobotPartResponse
-   viam.gen.app.v1.app_pb2.DeleteRobotPartRequest
-   viam.gen.app.v1.app_pb2.GetRobotAPIKeysRequest
-   viam.gen.app.v1.app_pb2.APIKey
-   viam.gen.app.v1.app_pb2.GetRobotAPIKeysResponse
-   viam.gen.app.v1.app_pb2.DeleteRobotPartResponse
-   viam.gen.app.v1.app_pb2.Fragment
-   viam.gen.app.v1.app_pb2.ListFragmentsRequest
-   viam.gen.app.v1.app_pb2.ListFragmentsResponse
-   viam.gen.app.v1.app_pb2.GetFragmentRequest
-   viam.gen.app.v1.app_pb2.GetFragmentResponse
-   viam.gen.app.v1.app_pb2.CreateFragmentRequest
-   viam.gen.app.v1.app_pb2.CreateFragmentResponse
-   viam.gen.app.v1.app_pb2.UpdateFragmentRequest
-   viam.gen.app.v1.app_pb2.UpdateFragmentResponse
-   viam.gen.app.v1.app_pb2.DeleteFragmentRequest
-   viam.gen.app.v1.app_pb2.DeleteFragmentResponse
-   viam.gen.app.v1.app_pb2.ListRobotsRequest
-   viam.gen.app.v1.app_pb2.ListRobotsResponse
-   viam.gen.app.v1.app_pb2.NewRobotRequest
-   viam.gen.app.v1.app_pb2.NewRobotResponse
-   viam.gen.app.v1.app_pb2.UpdateRobotRequest
-   viam.gen.app.v1.app_pb2.UpdateRobotResponse
-   viam.gen.app.v1.app_pb2.DeleteRobotRequest
-   viam.gen.app.v1.app_pb2.DeleteRobotResponse
-   viam.gen.app.v1.app_pb2.MarkPartAsMainRequest
-   viam.gen.app.v1.app_pb2.MarkPartAsMainResponse
-   viam.gen.app.v1.app_pb2.MarkPartForRestartRequest
-   viam.gen.app.v1.app_pb2.MarkPartForRestartResponse
-   viam.gen.app.v1.app_pb2.CreateRobotPartSecretRequest
-   viam.gen.app.v1.app_pb2.CreateRobotPartSecretResponse
-   viam.gen.app.v1.app_pb2.DeleteRobotPartSecretRequest
-   viam.gen.app.v1.app_pb2.DeleteRobotPartSecretResponse
-   viam.gen.app.v1.app_pb2.Authorization
-   viam.gen.app.v1.app_pb2.AddRoleRequest
-   viam.gen.app.v1.app_pb2.AddRoleResponse
-   viam.gen.app.v1.app_pb2.RemoveRoleRequest
-   viam.gen.app.v1.app_pb2.RemoveRoleResponse
-   viam.gen.app.v1.app_pb2.ChangeRoleRequest
-   viam.gen.app.v1.app_pb2.ChangeRoleResponse
-   viam.gen.app.v1.app_pb2.ListAuthorizationsRequest
-   viam.gen.app.v1.app_pb2.ListAuthorizationsResponse
-   viam.gen.app.v1.app_pb2.CheckPermissionsRequest
-   viam.gen.app.v1.app_pb2.AuthorizedPermissions
-   viam.gen.app.v1.app_pb2.CheckPermissionsResponse
-   viam.gen.app.v1.app_pb2.ModuleVersion
-   viam.gen.app.v1.app_pb2.ModuleMetadata
-   viam.gen.app.v1.app_pb2.MLModelMetadata
-   viam.gen.app.v1.app_pb2.MLTrainingVersion
-   viam.gen.app.v1.app_pb2.MLTrainingMetadata
-   viam.gen.app.v1.app_pb2.RegistryItem
-   viam.gen.app.v1.app_pb2.GetRegistryItemRequest
-   viam.gen.app.v1.app_pb2.GetRegistryItemResponse
-   viam.gen.app.v1.app_pb2.CreateRegistryItemRequest
-   viam.gen.app.v1.app_pb2.CreateRegistryItemResponse
-   viam.gen.app.v1.app_pb2.UpdateRegistryItemRequest
-   viam.gen.app.v1.app_pb2.UpdateRegistryItemResponse
-   viam.gen.app.v1.app_pb2.ListRegistryItemsRequest
-   viam.gen.app.v1.app_pb2.ListRegistryItemsResponse
-   viam.gen.app.v1.app_pb2.DeleteRegistryItemRequest
-   viam.gen.app.v1.app_pb2.DeleteRegistryItemResponse
-   viam.gen.app.v1.app_pb2.TransferRegistryItemRequest
-   viam.gen.app.v1.app_pb2.TransferRegistryItemResponse
-   viam.gen.app.v1.app_pb2.CreateModuleRequest
-   viam.gen.app.v1.app_pb2.CreateModuleResponse
-   viam.gen.app.v1.app_pb2.UpdateModuleRequest
-   viam.gen.app.v1.app_pb2.UpdateModuleResponse
-   viam.gen.app.v1.app_pb2.Model
-   viam.gen.app.v1.app_pb2.ModuleFileInfo
-   viam.gen.app.v1.app_pb2.UploadModuleFileRequest
-   viam.gen.app.v1.app_pb2.UploadModuleFileResponse
-   viam.gen.app.v1.app_pb2.GetModuleRequest
-   viam.gen.app.v1.app_pb2.GetModuleResponse
-   viam.gen.app.v1.app_pb2.Module
-   viam.gen.app.v1.app_pb2.VersionHistory
-   viam.gen.app.v1.app_pb2.Uploads
-   viam.gen.app.v1.app_pb2.ListModulesRequest
-   viam.gen.app.v1.app_pb2.ListModulesResponse
-   viam.gen.app.v1.app_pb2.GetUserIDByEmailRequest
-   viam.gen.app.v1.app_pb2.GetUserIDByEmailResponse
-   viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest
-   viam.gen.app.v1.app_pb2.OrgDetails
-   viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse
-   viam.gen.app.v1.app_pb2.CreateKeyRequest
-   viam.gen.app.v1.app_pb2.CreateKeyResponse
-   viam.gen.app.v1.app_pb2.DeleteKeyRequest
-   viam.gen.app.v1.app_pb2.DeleteKeyResponse
-   viam.gen.app.v1.app_pb2.RenameKeyRequest
-   viam.gen.app.v1.app_pb2.RenameKeyResponse
-   viam.gen.app.v1.app_pb2.AuthorizationDetails
-   viam.gen.app.v1.app_pb2.APIKeyWithAuthorizations
-   viam.gen.app.v1.app_pb2.ListKeysRequest
-   viam.gen.app.v1.app_pb2.ListKeysResponse
-   viam.gen.app.v1.app_pb2.RotateKeyRequest
-   viam.gen.app.v1.app_pb2.RotateKeyResponse
-   viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest
-   viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -392,95 +204,254 @@ Attributes
    viam.gen.app.v1.app_pb2.global___CreateKeyFromExistingKeyAuthorizationsResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.app.v1.app_pb2.FragmentVisibility
+   viam.gen.app.v1.app_pb2.RegistryItemStatus
+   viam.gen.app.v1.app_pb2.Visibility
+   viam.gen.app.v1.app_pb2.Robot
+   viam.gen.app.v1.app_pb2.RobotPart
+   viam.gen.app.v1.app_pb2.RobotPartHistoryEntry
+   viam.gen.app.v1.app_pb2.ListOrganizationsRequest
+   viam.gen.app.v1.app_pb2.Organization
+   viam.gen.app.v1.app_pb2.OrganizationMember
+   viam.gen.app.v1.app_pb2.ListOrganizationsResponse
+   viam.gen.app.v1.app_pb2.OrganizationInvite
+   viam.gen.app.v1.app_pb2.CreateOrganizationRequest
+   viam.gen.app.v1.app_pb2.CreateOrganizationResponse
+   viam.gen.app.v1.app_pb2.GetOrganizationRequest
+   viam.gen.app.v1.app_pb2.GetOrganizationResponse
+   viam.gen.app.v1.app_pb2.GetOrganizationNamespaceAvailabilityRequest
+   viam.gen.app.v1.app_pb2.GetOrganizationNamespaceAvailabilityResponse
+   viam.gen.app.v1.app_pb2.UpdateOrganizationRequest
+   viam.gen.app.v1.app_pb2.UpdateOrganizationResponse
+   viam.gen.app.v1.app_pb2.DeleteOrganizationRequest
+   viam.gen.app.v1.app_pb2.DeleteOrganizationResponse
+   viam.gen.app.v1.app_pb2.ListOrganizationMembersRequest
+   viam.gen.app.v1.app_pb2.ListOrganizationMembersResponse
+   viam.gen.app.v1.app_pb2.CreateOrganizationInviteRequest
+   viam.gen.app.v1.app_pb2.CreateOrganizationInviteResponse
+   viam.gen.app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest
+   viam.gen.app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse
+   viam.gen.app.v1.app_pb2.DeleteOrganizationInviteRequest
+   viam.gen.app.v1.app_pb2.DeleteOrganizationInviteResponse
+   viam.gen.app.v1.app_pb2.ResendOrganizationInviteRequest
+   viam.gen.app.v1.app_pb2.ResendOrganizationInviteResponse
+   viam.gen.app.v1.app_pb2.DeleteOrganizationMemberRequest
+   viam.gen.app.v1.app_pb2.DeleteOrganizationMemberResponse
+   viam.gen.app.v1.app_pb2.OrganizationIdentity
+   viam.gen.app.v1.app_pb2.LocationOrganization
+   viam.gen.app.v1.app_pb2.LocationAuth
+   viam.gen.app.v1.app_pb2.StorageConfig
+   viam.gen.app.v1.app_pb2.Location
+   viam.gen.app.v1.app_pb2.SharedSecret
+   viam.gen.app.v1.app_pb2.CreateLocationRequest
+   viam.gen.app.v1.app_pb2.CreateLocationResponse
+   viam.gen.app.v1.app_pb2.GetLocationRequest
+   viam.gen.app.v1.app_pb2.GetLocationResponse
+   viam.gen.app.v1.app_pb2.UpdateLocationRequest
+   viam.gen.app.v1.app_pb2.UpdateLocationResponse
+   viam.gen.app.v1.app_pb2.DeleteLocationRequest
+   viam.gen.app.v1.app_pb2.DeleteLocationResponse
+   viam.gen.app.v1.app_pb2.GetOrganizationsWithAccessToLocationRequest
+   viam.gen.app.v1.app_pb2.GetOrganizationsWithAccessToLocationResponse
+   viam.gen.app.v1.app_pb2.ListLocationsRequest
+   viam.gen.app.v1.app_pb2.ShareLocationRequest
+   viam.gen.app.v1.app_pb2.ShareLocationResponse
+   viam.gen.app.v1.app_pb2.UnshareLocationRequest
+   viam.gen.app.v1.app_pb2.UnshareLocationResponse
+   viam.gen.app.v1.app_pb2.ListLocationsResponse
+   viam.gen.app.v1.app_pb2.CreateLocationSecretRequest
+   viam.gen.app.v1.app_pb2.CreateLocationSecretResponse
+   viam.gen.app.v1.app_pb2.DeleteLocationSecretRequest
+   viam.gen.app.v1.app_pb2.DeleteLocationSecretResponse
+   viam.gen.app.v1.app_pb2.LocationAuthRequest
+   viam.gen.app.v1.app_pb2.LocationAuthResponse
+   viam.gen.app.v1.app_pb2.GetRobotRequest
+   viam.gen.app.v1.app_pb2.GetRoverRentalRobotsRequest
+   viam.gen.app.v1.app_pb2.RoverRentalRobot
+   viam.gen.app.v1.app_pb2.GetRoverRentalRobotsResponse
+   viam.gen.app.v1.app_pb2.GetRobotResponse
+   viam.gen.app.v1.app_pb2.GetRobotPartsRequest
+   viam.gen.app.v1.app_pb2.GetRobotPartsResponse
+   viam.gen.app.v1.app_pb2.GetRobotPartRequest
+   viam.gen.app.v1.app_pb2.GetRobotPartResponse
+   viam.gen.app.v1.app_pb2.GetRobotPartLogsRequest
+   viam.gen.app.v1.app_pb2.GetRobotPartLogsResponse
+   viam.gen.app.v1.app_pb2.TailRobotPartLogsRequest
+   viam.gen.app.v1.app_pb2.TailRobotPartLogsResponse
+   viam.gen.app.v1.app_pb2.GetRobotPartHistoryRequest
+   viam.gen.app.v1.app_pb2.GetRobotPartHistoryResponse
+   viam.gen.app.v1.app_pb2.UpdateRobotPartRequest
+   viam.gen.app.v1.app_pb2.UpdateRobotPartResponse
+   viam.gen.app.v1.app_pb2.NewRobotPartRequest
+   viam.gen.app.v1.app_pb2.NewRobotPartResponse
+   viam.gen.app.v1.app_pb2.DeleteRobotPartRequest
+   viam.gen.app.v1.app_pb2.GetRobotAPIKeysRequest
+   viam.gen.app.v1.app_pb2.APIKey
+   viam.gen.app.v1.app_pb2.GetRobotAPIKeysResponse
+   viam.gen.app.v1.app_pb2.DeleteRobotPartResponse
+   viam.gen.app.v1.app_pb2.Fragment
+   viam.gen.app.v1.app_pb2.ListFragmentsRequest
+   viam.gen.app.v1.app_pb2.ListFragmentsResponse
+   viam.gen.app.v1.app_pb2.GetFragmentRequest
+   viam.gen.app.v1.app_pb2.GetFragmentResponse
+   viam.gen.app.v1.app_pb2.CreateFragmentRequest
+   viam.gen.app.v1.app_pb2.CreateFragmentResponse
+   viam.gen.app.v1.app_pb2.UpdateFragmentRequest
+   viam.gen.app.v1.app_pb2.UpdateFragmentResponse
+   viam.gen.app.v1.app_pb2.DeleteFragmentRequest
+   viam.gen.app.v1.app_pb2.DeleteFragmentResponse
+   viam.gen.app.v1.app_pb2.ListRobotsRequest
+   viam.gen.app.v1.app_pb2.ListRobotsResponse
+   viam.gen.app.v1.app_pb2.NewRobotRequest
+   viam.gen.app.v1.app_pb2.NewRobotResponse
+   viam.gen.app.v1.app_pb2.UpdateRobotRequest
+   viam.gen.app.v1.app_pb2.UpdateRobotResponse
+   viam.gen.app.v1.app_pb2.DeleteRobotRequest
+   viam.gen.app.v1.app_pb2.DeleteRobotResponse
+   viam.gen.app.v1.app_pb2.MarkPartAsMainRequest
+   viam.gen.app.v1.app_pb2.MarkPartAsMainResponse
+   viam.gen.app.v1.app_pb2.MarkPartForRestartRequest
+   viam.gen.app.v1.app_pb2.MarkPartForRestartResponse
+   viam.gen.app.v1.app_pb2.CreateRobotPartSecretRequest
+   viam.gen.app.v1.app_pb2.CreateRobotPartSecretResponse
+   viam.gen.app.v1.app_pb2.DeleteRobotPartSecretRequest
+   viam.gen.app.v1.app_pb2.DeleteRobotPartSecretResponse
+   viam.gen.app.v1.app_pb2.Authorization
+   viam.gen.app.v1.app_pb2.AddRoleRequest
+   viam.gen.app.v1.app_pb2.AddRoleResponse
+   viam.gen.app.v1.app_pb2.RemoveRoleRequest
+   viam.gen.app.v1.app_pb2.RemoveRoleResponse
+   viam.gen.app.v1.app_pb2.ChangeRoleRequest
+   viam.gen.app.v1.app_pb2.ChangeRoleResponse
+   viam.gen.app.v1.app_pb2.ListAuthorizationsRequest
+   viam.gen.app.v1.app_pb2.ListAuthorizationsResponse
+   viam.gen.app.v1.app_pb2.CheckPermissionsRequest
+   viam.gen.app.v1.app_pb2.AuthorizedPermissions
+   viam.gen.app.v1.app_pb2.CheckPermissionsResponse
+   viam.gen.app.v1.app_pb2.ModuleVersion
+   viam.gen.app.v1.app_pb2.ModuleMetadata
+   viam.gen.app.v1.app_pb2.MLModelMetadata
+   viam.gen.app.v1.app_pb2.MLTrainingVersion
+   viam.gen.app.v1.app_pb2.MLTrainingMetadata
+   viam.gen.app.v1.app_pb2.RegistryItem
+   viam.gen.app.v1.app_pb2.GetRegistryItemRequest
+   viam.gen.app.v1.app_pb2.GetRegistryItemResponse
+   viam.gen.app.v1.app_pb2.CreateRegistryItemRequest
+   viam.gen.app.v1.app_pb2.CreateRegistryItemResponse
+   viam.gen.app.v1.app_pb2.UpdateRegistryItemRequest
+   viam.gen.app.v1.app_pb2.UpdateRegistryItemResponse
+   viam.gen.app.v1.app_pb2.ListRegistryItemsRequest
+   viam.gen.app.v1.app_pb2.ListRegistryItemsResponse
+   viam.gen.app.v1.app_pb2.DeleteRegistryItemRequest
+   viam.gen.app.v1.app_pb2.DeleteRegistryItemResponse
+   viam.gen.app.v1.app_pb2.TransferRegistryItemRequest
+   viam.gen.app.v1.app_pb2.TransferRegistryItemResponse
+   viam.gen.app.v1.app_pb2.CreateModuleRequest
+   viam.gen.app.v1.app_pb2.CreateModuleResponse
+   viam.gen.app.v1.app_pb2.UpdateModuleRequest
+   viam.gen.app.v1.app_pb2.UpdateModuleResponse
+   viam.gen.app.v1.app_pb2.Model
+   viam.gen.app.v1.app_pb2.ModuleFileInfo
+   viam.gen.app.v1.app_pb2.UploadModuleFileRequest
+   viam.gen.app.v1.app_pb2.UploadModuleFileResponse
+   viam.gen.app.v1.app_pb2.GetModuleRequest
+   viam.gen.app.v1.app_pb2.GetModuleResponse
+   viam.gen.app.v1.app_pb2.Module
+   viam.gen.app.v1.app_pb2.VersionHistory
+   viam.gen.app.v1.app_pb2.Uploads
+   viam.gen.app.v1.app_pb2.ListModulesRequest
+   viam.gen.app.v1.app_pb2.ListModulesResponse
+   viam.gen.app.v1.app_pb2.GetUserIDByEmailRequest
+   viam.gen.app.v1.app_pb2.GetUserIDByEmailResponse
+   viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest
+   viam.gen.app.v1.app_pb2.OrgDetails
+   viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse
+   viam.gen.app.v1.app_pb2.CreateKeyRequest
+   viam.gen.app.v1.app_pb2.CreateKeyResponse
+   viam.gen.app.v1.app_pb2.DeleteKeyRequest
+   viam.gen.app.v1.app_pb2.DeleteKeyResponse
+   viam.gen.app.v1.app_pb2.RenameKeyRequest
+   viam.gen.app.v1.app_pb2.RenameKeyResponse
+   viam.gen.app.v1.app_pb2.AuthorizationDetails
+   viam.gen.app.v1.app_pb2.APIKeyWithAuthorizations
+   viam.gen.app.v1.app_pb2.ListKeysRequest
+   viam.gen.app.v1.app_pb2.ListKeysResponse
+   viam.gen.app.v1.app_pb2.RotateKeyRequest
+   viam.gen.app.v1.app_pb2.RotateKeyResponse
+   viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest
+   viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: FragmentVisibility
-
 
    Bases: :py:obj:`_FragmentVisibility`
 
 
 .. py:data:: FRAGMENT_VISIBILITY_UNSPECIFIED
-   :type: FragmentVisibility
-
-   
+   :type:  FragmentVisibility
 
 .. py:data:: FRAGMENT_VISIBILITY_PRIVATE
-   :type: FragmentVisibility
-
-   
+   :type:  FragmentVisibility
 
 .. py:data:: FRAGMENT_VISIBILITY_PUBLIC
-   :type: FragmentVisibility
-
-   
+   :type:  FragmentVisibility
 
 .. py:data:: FRAGMENT_VISIBILITY_PUBLIC_UNLISTED
-   :type: FragmentVisibility
-
-   
+   :type:  FragmentVisibility
 
 .. py:data:: global___FragmentVisibility
 
-   
-
 .. py:class:: RegistryItemStatus
-
 
    Bases: :py:obj:`_RegistryItemStatus`
 
 
 .. py:data:: REGISTRY_ITEM_STATUS_UNSPECIFIED
-   :type: RegistryItemStatus
-
-   
+   :type:  RegistryItemStatus
 
 .. py:data:: REGISTRY_ITEM_STATUS_PUBLISHED
-   :type: RegistryItemStatus
-
-   
+   :type:  RegistryItemStatus
 
 .. py:data:: REGISTRY_ITEM_STATUS_IN_DEVELOPMENT
-   :type: RegistryItemStatus
-
-   
+   :type:  RegistryItemStatus
 
 .. py:data:: global___RegistryItemStatus
 
-   
-
 .. py:class:: Visibility
-
 
    Bases: :py:obj:`_Visibility`
 
 
 .. py:data:: VISIBILITY_UNSPECIFIED
-   :type: Visibility
-
-   
+   :type:  Visibility
 
 .. py:data:: VISIBILITY_PRIVATE
-   :type: Visibility
+   :type:  Visibility
 
    Private modules are visible only within your org
 
 .. py:data:: VISIBILITY_PUBLIC
-   :type: Visibility
+   :type:  Visibility
 
    Public modules are visible to everyone
 
 .. py:data:: global___Visibility
 
-   
-
 .. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -488,30 +459,30 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: location
+      :type:  str
+
+
    .. py:property:: last_access
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: location
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', last_access, b'last_access']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'last_access', b'last_access']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -531,12 +502,10 @@ Attributes
 
 .. py:data:: global___Robot
 
-   
-
 .. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -544,20 +513,66 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: dns_name
+      :type:  str
+
+      dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
+
+
+   .. py:attribute:: secret
+      :type:  str
+
+
+   .. py:attribute:: robot
+      :type:  str
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+      Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
+      changes.
+
+
+   .. py:attribute:: main_part
+      :type:  bool
+
+
+   .. py:attribute:: fqdn
+      :type:  str
+
+
+   .. py:attribute:: local_fqdn
+      :type:  str
+
+
    .. py:property:: robot_config
       :type: google.protobuf.struct_pb2.Struct
+
 
 
    .. py:property:: last_access
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
+
    .. py:property:: user_supplied_info
       :type: google.protobuf.struct_pb2.Struct
 
 
+
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: secrets
@@ -565,53 +580,8 @@ Attributes
 
       List of secrets allowed for authentication.
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: dns_name
-      :type: str
-
-      dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
-
-   .. py:attribute:: secret
-      :type: str
-
-      
-
-   .. py:attribute:: robot
-      :type: str
-
-      
-
-   .. py:attribute:: location_id
-      :type: str
-
-      Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
-      changes.
-
-   .. py:attribute:: main_part
-      :type: bool
-
-      
-
-   .. py:attribute:: fqdn
-      :type: str
-
-      
-
-   .. py:attribute:: local_fqdn
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', last_access, b'last_access', robot_config, b'robot_config', user_supplied_info, b'user_supplied_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -631,12 +601,10 @@ Attributes
 
 .. py:data:: global___RobotPart
 
-   
-
 .. py:class:: RobotPartHistoryEntry(*, part: str = ..., robot: str = ..., when: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___RobotPart | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -644,25 +612,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: part
+      :type:  str
+
+
+   .. py:attribute:: robot
+      :type:  str
+
+
    .. py:property:: when
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: old
       :type: global___RobotPart
 
 
-   .. py:attribute:: part
-      :type: str
 
-      
-
-   .. py:attribute:: robot
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[old, b'old', when, b'when']) -> bool
+   .. py:method:: HasField(field_name: Literal['old', b'old', 'when', b'when']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -682,12 +651,10 @@ Attributes
 
 .. py:data:: global___RobotPartHistoryEntry
 
-   
-
 .. py:class:: ListOrganizationsRequest
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -698,12 +665,10 @@ Attributes
 
 .. py:data:: global___ListOrganizationsRequest
 
-   
-
 .. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -711,37 +676,36 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
 
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: public_namespace
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: default_region
-      :type: str
+      :type:  str
 
       GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages
       associated with this org will be stored in this region.
 
+
    .. py:attribute:: cid
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_cid, b'_cid', cid, b'cid', created_on, b'created_on']) -> bool
+   .. py:property:: created_on
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -758,7 +722,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_cid, b'_cid']) -> Literal[cid] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_cid', b'_cid']) -> Literal['cid'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -776,12 +741,10 @@ Attributes
 
 .. py:data:: global___Organization
 
-   
-
 .. py:class:: OrganizationMember(*, user_id: str = ..., emails: collections.abc.Iterable[str] | None = ..., date_added: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_login: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -789,24 +752,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: user_id
+      :type:  str
+
+
    .. py:property:: emails
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
    .. py:property:: date_added
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
+
    .. py:property:: last_login
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: user_id
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[_last_login, b'_last_login', date_added, b'date_added', last_login, b'last_login']) -> bool
+   .. py:method:: HasField(field_name: Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -823,7 +789,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_last_login, b'_last_login']) -> Literal[last_login] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_last_login', b'_last_login']) -> Literal['last_login'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -841,18 +808,17 @@ Attributes
 
 .. py:data:: global___OrganizationMember
 
-   
-
 .. py:class:: ListOrganizationsResponse(*, organizations: collections.abc.Iterable[global___Organization] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: organizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Organization]
@@ -861,12 +827,10 @@ Attributes
 
 .. py:data:: global___ListOrganizationsResponse
 
-   
-
 .. py:class:: OrganizationInvite(*, organization_id: str = ..., email: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -874,25 +838,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: email
+      :type:  str
+
+
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
 
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
-
-   .. py:attribute:: email
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -912,12 +877,10 @@ Attributes
 
 .. py:data:: global___OrganizationInvite
 
-   
-
 .. py:class:: CreateOrganizationRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -925,32 +888,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
 
 
 .. py:data:: global___CreateOrganizationRequest
 
-   
-
 .. py:class:: CreateOrganizationResponse(*, organization: global___Organization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: organization
       :type: global___Organization
 
 
-   .. py:method:: HasField(field_name: Literal[organization, b'organization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['organization', b'organization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -970,12 +932,10 @@ Attributes
 
 .. py:data:: global___CreateOrganizationResponse
 
-   
-
 .. py:class:: GetOrganizationRequest(*, organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -983,32 +943,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
 
 
 .. py:data:: global___GetOrganizationRequest
 
-   
-
 .. py:class:: GetOrganizationResponse(*, organization: global___Organization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: organization
       :type: global___Organization
 
 
-   .. py:method:: HasField(field_name: Literal[organization, b'organization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['organization', b'organization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1028,12 +987,10 @@ Attributes
 
 .. py:data:: global___GetOrganizationResponse
 
-   
-
 .. py:class:: GetOrganizationNamespaceAvailabilityRequest(*, public_namespace: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1041,20 +998,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: public_namespace
-      :type: str
 
-      
+   .. py:attribute:: public_namespace
+      :type:  str
 
 
 .. py:data:: global___GetOrganizationNamespaceAvailabilityRequest
 
-   
-
 .. py:class:: GetOrganizationNamespaceAvailabilityResponse(*, available: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1062,20 +1016,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: available
-      :type: bool
 
-      
+   .. py:attribute:: available
+      :type:  bool
 
 
 .. py:data:: global___GetOrganizationNamespaceAvailabilityResponse
 
-   
-
 .. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1083,32 +1034,30 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: public_namespace
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: region
-      :type: str
+      :type:  str
 
       The new GCS region to associate the org with.
 
+
    .. py:attribute:: cid
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_cid, b'_cid', _name, b'_name', _public_namespace, b'_public_namespace', _region, b'_region', cid, b'cid', name, b'name', public_namespace, b'public_namespace', region, b'region']) -> bool
+   .. py:method:: HasField(field_name: Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1125,10 +1074,11 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_cid, b'_cid']) -> Literal[cid] | None
-                  WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
-                  WhichOneof(oneof_group: Literal[_public_namespace, b'_public_namespace']) -> Literal[public_namespace] | None
-                  WhichOneof(oneof_group: Literal[_region, b'_region']) -> Literal[region] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_cid', b'_cid']) -> Literal['cid'] | None
+                  WhichOneof(oneof_group: Literal['_name', b'_name']) -> Literal['name'] | None
+                  WhichOneof(oneof_group: Literal['_public_namespace', b'_public_namespace']) -> Literal['public_namespace'] | None
+                  WhichOneof(oneof_group: Literal['_region', b'_region']) -> Literal['region'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1146,12 +1096,10 @@ Attributes
 
 .. py:data:: global___UpdateOrganizationRequest
 
-   
-
 .. py:class:: UpdateOrganizationResponse(*, organization: global___Organization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1159,11 +1107,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: organization
       :type: global___Organization
 
 
-   .. py:method:: HasField(field_name: Literal[organization, b'organization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['organization', b'organization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1183,12 +1133,10 @@ Attributes
 
 .. py:data:: global___UpdateOrganizationResponse
 
-   
-
 .. py:class:: DeleteOrganizationRequest(*, organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1196,20 +1144,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
 
 
 .. py:data:: global___DeleteOrganizationRequest
 
-   
-
 .. py:class:: DeleteOrganizationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1220,12 +1165,10 @@ Attributes
 
 .. py:data:: global___DeleteOrganizationResponse
 
-   
-
 .. py:class:: ListOrganizationMembersRequest(*, organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1233,20 +1176,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
 
 
 .. py:data:: global___ListOrganizationMembersRequest
 
-   
-
 .. py:class:: ListOrganizationMembersResponse(*, organization_id: str = ..., members: collections.abc.Iterable[global___OrganizationMember] | None = ..., invites: collections.abc.Iterable[global___OrganizationInvite] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1254,28 +1194,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
    .. py:property:: members
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrganizationMember]
+
 
 
    .. py:property:: invites
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrganizationInvite]
 
 
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
 
 .. py:data:: global___ListOrganizationMembersResponse
 
-   
-
 .. py:class:: CreateOrganizationInviteRequest(*, organization_id: str = ..., email: str = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ..., send_email_invite: bool | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1283,27 +1222,28 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: authorizations
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
-
 
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: email
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: send_email_invite
-      :type: bool
+      :type:  bool
 
       Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
       When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
 
-   .. py:method:: HasField(field_name: Literal[_send_email_invite, b'_send_email_invite', send_email_invite, b'send_email_invite']) -> bool
+
+   .. py:property:: authorizations
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
+
+
+
+   .. py:method:: HasField(field_name: Literal['_send_email_invite', b'_send_email_invite', 'send_email_invite', b'send_email_invite']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1320,7 +1260,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_send_email_invite, b'_send_email_invite']) -> Literal[send_email_invite] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_send_email_invite', b'_send_email_invite']) -> Literal['send_email_invite'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1338,12 +1279,10 @@ Attributes
 
 .. py:data:: global___CreateOrganizationInviteRequest
 
-   
-
 .. py:class:: CreateOrganizationInviteResponse(*, invite: global___OrganizationInvite | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1351,11 +1290,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: invite
       :type: global___OrganizationInvite
 
 
-   .. py:method:: HasField(field_name: Literal[invite, b'invite']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['invite', b'invite']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1375,12 +1316,10 @@ Attributes
 
 .. py:data:: global___CreateOrganizationInviteResponse
 
-   
-
 .. py:class:: UpdateOrganizationInviteAuthorizationsRequest(*, organization_id: str = ..., email: str = ..., add_authorizations: collections.abc.Iterable[global___Authorization] | None = ..., remove_authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1388,33 +1327,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: email
+      :type:  str
+
+
    .. py:property:: add_authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
+
 
 
    .. py:property:: remove_authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
 
 
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
-   .. py:attribute:: email
-      :type: str
-
-      
-
 
 .. py:data:: global___UpdateOrganizationInviteAuthorizationsRequest
 
-   
-
 .. py:class:: UpdateOrganizationInviteAuthorizationsResponse(*, invite: global___OrganizationInvite | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1422,11 +1359,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: invite
       :type: global___OrganizationInvite
 
 
-   .. py:method:: HasField(field_name: Literal[invite, b'invite']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['invite', b'invite']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1446,12 +1385,10 @@ Attributes
 
 .. py:data:: global___UpdateOrganizationInviteAuthorizationsResponse
 
-   
-
 .. py:class:: DeleteOrganizationInviteRequest(*, organization_id: str = ..., email: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1459,25 +1396,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: email
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___DeleteOrganizationInviteRequest
 
-   
-
 .. py:class:: DeleteOrganizationInviteResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1488,12 +1421,10 @@ Attributes
 
 .. py:data:: global___DeleteOrganizationInviteResponse
 
-   
-
 .. py:class:: ResendOrganizationInviteRequest(*, organization_id: str = ..., email: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1501,37 +1432,35 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: email
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___ResendOrganizationInviteRequest
 
-   
-
 .. py:class:: ResendOrganizationInviteResponse(*, invite: global___OrganizationInvite | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: invite
       :type: global___OrganizationInvite
 
 
-   .. py:method:: HasField(field_name: Literal[invite, b'invite']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['invite', b'invite']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1551,12 +1480,10 @@ Attributes
 
 .. py:data:: global___ResendOrganizationInviteResponse
 
-   
-
 .. py:class:: DeleteOrganizationMemberRequest(*, organization_id: str = ..., user_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1564,25 +1491,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:attribute:: user_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___DeleteOrganizationMemberRequest
 
-   
-
 .. py:class:: DeleteOrganizationMemberResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1593,37 +1516,35 @@ Attributes
 
 .. py:data:: global___DeleteOrganizationMemberResponse
 
-   
-
 .. py:class:: OrganizationIdentity(*, id: str = ..., name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Location
 
    Used for rendering an organization's information on the frontend (limited
    to id, name, or both).
 
+
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
       Organization ID.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Organization name.
 
 
 .. py:data:: global___OrganizationIdentity
 
-   
-
 .. py:class:: LocationOrganization(*, organization_id: str = ..., primary: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1631,58 +1552,59 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       Organization ID the location is shared with.
 
+
    .. py:attribute:: primary
-      :type: bool
+      :type:  bool
 
       Whether the organization is the primary owner or not.
 
 
 .. py:data:: global___LocationOrganization
 
-   
-
 .. py:class:: LocationAuth(*, secret: str = ..., location_id: str = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: secret
+      :type:  str
+
+      use secrets field.
+
+      :type: Deprecated
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+      Location ID containing this LocationAuth.
+
 
    .. py:property:: secrets
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SharedSecret]
 
       List of secrets used to authenticate to the Location.
 
-   .. py:attribute:: secret
-      :type: str
-
-      use secrets field.
-
-      :type: Deprecated
-
-   .. py:attribute:: location_id
-      :type: str
-
-      Location ID containing this LocationAuth.
-
 
 .. py:data:: global___LocationAuth
 
-   
-
 .. py:class:: StorageConfig(*, region: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1690,20 +1612,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: region
-      :type: str
+      :type:  str
 
       GCS region that data is stored in.
 
 
 .. py:data:: global___StorageConfig
 
-   
-
 .. py:class:: Location(*, id: str = ..., name: str = ..., parent_location_id: str = ..., auth: global___LocationAuth | None = ..., organizations: collections.abc.Iterable[global___LocationOrganization] | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_count: int = ..., config: global___StorageConfig | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1711,47 +1632,54 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+      Location ID.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Location name.
+
+
+   .. py:attribute:: parent_location_id
+      :type:  str
+
+      Location ID of the parent location.
+
+
+   .. py:attribute:: robot_count
+      :type:  int
+
+
    .. py:property:: auth
       :type: global___LocationAuth
 
       Location authentication secrets.
+
 
    .. py:property:: organizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationOrganization]
 
       Organizations that the location is shared with.
 
+
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       Location creation timestamp.
+
 
    .. py:property:: config
       :type: global___StorageConfig
 
       Config for how data in this location is stored.
 
-   .. py:attribute:: id
-      :type: str
 
-      Location ID.
-
-   .. py:attribute:: name
-      :type: str
-
-      Location name.
-
-   .. py:attribute:: parent_location_id
-      :type: str
-
-      Location ID of the parent location.
-
-   .. py:attribute:: robot_count
-      :type: int
-
-      
-
-   .. py:method:: HasField(field_name: Literal[auth, b'auth', config, b'config', created_on, b'created_on']) -> bool
+   .. py:method:: HasField(field_name: Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1771,19 +1699,51 @@ Attributes
 
 .. py:data:: global___Location
 
-   
-
 .. py:class:: SharedSecret(*, id: str = ..., secret: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., state: global___SharedSecret = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    SharedSecret is a secret used for LocationAuth and RobotParts.
+
 
    .. py:class:: State
 
-
       Bases: :py:obj:`_State`
+
+
+
+   .. py:attribute:: STATE_UNSPECIFIED
+      :type:  SharedSecret
+
+
+   .. py:attribute:: STATE_ENABLED
+      :type:  SharedSecret
+
+      Secret is enabled and can be used in authentication.
+
+
+   .. py:attribute:: STATE_DISABLED
+      :type:  SharedSecret
+
+      Secret is disabled and must not be used to authenticate to rpc.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: secret
+      :type:  str
+
+      The payload of the secret. Used during authentication to the rpc framework.
+
+
+   .. py:attribute:: state
+      :type:  global___SharedSecret.State.ValueType
+
+      State of the shared secret. In most cases it should be enabled. We may support
+      disabling a specific secret while keeping it in the database.
 
 
    .. py:property:: created_on
@@ -1791,38 +1751,8 @@ Attributes
 
       Date/time the secret was first created.
 
-   .. py:attribute:: STATE_UNSPECIFIED
-      :type: SharedSecret
 
-      
-
-   .. py:attribute:: STATE_ENABLED
-      :type: SharedSecret
-
-      Secret is enabled and can be used in authentication.
-
-   .. py:attribute:: STATE_DISABLED
-      :type: SharedSecret
-
-      Secret is disabled and must not be used to authenticate to rpc.
-
-   .. py:attribute:: id
-      :type: str
-
-      
-
-   .. py:attribute:: secret
-      :type: str
-
-      The payload of the secret. Used during authentication to the rpc framework.
-
-   .. py:attribute:: state
-      :type: global___SharedSecret.State.ValueType
-
-      State of the shared secret. In most cases it should be enabled. We may support
-      disabling a specific secret while keeping it in the database.
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1842,12 +1772,10 @@ Attributes
 
 .. py:data:: global___SharedSecret
 
-   
-
 .. py:class:: CreateLocationRequest(*, organization_id: str = ..., name: str = ..., parent_location_id: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1855,22 +1783,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       Organization ID to create the location under.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of the location.
 
+
    .. py:attribute:: parent_location_id
-      :type: str
+      :type:  str
 
       The new parent location to move the location under.
 
-   .. py:method:: HasField(field_name: Literal[_parent_location_id, b'_parent_location_id', parent_location_id, b'parent_location_id']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_parent_location_id', b'_parent_location_id', 'parent_location_id', b'parent_location_id']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1887,7 +1819,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> Literal[parent_location_id] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_parent_location_id', b'_parent_location_id']) -> Literal['parent_location_id'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1905,12 +1838,10 @@ Attributes
 
 .. py:data:: global___CreateLocationRequest
 
-   
-
 .. py:class:: CreateLocationResponse(*, location: global___Location | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1918,12 +1849,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: location
       :type: global___Location
 
       Location object is returned.
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1943,12 +1876,10 @@ Attributes
 
 .. py:data:: global___CreateLocationResponse
 
-   
-
 .. py:class:: GetLocationRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1956,20 +1887,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID of location to get.
 
 
 .. py:data:: global___GetLocationRequest
 
-   
-
 .. py:class:: GetLocationResponse(*, location: global___Location | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1977,12 +1907,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: location
       :type: global___Location
 
       Location object is returned.
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2002,12 +1934,10 @@ Attributes
 
 .. py:data:: global___GetLocationResponse
 
-   
-
 .. py:class:: UpdateLocationRequest(*, location_id: str = ..., name: str | None = ..., parent_location_id: str | None = ..., region: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2015,27 +1945,32 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID of location to update.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       The new name to be updated on location.
 
+
    .. py:attribute:: parent_location_id
-      :type: str
+      :type:  str
 
       The new parent location to move the location under.
 
+
    .. py:attribute:: region
-      :type: str
+      :type:  str
 
       The new GCS region to associate the location with.
 
-   .. py:method:: HasField(field_name: Literal[_name, b'_name', _parent_location_id, b'_parent_location_id', _region, b'_region', name, b'name', parent_location_id, b'parent_location_id', region, b'region']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_name', b'_name', '_parent_location_id', b'_parent_location_id', '_region', b'_region', 'name', b'name', 'parent_location_id', b'parent_location_id', 'region', b'region']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2052,9 +1987,10 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
-                  WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> Literal[parent_location_id] | None
-                  WhichOneof(oneof_group: Literal[_region, b'_region']) -> Literal[region] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_name', b'_name']) -> Literal['name'] | None
+                  WhichOneof(oneof_group: Literal['_parent_location_id', b'_parent_location_id']) -> Literal['parent_location_id'] | None
+                  WhichOneof(oneof_group: Literal['_region', b'_region']) -> Literal['region'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2072,12 +2008,10 @@ Attributes
 
 .. py:data:: global___UpdateLocationRequest
 
-   
-
 .. py:class:: UpdateLocationResponse(*, location: global___Location | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2085,12 +2019,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: location
       :type: global___Location
 
       Location object is returned.
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2110,12 +2046,10 @@ Attributes
 
 .. py:data:: global___UpdateLocationResponse
 
-   
-
 .. py:class:: DeleteLocationRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2123,20 +2057,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID of location to delete.
 
 
 .. py:data:: global___DeleteLocationRequest
 
-   
-
 .. py:class:: DeleteLocationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2147,12 +2080,10 @@ Attributes
 
 .. py:data:: global___DeleteLocationResponse
 
-   
-
 .. py:class:: GetOrganizationsWithAccessToLocationRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2160,26 +2091,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: location_id
-      :type: str
 
-      
+   .. py:attribute:: location_id
+      :type:  str
 
 
 .. py:data:: global___GetOrganizationsWithAccessToLocationRequest
 
-   
-
 .. py:class:: GetOrganizationsWithAccessToLocationResponse(*, organization_identities: collections.abc.Iterable[global___OrganizationIdentity] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: organization_identities
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrganizationIdentity]
@@ -2188,12 +2117,10 @@ Attributes
 
 .. py:data:: global___GetOrganizationsWithAccessToLocationResponse
 
-   
-
 .. py:class:: ListLocationsRequest(*, organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2201,20 +2128,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       Organization ID under which to list all locations.
 
 
 .. py:data:: global___ListLocationsRequest
 
-   
-
 .. py:class:: ShareLocationRequest(*, location_id: str = ..., organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2222,25 +2148,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID to be shared.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       Organization ID to share the location with.
 
 
 .. py:data:: global___ShareLocationRequest
 
-   
-
 .. py:class:: ShareLocationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2251,12 +2177,10 @@ Attributes
 
 .. py:data:: global___ShareLocationResponse
 
-   
-
 .. py:class:: UnshareLocationRequest(*, location_id: str = ..., organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2264,25 +2188,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID to be unshared.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       Organization ID to unshare the location with.
 
 
 .. py:data:: global___UnshareLocationRequest
 
-   
-
 .. py:class:: UnshareLocationResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2293,18 +2217,17 @@ Attributes
 
 .. py:data:: global___UnshareLocationResponse
 
-   
-
 .. py:class:: ListLocationsResponse(*, locations: collections.abc.Iterable[global___Location] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: locations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Location]
@@ -2313,12 +2236,10 @@ Attributes
 
 .. py:data:: global___ListLocationsResponse
 
-   
-
 .. py:class:: CreateLocationSecretRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2326,20 +2247,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
       Location ID to create the secret in.
 
 
 .. py:data:: global___CreateLocationSecretRequest
 
-   
-
 .. py:class:: CreateLocationSecretResponse(*, auth: global___LocationAuth | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2347,12 +2267,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: auth
       :type: global___LocationAuth
 
       Location's auth after updates.
 
-   .. py:method:: HasField(field_name: Literal[auth, b'auth']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['auth', b'auth']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2372,12 +2294,10 @@ Attributes
 
 .. py:data:: global___CreateLocationSecretResponse
 
-   
-
 .. py:class:: DeleteLocationSecretRequest(*, location_id: str = ..., secret_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2385,25 +2305,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: location_id
-      :type: str
 
-      
+   .. py:attribute:: location_id
+      :type:  str
+
 
    .. py:attribute:: secret_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___DeleteLocationSecretRequest
 
-   
-
 .. py:class:: DeleteLocationSecretResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2414,12 +2330,10 @@ Attributes
 
 .. py:data:: global___DeleteLocationSecretResponse
 
-   
-
 .. py:class:: LocationAuthRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2427,32 +2341,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: location_id
-      :type: str
 
-      
+   .. py:attribute:: location_id
+      :type:  str
 
 
 .. py:data:: global___LocationAuthRequest
 
-   
-
 .. py:class:: LocationAuthResponse(*, auth: global___LocationAuth | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: auth
       :type: global___LocationAuth
 
 
-   .. py:method:: HasField(field_name: Literal[auth, b'auth']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['auth', b'auth']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2472,12 +2385,10 @@ Attributes
 
 .. py:data:: global___LocationAuthResponse
 
-   
-
 .. py:class:: GetRobotRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2485,20 +2396,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___GetRobotRequest
 
-   
-
 .. py:class:: GetRoverRentalRobotsRequest(*, org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2506,20 +2414,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
 
 
 .. py:data:: global___GetRoverRentalRobotsRequest
 
-   
-
 .. py:class:: RoverRentalRobot(*, robot_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_main_part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2527,41 +2432,36 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: robot_id
-      :type: str
 
-      
+   .. py:attribute:: robot_id
+      :type:  str
+
 
    .. py:attribute:: location_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: robot_name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: robot_main_part_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___RoverRentalRobot
 
-   
-
 .. py:class:: GetRoverRentalRobotsResponse(*, robots: collections.abc.Iterable[global___RoverRentalRobot] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: robots
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RoverRentalRobot]
@@ -2570,12 +2470,10 @@ Attributes
 
 .. py:data:: global___GetRoverRentalRobotsResponse
 
-   
-
 .. py:class:: GetRobotResponse(*, robot: global___Robot | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2583,11 +2481,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: robot
       :type: global___Robot
 
 
-   .. py:method:: HasField(field_name: Literal[robot, b'robot']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['robot', b'robot']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2607,12 +2507,10 @@ Attributes
 
 .. py:data:: global___GetRobotResponse
 
-   
-
 .. py:class:: GetRobotPartsRequest(*, robot_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2620,26 +2518,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: robot_id
-      :type: str
 
-      
+   .. py:attribute:: robot_id
+      :type:  str
 
 
 .. py:data:: global___GetRobotPartsRequest
 
-   
-
 .. py:class:: GetRobotPartsResponse(*, parts: collections.abc.Iterable[global___RobotPart] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: parts
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RobotPart]
@@ -2648,12 +2544,10 @@ Attributes
 
 .. py:data:: global___GetRobotPartsResponse
 
-   
-
 .. py:class:: GetRobotPartRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2661,37 +2555,35 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___GetRobotPartRequest
 
-   
-
 .. py:class:: GetRobotPartResponse(*, part: global___RobotPart | None = ..., config_json: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: config_json
+      :type:  str
+
 
    .. py:property:: part
       :type: global___RobotPart
 
 
-   .. py:attribute:: config_json
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[part, b'part']) -> bool
+   .. py:method:: HasField(field_name: Literal['part', b'part']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2711,12 +2603,10 @@ Attributes
 
 .. py:data:: global___GetRobotPartResponse
 
-   
-
 .. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2724,18 +2614,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: levels
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      logs of all levels are returned when the levels field is empty
 
    .. py:attribute:: id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: errors_only
-      :type: bool
+      :type:  bool
 
       Remove this field
 
@@ -2743,17 +2628,22 @@ Attributes
 
       :type: //viam.atlassian.net/browse/APP-3877)
 
-   .. py:attribute:: filter
-      :type: str
 
-      
+   .. py:attribute:: filter
+      :type:  str
+
 
    .. py:attribute:: page_token
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_filter, b'_filter', _page_token, b'_page_token', filter, b'filter', page_token, b'page_token']) -> bool
+   .. py:property:: levels
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      logs of all levels are returned when the levels field is empty
+
+
+   .. py:method:: HasField(field_name: Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2770,8 +2660,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> Literal[filter] | None
-                  WhichOneof(oneof_group: Literal[_page_token, b'_page_token']) -> Literal[page_token] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
+                  WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2789,37 +2680,33 @@ Attributes
 
 .. py:data:: global___GetRobotPartLogsRequest
 
-   
-
 .. py:class:: GetRobotPartLogsResponse(*, logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ..., next_page_token: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: next_page_token
+      :type:  str
+
 
    .. py:property:: logs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
 
 
-   .. py:attribute:: next_page_token
-      :type: str
-
-      
-
 
 .. py:data:: global___GetRobotPartLogsResponse
 
-   
-
 .. py:class:: TailRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2827,22 +2714,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: errors_only
-      :type: bool
+      :type:  bool
 
-      
 
    .. py:attribute:: filter
-      :type: str
+      :type:  str
 
-      
 
-   .. py:method:: HasField(field_name: Literal[_filter, b'_filter', filter, b'filter']) -> bool
+   .. py:method:: HasField(field_name: Literal['_filter', b'_filter', 'filter', b'filter']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2859,7 +2744,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> Literal[filter] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2877,18 +2763,17 @@ Attributes
 
 .. py:data:: global___TailRobotPartLogsRequest
 
-   
-
 .. py:class:: TailRobotPartLogsResponse(*, logs: collections.abc.Iterable[viam.gen.common.v1.common_pb2.LogEntry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: logs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
@@ -2897,12 +2782,10 @@ Attributes
 
 .. py:data:: global___TailRobotPartLogsResponse
 
-   
-
 .. py:class:: GetRobotPartHistoryRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2910,26 +2793,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___GetRobotPartHistoryRequest
 
-   
-
 .. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[global___RobotPartHistoryEntry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: history
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RobotPartHistoryEntry]
@@ -2938,12 +2819,10 @@ Attributes
 
 .. py:data:: global___GetRobotPartHistoryResponse
 
-   
-
 .. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2951,21 +2830,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
    .. py:property:: robot_config
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[robot_config, b'robot_config']) -> bool
+   .. py:method:: HasField(field_name: Literal['robot_config', b'robot_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2985,12 +2864,10 @@ Attributes
 
 .. py:data:: global___UpdateRobotPartRequest
 
-   
-
 .. py:class:: UpdateRobotPartResponse(*, part: global___RobotPart | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -2998,11 +2875,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: part
       :type: global___RobotPart
 
 
-   .. py:method:: HasField(field_name: Literal[part, b'part']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['part', b'part']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3022,12 +2901,10 @@ Attributes
 
 .. py:data:: global___UpdateRobotPartResponse
 
-   
-
 .. py:class:: NewRobotPartRequest(*, robot_id: str = ..., part_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3035,25 +2912,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: robot_id
-      :type: str
 
-      
+   .. py:attribute:: robot_id
+      :type:  str
+
 
    .. py:attribute:: part_name
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___NewRobotPartRequest
 
-   
-
 .. py:class:: NewRobotPartResponse(*, part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3061,20 +2934,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: part_id
-      :type: str
 
-      
+   .. py:attribute:: part_id
+      :type:  str
 
 
 .. py:data:: global___NewRobotPartResponse
 
-   
-
 .. py:class:: DeleteRobotPartRequest(*, part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3082,20 +2952,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: part_id
-      :type: str
 
-      
+   .. py:attribute:: part_id
+      :type:  str
 
 
 .. py:data:: global___DeleteRobotPartRequest
 
-   
-
 .. py:class:: GetRobotAPIKeysRequest(*, robot_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3103,47 +2970,43 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: robot_id
-      :type: str
 
-      
+   .. py:attribute:: robot_id
+      :type:  str
 
 
 .. py:data:: global___GetRobotAPIKeysRequest
 
-   
-
 .. py:class:: APIKey(*, id: str = ..., key: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: key
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: key
-      :type: str
-
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3163,18 +3026,17 @@ Attributes
 
 .. py:data:: global___APIKey
 
-   
-
 .. py:class:: GetRobotAPIKeysResponse(*, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: api_keys
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKeyWithAuthorizations]
@@ -3183,12 +3045,10 @@ Attributes
 
 .. py:data:: global___GetRobotAPIKeysResponse
 
-   
-
 .. py:class:: DeleteRobotPartResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3199,12 +3059,10 @@ Attributes
 
 .. py:data:: global___DeleteRobotPartResponse
 
-   
-
 .. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: global___FragmentVisibility = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3212,60 +3070,62 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: organization_owner
+      :type:  str
+
+
+   .. py:attribute:: public
+      :type:  bool
+
+
+   .. py:attribute:: organization_name
+      :type:  str
+
+
+   .. py:attribute:: robot_part_count
+      :type:  int
+
+      number of robot parts using this fragment
+
+
+   .. py:attribute:: organization_count
+      :type:  int
+
+      number of organizations using this fragment
+
+
+   .. py:attribute:: only_used_by_owner
+      :type:  bool
+
+      whether the organization(s) using this fragment is the same as the fragment org
+
+
+   .. py:attribute:: visibility
+      :type:  global___FragmentVisibility
+
+      the visibility of a fragment; public, private or unlisted
+
+
    .. py:property:: fragment
       :type: google.protobuf.struct_pb2.Struct
+
 
 
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: organization_owner
-      :type: str
-
-      
-
-   .. py:attribute:: public
-      :type: bool
-
-      
-
-   .. py:attribute:: organization_name
-      :type: str
-
-      
-
-   .. py:attribute:: robot_part_count
-      :type: int
-
-      number of robot parts using this fragment
-
-   .. py:attribute:: organization_count
-      :type: int
-
-      number of organizations using this fragment
-
-   .. py:attribute:: only_used_by_owner
-      :type: bool
-
-      whether the organization(s) using this fragment is the same as the fragment org
-
-   .. py:attribute:: visibility
-      :type: global___FragmentVisibility
-
-      the visibility of a fragment; public, private or unlisted
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', fragment, b'fragment']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'fragment', b'fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3285,48 +3145,44 @@ Attributes
 
 .. py:data:: global___Fragment
 
-   
-
 .. py:class:: ListFragmentsRequest(*, organization_id: str = ..., show_public: bool = ..., fragment_visibility: collections.abc.Iterable[global___FragmentVisibility] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: show_public
+      :type:  bool
+
 
    .. py:property:: fragment_visibility
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___FragmentVisibility]
 
 
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
-   .. py:attribute:: show_public
-      :type: bool
-
-      
-
 
 .. py:data:: global___ListFragmentsRequest
 
-   
-
 .. py:class:: ListFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: fragments
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]
@@ -3335,12 +3191,10 @@ Attributes
 
 .. py:data:: global___ListFragmentsResponse
 
-   
-
 .. py:class:: GetFragmentRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3348,32 +3202,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___GetFragmentRequest
 
-   
-
 .. py:class:: GetFragmentResponse(*, fragment: global___Fragment | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: fragment
       :type: global___Fragment
 
 
-   .. py:method:: HasField(field_name: Literal[fragment, b'fragment']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['fragment', b'fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3393,12 +3246,10 @@ Attributes
 
 .. py:data:: global___GetFragmentResponse
 
-   
-
 .. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3406,21 +3257,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
    .. py:property:: config
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
+   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3440,12 +3291,10 @@ Attributes
 
 .. py:data:: global___CreateFragmentRequest
 
-   
-
 .. py:class:: CreateFragmentResponse(*, fragment: global___Fragment | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3453,11 +3302,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: fragment
       :type: global___Fragment
 
 
-   .. py:method:: HasField(field_name: Literal[fragment, b'fragment']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['fragment', b'fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3477,12 +3328,10 @@ Attributes
 
 .. py:data:: global___CreateFragmentResponse
 
-   
-
 .. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ..., visibility: global___FragmentVisibility | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3490,31 +3339,29 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: public
+      :type:  bool
+
+
+   .. py:attribute:: visibility
+      :type:  global___FragmentVisibility
+
+
    .. py:property:: config
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: public
-      :type: bool
-
-      
-
-   .. py:attribute:: visibility
-      :type: global___FragmentVisibility
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_public, b'_public', _visibility, b'_visibility', config, b'config', public, b'public', visibility, b'visibility']) -> bool
+   .. py:method:: HasField(field_name: Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'public', b'public', 'visibility', b'visibility']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3531,8 +3378,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_public, b'_public']) -> Literal[public] | None
-                  WhichOneof(oneof_group: Literal[_visibility, b'_visibility']) -> Literal[visibility] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_public', b'_public']) -> Literal['public'] | None
+                  WhichOneof(oneof_group: Literal['_visibility', b'_visibility']) -> Literal['visibility'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3550,12 +3398,10 @@ Attributes
 
 .. py:data:: global___UpdateFragmentRequest
 
-   
-
 .. py:class:: UpdateFragmentResponse(*, fragment: global___Fragment | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3563,11 +3409,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: fragment
       :type: global___Fragment
 
 
-   .. py:method:: HasField(field_name: Literal[fragment, b'fragment']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['fragment', b'fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3587,12 +3435,10 @@ Attributes
 
 .. py:data:: global___UpdateFragmentResponse
 
-   
-
 .. py:class:: DeleteFragmentRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3600,20 +3446,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___DeleteFragmentRequest
 
-   
-
 .. py:class:: DeleteFragmentResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3624,12 +3467,10 @@ Attributes
 
 .. py:data:: global___DeleteFragmentResponse
 
-   
-
 .. py:class:: ListRobotsRequest(*, location_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3637,26 +3478,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: location_id
-      :type: str
 
-      
+   .. py:attribute:: location_id
+      :type:  str
 
 
 .. py:data:: global___ListRobotsRequest
 
-   
-
 .. py:class:: ListRobotsResponse(*, robots: collections.abc.Iterable[global___Robot] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: robots
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Robot]
@@ -3665,12 +3504,10 @@ Attributes
 
 .. py:data:: global___ListRobotsResponse
 
-   
-
 .. py:class:: NewRobotRequest(*, name: str = ..., location: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3678,25 +3515,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: location
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___NewRobotRequest
 
-   
-
 .. py:class:: NewRobotResponse(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3704,20 +3537,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___NewRobotResponse
 
-   
-
 .. py:class:: UpdateRobotRequest(*, id: str = ..., name: str = ..., location: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3725,42 +3555,39 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: location
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___UpdateRobotRequest
 
-   
-
 .. py:class:: UpdateRobotResponse(*, robot: global___Robot | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: robot
       :type: global___Robot
 
 
-   .. py:method:: HasField(field_name: Literal[robot, b'robot']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['robot', b'robot']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3780,12 +3607,10 @@ Attributes
 
 .. py:data:: global___UpdateRobotResponse
 
-   
-
 .. py:class:: DeleteRobotRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3793,20 +3618,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___DeleteRobotRequest
 
-   
-
 .. py:class:: DeleteRobotResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3817,12 +3639,10 @@ Attributes
 
 .. py:data:: global___DeleteRobotResponse
 
-   
-
 .. py:class:: MarkPartAsMainRequest(*, part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3830,20 +3650,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: part_id
-      :type: str
 
-      
+   .. py:attribute:: part_id
+      :type:  str
 
 
 .. py:data:: global___MarkPartAsMainRequest
 
-   
-
 .. py:class:: MarkPartAsMainResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3854,12 +3671,10 @@ Attributes
 
 .. py:data:: global___MarkPartAsMainResponse
 
-   
-
 .. py:class:: MarkPartForRestartRequest(*, part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3867,20 +3682,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: part_id
-      :type: str
 
-      
+   .. py:attribute:: part_id
+      :type:  str
 
 
 .. py:data:: global___MarkPartForRestartRequest
 
-   
-
 .. py:class:: MarkPartForRestartResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3891,12 +3703,10 @@ Attributes
 
 .. py:data:: global___MarkPartForRestartResponse
 
-   
-
 .. py:class:: CreateRobotPartSecretRequest(*, part_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3904,20 +3714,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: part_id
-      :type: str
+      :type:  str
 
       Robot Part ID to create the secret in.
 
 
 .. py:data:: global___CreateRobotPartSecretRequest
 
-   
-
 .. py:class:: CreateRobotPartSecretResponse(*, part: global___RobotPart | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3925,12 +3734,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: part
       :type: global___RobotPart
 
       Location's auth after updates.
 
-   .. py:method:: HasField(field_name: Literal[part, b'part']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['part', b'part']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3950,12 +3761,10 @@ Attributes
 
 .. py:data:: global___CreateRobotPartSecretResponse
 
-   
-
 .. py:class:: DeleteRobotPartSecretRequest(*, part_id: str = ..., secret_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3963,25 +3772,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: part_id
-      :type: str
 
-      
+   .. py:attribute:: part_id
+      :type:  str
+
 
    .. py:attribute:: secret_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___DeleteRobotPartSecretRequest
 
-   
-
 .. py:class:: DeleteRobotPartSecretResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -3992,12 +3797,10 @@ Attributes
 
 .. py:data:: global___DeleteRobotPartSecretResponse
 
-   
-
 .. py:class:: Authorization(*, authorization_type: str = ..., authorization_id: str = ..., resource_type: str = ..., resource_id: str = ..., identity_id: str = ..., organization_id: str = ..., identity_type: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4005,62 +3808,55 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: authorization_type
-      :type: str
 
-      
+   .. py:attribute:: authorization_type
+      :type:  str
+
 
    .. py:attribute:: authorization_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: resource_type
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: resource_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: identity_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: identity_type
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___Authorization
 
-   
-
 .. py:class:: AddRoleRequest(*, authorization: global___Authorization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: authorization
       :type: global___Authorization
 
 
-   .. py:method:: HasField(field_name: Literal[authorization, b'authorization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['authorization', b'authorization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4080,12 +3876,10 @@ Attributes
 
 .. py:data:: global___AddRoleRequest
 
-   
-
 .. py:class:: AddRoleResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4096,12 +3890,10 @@ Attributes
 
 .. py:data:: global___AddRoleResponse
 
-   
-
 .. py:class:: RemoveRoleRequest(*, authorization: global___Authorization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4109,11 +3901,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: authorization
       :type: global___Authorization
 
 
-   .. py:method:: HasField(field_name: Literal[authorization, b'authorization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['authorization', b'authorization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4133,12 +3927,10 @@ Attributes
 
 .. py:data:: global___RemoveRoleRequest
 
-   
-
 .. py:class:: RemoveRoleResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4149,12 +3941,10 @@ Attributes
 
 .. py:data:: global___RemoveRoleResponse
 
-   
-
 .. py:class:: ChangeRoleRequest(*, old_authorization: global___Authorization | None = ..., new_authorization: global___Authorization | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4162,15 +3952,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: old_authorization
       :type: global___Authorization
+
 
 
    .. py:property:: new_authorization
       :type: global___Authorization
 
 
-   .. py:method:: HasField(field_name: Literal[new_authorization, b'new_authorization', old_authorization, b'old_authorization']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4190,12 +3983,10 @@ Attributes
 
 .. py:data:: global___ChangeRoleRequest
 
-   
-
 .. py:class:: ChangeRoleResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4206,44 +3997,41 @@ Attributes
 
 .. py:data:: global___ChangeRoleResponse
 
-   
-
 .. py:class:: ListAuthorizationsRequest(*, organization_id: str = ..., resource_ids: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
 
    .. py:property:: resource_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       optional filter
 
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
 
 .. py:data:: global___ListAuthorizationsRequest
 
-   
-
 .. py:class:: ListAuthorizationsResponse(*, authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
@@ -4252,18 +4040,17 @@ Attributes
 
 .. py:data:: global___ListAuthorizationsResponse
 
-   
-
 .. py:class:: CheckPermissionsRequest(*, permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: permissions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthorizedPermissions]
@@ -4272,48 +4059,44 @@ Attributes
 
 .. py:data:: global___CheckPermissionsRequest
 
-   
-
 .. py:class:: AuthorizedPermissions(*, resource_type: str = ..., resource_id: str = ..., permissions: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: resource_type
+      :type:  str
+
+
+   .. py:attribute:: resource_id
+      :type:  str
+
 
    .. py:property:: permissions
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: resource_type
-      :type: str
-
-      
-
-   .. py:attribute:: resource_id
-      :type: str
-
-      
-
 
 .. py:data:: global___AuthorizedPermissions
 
-   
-
 .. py:class:: CheckPermissionsResponse(*, authorized_permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: authorized_permissions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthorizedPermissions]
@@ -4322,48 +4105,48 @@ Attributes
 
 .. py:data:: global___CheckPermissionsResponse
 
-   
-
 .. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: version
+      :type:  str
+
+      The semver string that represents the major/minor/patch version of the module
+
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The entrypoint for this version of the module
+
 
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]
 
       The uploads that are available for this module version
 
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       The models that this verion of the module provides
 
-   .. py:attribute:: version
-      :type: str
-
-      The semver string that represents the major/minor/patch version of the module
-
-   .. py:attribute:: entrypoint
-      :type: str
-
-      The entrypoint for this version of the module
-
 
 .. py:data:: global___ModuleVersion
 
-   
-
 .. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4371,10 +4154,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The executable to run to start the module program
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
+
 
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ModuleVersion]
@@ -4382,51 +4173,41 @@ Attributes
       A list of versions of the module that are available
       When this is returned from the backend, the versions are sorted in ascending order by the semver version
 
-   .. py:attribute:: entrypoint
-      :type: str
-
-      The executable to run to start the module program
-
 
 .. py:data:: global___ModuleMetadata
 
-   
-
 .. py:class:: MLModelMetadata(*, versions: collections.abc.Iterable[str] | None = ..., model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: model_type
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+
+
+   .. py:attribute:: model_framework
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
 
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       A list of package versions for a ML model
 
-   .. py:attribute:: model_type
-      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
-
-      
-
-   .. py:attribute:: model_framework
-      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
-
-      
-
 
 .. py:data:: global___MLModelMetadata
 
-   
-
 .. py:class:: MLTrainingVersion(*, version: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4434,16 +4215,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: version
+      :type:  str
+
+
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: version
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4463,48 +4245,42 @@ Attributes
 
 .. py:data:: global___MLTrainingVersion
 
-   
-
 .. py:class:: MLTrainingMetadata(*, versions: collections.abc.Iterable[global___MLTrainingVersion] | None = ..., model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: model_type
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+
+
+   .. py:attribute:: model_framework
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
+
+   .. py:attribute:: draft
+      :type:  bool
+
 
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MLTrainingVersion]
 
       A list of package versions for ML training source distribution
 
-   .. py:attribute:: model_type
-      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
-
-      
-
-   .. py:attribute:: model_framework
-      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
-
-      
-
-   .. py:attribute:: draft
-      :type: bool
-
-      
-
 
 .. py:data:: global___MLTrainingMetadata
 
-   
-
 .. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: global___ModuleMetadata | None = ..., ml_model_metadata: global___MLModelMetadata | None = ..., ml_training_metadata: global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4512,16 +4288,95 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: item_id
+      :type:  str
+
+      The id of the item, containing either:
+      namespace:item_name when a namespace exists on the org.
+      org_id:item_name when a namespace does not exist.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+      The id of the organization that owns the item
+
+
+   .. py:attribute:: public_namespace
+      :type:  str
+
+      The public namespace of the organization that owns the module
+      This is empty if no public namespace is set
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the registry item
+
+
+   .. py:attribute:: type
+      :type:  viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
+
+      The type of the item in the registry
+
+
+   .. py:attribute:: visibility
+      :type:  global___Visibility
+
+      The visibility of the registry item
+
+
+   .. py:attribute:: url
+      :type:  str
+
+      The url to reference for documentation, code, etc.
+
+
+   .. py:attribute:: description
+      :type:  str
+
+      A short description of the item that explains its purpose
+
+
+   .. py:attribute:: total_robot_usage
+      :type:  int
+
+      The total number of robots using this item
+
+
+   .. py:attribute:: total_external_robot_usage
+      :type:  int
+
+      The total number of robots using this item outside of the owning org
+
+
+   .. py:attribute:: total_organization_usage
+      :type:  int
+
+      The total number of organizations using this item
+
+
+   .. py:attribute:: total_external_organization_usage
+      :type:  int
+
+      The total number of organizations using this item outside of the owning org
+
+
    .. py:property:: module_metadata
       :type: global___ModuleMetadata
+
 
 
    .. py:property:: ml_model_metadata
       :type: global___MLModelMetadata
 
 
+
    .. py:property:: ml_training_metadata
       :type: global___MLTrainingMetadata
+
 
 
    .. py:property:: created_at
@@ -4529,75 +4384,14 @@ Attributes
 
       When the item was created
 
+
    .. py:property:: updated_at
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       When the item was last updated, either through an update or upload.
 
-   .. py:attribute:: item_id
-      :type: str
 
-      The id of the item, containing either:
-      namespace:item_name when a namespace exists on the org.
-      org_id:item_name when a namespace does not exist.
-
-   .. py:attribute:: organization_id
-      :type: str
-
-      The id of the organization that owns the item
-
-   .. py:attribute:: public_namespace
-      :type: str
-
-      The public namespace of the organization that owns the module
-      This is empty if no public namespace is set
-
-   .. py:attribute:: name
-      :type: str
-
-      The name of the registry item
-
-   .. py:attribute:: type
-      :type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
-
-      The type of the item in the registry
-
-   .. py:attribute:: visibility
-      :type: global___Visibility
-
-      The visibility of the registry item
-
-   .. py:attribute:: url
-      :type: str
-
-      The url to reference for documentation, code, etc.
-
-   .. py:attribute:: description
-      :type: str
-
-      A short description of the item that explains its purpose
-
-   .. py:attribute:: total_robot_usage
-      :type: int
-
-      The total number of robots using this item
-
-   .. py:attribute:: total_external_robot_usage
-      :type: int
-
-      The total number of robots using this item outside of the owning org
-
-   .. py:attribute:: total_organization_usage
-      :type: int
-
-      The total number of organizations using this item
-
-   .. py:attribute:: total_external_organization_usage
-      :type: int
-
-      The total number of organizations using this item outside of the owning org
-
-   .. py:method:: HasField(field_name: Literal[created_at, b'created_at', metadata, b'metadata', ml_model_metadata, b'ml_model_metadata', ml_training_metadata, b'ml_training_metadata', module_metadata, b'module_metadata', updated_at, b'updated_at']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4614,7 +4408,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[metadata, b'metadata']) -> Literal[module_metadata, ml_model_metadata, ml_training_metadata] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['metadata', b'metadata']) -> Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -4632,12 +4427,10 @@ Attributes
 
 .. py:data:: global___RegistryItem
 
-   
-
 .. py:class:: GetRegistryItemRequest(*, item_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4645,32 +4438,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: item_id
-      :type: str
 
-      
+   .. py:attribute:: item_id
+      :type:  str
 
 
 .. py:data:: global___GetRegistryItemRequest
 
-   
-
 .. py:class:: GetRegistryItemResponse(*, item: global___RegistryItem | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: item
       :type: global___RegistryItem
 
 
-   .. py:method:: HasField(field_name: Literal[item, b'item']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['item', b'item']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4690,12 +4482,10 @@ Attributes
 
 .. py:data:: global___GetRegistryItemResponse
 
-   
-
 .. py:class:: CreateRegistryItemRequest(*, organization_id: str = ..., name: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4703,30 +4493,31 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       The organization to create the registry item under
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       The name of the registry item, which must be unique within your org
 
+
    .. py:attribute:: type
-      :type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
+      :type:  viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
 
       The type of the item in the registry
 
 
 .. py:data:: global___CreateRegistryItemRequest
 
-   
-
 .. py:class:: CreateRegistryItemResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4737,12 +4528,10 @@ Attributes
 
 .. py:data:: global___CreateRegistryItemResponse
 
-   
-
 .. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4750,35 +4539,29 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: item_id
-      :type: str
 
-      
+   .. py:attribute:: item_id
+      :type:  str
+
 
    .. py:attribute:: type
-      :type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
+      :type:  viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType
 
-      
 
    .. py:attribute:: description
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: visibility
-      :type: global___Visibility
-
-      
+      :type:  global___Visibility
 
 
 .. py:data:: global___UpdateRegistryItemRequest
 
-   
-
 .. py:class:: UpdateRegistryItemResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4789,12 +4572,10 @@ Attributes
 
 .. py:data:: global___UpdateRegistryItemResponse
 
-   
-
 .. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4802,20 +4583,39 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+      The id of the organization to return registry items for.
+
+
+   .. py:attribute:: search_term
+      :type:  str
+
+
+   .. py:attribute:: page_token
+      :type:  str
+
+
    .. py:property:: types
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType]
+
 
 
    .. py:property:: visibilities
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___Visibility]
 
 
+
    .. py:property:: platforms
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
+
    .. py:property:: statuses
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___RegistryItemStatus]
+
 
 
    .. py:property:: public_namespaces
@@ -4823,22 +4623,8 @@ Attributes
 
       One or more public namespaces to return results for.
 
-   .. py:attribute:: organization_id
-      :type: str
 
-      The id of the organization to return registry items for.
-
-   .. py:attribute:: search_term
-      :type: str
-
-      
-
-   .. py:attribute:: page_token
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_organization_id, b'_organization_id', _page_token, b'_page_token', _search_term, b'_search_term', organization_id, b'organization_id', page_token, b'page_token', search_term, b'search_term']) -> bool
+   .. py:method:: HasField(field_name: Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4855,9 +4641,10 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
-                  WhichOneof(oneof_group: Literal[_page_token, b'_page_token']) -> Literal[page_token] | None
-                  WhichOneof(oneof_group: Literal[_search_term, b'_search_term']) -> Literal[search_term] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
+                  WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
+                  WhichOneof(oneof_group: Literal['_search_term', b'_search_term']) -> Literal['search_term'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -4875,18 +4662,17 @@ Attributes
 
 .. py:data:: global___ListRegistryItemsRequest
 
-   
-
 .. py:class:: ListRegistryItemsResponse(*, items: collections.abc.Iterable[global___RegistryItem] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: items
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RegistryItem]
@@ -4895,12 +4681,10 @@ Attributes
 
 .. py:data:: global___ListRegistryItemsResponse
 
-   
-
 .. py:class:: DeleteRegistryItemRequest(*, item_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4908,8 +4692,9 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: item_id
-      :type: str
+      :type:  str
 
       name where prefix is the owner's orgid or namespace)
 
@@ -4918,12 +4703,10 @@ Attributes
 
 .. py:data:: global___DeleteRegistryItemRequest
 
-   
-
 .. py:class:: DeleteRegistryItemResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4934,12 +4717,10 @@ Attributes
 
 .. py:data:: global___DeleteRegistryItemResponse
 
-   
-
 .. py:class:: TransferRegistryItemRequest(*, item_id: str = ..., new_public_namespace: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4947,25 +4728,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: item_id
-      :type: str
 
-      
+   .. py:attribute:: item_id
+      :type:  str
+
 
    .. py:attribute:: new_public_namespace
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___TransferRegistryItemRequest
 
-   
-
 .. py:class:: TransferRegistryItemResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -4976,34 +4753,32 @@ Attributes
 
 .. py:data:: global___TransferRegistryItemResponse
 
-   
-
 .. py:class:: CreateModuleRequest(*, organization_id: str = ..., name: str = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Modules
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       The organization to create the module under
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       The name of the module, which must be unique within your org
 
 
 .. py:data:: global___CreateModuleRequest
 
-   
-
 .. py:class:: CreateModuleResponse(*, module_id: str = ..., url: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5011,75 +4786,79 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: module_id
-      :type: str
+      :type:  str
 
       name where prefix is the module owner's orgid or namespace)
 
       :type: The id of the module (formatted as prefix
 
+
    .. py:attribute:: url
-      :type: str
+      :type:  str
 
       The detail page of the module
 
 
 .. py:data:: global___CreateModuleResponse
 
-   
-
 .. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: module_id
+      :type:  str
+
+      name where prefix is the module owner's orgid or namespace)
+
+      :type: The id of the module (formatted as prefix
+
+
+   .. py:attribute:: visibility
+      :type:  global___Visibility
+
+      The visibility that should be set for the module
+
+
+   .. py:attribute:: url
+      :type:  str
+
+      The url to reference for documentation, code, etc.
+
+
+   .. py:attribute:: description
+      :type:  str
+
+      A short description of the module that explains its purpose
+
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The executable to run to start the module program
+
 
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
 
-   .. py:attribute:: module_id
-      :type: str
-
-      name where prefix is the module owner's orgid or namespace)
-
-      :type: The id of the module (formatted as prefix
-
-   .. py:attribute:: visibility
-      :type: global___Visibility
-
-      The visibility that should be set for the module
-
-   .. py:attribute:: url
-      :type: str
-
-      The url to reference for documentation, code, etc.
-
-   .. py:attribute:: description
-      :type: str
-
-      A short description of the module that explains its purpose
-
-   .. py:attribute:: entrypoint
-      :type: str
-
-      The executable to run to start the module program
-
 
 .. py:data:: global___UpdateModuleRequest
 
-   
-
 .. py:class:: UpdateModuleResponse(*, url: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5087,20 +4866,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: url
-      :type: str
+      :type:  str
 
       The detail page of the module
 
 
 .. py:data:: global___UpdateModuleResponse
 
-   
-
 .. py:class:: Model(*, api: str = ..., model: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5108,25 +4886,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: api
-      :type: str
+      :type:  str
 
       The colon-delimited-triplet of the api implemented by the model
 
+
    .. py:attribute:: model
-      :type: str
+      :type:  str
 
       The colon-delimited-triplet of the model
 
 
 .. py:data:: global___Model
 
-   
-
 .. py:class:: ModuleFileInfo(*, module_id: str = ..., version: str = ..., platform: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5134,32 +4912,33 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: module_id
-      :type: str
+      :type:  str
 
       name where prefix is the module owner's orgid or namespace)
 
       :type: The id of the module (formatted as prefix
 
+
    .. py:attribute:: version
-      :type: str
+      :type:  str
 
       The semver string that represents the new major/minor/patch version of the module
 
+
    .. py:attribute:: platform
-      :type: str
+      :type:  str
 
       The platform that the file is built to run on
 
 
 .. py:data:: global___ModuleFileInfo
 
-   
-
 .. py:class:: UploadModuleFileRequest(*, module_file_info: global___ModuleFileInfo | None = ..., file: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5167,17 +4946,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: file
+      :type:  bytes
+
+      The file contents to be uploaded
+
+
    .. py:property:: module_file_info
       :type: global___ModuleFileInfo
 
       The information about the module file being uploaded
 
-   .. py:attribute:: file
-      :type: bytes
 
-      The file contents to be uploaded
-
-   .. py:method:: HasField(field_name: Literal[file, b'file', module_file, b'module_file', module_file_info, b'module_file_info']) -> bool
+   .. py:method:: HasField(field_name: Literal['file', b'file', 'module_file', b'module_file', 'module_file_info', b'module_file_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5194,7 +4976,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[module_file, b'module_file']) -> Literal[module_file_info, file] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['module_file', b'module_file']) -> Literal['module_file_info', 'file'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -5212,12 +4995,10 @@ Attributes
 
 .. py:data:: global___UploadModuleFileRequest
 
-   
-
 .. py:class:: UploadModuleFileResponse(*, url: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5225,20 +5006,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: url
-      :type: str
+      :type:  str
 
       The detail page of the module
 
 
 .. py:data:: global___UploadModuleFileResponse
 
-   
-
 .. py:class:: GetModuleRequest(*, module_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5246,8 +5026,9 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: module_id
-      :type: str
+      :type:  str
 
       name where prefix is the module owner's orgid or namespace)
 
@@ -5256,12 +5037,10 @@ Attributes
 
 .. py:data:: global___GetModuleRequest
 
-   
-
 .. py:class:: GetModuleResponse(*, module: global___Module | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5269,12 +5048,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: module
       :type: global___Module
 
       The module object
 
-   .. py:method:: HasField(field_name: Literal[module, b'module']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['module', b'module']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5294,18 +5075,80 @@ Attributes
 
 .. py:data:: global___GetModuleResponse
 
-   
-
 .. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: module_id
+      :type:  str
+
+      name where prefix is the module owner's orgid or namespace)
+
+      :type: The id of the module (formatted as prefix
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the module
+
+
+   .. py:attribute:: visibility
+      :type:  global___Visibility
+
+      The visibility of the module
+
+
+   .. py:attribute:: url
+      :type:  str
+
+      The url to reference for documentation, code, etc.
+
+
+   .. py:attribute:: description
+      :type:  str
+
+      A short description of the module that explains its purpose
+
+
+   .. py:attribute:: total_robot_usage
+      :type:  int
+
+      The total number of robots using this module
+
+
+   .. py:attribute:: total_organization_usage
+      :type:  int
+
+      The total number of organizations using this module
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+      The id of the organization that owns the module
+
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The executable to run to start the module program
+
+
+   .. py:attribute:: public_namespace
+      :type:  str
+
+      The public namespace of the organization that owns the module
+      This is empty if no public namespace is set
+
 
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]
@@ -5313,109 +5156,57 @@ Attributes
       The versions of the module that are available
       When this is returned from the backend, the versions are sorted in ascending order by the semver version
 
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
 
-   .. py:attribute:: module_id
-      :type: str
-
-      name where prefix is the module owner's orgid or namespace)
-
-      :type: The id of the module (formatted as prefix
-
-   .. py:attribute:: name
-      :type: str
-
-      The name of the module
-
-   .. py:attribute:: visibility
-      :type: global___Visibility
-
-      The visibility of the module
-
-   .. py:attribute:: url
-      :type: str
-
-      The url to reference for documentation, code, etc.
-
-   .. py:attribute:: description
-      :type: str
-
-      A short description of the module that explains its purpose
-
-   .. py:attribute:: total_robot_usage
-      :type: int
-
-      The total number of robots using this module
-
-   .. py:attribute:: total_organization_usage
-      :type: int
-
-      The total number of organizations using this module
-
-   .. py:attribute:: organization_id
-      :type: str
-
-      The id of the organization that owns the module
-
-   .. py:attribute:: entrypoint
-      :type: str
-
-      The executable to run to start the module program
-
-   .. py:attribute:: public_namespace
-      :type: str
-
-      The public namespace of the organization that owns the module
-      This is empty if no public namespace is set
-
 
 .. py:data:: global___Module
 
-   
-
 .. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: version
+      :type:  str
+
+      The semver string that represents the major/minor/patch version of the module
+
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The entrypoint for this version of the module
+
 
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]
 
       The uploads that are available for this module version
 
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       The models that this verion of the module provides
 
-   .. py:attribute:: version
-      :type: str
-
-      The semver string that represents the major/minor/patch version of the module
-
-   .. py:attribute:: entrypoint
-      :type: str
-
-      The entrypoint for this version of the module
-
 
 .. py:data:: global___VersionHistory
 
-   
-
 .. py:class:: Uploads(*, platform: str = ..., uploaded_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5423,17 +5214,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: platform
+      :type:  str
+
+      The OS and architecture the module is built to run on
+
+
    .. py:property:: uploaded_at
       :type: google.protobuf.timestamp_pb2.Timestamp
 
       The time when the file was uploaded
 
-   .. py:attribute:: platform
-      :type: str
 
-      The OS and architecture the module is built to run on
-
-   .. py:method:: HasField(field_name: Literal[uploaded_at, b'uploaded_at']) -> bool
+   .. py:method:: HasField(field_name: Literal['uploaded_at', b'uploaded_at']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5453,12 +5247,10 @@ Attributes
 
 .. py:data:: global___Uploads
 
-   
-
 .. py:class:: ListModulesRequest(*, organization_id: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5466,12 +5258,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: organization_id
-      :type: str
+      :type:  str
 
       The id of the organization to return private modules for.
 
-   .. py:method:: HasField(field_name: Literal[_organization_id, b'_organization_id', organization_id, b'organization_id']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5488,7 +5282,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -5506,18 +5301,17 @@ Attributes
 
 .. py:data:: global___ListModulesRequest
 
-   
-
 .. py:class:: ListModulesResponse(*, modules: collections.abc.Iterable[global___Module] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: modules
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Module]
@@ -5527,12 +5321,10 @@ Attributes
 
 .. py:data:: global___ListModulesResponse
 
-   
-
 .. py:class:: GetUserIDByEmailRequest(*, email: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5540,20 +5332,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: email
-      :type: str
 
-      
+   .. py:attribute:: email
+      :type:  str
 
 
 .. py:data:: global___GetUserIDByEmailRequest
 
-   
-
 .. py:class:: GetUserIDByEmailResponse(*, user_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5561,20 +5350,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: user_id
-      :type: str
 
-      
+   .. py:attribute:: user_id
+      :type:  str
 
 
 .. py:data:: global___GetUserIDByEmailResponse
 
-   
-
 .. py:class:: ListOrganizationsByUserRequest(*, user_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5582,20 +5368,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: user_id
-      :type: str
 
-      
+   .. py:attribute:: user_id
+      :type:  str
 
 
 .. py:data:: global___ListOrganizationsByUserRequest
 
-   
-
 .. py:class:: OrgDetails(*, org_id: str = ..., org_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5603,31 +5386,28 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
+
 
    .. py:attribute:: org_name
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___OrgDetails
 
-   
-
 .. py:class:: ListOrganizationsByUserResponse(*, orgs: collections.abc.Iterable[global___OrgDetails] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: orgs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrgDetails]
@@ -5636,37 +5416,33 @@ Attributes
 
 .. py:data:: global___ListOrganizationsByUserResponse
 
-   
-
 .. py:class:: CreateKeyRequest(*, authorizations: collections.abc.Iterable[global___Authorization] | None = ..., name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:property:: authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
 
 
-   .. py:attribute:: name
-      :type: str
-
-      
-
 
 .. py:data:: global___CreateKeyRequest
 
-   
-
 .. py:class:: CreateKeyResponse(*, key: str = ..., id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5674,25 +5450,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: key
-      :type: str
 
-      
+   .. py:attribute:: key
+      :type:  str
+
 
    .. py:attribute:: id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___CreateKeyResponse
 
-   
-
 .. py:class:: DeleteKeyRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5700,20 +5472,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___DeleteKeyRequest
 
-   
-
 .. py:class:: DeleteKeyResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5724,12 +5493,10 @@ Attributes
 
 .. py:data:: global___DeleteKeyResponse
 
-   
-
 .. py:class:: RenameKeyRequest(*, id: str = ..., name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5737,25 +5504,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: name
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___RenameKeyRequest
 
-   
-
 .. py:class:: RenameKeyResponse(*, id: str = ..., name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5763,25 +5526,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: name
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___RenameKeyResponse
 
-   
-
 .. py:class:: AuthorizationDetails(*, authorization_type: str = ..., authorization_id: str = ..., resource_type: str = ..., resource_id: str = ..., org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5789,40 +5548,33 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: authorization_type
-      :type: str
 
-      
+   .. py:attribute:: authorization_type
+      :type:  str
+
 
    .. py:attribute:: authorization_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: resource_type
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: resource_id
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: org_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___AuthorizationDetails
 
-   
-
 .. py:class:: APIKeyWithAuthorizations(*, api_key: global___APIKey | None = ..., authorizations: collections.abc.Iterable[global___AuthorizationDetails] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5830,15 +5582,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: api_key
       :type: global___APIKey
+
 
 
    .. py:property:: authorizations
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthorizationDetails]
 
 
-   .. py:method:: HasField(field_name: Literal[api_key, b'api_key']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['api_key', b'api_key']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5858,12 +5613,10 @@ Attributes
 
 .. py:data:: global___APIKeyWithAuthorizations
 
-   
-
 .. py:class:: ListKeysRequest(*, org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5871,26 +5624,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
 
 
 .. py:data:: global___ListKeysRequest
 
-   
-
 .. py:class:: ListKeysResponse(*, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: api_keys
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKeyWithAuthorizations]
@@ -5899,12 +5650,10 @@ Attributes
 
 .. py:data:: global___ListKeysResponse
 
-   
-
 .. py:class:: RotateKeyRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5912,20 +5661,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___RotateKeyRequest
 
-   
-
 .. py:class:: RotateKeyResponse(*, id: str = ..., key: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5933,25 +5679,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: key
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___RotateKeyResponse
 
-   
-
 .. py:class:: CreateKeyFromExistingKeyAuthorizationsRequest(*, id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5959,20 +5701,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
 
 
 .. py:data:: global___CreateKeyFromExistingKeyAuthorizationsRequest
 
-   
-
 .. py:class:: CreateKeyFromExistingKeyAuthorizationsResponse(*, id: str = ..., key: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -5980,18 +5719,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: key
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___CreateKeyFromExistingKeyAuthorizationsResponse
-
-   
 

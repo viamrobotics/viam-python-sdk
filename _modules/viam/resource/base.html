@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -103,7 +103,7 @@
     <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span>
 
 
-<div class="viewcode-block" id="ResourceBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase">[docs]</a><span class="nd">@runtime_checkable</span>
+<div class="viewcode-block" id="ResourceBase"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">ResourceBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The base requirements for a Resource.</span>
@@ -115,7 +115,7 @@
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the Resource&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ResourceBase.get_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.get_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ResourceBase.get_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase.get_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_resource_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the ResourceName for this Resource with the given name</span>
@@ -138,7 +138,7 @@
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="ResourceBase.from_robot"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.from_robot">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ResourceBase.from_robot"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase.from_robot">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">from_robot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="s2">&quot;RobotClient&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the Resource named ``name`` from the provided robot.</span>
@@ -157,7 +157,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="ResourceBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.do_command">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="ResourceBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase.do_command">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ValueTypes&quot;</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ValueTypes&quot;</span><span class="p">]:</span>
@@ -179,7 +179,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="ResourceBase.get_operation"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.get_operation">[docs]</a>    <span class="k">def</span> <span class="nf">get_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Operation</span><span class="p">:</span>
+<div class="viewcode-block" id="ResourceBase.get_operation"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase.get_operation">[docs]</a>    <span class="k">def</span> <span class="nf">get_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Operation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the ``Operation`` associated with the currently running function.</span>
 
 <span class="sd">        When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it&#39;s cancelled.</span>
@@ -194,7 +194,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Operation</span><span class="o">.</span><span class="n">ARG_NAME</span><span class="p">,</span> <span class="n">Operation</span><span class="o">.</span><span class="n">_noop</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ResourceBase.close"><a class="viewcode-back" href="../../../autoapi/viam/resource/base/index.html#viam.resource.base.ResourceBase.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceBase.close"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.component_base.ResourceBase.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Safely shut down the resource and prevent further use.</span>
 
 <span class="sd">        Close must be idempotent. Later configuration may allow a resource to be &quot;open&quot; again.</span>

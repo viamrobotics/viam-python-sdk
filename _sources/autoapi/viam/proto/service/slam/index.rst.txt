@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.service.slam`
-=================================
+viam.proto.service.slam
+=======================
 
 .. py:module:: viam.proto.service.slam
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -34,71 +31,85 @@ Classes
    viam.proto.service.slam.SensorType
 
 
-
+Package Contents
+----------------
 
 .. py:class:: SLAMServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPositionRequest, service.slam.v1.slam_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPointCloudMap(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPointCloudMapRequest, service.slam.v1.slam_pb2.GetPointCloudMapResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetInternalState(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetInternalStateRequest, service.slam.v1.slam_pb2.GetInternalStateResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPropertiesRequest, service.slam.v1.slam_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: SLAMServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedSLAMServiceBase
 
-
    Bases: :py:obj:`SLAMServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPositionRequest, service.slam.v1.slam_pb2.GetPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetPointCloudMap(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPointCloudMapRequest, service.slam.v1.slam_pb2.GetPointCloudMapResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetInternalState(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetInternalStateRequest, service.slam.v1.slam_pb2.GetInternalStateResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPropertiesRequest, service.slam.v1.slam_pb2.GetPropertiesResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
@@ -108,8 +119,8 @@ Classes
 
 .. py:class:: GetInternalStateRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -117,16 +128,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of slam service
 
 
 .. py:class:: GetInternalStateResponse(*, internal_state_chunk: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -134,8 +146,9 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: internal_state_chunk
-      :type: bytes
+      :type:  bytes
 
       Chunk of the internal state of the SLAM algorithm required to continue
       mapping/localization
@@ -143,8 +156,8 @@ Classes
 
 .. py:class:: GetPointCloudMapRequest(*, name: str = ..., return_edited_map: bool | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -152,19 +165,22 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of slam service
 
+
    .. py:attribute:: return_edited_map
-      :type: bool
+      :type:  bool
 
       For SLAM services that implement handling an edited map, this boolean
       should indicate whether to return that edited map. If the SLAM service
       does not handle edited maps, the unedited map will be returned instead.
 
-   .. py:method:: HasField(field_name: Literal[_return_edited_map, b'_return_edited_map', return_edited_map, b'return_edited_map']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_return_edited_map', b'_return_edited_map', 'return_edited_map', b'return_edited_map']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -181,7 +197,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_return_edited_map, b'_return_edited_map']) -> Literal[return_edited_map] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_return_edited_map', b'_return_edited_map']) -> Literal['return_edited_map'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -199,8 +216,8 @@ Classes
 
 .. py:class:: GetPointCloudMapResponse(*, point_cloud_pcd_chunk: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -208,8 +225,9 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: point_cloud_pcd_chunk
-      :type: bytes
+      :type:  bytes
 
       One chunk of the PointCloud.
       For a given GetPointCloudMap request, concatenating all
@@ -233,8 +251,8 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -242,16 +260,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of slam service
 
 
 .. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -259,12 +278,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.Pose
 
       Current position of the specified component in the SLAM Map
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -284,8 +305,8 @@ Classes
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -293,39 +314,39 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of the slam service
 
 
 .. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[global___SensorInfo] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Returns properties information for the named slam service
+
+
+   .. py:attribute:: cloud_slam
+      :type:  bool
+
+
+   .. py:attribute:: mapping_mode
+      :type:  global___MappingMode
+
+
+   .. py:attribute:: internal_state_file_type
+      :type:  str
+
 
    .. py:property:: sensor_info
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]
 
 
-   .. py:attribute:: cloud_slam
-      :type: bool
 
-      
-
-   .. py:attribute:: mapping_mode
-      :type: global___MappingMode
-
-      
-
-   .. py:attribute:: internal_state_file_type
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[_internal_state_file_type, b'_internal_state_file_type', internal_state_file_type, b'internal_state_file_type']) -> bool
+   .. py:method:: HasField(field_name: Literal['_internal_state_file_type', b'_internal_state_file_type', 'internal_state_file_type', b'internal_state_file_type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -342,7 +363,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_internal_state_file_type, b'_internal_state_file_type']) -> Literal[internal_state_file_type] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_internal_state_file_type', b'_internal_state_file_type']) -> Literal['internal_state_file_type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -360,8 +382,8 @@ Classes
 
 .. py:class:: MappingMode
 
-
    Bases: :py:obj:`_MappingMode`
+
 
    MappingMode represnts the various form of mapping and localizing SLAM can perform.
    These include, creating a new map, localizing on an existiing map and updating an
@@ -370,8 +392,8 @@ Classes
 
 .. py:class:: SensorInfo(*, name: str = ..., type: global___SensorType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -379,19 +401,16 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: type
-      :type: global___SensorType
-
-      
+      :type:  global___SensorType
 
 
 .. py:class:: SensorType
-
 
    Bases: :py:obj:`_SensorType`
 

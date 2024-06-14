@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.app.v1.billing_pb2`
-=====================================
+viam.gen.app.v1.billing_pb2
+===========================
 
 .. py:module:: viam.gen.app.v1.billing_pb2
 
@@ -10,33 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.app.v1.billing_pb2.PaymentMethodType
-   viam.gen.app.v1.billing_pb2.InvoiceSummary
-   viam.gen.app.v1.billing_pb2.BillableResourceEvent
-   viam.gen.app.v1.billing_pb2.Invoice
-   viam.gen.app.v1.billing_pb2.PaymentMethodCard
-   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageRequest
-   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageResponse
-   viam.gen.app.v1.billing_pb2.GetOrgBillingInformationRequest
-   viam.gen.app.v1.billing_pb2.GetOrgBillingInformationResponse
-   viam.gen.app.v1.billing_pb2.GetInvoicesSummaryRequest
-   viam.gen.app.v1.billing_pb2.GetInvoicesSummaryResponse
-   viam.gen.app.v1.billing_pb2.GetInvoicePdfRequest
-   viam.gen.app.v1.billing_pb2.GetInvoicePdfResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -58,35 +33,49 @@ Attributes
    viam.gen.app.v1.billing_pb2.global___GetInvoicePdfResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.app.v1.billing_pb2.PaymentMethodType
+   viam.gen.app.v1.billing_pb2.InvoiceSummary
+   viam.gen.app.v1.billing_pb2.BillableResourceEvent
+   viam.gen.app.v1.billing_pb2.Invoice
+   viam.gen.app.v1.billing_pb2.PaymentMethodCard
+   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageRequest
+   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageResponse
+   viam.gen.app.v1.billing_pb2.GetOrgBillingInformationRequest
+   viam.gen.app.v1.billing_pb2.GetOrgBillingInformationResponse
+   viam.gen.app.v1.billing_pb2.GetInvoicesSummaryRequest
+   viam.gen.app.v1.billing_pb2.GetInvoicesSummaryResponse
+   viam.gen.app.v1.billing_pb2.GetInvoicePdfRequest
+   viam.gen.app.v1.billing_pb2.GetInvoicePdfResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: PaymentMethodType
-
 
    Bases: :py:obj:`_PaymentMethodType`
 
 
 .. py:data:: PAYMENT_METHOD_TYPE_UNSPECIFIED
-   :type: PaymentMethodType
-
-   
+   :type:  PaymentMethodType
 
 .. py:data:: PAYMENT_METHOD_TYPE_CARD
-   :type: PaymentMethodType
-
-   
+   :type:  PaymentMethodType
 
 .. py:data:: global___PaymentMethodType
 
-   
-
 .. py:class:: InvoiceSummary(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., paid_date: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -94,34 +83,35 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: invoice_amount
+      :type:  float
+
+
+   .. py:attribute:: status
+      :type:  str
+
+
    .. py:property:: invoice_date
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: due_date
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
+
    .. py:property:: paid_date
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: invoice_amount
-      :type: float
-
-      
-
-   .. py:attribute:: status
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[due_date, b'due_date', invoice_date, b'invoice_date', paid_date, b'paid_date']) -> bool
+   .. py:method:: HasField(field_name: Literal['due_date', b'due_date', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -141,12 +131,10 @@ Attributes
 
 .. py:data:: global___InvoiceSummary
 
-   
-
 .. py:class:: BillableResourceEvent(*, id: str = ..., type: str = ..., usage_quantity: float = ..., usage_quantity_unit: str = ..., usage_cost: str = ..., occurred_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -154,41 +142,37 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: type
+      :type:  str
+
+
+   .. py:attribute:: usage_quantity
+      :type:  float
+
+
+   .. py:attribute:: usage_quantity_unit
+      :type:  str
+
+
+   .. py:attribute:: usage_cost
+      :type:  str
+
+
+   .. py:attribute:: user_name
+      :type:  str
+
+
    .. py:property:: occurred_at
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: type
-      :type: str
-
-      
-
-   .. py:attribute:: usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: usage_quantity_unit
-      :type: str
-
-      
-
-   .. py:attribute:: usage_cost
-      :type: str
-
-      
-
-   .. py:attribute:: user_name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[occurred_at, b'occurred_at']) -> bool
+   .. py:method:: HasField(field_name: Literal['occurred_at', b'occurred_at']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -208,12 +192,10 @@ Attributes
 
 .. py:data:: global___BillableResourceEvent
 
-   
-
 .. py:class:: Invoice(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., items: collections.abc.Iterable[global___BillableResourceEvent] | None = ..., emailed_to: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -221,39 +203,39 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: invoice_amount
+      :type:  float
+
+
+   .. py:attribute:: status
+      :type:  str
+
+
+   .. py:attribute:: emailed_to
+      :type:  str
+
+
    .. py:property:: invoice_date
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: due_date
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
+
    .. py:property:: items
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BillableResourceEvent]
 
 
-   .. py:attribute:: id
-      :type: str
 
-      
-
-   .. py:attribute:: invoice_amount
-      :type: float
-
-      
-
-   .. py:attribute:: status
-      :type: str
-
-      
-
-   .. py:attribute:: emailed_to
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[due_date, b'due_date', invoice_date, b'invoice_date']) -> bool
+   .. py:method:: HasField(field_name: Literal['due_date', b'due_date', 'invoice_date', b'invoice_date']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -273,12 +255,10 @@ Attributes
 
 .. py:data:: global___Invoice
 
-   
-
 .. py:class:: PaymentMethodCard(*, brand: str = ..., last_four_digits: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -286,25 +266,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: brand
-      :type: str
 
-      
+   .. py:attribute:: brand
+      :type:  str
+
 
    .. py:attribute:: last_four_digits
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___PaymentMethodCard
 
-   
-
 .. py:class:: GetCurrentMonthUsageRequest(*, org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -312,20 +288,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
 
 
 .. py:data:: global___GetCurrentMonthUsageRequest
 
-   
-
 .. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ..., per_machine_usage_cost: float = ..., binary_data_cloud_storage_usage_cost: float = ..., other_cloud_storage_usage_cost: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -333,70 +306,62 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: cloud_storage_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: data_upload_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: data_egres_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: remote_control_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: standard_compute_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: discount_amount
+      :type:  float
+
+
+   .. py:attribute:: total_usage_with_discount
+      :type:  float
+
+
+   .. py:attribute:: total_usage_without_discount
+      :type:  float
+
+
+   .. py:attribute:: per_machine_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: binary_data_cloud_storage_usage_cost
+      :type:  float
+
+
+   .. py:attribute:: other_cloud_storage_usage_cost
+      :type:  float
+
+
    .. py:property:: start_date
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: end_date
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
-   .. py:attribute:: cloud_storage_usage_cost
-      :type: float
 
-      
-
-   .. py:attribute:: data_upload_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_egres_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: remote_control_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: standard_compute_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: discount_amount
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_with_discount
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_without_discount
-      :type: float
-
-      
-
-   .. py:attribute:: per_machine_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: binary_data_cloud_storage_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: other_cloud_storage_usage_cost
-      :type: float
-
-      
-
-   .. py:method:: HasField(field_name: Literal[end_date, b'end_date', start_date, b'start_date']) -> bool
+   .. py:method:: HasField(field_name: Literal['end_date', b'end_date', 'start_date', b'start_date']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -416,12 +381,10 @@ Attributes
 
 .. py:data:: global___GetCurrentMonthUsageResponse
 
-   
-
 .. py:class:: GetOrgBillingInformationRequest(*, org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -429,48 +392,46 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
 
 
 .. py:data:: global___GetOrgBillingInformationRequest
 
-   
-
 .. py:class:: GetOrgBillingInformationResponse(*, type: global___PaymentMethodType = ..., billing_email: str = ..., method: global___PaymentMethodCard | None = ..., billing_tier: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: type
+      :type:  global___PaymentMethodType
+
+
+   .. py:attribute:: billing_email
+      :type:  str
+
+
+   .. py:attribute:: billing_tier
+      :type:  str
+
+      Only return billing_tier for billing dashboard admin users
+
 
    .. py:property:: method
       :type: global___PaymentMethodCard
 
       defined if type is PAYMENT_METHOD_TYPE_CARD
 
-   .. py:attribute:: type
-      :type: global___PaymentMethodType
 
-      
-
-   .. py:attribute:: billing_email
-      :type: str
-
-      
-
-   .. py:attribute:: billing_tier
-      :type: str
-
-      Only return billing_tier for billing dashboard admin users
-
-   .. py:method:: HasField(field_name: Literal[_billing_tier, b'_billing_tier', _method, b'_method', billing_tier, b'billing_tier', method, b'method']) -> bool
+   .. py:method:: HasField(field_name: Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_tier', b'billing_tier', 'method', b'method']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -487,8 +448,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_billing_tier, b'_billing_tier']) -> Literal[billing_tier] | None
-                  WhichOneof(oneof_group: Literal[_method, b'_method']) -> Literal[method] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_billing_tier', b'_billing_tier']) -> Literal['billing_tier'] | None
+                  WhichOneof(oneof_group: Literal['_method', b'_method']) -> Literal['method'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -506,12 +468,10 @@ Attributes
 
 .. py:data:: global___GetOrgBillingInformationResponse
 
-   
-
 .. py:class:: GetInvoicesSummaryRequest(*, org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -519,46 +479,43 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: org_id
-      :type: str
 
-      
+   .. py:attribute:: org_id
+      :type:  str
 
 
 .. py:data:: global___GetInvoicesSummaryRequest
 
-   
-
 .. py:class:: GetInvoicesSummaryResponse(*, outstanding_balance: float = ..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: outstanding_balance
+      :type:  float
+
+      all unpaid balances at the end of the last billing cycle
+
 
    .. py:property:: invoices
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]
 
       all previous invoices
 
-   .. py:attribute:: outstanding_balance
-      :type: float
-
-      all unpaid balances at the end of the last billing cycle
-
 
 .. py:data:: global___GetInvoicesSummaryResponse
 
-   
-
 .. py:class:: GetInvoicePdfRequest(*, id: str = ..., org_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -566,25 +523,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :type: str
 
-      
+   .. py:attribute:: id
+      :type:  str
+
 
    .. py:attribute:: org_id
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___GetInvoicePdfRequest
 
-   
-
 .. py:class:: GetInvoicePdfResponse(*, chunk: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -592,13 +545,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: chunk
-      :type: bytes
 
-      
+   .. py:attribute:: chunk
+      :type:  bytes
 
 
 .. py:data:: global___GetInvoicePdfResponse
-
-   
 

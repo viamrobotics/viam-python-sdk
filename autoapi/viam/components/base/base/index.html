@@ -55,77 +55,107 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html">viam.components.arm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html">viam.components.audio_input</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.components.base</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.base</span></code></a><ul>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.components.base.base</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.Properties"><code class="docutils literal notranslate"><span class="pre">Base.Properties</span></code></a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.base.base.Base.Properties.width_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.width_meters</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.base.base.Base.Properties.turning_radius_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.turning_radius_meters</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.base.base.Base.Properties.wheel_circumference_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.wheel_circumference_meters</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.RESOURCE_NAMESPACE_RDK"><code class="docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.RESOURCE_TYPE_COMPONENT"><code class="docutils literal notranslate"><span class="pre">RESOURCE_TYPE_COMPONENT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.Subtype"><code class="docutils literal notranslate"><span class="pre">Subtype</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.namespace"><code class="docutils literal notranslate"><span class="pre">Subtype.namespace</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.resource_type"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.resource_subtype"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_subtype</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.__str__"><code class="docutils literal notranslate"><span class="pre">Subtype.__str__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.__repr__"><code class="docutils literal notranslate"><span class="pre">Subtype.__repr__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.__hash__"><code class="docutils literal notranslate"><span class="pre">Subtype.__hash__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.__eq__"><code class="docutils literal notranslate"><span class="pre">Subtype.__eq__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.from_resource_name"><code class="docutils literal notranslate"><span class="pre">Subtype.from_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Subtype.from_string"><code class="docutils literal notranslate"><span class="pre">Subtype.from_string()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Base.SUBTYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.move_straight"><code class="docutils literal notranslate"><span class="pre">Base.move_straight()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.spin"><code class="docutils literal notranslate"><span class="pre">Base.spin()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.set_power"><code class="docutils literal notranslate"><span class="pre">Base.set_power()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.set_velocity"><code class="docutils literal notranslate"><span class="pre">Base.set_velocity()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.stop"><code class="docutils literal notranslate"><span class="pre">Base.stop()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.is_moving"><code class="docutils literal notranslate"><span class="pre">Base.is_moving()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_properties"><code class="docutils literal notranslate"><span class="pre">Base.get_properties()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.from_robot"><code class="docutils literal notranslate"><span class="pre">Base.from_robot()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.do_command"><code class="docutils literal notranslate"><span class="pre">Base.do_command()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_geometries"><code class="docutils literal notranslate"><span class="pre">Base.get_geometries()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Base.get_resource_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_operation"><code class="docutils literal notranslate"><span class="pre">Base.get_operation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.close"><code class="docutils literal notranslate"><span class="pre">Base.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.ComponentBase"><code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ComponentBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ComponentBase.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.do_command"><code class="docutils literal notranslate"><span class="pre">ComponentBase.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.get_geometries"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_geometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.ComponentBase.close"><code class="docutils literal notranslate"><span class="pre">ComponentBase.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Vector3.x"><code class="docutils literal notranslate"><span class="pre">Vector3.x</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Vector3.y"><code class="docutils literal notranslate"><span class="pre">Vector3.y</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Vector3.z"><code class="docutils literal notranslate"><span class="pre">Vector3.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.base.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Base.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.Properties"><code class="docutils literal notranslate"><span class="pre">Base.Properties</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.Properties.width_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.width_meters</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.Properties.turning_radius_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.turning_radius_meters</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.Properties.wheel_circumference_meters"><code class="docutils literal notranslate"><span class="pre">Base.Properties.wheel_circumference_meters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.move_straight"><code class="docutils literal notranslate"><span class="pre">Base.move_straight()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.spin"><code class="docutils literal notranslate"><span class="pre">Base.spin()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.set_power"><code class="docutils literal notranslate"><span class="pre">Base.set_power()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.set_velocity"><code class="docutils literal notranslate"><span class="pre">Base.set_velocity()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.stop"><code class="docutils literal notranslate"><span class="pre">Base.stop()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.is_moving"><code class="docutils literal notranslate"><span class="pre">Base.is_moving()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.get_properties"><code class="docutils literal notranslate"><span class="pre">Base.get_properties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.from_robot"><code class="docutils literal notranslate"><span class="pre">Base.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.do_command"><code class="docutils literal notranslate"><span class="pre">Base.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.get_geometries"><code class="docutils literal notranslate"><span class="pre">Base.get_geometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Base.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.get_operation"><code class="docutils literal notranslate"><span class="pre">Base.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base.close"><code class="docutils literal notranslate"><span class="pre">Base.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html">viam.components.base.client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../service/index.html">viam.components.base.service</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.client</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.service</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.encoder</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.movement_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../board/index.html">viam.components.board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html">viam.components.camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html">viam.components.encoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html">viam.components.gantry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.components.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html">viam.components.gripper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../input/index.html">viam.components.input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html">viam.components.motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html">viam.components.movement_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html">viam.components.pose_tracker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html">viam.components.power_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html">viam.components.sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html">viam.components.servo</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -142,9 +172,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.base</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.components</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.components.base</a></li>
+      <li class="breadcrumb-item active">viam.components.base.base</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/components/base/base/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -155,18 +185,297 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.base.base">
-<span id="viam-components-base-base"></span><h1><a class="reference internal" href="#module-viam.components.base.base" title="viam.components.base.base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.base</span></code></a><a class="headerlink" href="#module-viam.components.base.base" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-components-base-base"></span><h1>viam.components.base.base<a class="headerlink" href="#module-viam.components.base.base" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.base.RESOURCE_NAMESPACE_RDK" title="viam.components.base.base.RESOURCE_NAMESPACE_RDK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.base.RESOURCE_TYPE_COMPONENT" title="viam.components.base.base.RESOURCE_TYPE_COMPONENT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_TYPE_COMPONENT</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.base.Subtype" title="viam.components.base.base.Subtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subtype</span></code></a></p></td>
+<td><p>Represents a known component/service (resource) API</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.base.ComponentBase" title="viam.components.base.base.ComponentBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentBase</span></code></a></p></td>
+<td><p>Base component.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.base.Vector3" title="viam.components.base.base.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code></a></p></td>
 <td><p>Base represents a physical base of a robot.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.base.base.RESOURCE_NAMESPACE_RDK">
+<span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_NAMESPACE_RDK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rdk'</span></em><a class="headerlink" href="#viam.components.base.base.RESOURCE_NAMESPACE_RDK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.base.base.RESOURCE_TYPE_COMPONENT">
+<span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_TYPE_COMPONENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'component'</span></em><a class="headerlink" href="#viam.components.base.base.RESOURCE_TYPE_COMPONENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">Subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Represents a known component/service (resource) API</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.base.base.Subtype.namespace" title="Permalink to this definition"></a></dt>
+<dd><p>The namespace of the resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.base.base.Subtype.resource_type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of the resource, e.g. <cite>component</cite> or <cite>service</cite></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.resource_subtype">
+<span class="sig-name descname"><span class="pre">resource_subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.base.base.Subtype.resource_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>The subtype of the resource e.g. <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.__str__" title="Permalink to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.__hash__" title="Permalink to this definition"></a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.from_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.from_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code> into a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – The ResourceName to convert</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new Subtype</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Subtype.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Subtype.from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code> from its string representation (namespace:resource_type:resource_subtype)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The Subtype as a string</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised if the string does not represent a valid Subtype</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new Subtype</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">ComponentBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.ComponentBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.base.ResourceBase</span></code></a></p>
+<p>Base component.
+All components must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.base.base.ComponentBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.from_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.ComponentBase.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the component named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The component, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.ComponentBase.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.get_geometries">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.ComponentBase.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the component, in their current configuration, in the
+<a class="reference external" href="https://docs.viam.com/services/frame-system/">frame</a> of the component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometries</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_geometries</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">geometries</span><span class="p">:</span>
+    <span class="c1"># Get the center of the first geometry</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pose of the first geometry&#39;s centerpoint: </span><span class="si">{</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the Component.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/client/index.html#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry">Geometry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.components.base.base.ComponentBase.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.components.base.base.ComponentBase.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.ComponentBase.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.ComponentBase.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.base.base.Vector3">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">Vector3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Vector3" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Vector3.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.components.base.base.Vector3.x" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Vector3.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.components.base.base.Vector3.y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Vector3.z">
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.components.base.base.Vector3.z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.base.base.Base">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base" title="Permalink to this definition"></a></dt>
@@ -178,6 +487,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.base</span> <span class="kn">import</span> <span class="n">Base</span>
 </pre></div>
 </div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Base.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.components.base.base.Base.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.Properties" title="Permalink to this definition"></a></dt>
@@ -198,15 +512,14 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.base.base.Base.SUBTYPE">
-<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.components.base.base.Base.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.move_straight">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.move_straight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in a straight line the given <code class="docutils literal notranslate"><span class="pre">distance</span></code>, expressed in millimeters,
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.move_straight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Move the base in a straight line the given <code class="docutils literal notranslate"><span class="pre">distance</span></code>, expressed in millimeters,
 at the given <code class="docutils literal notranslate"><span class="pre">velocity</span></code>, expressed in millimeters per second.
 When <code class="docutils literal notranslate"><span class="pre">distance</span></code> or <code class="docutils literal notranslate"><span class="pre">velocity</span></code> is 0, the base will stop.
 This method blocks until completed or cancelled.</p>
@@ -233,8 +546,12 @@ Negative implies backwards.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.spin">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.spin" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the base in place <code class="docutils literal notranslate"><span class="pre">angle</span></code> degrees, at the given angular <code class="docutils literal notranslate"><span class="pre">velocity</span></code>,
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.spin" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Spin the base in place <code class="docutils literal notranslate"><span class="pre">angle</span></code> degrees, at the given angular <code class="docutils literal notranslate"><span class="pre">velocity</span></code>,
 expressed in degrees per second.
 When <code class="docutils literal notranslate"><span class="pre">velocity</span></code> is 0, the base will stop.
 This method blocks until completed or cancelled.</p>
@@ -258,8 +575,12 @@ Given a positive angle and a positive velocity, the base will turn to the left.<
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.set_power">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.set_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.set_power" title="Permalink to this definition"></a></dt>
-<dd><p>Set the linear and angular velocity of the Base
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.set_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.set_power" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Set the linear and angular velocity of the Base
 When <code class="docutils literal notranslate"><span class="pre">linear</span></code> is 0, the the base will spin.
 When <code class="docutils literal notranslate"><span class="pre">angular</span></code> is 0, the the base will move in a straight line.
 When both <code class="docutils literal notranslate"><span class="pre">linear</span></code> and <code class="docutils literal notranslate"><span class="pre">angular</span></code> are 0, the base will stop.
@@ -295,9 +616,9 @@ with a tighter radius if angular power is greater than linear power.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>linear</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear component. Only the Y component is used
+<li><p><strong>linear</strong> (<a class="reference internal" href="#viam.components.base.base.Vector3" title="viam.components.base.base.Vector3"><em>Vector3</em></a>) – The linear component. Only the Y component is used
 for wheeled base. Positive implies forwards.</p></li>
-<li><p><strong>angular</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular component. Only the Z component is used
+<li><p><strong>angular</strong> (<a class="reference internal" href="#viam.components.base.base.Vector3" title="viam.components.base.base.Vector3"><em>Vector3</em></a>) – The angular component. Only the Z component is used
 for wheeled base. Positive turns left; negative turns right.</p></li>
 </ul>
 </dd>
@@ -306,8 +627,12 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.set_velocity">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.set_velocity" title="Permalink to this definition"></a></dt>
-<dd><p>Set the linear and angular velocities of the base.</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><span class="pre">viam.components.base.Vector3</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.set_velocity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Set the linear and angular velocities of the base.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_base</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the linear velocity to 50 mm/sec and the angular velocity to</span>
@@ -319,8 +644,8 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>linear</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in mm/sec</p></li>
-<li><p><strong>angular</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in deg/sec</p></li>
+<li><p><strong>linear</strong> (<a class="reference internal" href="#viam.components.base.base.Vector3" title="viam.components.base.base.Vector3"><em>Vector3</em></a>) – Velocity in mm/sec</p></li>
+<li><p><strong>angular</strong> (<a class="reference internal" href="#viam.components.base.base.Vector3" title="viam.components.base.base.Vector3"><em>Vector3</em></a>) – Velocity in deg/sec</p></li>
 </ul>
 </dd>
 </dl>
@@ -328,8 +653,12 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.stop">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop the base.</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.stop" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Stop the base.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_base</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
 
 <span class="c1"># Move the base forward 10 mm at a velocity of 50 mm/s.</span>
@@ -343,8 +672,12 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.is_moving">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.is_moving" title="Permalink to this definition"></a></dt>
-<dd><p>Get if the base is currently moving.</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.is_moving" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get if the base is currently moving.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_base</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
 
 <span class="c1"># Check whether the base is currently moving.</span>
@@ -364,8 +697,12 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.get_properties">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.base.base.Base.Properties" title="viam.components.base.base.Base.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.get_properties" title="Permalink to this definition"></a></dt>
-<dd><p>Get the base width and turning radius</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.base.base.Base.Properties" title="viam.components.base.base.Base.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.get_properties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the base width and turning radius</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_base</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the width and turning radius of the base</span>
@@ -398,7 +735,7 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
 </ul>
 </dd>
@@ -413,8 +750,12 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.do_command">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.base.base.Base.do_command" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands to the Resource</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.base.base.Base.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </pre></div>
@@ -452,7 +793,7 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 <dd class="field-odd"><p>The geometries associated with the Component.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Geometry" title="viam.gen.common.v1.common_pb2.Geometry">Geometry</a>]</p>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/client/index.html#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -512,7 +853,6 @@ non-Close methods are called.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

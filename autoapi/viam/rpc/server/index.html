@@ -55,40 +55,91 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../media/index.html">viam.media</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">viam.rpc</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../dial/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.dial</span></code></a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.server</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dial/index.html">viam.rpc.dial</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">viam.rpc.server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Server"><code class="docutils literal notranslate"><span class="pre">Server</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.serve"><code class="docutils literal notranslate"><span class="pre">Server.serve()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.create_and_serve"><code class="docutils literal notranslate"><span class="pre">Server.create_and_serve()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.close"><code class="docutils literal notranslate"><span class="pre">Server.close()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.ViamGRPCError"><code class="docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ViamGRPCError.grpc_error"><code class="docutils literal notranslate"><span class="pre">ViamGRPCError.grpc_error</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.ResourceBase"><code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ResourceBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.name"><code class="docutils literal notranslate"><span class="pre">ResourceBase.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ResourceBase.get_resource_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ResourceBase.from_robot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.do_command"><code class="docutils literal notranslate"><span class="pre">ResourceBase.do_command()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ResourceBase.get_operation()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceBase.close"><code class="docutils literal notranslate"><span class="pre">ResourceBase.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.ResourceManager"><code class="docutils literal notranslate"><span class="pre">ResourceManager</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceManager.resources"><code class="docutils literal notranslate"><span class="pre">ResourceManager.resources</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceManager.register"><code class="docutils literal notranslate"><span class="pre">ResourceManager.register()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceManager.get_resource"><code class="docutils literal notranslate"><span class="pre">ResourceManager.get_resource()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceManager.remove_resource"><code class="docutils literal notranslate"><span class="pre">ResourceManager.remove_resource()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceManager.close"><code class="docutils literal notranslate"><span class="pre">ResourceManager.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.register_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.register_subtype()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.lookup_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_subtype()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.lookup_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_resource_creator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.lookup_validator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_validator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.REGISTERED_SUBTYPES"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_SUBTYPES()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Registry.REGISTERED_RESOURCE_CREATORS"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_RESOURCE_CREATORS()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.ResourceRPCServiceBase"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceRPCServiceBase.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceRPCServiceBase.manager"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.manager</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.ResourceRPCServiceBase.get_resource"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.get_resource()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.RobotService"><code class="docutils literal notranslate"><span class="pre">RobotService</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.RobotService.ResourceNames"><code class="docutils literal notranslate"><span class="pre">RobotService.ResourceNames()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.RobotService.GetStatus"><code class="docutils literal notranslate"><span class="pre">RobotService.GetStatus()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.RobotService.StreamStatus"><code class="docutils literal notranslate"><span class="pre">RobotService.StreamStatus()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.RobotService.StopAll"><code class="docutils literal notranslate"><span class="pre">RobotService.StopAll()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.SignalingService"><code class="docutils literal notranslate"><span class="pre">SignalingService</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.SignalingService.Call"><code class="docutils literal notranslate"><span class="pre">SignalingService.Call()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.SignalingService.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingService.CallUpdate()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.SignalingService.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingService.Answer()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.SignalingService.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingService.OptionalWebRTCConfig()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.rpc.server.Server"><code class="docutils literal notranslate"><span class="pre">Server</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Server.serve"><code class="docutils literal notranslate"><span class="pre">Server.serve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Server.create_and_serve"><code class="docutils literal notranslate"><span class="pre">Server.create_and_serve()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Server.close"><code class="docutils literal notranslate"><span class="pre">Server.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../signaling/index.html">viam.rpc.signaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/index.html">viam.rpc.types</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../signaling/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.signaling</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.types</span></code></a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -105,8 +156,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.server</span></code></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.rpc</a></li>
+      <li class="breadcrumb-item active">viam.rpc.server</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/rpc/server/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,21 +168,9 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.rpc.server">
-<span id="viam-rpc-server"></span><h1><a class="reference internal" href="#module-viam.rpc.server" title="viam.rpc.server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.server</span></code></a><a class="headerlink" href="#module-viam.rpc.server" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.Server" title="viam.rpc.server.Server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Server</span></code></a></p></td>
-<td><p>gRPC Server</p></td>
-</tr>
-</tbody>
-</table>
-</section>
+<span id="viam-rpc-server"></span><h1>viam.rpc.server<a class="headerlink" href="#module-viam.rpc.server" title="Permalink to this heading"></a></h1>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.LOGGER" title="viam.rpc.server.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
@@ -139,6 +178,501 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.ViamGRPCError" title="viam.rpc.server.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p></td>
+<td><p>Exception raised if it could happen as a part of GRPC calls.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.ResourceBase" title="viam.rpc.server.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceBase</span></code></a></p></td>
+<td><p>The base requirements for a Resource.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.server.ResourceManager" title="viam.rpc.server.ResourceManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceManager</span></code></a></p></td>
+<td><p>Registry containing all components registered to this server.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.Registry" title="viam.rpc.server.Registry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Registry</span></code></a></p></td>
+<td><p>The global registry of robotic parts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.server.ResourceRPCServiceBase" title="viam.rpc.server.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a></p></td>
+<td><p>Base RPC service for a resource.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.RobotService" title="viam.rpc.server.RobotService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotService</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.server.SignalingService" title="viam.rpc.server.SignalingService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingService</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.server.Server" title="viam.rpc.server.Server"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Server</span></code></a></p></td>
+<td><p>gRPC Server</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="viam.rpc.server.ViamGRPCError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">ViamGRPCError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grpc_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Status.INTERNAL</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/errors.html#ViamGRPCError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ViamGRPCError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></p>
+<p>Exception raised if it could happen as a part of GRPC calls.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.rpc.server.ViamGRPCError.grpc_error">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grpc_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.GRPCError</span></em><a class="headerlink" href="#viam.rpc.server.ViamGRPCError.grpc_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">ResourceBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<p>The base requirements for a Resource.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.rpc.server.ResourceBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd><p>The Subtype of the Resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.rpc.server.ResourceBase.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the Resource</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase.get_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase.from_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase.from_robot" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Abstractmethod<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the Resource named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Resource, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase.get_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceBase.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/base.html#ResourceBase.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceBase.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">ResourceManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceManager" title="Permalink to this definition"></a></dt>
+<dd><p>Registry containing all components registered to this server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.rpc.server.ResourceManager.resources" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceManager.register" title="Permalink to this definition"></a></dt>
+<dd><p>Register a new resource with the registry.
+Resources may not have the same name.
+If a resource is remote and the short name is unique, save a short name version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Error if attempting to register resource
+with the name of an existing resource</p></li>
+<li><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the subtype of the resource is not registered</p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>resource</strong> (<a class="reference internal" href="#viam.rpc.server.ResourceBase" title="viam.rpc.server.ResourceBase"><em>ResourceBase</em></a>) – The resource to register</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager.get_resource">
+<span class="sig-name descname"><span class="pre">get_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">of_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ResourceType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.get_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceManager.get_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Return a resource from the registry.
+If a unique short name version is given, return a remote resource with the name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>of_type</strong> (<em>Type</em><em>[</em><em>ResourceType</em><em>]</em>) – The type of the resource</p></li>
+<li><p><strong>name</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – The name of the resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Error if resource with the given type
+and name does not exist in the registry</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ResourceType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager.remove_resource">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.remove_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceManager.remove_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the resource with the specified <code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – The ResourceName of the resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceManager.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceManager.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the resourcce manager by removing all resources.
+Please note that any errors will not raise an exception. Errors will still be logged.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">Registry</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry" title="Permalink to this definition"></a></dt>
+<dd><p>The global registry of robotic parts.</p>
+<p><strong>NB</strong> The Registry should almost never be used directly</p>
+<p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
+pre-registered (e.g. Arm, Motor).</p>
+<p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.register_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.register_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Register a Subtype with the Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><em>ResourceRegistration</em></a>) – Object containing registration data for the subtype</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype to register is already in the registry</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration is missing any necessary parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.register_resource_creator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.register_resource_creator" title="Permalink to this definition"></a></dt>
+<dd><p>Register a specific <code class="docutils literal notranslate"><span class="pre">Model</span></code> and validator function for the specific resource <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> with the Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="../../components/arm/arm/index.html#viam.components.arm.arm.Subtype" title="viam.components.arm.arm.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="../../app/app_client/index.html#viam.app.app_client.Model" title="viam.app.app_client.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+<li><p><strong>registration</strong> (<a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><em>ResourceCreatorRegistration</em></a>) – The registration functions of the model</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype and Model pairing is already registered</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration does not have creator</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.lookup_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered Subtype by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subtype</strong> (<em>str</em>) – The subtype of the resource</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype is not registered</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The registration object of the resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.lookup_resource_creator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.ResourceCreator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.lookup_resource_creator" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered resource creator by its subtype and model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="../../components/arm/arm/index.html#viam.components.arm.arm.Subtype" title="viam.components.arm.arm.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="../../app/app_client/index.html#viam.app.app_client.Model" title="viam.app.app_client.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype Model pairing is not registered</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The function to create the resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ResourceCreator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.lookup_validator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.Validator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_validator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.lookup_validator" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="../../components/arm/arm/index.html#viam.components.arm.arm.Subtype" title="viam.components.arm.arm.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="../../app/app_client/index.html#viam.app.app_client.Model" title="viam.app.app_client.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function to validate the resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Validator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.REGISTERED_SUBTYPES">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_SUBTYPES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_SUBTYPES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.REGISTERED_SUBTYPES" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary of all registered resources
+- Key: Subtype of the resource
+- Value: The registration object for the resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All registered resources</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[<a class="reference internal" href="../../components/arm/arm/index.html#viam.components.arm.arm.Subtype" title="viam.components.arm.arm.Subtype">Subtype</a>, <a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Registry.REGISTERED_RESOURCE_CREATORS">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCE_CREATORS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCE_CREATORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Registry.REGISTERED_RESOURCE_CREATORS" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary of all registered resources
+- Key: subtype/model
+- Value: The ResourceCreatorRegistration for the resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All registered resources</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration">ResourceCreatorRegistration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceRPCServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCServiceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceRPCServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../types/index.html#viam.rpc.types.RPCServiceBase" title="viam.rpc.types.RPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.rpc.types.RPCServiceBase</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code>[<a class="reference internal" href="../../resource/manager/index.html#viam.resource.manager.ResourceType" title="viam.resource.manager.ResourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.manager.ResourceType</span></code></a>]</p>
+<p>Base RPC service for a resource.
+All resource RPC services must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceRPCServiceBase.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.rpc.server.ResourceRPCServiceBase.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceRPCServiceBase.manager">
+<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></em><a class="headerlink" href="#viam.rpc.server.ResourceRPCServiceBase.manager" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.ResourceRPCServiceBase.get_resource">
+<span class="sig-name descname"><span class="pre">get_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.manager.ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase.get_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.ResourceRPCServiceBase.get_resource" title="Permalink to this definition"></a></dt>
+<dd><p>Return the resource with the given name if it exists in the registry.
+If the resource does not exist in the registry,
+this function will raise an error</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the resource</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError with the status code Status.NOT_FOUND</strong> – </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ResourceType</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.RobotService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">RobotService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.RobotService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.UnimplementedRobotServiceBase" title="viam.proto.robot.UnimplementedRobotServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.proto.robot.UnimplementedRobotServiceBase</span></code></a>, <a class="reference internal" href="../../resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base.ResourceRPCServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.RobotService.ResourceNames">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResourceNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.ResourceNamesRequest" title="viam.proto.robot.ResourceNamesRequest"><span class="pre">viam.proto.robot.ResourceNamesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.ResourceNamesResponse" title="viam.proto.robot.ResourceNamesResponse"><span class="pre">viam.proto.robot.ResourceNamesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.ResourceNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.RobotService.ResourceNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.RobotService.GetStatus">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetStatusRequest" title="viam.proto.robot.GetStatusRequest"><span class="pre">viam.proto.robot.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetStatusResponse" title="viam.proto.robot.GetStatusResponse"><span class="pre">viam.proto.robot.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.GetStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.RobotService.GetStatus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.RobotService.StreamStatus">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StreamStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.StreamStatusRequest" title="viam.proto.robot.StreamStatusRequest"><span class="pre">viam.proto.robot.StreamStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.StreamStatusResponse" title="viam.proto.robot.StreamStatusResponse"><span class="pre">viam.proto.robot.StreamStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.StreamStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.RobotService.StreamStatus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.RobotService.StopAll">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.StopAllRequest" title="viam.proto.robot.StopAllRequest"><span class="pre">viam.proto.robot.StopAllRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.StopAllResponse" title="viam.proto.robot.StopAllResponse"><span class="pre">viam.proto.robot.StopAllResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.StopAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.RobotService.StopAll" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.server.SignalingService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">SignalingService</span></span><a class="reference internal" href="../../../../_modules/viam/rpc/signaling.html#SignalingService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.SignalingService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.SignalingServiceBase" title="viam.proto.rpc.webrtc.signaling.SignalingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.signaling.SignalingServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.SignalingService.Call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallRequest" title="viam.proto.rpc.webrtc.signaling.CallRequest"><span class="pre">viam.proto.rpc.webrtc.signaling.CallRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallResponse" title="viam.proto.rpc.webrtc.signaling.CallResponse"><span class="pre">viam.proto.rpc.webrtc.signaling.CallResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/signaling.html#SignalingService.Call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.SignalingService.Call" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.SignalingService.CallUpdate">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CallUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallUpdateRequest" title="viam.proto.rpc.webrtc.signaling.CallUpdateRequest"><span class="pre">viam.proto.rpc.webrtc.signaling.CallUpdateRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><span class="pre">viam.proto.rpc.webrtc.signaling.CallUpdateResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/signaling.html#SignalingService.CallUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.SignalingService.CallUpdate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.SignalingService.Answer">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.AnswerResponse" title="viam.proto.rpc.webrtc.signaling.AnswerResponse"><span class="pre">viam.proto.rpc.webrtc.signaling.AnswerResponse</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.AnswerRequest" title="viam.proto.rpc.webrtc.signaling.AnswerRequest"><span class="pre">viam.proto.rpc.webrtc.signaling.AnswerRequest</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/signaling.html#SignalingService.Answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.SignalingService.Answer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.SignalingService.OptionalWebRTCConfig">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest"><span class="pre">viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse"><span class="pre">viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/signaling.html#SignalingService.OptionalWebRTCConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.SignalingService.OptionalWebRTCConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.rpc.server.LOGGER">
 <span class="sig-prename descclassname"><span class="pre">viam.rpc.server.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#viam.rpc.server.LOGGER" title="Permalink to this definition"></a></dt>
@@ -167,12 +701,16 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.rpc.server.Server.create_and_serve">
-<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_and_serve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9090</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">logging.INFO</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/server.html#Server.create_and_serve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Server.create_and_serve" title="Permalink to this definition"></a></dt>
-<dd><p>Convenience method to create and start the server.</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_and_serve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">9090</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">logging.INFO</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/server.html#Server.create_and_serve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.server.Server.create_and_serve" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Convenience method to create and start the server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>components</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><em>ComponentBase</em></a><em>]</em>) – List of components to manage</p></li>
+<li><p><strong>components</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../components/arm/arm/index.html#viam.components.arm.arm.ComponentBase" title="viam.components.arm.arm.ComponentBase"><em>ComponentBase</em></a><em>]</em>) – List of components to manage</p></li>
 <li><p><strong>host</strong> (<em>str</em><em>, </em><em>optional</em>) – Desired hostname. Defaults to “localhost”.</p></li>
 <li><p><strong>port</strong> (<em>int</em><em>, </em><em>optional</em>) – Desired port. Defaults to 9090.</p></li>
 <li><p><strong>log_level</strong> (<em>int</em><em>, </em><em>optional</em>) – The minimum log level.
@@ -193,7 +731,6 @@ Please note that any errors will not raise an exception. Errors will still be lo
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

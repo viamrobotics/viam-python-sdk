@@ -1,37 +1,35 @@
-:py:mod:`viam.components.servo`
-===============================
+viam.components.servo
+=====================
 
 .. py:module:: viam.components.servo
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   service/index.rst
-   servo/index.rst
+   /autoapi/viam/components/servo/client/index
+   /autoapi/viam/components/servo/service/index
+   /autoapi/viam/components/servo/servo/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.components.servo.Servo
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Servo(name: str)
 
-
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
 
    Servo represents a physical servo.
 
@@ -43,14 +41,16 @@ Classes
 
        from viam.components.servo import Servo
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Move the servo to the provided angle.
 
@@ -68,9 +68,12 @@ Classes
       :type angle: int
 
 
+
    .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
       :abstractmethod:
+
       :async:
+
 
       Get the current angle (degrees) of the servo.
 
@@ -94,9 +97,12 @@ Classes
       :rtype: int
 
 
+
    .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
+
       :async:
+
 
       Stop the servo. It is assumed that the servo stops immediately.
 
@@ -111,9 +117,12 @@ Classes
           await my_servo.stop()
 
 
+
    .. py:method:: is_moving() -> bool
       :abstractmethod:
+
       :async:
+
 
       Get if the servo is currently moving.
 
@@ -128,8 +137,10 @@ Classes
       :rtype: bool
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -142,9 +153,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -162,8 +176,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -180,8 +196,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -195,6 +213,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -212,8 +231,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

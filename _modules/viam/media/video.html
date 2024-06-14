@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -100,18 +100,18 @@
 <span class="kn">from</span> <span class="nn">.viam_rgba</span> <span class="kn">import</span> <span class="n">RGBA_HEADER_LENGTH</span><span class="p">,</span> <span class="n">RGBA_MAGIC_NUMBER</span>
 
 
-<div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/service/index.html#viam.components.camera.camera.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="n">VIAM_RGBA</span> <span class="o">=</span> <span class="s2">&quot;image/vnd.viam.rgba&quot;</span>
     <span class="n">VIAM_RAW_DEPTH</span> <span class="o">=</span> <span class="s2">&quot;image/vnd.viam.dep&quot;</span>
     <span class="n">JPEG</span> <span class="o">=</span> <span class="s2">&quot;image/jpeg&quot;</span>
     <span class="n">PNG</span> <span class="o">=</span> <span class="s2">&quot;image/png&quot;</span>
     <span class="n">PCD</span> <span class="o">=</span> <span class="s2">&quot;pointcloud/pcd&quot;</span>
 
-<div class="viewcode-block" id="CameraMimeType.from_string"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="CameraMimeType.from_string"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/service/index.html#viam.components.camera.camera.CameraMimeType.from_string">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CameraMimeType.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="CameraMimeType.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/service/index.html#viam.components.camera.camera.CameraMimeType.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CameraMimeType&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mimetype from a proto enum.</span>
 
@@ -129,7 +129,7 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CameraMimeType.to_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.to_proto">[docs]</a>    <span class="k">def</span> <span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
+<div class="viewcode-block" id="CameraMimeType.to_proto"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/service/index.html#viam.components.camera.camera.CameraMimeType.to_proto">[docs]</a>    <span class="k">def</span> <span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mimetype in a proto enum.</span>
 
 <span class="sd">        Returns:</span>
@@ -144,7 +144,7 @@
         <span class="k">return</span> <span class="n">formats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ViamImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.ViamImage">[docs]</a><span class="k">class</span> <span class="nc">ViamImage</span><span class="p">:</span>
+<div class="viewcode-block" id="ViamImage"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/vision/index.html#viam.components.camera.camera.ViamImage">[docs]</a><span class="k">class</span> <span class="nc">ViamImage</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A native implementation of an image.</span>
 
 <span class="sd">    Provides the raw data and the mime type.</span>
@@ -180,7 +180,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The height of the image&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span>
 
-<div class="viewcode-block" id="ViamImage.bytes_to_depth_array"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.ViamImage.bytes_to_depth_array">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_depth_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<div class="viewcode-block" id="ViamImage.bytes_to_depth_array"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/vision/index.html#viam.components.camera.camera.ViamImage.bytes_to_depth_array">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_depth_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.</span>
 
@@ -202,7 +202,7 @@
         <span class="k">return</span> <span class="n">depth_arr_2d</span></div></div>
 
 
-<div class="viewcode-block" id="NamedImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.NamedImage">[docs]</a><span class="k">class</span> <span class="nc">NamedImage</span><span class="p">(</span><span class="n">ViamImage</span><span class="p">):</span>
+<div class="viewcode-block" id="NamedImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.camera.NamedImage">[docs]</a><span class="k">class</span> <span class="nc">NamedImage</span><span class="p">(</span><span class="n">ViamImage</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An implementation of ViamImage that contains a name attribute.&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>

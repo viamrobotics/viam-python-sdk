@@ -1,25 +1,22 @@
-:py:mod:`viam.services.vision`
-==============================
+viam.services.vision
+====================
 
 .. py:module:: viam.services.vision
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   service/index.rst
-   vision/index.rst
+   /autoapi/viam/services/vision/client/index
+   /autoapi/viam/services/vision/service/index
+   /autoapi/viam/services/vision/vision/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -30,30 +27,33 @@ Classes
    viam.services.vision.Vision
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Classification(*, class_name: str = ..., confidence: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    the general form of the output from a classifier
 
+
    .. py:attribute:: class_name
-      :type: str
+      :type:  str
 
       the class name
 
+
    .. py:attribute:: confidence
-      :type: float
+      :type:  float
 
       the confidence score of the classification
 
 
 .. py:class:: Detection(*, x_min: int | None = ..., y_min: int | None = ..., x_max: int | None = ..., y_max: int | None = ..., confidence: float = ..., class_name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -61,37 +61,38 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: x_min
-      :type: int
+      :type:  int
 
       the four corners of the box
 
-   .. py:attribute:: y_min
-      :type: int
 
-      
+   .. py:attribute:: y_min
+      :type:  int
+
 
    .. py:attribute:: x_max
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: y_max
-      :type: int
+      :type:  int
 
-      
 
    .. py:attribute:: confidence
-      :type: float
+      :type:  float
 
       the confidence of the detection
 
+
    .. py:attribute:: class_name
-      :type: str
+      :type:  str
 
       label associated with the detected object
 
-   .. py:method:: HasField(field_name: Literal[_x_max, b'_x_max', _x_min, b'_x_min', _y_max, b'_y_max', _y_min, b'_y_min', x_max, b'x_max', x_min, b'x_min', y_max, b'y_max', y_min, b'y_min']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -108,10 +109,11 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_x_max, b'_x_max']) -> Literal[x_max] | None
-                  WhichOneof(oneof_group: Literal[_x_min, b'_x_min']) -> Literal[x_min] | None
-                  WhichOneof(oneof_group: Literal[_y_max, b'_y_max']) -> Literal[y_max] | None
-                  WhichOneof(oneof_group: Literal[_y_min, b'_y_min']) -> Literal[y_min] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_x_max', b'_x_max']) -> Literal['x_max'] | None
+                  WhichOneof(oneof_group: Literal['_x_min', b'_x_min']) -> Literal['x_min'] | None
+                  WhichOneof(oneof_group: Literal['_y_max', b'_y_max']) -> Literal['y_max'] | None
+                  WhichOneof(oneof_group: Literal['_y_min', b'_y_min']) -> Literal['y_min'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -129,19 +131,20 @@ Classes
 
 .. py:class:: VisionClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.services.vision.vision.Vision`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    Connect to the Vision service, which allows you to access various computer vision algorithms
    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
 
-   .. py:attribute:: client
-      :type: viam.proto.service.vision.VisionServiceStub
 
-      
+   .. py:attribute:: client
+      :type:  viam.proto.service.vision.VisionServiceStub
+
 
    .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.services.vision.vision.CaptureAllResult
       :async:
+
 
       Get the next image, detections, classifications, and objects all together,
       given a camera name. Used for visualization.
@@ -177,8 +180,10 @@ Classes
       :rtype: vision.CaptureAllResult
 
 
+
    .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
+
 
       Get a list of detections in the next image given a camera and a detector
 
@@ -203,8 +208,10 @@ Classes
       :rtype: List[viam.proto.service.vision.Detection]
 
 
+
    .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
+
 
       Get a list of detections in the given image using the specified detector
 
@@ -233,8 +240,10 @@ Classes
       :rtype: List[viam.proto.service.vision.Detection]
 
 
+
    .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
+
 
       Get a list of classifications in the next image given a camera and a classifier
 
@@ -258,8 +267,10 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
+
    .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
+
 
       Get a list of classifications in the given image using the specified classifier
 
@@ -286,8 +297,10 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
+
    .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
       :async:
+
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
       picture obtained from the specified 3D camera (using the specified segmenter).
@@ -318,8 +331,10 @@ Classes
       :rtype: List[viam.proto.common.PointCloudObject]
 
 
+
    .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.services.vision.vision.Vision.Properties
       :async:
+
 
       Get info about what vision methods the vision service provides. Currently returns boolean values that
       state whether the service implements the classification, detection, and/or 3D object segmentation methods.
@@ -335,8 +350,10 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/receive arbitrary commands.
 
@@ -359,8 +376,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the service named ``name`` from the provided robot.
 
@@ -388,8 +407,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -403,6 +424,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -420,8 +442,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 
@@ -438,7 +462,6 @@ Classes
 
 .. py:class:: CaptureAllResult(image=None, classifications=None, detections=None, objects=None, extra={})
 
-
    CaptureAllResult represents the collection of things that you have requested from the
    CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
    returning the image on every call to a classifier/detector/etc would be costly and unnecessary.
@@ -449,8 +472,8 @@ Classes
 
 .. py:class:: Vision(name: str)
 
-
    Bases: :py:obj:`viam.services.service_base.ServiceBase`
+
 
    Vision represents a Vision service.
 
@@ -458,13 +481,15 @@ Classes
    vision implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:attribute:: Properties
-      :type: TypeAlias
+      :type:  TypeAlias
+      :value: GetPropertiesResponse
+
 
       Properties is a class that states what features are supported on the associated vision service.
       Currently, these are the following properties:
@@ -472,9 +497,12 @@ Classes
       - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
       - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
 
+
    .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> CaptureAllResult
       :abstractmethod:
+
       :async:
+
 
       Get the next image, detections, classifications, and objects all together,
       given a camera name. Used for visualization.
@@ -510,9 +538,12 @@ Classes
       :rtype: vision.CaptureAllResult
 
 
+
    .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :abstractmethod:
+
       :async:
+
 
       Get a list of detections in the next image given a camera and a detector
 
@@ -537,9 +568,12 @@ Classes
       :rtype: List[viam.proto.service.vision.Detection]
 
 
+
    .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :abstractmethod:
+
       :async:
+
 
       Get a list of detections in the given image using the specified detector
 
@@ -568,9 +602,12 @@ Classes
       :rtype: List[viam.proto.service.vision.Detection]
 
 
+
    .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :abstractmethod:
+
       :async:
+
 
       Get a list of classifications in the next image given a camera and a classifier
 
@@ -594,9 +631,12 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
+
    .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :abstractmethod:
+
       :async:
+
 
       Get a list of classifications in the given image using the specified classifier
 
@@ -623,9 +663,12 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
+
    .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
       :abstractmethod:
+
       :async:
+
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
       picture obtained from the specified 3D camera (using the specified segmenter).
@@ -656,9 +699,12 @@ Classes
       :rtype: List[viam.proto.common.PointCloudObject]
 
 
+
    .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Properties
       :abstractmethod:
+
       :async:
+
 
       Get info about what vision methods the vision service provides. Currently returns boolean values that
       state whether the service implements the classification, detection, and/or 3D object segmentation methods.
@@ -674,8 +720,10 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the service named ``name`` from the provided robot.
 
@@ -703,9 +751,12 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :abstractmethod:
+
       :async:
+
 
       Send/receive arbitrary commands.
 
@@ -728,8 +779,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -743,6 +796,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -760,8 +814,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

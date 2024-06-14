@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.common.v1.common_pb2`
-=======================================
+viam.gen.common.v1.common_pb2
+=============================
 
 .. py:module:: viam.gen.common.v1.common_pb2
 
@@ -11,47 +11,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.common.v1.common_pb2.KinematicsFileFormat
-   viam.gen.common.v1.common_pb2.ResourceName
-   viam.gen.common.v1.common_pb2.Pose
-   viam.gen.common.v1.common_pb2.Orientation
-   viam.gen.common.v1.common_pb2.PoseInFrame
-   viam.gen.common.v1.common_pb2.Vector3
-   viam.gen.common.v1.common_pb2.Sphere
-   viam.gen.common.v1.common_pb2.Capsule
-   viam.gen.common.v1.common_pb2.RectangularPrism
-   viam.gen.common.v1.common_pb2.Geometry
-   viam.gen.common.v1.common_pb2.GeometriesInFrame
-   viam.gen.common.v1.common_pb2.PointCloudObject
-   viam.gen.common.v1.common_pb2.GeoPoint
-   viam.gen.common.v1.common_pb2.GeoGeometry
-   viam.gen.common.v1.common_pb2.Transform
-   viam.gen.common.v1.common_pb2.WorldState
-   viam.gen.common.v1.common_pb2.ActuatorStatus
-   viam.gen.common.v1.common_pb2.ResponseMetadata
-   viam.gen.common.v1.common_pb2.DoCommandRequest
-   viam.gen.common.v1.common_pb2.DoCommandResponse
-   viam.gen.common.v1.common_pb2.GetKinematicsRequest
-   viam.gen.common.v1.common_pb2.GetKinematicsResponse
-   viam.gen.common.v1.common_pb2.GetGeometriesRequest
-   viam.gen.common.v1.common_pb2.GetGeometriesResponse
-   viam.gen.common.v1.common_pb2.GetReadingsRequest
-   viam.gen.common.v1.common_pb2.GetReadingsResponse
-   viam.gen.common.v1.common_pb2.LogEntry
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -90,40 +51,66 @@ Attributes
    viam.gen.common.v1.common_pb2.safety_heartbeat_monitored
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.common.v1.common_pb2.KinematicsFileFormat
+   viam.gen.common.v1.common_pb2.ResourceName
+   viam.gen.common.v1.common_pb2.Pose
+   viam.gen.common.v1.common_pb2.Orientation
+   viam.gen.common.v1.common_pb2.PoseInFrame
+   viam.gen.common.v1.common_pb2.Vector3
+   viam.gen.common.v1.common_pb2.Sphere
+   viam.gen.common.v1.common_pb2.Capsule
+   viam.gen.common.v1.common_pb2.RectangularPrism
+   viam.gen.common.v1.common_pb2.Geometry
+   viam.gen.common.v1.common_pb2.GeometriesInFrame
+   viam.gen.common.v1.common_pb2.PointCloudObject
+   viam.gen.common.v1.common_pb2.GeoPoint
+   viam.gen.common.v1.common_pb2.GeoGeometry
+   viam.gen.common.v1.common_pb2.Transform
+   viam.gen.common.v1.common_pb2.WorldState
+   viam.gen.common.v1.common_pb2.ActuatorStatus
+   viam.gen.common.v1.common_pb2.ResponseMetadata
+   viam.gen.common.v1.common_pb2.DoCommandRequest
+   viam.gen.common.v1.common_pb2.DoCommandResponse
+   viam.gen.common.v1.common_pb2.GetKinematicsRequest
+   viam.gen.common.v1.common_pb2.GetKinematicsResponse
+   viam.gen.common.v1.common_pb2.GetGeometriesRequest
+   viam.gen.common.v1.common_pb2.GetGeometriesResponse
+   viam.gen.common.v1.common_pb2.GetReadingsRequest
+   viam.gen.common.v1.common_pb2.GetReadingsResponse
+   viam.gen.common.v1.common_pb2.LogEntry
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: KinematicsFileFormat
-
 
    Bases: :py:obj:`_KinematicsFileFormat`
 
 
 .. py:data:: KINEMATICS_FILE_FORMAT_UNSPECIFIED
-   :type: KinematicsFileFormat
-
-   
+   :type:  KinematicsFileFormat
 
 .. py:data:: KINEMATICS_FILE_FORMAT_SVA
-   :type: KinematicsFileFormat
-
-   
+   :type:  KinematicsFileFormat
 
 .. py:data:: KINEMATICS_FILE_FORMAT_URDF
-   :type: KinematicsFileFormat
-
-   
+   :type:  KinematicsFileFormat
 
 .. py:data:: global___KinematicsFileFormat
 
-   
-
 .. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -131,35 +118,29 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: namespace
-      :type: str
 
-      
+   .. py:attribute:: namespace
+      :type:  str
+
 
    .. py:attribute:: type
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: subtype
-      :type: str
+      :type:  str
 
-      
 
    .. py:attribute:: name
-      :type: str
-
-      
+      :type:  str
 
 
 .. py:data:: global___ResourceName
 
-   
-
 .. py:class:: Pose(*, x: float = ..., y: float = ..., z: float = ..., o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Pose is a combination of location and orientation.
    Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
@@ -170,50 +151,55 @@ Attributes
    second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
    is circled, the Roll will correct itself to remain in-line.
 
+
    .. py:attribute:: x
-      :type: float
+      :type:  float
 
       millimeters from the origin
+
 
    .. py:attribute:: y
-      :type: float
+      :type:  float
 
       millimeters from the origin
+
 
    .. py:attribute:: z
-      :type: float
+      :type:  float
 
       millimeters from the origin
 
+
    .. py:attribute:: o_x
-      :type: float
+      :type:  float
 
       z component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_y
-      :type: float
+      :type:  float
 
       x component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_z
-      :type: float
+      :type:  float
 
       y component of a vector defining axis of rotation
 
+
    .. py:attribute:: theta
-      :type: float
+      :type:  float
 
       degrees
 
 
 .. py:data:: global___Pose
 
-   
-
 .. py:class:: Orientation(*, o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -221,48 +207,51 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: o_x
-      :type: float
+      :type:  float
 
       x component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_y
-      :type: float
+      :type:  float
 
       y component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_z
-      :type: float
+      :type:  float
 
       z component of a vector defining axis of rotation
 
+
    .. py:attribute:: theta
-      :type: float
+      :type:  float
 
       degrees
 
 
 .. py:data:: global___Orientation
 
-   
-
 .. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: global___Pose | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    PoseInFrame contains a pose and the and the reference frame in which it was observed
+
+
+   .. py:attribute:: reference_frame
+      :type:  str
+
 
    .. py:property:: pose
       :type: global___Pose
 
 
-   .. py:attribute:: reference_frame
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -282,12 +271,10 @@ Attributes
 
 .. py:data:: global___PoseInFrame
 
-   
-
 .. py:class:: Vector3(*, x: float = ..., y: float = ..., z: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -295,30 +282,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: x
-      :type: float
 
-      
+   .. py:attribute:: x
+      :type:  float
+
 
    .. py:attribute:: y
-      :type: float
+      :type:  float
 
-      
 
    .. py:attribute:: z
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:data:: global___Vector3
 
-   
-
 .. py:class:: Sphere(*, radius_mm: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -326,20 +308,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: radius_mm
-      :type: float
 
-      
+   .. py:attribute:: radius_mm
+      :type:  float
 
 
 .. py:data:: global___Sphere
 
-   
-
 .. py:class:: Capsule(*, radius_mm: float = ..., length_mm: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -347,34 +326,32 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: radius_mm
-      :type: float
 
-      
+   .. py:attribute:: radius_mm
+      :type:  float
+
 
    .. py:attribute:: length_mm
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:data:: global___Capsule
 
-   
-
 .. py:class:: RectangularPrism(*, dims_mm: global___Vector3 | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
    These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
+
 
    .. py:property:: dims_mm
       :type: global___Vector3
 
 
-   .. py:method:: HasField(field_name: Literal[dims_mm, b'dims_mm']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['dims_mm', b'dims_mm']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -394,38 +371,42 @@ Attributes
 
 .. py:data:: global___RectangularPrism
 
-   
-
 .. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
 
    .. py:property:: center
       :type: global___Pose
 
       Pose of a geometries center point
 
+
    .. py:property:: sphere
       :type: global___Sphere
+
 
 
    .. py:property:: box
       :type: global___RectangularPrism
 
 
+
    .. py:property:: capsule
       :type: global___Capsule
 
 
-   .. py:attribute:: label
-      :type: str
 
-      Label of the geometry. If none supplied, will be an empty string.
-
-   .. py:method:: HasField(field_name: Literal[box, b'box', capsule, b'capsule', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -442,7 +423,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> Literal[sphere, box, capsule] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -460,50 +442,51 @@ Attributes
 
 .. py:data:: global___Geometry
 
-   
-
 .. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
    observed.
+
+
+   .. py:attribute:: reference_frame
+      :type:  str
+
+      Reference frame of the observer of the geometry
+
 
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
 
       Dimensional type
 
-   .. py:attribute:: reference_frame
-      :type: str
-
-      Reference frame of the observer of the geometry
-
 
 .. py:data:: global___GeometriesInFrame
 
-   
-
 .. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: global___GeometriesInFrame | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
    repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
+
+
+   .. py:attribute:: point_cloud
+      :type:  bytes
+
+      image frame expressed in bytes
+
 
    .. py:property:: geometries
       :type: global___GeometriesInFrame
 
       volume of a given geometry
 
-   .. py:attribute:: point_cloud
-      :type: bytes
 
-      image frame expressed in bytes
-
-   .. py:method:: HasField(field_name: Literal[geometries, b'geometries']) -> bool
+   .. py:method:: HasField(field_name: Literal['geometries', b'geometries']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -523,12 +506,10 @@ Attributes
 
 .. py:data:: global___PointCloudObject
 
-   
-
 .. py:class:: GeoPoint(*, latitude: float = ..., longitude: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -536,39 +517,38 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: latitude
-      :type: float
 
-      
+   .. py:attribute:: latitude
+      :type:  float
+
 
    .. py:attribute:: longitude
-      :type: float
-
-      
+      :type:  float
 
 
 .. py:data:: global___GeoPoint
 
-   
-
 .. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+
 
    .. py:property:: location
       :type: global___GeoPoint
 
       Location of the geometry
 
+
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
 
       Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['location', b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -588,32 +568,34 @@ Attributes
 
 .. py:data:: global___GeoGeometry
 
-   
-
 .. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ..., physical_object: global___Geometry | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
    frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
    reference frame as observed within the second reference frame.
+
+
+   .. py:attribute:: reference_frame
+      :type:  str
+
+      the name of a given reference frame
+
 
    .. py:property:: pose_in_observer_frame
       :type: global___PoseInFrame
 
       the pose of the above reference frame with respect to a different observer reference frame
 
+
    .. py:property:: physical_object
       :type: global___Geometry
 
 
-   .. py:attribute:: reference_frame
-      :type: str
 
-      the name of a given reference frame
-
-   .. py:method:: HasField(field_name: Literal[_physical_object, b'_physical_object', physical_object, b'physical_object', pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
+   .. py:method:: HasField(field_name: Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -630,7 +612,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_physical_object, b'_physical_object']) -> Literal[physical_object] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_physical_object', b'_physical_object']) -> Literal['physical_object'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -648,21 +631,21 @@ Attributes
 
 .. py:data:: global___Transform
 
-   
-
 .. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
    they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
    given reference frame and a new target reference frame.
 
+
    .. py:property:: obstacles
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
+
 
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
@@ -673,35 +656,31 @@ Attributes
 
 .. py:data:: global___WorldState
 
-   
-
 .. py:class:: ActuatorStatus(*, is_moving: bool = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    ActuatorStatus is a generic status for resources that only need to return actuator status.
 
-   .. py:attribute:: is_moving
-      :type: bool
 
-      
+   .. py:attribute:: is_moving
+      :type:  bool
 
 
 .. py:data:: global___ActuatorStatus
 
-   
-
 .. py:class:: ResponseMetadata(*, captured_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: captured_at
       :type: google.protobuf.timestamp_pb2.Timestamp
@@ -711,7 +690,8 @@ Attributes
       Note: If correlating between other resources, be sure that the means
       of measuring the capture are similar enough such that comparison can be made between them.
 
-   .. py:method:: HasField(field_name: Literal[_captured_at, b'_captured_at', captured_at, b'captured_at']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -728,7 +708,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_captured_at, b'_captured_at']) -> Literal[captured_at] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_captured_at', b'_captured_at']) -> Literal['captured_at'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -746,25 +727,24 @@ Attributes
 
 .. py:data:: global___ResponseMetadata
 
-   
-
 .. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    DoCommandRequest represents a generic DoCommand input
+
+
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:property:: command
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:method:: HasField(field_name: Literal[command, b'command']) -> bool
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -784,20 +764,20 @@ Attributes
 
 .. py:data:: global___DoCommandRequest
 
-   
-
 .. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    DoCommandResponse represents a generic DoCommand output
+
 
    .. py:property:: result
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -817,12 +797,10 @@ Attributes
 
 .. py:data:: global___DoCommandResponse
 
-   
-
 .. py:class:: GetKinematicsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -830,17 +808,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      The component name
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      The component name
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -860,12 +841,10 @@ Attributes
 
 .. py:data:: global___GetKinematicsRequest
 
-   
-
 .. py:class:: GetKinematicsResponse(*, format: global___KinematicsFileFormat = ..., kinematics_data: bytes = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -873,26 +852,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: format
-      :type: global___KinematicsFileFormat
+      :type:  global___KinematicsFileFormat
 
       The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)
       https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters
 
+
    .. py:attribute:: kinematics_data
-      :type: bytes
+      :type:  bytes
 
       The byte contents of the file
 
 
 .. py:data:: global___GetKinematicsResponse
 
-   
-
 .. py:class:: GetGeometriesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -900,17 +879,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      The component name
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      The component name
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -930,18 +912,17 @@ Attributes
 
 .. py:data:: global___GetGeometriesRequest
 
-   
-
 .. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
@@ -951,12 +932,10 @@ Attributes
 
 .. py:data:: global___GetGeometriesResponse
 
-   
-
 .. py:class:: GetReadingsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -964,17 +943,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a sensor
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of a sensor
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -994,12 +976,10 @@ Attributes
 
 .. py:data:: global___GetReadingsRequest
 
-   
-
 .. py:class:: GetReadingsResponse(*, readings: collections.abc.Mapping[str, google.protobuf.struct_pb2.Value] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1007,10 +987,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: ReadingsEntry(*, key: str = ..., value: google.protobuf.struct_pb2.Value | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -1018,16 +999,17 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: google.protobuf.struct_pb2.Value
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -1045,6 +1027,7 @@ Attributes
 
 
 
+
    .. py:property:: readings
       :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
 
@@ -1052,12 +1035,10 @@ Attributes
 
 .. py:data:: global___GetReadingsResponse
 
-   
-
 .. py:class:: LogEntry(*, host: str = ..., level: str = ..., time: google.protobuf.timestamp_pb2.Timestamp | None = ..., logger_name: str = ..., message: str = ..., caller: google.protobuf.struct_pb2.Struct | None = ..., stack: str = ..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1065,44 +1046,43 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: host
+      :type:  str
+
+
+   .. py:attribute:: level
+      :type:  str
+
+
+   .. py:attribute:: logger_name
+      :type:  str
+
+
+   .. py:attribute:: message
+      :type:  str
+
+
+   .. py:attribute:: stack
+      :type:  str
+
+
    .. py:property:: time
       :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: caller
       :type: google.protobuf.struct_pb2.Struct
 
 
+
    .. py:property:: fields
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
 
 
-   .. py:attribute:: host
-      :type: str
 
-      
-
-   .. py:attribute:: level
-      :type: str
-
-      
-
-   .. py:attribute:: logger_name
-      :type: str
-
-      
-
-   .. py:attribute:: message
-      :type: str
-
-      
-
-   .. py:attribute:: stack
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[caller, b'caller', time, b'time']) -> bool
+   .. py:method:: HasField(field_name: Literal['caller', b'caller', 'time', b'time']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1122,15 +1102,11 @@ Attributes
 
 .. py:data:: global___LogEntry
 
-   
-
 .. py:data:: SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER
-   :type: int
-
-   
+   :type:  int
 
 .. py:data:: safety_heartbeat_monitored
-   :type: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, bool]
+   :type:  google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, bool]
 
    safety_heartbeat_monitored is used on methods to signify that if a session is in use
    and the session was the last to call this method, the resource associated with the

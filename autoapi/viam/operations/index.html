@@ -53,15 +53,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.operations</span></code></li>
+      <li class="breadcrumb-item active">viam.operations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/viam/operations/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,34 +89,9 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.operations">
-<span id="viam-operations"></span><h1><a class="reference internal" href="#module-viam.operations" title="viam.operations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.operations</span></code></a><a class="headerlink" href="#module-viam.operations" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.Operation" title="viam.operations.Operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Operation</span></code></a></p></td>
-<td><p>An Operation represents a running operation.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.opid_from_metadata" title="viam.operations.opid_from_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">opid_from_metadata</span></code></a>(→ Optional[uuid.UUID])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.operations.run_with_operation" title="viam.operations.run_with_operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_with_operation</span></code></a>(→ Callable[P, Coroutine[Any, Any, T]])</p></td>
-<td><p>Run a component function with an <code class="docutils literal notranslate"><span class="pre">Operation</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
+<span id="viam-operations"></span><h1>viam.operations<a class="headerlink" href="#module-viam.operations" title="Permalink to this heading"></a></h1>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.P" title="viam.operations.P"><code class="xref py py-obj docutils literal notranslate"><span class="pre">P</span></code></a></p></td>
@@ -130,6 +105,32 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.Operation" title="viam.operations.Operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Operation</span></code></a></p></td>
+<td><p>An Operation represents a running operation.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.opid_from_metadata" title="viam.operations.opid_from_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">opid_from_metadata</span></code></a>(→ Optional[uuid.UUID])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.operations.run_with_operation" title="viam.operations.run_with_operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_with_operation</span></code></a>(→ Callable[P, Coroutine[Any, Any, T]])</p></td>
+<td><p>Run a component function with an <code class="docutils literal notranslate"><span class="pre">Operation</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.operations.Operation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asyncio.Event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">uuid.UUID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/operations.html#Operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.operations.Operation" title="Permalink to this definition"></a></dt>
@@ -215,7 +216,6 @@ or a parameter whose name is equal the value of <code class="docutils literal no
 </dl>
 </dd></dl>
 
-</section>
 </section>
 </section>
 

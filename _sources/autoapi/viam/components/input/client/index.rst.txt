@@ -1,43 +1,692 @@
-:py:mod:`viam.components.input.client`
-======================================
+viam.components.input.client
+============================
 
 .. py:module:: viam.components.input.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.components.input.client.ValueTypes
+   viam.components.input.client.ControlFunction
+   viam.components.input.client.LOGGER
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   viam.components.input.client.NotSupportedError
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.input.client.DoCommandRequest
+   viam.components.input.client.DoCommandResponse
+   viam.components.input.client.Geometry
+   viam.components.input.client.GetControlsRequest
+   viam.components.input.client.GetControlsResponse
+   viam.components.input.client.GetEventsRequest
+   viam.components.input.client.GetEventsResponse
+   viam.components.input.client.InputControllerServiceStub
+   viam.components.input.client.StreamEventsRequest
+   viam.components.input.client.StreamEventsResponse
+   viam.components.input.client.TriggerEventRequest
+   viam.components.input.client.ReconfigurableResourceRPCClientBase
+   viam.components.input.client.Control
+   viam.components.input.client.Controller
+   viam.components.input.client.Event
+   viam.components.input.client.EventType
+   viam.components.input.client.ControllerClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.input.client.getLogger
+   viam.components.input.client.dict_to_struct
+   viam.components.input.client.get_geometries
+   viam.components.input.client.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:exception:: NotSupportedError(message: str)
 
-.. autoapisummary::
-
-   viam.components.input.client.ControllerClient
+   Bases: :py:obj:`ViamGRPCError`
 
 
+   Exception raised when specific component functionality is not supported
 
 
-Attributes
-~~~~~~~~~~
+.. py:function:: getLogger(name: str) -> logging.Logger
 
-.. autoapisummary::
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
-   viam.components.input.client.LOGGER
-
-
-.. py:data:: LOGGER
-
-   
-
-.. py:class:: ControllerClient(name: str, channel: grpclib.client.Channel)
+   Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   Bases: :py:obj:`viam.components.input.input.Controller`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   DoCommandRequest represents a generic DoCommand input
 
-   gRPC client for an Input Controller
 
-   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[viam.components.input.input.Control]
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
+
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a geometries center point
+
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
+
+   .. py:property:: capsule
+      :type: global___Capsule
+
+
+
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: GetControlsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetControlsResponse(*, controls: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: controls
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Returns a list of all the controls (buttons and axes) that are
+      available to a given Input Controller
+
+
+.. py:class:: GetEventsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[global___Event] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: events
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
+
+      Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
+      buttons/axes on a given input controller
+
+
+.. py:class:: InputControllerServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: Events(*, control: str = ..., events: collections.abc.Iterable[str] | None = ..., cancelled_events: collections.abc.Iterable[str] | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: control
+         :type:  str
+
+         Name of a control (button or axis)
+
+
+      .. py:property:: events
+         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+         Specify which event types to recieve events for
+
+
+      .. py:property:: cancelled_events
+         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+         Specify which event types to stop recieving events for
+         This can be an empty list
+
+
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
+   .. py:property:: events
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
+
+      A list of Events
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: StreamEventsResponse(*, event: global___Event | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: event
+      :type: global___Event
+
+      Event for a controller
+
+
+   .. py:method:: HasField(field_name: Literal['event', b'event']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: TriggerEventRequest(*, controller: str = ..., event: global___Event | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
+   .. py:property:: event
+      :type: global___Event
+
+      Digitally assert a given event
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['event', b'event', 'extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
+
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: Control
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Control identifies the input (specific Axis or Button) of a controller.
+
+
+   .. py:attribute:: ABSOLUTE_X
+      :value: 'AbsoluteX'
+
+
+
+   .. py:attribute:: ABSOLUTE_Y
+      :value: 'AbsoluteY'
+
+
+
+   .. py:attribute:: ABSOLUTE_Z
+      :value: 'AbsoluteZ'
+
+
+
+   .. py:attribute:: ABSOLUTE_RX
+      :value: 'AbsoluteRX'
+
+
+
+   .. py:attribute:: ABSOLUTE_RY
+      :value: 'AbsoluteRY'
+
+
+
+   .. py:attribute:: ABSOLUTE_RZ
+      :value: 'AbsoluteRZ'
+
+
+
+   .. py:attribute:: ABSOLUTE_HAT0_X
+      :value: 'AbsoluteHat0X'
+
+
+
+   .. py:attribute:: ABSOLUTE_HAT0_Y
+      :value: 'AbsoluteHat0Y'
+
+
+
+   .. py:attribute:: BUTTON_SOUTH
+      :value: 'ButtonSouth'
+
+
+
+   .. py:attribute:: BUTTON_EAST
+      :value: 'ButtonEast'
+
+
+
+   .. py:attribute:: BUTTON_WEST
+      :value: 'ButtonWest'
+
+
+
+   .. py:attribute:: BUTTON_NORTH
+      :value: 'ButtonNorth'
+
+
+
+   .. py:attribute:: BUTTON_LT
+      :value: 'ButtonLT'
+
+
+
+   .. py:attribute:: BUTTON_RT
+      :value: 'ButtonRT'
+
+
+
+   .. py:attribute:: BUTTON_LT2
+      :value: 'ButtonLT2'
+
+
+
+   .. py:attribute:: BUTTON_RT2
+      :value: 'ButtonRT2'
+
+
+
+   .. py:attribute:: BUTTON_L_THUMB
+      :value: 'ButtonLThumb'
+
+
+
+   .. py:attribute:: BUTTON_R_THUMB
+      :value: 'ButtonRThumb'
+
+
+
+   .. py:attribute:: BUTTON_SELECT
+      :value: 'ButtonSelect'
+
+
+
+   .. py:attribute:: BUTTON_START
+      :value: 'ButtonStart'
+
+
+
+   .. py:attribute:: BUTTON_MENU
+      :value: 'ButtonMenu'
+
+
+
+   .. py:attribute:: BUTTON_RECORD
+      :value: 'ButtonRecord'
+
+
+
+   .. py:attribute:: BUTTON_E_STOP
+      :value: 'ButtonEStop'
+
+
+
+   .. py:attribute:: ABSOLUTE_PEDAL_ACCELERATOR
+      :value: 'AbsolutePedalAccelerator'
+
+
+
+   .. py:attribute:: ABSOLUTE_PEDAL_BRAKE
+      :value: 'AbsolutePedalBrake'
+
+
+
+   .. py:attribute:: ABSOLUTE_PEDAL_CLUTCH
+      :value: 'AbsolutePedalClutch'
+
+
+
+.. py:data:: ControlFunction
+
+.. py:class:: Controller(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Controller is a logical "container" more than an actual device
+   Could be a single gamepad, or a collection of digitalInterrupts
+   and analogReaders, a keyboard, etc.
+
+   ::
+
+       from viam.components.input import Control, Controller, EventType
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]
+      :abstractmethod:
+
       :async:
+
 
       Returns a list of Controls provided by the Controller
 
@@ -57,8 +706,12 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+
+   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]
+      :abstractmethod:
+
       :async:
+
 
       Returns the most recent Event for each input
       (which should be the current state)
@@ -77,6 +730,355 @@ Attributes
 
       :returns: The most recent event for each input
       :rtype: Dict[Control, Event]
+
+
+
+   .. py:method:: register_control_callback(control: Control, triggers: List[EventType], function: Optional[ControlFunction], *, extra: Optional[Dict[str, Any]] = None, **kwargs)
+      :abstractmethod:
+
+
+      Register a function that will fire on given EventTypes for a given
+      Control
+
+      ::
+
+          # Define a function to handle pressing the Start Menu Button "BUTTON_START" on
+          # your controller, printing out the start time.
+          def print_start_time(event):
+              print(f"Start Menu Button was pressed at this time: {event.time}")
+
+
+          # Define a function that handles the controller.
+          async def handle_controller(controller):
+              # Get the list of Controls on the controller.
+              controls = await controller.get_controls()
+
+              # If the "BUTTON_START" Control is found, register the function
+              # print_start_time to fire when "BUTTON_START" has the event "ButtonPress"
+              # occur.
+              if Control.BUTTON_START in controls:
+                  controller.register_control_callback(
+                      Control.BUTTON_START, [EventType.BUTTON_PRESS], print_start_time)
+              else:
+                  print("Oops! Couldn't find the start button control! Is your "
+                      "controller connected?")
+                  exit()
+
+              while True:
+                  await asyncio.sleep(1.0)
+
+
+          async def main():
+              # ... < INSERT CONNECTION CODE FROM MACHINE'S CODE SAMPLE TAB >
+
+              # Get your controller from the machine.
+              my_controller = Controller.from_robot(
+                  robot=myRobotWithController, name="my_controller")
+
+              # Run the handleController function.
+              await handleController(my_controller)
+
+              # ... < INSERT ANY OTHER CODE FOR MAIN FUNCTION >
+
+      :param control: The control to register the function for
+      :type control: Control
+      :param triggers: The events that will
+                       trigger the function
+      :type triggers: List[EventType]
+      :param function: The function to run on
+                       specific triggers
+      :type function: ControlFunction
+
+
+
+   .. py:method:: trigger_event(event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
+      :async:
+
+
+      Directly send an Event (such as a button press) from external code
+
+      ::
+
+          # Define a "Button is Pressed" event for the control BUTTON_START.
+          button_is_pressed_event = Event(
+              time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)
+
+          # Trigger the event on your controller. Set this trigger to timeout if it has
+          # not completed in 7 seconds.
+          await myController.trigger_event(event=my_event, timeout=7.0)
+
+      :param event: The event to trigger
+      :type event: Event
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:class:: Event
+
+   .. py:attribute:: time
+      :type:  float
+
+      seconds since epoch
+
+
+   .. py:attribute:: event
+      :type:  EventType
+
+
+   .. py:attribute:: control
+      :type:  Control
+
+
+   .. py:attribute:: value
+      :type:  float
+
+      0 or 1 for buttons, -1.0 to +1.0 for axes
+
+
+   .. py:property:: proto
+
+
+   .. py:method:: from_proto(proto: viam.proto.component.inputcontroller.Event) -> typing_extensions.Self
+      :classmethod:
+
+
+
+.. py:class:: EventType
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Represents the type of input event.
+
+
+   .. py:attribute:: ALL_EVENTS
+      :value: 'AllEvents'
+
+
+      Callbacks registered for this event will be called in ADDITION to other registered event callbacks.
+
+
+   .. py:attribute:: CONNECT
+      :value: 'Connect'
+
+
+      Sent at controller initialization, and on reconnects.
+
+
+   .. py:attribute:: DISCONNECT
+      :value: 'Disconnect'
+
+
+      If unplugged, or wireless/network times out.
+
+
+   .. py:attribute:: BUTTON_PRESS
+      :value: 'ButtonPress'
+
+
+      Typical key press.
+
+
+   .. py:attribute:: BUTTON_RELEASE
+      :value: 'ButtonRelease'
+
+
+      Key release.
+
+
+   .. py:attribute:: BUTTON_HOLD
+      :value: 'ButtonHold'
+
+
+      Key is held down. This wil likely be a repeated event.
+
+
+   .. py:attribute:: BUTTON_CHANGE
+      :value: 'ButtonChange'
+
+
+      Both up and down for convenience during registration, not typically emitted.
+
+
+   .. py:attribute:: POSITION_CHANGE_ABSOLUTE
+      :value: 'PositionChangeAbs'
+
+
+      Absolute position is reported via Value, a la joysticks.
+
+
+   .. py:attribute:: POSITION_CHANGE_RELATIVE
+      :value: 'PositionChangeRel'
+
+
+      Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.
+
+
+.. py:data:: LOGGER
+
+.. py:class:: ControllerClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.components.input.input.Controller`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+
+   gRPC client for an Input Controller
+
+
+   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[viam.components.input.input.Control]
+      :async:
+
+
+      Returns a list of Controls provided by the Controller
+
+      ::
+
+          # Get the controller from the machine.
+          my_controller = Controller.from_robot(
+              robot=myRobotWithController, name="my_controller")
+
+          # Get the list of Controls provided by the controller.
+          controls = await my_controller.get_controls()
+
+          # Print the list of Controls provided by the controller.
+          print(f"Controls: {controls}")
+
+      :returns: List of controls provided by the Controller
+      :rtype: List[Control]
+
+
+
+   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+      :async:
+
+
+      Returns the most recent Event for each input
+      (which should be the current state)
+
+      ::
+
+          # Get the controller from the machine.
+          my_controller = Controller.from_robot(
+              robot=myRobotWithController, name="my_controller")
+
+          # Get the most recent Event for each Control.
+          recent_events = await my_controller.get_events()
+
+          # Print out the most recent Event for each Control.
+          print(f"Recent Events: {recent_events}")
+
+      :returns: The most recent event for each input
+      :rtype: Dict[Control, Event]
+
 
 
    .. py:method:: register_control_callback(control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction], extra: Optional[Dict[str, Any]] = None, **__)
@@ -134,6 +1136,7 @@ Attributes
       :type function: ControlFunction
 
 
+
    .. py:method:: reset_channel(channel: grpclib.client.Channel)
 
       Called when the RPC channel was reset. Passes in the new channel.
@@ -142,8 +1145,10 @@ Attributes
       :type channel: Channel
 
 
+
    .. py:method:: trigger_event(event: viam.components.input.input.Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
+
 
       Directly send an Event (such as a button press) from external code
 
@@ -161,8 +1166,10 @@ Attributes
       :type event: Event
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -180,8 +1187,10 @@ Attributes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -198,8 +1207,10 @@ Attributes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -212,8 +1223,10 @@ Attributes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -227,6 +1240,7 @@ Attributes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -244,8 +1258,10 @@ Attributes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

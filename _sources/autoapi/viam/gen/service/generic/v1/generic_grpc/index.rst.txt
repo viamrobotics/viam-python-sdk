@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.service.generic.v1.generic_grpc`
-==================================================
+viam.gen.service.generic.v1.generic_grpc
+========================================
 
 .. py:module:: viam.gen.service.generic.v1.generic_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,32 +14,36 @@ Classes
    viam.gen.service.generic.v1.generic_grpc.GenericServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: GenericServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedGenericServiceBase
-
 
    Bases: :py:obj:`GenericServiceBase`
 
+
    Helper class that provides a standard way to create an ABC using
    inheritance.
+
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
@@ -50,6 +51,4 @@ Classes
 
 
 .. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
-
-
 

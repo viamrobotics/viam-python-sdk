@@ -1,23 +1,20 @@
-:py:mod:`viam.services.motion`
-==============================
+viam.services.motion
+====================
 
 .. py:module:: viam.services.motion
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
+   /autoapi/viam/services/motion/client/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -25,12 +22,13 @@ Classes
    viam.services.motion.MotionClient
 
 
-
+Package Contents
+----------------
 
 .. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -38,37 +36,44 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: position_polling_frequency_hz
+      :type:  float
+
+      Sets the frequency to poll for the position of the robot
+
+
+   .. py:attribute:: obstacle_polling_frequency_hz
+      :type:  float
+
+      Sets the frequency to poll the vision service(s) for new obstacles
+
+
+   .. py:attribute:: plan_deviation_m
+      :type:  float
+
+      Sets the distance in meters that a robot is allowed to deviate from the motion plan
+
+
+   .. py:attribute:: linear_m_per_sec
+      :type:  float
+
+      Optional linear velocity to target when moving
+
+
+   .. py:attribute:: angular_degs_per_sec
+      :type:  float
+
+      Optional angular velocity to target when turning
+
+
    .. py:property:: obstacle_detectors
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
 
       The ObstacleDetectors that will be used for transient obstacle avoidance
 
-   .. py:attribute:: position_polling_frequency_hz
-      :type: float
 
-      Sets the frequency to poll for the position of the robot
-
-   .. py:attribute:: obstacle_polling_frequency_hz
-      :type: float
-
-      Sets the frequency to poll the vision service(s) for new obstacles
-
-   .. py:attribute:: plan_deviation_m
-      :type: float
-
-      Sets the distance in meters that a robot is allowed to deviate from the motion plan
-
-   .. py:attribute:: linear_m_per_sec
-      :type: float
-
-      Optional linear velocity to target when moving
-
-   .. py:attribute:: angular_degs_per_sec
-      :type: float
-
-      Optional angular velocity to target when turning
-
-   .. py:method:: HasField(field_name: Literal[_angular_degs_per_sec, b'_angular_degs_per_sec', _linear_m_per_sec, b'_linear_m_per_sec', _obstacle_polling_frequency_hz, b'_obstacle_polling_frequency_hz', _plan_deviation_m, b'_plan_deviation_m', _position_polling_frequency_hz, b'_position_polling_frequency_hz', angular_degs_per_sec, b'angular_degs_per_sec', linear_m_per_sec, b'linear_m_per_sec', obstacle_polling_frequency_hz, b'obstacle_polling_frequency_hz', plan_deviation_m, b'plan_deviation_m', position_polling_frequency_hz, b'position_polling_frequency_hz']) -> bool
+   .. py:method:: HasField(field_name: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -85,11 +90,12 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_angular_degs_per_sec, b'_angular_degs_per_sec']) -> Literal[angular_degs_per_sec] | None
-                  WhichOneof(oneof_group: Literal[_linear_m_per_sec, b'_linear_m_per_sec']) -> Literal[linear_m_per_sec] | None
-                  WhichOneof(oneof_group: Literal[_obstacle_polling_frequency_hz, b'_obstacle_polling_frequency_hz']) -> Literal[obstacle_polling_frequency_hz] | None
-                  WhichOneof(oneof_group: Literal[_plan_deviation_m, b'_plan_deviation_m']) -> Literal[plan_deviation_m] | None
-                  WhichOneof(oneof_group: Literal[_position_polling_frequency_hz, b'_position_polling_frequency_hz']) -> Literal[position_polling_frequency_hz] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> Literal['angular_degs_per_sec'] | None
+                  WhichOneof(oneof_group: Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> Literal['linear_m_per_sec'] | None
+                  WhichOneof(oneof_group: Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> Literal['obstacle_polling_frequency_hz'] | None
+                  WhichOneof(oneof_group: Literal['_plan_deviation_m', b'_plan_deviation_m']) -> Literal['plan_deviation_m'] | None
+                  WhichOneof(oneof_group: Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> Literal['position_polling_frequency_hz'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -107,26 +113,26 @@ Classes
 
 .. py:class:: MotionClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.services.service_client_base.ServiceClientBase`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
    ``world_state`` message, the motion planning service will also account for those.
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:attribute:: client
-      :type: viam.proto.service.motion.MotionServiceStub
+      :type:  viam.proto.service.motion.MotionServiceStub
 
-      
 
    .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
       :async:
+
 
       Plan and execute a movement to move the component specified to its goal destination.
 
@@ -171,8 +177,10 @@ Classes
       :rtype: bool
 
 
+
    .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
+
 
       Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
@@ -239,8 +247,10 @@ Classes
       :rtype: str
 
 
+
    .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Iterable[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
+
 
       Move a component to a specific pose, using a ``SlamService`` for the SLAM map, using a ``SLAM Service`` to check the location.
 
@@ -299,8 +309,10 @@ Classes
       :rtype: str
 
 
+
    .. py:method:: stop_plan(component_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None)
       :async:
+
 
       Stop a component being moved by an in progress ``move_on_globe()`` or ``move_on_map()`` call.
 
@@ -316,8 +328,10 @@ Classes
       :type component_name: ResourceName
 
 
+
    .. py:method:: get_plan(component_name: viam.proto.common.ResourceName, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.GetPlanResponse
       :async:
+
 
       By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()`` call to move a component.
 
@@ -354,8 +368,10 @@ Classes
       :rtype: ``GetPlanResponse`` (GetPlanResponse)
 
 
+
    .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.ListPlanStatusesResponse
       :async:
+
 
       Returns the statuses of plans created by `move_on_globe()` or ``move_on_map()`` calls that meet at least one of the following
       conditions since the motion service initialized:
@@ -379,8 +395,10 @@ Classes
       :rtype: ``ListPlanStatusesResponse`` (ListPlanStatusesResponse)
 
 
+
    .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[List[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
       :async:
+
 
       Get the Pose and observer frame for any given component on a robot. A ``component_name`` can be created like this::
 
@@ -414,8 +432,10 @@ Classes
       :rtype: ``Pose`` (PoseInFrame)
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/receive arbitrary commands
 
@@ -438,8 +458,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str = 'builtin') -> typing_extensions.Self
       :classmethod:
+
 
       Get the service client named ``name`` from the provided robot.
 
@@ -452,8 +474,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -467,6 +491,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -484,8 +509,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

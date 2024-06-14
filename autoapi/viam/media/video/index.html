@@ -55,55 +55,59 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module/index.html">viam.module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">viam.media</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../index.html#subpackages">Subpackages</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../audio/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.audio</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../viam_rgba/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.viam_rgba</span></code></a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.video</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../audio/index.html">viam.media.audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viam_rgba/index.html">viam.media.viam_rgba</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">viam.media.video</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType"><code class="docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RGBA"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RGBA</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RAW_DEPTH"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RAW_DEPTH</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.JPEG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.JPEG</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.PNG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PNG</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.PCD"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PCD</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_string"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_string()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_proto()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.to_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.to_proto()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.NotSupportedError"><code class="docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.Format"><code class="docutils literal notranslate"><span class="pre">Format</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.RGBA_HEADER_LENGTH"><code class="docutils literal notranslate"><span class="pre">RGBA_HEADER_LENGTH</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.RGBA_MAGIC_NUMBER"><code class="docutils literal notranslate"><span class="pre">RGBA_MAGIC_NUMBER</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.CameraMimeType"><code class="docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RGBA"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RGBA</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RAW_DEPTH"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RAW_DEPTH</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.JPEG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.JPEG</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.PNG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PNG</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.PCD"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PCD</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_string"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_string()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_proto()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType.to_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.to_proto()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage"><code class="docutils literal notranslate"><span class="pre">ViamImage</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.data"><code class="docutils literal notranslate"><span class="pre">ViamImage.data</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.mime_type"><code class="docutils literal notranslate"><span class="pre">ViamImage.mime_type</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.width"><code class="docutils literal notranslate"><span class="pre">ViamImage.width</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.height"><code class="docutils literal notranslate"><span class="pre">ViamImage.height</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.bytes_to_depth_array"><code class="docutils literal notranslate"><span class="pre">ViamImage.bytes_to_depth_array()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.ViamImage"><code class="docutils literal notranslate"><span class="pre">ViamImage</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage.data"><code class="docutils literal notranslate"><span class="pre">ViamImage.data</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage.mime_type"><code class="docutils literal notranslate"><span class="pre">ViamImage.mime_type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage.width"><code class="docutils literal notranslate"><span class="pre">ViamImage.width</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage.height"><code class="docutils literal notranslate"><span class="pre">ViamImage.height</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage.bytes_to_depth_array"><code class="docutils literal notranslate"><span class="pre">ViamImage.bytes_to_depth_array()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.NamedImage"><code class="docutils literal notranslate"><span class="pre">NamedImage</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.NamedImage.name"><code class="docutils literal notranslate"><span class="pre">NamedImage.name</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.video.NamedImage"><code class="docutils literal notranslate"><span class="pre">NamedImage</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.NamedImage.name"><code class="docutils literal notranslate"><span class="pre">NamedImage.name</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -120,8 +124,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.video</span></code></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.media</a></li>
+      <li class="breadcrumb-item active">viam.media.video</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/media/video/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -132,24 +136,74 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.media.video">
-<span id="viam-media-video"></span><h1><a class="reference internal" href="#module-viam.media.video" title="viam.media.video"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.video</span></code></a><a class="headerlink" href="#module-viam.media.video" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-media-video"></span><h1>viam.media.video<a class="headerlink" href="#module-viam.media.video" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.RGBA_HEADER_LENGTH" title="viam.media.video.RGBA_HEADER_LENGTH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBA_HEADER_LENGTH</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.RGBA_MAGIC_NUMBER" title="viam.media.video.RGBA_MAGIC_NUMBER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBA_MAGIC_NUMBER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.NotSupportedError" title="viam.media.video.NotSupportedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a></p></td>
+<td><p>Exception raised when specific component functionality is not supported</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.Format" title="viam.media.video.Format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Format</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
 <td><p>str(object='') -&gt; str</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.ViamImage" title="viam.media.video.ViamImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamImage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.ViamImage" title="viam.media.video.ViamImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamImage</span></code></a></p></td>
 <td><p>A native implementation of an image.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.NamedImage" title="viam.media.video.NamedImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedImage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.NamedImage" title="viam.media.video.NamedImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedImage</span></code></a></p></td>
 <td><p>An implementation of ViamImage that contains a name attribute.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="viam.media.video.NotSupportedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">NotSupportedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/errors.html#NotSupportedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.NotSupportedError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></p>
+<p>Exception raised when specific component functionality is not supported</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.video.Format">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">Format</span></span><a class="headerlink" href="#viam.media.video.Format" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_Format</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.video.RGBA_HEADER_LENGTH">
+<span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">RGBA_HEADER_LENGTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#viam.media.video.RGBA_HEADER_LENGTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.video.RGBA_MAGIC_NUMBER">
+<span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">RGBA_MAGIC_NUMBER</span></span><a class="headerlink" href="#viam.media.video.RGBA_MAGIC_NUMBER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.video.CameraMimeType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">CameraMimeType</span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType" title="Permalink to this definition"></a></dt>
@@ -261,7 +315,7 @@ errors defaults to ‘strict’.</p>
 <dd><p>Decode the data of an image that has the custom depth MIME type <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> into a standard representation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../errors/index.html#viam.errors.NotSupportedError" title="viam.errors.NotSupportedError"><strong>NotSupportedError</strong></a> – Raised if the image is not of MIME type <cite>image/vnd.viam.dep</cite>.</p>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.media.video.NotSupportedError" title="viam.media.video.NotSupportedError"><strong>NotSupportedError</strong></a> – Raised if the image is not of MIME type <cite>image/vnd.viam.dep</cite>.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The standard representation of the image.</p>
@@ -287,7 +341,6 @@ errors defaults to ‘strict’.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

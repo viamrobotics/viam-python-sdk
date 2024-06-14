@@ -1,50 +1,48 @@
-:py:mod:`viam.services.sensors`
-===============================
+viam.services.sensors
+=====================
 
 .. py:module:: viam.services.sensors
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
+   /autoapi/viam/services/sensors/client/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
    viam.services.sensors.SensorsClient
 
 
-
+Package Contents
+----------------
 
 .. py:class:: SensorsClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.services.service_client_base.ServiceClientBase`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    Connect to the SensorService, which centralizes all Sensors in a single place
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
 
-      
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
 
    .. py:attribute:: client
-      :type: viam.proto.service.sensors.SensorsServiceStub
+      :type:  viam.proto.service.sensors.SensorsServiceStub
 
-      
 
    .. py:method:: get_sensors(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.ResourceName]
       :async:
+
 
       Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
@@ -52,8 +50,10 @@ Classes
       :rtype: List[viam.proto.common.ResourceName]
 
 
+
    .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[viam.proto.common.ResourceName, Mapping[str, viam.utils.SensorReading]]
       :async:
+
 
       Get the readings from the specific sensors provided
 
@@ -64,8 +64,10 @@ Classes
       :rtype: Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/receive arbitrary commands
 
@@ -76,8 +78,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str = 'builtin') -> typing_extensions.Self
       :classmethod:
+
 
       Get the service client named ``name`` from the provided robot.
 
@@ -90,8 +94,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -105,6 +111,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -122,8 +129,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

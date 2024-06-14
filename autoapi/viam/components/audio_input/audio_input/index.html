@@ -55,78 +55,123 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html">viam.components.arm</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.components.audio_input</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input.audio_input</span></code></a><ul>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.components.audio_input.audio_input</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#attributes">Attributes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput"><code class="docutils literal notranslate"><span class="pre">AudioInput</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties</span></code></a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.proto</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.channel_count</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.latency"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.latency</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_rate"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.sample_rate</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_size"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.sample_size</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_big_endian"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_big_endian</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_float"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_float</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_interleaved</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.from_proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.from_proto()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.Audio"><code class="docutils literal notranslate"><span class="pre">Audio</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Audio.info"><code class="docutils literal notranslate"><span class="pre">Audio.info</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Audio.chunk"><code class="docutils literal notranslate"><span class="pre">Audio.chunk</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">AudioInput.SUBTYPE</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.stream"><code class="docutils literal notranslate"><span class="pre">AudioInput.stream()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_properties()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.from_robot"><code class="docutils literal notranslate"><span class="pre">AudioInput.from_robot()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.do_command"><code class="docutils literal notranslate"><span class="pre">AudioInput.do_command()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_geometries"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_geometries()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_resource_name"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_resource_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_operation"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_operation()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.close"><code class="docutils literal notranslate"><span class="pre">AudioInput.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioStream"><code class="docutils literal notranslate"><span class="pre">AudioStream</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.channel_count"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.channel_count</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.sample_rate"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.sample_rate</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.sample_size"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.sample_size</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_big_endian"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_big_endian</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_float"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_float</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_interleaved"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_interleaved</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.latency"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.latency</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse.HasField"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.RESOURCE_NAMESPACE_RDK"><code class="docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.RESOURCE_TYPE_COMPONENT"><code class="docutils literal notranslate"><span class="pre">RESOURCE_TYPE_COMPONENT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype"><code class="docutils literal notranslate"><span class="pre">Subtype</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.namespace"><code class="docutils literal notranslate"><span class="pre">Subtype.namespace</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.resource_type"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.resource_subtype"><code class="docutils literal notranslate"><span class="pre">Subtype.resource_subtype</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.__str__"><code class="docutils literal notranslate"><span class="pre">Subtype.__str__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.__repr__"><code class="docutils literal notranslate"><span class="pre">Subtype.__repr__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.__hash__"><code class="docutils literal notranslate"><span class="pre">Subtype.__hash__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.__eq__"><code class="docutils literal notranslate"><span class="pre">Subtype.__eq__()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.from_resource_name"><code class="docutils literal notranslate"><span class="pre">Subtype.from_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype.from_string"><code class="docutils literal notranslate"><span class="pre">Subtype.from_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.StreamSource"><code class="docutils literal notranslate"><span class="pre">StreamSource</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.StreamSource.stream"><code class="docutils literal notranslate"><span class="pre">StreamSource.stream()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase"><code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ComponentBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ComponentBase.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.do_command"><code class="docutils literal notranslate"><span class="pre">ComponentBase.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.get_geometries"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_geometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase.close"><code class="docutils literal notranslate"><span class="pre">ComponentBase.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput"><code class="docutils literal notranslate"><span class="pre">AudioInput</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">AudioInput.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.channel_count</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.latency"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.latency</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_rate"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.sample_rate</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_size"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.sample_size</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_big_endian"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_big_endian</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_float"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_float</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_interleaved</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.proto</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.from_proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.from_proto()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.stream"><code class="docutils literal notranslate"><span class="pre">AudioInput.stream()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_properties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.from_robot"><code class="docutils literal notranslate"><span class="pre">AudioInput.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.do_command"><code class="docutils literal notranslate"><span class="pre">AudioInput.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_geometries"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_geometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_resource_name"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_operation"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.close"><code class="docutils literal notranslate"><span class="pre">AudioInput.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html">viam.components.audio_input.client</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../service/index.html">viam.components.audio_input.service</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input.client</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input.service</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.encoder</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.movement_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../base/index.html">viam.components.base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../board/index.html">viam.components.board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html">viam.components.camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html">viam.components.encoder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html">viam.components.gantry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.components.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html">viam.components.gripper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../input/index.html">viam.components.input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html">viam.components.motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html">viam.components.movement_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html">viam.components.pose_tracker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power_sensor/index.html">viam.components.power_sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html">viam.components.sensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html">viam.components.servo</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -143,9 +188,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input.audio_input</span></code></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.components</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.components.audio_input</a></li>
+      <li class="breadcrumb-item active">viam.components.audio_input.audio_input</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/autoapi/viam/components/audio_input/audio_input/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -156,18 +201,381 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.audio_input.audio_input">
-<span id="viam-components-audio-input-audio-input"></span><h1><a class="reference internal" href="#module-viam.components.audio_input.audio_input" title="viam.components.audio_input.audio_input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input.audio_input</span></code></a><a class="headerlink" href="#module-viam.components.audio_input.audio_input" title="Permalink to this heading"></a></h1>
-<section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<span id="viam-components-audio-input-audio-input"></span><h1>viam.components.audio_input.audio_input<a class="headerlink" href="#module-viam.components.audio_input.audio_input" title="Permalink to this heading"></a></h1>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput" title="viam.components.audio_input.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInput</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioStream" title="viam.components.audio_input.audio_input.AudioStream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioStream</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.RESOURCE_NAMESPACE_RDK" title="viam.components.audio_input.audio_input.RESOURCE_NAMESPACE_RDK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_NAMESPACE_RDK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.RESOURCE_TYPE_COMPONENT" title="viam.components.audio_input.audio_input.RESOURCE_TYPE_COMPONENT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_TYPE_COMPONENT</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.Audio" title="viam.components.audio_input.audio_input.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a></p></td>
+<td><p>A block of audio data containing information about the block and the audio data</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.PropertiesResponse" title="viam.components.audio_input.audio_input.PropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PropertiesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.Subtype" title="viam.components.audio_input.audio_input.Subtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subtype</span></code></a></p></td>
+<td><p>Represents a known component/service (resource) API</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.StreamSource" title="viam.components.audio_input.audio_input.StreamSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamSource</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.ComponentBase" title="viam.components.audio_input.audio_input.ComponentBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentBase</span></code></a></p></td>
+<td><p>Base component.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput" title="viam.components.audio_input.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInput</span></code></a></p></td>
 <td><p>AudioInput represents a component that can capture audio.</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Audio">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">Audio</span></span><a class="reference internal" href="../../../../../_modules/viam/media/audio.html#Audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Audio" title="Permalink to this definition"></a></dt>
+<dd><p>A block of audio data containing information about the block and the audio data</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Audio.info">
+<span class="sig-name descname"><span class="pre">info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.AudioChunkInfo" title="viam.proto.component.audioinput.AudioChunkInfo"><span class="pre">viam.proto.component.audioinput.AudioChunkInfo</span></a></em><a class="headerlink" href="#viam.components.audio_input.audio_input.Audio.info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Audio.chunk">
+<span class="sig-name descname"><span class="pre">chunk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.AudioChunk" title="viam.proto.component.audioinput.AudioChunk"><span class="pre">viam.proto.component.audioinput.AudioChunk</span></a></em><a class="headerlink" href="#viam.components.audio_input.audio_input.Audio.chunk" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioStream">
+<span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">AudioStream</span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioStream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">PropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.duration_pb2.Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_big_endian</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_float</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_interleaved</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.channel_count">
+<span class="sig-name descname"><span class="pre">channel_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.channel_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.sample_rate">
+<span class="sig-name descname"><span class="pre">sample_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.sample_rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.sample_size">
+<span class="sig-name descname"><span class="pre">sample_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.sample_size" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.is_big_endian">
+<span class="sig-name descname"><span class="pre">is_big_endian</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_big_endian" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.is_float">
+<span class="sig-name descname"><span class="pre">is_float</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_float" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.is_interleaved">
+<span class="sig-name descname"><span class="pre">is_interleaved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.is_interleaved" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.latency">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latency</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.duration_pb2.Duration</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.latency" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.PropertiesResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'latency'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'latency'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.PropertiesResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.RESOURCE_NAMESPACE_RDK">
+<span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_NAMESPACE_RDK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'rdk'</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.RESOURCE_NAMESPACE_RDK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.RESOURCE_TYPE_COMPONENT">
+<span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">RESOURCE_TYPE_COMPONENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'component'</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.RESOURCE_TYPE_COMPONENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">Subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Represents a known component/service (resource) API</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.namespace">
+<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.namespace" title="Permalink to this definition"></a></dt>
+<dd><p>The namespace of the resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.resource_type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of the resource, e.g. <cite>component</cite> or <cite>service</cite></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.resource_subtype">
+<span class="sig-name descname"><span class="pre">resource_subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.resource_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>The subtype of the resource e.g. <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.__str__" title="Permalink to this definition"></a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__hash__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.__hash__" title="Permalink to this definition"></a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.from_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.from_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code> into a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>resource_name</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – The ResourceName to convert</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A new Subtype</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.Subtype.from_string">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/resource/types.html#Subtype.from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.Subtype.from_string" title="Permalink to this definition"></a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code> from its string representation (namespace:resource_type:resource_subtype)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The Subtype as a string</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised if the string does not represent a valid Subtype</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new Subtype</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.StreamSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">StreamSource</span></span><a class="reference internal" href="../../../../../_modules/viam/streams.html#StreamSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.StreamSource" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamType</span></code>]</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.StreamSource.stream">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../client/index.html#viam.components.audio_input.client.Stream" title="viam.components.audio_input.client.Stream"><span class="pre">Stream</span></a><span class="p"><span class="pre">[</span></span><span class="pre">StreamType</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/streams.html#StreamSource.stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.StreamSource.stream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">ComponentBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.base.ResourceBase</span></code></a></p>
+<p>Base component.
+All components must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.from_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the component named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The component, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.get_geometries">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/component_base.html#ComponentBase.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the component, in their current configuration, in the
+<a class="reference external" href="https://docs.viam.com/services/frame-system/">frame</a> of the component.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometries</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_geometries</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">geometries</span><span class="p">:</span>
+    <span class="c1"># Get the center of the first geometry</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pose of the first geometry&#39;s centerpoint: </span><span class="si">{</span><span class="n">geometries</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the Component.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/client/index.html#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry">Geometry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.ComponentBase.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.audio_input.audio_input.ComponentBase.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.audio_input.</span></span><span class="sig-name descname"><span class="pre">AudioInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput" title="Permalink to this definition"></a></dt>
@@ -176,15 +584,15 @@
 <p>This acts as an abstract base class for any drivers representing specific
 audio input implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties" title="Permalink to this definition"></a></dt>
-<dd><dl class="py property">
-<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.proto">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.PropertiesResponse" title="viam.proto.component.audioinput.PropertiesResponse"><span class="pre">viam.proto.component.audioinput.PropertiesResponse</span></a></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
+<dd><dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.channel_count">
 <span class="sig-name descname"><span class="pre">channel_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -219,6 +627,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <span class="sig-name descname"><span class="pre">is_interleaved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.PropertiesResponse" title="viam.proto.component.audioinput.PropertiesResponse"><span class="pre">viam.proto.component.audioinput.PropertiesResponse</span></a></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.from_proto">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.PropertiesResponse" title="viam.proto.component.audioinput.PropertiesResponse"><span class="pre">viam.proto.component.audioinput.PropertiesResponse</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.Properties.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.from_proto" title="Permalink to this definition"></a></dt>
@@ -226,29 +639,32 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.SUBTYPE">
-<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.stream">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.media.audio.AudioStream</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.stream" title="Permalink to this definition"></a></dt>
-<dd><p>Stream audio samples from the audio input of the underlying robot</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.media.audio.AudioStream</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.stream" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Stream audio samples from the audio input of the underlying robot</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The stream of audio chunks</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../../proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.Stream" title="viam.proto.rpc.webrtc.grpc.Stream">Stream</a>[<a class="reference internal" href="../../../media/audio/index.html#viam.media.audio.Audio" title="viam.media.audio.Audio">Audio</a>]</p>
+<dd class="field-even"><p><a class="reference internal" href="../client/index.html#viam.components.audio_input.client.Stream" title="viam.components.audio_input.client.Stream">Stream</a>[<a class="reference internal" href="#viam.components.audio_input.audio_input.Audio" title="viam.components.audio_input.audio_input.Audio">Audio</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.get_properties">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.get_properties" title="Permalink to this definition"></a></dt>
-<dd><p>Get the properties of the audio input of the underlying robot</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.get_properties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the properties of the audio input of the underlying robot</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The audio input properties</p>
@@ -266,7 +682,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
 </ul>
 </dd>
@@ -281,8 +697,12 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.do_command">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.do_command" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands to the Resource</p>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/Receive arbitrary commands to the Resource</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="s2">&quot;data1&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
 </pre></div>
@@ -320,7 +740,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p>The geometries associated with the Component.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Geometry" title="viam.gen.common.v1.common_pb2.Geometry">Geometry</a>]</p>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/client/index.html#viam.components.arm.client.Geometry" title="viam.components.arm.client.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -380,7 +800,6 @@ non-Close methods are called.</p>
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

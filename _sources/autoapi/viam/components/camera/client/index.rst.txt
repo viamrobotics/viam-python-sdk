@@ -1,31 +1,636 @@
-:py:mod:`viam.components.camera.client`
-=======================================
+viam.components.camera.client
+=============================
 
 .. py:module:: viam.components.camera.client
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   viam.components.camera.client.ValueTypes
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.camera.client.CameraMimeType
+   viam.components.camera.client.NamedImage
+   viam.components.camera.client.ViamImage
+   viam.components.camera.client.DoCommandRequest
+   viam.components.camera.client.DoCommandResponse
+   viam.components.camera.client.Geometry
+   viam.components.camera.client.ResponseMetadata
+   viam.components.camera.client.CameraServiceStub
+   viam.components.camera.client.GetImageRequest
+   viam.components.camera.client.GetImageResponse
+   viam.components.camera.client.GetImagesRequest
+   viam.components.camera.client.GetImagesResponse
+   viam.components.camera.client.GetPointCloudRequest
+   viam.components.camera.client.GetPointCloudResponse
+   viam.components.camera.client.GetPropertiesRequest
+   viam.components.camera.client.ReconfigurableResourceRPCClientBase
+   viam.components.camera.client.CameraClient
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.camera.client.dict_to_struct
+   viam.components.camera.client.get_geometries
+   viam.components.camera.client.struct_to_dict
 
 
 Module Contents
 ---------------
 
-Classes
-~~~~~~~
+.. py:class:: CameraMimeType
 
-.. autoapisummary::
-
-   viam.components.camera.client.CameraClient
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
 
 
+   str(object='') -> str
+   str(bytes_or_buffer[, encoding[, errors]]) -> str
 
+   Create a new string object from the given object. If encoding or
+   errors is specified, then the object must expose a data buffer
+   that will be decoded using the given encoding and error handler.
+   Otherwise, returns the result of object.__str__() (if defined)
+   or repr(object).
+   encoding defaults to sys.getdefaultencoding().
+   errors defaults to 'strict'.
+
+
+   .. py:attribute:: VIAM_RGBA
+      :value: 'image/vnd.viam.rgba'
+
+
+
+   .. py:attribute:: VIAM_RAW_DEPTH
+      :value: 'image/vnd.viam.dep'
+
+
+
+   .. py:attribute:: JPEG
+      :value: 'image/jpeg'
+
+
+
+   .. py:attribute:: PNG
+      :value: 'image/png'
+
+
+
+   .. py:attribute:: PCD
+      :value: 'pointcloud/pcd'
+
+
+
+   .. py:method:: from_string(value: str) -> typing_extensions.Self
+      :classmethod:
+
+
+
+   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
+      :classmethod:
+
+
+      Returns the mimetype from a proto enum.
+
+      :param format: The mimetype in a proto enum.
+      :type format: Format.ValueType
+
+      :returns: The mimetype.
+      :rtype: Self
+
+
+
+   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
+
+      Returns the mimetype in a proto enum.
+
+      :returns: The mimetype in a proto enum.
+      :rtype: Format.ValueType
+
+
+
+.. py:class:: NamedImage(name: str, data: bytes, mime_type: CameraMimeType)
+
+   Bases: :py:obj:`ViamImage`
+
+
+   An implementation of ViamImage that contains a name attribute.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the image
+
+
+.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+
+   A native implementation of an image.
+
+   Provides the raw data and the mime type.
+
+
+   .. py:property:: data
+      :type: bytes
+
+      The raw bytes of the image
+
+
+   .. py:property:: mime_type
+      :type: CameraMimeType
+
+      The mime type of the image
+
+
+   .. py:property:: width
+      :type: Optional[int]
+
+      The width of the image
+
+
+   .. py:property:: height
+      :type: Optional[int]
+
+      The height of the image
+
+
+   .. py:method:: bytes_to_depth_array() -> List[List[int]]
+
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
+
+      :raises NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.
+
+      :returns: The standard representation of the image.
+      :rtype: List[List[int]]
+
+
+
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandRequest represents a generic DoCommand input
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+      Label of the geometry. If none supplied, will be an empty string.
+
+
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a geometries center point
+
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
+
+   .. py:property:: capsule
+      :type: global___Capsule
+
+
+
+   .. py:method:: HasField(field_name: Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['geometry_type', b'geometry_type']) -> Literal['sphere', 'box', 'capsule'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: ResponseMetadata(*, captured_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: captured_at
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      captured_at is the time at which the resource as close as physically possible, captured
+      the data in the response.
+      Note: If correlating between other resources, be sure that the means
+      of measuring the capture are similar enough such that comparison can be made between them.
+
+
+   .. py:method:: HasField(field_name: Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_captured_at', b'_captured_at']) -> Literal['captured_at'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
+
+.. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetImageResponse(*, mime_type: str = ..., image: bytes = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Actual MIME type of response
+
+
+   .. py:attribute:: image
+      :type:  bytes
+
+      Frame in bytes
+
+
+.. py:class:: GetImagesRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+.. py:class:: GetImagesResponse(*, images: collections.abc.Iterable[global___Image] | None = ..., response_metadata: viam.gen.common.v1.common_pb2.ResponseMetadata | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: images
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Image]
+
+      list of images returned from the camera system
+
+
+   .. py:property:: response_metadata
+      :type: viam.gen.common.v1.common_pb2.ResponseMetadata
+
+      contains timestamp data
+
+
+   .. py:method:: HasField(field_name: Literal['response_metadata', b'response_metadata']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Requested MIME type of response
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetPointCloudResponse(*, mime_type: str = ..., point_cloud: bytes = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      Actual MIME type of response
+
+
+   .. py:attribute:: point_cloud
+      :type:  bytes
+
+      Frame in bytes
+
+
+.. py:class:: GetPropertiesRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of a camera
+
+
+.. py:class:: ReconfigurableResourceRPCClientBase
+
+   Bases: :py:obj:`ResourceRPCClientBase`
+
+
+   A base RPC client that can reset its channel.
+
+   Useful if connection is lost and then regained.
+
+
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
+
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
 .. py:class:: CameraClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.components.camera.Camera`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    gRPC client for the Camera component
 
+
    .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.media.video.ViamImage
       :async:
+
 
       Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
@@ -51,8 +656,10 @@ Classes
       :rtype: ViamImage
 
 
+
    .. py:method:: get_images(*, timeout: Optional[float] = None, **__) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :async:
+
 
       Get simultaneous images from different imagers, along with associated metadata.
       This should not be used for getting a time series of images from the same imager.
@@ -70,8 +677,10 @@ Classes
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
+
    .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[bytes, str]
       :async:
+
 
       Get the next point cloud from the camera. This will be
       returned as bytes with a mimetype describing
@@ -98,8 +707,10 @@ Classes
       :rtype: Tuple[bytes, str]
 
 
+
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.camera.Camera.Properties
       :async:
+
 
       Get the camera intrinsic parameters and camera distortion parameters
 
@@ -113,8 +724,10 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/Receive arbitrary commands to the Resource
 
@@ -132,8 +745,10 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
+
 
       Get all geometries associated with the component, in their current configuration, in the
       `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
@@ -150,8 +765,10 @@ Classes
       :rtype: List[Geometry]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the component named ``name`` from the provided robot.
 
@@ -164,8 +781,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -179,6 +798,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -196,8 +816,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 

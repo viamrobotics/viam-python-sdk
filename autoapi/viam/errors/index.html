@@ -53,15 +53,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.errors</span></code></li>
+      <li class="breadcrumb-item active">viam.errors</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/viam/errors/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,7 +89,41 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.errors">
-<span id="viam-errors"></span><h1><a class="reference internal" href="#module-viam.errors" title="viam.errors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.errors</span></code></a><a class="headerlink" href="#module-viam.errors" title="Permalink to this heading"></a></h1>
+<span id="viam-errors"></span><h1>viam.errors<a class="headerlink" href="#module-viam.errors" title="Permalink to this heading"></a></h1>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p></td>
+<td><p>Base Viam Error</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.errors.InsecureConnectionError" title="viam.errors.InsecureConnectionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InsecureConnectionError</span></code></a></p></td>
+<td><p>Exception raised when establishing an insecure connection</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DuplicateResourceError</span></code></a></p></td>
+<td><p>Exception raised when attempting to register a resource</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p></td>
+<td><p>Exception raised if it could happen as a part of GRPC calls.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceNotFoundError</span></code></a></p></td>
+<td><p>Exception raised when a resource is not found in the registry</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.errors.MethodNotImplementedError" title="viam.errors.MethodNotImplementedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MethodNotImplementedError</span></code></a></p></td>
+<td><p>Exception raised when specific methods are unimplemented.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.NotSupportedError" title="viam.errors.NotSupportedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a></p></td>
+<td><p>Exception raised when specific component functionality is not supported</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.errors.ValidationError" title="viam.errors.ValidationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValidationError</span></code></a></p></td>
+<td><p>Exception raised when there is an error during module validation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.errors.NoCaptureToStoreError" title="viam.errors.NoCaptureToStoreError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoCaptureToStoreError</span></code></a></p></td>
+<td><p>Exception raised in filter module to signal that data capture should not be stored</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <dl class="py exception">

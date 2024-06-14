@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.service.motion.v1.motion_grpc`
-================================================
+viam.gen.service.motion.v1.motion_grpc
+======================================
 
 .. py:module:: viam.gen.service.motion.v1.motion_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,94 +14,119 @@ Classes
    viam.gen.service.motion.v1.motion_grpc.MotionServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: MotionServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MoveOnMap(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveOnMapRequest, service.motion.v1.motion_pb2.MoveOnMapResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: MoveOnGlobe(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveOnGlobeRequest, service.motion.v1.motion_pb2.MoveOnGlobeResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPose(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StopPlan(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.StopPlanRequest, service.motion.v1.motion_pb2.StopPlanResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ListPlanStatuses(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.ListPlanStatusesRequest, service.motion.v1.motion_pb2.ListPlanStatusesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPlan(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.GetPlanRequest, service.motion.v1.motion_pb2.GetPlanResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedMotionServiceBase
 
-
    Bases: :py:obj:`MotionServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: Move(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse]) -> None
       :async:
+
 
 
    .. py:method:: MoveOnMap(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveOnMapRequest, service.motion.v1.motion_pb2.MoveOnMapResponse]) -> None
       :async:
 
 
+
    .. py:method:: MoveOnGlobe(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveOnGlobeRequest, service.motion.v1.motion_pb2.MoveOnGlobeResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetPose(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse]) -> None
       :async:
 
 
+
    .. py:method:: StopPlan(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.StopPlanRequest, service.motion.v1.motion_pb2.StopPlanResponse]) -> None
       :async:
+
 
 
    .. py:method:: ListPlanStatuses(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.ListPlanStatusesRequest, service.motion.v1.motion_pb2.ListPlanStatusesResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetPlan(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.GetPlanRequest, service.motion.v1.motion_pb2.GetPlanResponse]) -> None
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
@@ -113,6 +135,4 @@ Classes
 
 
 .. py:class:: MotionServiceStub(channel: grpclib.client.Channel)
-
-
 

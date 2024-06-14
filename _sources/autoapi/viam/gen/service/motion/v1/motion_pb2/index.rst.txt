@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.service.motion.v1.motion_pb2`
-===============================================
+viam.gen.service.motion.v1.motion_pb2
+=====================================
 
 .. py:module:: viam.gen.service.motion.v1.motion_pb2
 
@@ -10,47 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.service.motion.v1.motion_pb2.PlanState
-   viam.gen.service.motion.v1.motion_pb2.MoveRequest
-   viam.gen.service.motion.v1.motion_pb2.MoveResponse
-   viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest
-   viam.gen.service.motion.v1.motion_pb2.MoveOnMapResponse
-   viam.gen.service.motion.v1.motion_pb2.ObstacleDetector
-   viam.gen.service.motion.v1.motion_pb2.MotionConfiguration
-   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest
-   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse
-   viam.gen.service.motion.v1.motion_pb2.GetPoseRequest
-   viam.gen.service.motion.v1.motion_pb2.GetPoseResponse
-   viam.gen.service.motion.v1.motion_pb2.StopPlanRequest
-   viam.gen.service.motion.v1.motion_pb2.StopPlanResponse
-   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesRequest
-   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesResponse
-   viam.gen.service.motion.v1.motion_pb2.GetPlanRequest
-   viam.gen.service.motion.v1.motion_pb2.GetPlanResponse
-   viam.gen.service.motion.v1.motion_pb2.Constraints
-   viam.gen.service.motion.v1.motion_pb2.LinearConstraint
-   viam.gen.service.motion.v1.motion_pb2.OrientationConstraint
-   viam.gen.service.motion.v1.motion_pb2.CollisionSpecification
-   viam.gen.service.motion.v1.motion_pb2.PlanWithStatus
-   viam.gen.service.motion.v1.motion_pb2.PlanStatusWithID
-   viam.gen.service.motion.v1.motion_pb2.PlanStatus
-   viam.gen.service.motion.v1.motion_pb2.Plan
-   viam.gen.service.motion.v1.motion_pb2.PlanStep
-   viam.gen.service.motion.v1.motion_pb2.ComponentState
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -89,15 +50,50 @@ Attributes
    viam.gen.service.motion.v1.motion_pb2.global___ComponentState
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.service.motion.v1.motion_pb2.PlanState
+   viam.gen.service.motion.v1.motion_pb2.MoveRequest
+   viam.gen.service.motion.v1.motion_pb2.MoveResponse
+   viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest
+   viam.gen.service.motion.v1.motion_pb2.MoveOnMapResponse
+   viam.gen.service.motion.v1.motion_pb2.ObstacleDetector
+   viam.gen.service.motion.v1.motion_pb2.MotionConfiguration
+   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest
+   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse
+   viam.gen.service.motion.v1.motion_pb2.GetPoseRequest
+   viam.gen.service.motion.v1.motion_pb2.GetPoseResponse
+   viam.gen.service.motion.v1.motion_pb2.StopPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.StopPlanResponse
+   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesRequest
+   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesResponse
+   viam.gen.service.motion.v1.motion_pb2.GetPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.GetPlanResponse
+   viam.gen.service.motion.v1.motion_pb2.Constraints
+   viam.gen.service.motion.v1.motion_pb2.LinearConstraint
+   viam.gen.service.motion.v1.motion_pb2.OrientationConstraint
+   viam.gen.service.motion.v1.motion_pb2.CollisionSpecification
+   viam.gen.service.motion.v1.motion_pb2.PlanWithStatus
+   viam.gen.service.motion.v1.motion_pb2.PlanStatusWithID
+   viam.gen.service.motion.v1.motion_pb2.PlanStatus
+   viam.gen.service.motion.v1.motion_pb2.Plan
+   viam.gen.service.motion.v1.motion_pb2.PlanStep
+   viam.gen.service.motion.v1.motion_pb2.ComponentState
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: PlanState
 
-
    Bases: :py:obj:`_PlanState`
+
 
    The states that a plan can be in.
    InProgress if the plan is executing.
@@ -107,50 +103,47 @@ Attributes
 
 
 .. py:data:: PLAN_STATE_UNSPECIFIED
-   :type: PlanState
-
-   
+   :type:  PlanState
 
 .. py:data:: PLAN_STATE_IN_PROGRESS
-   :type: PlanState
-
-   
+   :type:  PlanState
 
 .. py:data:: PLAN_STATE_STOPPED
-   :type: PlanState
-
-   
+   :type:  PlanState
 
 .. py:data:: PLAN_STATE_SUCCEEDED
-   :type: PlanState
-
-   
+   :type:  PlanState
 
 .. py:data:: PLAN_STATE_FAILED
-   :type: PlanState
-
-   
+   :type:  PlanState
 
 .. py:data:: global___PlanState
 
-   
-
 .. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the motion service
+
 
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
       Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
 
+
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       Component on the robot to move to the specified destination
+
 
    .. py:property:: world_state
       :type: viam.gen.common.v1.common_pb2.WorldState
@@ -158,22 +151,20 @@ Attributes
       Avoid obstacles by specifying their geometries in the world state
       Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
 
+
    .. py:property:: constraints
       :type: global___Constraints
 
       Constrain the way the robot will move
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the motion service
-
-   .. py:method:: HasField(field_name: Literal[_constraints, b'_constraints', _world_state, b'_world_state', component_name, b'component_name', constraints, b'constraints', destination, b'destination', extra, b'extra', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -190,8 +181,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_constraints, b'_constraints']) -> Literal[constraints] | None
-                  WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> Literal[world_state] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_constraints', b'_constraints']) -> Literal['constraints'] | None
+                  WhichOneof(oneof_group: Literal['_world_state', b'_world_state']) -> Literal['world_state'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -209,12 +201,10 @@ Attributes
 
 .. py:data:: global___MoveRequest
 
-   
-
 .. py:class:: MoveResponse(*, success: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -222,63 +212,68 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: success
-      :type: bool
 
-      
+   .. py:attribute:: success
+      :type:  bool
 
 
 .. py:data:: global___MoveResponse
 
-   
-
 .. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., motion_configuration: global___MotionConfiguration | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Geometry] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the motion service
+
 
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.Pose
 
       Specify a destination to, which can be any pose with respect to the SLAM map's origin
 
+
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       Component on the robot to move to the specified destination
+
 
    .. py:property:: slam_service_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       Name of the slam service from which the SLAM map is requested
 
+
    .. py:property:: motion_configuration
       :type: global___MotionConfiguration
 
       Optional set of motion configuration options
+
 
    .. py:property:: obstacles
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Geometry]
 
       Obstacles to be considered for motion planning
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the motion service
-
-   .. py:method:: HasField(field_name: Literal[_motion_configuration, b'_motion_configuration', component_name, b'component_name', destination, b'destination', extra, b'extra', motion_configuration, b'motion_configuration', slam_service_name, b'slam_service_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -295,7 +290,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_motion_configuration, b'_motion_configuration']) -> Literal[motion_configuration] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_motion_configuration', b'_motion_configuration']) -> Literal['motion_configuration'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -313,12 +309,10 @@ Attributes
 
 .. py:data:: global___MoveOnMapRequest
 
-   
-
 .. py:class:: MoveOnMapResponse(*, execution_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -326,8 +320,9 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: execution_id
-      :type: str
+      :type:  str
 
       The unique ID which identifies the execution.
       Multiple plans will share the same execution_id if they were
@@ -336,24 +331,25 @@ Attributes
 
 .. py:data:: global___MoveOnMapResponse
 
-   
-
 .. py:class:: ObstacleDetector(*, vision_service: viam.gen.common.v1.common_pb2.ResourceName | None = ..., camera: viam.gen.common.v1.common_pb2.ResourceName | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Pairs a vision service with a camera, informing the service about which camera it may use
+
 
    .. py:property:: vision_service
       :type: viam.gen.common.v1.common_pb2.ResourceName
+
 
 
    .. py:property:: camera
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
-   .. py:method:: HasField(field_name: Literal[camera, b'camera', vision_service, b'vision_service']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['camera', b'camera', 'vision_service', b'vision_service']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -373,12 +369,10 @@ Attributes
 
 .. py:data:: global___ObstacleDetector
 
-   
-
 .. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -386,37 +380,44 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: position_polling_frequency_hz
+      :type:  float
+
+      Sets the frequency to poll for the position of the robot
+
+
+   .. py:attribute:: obstacle_polling_frequency_hz
+      :type:  float
+
+      Sets the frequency to poll the vision service(s) for new obstacles
+
+
+   .. py:attribute:: plan_deviation_m
+      :type:  float
+
+      Sets the distance in meters that a robot is allowed to deviate from the motion plan
+
+
+   .. py:attribute:: linear_m_per_sec
+      :type:  float
+
+      Optional linear velocity to target when moving
+
+
+   .. py:attribute:: angular_degs_per_sec
+      :type:  float
+
+      Optional angular velocity to target when turning
+
+
    .. py:property:: obstacle_detectors
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
 
       The ObstacleDetectors that will be used for transient obstacle avoidance
 
-   .. py:attribute:: position_polling_frequency_hz
-      :type: float
 
-      Sets the frequency to poll for the position of the robot
-
-   .. py:attribute:: obstacle_polling_frequency_hz
-      :type: float
-
-      Sets the frequency to poll the vision service(s) for new obstacles
-
-   .. py:attribute:: plan_deviation_m
-      :type: float
-
-      Sets the distance in meters that a robot is allowed to deviate from the motion plan
-
-   .. py:attribute:: linear_m_per_sec
-      :type: float
-
-      Optional linear velocity to target when moving
-
-   .. py:attribute:: angular_degs_per_sec
-      :type: float
-
-      Optional angular velocity to target when turning
-
-   .. py:method:: HasField(field_name: Literal[_angular_degs_per_sec, b'_angular_degs_per_sec', _linear_m_per_sec, b'_linear_m_per_sec', _obstacle_polling_frequency_hz, b'_obstacle_polling_frequency_hz', _plan_deviation_m, b'_plan_deviation_m', _position_polling_frequency_hz, b'_position_polling_frequency_hz', angular_degs_per_sec, b'angular_degs_per_sec', linear_m_per_sec, b'linear_m_per_sec', obstacle_polling_frequency_hz, b'obstacle_polling_frequency_hz', plan_deviation_m, b'plan_deviation_m', position_polling_frequency_hz, b'position_polling_frequency_hz']) -> bool
+   .. py:method:: HasField(field_name: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -433,11 +434,12 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_angular_degs_per_sec, b'_angular_degs_per_sec']) -> Literal[angular_degs_per_sec] | None
-                  WhichOneof(oneof_group: Literal[_linear_m_per_sec, b'_linear_m_per_sec']) -> Literal[linear_m_per_sec] | None
-                  WhichOneof(oneof_group: Literal[_obstacle_polling_frequency_hz, b'_obstacle_polling_frequency_hz']) -> Literal[obstacle_polling_frequency_hz] | None
-                  WhichOneof(oneof_group: Literal[_plan_deviation_m, b'_plan_deviation_m']) -> Literal[plan_deviation_m] | None
-                  WhichOneof(oneof_group: Literal[_position_polling_frequency_hz, b'_position_polling_frequency_hz']) -> Literal[position_polling_frequency_hz] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> Literal['angular_degs_per_sec'] | None
+                  WhichOneof(oneof_group: Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> Literal['linear_m_per_sec'] | None
+                  WhichOneof(oneof_group: Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> Literal['obstacle_polling_frequency_hz'] | None
+                  WhichOneof(oneof_group: Literal['_plan_deviation_m', b'_plan_deviation_m']) -> Literal['plan_deviation_m'] | None
+                  WhichOneof(oneof_group: Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> Literal['position_polling_frequency_hz'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -455,12 +457,10 @@ Attributes
 
 .. py:data:: global___MotionConfiguration
 
-   
-
 .. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -468,52 +468,62 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the motion service
+
+
+   .. py:attribute:: heading
+      :type:  float
+
+      Optional compass heading to achieve at the destination, in degrees [0-360)
+
+
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
       Destination, encoded as a GeoPoint
+
 
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       Component on the robot to move to the specified destination
 
+
    .. py:property:: movement_sensor_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       Name of the movement sensor which will be used to check robot location
+
 
    .. py:property:: obstacles
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
 
       Obstacles to be considered for motion planning
 
+
    .. py:property:: motion_configuration
       :type: global___MotionConfiguration
 
       Optional set of motion configuration options
+
 
    .. py:property:: bounding_regions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
 
       Set of obstacles which the robot must remain within while navigating
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the motion service
-
-   .. py:attribute:: heading
-      :type: float
-
-      Optional compass heading to achieve at the destination, in degrees [0-360)
-
-   .. py:method:: HasField(field_name: Literal[_heading, b'_heading', _motion_configuration, b'_motion_configuration', component_name, b'component_name', destination, b'destination', extra, b'extra', heading, b'heading', motion_configuration, b'motion_configuration', movement_sensor_name, b'movement_sensor_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -530,8 +540,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_heading, b'_heading']) -> Literal[heading] | None
-                  WhichOneof(oneof_group: Literal[_motion_configuration, b'_motion_configuration']) -> Literal[motion_configuration] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_heading', b'_heading']) -> Literal['heading'] | None
+                  WhichOneof(oneof_group: Literal['_motion_configuration', b'_motion_configuration']) -> Literal['motion_configuration'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -549,12 +560,10 @@ Attributes
 
 .. py:data:: global___MoveOnGlobeRequest
 
-   
-
 .. py:class:: MoveOnGlobeResponse(*, execution_id: str = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -562,8 +571,9 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:attribute:: execution_id
-      :type: str
+      :type:  str
 
       The unique ID which identifies the execution.
       Multiple plans will share the same execution_id if they were
@@ -572,12 +582,10 @@ Attributes
 
 .. py:data:: global___MoveOnGlobeResponse
 
-   
-
 .. py:class:: GetPoseRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -585,10 +593,24 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: destination_frame
+      :type:  str
+
+      the reference frame in which the component's pose
+      should be provided, if unset this defaults
+      to the "world" reference frame
+
+
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       the component whose pose is being requested
+
 
    .. py:property:: supplemental_transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
@@ -596,24 +618,14 @@ Attributes
       pose information on any additional reference frames that are needed
       to compute the component's pose
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      
-
-   .. py:attribute:: destination_frame
-      :type: str
-
-      the reference frame in which the component's pose
-      should be provided, if unset this defaults
-      to the "world" reference frame
-
-   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -633,12 +645,10 @@ Attributes
 
 .. py:data:: global___GetPoseRequest
 
-   
-
 .. py:class:: GetPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -646,11 +656,13 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -670,12 +682,10 @@ Attributes
 
 .. py:data:: global___GetPoseResponse
 
-   
-
 .. py:class:: StopPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -683,22 +693,26 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the motion service
+
+
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       The component of the currently executing plan to stop
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      The name of the motion service
-
-   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -718,12 +732,10 @@ Attributes
 
 .. py:data:: global___StopPlanRequest
 
-   
-
 .. py:class:: StopPlanResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -734,12 +746,10 @@ Attributes
 
 .. py:data:: global___StopPlanResponse
 
-   
-
 .. py:class:: ListPlanStatusesRequest(*, name: str = ..., only_active_plans: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -747,23 +757,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the motion service
+
+
+   .. py:attribute:: only_active_plans
+      :type:  bool
+
+      If supplied, the response will filter the
+      plan results for the supplied state
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      The name of the motion service
-
-   .. py:attribute:: only_active_plans
-      :type: bool
-
-      If supplied, the response will filter the
-      plan results for the supplied state
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -783,14 +797,13 @@ Attributes
 
 .. py:data:: global___ListPlanStatusesRequest
 
-   
-
 .. py:class:: ListPlanStatusesResponse(*, plan_statuses_with_ids: collections.abc.Iterable[global___PlanStatusWithID] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
+
 
    .. py:property:: plan_statuses_with_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatusWithID]
@@ -801,12 +814,10 @@ Attributes
 
 .. py:data:: global___ListPlanStatusesResponse
 
-   
-
 .. py:class:: GetPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -814,33 +825,39 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      The name of the motion service
+
+
+   .. py:attribute:: last_plan_only
+      :type:  bool
+
+      If supplied, the response will only return
+      the the last plan for the component / execution
+
+
+   .. py:attribute:: execution_id
+      :type:  str
+
+      If you want to know about the plans of a previous execution
+
+
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
       The name of the component which was requested to be moved.
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      The name of the motion service
-
-   .. py:attribute:: last_plan_only
-      :type: bool
-
-      If supplied, the response will only return
-      the the last plan for the component / execution
-
-   .. py:attribute:: execution_id
-      :type: str
-
-      If you want to know about the plans of a previous execution
-
-   .. py:method:: HasField(field_name: Literal[_execution_id, b'_execution_id', component_name, b'component_name', execution_id, b'execution_id', extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -857,7 +874,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_execution_id, b'_execution_id']) -> Literal[execution_id] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_execution_id', b'_execution_id']) -> Literal['execution_id'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -875,12 +893,10 @@ Attributes
 
 .. py:data:: global___GetPlanRequest
 
-   
-
 .. py:class:: GetPlanResponse(*, current_plan_with_status: global___PlanWithStatus | None = ..., replan_history: collections.abc.Iterable[global___PlanWithStatus] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -888,10 +904,12 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: current_plan_with_status
       :type: global___PlanWithStatus
 
       The current plan and status that matches the request query
+
 
    .. py:property:: replan_history
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanWithStatus]
@@ -901,7 +919,8 @@ Attributes
       This field will be empty if the motion service
       did not need to re-plan.
 
-   .. py:method:: HasField(field_name: Literal[current_plan_with_status, b'current_plan_with_status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['current_plan_with_status', b'current_plan_with_status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -921,22 +940,23 @@ Attributes
 
 .. py:data:: global___GetPlanResponse
 
-   
-
 .. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
+
 
    .. py:property:: linear_constraint
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LinearConstraint]
 
       Typed message for a specific constraint
 
+
    .. py:property:: orientation_constraint
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrientationConstraint]
+
 
 
    .. py:property:: collision_specification
@@ -947,27 +967,28 @@ Attributes
 
 .. py:data:: global___Constraints
 
-   
-
 .. py:class:: LinearConstraint(*, line_tolerance_mm: float | None = ..., orientation_tolerance_degs: float | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    LinearConstraint specifies that the component being moved should move linearly relative to its goal.
    It does not constrain the motion of components other than the `component_name` specified in motion.Move
 
+
    .. py:attribute:: line_tolerance_mm
-      :type: float
+      :type:  float
 
       Max linear deviation from straight-line between start and goal, in mm.
 
+
    .. py:attribute:: orientation_tolerance_degs
-      :type: float
+      :type:  float
 
       Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
 
-   .. py:method:: HasField(field_name: Literal[_line_tolerance_mm, b'_line_tolerance_mm', _orientation_tolerance_degs, b'_orientation_tolerance_degs', line_tolerance_mm, b'line_tolerance_mm', orientation_tolerance_degs, b'orientation_tolerance_degs']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -984,8 +1005,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_line_tolerance_mm, b'_line_tolerance_mm']) -> Literal[line_tolerance_mm] | None
-                  WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> Literal[orientation_tolerance_degs] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_line_tolerance_mm', b'_line_tolerance_mm']) -> Literal['line_tolerance_mm'] | None
+                  WhichOneof(oneof_group: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> Literal['orientation_tolerance_degs'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1003,22 +1025,22 @@ Attributes
 
 .. py:data:: global___LinearConstraint
 
-   
-
 .. py:class:: OrientationConstraint(*, orientation_tolerance_degs: float | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
    to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 
+
    .. py:attribute:: orientation_tolerance_degs
-      :type: float
+      :type:  float
 
       Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states
 
-   .. py:method:: HasField(field_name: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs', orientation_tolerance_degs, b'orientation_tolerance_degs']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1035,7 +1057,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> Literal[orientation_tolerance_degs] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> Literal['orientation_tolerance_degs'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1053,19 +1076,18 @@ Attributes
 
 .. py:data:: global___OrientationConstraint
 
-   
-
 .. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
+
 
    .. py:class:: AllowedFrameCollisions(*, frame1: str = ..., frame2: str = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -1073,15 +1095,14 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
-      .. py:attribute:: frame1
-         :type: str
 
-         
+      .. py:attribute:: frame1
+         :type:  str
+
 
       .. py:attribute:: frame2
-         :type: str
+         :type:  str
 
-         
 
 
    .. py:property:: allows
@@ -1092,32 +1113,34 @@ Attributes
 
 .. py:data:: global___CollisionSpecification
 
-   
-
 .. py:class:: PlanWithStatus(*, plan: global___Plan | None = ..., status: global___PlanStatus | None = ..., status_history: collections.abc.Iterable[global___PlanStatus] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    Describes a plan, its current status & all status changes
    that have occured previously on that plan
+
 
    .. py:property:: plan
       :type: global___Plan
 
       The plan
 
+
    .. py:property:: status
       :type: global___PlanStatus
 
       The current status of the plan
+
 
    .. py:property:: status_history
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatus]
 
       The prior status changes that have happened during plan execution
 
-   .. py:method:: HasField(field_name: Literal[plan, b'plan', status, b'status']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['plan', b'plan', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1137,16 +1160,29 @@ Attributes
 
 .. py:data:: global___PlanWithStatus
 
-   
-
 .. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: global___PlanStatus | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    PlanStatusWithID describes the state of a given plan at a
    point in time plus the plan_id, component_name and execution_id
    the status is associated with
+
+
+   .. py:attribute:: plan_id
+      :type:  str
+
+      The unique ID of the plan
+
+
+   .. py:attribute:: execution_id
+      :type:  str
+
+      The unique ID which identifies the plan execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning.
+
 
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
@@ -1156,23 +1192,13 @@ Attributes
       NOTE: A plan may move more components than just the
       component_name.
 
+
    .. py:property:: status
       :type: global___PlanStatus
 
 
-   .. py:attribute:: plan_id
-      :type: str
 
-      The unique ID of the plan
-
-   .. py:attribute:: execution_id
-      :type: str
-
-      The unique ID which identifies the plan execution.
-      Multiple plans will share the same execution_id if they were
-      generated due to replanning.
-
-   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1192,35 +1218,37 @@ Attributes
 
 .. py:data:: global___PlanStatusWithID
 
-   
-
 .. py:class:: PlanStatus(*, state: global___PlanState = ..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., reason: str | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Plan status describes the state of a given plan at a
    point in time
 
-   .. py:property:: timestamp
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
-      The time the executing plan transtioned to the state
 
    .. py:attribute:: state
-      :type: global___PlanState
+      :type:  global___PlanState
 
       The state of the plan execution
 
+
    .. py:attribute:: reason
-      :type: str
+      :type:  str
 
       The reason for the state change. If motion plan failed
       this will return the error message.
       If motion needed to re-plan, this will return
       the re-plan reason.
 
-   .. py:method:: HasField(field_name: Literal[_reason, b'_reason', reason, b'reason', timestamp, b'timestamp']) -> bool
+
+   .. py:property:: timestamp
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The time the executing plan transtioned to the state
+
+
+   .. py:method:: HasField(field_name: Literal['_reason', b'_reason', 'reason', b'reason', 'timestamp', b'timestamp']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1237,7 +1265,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_reason, b'_reason']) -> Literal[reason] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_reason', b'_reason']) -> Literal['reason'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1255,14 +1284,27 @@ Attributes
 
 .. py:data:: global___PlanStatus
 
-   
-
 .. py:class:: Plan(*, id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[global___PlanStep] | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    A plan describes a motion plan
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The plan's unique ID
+
+
+   .. py:attribute:: execution_id
+      :type:  str
+
+      The unique ID which identifies the execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning
+
 
    .. py:property:: component_name
       :type: viam.gen.common.v1.common_pb2.ResourceName
@@ -1272,24 +1314,14 @@ Attributes
       NOTE: A plan may move more components than just the
       root component.
 
+
    .. py:property:: steps
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]
 
       The steps of a plan is an ordered list of plan steps
 
-   .. py:attribute:: id
-      :type: str
 
-      The plan's unique ID
-
-   .. py:attribute:: execution_id
-      :type: str
-
-      The unique ID which identifies the execution.
-      Multiple plans will share the same execution_id if they were
-      generated due to replanning
-
-   .. py:method:: HasField(field_name: Literal[component_name, b'component_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name', b'component_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1309,12 +1341,10 @@ Attributes
 
 .. py:data:: global___Plan
 
-   
-
 .. py:class:: PlanStep(*, step: collections.abc.Mapping[str, global___ComponentState] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -1322,10 +1352,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: StepEntry(*, key: str = ..., value: global___ComponentState | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -1333,16 +1364,17 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: key
+         :type:  str
+
+
       .. py:property:: value
          :type: global___ComponentState
 
 
-      .. py:attribute:: key
-         :type: str
 
-         
-
-      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -1360,6 +1392,7 @@ Attributes
 
 
 
+
    .. py:property:: step
       :type: google.protobuf.internal.containers.MessageMap[str, global___ComponentState]
 
@@ -1371,20 +1404,20 @@ Attributes
 
 .. py:data:: global___PlanStep
 
-   
-
 .. py:class:: ComponentState(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
-
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
+
    A pose
+
 
    .. py:property:: pose
       :type: viam.gen.common.v1.common_pb2.Pose
 
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['pose', b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1403,6 +1436,4 @@ Attributes
 
 
 .. py:data:: global___ComponentState
-
-   
 

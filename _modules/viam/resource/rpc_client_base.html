@@ -52,15 +52,15 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
 </ul>
 
         </div>
@@ -95,7 +95,7 @@
 <span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceStubBase</span>
 
 
-<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
+<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.components.arm.client.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">ResourceRPCClientBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base RPC client for a resource.</span>
@@ -106,13 +106,13 @@
     <span class="n">client</span><span class="p">:</span> <span class="n">Any</span></div>
 
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/client/index.html#viam.components.arm.client.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A base RPC client that can reset its channel.</span>
 
 <span class="sd">    Useful if connection is lost and then regained.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/client/index.html#viam.components.arm.client.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Called when the RPC channel was reset. Passes in the new channel.</span>
 
 <span class="sd">        Args:</span>

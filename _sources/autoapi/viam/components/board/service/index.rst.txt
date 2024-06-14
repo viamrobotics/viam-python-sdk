@@ -1,91 +1,1679 @@
-:py:mod:`viam.components.board.service`
-=======================================
+viam.components.board.service
+=============================
 
 .. py:module:: viam.components.board.service
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.components.board.service.BoardRPCService
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
    viam.components.board.service.LOGGER
 
 
-.. py:data:: LOGGER
+Exceptions
+----------
 
-   
+.. autoapisummary::
 
-.. py:class:: BoardRPCService(manager: viam.resource.manager.ResourceManager)
+   viam.components.board.service.ResourceNotFoundError
 
 
-   Bases: :py:obj:`viam.proto.component.board.BoardServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.board.board.Board`\ ]
+Classes
+-------
 
-   gRPC Service for a Board
+.. autoapisummary::
+
+   viam.components.board.service.DoCommandRequest
+   viam.components.board.service.DoCommandResponse
+   viam.components.board.service.GetGeometriesRequest
+   viam.components.board.service.GetGeometriesResponse
+   viam.components.board.service.BoardServiceBase
+   viam.components.board.service.GetDigitalInterruptValueRequest
+   viam.components.board.service.GetDigitalInterruptValueResponse
+   viam.components.board.service.GetGPIORequest
+   viam.components.board.service.GetGPIOResponse
+   viam.components.board.service.PWMFrequencyRequest
+   viam.components.board.service.PWMFrequencyResponse
+   viam.components.board.service.PWMRequest
+   viam.components.board.service.PWMResponse
+   viam.components.board.service.ReadAnalogReaderRequest
+   viam.components.board.service.ReadAnalogReaderResponse
+   viam.components.board.service.SetGPIORequest
+   viam.components.board.service.SetGPIOResponse
+   viam.components.board.service.SetPowerModeRequest
+   viam.components.board.service.SetPowerModeResponse
+   viam.components.board.service.SetPWMFrequencyRequest
+   viam.components.board.service.SetPWMFrequencyResponse
+   viam.components.board.service.SetPWMRequest
+   viam.components.board.service.SetPWMResponse
+   viam.components.board.service.StreamTicksRequest
+   viam.components.board.service.StreamTicksResponse
+   viam.components.board.service.WriteAnalogRequest
+   viam.components.board.service.WriteAnalogResponse
+   viam.components.board.service.ResourceRPCServiceBase
+   viam.components.board.service.Board
+   viam.components.board.service.BoardRPCService
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   viam.components.board.service.getLogger
+   viam.components.board.service.dict_to_struct
+   viam.components.board.service.struct_to_dict
+
+
+Module Contents
+---------------
+
+.. py:exception:: ResourceNotFoundError(resource: str, name: str)
+
+   Bases: :py:obj:`ViamGRPCError`
+
+
+   Exception raised when a resource is not found in the registry
+
+
+.. py:function:: getLogger(name: str) -> logging.Logger
+
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandRequest represents a generic DoCommand input
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetGeometriesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      The component name
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: geometries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+
+      All geometries associated with the component, in their current configuration, in the frame of that component.
+
+
+.. py:class:: BoardServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: SetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetGPIORequest, component.board.v1.board_pb2.SetGPIOResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetGPIORequest, component.board.v1.board_pb2.GetGPIOResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMRequest, component.board.v1.board_pb2.PWMResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SetPWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMRequest, component.board.v1.board_pb2.SetPWMResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: PWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMFrequencyRequest, component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMFrequencyRequest, component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: WriteAnalog(stream: grpclib.server.Stream[component.board.v1.board_pb2.WriteAnalogRequest, component.board.v1.board_pb2.WriteAnalogResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetDigitalInterruptValueRequest, component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: StreamTicks(stream: grpclib.server.Stream[component.board.v1.board_pb2.StreamTicksRequest, component.board.v1.board_pb2.StreamTicksResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SetPowerMode(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPowerModeRequest, component.board.v1.board_pb2.SetPowerModeResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: GetDigitalInterruptValueRequest(*, board_name: str = ..., digital_interrupt_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Digital Interrupt
+
+
+   .. py:attribute:: board_name
+      :type:  str
+
+
+   .. py:attribute:: digital_interrupt_name
+      :type:  str
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetDigitalInterruptValueResponse(*, value: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: value
+      :type:  int
+
+
+.. py:class:: GetGPIORequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetGPIOResponse(*, high: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: high
+      :type:  bool
+
+
+.. py:class:: PWMFrequencyRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: PWMFrequencyResponse(*, frequency_hz: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: frequency_hz
+      :type:  int
+
+
+.. py:class:: PWMRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: PWMResponse(*, duty_cycle_pct: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: duty_cycle_pct
+      :type:  float
+
+      0-1
+
+
+.. py:class:: ReadAnalogReaderRequest(*, board_name: str = ..., analog_reader_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Analog Reader
+
+
+   .. py:attribute:: board_name
+      :type:  str
+
+
+   .. py:attribute:: analog_reader_name
+      :type:  str
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: ReadAnalogReaderResponse(*, value: int = ..., min_range: float = ..., max_range: float = ..., step_size: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: value
+      :type:  int
+
+
+   .. py:attribute:: min_range
+      :type:  float
+
+
+   .. py:attribute:: max_range
+      :type:  float
+
+
+   .. py:attribute:: step_size
+      :type:  float
+
+
+.. py:class:: SetGPIORequest(*, name: str = ..., pin: str = ..., high: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: high
+      :type:  bool
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SetGPIOResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      name of board
+
+
+   .. py:attribute:: power_mode
+      :type:  global___PowerMode
+
+      Requested power mode
+
+
+   .. py:property:: duration
+      :type: google.protobuf.duration_pb2.Duration
+
+      Requested duration to stay in `power_mode`
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_duration', b'_duration']) -> Literal['duration'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: SetPowerModeResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: SetPWMFrequencyRequest(*, name: str = ..., pin: str = ..., frequency_hz: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: frequency_hz
+      :type:  int
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SetPWMFrequencyResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: SetPWMRequest(*, name: str = ..., pin: str = ..., duty_cycle_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: duty_cycle_pct
+      :type:  float
+
+      0-1
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SetPWMResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: StreamTicksRequest(*, name: str = ..., pin_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Board name
+
+
+   .. py:property:: pin_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Name of digital interrupts to recieve ticks from
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: StreamTicksResponse(*, pin_name: str = ..., time: int = ..., high: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: pin_name
+      :type:  str
+
+      name of interrupt
+
+
+   .. py:attribute:: time
+      :type:  int
+
+      Time in nanoseconds of a tick
+
+
+   .. py:attribute:: high
+      :type:  bool
+
+      Value high or low of the tick
+
+
+.. py:class:: WriteAnalogRequest(*, name: str = ..., pin: str = ..., value: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Analog Writer
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: pin
+      :type:  str
+
+
+   .. py:attribute:: value
+      :type:  int
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: WriteAnalogResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: ResourceRPCServiceBase(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.rpc.types.RPCServiceBase`, :py:obj:`Generic`\ [\ :py:obj:`viam.resource.manager.ResourceType`\ ]
+
+
+   Base RPC service for a resource.
+   All resource RPC services must inherit from this class.
+
 
    .. py:attribute:: RESOURCE_TYPE
 
-      
+
+   .. py:attribute:: manager
+      :type:  viam.resource.manager.ResourceManager
+
+
+   .. py:method:: get_resource(name: str) -> viam.resource.manager.ResourceType
+
+      Return the resource with the given name if it exists in the registry.
+      If the resource does not exist in the registry,
+      this function will raise an error
+
+      :param name: Name of the resource
+      :type name: str
+
+      :raises GRPCError with the status code Status.NOT_FOUND:
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: Board(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Board represents a physical general purpose compute board that contains various
+   components such as analog readers/writers, and digital interrupts.
+
+   This acts as an abstract base class for any drivers representing specific
+   board implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.board import Board
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:class:: Analog(name: str)
+
+      Analog represents an analog pin reader or writer that resides on a Board.
+
+
+      .. py:attribute:: name
+         :type:  str
+
+         The name of the analog pin
+
+
+      .. py:attribute:: Value
+         :type:  TypeAlias
+         :value: ReadAnalogReaderResponse
+
+
+         Value contains the result of reading an analog reader. It contains the raw data read,
+         the reader's minimum and maximum possible values, and its step size (the minimum possible
+         change between values it can read).
+
+
+      .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value
+         :abstractmethod:
+
+         :async:
+
+
+         Read the current value from the reader.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the Analog "my_example_analog_reader".
+             reader = await my_board.analog_reader_by_name(
+                 name="my_example_analog_reader")
+
+             # Get the value of the digital signal "my_example_analog_reader" has most
+             # recently measured.
+             reading = await reader.read()
+
+         :returns: The current value, including the min, max, and step_size of the reader.
+         :rtype: Value
+
+
+
+      .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+
+         :async:
+
+
+         Write a value to the Analog writer.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the Analog "my_example_analog_writer".
+             writer = await my_board.analog_by_name(
+                 name="my_example_analog_writer")
+
+             await writer.write(42)
+
+         :param value: Value to write to the analog writer.
+         :type value: int
+
+
+
+
+   .. py:class:: DigitalInterrupt(name: str)
+
+      DigitalInterrupt represents a configured interrupt on the Board that
+      when interrupted, calls the added callbacks. Post processors can
+      be added to modify what Value it ultimately returns.
+
+
+      .. py:attribute:: name
+         :type:  str
+
+         The name of the digital interrupt.
+
+
+      .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+         :abstractmethod:
+
+         :async:
+
+
+         Get the current value of the interrupt,
+         which is based on the type of interrupt.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the DigitalInterrupt "my_example_digital_interrupt".
+             interrupt = await my_board.digital_interrupt_by_name(
+                 name="my_example_digital_interrupt")
+
+             # Get the amount of times this DigitalInterrupt has been interrupted with a
+             # tick.
+             count = await interrupt.value()
+
+         :returns: The current value.
+         :rtype: int
+
+
+
+
+   .. py:class:: GPIOPin(name: str)
+
+      Abstract representation of an individual GPIO pin on a board.
+
+
+      .. py:attribute:: name
+         :type:  str
+
+         The name of the GPIO pin.
+
+
+      .. py:method:: set(high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+
+         :async:
+
+
+         Set the pin to either low or high.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the pin to high.
+             await pin.set(high="true")
+
+         :param high: When true, sets the pin to high. When false, sets the pin to low.
+         :type high: bool
+
+
+
+      .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
+         :abstractmethod:
+
+         :async:
+
+
+         Get the high/low state of the pin.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get if it is true or false that the state of the pin is high.
+             high = await pin.get()
+
+         :returns: Indicates if the state of the pin is high.
+         :rtype: bool
+
+
+
+      .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
+         :abstractmethod:
+
+         :async:
+
+
+         Get the pin's given duty cycle.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get if it is true or false that the state of the pin is high.
+             duty_cycle = await pin.get_pwm()
+
+         :returns: The duty cycle.
+         :rtype: float
+
+
+
+      .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+
+         :async:
+
+
+         Set the pin to the given ``duty_cycle``.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the duty cycle to .6, meaning that this pin will be in the high state for
+             # 60% of the duration of the PWM interval period.
+             await pin.set_pwm(cycle=.6)
+
+         :param duty_cycle: The duty cycle.
+         :type duty_cycle: float
+
+
+
+      .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+         :abstractmethod:
+
+         :async:
+
+
+         Get the PWM frequency of the pin.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get the PWM frequency of this pin.
+             freq = await pin.get_pwm_frequency()
+
+         :returns: The PWM frequency.
+         :rtype: int
+
+
+
+      .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+
+         :async:
+
+
+         Set the pin to the given PWM ``frequency`` (in Hz).
+         When ``frequency`` is 0, it will use the board's default PWM frequency.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the PWM frequency of this pin to 1600 Hz.
+             high = await pin.set_pwm_frequency(frequency=1600)
+
+         :param frequency: The frequency, in Hz.
+         :type frequency: int
+
+
+
+
+   .. py:method:: analog_by_name(name: str) -> Analog
+      :abstractmethod:
+
+      :async:
+
+
+      Get an Analog (reader or writer) by ``name``.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the Analog "my_example_analog_reader".
+          reader = await my_board.analog_by_name(name="my_example_analog_reader")
+
+      :param name: Name of the analog reader to be retrieved.
+      :type name: str
+
+      :returns: The analog reader or writer.
+      :rtype: Analog
+
+
+
+   .. py:method:: digital_interrupt_by_name(name: str) -> DigitalInterrupt
+      :abstractmethod:
+
+      :async:
+
+
+      Get a DigitalInterrupt by ``name``.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the DigitalInterrupt "my_example_digital_interrupt".
+          interrupt = await my_board.digital_interrupt_by_name(
+              name="my_example_digital_interrupt")
+
+      :param name: Name of the digital interrupt.
+      :type name: str
+
+      :returns: The digital interrupt.
+      :rtype: DigitalInterrupt
+
+
+
+   .. py:method:: gpio_pin_by_name(name: str) -> GPIOPin
+      :abstractmethod:
+
+      :async:
+
+
+      Get a GPIO Pin by ``name``.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the GPIOPin with pin number 15.
+          pin = await my_board.gpio_pin_by_name(name="15")
+
+      :param name: Name of the GPIO pin.
+      :type name: str
+
+      :returns: The pin.
+      :rtype: GPIOPin
+
+
+
+   .. py:method:: analog_names() -> List[str]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the names of all known analog readers and/or writers.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the name of every Analog configured on the board.
+          names = await my_board.analog_names()
+
+      :returns: The list of names of all known analog readers/writers.
+      :rtype: List[str]
+
+
+
+   .. py:method:: digital_interrupt_names() -> List[str]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the names of all known digital interrupts.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the name of every DigitalInterrupt configured on the board.
+          names = await my_board.digital_interrupt_names()
+
+      :returns: The names of the digital interrupts.
+      :rtype: List[str]
+
+
+
+   .. py:method:: set_power_mode(mode: viam.proto.component.board.PowerMode.ValueType, duration: Optional[datetime.timedelta] = None, *, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+
+      :async:
+
+
+      Set the board to the indicated power mode.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Set the power mode of the board to OFFLINE_DEEP.
+          status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)
+
+      :param mode: The desired power mode.
+      :type mode: PowerMode
+      :param duration: Requested duration to stay in power mode.
+      :type duration: Optional[timedelta]
+
+
+
+   .. py:method:: stream_ticks(interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream
+      :abstractmethod:
+
+      :async:
+
+
+      Stream digital interrupt ticks.
+
+      ::
+
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+          di8 = await my_board.digital_interrupt_by_name(name="8"))
+          di11 = await my_board.digital_interrupt_by_name(name="11"))
+
+          # Iterate over stream of ticks from pins 8 and 11.
+          async for tick in my_board.stream_ticks([di8, di11]):
+              print(f"Pin {tick.pin_name} changed to {'high' if tick.high else 'low'} at {tick.time}")
+
+
+      :param interrupts: list of digital interrupts to receive ticks from.
+      :type interrupts: List[DigitalInterrupt]
+
+      :returns: stream of ticks.
+      :rtype: TickStream
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
+.. py:data:: LOGGER
+
+.. py:class:: BoardRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.component.board.BoardServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.board.board.Board`\ ]
+
+
+   gRPC Service for a Board
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
 
    .. py:method:: SetGPIO(stream: grpclib.server.Stream[viam.proto.component.board.SetGPIORequest, viam.proto.component.board.SetGPIOResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGPIO(stream: grpclib.server.Stream[viam.proto.component.board.GetGPIORequest, viam.proto.component.board.GetGPIOResponse]) -> None
       :async:
 
 
+
    .. py:method:: PWM(stream: grpclib.server.Stream[viam.proto.component.board.PWMRequest, viam.proto.component.board.PWMResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetPWM(stream: grpclib.server.Stream[viam.proto.component.board.SetPWMRequest, viam.proto.component.board.SetPWMResponse]) -> None
       :async:
 
 
+
    .. py:method:: PWMFrequency(stream: grpclib.server.Stream[viam.proto.component.board.PWMFrequencyRequest, viam.proto.component.board.PWMFrequencyResponse]) -> None
       :async:
+
 
 
    .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[viam.proto.component.board.SetPWMFrequencyRequest, viam.proto.component.board.SetPWMFrequencyResponse]) -> None
       :async:
 
 
+
    .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[viam.proto.component.board.ReadAnalogReaderRequest, viam.proto.component.board.ReadAnalogReaderResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[viam.proto.component.board.GetDigitalInterruptValueRequest, viam.proto.component.board.GetDigitalInterruptValueResponse]) -> None
       :async:
 
 
+
    .. py:method:: SetPowerMode(stream: grpclib.server.Stream[viam.proto.component.board.SetPowerModeRequest, viam.proto.component.board.SetPowerModeResponse]) -> None
       :async:
+
 
 
    .. py:method:: WriteAnalog(stream: grpclib.server.Stream[viam.proto.component.board.WriteAnalogRequest, viam.proto.component.board.WriteAnalogResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[viam.proto.common.GetGeometriesRequest, viam.proto.common.GetGeometriesResponse]) -> None
       :async:
+
 
 
    .. py:method:: StreamTicks(stream: grpclib.server.Stream[viam.proto.component.board.StreamTicksRequest, viam.proto.component.board.StreamTicksResponse]) -> None

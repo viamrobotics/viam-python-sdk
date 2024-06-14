@@ -1,14 +1,11 @@
-:py:mod:`viam.gen.component.movementsensor.v1.movementsensor_grpc`
-==================================================================
+viam.gen.component.movementsensor.v1.movementsensor_grpc
+========================================================
 
 .. py:module:: viam.gen.component.movementsensor.v1.movementsensor_grpc
 
 
-Module Contents
----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -17,121 +14,155 @@ Classes
    viam.gen.component.movementsensor.v1.movementsensor_grpc.MovementSensorServiceStub
 
 
-
+Module Contents
+---------------
 
 .. py:class:: MovementSensorServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetLinearVelocity(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetAngularVelocity(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetCompassHeading(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetOrientation(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, component.movementsensor.v1.movementsensor_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetAccuracy(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetLinearAcceleration(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetReadings(stream: grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: UnimplementedMovementSensorServiceBase
 
-
    Bases: :py:obj:`MovementSensorServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetLinearVelocity(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetAngularVelocity(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetCompassHeading(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetOrientation(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, component.movementsensor.v1.movementsensor_pb2.GetPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetAccuracy(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetLinearAcceleration(stream: grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetReadings(stream: grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]) -> None
@@ -140,6 +171,4 @@ Classes
 
 
 .. py:class:: MovementSensorServiceStub(channel: grpclib.client.Channel)
-
-
 

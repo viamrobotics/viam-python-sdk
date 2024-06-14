@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.inputcontroller`
-==============================================
+viam.proto.component.inputcontroller
+====================================
 
 .. py:module:: viam.proto.component.inputcontroller
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -33,80 +30,97 @@ Classes
    viam.proto.component.inputcontroller.TriggerEventResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: InputControllerServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetControls(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: StreamEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: TriggerEvent(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: InputControllerServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedInputControllerServiceBase
 
-
    Bases: :py:obj:`InputControllerServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetControls(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
       :async:
 
 
+
    .. py:method:: StreamEvents(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
       :async:
+
 
 
    .. py:method:: TriggerEvent(stream: grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -116,8 +130,8 @@ Classes
 
 .. py:class:: Event(*, time: google.protobuf.timestamp_pb2.Timestamp | None = ..., event: str = ..., control: str = ..., value: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -125,20 +139,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: time
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
-      Timestamp of event
 
    .. py:attribute:: event
-      :type: str
+      :type:  str
 
       ButtonPress, ButtonRelease)
 
       :type: An event type (eg
 
+
    .. py:attribute:: control
-      :type: str
+      :type:  str
 
       AbsoluteX)
 
@@ -146,12 +157,20 @@ Classes
 
       :type: ButtonSouth) or an axis (eg
 
+
    .. py:attribute:: value
-      :type: float
+      :type:  float
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
 
-   .. py:method:: HasField(field_name: Literal[time, b'time']) -> bool
+
+   .. py:property:: time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      Timestamp of event
+
+
+   .. py:method:: HasField(field_name: Literal['time', b'time']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -171,8 +190,8 @@ Classes
 
 .. py:class:: GetControlsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -180,17 +199,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: controller
-      :type: str
 
-      Name of an input controller
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -210,14 +232,15 @@ Classes
 
 .. py:class:: GetControlsResponse(*, controls: collections.abc.Iterable[str] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: controls
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -228,8 +251,8 @@ Classes
 
 .. py:class:: GetEventsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -237,17 +260,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: controller
-      :type: str
 
-      Name of an input controller
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -267,14 +293,15 @@ Classes
 
 .. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[global___Event] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: events
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
@@ -285,14 +312,15 @@ Classes
 
 .. py:class:: Status(*, events: collections.abc.Iterable[global___Event] | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
 
    .. py:property:: events
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
@@ -301,8 +329,8 @@ Classes
 
 .. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -310,10 +338,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:class:: Events(*, control: str = ..., events: collections.abc.Iterable[str] | None = ..., cancelled_events: collections.abc.Iterable[str] | None = ...)
 
-
       Bases: :py:obj:`google.protobuf.message.Message`
+
 
       Abstract base class for protocol messages.
 
@@ -321,10 +350,18 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+
+      .. py:attribute:: control
+         :type:  str
+
+         Name of a control (button or axis)
+
+
       .. py:property:: events
          :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
          Specify which event types to recieve events for
+
 
       .. py:property:: cancelled_events
          :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -332,10 +369,12 @@ Classes
          Specify which event types to stop recieving events for
          This can be an empty list
 
-      .. py:attribute:: control
-         :type: str
 
-         Name of a control (button or axis)
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
 
 
    .. py:property:: events
@@ -343,17 +382,14 @@ Classes
 
       A list of Events
 
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: controller
-      :type: str
 
-      Name of an input controller
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -373,8 +409,8 @@ Classes
 
 .. py:class:: StreamEventsResponse(*, event: global___Event | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -382,12 +418,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
    .. py:property:: event
       :type: global___Event
 
       Event for a controller
 
-   .. py:method:: HasField(field_name: Literal[event, b'event']) -> bool
+
+   .. py:method:: HasField(field_name: Literal['event', b'event']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -407,8 +445,8 @@ Classes
 
 .. py:class:: TriggerEventRequest(*, controller: str = ..., event: global___Event | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -416,22 +454,26 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: controller
+      :type:  str
+
+      Name of an input controller
+
+
    .. py:property:: event
       :type: global___Event
 
       Digitally assert a given event
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: controller
-      :type: str
 
-      Name of an input controller
-
-   .. py:method:: HasField(field_name: Literal[event, b'event', extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['event', b'event', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -451,8 +493,8 @@ Classes
 
 .. py:class:: TriggerEventResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

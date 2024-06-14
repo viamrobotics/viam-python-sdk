@@ -1,5 +1,5 @@
-:py:mod:`viam.proto.component.encoder`
-======================================
+viam.proto.component.encoder
+============================
 
 .. py:module:: viam.proto.component.encoder
 
@@ -10,11 +10,8 @@
 
 
 
-Package Contents
-----------------
-
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -30,71 +27,85 @@ Classes
    viam.proto.component.encoder.ResetPositionResponse
 
 
-
+Package Contents
+----------------
 
 .. py:class:: EncoderServiceBase
 
-
    Bases: :py:obj:`abc.ABC`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPositionRequest, component.encoder.v1.encoder_pb2.GetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: ResetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.ResetPositionRequest, component.encoder.v1.encoder_pb2.ResetPositionResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPropertiesRequest, component.encoder.v1.encoder_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
+
       :async:
+
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
-
 .. py:class:: EncoderServiceStub(channel: grpclib.client.Channel)
-
-
 
 .. py:class:: UnimplementedEncoderServiceBase
 
-
    Bases: :py:obj:`EncoderServiceBase`
+
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+
    .. py:method:: GetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPositionRequest, component.encoder.v1.encoder_pb2.GetPositionResponse]) -> None
       :async:
+
 
 
    .. py:method:: ResetPosition(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.ResetPositionRequest, component.encoder.v1.encoder_pb2.ResetPositionResponse]) -> None
       :async:
 
 
+
    .. py:method:: GetProperties(stream: grpclib.server.Stream[component.encoder.v1.encoder_pb2.GetPropertiesRequest, component.encoder.v1.encoder_pb2.GetPropertiesResponse]) -> None
       :async:
 
 
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :async:
+
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
@@ -104,8 +115,8 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., position_type: global___PositionType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -113,18 +124,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of encoder
 
+
    .. py:attribute:: position_type
-      :type: global___PositionType
+      :type:  global___PositionType
 
       If supplied, the response will return the specified
       position type. If the driver does not implement
@@ -132,7 +140,14 @@ Classes
       If position type is not specified, the response
       will return a default according to the driver.
 
-   .. py:method:: HasField(field_name: Literal[_position_type, b'_position_type', extra, b'extra', position_type, b'position_type']) -> bool
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['_position_type', b'_position_type', 'extra', b'extra', 'position_type', b'position_type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -149,7 +164,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_position_type, b'_position_type']) -> Literal[position_type] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_position_type', b'_position_type']) -> Literal['position_type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -167,8 +183,8 @@ Classes
 
 .. py:class:: GetPositionResponse(*, value: float = ..., position_type: global___PositionType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -176,39 +192,40 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: value
-      :type: float
 
-      
+   .. py:attribute:: value
+      :type:  float
+
 
    .. py:attribute:: position_type
-      :type: global___PositionType
-
-      
+      :type:  global___PositionType
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the encoder
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the encoder
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -228,8 +245,8 @@ Classes
 
 .. py:class:: GetPropertiesResponse(*, ticks_count_supported: bool = ..., angle_degrees_supported: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -237,27 +254,24 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: ticks_count_supported
-      :type: bool
 
-      
+   .. py:attribute:: ticks_count_supported
+      :type:  bool
+
 
    .. py:attribute:: angle_degrees_supported
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:class:: PositionType
-
 
    Bases: :py:obj:`_PositionType`
 
 
 .. py:class:: ResetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -265,17 +279,20 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an encoder
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an encoder
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -295,8 +312,8 @@ Classes
 
 .. py:class:: ResetPositionResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 

@@ -1,5 +1,5 @@
-:py:mod:`viam.gen.component.encoder.v1.encoder_pb2`
-===================================================
+viam.gen.component.encoder.v1.encoder_pb2
+=========================================
 
 .. py:module:: viam.gen.component.encoder.v1.encoder_pb2
 
@@ -10,27 +10,8 @@
 
 
 
-Module Contents
----------------
-
-Classes
-~~~~~~~
-
-.. autoapisummary::
-
-   viam.gen.component.encoder.v1.encoder_pb2.PositionType
-   viam.gen.component.encoder.v1.encoder_pb2.GetPositionRequest
-   viam.gen.component.encoder.v1.encoder_pb2.GetPositionResponse
-   viam.gen.component.encoder.v1.encoder_pb2.ResetPositionRequest
-   viam.gen.component.encoder.v1.encoder_pb2.ResetPositionResponse
-   viam.gen.component.encoder.v1.encoder_pb2.GetPropertiesRequest
-   viam.gen.component.encoder.v1.encoder_pb2.GetPropertiesResponse
-
-
-
-
 Attributes
-~~~~~~~~~~
+----------
 
 .. autoapisummary::
 
@@ -47,42 +28,52 @@ Attributes
    viam.gen.component.encoder.v1.encoder_pb2.global___GetPropertiesResponse
 
 
-.. py:data:: DESCRIPTOR
-   :type: google.protobuf.descriptor.FileDescriptor
+Classes
+-------
 
-   
+.. autoapisummary::
+
+   viam.gen.component.encoder.v1.encoder_pb2.PositionType
+   viam.gen.component.encoder.v1.encoder_pb2.GetPositionRequest
+   viam.gen.component.encoder.v1.encoder_pb2.GetPositionResponse
+   viam.gen.component.encoder.v1.encoder_pb2.ResetPositionRequest
+   viam.gen.component.encoder.v1.encoder_pb2.ResetPositionResponse
+   viam.gen.component.encoder.v1.encoder_pb2.GetPropertiesRequest
+   viam.gen.component.encoder.v1.encoder_pb2.GetPropertiesResponse
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
 
 .. py:class:: PositionType
-
 
    Bases: :py:obj:`_PositionType`
 
 
 .. py:data:: POSITION_TYPE_UNSPECIFIED
-   :type: PositionType
-
-   
+   :type:  PositionType
 
 .. py:data:: POSITION_TYPE_TICKS_COUNT
-   :type: PositionType
+   :type:  PositionType
 
    Return type for relative encoders that report
    how far they've gone from a start position
 
 .. py:data:: POSITION_TYPE_ANGLE_DEGREES
-   :type: PositionType
+   :type:  PositionType
 
    Return type for absolute encoders that report
    their position in degrees along the radial axis
 
 .. py:data:: global___PositionType
 
-   
-
 .. py:class:: GetPositionRequest(*, name: str = ..., position_type: global___PositionType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -90,18 +81,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
 
    .. py:attribute:: name
-      :type: str
+      :type:  str
 
       Name of encoder
 
+
    .. py:attribute:: position_type
-      :type: global___PositionType
+      :type:  global___PositionType
 
       If supplied, the response will return the specified
       position type. If the driver does not implement
@@ -109,7 +97,14 @@ Attributes
       If position type is not specified, the response
       will return a default according to the driver.
 
-   .. py:method:: HasField(field_name: Literal[_position_type, b'_position_type', extra, b'extra', position_type, b'position_type']) -> bool
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal['_position_type', b'_position_type', 'extra', b'extra', 'position_type', b'position_type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -126,7 +121,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_position_type, b'_position_type']) -> Literal[position_type] | None
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_position_type', b'_position_type']) -> Literal['position_type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -144,12 +140,10 @@ Attributes
 
 .. py:data:: global___GetPositionRequest
 
-   
-
 .. py:class:: GetPositionResponse(*, value: float = ..., position_type: global___PositionType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -157,43 +151,42 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: value
-      :type: float
 
-      
+   .. py:attribute:: value
+      :type:  float
+
 
    .. py:attribute:: position_type
-      :type: global___PositionType
-
-      
+      :type:  global___PositionType
 
 
 .. py:data:: global___GetPositionResponse
 
-   
-
 .. py:class:: ResetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of an encoder
+
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of an encoder
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -213,12 +206,10 @@ Attributes
 
 .. py:data:: global___ResetPositionRequest
 
-   
-
 .. py:class:: ResetPositionResponse
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -229,12 +220,10 @@ Attributes
 
 .. py:data:: global___ResetPositionResponse
 
-   
-
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -242,17 +231,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+
+   .. py:attribute:: name
+      :type:  str
+
+      Name of the encoder
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
-   .. py:attribute:: name
-      :type: str
 
-      Name of the encoder
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -272,12 +264,10 @@ Attributes
 
 .. py:data:: global___GetPropertiesRequest
 
-   
-
 .. py:class:: GetPropertiesResponse(*, ticks_count_supported: bool = ..., angle_degrees_supported: bool = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -285,18 +275,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: ticks_count_supported
-      :type: bool
 
-      
+   .. py:attribute:: ticks_count_supported
+      :type:  bool
+
 
    .. py:attribute:: angle_degrees_supported
-      :type: bool
-
-      
+      :type:  bool
 
 
 .. py:data:: global___GetPropertiesResponse
-
-   
 

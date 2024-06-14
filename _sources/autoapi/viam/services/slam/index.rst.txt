@@ -1,25 +1,22 @@
-:py:mod:`viam.services.slam`
-============================
+viam.services.slam
+==================
 
 .. py:module:: viam.services.slam
 
 
 Submodules
 ----------
+
 .. toctree::
-   :titlesonly:
    :maxdepth: 1
 
-   client/index.rst
-   service/index.rst
-   slam/index.rst
+   /autoapi/viam/services/slam/client/index
+   /autoapi/viam/services/slam/service/index
+   /autoapi/viam/services/slam/slam/index
 
-
-Package Contents
-----------------
 
 Classes
-~~~~~~~
+-------
 
 .. autoapisummary::
 
@@ -29,12 +26,13 @@ Classes
    viam.services.slam.SLAMClient
 
 
-
+Package Contents
+----------------
 
 .. py:class:: Pose(*, x: float = ..., y: float = ..., z: float = ..., o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Pose is a combination of location and orientation.
    Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
@@ -45,46 +43,53 @@ Classes
    second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
    is circled, the Roll will correct itself to remain in-line.
 
+
    .. py:attribute:: x
-      :type: float
+      :type:  float
 
       millimeters from the origin
+
 
    .. py:attribute:: y
-      :type: float
+      :type:  float
 
       millimeters from the origin
+
 
    .. py:attribute:: z
-      :type: float
+      :type:  float
 
       millimeters from the origin
 
+
    .. py:attribute:: o_x
-      :type: float
+      :type:  float
 
       z component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_y
-      :type: float
+      :type:  float
 
       x component of a vector defining axis of rotation
 
+
    .. py:attribute:: o_z
-      :type: float
+      :type:  float
 
       y component of a vector defining axis of rotation
 
+
    .. py:attribute:: theta
-      :type: float
+      :type:  float
 
       degrees
 
 
 .. py:class:: MappingMode
 
-
    Bases: :py:obj:`_MappingMode`
+
 
    MappingMode represnts the various form of mapping and localizing SLAM can perform.
    These include, creating a new map, localizing on an existiing map and updating an
@@ -93,8 +98,8 @@ Classes
 
 .. py:class:: SensorInfo(*, name: str = ..., type: global___SensorType = ...)
 
-
    Bases: :py:obj:`google.protobuf.message.Message`
+
 
    Abstract base class for protocol messages.
 
@@ -102,31 +107,30 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :type: str
 
-      
+   .. py:attribute:: name
+      :type:  str
+
 
    .. py:attribute:: type
-      :type: global___SensorType
-
-      
+      :type:  global___SensorType
 
 
 .. py:class:: SLAMClient(name: str, channel: grpclib.client.Channel)
 
-
    Bases: :py:obj:`viam.services.slam.slam.SLAM`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
 
    Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
 
-   .. py:attribute:: client
-      :type: viam.proto.service.slam.SLAMServiceStub
 
-      
+   .. py:attribute:: client
+      :type:  viam.proto.service.slam.SLAMServiceStub
+
 
    .. py:method:: get_position(*, timeout: Optional[float] = None) -> viam.services.slam.Pose
       :async:
+
 
       Get current position of the specified component in the SLAM Map.
 
@@ -141,8 +145,10 @@ Classes
       :rtype: Pose
 
 
+
    .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]
       :async:
+
 
       Get the point cloud map.
 
@@ -162,8 +168,10 @@ Classes
       :rtype: List[GetPointCloudMapResponse]
 
 
+
    .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[bytes]
       :async:
+
 
       Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
@@ -178,8 +186,10 @@ Classes
       :rtype: List[GetInternalStateResponse]
 
 
+
    .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.slam.slam.SLAM.Properties
       :async:
+
 
       Get information regarding the current SLAM session.
 
@@ -194,8 +204,10 @@ Classes
       :rtype: Properties
 
 
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
+
 
       Send/receive arbitrary commands.
 
@@ -218,8 +230,10 @@ Classes
       :rtype: Dict[str, ValueTypes]
 
 
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
+
 
       Get the service named ``name`` from the provided robot.
 
@@ -247,8 +261,10 @@ Classes
       :rtype: Self
 
 
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
+
 
       Get the ResourceName for this Resource with the given name
 
@@ -262,6 +278,7 @@ Classes
 
       :returns: The ResourceName of this Resource
       :rtype: ResourceName
+
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
@@ -279,8 +296,10 @@ Classes
       :rtype: viam.operations.Operation
 
 
+
    .. py:method:: close()
       :async:
+
 
       Safely shut down the resource and prevent further use.
 
