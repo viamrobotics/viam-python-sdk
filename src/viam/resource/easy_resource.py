@@ -76,7 +76,8 @@ class EasyResource:
         won't call it directly.
         """
         logger.debug('registering %s %s', cls.SUBTYPE, cls.MODEL)
-        # note: this would pass if EasyResource inherited ResourceBase, but that crashes in the mro() walk in ResourceManager.register.
+        # note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()
+        # walk in ResourceManager.register.
         Registry.register_resource_creator(
             cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new))  # pyright: ignore [reportArgumentType]
 
