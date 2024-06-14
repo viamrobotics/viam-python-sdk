@@ -35,8 +35,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: poetry
-          cache-dependency-path: |
-            requirements-test.txt
 
       - name: Fix Poetry
         run: poetry config installer.modern-installation false
