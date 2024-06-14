@@ -783,6 +783,13 @@ class RobotClient:
         """
         Get app-related information about the robot.
 
+        ::
+
+            metadata = machine.get_cloud_metadata()
+            print(metadata.robot_part_id)
+            print(metadata.primary_org_id)
+            print(metadata.location_id)
+
         Returns:
             viam.proto.robot.GetCloudMetadataResponse: App-related metadata.
         """
