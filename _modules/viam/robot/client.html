@@ -873,6 +873,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get app-related information about the robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            metadata = machine.get_cloud_metadata()</span>
+<span class="sd">            print(metadata.robot_part_id)</span>
+<span class="sd">            print(metadata.primary_org_id)</span>
+<span class="sd">            print(metadata.location_id)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.robot.GetCloudMetadataResponse: App-related metadata.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
