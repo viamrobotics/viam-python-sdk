@@ -29,12 +29,14 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Install Poetry
-        uses: snok/install-poetry@v1
+        run: pipx install poetry
       - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: poetry
+          cache-dependency-path:
+            requirements-test.txt
 
       - name: Fix Poetry
         run: poetry config installer.modern-installation false
