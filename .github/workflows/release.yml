@@ -2,10 +2,26 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "The type of version bump. Use `-s` for no change. See docs for details: https://python-poetry.org/docs/cli/#version"
+        type: choice
+        required: true
+        default: "-s"
+        options:
+          - major
+          - minor
+          - patch
+          - premajor
+          - preminor
+          - prepatch
+          - prerelease
+          - prerelease --next-phase
+          - "-s"
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump_version.outputs.version }}
@@ -13,13 +29,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Install Poetry
+        run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+          cache: poetry
 
       - name: Install Package
         run: poetry install --all-extras
@@ -31,7 +48,7 @@ jobs:
         id: bump_version
         shell: bash
         run: |
-          poetry version $(poetry version -s | sed -e 's/\"//g' -e 's/rc.*//g')
+          poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
 
@@ -52,26 +69,25 @@ jobs:
       - name: Add + Commit
         uses: EndBug/add-and-commit@v9
         with:
-          new_branch: rc-${{ env.SDK_VERSION }}
+          new_branch: v${{ env.SDK_VERSION }}
           message: Bump version to ${{ env.SDK_VERSION }}
 
       - name: Open PR
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "main"
-          pr_title: rc-${{ env.SDK_VERSION }}
-          pr_body: This is an auto-generated PR to merge the rc branch back into main upon successful release.
+        run: |
+          gh pr create -t "v${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the release branch back into main upon successful release" -B "main" -H "v${{ env.SDK_VERSION }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     uses: ./.github/workflows/build-wheels.yml
     with:
-      branch: rc-${{ needs.prepare.outputs.version }}
+      branch: v${{ needs.prepare.outputs.version }}
     needs: prepare
-    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
+    if: github.repository_owner == 'viamrobotics'
 
   release:
     needs: [prepare, build]
-    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
+    if: github.repository_owner == 'viamrobotics
     runs-on: ubuntu-latest
 
     steps:
@@ -87,4 +103,4 @@ jobs:
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
-          target_commitish: rc-${{ needs.prepare.outputs.version }}
+          target_commitish: v${{ needs.prepare.outputs.version }}
