@@ -11,9 +11,7 @@ concurrency:
 on: pull_request
 jobs:
   htmltest:
-    runs-on: ubuntu-large
-    container:
-       image: ghcr.io/cirruslabs/flutter:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
