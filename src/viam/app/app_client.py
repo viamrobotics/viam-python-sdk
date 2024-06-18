@@ -594,7 +594,7 @@ class AppClient:
                 characters.
 
         Raises:
-            GRPCError: If an invalid namespace (e.g., "") is provided.
+            GRPCError: If an invalid namespace (for example, "") is provided.
 
         Returns:
             bool: True if the provided namespace is available.
@@ -712,7 +712,7 @@ class AppClient:
     ) -> OrganizationInvite:
         """Update the authorizations attached to an organization invite that has already been created.
 
-        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
+        Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and must have
         at least one authorization overall.
 
         ::
@@ -742,7 +742,7 @@ class AppClient:
             remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
 
         Raises:
-            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
+            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an authorization to
                 remove when the invite only contains one authorization).
 
         Returns:
@@ -829,7 +829,7 @@ class AppClient:
                 location ID is provided.
 
         Raises:
-            GRPCError: If either an invalid name (e.g., ""), or parent location ID (e.g., a nonexistent ID) is passed.
+            GRPCError: If either an invalid name (for example, ""), or parent location ID (for example, a nonexistent ID) is passed.
 
         Returns:
             viam.proto.app.Location: The newly created location.
@@ -1625,7 +1625,7 @@ class AppClient:
         Args:
             org_id (str): The ID of the organization to create the role in.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `resource_id`.
@@ -1667,7 +1667,7 @@ class AppClient:
         Args:
             org_id (str): The ID of the organization the role exists in.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
                 removed from. Must match `resource_id`.
@@ -1716,13 +1716,13 @@ class AppClient:
 
         Args:
             organization_id (str): ID of the organization
-            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            old_identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
             old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
                 added to. Must match `old_resource_id`.
             old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
-            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
+            new_identity_id (str): New ID of the entity the role blongs to (for example, a user ID).
             new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
             new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `new_resource_id`.
@@ -1790,7 +1790,7 @@ class AppClient:
 
         Args:
             permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate
-                (e.g., "read_organization", "control_robot")
+                (for example, "read_organization", "control_robot")
 
         Raises:
             GRPCError: If the list of permissions to validate is empty.
@@ -1916,7 +1916,7 @@ class AppClient:
             name (str): The name of the module. Must be unique within your organization.
 
         Raises:
-            GRPCError: If an invalid name (e.g., "") is passed.
+            GRPCError: If an invalid name (for example, "") is passed.
 
         Returns:
             Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
@@ -1945,8 +1945,8 @@ class AppClient:
                 entrypoint="exec")
 
         Args:
-            module_id (str): ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
-                "my-org:my-module").
+            module_id (str): ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
+                (for example, "my-org:my-module").
             url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
             models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.

@@ -167,7 +167,7 @@ class Module:
 
     def set_ready(self, ready: bool):
         """Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful
-        in instances where the module is not instantly ready (e.g. waiting on hardware)
+        in instances where the module is not instantly ready (for example waiting on hardware)
 
         Args:
             ready (bool): Whether the module is ready

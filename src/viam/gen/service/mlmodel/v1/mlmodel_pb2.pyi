@@ -136,7 +136,7 @@ class Metadata(google.protobuf.message.Message):
     name: builtins.str
     'name of the model'
     type: builtins.str
-    'type of model e.g. object_detector, text_classifier'
+    'type of model for example object_detector, text_classifier'
     description: builtins.str
     'description of the model'
 
@@ -169,7 +169,7 @@ class TensorInfo(google.protobuf.message.Message):
     description: builtins.str
     'description of the data in the array/tensor'
     data_type: builtins.str
-    'data type of the array/tensor, e.g. float32, float64, uint8'
+    'data type of the array/tensor, for example float32, float64, uint8'
 
     @property
     def shape(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:

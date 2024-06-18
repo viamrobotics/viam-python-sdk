@@ -289,20 +289,20 @@ def create_filter(
     """Create a `Filter`.
 
     Args:
-        component_name (Optional[str]): Optional name of the component that captured the data being filtered (e.g., "left_motor").
-        component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (e.g., "motor").
-        method (Optional[str]): Optional name of the method used to capture the data being filtered (e.g., "IsPowered").
-        robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (e.g., "viam_rover_1").
+        component_name (Optional[str]): Optional name of the component that captured the data being filtered (for example, "left_motor").
+        component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (for example, "motor").
+        method (Optional[str]): Optional name of the method used to capture the data being filtered (for example, "IsPowered").
+        robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (for example, "viam_rover_1").
         robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.
-        part_name (Optional[str]): Optional name of the system part associated with the data being filtered (e.g., "viam_rover_1-main").
+        part_name (Optional[str]): Optional name of the system part associated with the data being filtered (for example, "viam_rover_1-main").
         part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.
         location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.
         organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.
-        mime_type (Optional[List[str]]): Optional mime type of data being filtered (e.g., "image/png").
+        mime_type (Optional[List[str]]): Optional mime type of data being filtered (for example, "image/png").
         start_time (Optional[datetime.datetime]): Optional start time of an interval to filter data by.
         end_time (Optional[datetime.datetime]): Optional end time of an interval to filter data by.
-        tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., ["test"]).
-        bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
+        tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (for example, ["test"]).
+        bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (for example, ["square",
             "circle"]).
         dataset_id (Optional[str]): Optional ID of dataset associated with data being filtered
 

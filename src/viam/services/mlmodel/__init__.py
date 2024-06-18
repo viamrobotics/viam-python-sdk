@@ -7,7 +7,7 @@ except ImportError:
         (
             """MLModel support in the Viam Python SDK requires the installation of an
 additional dependency: numpy.  Update your package using the extra [mlmodel]
-e.g. `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager."""
+for example `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager."""
         ),
     )
     raise

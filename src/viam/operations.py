@@ -80,7 +80,7 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
     """Run a component function with an ``Operation``.
     Running a function with an Operation will allow the function
     to know if/when the calling task was cancelled and take appropriate action
-    (.e.g. stop long running tasks and exit early).
+    (for example stop long running tasks and exit early).
 
     If a timeout is provided to the function, the operation will cancel when the timeout is reached.
 
