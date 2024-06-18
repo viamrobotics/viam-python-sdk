@@ -32,11 +32,13 @@ class EasyResource:
 
     Basic usage:
 
-    class MyModel(Sensor, EasyResource):
-        MODEL = "my-org:sensor:my-sensor"
+    ::
 
-        async def get_readings(self, **kwargs):
-            return {"ok": True}
+        class MyModel(Sensor, EasyResource):
+            MODEL = "my-org:sensor:my-sensor"
+
+            async def get_readings(self, **kwargs):
+                return {"ok": True}
 
     See examples/easy_resource/main.py for extended usage.
     """
