@@ -387,7 +387,7 @@ class APIKeyAuthorization:
         """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
         resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
             Must match `resource_id`.
-        resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+        resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
         """
         self._role = role
         self._resource_type = resource_type
@@ -887,10 +887,10 @@ class AppClient:
 
         Args:
             location_id (str): ID of the location to update. Must be specified.
-            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
+            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name doesn't
                 change).
             parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string
-                "" (i.e., no new parent location is assigned).
+                "" (that is, no new parent location is assigned).
 
         Raises:
             GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -1137,7 +1137,7 @@ class AppClient:
 
         Args:
             robot_part_id (str): ID of the robot part to get logs from.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is, no
                 filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
             log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
@@ -1205,7 +1205,7 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is, no
                 filter).
 
         Returns:
@@ -1629,7 +1629,7 @@ class AppClient:
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `resource_id`.
-            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
@@ -1671,7 +1671,7 @@ class AppClient:
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
                 removed from. Must match `resource_id`.
-            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
@@ -1720,13 +1720,13 @@ class AppClient:
             old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
             old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
                 added to. Must match `old_resource_id`.
-            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
             new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
             new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
             new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `new_resource_id`.
-            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            new_resource_id (str): New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
         """
         old_authorization = await self._create_authorization(
             organization_id=organization_id,
