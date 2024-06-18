@@ -27,10 +27,10 @@ class Subtype:
     """The namespace of the resource"""
 
     resource_type: str
-    """The type of the resource, e.g. `component` or `service`"""
+    """The type of the resource, for example `component` or `service`"""
 
     resource_subtype: str
-    """The subtype of the resource e.g. `servo`, `arm`, `vision`"""
+    """The subtype of the resource for example `servo`, `arm`, `vision`"""
 
     def __init__(self, namespace: str, resource_type: str, resource_subtype: str):
         self.namespace = namespace

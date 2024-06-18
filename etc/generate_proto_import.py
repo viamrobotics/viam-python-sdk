@@ -82,7 +82,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
     the package name, and the modules (files) within that package.
 
     Then, it will create the appropriate directory structure, and a new
-    file for each module type (e.g. "arm" for "arm_grpc" and "arm_pb2").
+    file for each module type (for example "arm" for "arm_grpc" and "arm_pb2").
     """
     LOGGER.info(f"Building proto imports for package {package}")
 

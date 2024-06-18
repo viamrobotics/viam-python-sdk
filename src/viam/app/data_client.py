@@ -325,7 +325,7 @@ class DataClient:
             last (str): Optional string indicating the ID of the last-returned data.
                         If provided, the server will return the next data entries after the `last` ID.
             include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.
-                                        Defaults to true (i.e., both the files' data and metadata are returned).
+                                        Defaults to true (that is, both the files' data and metadata are returned).
             count_only (bool): Whether to return only the total count of entries.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
                                           like cloud SLAM. Defaults to `False`
