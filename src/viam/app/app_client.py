@@ -712,8 +712,8 @@ class AppClient:
     ) -> OrganizationInvite:
         """Update the authorizations attached to an organization invite that has already been created.
 
-        Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and must have
-        at least one authorization overall.
+        Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and
+        must have at least one authorization overall.
 
         ::
 
@@ -742,8 +742,8 @@ class AppClient:
             remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
 
         Raises:
-            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an authorization to
-                remove when the invite only contains one authorization).
+            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
+                authorization to remove when the invite only contains one authorization).
 
         Returns:
             viam.proto.app.OrganizationInvite: The updated invite.

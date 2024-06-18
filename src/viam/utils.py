@@ -294,7 +294,8 @@ def create_filter(
         method (Optional[str]): Optional name of the method used to capture the data being filtered (for example, "IsPowered").
         robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (for example, "viam_rover_1").
         robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.
-        part_name (Optional[str]): Optional name of the system part associated with the data being filtered (for example, "viam_rover_1-main").
+        part_name (Optional[str]): Optional name of the system part associated with the data being filtered (for example,
+            "viam_rover_1-main").
         part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.
         location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.
         organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.
