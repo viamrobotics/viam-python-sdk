@@ -750,8 +750,6 @@ Module Contents
 
        from viam.components.motor import Motor
 
-   For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
    .. py:class:: Properties
 
@@ -784,8 +782,6 @@ Module Contents
                     (negative implies backwards).
       :type power: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -812,8 +808,6 @@ Module Contents
                           (negative implies backwards).
       :type revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -839,8 +833,6 @@ Module Contents
       :param position_revolutions: Target position relative to home/zero, in revolutions.
       :type position_revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: set_rpm(rpm: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -862,8 +854,6 @@ Module Contents
       :param rpm: Speed at which the motor should rotate.
       :type rpm: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -883,8 +873,6 @@ Module Contents
 
       :param offset: The offset from the current position to new home/zero position.
       :type offset: float
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -907,8 +895,6 @@ Module Contents
 
       :returns: Number of revolutions the motor is away from zero/home.
       :rtype: float
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -935,8 +921,6 @@ Module Contents
       :returns: Map of feature names to supported status.
       :rtype: Properties
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -953,8 +937,6 @@ Module Contents
 
           # Stop the motor.
           await my_motor.stop()
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -981,8 +963,6 @@ Module Contents
                     the second [1] value indicates the current power percentage of the motor.
       :rtype: Tuple[bool, float]
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: is_moving() -> bool
@@ -1003,8 +983,6 @@ Module Contents
 
       :returns: Whether the motor is moving.
       :rtype: bool
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -1145,8 +1123,6 @@ Module Contents
                     (negative implies backwards).
       :type power: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -1171,8 +1147,6 @@ Module Contents
                           (negative implies backwards).
       :type revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -1196,8 +1170,6 @@ Module Contents
       :param position_revolutions: Target position relative to home/zero, in revolutions.
       :type position_revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: set_rpm(rpm: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -1217,8 +1189,6 @@ Module Contents
       :param rpm: Speed at which the motor should rotate.
       :type rpm: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -1236,8 +1206,6 @@ Module Contents
 
       :param offset: The offset from the current position to new home/zero position.
       :type offset: float
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -1258,8 +1226,6 @@ Module Contents
 
       :returns: Number of revolutions the motor is away from zero/home.
       :rtype: float
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -1284,8 +1250,6 @@ Module Contents
       :returns: Map of feature names to supported status.
       :rtype: Properties
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -1300,8 +1264,6 @@ Module Contents
 
           # Stop the motor.
           await my_motor.stop()
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 
@@ -1326,8 +1288,6 @@ Module Contents
                     the second [1] value indicates the current power percentage of the motor.
       :rtype: Tuple[bool, float]
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
-
 
 
    .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
@@ -1346,8 +1306,6 @@ Module Contents
 
       :returns: Whether the motor is moving.
       :rtype: bool
-
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
 
 
 

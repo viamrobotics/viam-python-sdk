@@ -345,8 +345,6 @@ Module Contents
 
        from viam.components.board import Board
 
-   For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
 
    .. py:attribute:: SUBTYPE
       :type:  Final
@@ -372,8 +370,6 @@ Module Contents
          the reader's minimum and maximum possible values, and its step size (the minimum possible
          change between values it can read).
 
-         For more information, see `analogs <https://docs.viam.com/components/board/#analogs>`_.
-
 
       .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value
          :abstractmethod:
@@ -398,8 +394,6 @@ Module Contents
          :returns: The current value, including the min, max, and step_size of the reader.
          :rtype: Value
 
-         For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
-
 
 
       .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -423,8 +417,6 @@ Module Contents
          :param value: Value to write to the analog writer.
          :type value: int
 
-         For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
-
 
 
 
@@ -433,8 +425,6 @@ Module Contents
       DigitalInterrupt represents a configured interrupt on the Board that
       when interrupted, calls the added callbacks. Post processors can
       be added to modify what Value it ultimately returns.
-
-      For more information, see `digital_interrupts <https://docs.viam.com/components/board/#digital_interrupts>`_.
 
 
       .. py:attribute:: name
@@ -466,9 +456,6 @@ Module Contents
 
          :returns: The current value.
          :rtype: int
-
-         For more information, see
-         `Board component DigitalInterrupt API <https://docs.viam.com/components/board/#digitalinterrupt-api>`_.
 
 
 
@@ -505,8 +492,6 @@ Module Contents
          :param high: When true, sets the pin to high. When false, sets the pin to low.
          :type high: bool
 
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
-
 
 
       .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
@@ -530,8 +515,6 @@ Module Contents
          :returns: Indicates if the state of the pin is high.
          :rtype: bool
 
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
-
 
 
       .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
@@ -554,8 +537,6 @@ Module Contents
 
          :returns: The duty cycle.
          :rtype: float
-
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
 
 
 
@@ -581,8 +562,6 @@ Module Contents
          :param duty_cycle: The duty cycle.
          :type duty_cycle: float
 
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
-
 
 
       .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
@@ -605,8 +584,6 @@ Module Contents
 
          :returns: The PWM frequency.
          :rtype: int
-
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
 
 
 
@@ -632,8 +609,6 @@ Module Contents
          :param frequency: The frequency, in Hz.
          :type frequency: int
 
-         For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
-
 
 
 
@@ -657,8 +632,6 @@ Module Contents
 
       :returns: The analog reader or writer.
       :rtype: Analog
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
 
 
 
@@ -684,8 +657,6 @@ Module Contents
       :returns: The digital interrupt.
       :rtype: DigitalInterrupt
 
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
 
 
    .. py:method:: gpio_pin_by_name(name: str) -> GPIOPin
@@ -709,8 +680,6 @@ Module Contents
       :returns: The pin.
       :rtype: GPIOPin
 
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
 
 
    .. py:method:: analog_names() -> List[str]
@@ -731,8 +700,6 @@ Module Contents
       :returns: The list of names of all known analog readers/writers.
       :rtype: List[str]
 
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
 
 
    .. py:method:: digital_interrupt_names() -> List[str]
@@ -752,8 +719,6 @@ Module Contents
 
       :returns: The names of the digital interrupts.
       :rtype: List[str]
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
 
 
 
@@ -776,8 +741,6 @@ Module Contents
       :type mode: PowerMode
       :param duration: Requested duration to stay in power mode.
       :type duration: Optional[timedelta]
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
 
 
 
@@ -806,8 +769,6 @@ Module Contents
 
       :returns: stream of ticks.
       :rtype: TickStream
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
 
 
 

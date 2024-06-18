@@ -120,8 +120,6 @@
 <span class="sd">    ::</span>
 
 <span class="sd">        from viam.components.board import Board</span>
-
-<span class="sd">    For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -141,8 +139,6 @@
 <span class="sd">        Value contains the result of reading an analog reader. It contains the raw data read,</span>
 <span class="sd">        the reader&#39;s minimum and maximum possible values, and its step size (the minimum possible</span>
 <span class="sd">        change between values it can read).</span>
-
-<span class="sd">        For more information, see `analogs &lt;https://docs.viam.com/components/board/#analogs&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -167,8 +163,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                Value: The current value, including the min, max, and step_size of the reader.</span>
-
-<span class="sd">            For more information, see `Board component Analog API &lt;https://docs.viam.com/components/board/#analog-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -189,8 +183,6 @@
 
 <span class="sd">            Args:</span>
 <span class="sd">                value (int): Value to write to the analog writer.</span>
-
-<span class="sd">            For more information, see `Board component Analog API &lt;https://docs.viam.com/components/board/#analog-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 
@@ -199,8 +191,6 @@
 <span class="sd">        DigitalInterrupt represents a configured interrupt on the Board that</span>
 <span class="sd">        when interrupted, calls the added callbacks. Post processors can</span>
 <span class="sd">        be added to modify what Value it ultimately returns.</span>
-
-<span class="sd">        For more information, see `digital_interrupts &lt;https://docs.viam.com/components/board/#digital_interrupts&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
@@ -229,9 +219,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                int: The current value.</span>
-
-<span class="sd">            For more information, see</span>
-<span class="sd">            `Board component DigitalInterrupt API &lt;https://docs.viam.com/components/board/#digitalinterrupt-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 
@@ -263,8 +250,6 @@
 
 <span class="sd">            Args:</span>
 <span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -285,8 +270,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                bool: Indicates if the state of the pin is high.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -307,8 +290,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                float: The duty cycle.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -330,8 +311,6 @@
 
 <span class="sd">            Args:</span>
 <span class="sd">                duty_cycle (float): The duty cycle.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -352,8 +331,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                int: The PWM frequency.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
@@ -382,8 +359,6 @@
 
 <span class="sd">            Args:</span>
 <span class="sd">                frequency (int): The frequency, in Hz.</span>
-
-<span class="sd">            For more information, see `GPIOPin API &lt;https://docs.viam.com/components/board/#gpiopin-api&gt;`_.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 
@@ -404,8 +379,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Analog: The analog reader or writer.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -427,8 +400,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            DigitalInterrupt: The digital interrupt.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -449,8 +420,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            GPIOPin: The pin.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -468,8 +437,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of names of all known analog readers/writers.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -487,8 +454,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The names of the digital interrupts.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -509,8 +474,6 @@
 <span class="sd">        Args:</span>
 <span class="sd">            mode (PowerMode): The desired power mode.</span>
 <span class="sd">            duration (Optional[timedelta]): Requested duration to stay in power mode.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -536,8 +499,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            TickStream: stream of ticks.</span>
-
-<span class="sd">        For more information, see `Board component &lt;https://docs.viam.com/components/board/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

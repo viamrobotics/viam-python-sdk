@@ -112,8 +112,6 @@
 <span class="sd">        from viam.proto.common import Pose</span>
 <span class="sd">        # To use move_to_joint_positions:</span>
 <span class="sd">        from viam.proto.component.arm import JointPositions</span>
-
-<span class="sd">    For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;arm&quot;</span><span class="p">)</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -141,8 +139,6 @@
 <span class="sd">            The ``Pose`` is composed of values for location and orientation with respect to the origin.</span>
 <span class="sd">            Location is expressed as distance, which is represented by x, y, and z coordinate values.</span>
 <span class="sd">            Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -173,8 +169,6 @@
 <span class="sd">                with respect to the origin.</span>
 <span class="sd">                Location is expressed as distance, which is represented by x, y, and z coordinate values.</span>
 <span class="sd">                Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -207,8 +201,6 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            positions (JointPositions): The destination ``JointPositions`` for the arm.</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -234,8 +226,6 @@
 <span class="sd">            JointPositions: The current ``JointPositions`` for the arm.</span>
 <span class="sd">            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)</span>
 <span class="sd">            and translational values (mm).</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -257,7 +247,6 @@
 <span class="sd">            # Stop all motion of the arm. It is assumed that the arm stops immediately.</span>
 <span class="sd">            await my_arm.stop()</span>
 
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -278,8 +267,6 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the arm is moving.</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -307,8 +294,6 @@
 <span class="sd">            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the</span>
 <span class="sd">            file, either in URDF format or Viam&#39;s kinematic parameter format (spatial vector algebra), and the second [1] value</span>
 <span class="sd">            represents the byte contents of the file.</span>
-
-<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/components/arm/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>
