@@ -1018,7 +1018,7 @@ class DataClient:
                 or .png extension will be saved to the images tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
         Raises:
@@ -1184,7 +1184,7 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
-            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 

@@ -28,7 +28,7 @@ The `run.sh` script is the entrypoint for this module. To connect this module wi
 
 Once the module has been added to your robot, add a new component that uses the `MySensor` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details.
 
-Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/extend/modular-resources/key-concepts/#models).
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/registry/create/#name-your-new-resource-model).
 
 An example configuration for a Sensor component could look like this:
 ```json
