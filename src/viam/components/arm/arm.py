@@ -22,6 +22,8 @@ class Arm(ComponentBase):
         from viam.proto.common import Pose
         # To use move_to_joint_positions:
         from viam.proto.component.arm import JointPositions
+
+    For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -49,6 +51,8 @@ class Arm(ComponentBase):
             The ``Pose`` is composed of values for location and orientation with respect to the origin.
             Location is expressed as distance, which is represented by x, y, and z coordinate values.
             Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -79,6 +83,8 @@ class Arm(ComponentBase):
                 with respect to the origin.
                 Location is expressed as distance, which is represented by x, y, and z coordinate values.
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -111,6 +117,8 @@ class Arm(ComponentBase):
 
         Args:
             positions (JointPositions): The destination ``JointPositions`` for the arm.
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -136,6 +144,8 @@ class Arm(ComponentBase):
             JointPositions: The current ``JointPositions`` for the arm.
             ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
             and translational values (mm).
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -157,6 +167,7 @@ class Arm(ComponentBase):
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
 
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -177,6 +188,8 @@ class Arm(ComponentBase):
 
         Returns:
             bool: Whether the arm is moving.
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
 
@@ -204,5 +217,7 @@ class Arm(ComponentBase):
             Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
             file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra), and the second [1] value
             represents the byte contents of the file.
+
+        For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
         """
         ...
