@@ -887,8 +887,8 @@ class AppClient:
 
         Args:
             location_id (str): ID of the location to update. Must be specified.
-            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name doesn't
-                change).
+            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
+                doesn't change).
             parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string
                 "" (that is, no new parent location is assigned).
 
@@ -1137,8 +1137,8 @@ class AppClient:
 
         Args:
             robot_part_id (str): ID of the robot part to get logs from.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is, no
-                filter).
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                no filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
             log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
@@ -1205,8 +1205,8 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is, no
-                filter).
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                no filter).
 
         Returns:
             _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.
