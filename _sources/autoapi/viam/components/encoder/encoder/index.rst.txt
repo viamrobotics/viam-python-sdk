@@ -54,13 +54,13 @@ Module Contents
    .. py:attribute:: resource_type
       :type:  str
 
-      The type of the resource, e.g. `component` or `service`
+      The type of the resource, for example `component` or `service`
 
 
    .. py:attribute:: resource_subtype
       :type:  str
 
-      The subtype of the resource e.g. `servo`, `arm`, `vision`
+      The subtype of the resource for example `servo`, `arm`, `vision`
 
 
    .. py:method:: __str__() -> str
@@ -281,6 +281,8 @@ Module Contents
           await my_encoder.reset_position()
 
 
+      For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
+
 
 
    .. py:method:: get_position(position_type: Optional[viam.proto.component.encoder.PositionType.ValueType] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, viam.proto.component.encoder.PositionType.ValueType]
@@ -310,6 +312,8 @@ Module Contents
                 and the second [1] the type of position the encoder returns (ticks or degrees).
       :rtype: Tuple[float, PositionType]
 
+      For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
+
 
 
    .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
@@ -329,6 +333,8 @@ Module Contents
 
       :returns: Map of position types to supported status.
       :rtype: Encoder.Properties
+
+      For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
 
 
 

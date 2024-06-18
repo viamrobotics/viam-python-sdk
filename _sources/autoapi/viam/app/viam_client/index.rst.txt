@@ -182,7 +182,7 @@ Module Contents
                                characters.
       :type public_namespace: str
 
-      :raises GRPCError: If an invalid namespace (e.g., "") is provided.
+      :raises GRPCError: If an invalid namespace (for example, "") is provided.
 
       :returns: True if the provided namespace is available.
       :rtype: bool
@@ -286,8 +286,8 @@ Module Contents
 
       Update the authorizations attached to an organization invite that has already been created.
 
-      Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
-      at least one authorization overall.
+      Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and
+      must have at least one authorization overall.
 
       ::
 
@@ -318,8 +318,8 @@ Module Contents
       :param remove_authorizations: Optional list of authorizations to remove from the invite.
       :type remove_authorizations: Optional[List[viam.proto.app.Authorization]]
 
-      :raises GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
-          remove when the invite only contains one authorization).
+      :raises GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
+          authorization to remove when the invite only contains one authorization).
 
       :returns: The updated invite.
       :rtype: viam.proto.app.OrganizationInvite
@@ -409,7 +409,7 @@ Module Contents
                                  location ID is provided.
       :type parent_location_id: Optional[str]
 
-      :raises GRPCError: If either an invalid name (e.g., ""), or parent location ID (e.g., a nonexistent ID) is passed.
+      :raises GRPCError: If either an invalid name (for example, ""), or parent location ID (for example, a nonexistent ID) is passed.
 
       :returns: The newly created location.
       :rtype: viam.proto.app.Location
@@ -468,11 +468,11 @@ Module Contents
 
       :param location_id: ID of the location to update. Must be specified.
       :type location_id: str
-      :param name: Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
-                   change).
+      :param name: Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
+                   doesn't change).
       :type name: Optional[str]
       :param parent_location_id: Optional ID of new parent location to move the location under. Defaults to the empty string
-                                 "" (i.e., no new parent location is assigned).
+                                 "" (that is, no new parent location is assigned).
       :type parent_location_id: Optional[str]
 
       :raises GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -715,8 +715,8 @@ Module Contents
 
       :param robot_part_id: ID of the robot part to get logs from.
       :type robot_part_id: str
-      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
-                     filter).
+      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                     no filter).
       :type filter: Optional[str]
       :param dest: Optional filepath to write the log entries to.
       :type dest: Optional[str]
@@ -748,8 +748,8 @@ Module Contents
       :type robot_part_id: str
       :param errors_only: Boolean specifying whether or not to only include error logs. Defaults to True.
       :type errors_only: bool
-      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
-                     filter).
+      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                     no filter).
       :type filter: Optional[str]
 
       :returns: The asynchronous iterator receiving live robot part logs.
@@ -1167,14 +1167,14 @@ Module Contents
       :param org_id: The ID of the organization to create the role in.
                      You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
-      :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
       :param role: The role to add.
       :type role: Union[Literal["owner"], Literal["operator"]]
       :param resource_type: Type of the resource to add role to.
                             Must match `resource_id`.
       :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
-      :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :param resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type resource_id: str
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
@@ -1199,14 +1199,14 @@ Module Contents
       :param org_id: The ID of the organization the role exists in.
                      You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
-      :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
       :param role: The role to remove.
       :type role: Union[Literal["owner"], Literal["operator"]]
       :param resource_type: Type of the resource the role is being
                             removed from. Must match `resource_id`.
       :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
-      :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :param resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type resource_id: str
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
@@ -1234,23 +1234,23 @@ Module Contents
 
       :param organization_id: ID of the organization
       :type organization_id: str
-      :param old_identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :param old_identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type old_identity_id: str
       :param old_role: The role to be changed.
       :type old_role: Union[Literal["owner"], Literal["operator"]]
       :param old_resource_type: Type of the resource the role is
                                 added to. Must match `old_resource_id`.
       :type old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
-      :param old_resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :param old_resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type old_resource_id: str
-      :param new_identity_id: New ID of the entity the role blongs to (e.g., a user ID).
+      :param new_identity_id: New ID of the entity the role blongs to (for example, a user ID).
       :type new_identity_id: str
       :param new_role: The new role.
       :type new_role: Union[Literal["owner"], Literal["operator"]]
       :param new_resource_type: Type of the resource to add role to.
                                 Must match `new_resource_id`.
       :type new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
-      :param new_resource_id: New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :param new_resource_id: New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type new_resource_id: str
 
 
@@ -1300,7 +1300,7 @@ Module Contents
           filtered_permissions = await cloud.check_permissions(permissions)
 
       :param permissions: the permissions to validate
-                          (e.g., "read_organization", "control_robot")
+                          (for example, "read_organization", "control_robot")
       :type permissions: List[viam.proto.app.AuthorizedPermissions]
 
       :raises GRPCError: If the list of permissions to validate is empty.
@@ -1426,7 +1426,7 @@ Module Contents
       :param name: The name of the module. Must be unique within your organization.
       :type name: str
 
-      :raises GRPCError: If an invalid name (e.g., "") is passed.
+      :raises GRPCError: If an invalid name (for example, "") is passed.
 
       :returns: A tuple containing the ID [0] of the new module and its URL [1].
       :rtype: Tuple[str, str]
@@ -1447,8 +1447,8 @@ Module Contents
               description="A base to support hoverboards.",
               entrypoint="exec")
 
-      :param module_id: ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
-                        "my-org:my-module").
+      :param module_id: ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
+                        (for example, "my-org:my-module").
       :type module_id: str
       :param url: The url to reference for documentation and code (NOT the url of the module itself).
       :type url: str
@@ -1953,7 +1953,7 @@ Module Contents
                    If provided, the server will return the next data entries after the `last` ID.
       :type last: str
       :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
-                                  Defaults to true (i.e., both the files' data and metadata are returned).
+                                  Defaults to true (that is, both the files' data and metadata are returned).
       :type include_binary_data: bool
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool

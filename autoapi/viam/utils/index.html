@@ -751,7 +751,7 @@ non-Close methods are called.</p>
 <dd><p>The global registry of robotic parts.</p>
 <p><strong>NB</strong> The Registry should almost never be used directly</p>
 <p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
-pre-registered (e.g. Arm, Motor).</p>
+pre-registered (for example Arm, Motor).</p>
 <p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
 resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
 <dl class="py method">
@@ -902,13 +902,13 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.utils.Subtype.resource_type">
 <span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.utils.Subtype.resource_type" title="Permalink to this definition"></a></dt>
-<dd><p>The type of the resource, e.g. <cite>component</cite> or <cite>service</cite></p>
+<dd><p>The type of the resource, for example <cite>component</cite> or <cite>service</cite></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.utils.Subtype.resource_subtype">
 <span class="sig-name descname"><span class="pre">resource_subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.utils.Subtype.resource_subtype" title="Permalink to this definition"></a></dt>
-<dd><p>The subtype of the resource e.g. <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
+<dd><p>The subtype of the resource for example <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
 </dd></dl>
 
 <dl class="py method">
@@ -1123,20 +1123,21 @@ which is only available in python &gt;= 3.9.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component that captured the data being filtered (e.g., “left_motor”).</p></li>
-<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the componenet that captured the data being filtered (e.g., “motor”).</p></li>
-<li><p><strong>method</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method used to capture the data being filtered (e.g., “IsPowered”).</p></li>
-<li><p><strong>robot_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the robot associated with the data being filtered (e.g., “viam_rover_1”).</p></li>
+<li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component that captured the data being filtered (for example, “left_motor”).</p></li>
+<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the componenet that captured the data being filtered (for example, “motor”).</p></li>
+<li><p><strong>method</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method used to capture the data being filtered (for example, “IsPowered”).</p></li>
+<li><p><strong>robot_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the robot associated with the data being filtered (for example, “viam_rover_1”).</p></li>
 <li><p><strong>robot_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of the robot associated with the data being filtered.</p></li>
-<li><p><strong>part_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the system part associated with the data being filtered (e.g., “viam_rover_1-main”).</p></li>
+<li><p><strong>part_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the system part associated with the data being filtered (for example,
+“viam_rover_1-main”).</p></li>
 <li><p><strong>part_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of the system part associated with the data being filtered.</p></li>
 <li><p><strong>location_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of location IDs associated with the data being filtered.</p></li>
 <li><p><strong>organization_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of organization IDs associated with the data being filtered.</p></li>
-<li><p><strong>mime_type</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional mime type of data being filtered (e.g., “image/png”).</p></li>
+<li><p><strong>mime_type</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional mime type of data being filtered (for example, “image/png”).</p></li>
 <li><p><strong>start_time</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – Optional start time of an interval to filter data by.</p></li>
 <li><p><strong>end_time</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – Optional end time of an interval to filter data by.</p></li>
-<li><p><strong>tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of tags attached to the data being filtered (e.g., [“test”]).</p></li>
-<li><p><strong>bbox_labels</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of bounding box labels attached to the data being filtered (e.g., [“square”,
+<li><p><strong>tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of tags attached to the data being filtered (for example, [“test”]).</p></li>
+<li><p><strong>bbox_labels</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of bounding box labels attached to the data being filtered (for example, [“square”,
 “circle”]).</p></li>
 <li><p><strong>dataset_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of dataset associated with data being filtered</p></li>
 </ul>

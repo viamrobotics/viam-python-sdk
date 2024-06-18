@@ -591,7 +591,7 @@ Module Contents
    **NB** The Registry should almost never be used directly
 
    The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
-   pre-registered (e.g. Arm, Motor).
+   pre-registered (for example Arm, Motor).
 
    If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
    resource using ``Registry.register(...)``.
@@ -815,13 +815,13 @@ Module Contents
    .. py:attribute:: resource_type
       :type:  str
 
-      The type of the resource, e.g. `component` or `service`
+      The type of the resource, for example `component` or `service`
 
 
    .. py:attribute:: resource_subtype
       :type:  str
 
-      The subtype of the resource e.g. `servo`, `arm`, `vision`
+      The subtype of the resource for example `servo`, `arm`, `vision`
 
 
    .. py:method:: __str__() -> str
@@ -1702,7 +1702,7 @@ Module Contents
    .. py:method:: set_ready(ready: bool)
 
       Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful
-      in instances where the module is not instantly ready (e.g. waiting on hardware)
+      in instances where the module is not instantly ready (for example waiting on hardware)
 
       :param ready: Whether the module is ready
       :type ready: bool

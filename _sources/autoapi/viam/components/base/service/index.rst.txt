@@ -712,6 +712,8 @@ Module Contents
 
        from viam.components.base import Base
 
+   For more information, see `Base component <https://docs.viam.com/components/base/>`_.
+
 
    .. py:attribute:: SUBTYPE
       :type:  Final
@@ -760,6 +762,8 @@ Module Contents
                        Negative implies backwards.
       :type velocity: float
 
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
+
 
 
    .. py:method:: spin(angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -786,6 +790,8 @@ Module Contents
                        to spin.
                        Given a positive angle and a positive velocity, the base will turn to the left.
       :type velocity: float
+
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
 
 
 
@@ -837,6 +843,8 @@ Module Contents
                       for wheeled base. Positive turns left; negative turns right.
       :type angular: Vector3
 
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
+
 
 
    .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -861,6 +869,8 @@ Module Contents
       :param angular: Velocity in deg/sec
       :type angular: Vector3
 
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
+
 
 
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
@@ -880,6 +890,8 @@ Module Contents
 
           # Stop the base.
           await my_base.stop()
+
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
 
 
 
@@ -901,6 +913,8 @@ Module Contents
 
       :returns: Whether the base is moving.
       :rtype: bool
+
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
 
 
 
@@ -930,6 +944,8 @@ Module Contents
 
       :returns: The properties of the base
       :rtype: Properties
+
+      For more information, see `Base component <https://docs.viam.com/components/base/>`_.
 
 
 

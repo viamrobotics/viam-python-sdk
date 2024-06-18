@@ -992,7 +992,7 @@ non-Close methods are called.</p>
 <dd><p>The global registry of robotic parts.</p>
 <p><strong>NB</strong> The Registry should almost never be used directly</p>
 <p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
-pre-registered (e.g. Arm, Motor).</p>
+pre-registered (for example Arm, Motor).</p>
 <p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
 resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
 <dl class="py method">
@@ -1249,13 +1249,13 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.module.module.Subtype.resource_type">
 <span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.module.module.Subtype.resource_type" title="Permalink to this definition"></a></dt>
-<dd><p>The type of the resource, e.g. <cite>component</cite> or <cite>service</cite></p>
+<dd><p>The type of the resource, for example <cite>component</cite> or <cite>service</cite></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.module.module.Subtype.resource_subtype">
 <span class="sig-name descname"><span class="pre">resource_subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.module.module.Subtype.resource_subtype" title="Permalink to this definition"></a></dt>
-<dd><p>The subtype of the resource e.g. <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
+<dd><p>The subtype of the resource for example <cite>servo</cite>, <cite>arm</cite>, <cite>vision</cite></p>
 </dd></dl>
 
 <dl class="py method">
@@ -2184,7 +2184,7 @@ In most cases you’ll want to use run_from_registry instead (see below).</p>
 <dt class="sig sig-object py" id="viam.module.module.Module.set_ready">
 <span class="sig-name descname"><span class="pre">set_ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ready</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/module.html#Module.set_ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Module.set_ready" title="Permalink to this definition"></a></dt>
 <dd><p>Set the module’s ready state. The module automatically sets to READY on load. Setting to False can be useful
-in instances where the module is not instantly ready (e.g. waiting on hardware)</p>
+in instances where the module is not instantly ready (for example waiting on hardware)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ready</strong> (<em>bool</em>) – Whether the module is ready</p>

@@ -477,7 +477,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
 <span class="sd">        resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
 <span class="sd">            Must match `resource_id`.</span>
-<span class="sd">        resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">        resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_role</span> <span class="o">=</span> <span class="n">role</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_resource_type</span> <span class="o">=</span> <span class="n">resource_type</span>
@@ -684,7 +684,7 @@
 <span class="sd">                characters.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid namespace (e.g., &quot;&quot;) is provided.</span>
+<span class="sd">            GRPCError: If an invalid namespace (for example, &quot;&quot;) is provided.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if the provided namespace is available.</span>
@@ -802,8 +802,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the authorizations attached to an organization invite that has already been created.</span>
 
-<span class="sd">        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have</span>
-<span class="sd">        at least one authorization overall.</span>
+<span class="sd">        Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and</span>
+<span class="sd">        must have at least one authorization overall.</span>
 
 <span class="sd">        ::</span>
 
@@ -832,8 +832,8 @@
 <span class="sd">            remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to</span>
-<span class="sd">                remove when the invite only contains one authorization).</span>
+<span class="sd">            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an</span>
+<span class="sd">                authorization to remove when the invite only contains one authorization).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.OrganizationInvite: The updated invite.</span>
@@ -919,7 +919,7 @@
 <span class="sd">                location ID is provided.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid name (e.g., &quot;&quot;), or parent location ID (e.g., a nonexistent ID) is passed.</span>
+<span class="sd">            GRPCError: If either an invalid name (for example, &quot;&quot;), or parent location ID (for example, a nonexistent ID) is passed.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The newly created location.</span>
@@ -977,10 +977,10 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to update. Must be specified.</span>
-<span class="sd">            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string &quot;&quot; (i.e., the name doesn&#39;t</span>
-<span class="sd">                change).</span>
+<span class="sd">            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string &quot;&quot; (that is, the name</span>
+<span class="sd">                doesn&#39;t change).</span>
 <span class="sd">            parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string</span>
-<span class="sd">                &quot;&quot; (i.e., no new parent location is assigned).</span>
+<span class="sd">                &quot;&quot; (that is, no new parent location is assigned).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid location ID, name, or parent location ID is passed.</span>
@@ -1227,8 +1227,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to get logs from.</span>
-<span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (i.e., no</span>
-<span class="sd">                filter).</span>
+<span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (that is,</span>
+<span class="sd">                no filter).</span>
 <span class="sd">            dest (Optional[str]): Optional filepath to write the log entries to.</span>
 <span class="sd">            log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.</span>
 <span class="sd">            num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first</span>
@@ -1295,8 +1295,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to retrieve logs from.</span>
 <span class="sd">            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.</span>
-<span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (i.e., no</span>
-<span class="sd">                filter).</span>
+<span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (that is,</span>
+<span class="sd">                no filter).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.</span>
@@ -1715,11 +1715,11 @@
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the role in.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
-<span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            identity_id (str): ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
 <span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
 <span class="sd">                Must match `resource_id`.</span>
-<span class="sd">            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.</span>
@@ -1757,11 +1757,11 @@
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization the role exists in.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
-<span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            identity_id (str): ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to remove.</span>
 <span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource the role is being</span>
 <span class="sd">                removed from. Must match `resource_id`.</span>
-<span class="sd">            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.</span>
@@ -1806,17 +1806,17 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): ID of the organization</span>
-<span class="sd">            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            old_identity_id (str): ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            old_role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to be changed.</span>
 <span class="sd">            old_resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource the role is</span>
 <span class="sd">                added to. Must match `old_resource_id`.</span>
-<span class="sd">            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">            old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 
-<span class="sd">            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).</span>
+<span class="sd">            new_identity_id (str): New ID of the entity the role blongs to (for example, a user ID).</span>
 <span class="sd">            new_role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The new role.</span>
 <span class="sd">            new_resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
 <span class="sd">                Must match `new_resource_id`.</span>
-<span class="sd">            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">            new_resource_id (str): New ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">old_authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
@@ -1880,7 +1880,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate</span>
-<span class="sd">                (e.g., &quot;read_organization&quot;, &quot;control_robot&quot;)</span>
+<span class="sd">                (for example, &quot;read_organization&quot;, &quot;control_robot&quot;)</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the list of permissions to validate is empty.</span>
@@ -2006,7 +2006,7 @@
 <span class="sd">            name (str): The name of the module. Must be unique within your organization.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid name (e.g., &quot;&quot;) is passed.</span>
+<span class="sd">            GRPCError: If an invalid name (for example, &quot;&quot;) is passed.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].</span>
@@ -2035,8 +2035,8 @@
 <span class="sd">                entrypoint=&quot;exec&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            module_id (str): ID of the module being updated, containing module name (e.g., &quot;my-module&quot;) or namespace and module name (e.g.,</span>
-<span class="sd">                &quot;my-org:my-module&quot;).</span>
+<span class="sd">            module_id (str): ID of the module being updated, containing module name (for example, &quot;my-module&quot;) or namespace and module name</span>
+<span class="sd">                (for example, &quot;my-org:my-module&quot;).</span>
 <span class="sd">            url (str): The url to reference for documentation and code (NOT the url of the module itself).</span>
 <span class="sd">            description (str): A short description of the module that explains its purpose.</span>
 <span class="sd">            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.</span>

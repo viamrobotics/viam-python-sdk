@@ -476,7 +476,7 @@
 characters.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid namespace (e.g., “”) is provided.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid namespace (for example, “”) is provided.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if the provided namespace is available.</p>
@@ -589,8 +589,8 @@ on the next login of the user with the associated email address.</p></li>
 <dt class="sig sig-object py" id="viam.app.viam_client.AppClient.update_organization_invite_authorizations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_organization_invite_authorizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><span class="pre">viam.proto.app.Authorization</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><span class="pre">viam.proto.app.Authorization</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><span class="pre">viam.proto.app.OrganizationInvite</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_organization_invite_authorizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.AppClient.update_organization_invite_authorizations" title="Permalink to this definition"></a></dt>
 <dd><p>Update the authorizations attached to an organization invite that has already been created.</p>
-<p>Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
-at least one authorization overall.</p>
+<p>Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and
+must have at least one authorization overall.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Authorization</span>
 
 <span class="n">authorization_to_add</span> <span class="o">=</span> <span class="n">Authorization</span><span class="p">(</span>
@@ -620,8 +620,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
-remove when the invite only contains one authorization).</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
+authorization to remove when the invite only contains one authorization).</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The updated invite.</p>
@@ -719,7 +719,7 @@ location ID is provided.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If either an invalid name (e.g., “”), or parent location ID (e.g., a nonexistent ID) is passed.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If either an invalid name (for example, “”), or parent location ID (for example, a nonexistent ID) is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The newly created location.</p>
@@ -784,10 +784,10 @@ instantiation.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>location_id</strong> (<em>str</em>) – ID of the location to update. Must be specified.</p></li>
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional new name to be updated on the location. Defaults to the empty string “” (i.e., the name doesn’t
-change).</p></li>
+<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional new name to be updated on the location. Defaults to the empty string “” (that is, the name
+doesn’t change).</p></li>
 <li><p><strong>parent_location_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of new parent location to move the location under. Defaults to the empty string
-“” (i.e., no new parent location is assigned).</p></li>
+“” (that is, no new parent location is assigned).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1054,8 +1054,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to get logs from.</p></li>
-<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Only include logs with messages that contain the string <cite>filter</cite>. Defaults to empty string “” (i.e., no
-filter).</p></li>
+<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Only include logs with messages that contain the string <cite>filter</cite>. Defaults to empty string “” (that is,
+no filter).</p></li>
 <li><p><strong>dest</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional filepath to write the log entries to.</p></li>
 <li><p><strong>log_levels</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.</p></li>
 <li><p><strong>num_log_entries</strong> (<em>int</em>) – Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
@@ -1087,8 +1087,8 @@ filter).</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to retrieve logs from.</p></li>
 <li><p><strong>errors_only</strong> (<em>bool</em>) – Boolean specifying whether or not to only include error logs. Defaults to True.</p></li>
-<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Only include logs with messages that contain the string <cite>filter</cite>. Defaults to empty string “” (i.e., no
-filter).</p></li>
+<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Only include logs with messages that contain the string <cite>filter</cite>. Defaults to empty string “” (that is,
+no filter).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1547,11 +1547,11 @@ visibility unchanged. A fragment is private by default when created.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the role in.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
-<li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (e.g., a user ID).</p></li>
+<li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (for example, a user ID).</p></li>
 <li><p><strong>role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The role to add.</p></li>
 <li><p><strong>resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource to add role to.
 Must match <cite>resource_id</cite>.</p></li>
-<li><p><strong>resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</p></li>
+<li><p><strong>resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (that is, either an organization, location, or robot ID).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1577,11 +1577,11 @@ Must match <cite>resource_id</cite>.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization the role exists in.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
-<li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (e.g., a user ID).</p></li>
+<li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (for example, a user ID).</p></li>
 <li><p><strong>role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The role to remove.</p></li>
 <li><p><strong>resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource the role is being
 removed from. Must match <cite>resource_id</cite>.</p></li>
-<li><p><strong>resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</p></li>
+<li><p><strong>resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (that is, either an organization, location, or robot ID).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1610,16 +1610,16 @@ removed from. Must match <cite>resource_id</cite>.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – ID of the organization</p></li>
-<li><p><strong>old_identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (e.g., a user ID).</p></li>
+<li><p><strong>old_identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (for example, a user ID).</p></li>
 <li><p><strong>old_role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The role to be changed.</p></li>
 <li><p><strong>old_resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource the role is
 added to. Must match <cite>old_resource_id</cite>.</p></li>
-<li><p><strong>old_resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</p></li>
-<li><p><strong>new_identity_id</strong> (<em>str</em>) – New ID of the entity the role blongs to (e.g., a user ID).</p></li>
+<li><p><strong>old_resource_id</strong> (<em>str</em>) – ID of the resource the role applies to (that is, either an organization, location, or robot ID).</p></li>
+<li><p><strong>new_identity_id</strong> (<em>str</em>) – New ID of the entity the role blongs to (for example, a user ID).</p></li>
 <li><p><strong>new_role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The new role.</p></li>
 <li><p><strong>new_resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource to add role to.
 Must match <cite>new_resource_id</cite>.</p></li>
-<li><p><strong>new_resource_id</strong> (<em>str</em>) – New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</p></li>
+<li><p><strong>new_resource_id</strong> (<em>str</em>) – New ID of the resource the role applies to (that is, either an organization, location, or robot ID).</p></li>
 </ul>
 </dd>
 </dl>
@@ -1674,7 +1674,7 @@ If None, defaults to all resources.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>permissions</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><em>viam.proto.app.AuthorizedPermissions</em></a><em>]</em>) – the permissions to validate
-(e.g., “read_organization”, “control_robot”)</p>
+(for example, “read_organization”, “control_robot”)</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If the list of permissions to validate is empty.</p>
@@ -1801,7 +1801,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid name (e.g., “”) is passed.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid name (for example, “”) is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple containing the ID [0] of the new module and its URL [1].</p>
@@ -1826,8 +1826,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>module_id</strong> (<em>str</em>) – ID of the module being updated, containing module name (e.g., “my-module”) or namespace and module name (e.g.,
-“my-org:my-module”).</p></li>
+<li><p><strong>module_id</strong> (<em>str</em>) – ID of the module being updated, containing module name (for example, “my-module”) or namespace and module name
+(for example, “my-org:my-module”).</p></li>
 <li><p><strong>url</strong> (<em>str</em>) – The url to reference for documentation and code (NOT the url of the module itself).</p></li>
 <li><p><strong>description</strong> (<em>str</em>) – A short description of the module that explains its purpose.</p></li>
 <li><p><strong>models</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Model" title="viam.proto.app.Model"><em>viam.proto.app.Model</em></a><em>]</em><em>]</em>) – list of models that are available in the module.</p></li>
@@ -2348,7 +2348,7 @@ data.</p></li>
 <li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
 If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
 <li><p><strong>include_binary_data</strong> (<em>bool</em>) – Boolean specifying whether to actually include the binary file data with each retrieved file.
-Defaults to true (i.e., both the files’ data and metadata are returned).</p></li>
+Defaults to true (that is, both the files’ data and metadata are returned).</p></li>
 <li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
 <li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
 like cloud SLAM. Defaults to <cite>False</cite></p></li>

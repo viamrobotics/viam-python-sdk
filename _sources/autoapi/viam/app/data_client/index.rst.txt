@@ -1719,17 +1719,18 @@ Module Contents
 
    Create a `Filter`.
 
-   :param component_name: Optional name of the component that captured the data being filtered (e.g., "left_motor").
+   :param component_name: Optional name of the component that captured the data being filtered (for example, "left_motor").
    :type component_name: Optional[str]
-   :param component_type: Optional type of the componenet that captured the data being filtered (e.g., "motor").
+   :param component_type: Optional type of the componenet that captured the data being filtered (for example, "motor").
    :type component_type: Optional[str]
-   :param method: Optional name of the method used to capture the data being filtered (e.g., "IsPowered").
+   :param method: Optional name of the method used to capture the data being filtered (for example, "IsPowered").
    :type method: Optional[str]
-   :param robot_name: Optional name of the robot associated with the data being filtered (e.g., "viam_rover_1").
+   :param robot_name: Optional name of the robot associated with the data being filtered (for example, "viam_rover_1").
    :type robot_name: Optional[str]
    :param robot_id: Optional ID of the robot associated with the data being filtered.
    :type robot_id: Optional[str]
-   :param part_name: Optional name of the system part associated with the data being filtered (e.g., "viam_rover_1-main").
+   :param part_name: Optional name of the system part associated with the data being filtered (for example,
+                     "viam_rover_1-main").
    :type part_name: Optional[str]
    :param part_id: Optional ID of the system part associated with the data being filtered.
    :type part_id: Optional[str]
@@ -1737,15 +1738,15 @@ Module Contents
    :type location_ids: Optional[List[str]]
    :param organization_ids: Optional list of organization IDs associated with the data being filtered.
    :type organization_ids: Optional[List[str]]
-   :param mime_type: Optional mime type of data being filtered (e.g., "image/png").
+   :param mime_type: Optional mime type of data being filtered (for example, "image/png").
    :type mime_type: Optional[List[str]]
    :param start_time: Optional start time of an interval to filter data by.
    :type start_time: Optional[datetime.datetime]
    :param end_time: Optional end time of an interval to filter data by.
    :type end_time: Optional[datetime.datetime]
-   :param tags: Optional list of tags attached to the data being filtered (e.g., ["test"]).
+   :param tags: Optional list of tags attached to the data being filtered (for example, ["test"]).
    :type tags: Optional[List[str]]
-   :param bbox_labels: Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
+   :param bbox_labels: Optional list of bounding box labels attached to the data being filtered (for example, ["square",
                        "circle"]).
    :type bbox_labels: Optional[List[str]]
    :param dataset_id: Optional ID of dataset associated with data being filtered
@@ -1975,7 +1976,7 @@ Module Contents
                    If provided, the server will return the next data entries after the `last` ID.
       :type last: str
       :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
-                                  Defaults to true (i.e., both the files' data and metadata are returned).
+                                  Defaults to true (that is, both the files' data and metadata are returned).
       :type include_binary_data: bool
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool

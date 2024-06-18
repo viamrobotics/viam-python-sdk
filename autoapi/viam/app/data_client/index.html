@@ -2528,20 +2528,21 @@ be raised.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component that captured the data being filtered (e.g., “left_motor”).</p></li>
-<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the componenet that captured the data being filtered (e.g., “motor”).</p></li>
-<li><p><strong>method</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method used to capture the data being filtered (e.g., “IsPowered”).</p></li>
-<li><p><strong>robot_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the robot associated with the data being filtered (e.g., “viam_rover_1”).</p></li>
+<li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component that captured the data being filtered (for example, “left_motor”).</p></li>
+<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the componenet that captured the data being filtered (for example, “motor”).</p></li>
+<li><p><strong>method</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method used to capture the data being filtered (for example, “IsPowered”).</p></li>
+<li><p><strong>robot_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the robot associated with the data being filtered (for example, “viam_rover_1”).</p></li>
 <li><p><strong>robot_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of the robot associated with the data being filtered.</p></li>
-<li><p><strong>part_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the system part associated with the data being filtered (e.g., “viam_rover_1-main”).</p></li>
+<li><p><strong>part_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the system part associated with the data being filtered (for example,
+“viam_rover_1-main”).</p></li>
 <li><p><strong>part_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of the system part associated with the data being filtered.</p></li>
 <li><p><strong>location_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of location IDs associated with the data being filtered.</p></li>
 <li><p><strong>organization_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of organization IDs associated with the data being filtered.</p></li>
-<li><p><strong>mime_type</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional mime type of data being filtered (e.g., “image/png”).</p></li>
+<li><p><strong>mime_type</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional mime type of data being filtered (for example, “image/png”).</p></li>
 <li><p><strong>start_time</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – Optional start time of an interval to filter data by.</p></li>
 <li><p><strong>end_time</strong> (<em>Optional</em><em>[</em><em>datetime.datetime</em><em>]</em>) – Optional end time of an interval to filter data by.</p></li>
-<li><p><strong>tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of tags attached to the data being filtered (e.g., [“test”]).</p></li>
-<li><p><strong>bbox_labels</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of bounding box labels attached to the data being filtered (e.g., [“square”,
+<li><p><strong>tags</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of tags attached to the data being filtered (for example, [“test”]).</p></li>
+<li><p><strong>bbox_labels</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Optional list of bounding box labels attached to the data being filtered (for example, [“square”,
 “circle”]).</p></li>
 <li><p><strong>dataset_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional ID of dataset associated with data being filtered</p></li>
 </ul>
@@ -2778,7 +2779,7 @@ data.</p></li>
 <li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
 If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
 <li><p><strong>include_binary_data</strong> (<em>bool</em>) – Boolean specifying whether to actually include the binary file data with each retrieved file.
-Defaults to true (i.e., both the files’ data and metadata are returned).</p></li>
+Defaults to true (that is, both the files’ data and metadata are returned).</p></li>
 <li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
 <li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
 like cloud SLAM. Defaults to <cite>False</cite></p></li>
