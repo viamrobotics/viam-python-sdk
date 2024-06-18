@@ -17,6 +17,8 @@ class Motor(ComponentBase):
     ::
 
         from viam.components.motor import Motor
+
+    For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
     """
 
     @dataclass
@@ -50,6 +52,8 @@ class Motor(ComponentBase):
         Args:
             power (float): Power between -1 and 1
                 (negative implies backwards).
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -80,6 +84,8 @@ class Motor(ComponentBase):
                 (negative implies backwards).
             revolutions (float): Number of revolutions the motor should run for
                 (negative implies backwards).
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -109,6 +115,8 @@ class Motor(ComponentBase):
         Args:
             rpm (float): Speed at which the motor should rotate (absolute value).
             position_revolutions (float): Target position relative to home/zero, in revolutions.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -134,6 +142,8 @@ class Motor(ComponentBase):
 
         Args:
             rpm (float): Speed at which the motor should rotate.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -158,6 +168,8 @@ class Motor(ComponentBase):
 
         Args:
             offset (float): The offset from the current position to new home/zero position.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -183,6 +195,8 @@ class Motor(ComponentBase):
 
         Returns:
             float: Number of revolutions the motor is away from zero/home.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -211,6 +225,8 @@ class Motor(ComponentBase):
 
         Returns:
             Properties: Map of feature names to supported status.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -231,6 +247,8 @@ class Motor(ComponentBase):
 
             # Stop the motor.
             await my_motor.stop()
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -257,6 +275,8 @@ class Motor(ComponentBase):
         Returns:
             Tuple[bool, float]: A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and
                 the second [1] value indicates the current power percentage of the motor.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...
 
@@ -275,5 +295,7 @@ class Motor(ComponentBase):
 
         Returns:
             bool: Whether the motor is moving.
+
+        For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
         ...

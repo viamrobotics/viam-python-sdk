@@ -24,6 +24,8 @@ class Encoder(ComponentBase):
     ::
 
         from viam.components.encoder import Encoder
+
+    For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -48,6 +50,8 @@ class Encoder(ComponentBase):
             # Reset the zero position of the encoder.
             await my_encoder.reset_position()
 
+
+        For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
         """
         ...
 
@@ -81,6 +85,8 @@ class Encoder(ComponentBase):
             Tuple[float, PositionType]: A tuple containing two values; the first [0] the Position of the encoder
             which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
             and the second [1] the type of position the encoder returns (ticks or degrees).
+
+        For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
         """
         ...
 
@@ -104,5 +110,7 @@ class Encoder(ComponentBase):
 
         Returns:
             Encoder.Properties: Map of position types to supported status.
+
+        For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
         """
         ...
