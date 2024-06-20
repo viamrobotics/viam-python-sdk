@@ -804,7 +804,7 @@ class RobotClient:
 
     async def shutdown(self):
         """
-        Shutdown shuts down the robot.
+        Shutdown shuts down the machine.
 
         Raises:
             GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
