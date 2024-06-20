@@ -673,10 +673,21 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
 </div>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.submit_training_job">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">submit_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.mltraining.ModelType.ValueType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.submit_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.submit_training_job" title="Permalink to this definition"></a></dt>
 <dd><p>Submit a training job.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">submit_training_job</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;your-model-name&quot;</span><span class="p">,</span>
+    <span class="n">model_version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="s2">&quot;ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="n">tags</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -695,12 +706,22 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">submit_custom_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registry_item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.submit_custom_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job" title="Permalink to this definition"></a></dt>
 <dd><p>Submit a custom training job.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">submit_custom_training_job</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+    <span class="n">registry_item_id</span><span class="o">=</span><span class="s2">&quot;your-registry-item-id&quot;</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;your-model-name&quot;</span><span class="p">,</span>
+    <span class="n">model_version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -718,6 +739,7 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -739,6 +761,7 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <dd class="field-odd"><p><a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.TrainingJobMetadata" title="viam.proto.app.mltraining.TrainingJobMetadata">viam.proto.app.mltraining.TrainingJobMetadata</a></p>
 </dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -766,6 +789,7 @@ If unspecified, all training jobs will be returned.</p></li>
 <dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/app/mltraining/index.html#viam.proto.app.mltraining.TrainingJobMetadata" title="viam.proto.app.mltraining.TrainingJobMetadata">viam.proto.app.mltraining.TrainingJobMetadata</a>]</p>
 </dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -784,14 +808,23 @@ If unspecified, all training jobs will be returned.</p></li>
 <dd class="field-even"><p><strong>GRPCError</strong> – if no training job exists with the given id.</p>
 </dd>
 </dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_completed_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.delete_completed_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job" title="Permalink to this definition"></a></dt>
-<dd><p>Delete a completed training job from the database, whether the job succeeded or failed
-:param id: the id of the training job
-:type id: str</p>
+<dd><p>Delete a completed training job from the database, whether the job succeeded or failed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">delete_completed_training_job</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR JOB ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – the id of the training job</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/ml-training-client/">ML Training Client API</a>.</p>
 </dd></dl>
 
 </dd></dl>

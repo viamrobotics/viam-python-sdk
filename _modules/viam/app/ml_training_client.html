@@ -144,6 +144,8 @@
 
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
+
+<span class="sd">    For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
@@ -152,6 +154,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            channel (grpclib.client.Channel): Connection to app.</span>
 <span class="sd">            metadata (Mapping[str, str]): Required authorization token to send requests to app.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span> <span class="o">=</span> <span class="n">MLTrainingServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
@@ -168,6 +172,17 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a training job.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            job_id = await ml_training_client.submit_training_job(</span>
+<span class="sd">                organization_id=organization_id,</span>
+<span class="sd">                dataset_id=dataset_id,</span>
+<span class="sd">                model_name=&quot;your-model-name&quot;,</span>
+<span class="sd">                model_version=&quot;1&quot;,</span>
+<span class="sd">                model_type=&quot;ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION&quot;,</span>
+<span class="sd">                tags=tags</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the id of the org to submit the training job to</span>
 <span class="sd">            dataset_id (str): the id of the dataset</span>
@@ -178,6 +193,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: the id of the training job</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitTrainingJobRequest</span><span class="p">(</span>
@@ -196,6 +213,16 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a custom training job.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            job_id = await ml_training_client.submit_custom_training_job(</span>
+<span class="sd">                organization_id=organization_id,</span>
+<span class="sd">                dataset_id=dataset_id,</span>
+<span class="sd">                registry_item_id=&quot;your-registry-item-id&quot;,</span>
+<span class="sd">                model_name=&quot;your-model-name&quot;,</span>
+<span class="sd">                model_version=&quot;1&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the id of the org to submit the training job to</span>
 <span class="sd">            dataset_id (str): the id of the dataset</span>
@@ -205,6 +232,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: the id of the training job</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">(</span>
@@ -230,6 +259,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.mltraining.TrainingJobMetadata: training job data.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
@@ -258,6 +289,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">training_status</span> <span class="o">=</span> <span class="n">training_status</span> <span class="k">if</span> <span class="n">training_status</span> <span class="k">else</span> <span class="n">TrainingStatus</span><span class="o">.</span><span class="n">TRAINING_STATUS_UNSPECIFIED</span>
@@ -279,17 +312,26 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if no training job exists with the given id.</span>
+
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">CancelTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MLTrainingClient.delete_completed_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_completed_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a completed training job from the database, whether the job succeeded or failed</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a completed training job from the database, whether the job succeeded or failed.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await ml_training_client.delete_completed_training_job(</span>
+<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): the id of the training job</span>
-<span class="sd">        &quot;&quot;&quot;</span>
 
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">DeleteCompletedTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>
 </pre></div>

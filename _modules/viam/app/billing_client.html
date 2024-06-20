@@ -139,6 +139,7 @@
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
 
+<span class="sd">    For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
@@ -168,6 +169,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information</span>
+
+<span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetCurrentMonthUsageRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetCurrentMonthUsage</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
@@ -183,6 +186,8 @@
 <span class="sd">            invoice_id (str): the ID of the invoice being requested</span>
 <span class="sd">            org_id (str): the ID of the org to request data from</span>
 <span class="sd">            dest (str): filepath to save the invoice to</span>
+
+<span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetInvoicePdfRequest</span><span class="p">,</span> <span class="n">GetInvoicePdfResponse</span><span class="p">]</span>
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetInvoicePdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
@@ -203,6 +208,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices</span>
+
+<span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetInvoicesSummaryRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetInvoicesSummary</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
@@ -218,7 +225,10 @@
 <span class="sd">            org_id (str): the ID of the org to request data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information&quot;&quot;&quot;</span>
+<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information</span>
+
+<span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrgBillingInformationRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetOrgBillingInformation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div></div>
 </pre></div>

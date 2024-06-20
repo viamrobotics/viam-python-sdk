@@ -1715,6 +1715,8 @@ Module Contents
        if __name__ == '__main__':
            asyncio.run(main())
 
+   For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
    .. py:class:: Options
 
@@ -1792,6 +1794,8 @@ Module Contents
          :returns: the RobotClient.Options
          :rtype: Self
 
+         For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+
 
 
 
@@ -1828,6 +1832,8 @@ Module Contents
       :returns: the RobotClient
       :rtype: Self
 
+      For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+
 
 
    .. py:method:: with_channel(channel: Union[grpclib.client.Channel, viam.rpc.dial.ViamChannel], options: Options) -> typing_extensions.Self
@@ -1860,6 +1866,8 @@ Module Contents
       :returns: the RobotClient
       :rtype: Self
 
+      For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+
 
 
    .. py:method:: refresh()
@@ -1871,6 +1879,8 @@ Module Contents
       ::
 
           await robot.refresh()
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -1918,6 +1928,8 @@ Module Contents
       :returns: The component
       :rtype: ComponentBase
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: get_service(name: viam.proto.common.ResourceName) -> viam.services.service_base.ServiceBase
@@ -1960,6 +1972,8 @@ Module Contents
       :returns: The service
       :rtype: ServiceBase
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:property:: resource_names
@@ -1974,6 +1988,8 @@ Module Contents
       :returns: The list of resource names
       :rtype: List[viam.proto.common.ResourceName]
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
    .. py:method:: close()
       :async:
@@ -1984,6 +2000,8 @@ Module Contents
       ::
 
           await robot.close()
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -2013,6 +2031,8 @@ Module Contents
                          ``ResourceName`` for components you want statuses.
       :type components: Optional[List[viam.proto.common.ResourceName]]
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: get_operations() -> List[viam.proto.robot.Operation]
@@ -2028,6 +2048,8 @@ Module Contents
       :returns: The list of operations currently running on a given robot.
       :rtype: List[viam.proto.robot.Operation]
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: cancel_operation(id: str)
@@ -2042,6 +2064,8 @@ Module Contents
 
       :param id: ID of operation to cancel.
       :type id: str
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -2059,6 +2083,8 @@ Module Contents
       :param id: ID of operation to block on.
       :type id: str
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> List[viam.proto.robot.FrameSystemConfig]
@@ -2075,6 +2101,8 @@ Module Contents
 
       :returns: The configuration of a given robot's frame system.
       :rtype: List[viam.proto.robot.FrameSystemConfig]
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -2095,6 +2123,8 @@ Module Contents
 
       :returns: The pose and the reference frame for the new destination.
       :rtype: PoseInFrame
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -2128,6 +2158,8 @@ Module Contents
       :returns: A list of discovered component configurations.
       :rtype: List[Discovery]
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
@@ -2146,8 +2178,10 @@ Module Contents
           await robot.stop_all()
 
       :param extra: Any extra parameters to pass to the resources' ``stop`` methods,
-                    keyed on the resource's ``ResourceName``
+                    keyed on the resource's ``ResourceName``.
       :type extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]]
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 
@@ -2170,6 +2204,8 @@ Module Contents
       :param stack: The stack information of the log.
       :type stack: str
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: get_cloud_metadata() -> viam.proto.robot.GetCloudMetadataResponse
@@ -2189,6 +2225,8 @@ Module Contents
       :returns: App-related metadata.
       :rtype: viam.proto.robot.GetCloudMetadataResponse
 
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
 
 
    .. py:method:: shutdown()
@@ -2201,6 +2239,8 @@ Module Contents
           robot server shuts down before having a chance to send a response. Raised with
           status Unavailable if server is unavailable, or if robot server is in the process of
           shutting down when response is ready.
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
 
 
 

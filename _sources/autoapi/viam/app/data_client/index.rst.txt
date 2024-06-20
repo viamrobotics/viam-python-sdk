@@ -1795,6 +1795,8 @@ Module Contents
            asyncio.run(main())
 
 
+   For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
    .. py:class:: TabularData
 
@@ -1884,6 +1886,8 @@ Module Contents
                 str: The last-returned page ID.
       :rtype: Tuple[List[TabularData], int, str]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: tabular_data_by_sql(organization_id: str, sql_query: str) -> List[Dict[str, viam.utils.ValueTypes]]
@@ -1905,6 +1909,8 @@ Module Contents
 
       :returns: An array of data objects.
       :rtype: List[Dict[str, ValueTypes]]
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -1940,6 +1946,8 @@ Module Contents
 
       :returns: An array of data objects.
       :rtype: List[Dict[str, ValueTypes]]
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -1992,6 +2000,8 @@ Module Contents
                 str: The last-returned page ID.
       :rtype: Tuple[List[viam.proto.app.data.BinaryData], int, str]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
@@ -2031,6 +2041,8 @@ Module Contents
       :returns: The binary data.
       :rtype: List[viam.proto.app.data.BinaryData]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int) -> int
@@ -2057,6 +2069,8 @@ Module Contents
 
       :returns: The number of items deleted.
       :rtype: int
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2089,6 +2103,8 @@ Module Contents
 
       :returns: The number of items deleted.
       :rtype: int
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2126,6 +2142,8 @@ Module Contents
 
       :returns: The number of items deleted.
       :rtype: int
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2165,6 +2183,8 @@ Module Contents
 
       :raises GRPCError: If no `BinaryID` objects or tags are provided.
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: add_tags_to_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> None
@@ -2188,6 +2208,8 @@ Module Contents
       :type filter: viam.proto.app.data.Filter
 
       :raises GRPCError: If no tags are provided.
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2231,6 +2253,8 @@ Module Contents
       :returns: The number of tags removed.
       :rtype: int
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: remove_tags_from_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> int
@@ -2258,6 +2282,8 @@ Module Contents
       :returns: The number of tags removed.
       :rtype: int
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
@@ -2279,6 +2305,8 @@ Module Contents
 
       :returns: The list of tags.
       :rtype: List[str]
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2327,6 +2355,8 @@ Module Contents
       :returns: The bounding box ID.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: remove_bounding_box_from_image_by_id(bbox_id: str, binary_id: viam.proto.app.data.BinaryID) -> None
@@ -2355,6 +2385,8 @@ Module Contents
       :param binary_id: Binary ID of the image to to remove the bounding box from.
       :type binary_id: viam.proto.arr.data.BinaryID
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
@@ -2378,6 +2410,8 @@ Module Contents
       :returns: The list of bounding box labels.
       :rtype: List[str]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: get_database_connection(organization_id: str) -> str
@@ -2396,6 +2430,8 @@ Module Contents
 
       :returns: The hostname of the federated database.
       :rtype: str
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2418,6 +2454,8 @@ Module Contents
       :type organization_id: str
       :param password: The password of the user.
       :type password: str
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2444,6 +2482,8 @@ Module Contents
       :returns: The dataset ID of the created dataset.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: list_dataset_by_ids(ids: List[str]) -> Sequence[viam.proto.app.dataset.Dataset]
@@ -2467,6 +2507,8 @@ Module Contents
       :returns: The list of datasets.
       :rtype: Sequence[Dataset]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
@@ -2489,6 +2531,8 @@ Module Contents
       :returns: The list of datasets in the organization.
       :rtype: Sequence[Dataset]
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: rename_dataset(id: str, name: str) -> None
@@ -2509,6 +2553,8 @@ Module Contents
       :param name: The new name of the dataset.
       :type name: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: delete_dataset(id: str) -> None
@@ -2525,6 +2571,8 @@ Module Contents
 
       :param id: The ID of the dataset.
       :type id: str
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2567,6 +2615,8 @@ Module Contents
       :param dataset_id: The ID of the dataset to be added to.
       :type dataset_id: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
@@ -2607,6 +2657,8 @@ Module Contents
       :type binary_ids: List[BinaryID]
       :param dataset_id: The ID of the dataset to be removed from.
       :type dataset_id: str
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 
@@ -2663,6 +2715,8 @@ Module Contents
       :returns: The file_id of the uploaded data.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: tabular_data_capture_upload(tabular_data: List[Mapping[str, Any]], part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]] = None) -> str
@@ -2716,6 +2770,8 @@ Module Contents
       :returns: The file_id of the uploaded data.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: streaming_data_capture_upload(data: bytes, part_id: str, file_ext: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None, tags: Optional[List[str]] = None) -> str
@@ -2765,6 +2821,8 @@ Module Contents
       :returns: The file_id of the uploaded data.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: file_upload(part_id: str, data: bytes, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, file_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, file_extension: Optional[str] = None, tags: Optional[List[str]] = None) -> str
@@ -2812,6 +2870,8 @@ Module Contents
       :returns: ID of the new file.
       :rtype: str
 
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
 
 
    .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None) -> str
@@ -2851,6 +2911,8 @@ Module Contents
 
       :returns: ID of the new file.
       :rtype: str
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
 
 

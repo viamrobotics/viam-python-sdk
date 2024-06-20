@@ -422,12 +422,25 @@ Module Contents
        if __name__ == '__main__':
            asyncio.run(main())
 
+   For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
+
 
    .. py:method:: submit_training_job(org_id: str, dataset_id: str, model_name: str, model_version: str, model_type: viam.proto.app.mltraining.ModelType.ValueType, tags: List[str]) -> str
       :async:
 
 
       Submit a training job.
+
+      ::
+
+          job_id = await ml_training_client.submit_training_job(
+              organization_id=organization_id,
+              dataset_id=dataset_id,
+              model_name="your-model-name",
+              model_version="1",
+              model_type="ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION",
+              tags=tags
+          )
 
       :param org_id: the id of the org to submit the training job to
       :type org_id: str
@@ -445,6 +458,8 @@ Module Contents
       :returns: the id of the training job
       :rtype: str
 
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
+
 
 
    .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, model_name: str, model_version: str) -> str
@@ -452,6 +467,16 @@ Module Contents
 
 
       Submit a custom training job.
+
+      ::
+
+          job_id = await ml_training_client.submit_custom_training_job(
+              organization_id=organization_id,
+              dataset_id=dataset_id,
+              registry_item_id="your-registry-item-id",
+              model_name="your-model-name",
+              model_version="1"
+          )
 
       :param org_id: the id of the org to submit the training job to
       :type org_id: str
@@ -466,6 +491,8 @@ Module Contents
 
       :returns: the id of the training job
       :rtype: str
+
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
 
 
 
@@ -485,6 +512,8 @@ Module Contents
 
       :returns: training job data.
       :rtype: viam.proto.app.mltraining.TrainingJobMetadata
+
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
 
 
 
@@ -510,6 +539,8 @@ Module Contents
       :returns: a list of training job data.
       :rtype: List[viam.proto.app.mltraining.TrainingJobMetadata]
 
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
+
 
 
    .. py:method:: cancel_training_job(id: str) -> None
@@ -528,15 +559,25 @@ Module Contents
 
       :raises GRPCError: if no training job exists with the given id.
 
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
+
 
 
    .. py:method:: delete_completed_training_job(id: str) -> None
       :async:
 
 
-      Delete a completed training job from the database, whether the job succeeded or failed
+      Delete a completed training job from the database, whether the job succeeded or failed.
+
+      ::
+
+          await ml_training_client.delete_completed_training_job(
+              id="INSERT YOUR JOB ID")
+
       :param id: the id of the training job
       :type id: str
+
+      For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
 
 
 

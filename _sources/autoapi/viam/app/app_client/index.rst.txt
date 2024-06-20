@@ -4803,6 +4803,7 @@ Module Contents
        if __name__ == '__main__':
            asyncio.run(main())
 
+   For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
    .. py:method:: get_user_id_by_email(email: str) -> str
@@ -4820,6 +4821,8 @@ Module Contents
 
       :returns: The ID of the user.
       :rtype: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -4839,6 +4842,8 @@ Module Contents
       :returns: The created organization.
       :rtype: Organization
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: list_organizations() -> List[viam.proto.app.Organization]
@@ -4853,6 +4858,8 @@ Module Contents
 
       :returns: The list of organizations.
       :rtype: List[viam.proto.app.Organization]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -4872,6 +4879,8 @@ Module Contents
       :returns: The list of organizations.
       :rtype: List[viam.proto.app.OrganizationIdentity]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: list_organizations_by_user(user_id: str) -> List[viam.proto.app.OrgDetails]
@@ -4890,6 +4899,8 @@ Module Contents
       :returns: The list of organizations.
       :rtype: List[OrgDetails]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: get_organization(org_id: str) -> viam.proto.app.Organization
@@ -4905,6 +4916,8 @@ Module Contents
 
       :returns: The requested organization.
       :rtype: viam.proto.app.Organization
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -4927,6 +4940,8 @@ Module Contents
 
       :returns: True if the provided namespace is available.
       :rtype: bool
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -4952,6 +4967,8 @@ Module Contents
       :returns: The updated organization.
       :rtype: viam.proto.app.Organization
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_organization(org_id: str) -> None
@@ -4966,6 +4983,8 @@ Module Contents
       :param org_id: The ID of the organization.
                      You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -4986,6 +5005,8 @@ Module Contents
       :returns: A tuple containing two lists; the first
                 [0] of organization members, and the second [1] of organization invites.
       :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5018,6 +5039,8 @@ Module Contents
 
       :returns: The organization invite.
       :rtype: OrganizationInvite
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5065,6 +5088,8 @@ Module Contents
       :returns: The updated invite.
       :rtype: viam.proto.app.OrganizationInvite
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_organization_member(org_id: str, user_id: str) -> None
@@ -5086,6 +5111,8 @@ Module Contents
       :param user_id: The ID of the user to remove.
       :type user_id: str
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_organization_invite(org_id: str, email: str) -> None
@@ -5105,6 +5132,8 @@ Module Contents
       :type email: str
 
       :raises GRPCError: If no pending invite is associated with the provided email address.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5128,6 +5157,8 @@ Module Contents
 
       :returns: The organization invite sent.
       :rtype: viam.proto.app.OrganizationInvite
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5155,6 +5186,8 @@ Module Contents
       :returns: The newly created location.
       :rtype: viam.proto.app.Location
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: get_location(location_id: Optional[str] = None) -> viam.proto.app.Location
@@ -5175,6 +5208,8 @@ Module Contents
 
       :returns: The location.
       :rtype: viam.proto.app.Location
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5221,6 +5256,8 @@ Module Contents
       :returns: The newly updated location.
       :rtype: viam.proto.app.Location
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_location(location_id: str) -> None
@@ -5237,6 +5274,8 @@ Module Contents
       :type location_id: str
 
       :raises GRPCError: If an invalid location ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5257,6 +5296,8 @@ Module Contents
       :returns: The list of locations.
       :rtype: List[viam.proto.app.Location]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: share_location(organization_id: str, location_id: str) -> None
@@ -5274,6 +5315,8 @@ Module Contents
       :param location_id: The ID of the location.
       :type location_id: str
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: unshare_location(organization_id: str, location_id: str) -> None
@@ -5290,6 +5333,8 @@ Module Contents
       :type organization_id: str
       :param location_id: The ID of the location.
       :type location_id: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5313,6 +5358,8 @@ Module Contents
       :returns: The `LocationAuth` containing location secrets.
       :rtype: viam.proto.app.LocationAuth
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: create_location_secret(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
@@ -5335,6 +5382,8 @@ Module Contents
       :returns: The specified location's `LocationAuth` containing the newly created secret.
       :rtype: viam.proto.app.LocationAuth
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_location_secret(secret_id: str, location_id: Optional[str] = None) -> None
@@ -5356,6 +5405,8 @@ Module Contents
       :raises GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn't passed and there was no location
           ID provided at `AppClient` instantiation.
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: get_robot(robot_id: str) -> viam.proto.app.Robot
@@ -5376,6 +5427,8 @@ Module Contents
       :returns: The robot.
       :rtype: viam.proto.app.Robot
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: get_rover_rental_robots(org_id: str) -> List[viam.proto.app.RoverRentalRobot]
@@ -5394,6 +5447,8 @@ Module Contents
 
       :returns: The list of rover rental robots.
       :rtype: List[viam.proto.app.RoverRentalRobot]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5415,6 +5470,8 @@ Module Contents
 
       :returns: The list of robot parts.
       :rtype: List[viam.app.app_client.RobotPart]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5440,6 +5497,8 @@ Module Contents
 
       :returns: The robot part.
       :rtype: viam.app.app_client.RobotPart
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5471,6 +5530,8 @@ Module Contents
 
       :returns: The list of log entries.
       :rtype: List[viam.app.app_client.LogEntry]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5517,6 +5578,8 @@ Module Contents
       :returns: The list of the robot part's history.
       :rtype: List[viam.app.app_client.RobotPartHistoryEntry]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart
@@ -5543,6 +5606,8 @@ Module Contents
       :returns: The newly updated robot part.
       :rtype: viam.app.app_client.RobotPart
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: new_robot_part(robot_id: str, part_name: str) -> str
@@ -5566,6 +5631,8 @@ Module Contents
       :returns: The new robot part's ID.
       :rtype: str
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_robot_part(robot_part_id: str) -> None
@@ -5583,6 +5650,8 @@ Module Contents
       :type robot_part_id: str
 
       :raises GRPCError: If an invalid robot part ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5602,6 +5671,8 @@ Module Contents
       :returns: The list of API keys.
       :rtype: List[APIKeyWithAuthorizations]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: mark_part_as_main(robot_part_id: str) -> None
@@ -5620,6 +5691,8 @@ Module Contents
 
       :raises GRPCError: If an invalid robot part ID is passed.
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: mark_part_for_restart(robot_part_id: str) -> None
@@ -5637,6 +5710,8 @@ Module Contents
       :type robot_part_id: str
 
       :raises GRPCError: If an invalid robot part ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5659,6 +5734,8 @@ Module Contents
       :returns: The robot part the new secret was generated for.
       :rtype: viam.app.app_client.RobotPart
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_robot_part_secret(robot_part_id: str, secret_id: str) -> None
@@ -5679,6 +5756,8 @@ Module Contents
       :type secret_id: str
 
       :raises GRPCError: If an invalid robot part ID or secret ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5702,6 +5781,8 @@ Module Contents
       :returns: The list of robots.
       :rtype: List[viam.proto.app.Robot]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: new_robot(name: str, location_id: Optional[str] = None) -> str
@@ -5724,6 +5805,8 @@ Module Contents
 
       :returns: The new robot's ID.
       :rtype: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5753,6 +5836,8 @@ Module Contents
       :returns: The newly updated robot.
       :rtype: viam.proto.app.Robot
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_robot(robot_id: str) -> None
@@ -5769,6 +5854,8 @@ Module Contents
       :type robot_id: str
 
       :raises GRPCError: If an invalid robot ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5790,6 +5877,8 @@ Module Contents
 
       :returns: The list of fragments.
       :rtype: List[viam.app.app_client.Fragment]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5813,6 +5902,8 @@ Module Contents
 
       :returns: The fragment.
       :rtype: viam.app.app_client.Fragment
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5839,6 +5930,8 @@ Module Contents
 
       :returns: The newly created fragment.
       :rtype: viam.app.app_client.Fragment
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5870,6 +5963,8 @@ Module Contents
       :returns: The newly updated fragment.
       :rtype: viam.app.app_client.Fragment
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_fragment(fragment_id: str) -> None
@@ -5887,6 +5982,8 @@ Module Contents
       :type fragment_id: str
 
       :raises GRPCError: If an invalid fragment ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5920,6 +6017,8 @@ Module Contents
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: remove_role(org_id: str, identity_id: str, role: Union[Literal['owner'], Literal['operator']], resource_type: Union[Literal['organization'], Literal['location'], Literal['robot']], resource_id: str) -> None
@@ -5951,6 +6050,8 @@ Module Contents
       :type resource_id: str
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -5994,6 +6095,8 @@ Module Contents
       :param new_resource_id: New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type new_resource_id: str
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: list_authorizations(org_id: str, resource_ids: Optional[List[str]] = None) -> List[viam.proto.app.Authorization]
@@ -6018,6 +6121,8 @@ Module Contents
 
       :returns: The list of authorizations.
       :rtype: List[viam.proto.app.Authorization]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6049,6 +6154,8 @@ Module Contents
       :returns: The permissions argument, with invalid permissions filtered out.
       :rtype: List[viam.proto.app.AuthorizedPermissions]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: get_registry_item(item_id: str) -> viam.proto.app.RegistryItem
@@ -6066,6 +6173,8 @@ Module Contents
 
       :returns: The registry item.
       :rtype: RegistryItem
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6085,6 +6194,8 @@ Module Contents
       :type name: str
       :param type: The type of the item in the registry.
       :type type: PackageType.ValueType
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6133,6 +6244,8 @@ Module Contents
       :returns: The list of registry items.
       :rtype: List[RegistryItem]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_registry_item(item_id: str) -> None
@@ -6147,6 +6260,8 @@ Module Contents
 
       :param item_id: The ID of the registry item.
       :type item_id: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6171,6 +6286,8 @@ Module Contents
 
       :returns: A tuple containing the ID [0] of the new module and its URL [1].
       :rtype: Tuple[str, str]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6207,6 +6324,8 @@ Module Contents
       :returns: The URL of the newly updated module.
       :rtype: str
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: upload_module_file(module_file_info: Optional[viam.proto.app.ModuleFileInfo], file: bytes) -> str
@@ -6226,6 +6345,8 @@ Module Contents
 
       :returns: ID of uploaded file.
       :rtype: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6247,6 +6368,8 @@ Module Contents
       :returns: The module.
       :rtype: viam.proto.app.Module
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: list_modules(org_id: str) -> List[viam.proto.app.Module]
@@ -6265,6 +6388,8 @@ Module Contents
 
       :returns: The list of modules.
       :rtype: List[viam.proto.app.Module]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6300,6 +6425,8 @@ Module Contents
       :returns: The api key and api key ID.
       :rtype: Tuple[str, str]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
 
 
    .. py:method:: delete_key(id: str) -> None
@@ -6314,6 +6441,8 @@ Module Contents
 
       :param id: The ID of the API key.
       :type id: str
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6333,6 +6462,8 @@ Module Contents
 
       :returns: The API key and API key id
       :rtype: Tuple[str, str]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
@@ -6370,6 +6501,8 @@ Module Contents
 
       :returns: The API key and API key id
       :rtype: Tuple[str, str]
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
 
 
