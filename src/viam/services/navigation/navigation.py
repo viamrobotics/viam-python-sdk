@@ -14,6 +14,8 @@ class Navigation(ServiceBase):
     This acts as an abstract base class for any drivers representing specific
     navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -41,6 +43,8 @@ class Navigation(ServiceBase):
             List[navigation.Path]: An array comprised of Paths, where each path is either a user-provided destination or
             a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
             reach the specified destination or Waypoint.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -63,6 +67,8 @@ class Navigation(ServiceBase):
         Returns:
             navigation.GeoPoint: The current location of the robot in the navigation service,
             represented in a GeoPoint with latitude and longitude values.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -88,6 +94,8 @@ class Navigation(ServiceBase):
         Returns:
             List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service’s data storage.
             These are objects designated for the robot to avoid when navigating.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -111,6 +119,8 @@ class Navigation(ServiceBase):
         Returns:
             List[navigation.Waypoint]: An array comprised of each Waypoint in the service’s data storage.
             These are locations designated within a path for the robot to navigate to.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -135,6 +145,8 @@ class Navigation(ServiceBase):
                 represented in a GeoPoint with latitude and longitude values.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -155,6 +167,8 @@ class Navigation(ServiceBase):
             id (str): The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -181,6 +195,8 @@ class Navigation(ServiceBase):
 
         Returns:
             navigation.Mode.ValueType: The Mode the service is operating in.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -205,6 +221,8 @@ class Navigation(ServiceBase):
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
             mode (navigation.Mode.ValueType): The Mode for the service to operate in.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -226,5 +244,7 @@ class Navigation(ServiceBase):
 
         Returns:
             MapType.ValueType: Information about the type of map the service is using.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
