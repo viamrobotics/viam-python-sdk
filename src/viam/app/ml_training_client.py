@@ -203,7 +203,6 @@ class MLTrainingClient:
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
-
         training_status = training_status if training_status else TrainingStatus.TRAINING_STATUS_UNSPECIFIED
         request = ListTrainingJobsRequest(organization_id=org_id, status=training_status)
         response: ListTrainingJobsResponse = await self._ml_training_client.ListTrainingJobs(request, metadata=self._metadata)

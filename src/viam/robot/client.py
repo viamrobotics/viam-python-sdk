@@ -161,7 +161,7 @@ class RobotClient:
             Returns:
                 Self: the RobotClient.Options
 
-            For more information, see `Establish a connection with the Machine Management API <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+            For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
             """
             self = cls(**kwargs)
             dial_opts = DialOptions.with_api_key(api_key, api_key_id)
@@ -196,7 +196,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
 
-        For more information, see `Establish a connection with the Machine Management API <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+        For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
         """
         logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
@@ -229,7 +229,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
 
-        For more information, see `Establish a connection with the Machine Management API <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
+        For more information, see `Establish a connection <https://docs.viam.com/appendix/apis/robot/#establish-a-connection>`_.
         """
         logging.setLevel(options.log_level)
         return await cls._with_channel(channel, options, False)
