@@ -100,7 +100,7 @@ Sessions are a safety feature that automatically cancel operations made by the p
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
 
-More examples can be found in the [`examples`](/examples) directory.
+More examples can be found in the [`examples`](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples) directory.
 
 ## Documentation
 
