@@ -878,14 +878,13 @@ registering it to the <code class="docutils literal notranslate"><span class="pr
 <dd><p>EasyResource is a mixin that simplifies the process of creating Viam modules (extension programs)
 and resources (the resource classes provided by those extension programs).</p>
 <p>Basic usage:</p>
-<dl>
-<dt>class MyModel(Sensor, EasyResource):</dt><dd><p>MODEL = “my-org:sensor:my-sensor”</p>
-<dl class="simple">
-<dt>async def get_readings(self, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs):</dt><dd><p>return {“ok”: True}</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">Sensor</span><span class="p">,</span> <span class="n">EasyResource</span><span class="p">):</span>
+    <span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;my-org:sensor:my-sensor&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;ok&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
 <p>See examples/easy_resource/main.py for extended usage.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.SUBTYPE">

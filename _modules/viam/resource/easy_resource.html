@@ -122,11 +122,13 @@
 
 <span class="sd">    Basic usage:</span>
 
-<span class="sd">    class MyModel(Sensor, EasyResource):</span>
-<span class="sd">        MODEL = &quot;my-org:sensor:my-sensor&quot;</span>
+<span class="sd">    ::</span>
 
-<span class="sd">        async def get_readings(self, **kwargs):</span>
-<span class="sd">            return {&quot;ok&quot;: True}</span>
+<span class="sd">        class MyModel(Sensor, EasyResource):</span>
+<span class="sd">            MODEL = &quot;my-org:sensor:my-sensor&quot;</span>
+
+<span class="sd">            async def get_readings(self, **kwargs):</span>
+<span class="sd">                return {&quot;ok&quot;: True}</span>
 
 <span class="sd">    See examples/easy_resource/main.py for extended usage.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
