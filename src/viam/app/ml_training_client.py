@@ -109,7 +109,7 @@ class MLTrainingClient:
 
         request = SubmitTrainingJobRequest(
             dataset_id=dataset_id,
-            org_id=org_id,
+            organization_id =org_id,
             model_name=model_name,
             model_version=model_version,
             model_type=model_type,
