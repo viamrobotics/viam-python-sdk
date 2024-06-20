@@ -54,6 +54,8 @@ class MLTrainingClient:
 
         if __name__ == '__main__':
             asyncio.run(main())
+
+    For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -62,6 +64,8 @@ class MLTrainingClient:
         Args:
             channel (grpclib.client.Channel): Connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
         self._metadata = metadata
         self._ml_training_client = MLTrainingServiceStub(channel)
@@ -78,6 +82,17 @@ class MLTrainingClient:
     ) -> str:
         """Submit a training job.
 
+        ::
+
+            job_id = await ml_training_client.submit_training_job(
+                organization_id=organization_id,
+                dataset_id=dataset_id,
+                model_name="your-model-name",
+                model_version="1",
+                model_type="ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION",
+                tags=tags
+            )
+
         Args:
             org_id (str): the id of the org to submit the training job to
             dataset_id (str): the id of the dataset
@@ -88,6 +103,8 @@ class MLTrainingClient:
 
         Returns:
             str: the id of the training job
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
         request = SubmitTrainingJobRequest(
@@ -106,6 +123,16 @@ class MLTrainingClient:
     ) -> str:
         """Submit a custom training job.
 
+        ::
+
+            job_id = await ml_training_client.submit_custom_training_job(
+                organization_id=organization_id,
+                dataset_id=dataset_id,
+                registry_item_id="your-registry-item-id",
+                model_name="your-model-name",
+                model_version="1"
+            )
+
         Args:
             org_id (str): the id of the org to submit the training job to
             dataset_id (str): the id of the dataset
@@ -115,6 +142,8 @@ class MLTrainingClient:
 
         Returns:
             str: the id of the training job
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
         request = SubmitCustomTrainingJobRequest(
@@ -140,6 +169,8 @@ class MLTrainingClient:
 
         Returns:
             viam.proto.app.mltraining.TrainingJobMetadata: training job data.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
         request = GetTrainingJobRequest(id=id)
@@ -168,6 +199,8 @@ class MLTrainingClient:
 
         Returns:
             List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
         training_status = training_status if training_status else TrainingStatus.TRAINING_STATUS_UNSPECIFIED
@@ -189,16 +222,25 @@ class MLTrainingClient:
 
         Raises:
             GRPCError: if no training job exists with the given id.
+
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
 
         request = CancelTrainingJobRequest(id=id)
         await self._ml_training_client.CancelTrainingJob(request, metadata=self._metadata)
 
     async def delete_completed_training_job(self, id: str) -> None:
-        """Delete a completed training job from the database, whether the job succeeded or failed
+        """Delete a completed training job from the database, whether the job succeeded or failed.
+
+        ::
+
+            await ml_training_client.delete_completed_training_job(
+                id="INSERT YOUR JOB ID")
+
         Args:
             id (str): the id of the training job
-        """
 
+        For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
+        """
         request = DeleteCompletedTrainingJobRequest(id=id)
         await self._ml_training_client.DeleteCompletedTrainingJob(request, metadata=self._metadata)
