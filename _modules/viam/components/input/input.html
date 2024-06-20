@@ -229,6 +229,8 @@
 <span class="sd">    ::</span>
 
 <span class="sd">        from viam.components.input import Control, Controller, EventType</span>
+
+<span class="sd">    For more information, see `Input Controller component &lt;https://docs.viam.com/components/input-controller/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -254,6 +256,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Control]: List of controls provided by the Controller</span>
+
+<span class="sd">        For more information, see `Input Controller component &lt;https://docs.viam.com/components/input-controller/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -279,6 +283,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Dict[Control, Event]: The most recent event for each input</span>
+
+<span class="sd">        For more information, see `Input Controller component &lt;https://docs.viam.com/components/input-controller/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -342,6 +348,8 @@
 <span class="sd">                trigger the function</span>
 <span class="sd">            function (ControlFunction): The function to run on</span>
 <span class="sd">                specific triggers</span>
+
+<span class="sd">        For more information, see `Input Controller component &lt;https://docs.viam.com/components/input-controller/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -367,6 +375,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            event (Event): The event to trigger</span>
+
+<span class="sd">        For more information, see `Input Controller component &lt;https://docs.viam.com/components/input-controller/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input controller named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support triggering events&quot;</span><span class="p">)</span></div></div>
 </pre></div>

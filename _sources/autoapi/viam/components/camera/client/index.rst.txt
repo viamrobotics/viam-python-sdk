@@ -33,6 +33,7 @@ Classes
    viam.components.camera.client.GetPointCloudResponse
    viam.components.camera.client.GetPropertiesRequest
    viam.components.camera.client.ReconfigurableResourceRPCClientBase
+   viam.components.camera.client.Camera
    viam.components.camera.client.CameraClient
 
 
@@ -620,6 +621,258 @@ Module Contents
 
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
+.. py:class:: Camera(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Camera represents any physical hardware that can capture frames.
+
+   This acts as an abstract base class for any drivers representing specific
+   camera implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.camera import Camera
+
+   For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:attribute:: Properties
+      :type:  TypeAlias
+      :value: GetPropertiesResponse
+
+
+
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.media.video.ViamImage
+      :abstractmethod:
+
+      :async:
+
+
+      Get the next image from the camera as a ViamImage.
+      Be sure to close the image when finished.
+
+      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
+      to convert the data to a standard representation.
+
+      ::
+
+          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+          # Assume "frame" has a mime_type of "image/vnd.viam.dep"
+          frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
+
+          # Convert "frame" to a standard 2D image representation.
+          # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
+          standard_frame = frame.bytes_to_depth_array()
+
+      :param mime_type: The desired mime type of the image. This does not guarantee output type
+      :type mime_type: str
+
+      :returns: The frame.
+      :rtype: ViamImage
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
+
+
+   .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+      :abstractmethod:
+
+      :async:
+
+
+      Get simultaneous images from different imagers, along with associated metadata.
+      This should not be used for getting a time series of images from the same imager.
+
+      ::
+
+          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+          images, metadata = await my_camera.get_images()
+          img0 = images[0].image
+          timestamp = metadata.captured_at
+
+      :returns: A tuple containing two values; the first [0] a list of images
+                returned from the camera system, and the second [1] the metadata associated with this response.
+      :rtype: Tuple[List[NamedImage], ResponseMetadata]
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
+
+
+   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the next point cloud from the camera. This will be
+      returned as bytes with a mimetype describing
+      the structure of the data. The consumer of this call
+      should encode the bytes into the formatted suggested
+      by the mimetype.
+
+      To deserialize the returned information into a numpy array, use the Open3D library.
+      ::
+
+          import numpy as np
+          import open3d as o3d
+
+          data, _ = await camera.get_point_cloud()
+
+          # write the point cloud into a temporary file
+          with open("/tmp/pointcloud_data.pcd", "wb") as f:
+              f.write(data)
+          pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
+          points = np.asarray(pcd.points)
+
+      :returns: A tuple containing two values; the first [0] the pointcloud data,
+                and the second [1] the mimetype of the pointcloud (for example, PCD).
+      :rtype: Tuple[bytes, str]
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
+      :abstractmethod:
+
+      :async:
+
+
+      Get the camera intrinsic parameters and camera distortion parameters
+
+      ::
+
+          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+          properties = await my_camera.get_properties()
+
+      :returns: The properties of the camera.
+      :rtype: Properties
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
 .. py:class:: CameraClient(name: str, channel: grpclib.client.Channel)
 
    Bases: :py:obj:`viam.components.camera.Camera`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
@@ -655,6 +908,8 @@ Module Contents
       :returns: The frame.
       :rtype: ViamImage
 
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
 
 
    .. py:method:: get_images(*, timeout: Optional[float] = None, **__) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
@@ -675,6 +930,8 @@ Module Contents
       :returns: A tuple containing two values; the first [0] a list of images
                 returned from the camera system, and the second [1] the metadata associated with this response.
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
 
 
 
@@ -706,6 +963,8 @@ Module Contents
                 and the second [1] the mimetype of the pointcloud (for example, PCD).
       :rtype: Tuple[bytes, str]
 
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.camera.Camera.Properties
@@ -722,6 +981,8 @@ Module Contents
 
       :returns: The properties of the camera.
       :rtype: Properties
+
+      For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
 
 
 

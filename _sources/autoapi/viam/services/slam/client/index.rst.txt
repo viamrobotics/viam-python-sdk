@@ -28,6 +28,8 @@ Classes
    viam.services.slam.client.GetPropertiesRequest
    viam.services.slam.client.SLAMServiceStub
    viam.services.slam.client.ReconfigurableResourceRPCClientBase
+   viam.services.slam.client.Pose
+   viam.services.slam.client.SLAM
    viam.services.slam.client.SLAMClient
 
 
@@ -341,6 +343,281 @@ Module Contents
 .. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
 
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
+
+.. py:class:: Pose(*, x: float = ..., y: float = ..., z: float = ..., o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Pose is a combination of location and orientation.
+   Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
+   is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
+   the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
+   incrementing / decrementing theta will perform an inline rotation of the end effector.
+   Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
+   second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
+   is circled, the Roll will correct itself to remain in-line.
+
+
+   .. py:attribute:: x
+      :type:  float
+
+      millimeters from the origin
+
+
+   .. py:attribute:: y
+      :type:  float
+
+      millimeters from the origin
+
+
+   .. py:attribute:: z
+      :type:  float
+
+      millimeters from the origin
+
+
+   .. py:attribute:: o_x
+      :type:  float
+
+      z component of a vector defining axis of rotation
+
+
+   .. py:attribute:: o_y
+      :type:  float
+
+      x component of a vector defining axis of rotation
+
+
+   .. py:attribute:: o_z
+      :type:  float
+
+      y component of a vector defining axis of rotation
+
+
+   .. py:attribute:: theta
+      :type:  float
+
+      degrees
+
+
+.. py:class:: SLAM(name: str)
+
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
+
+
+   SLAM represents a SLAM service.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+
+   .. py:attribute:: Properties
+      :type:  TypeAlias
+      :value: GetPropertiesResponse
+
+
+
+   .. py:method:: get_internal_state(*, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the internal state of the SLAM algorithm required to continue mapping/localization.
+
+      ::
+
+          slam = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the internal state of the SLAM algorithm required to continue mapping/localization.
+          internal_state = await slam.get_internal_state()
+
+      :returns: Chunks of the internal state of the SLAM algorithm
+      :rtype: List[GetInternalStateResponse]
+
+
+
+   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
+
+      :async:
+
+
+      Get the point cloud map.
+
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the point cloud map in standard PCD format.
+          pcd_map = await slam_svc.get_point_cloud_map()
+
+      :param return_edited_map: signal to the SLAM service to return an edited map, if the map package contains one and if
+                                the SLAM service supports the feature
+      :type return_edited_map: bool
+
+      :returns: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
+                GetPointCloudMapResponse.point_cloud_pcd_chunk values.
+      :rtype: List[GetPointCloudMapResponse]
+
+
+
+   .. py:method:: get_position(*, timeout: Optional[float]) -> viam.services.slam.Pose
+      :abstractmethod:
+
+      :async:
+
+
+      Get current position of the specified component in the SLAM Map.
+
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the current position of the specified source component in the SLAM map as a Pose.
+          pose = await slam.get_position()
+
+      :returns: The current position of the specified component
+      :rtype: Pose
+
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> Properties
+      :abstractmethod:
+
+      :async:
+
+
+      Get information regarding the current SLAM session.
+
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the properties of your current SLAM session.
+          slam_properties = await slam_svc.get_properties()
+
+      :returns: The properties of SLAM
+      :rtype: Properties
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = my_arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
 
 .. py:class:: SLAMClient(name: str, channel: grpclib.client.Channel)
 

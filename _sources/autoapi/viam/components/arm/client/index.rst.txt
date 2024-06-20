@@ -660,6 +660,8 @@ Module Contents
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :rtype: Pose
 
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+
 
 
    .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -684,6 +686,8 @@ Module Contents
                    Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :type pose: Pose
 
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+
 
 
    .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.proto.component.arm.JointPositions
@@ -703,6 +707,8 @@ Module Contents
                 ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
                 and translational values (mm).
       :rtype: JointPositions
+
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
 
 
 
@@ -730,6 +736,8 @@ Module Contents
       :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+
 
 
    .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
@@ -745,6 +753,7 @@ Module Contents
           # Stop all motion of the arm. It is assumed that the arm stops immediately.
           await my_arm.stop()
 
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
 
 
 
@@ -766,6 +775,8 @@ Module Contents
 
       :returns: Whether the arm is moving.
       :rtype: bool
+
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
 
 
 
@@ -813,6 +824,8 @@ Module Contents
                 file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra), and the second [1] value
                 represents the byte contents of the file.
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
+
+      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
 
 
 

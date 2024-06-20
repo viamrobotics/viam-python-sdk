@@ -103,16 +103,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.ServiceBase.close"><code class="docutils literal notranslate"><span class="pre">ServiceBase.close()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.slam.Pose"><code class="docutils literal notranslate"><span class="pre">Pose</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.x"><code class="docutils literal notranslate"><span class="pre">Pose.x</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.y"><code class="docutils literal notranslate"><span class="pre">Pose.y</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.z"><code class="docutils literal notranslate"><span class="pre">Pose.z</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.o_x"><code class="docutils literal notranslate"><span class="pre">Pose.o_x</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.o_y"><code class="docutils literal notranslate"><span class="pre">Pose.o_y</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.o_z"><code class="docutils literal notranslate"><span class="pre">Pose.o_z</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.Pose.theta"><code class="docutils literal notranslate"><span class="pre">Pose.theta</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.slam.slam.SLAM"><code class="docutils literal notranslate"><span class="pre">SLAM</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.SLAM.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">SLAM.SUBTYPE</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.SLAM.Properties"><code class="docutils literal notranslate"><span class="pre">SLAM.Properties</span></code></a></li>
@@ -206,10 +196,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.slam.ServiceBase" title="viam.services.slam.slam.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceBase</span></code></a></p></td>
 <td><p>This class describes the base functionality required for a Viam Service.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.slam.Pose" title="viam.services.slam.slam.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
-<td><p>Pose is a combination of location and orientation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.slam.SLAM" title="viam.services.slam.slam.SLAM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAM</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.slam.SLAM" title="viam.services.slam.slam.SLAM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAM</span></code></a></p></td>
 <td><p>SLAM represents a SLAM service.</p></td>
 </tr>
 </tbody>
@@ -516,62 +503,6 @@ non-Close methods are called.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.slam.</span></span><span class="sig-name descname"><span class="pre">Pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.slam.Pose" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Pose is a combination of location and orientation.
-Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
-is represented by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
-the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
-incrementing / decrementing theta will perform an inline rotation of the end effector.
-Theta is defined as rotation between two planes: the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the
-second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole
-is circled, the Roll will correct itself to remain in-line.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.x">
-<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.x" title="Permalink to this definition"></a></dt>
-<dd><p>millimeters from the origin</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.y">
-<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.y" title="Permalink to this definition"></a></dt>
-<dd><p>millimeters from the origin</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.z">
-<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.z" title="Permalink to this definition"></a></dt>
-<dd><p>millimeters from the origin</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.o_x">
-<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.o_x" title="Permalink to this definition"></a></dt>
-<dd><p>z component of a vector defining axis of rotation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.o_y">
-<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.o_y" title="Permalink to this definition"></a></dt>
-<dd><p>x component of a vector defining axis of rotation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.o_z">
-<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.o_z" title="Permalink to this definition"></a></dt>
-<dd><p>y component of a vector defining axis of rotation</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.slam.slam.Pose.theta">
-<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.slam.slam.Pose.theta" title="Permalink to this definition"></a></dt>
-<dd><p>degrees</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.services.slam.slam.SLAM">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.slam.</span></span><span class="sig-name descname"><span class="pre">SLAM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a></p>
@@ -661,7 +592,7 @@ GetPointCloudMapResponse.point_cloud_pcd_chunk values.</p>
 <dd class="field-odd"><p>The current position of the specified component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.services.slam.slam.Pose" title="viam.services.slam.slam.Pose">Pose</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../../../components/arm/arm/index.html#viam.components.arm.arm.Pose" title="viam.components.arm.arm.Pose">Pose</a></p>
 </dd>
 </dl>
 </dd></dl>
