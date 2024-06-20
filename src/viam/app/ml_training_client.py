@@ -109,7 +109,7 @@ class MLTrainingClient:
 
         request = SubmitTrainingJobRequest(
             dataset_id=dataset_id,
-            organization_id =org_id,
+            organization_id=org_id,
             model_name=model_name,
             model_version=model_version,
             model_type=model_type,
@@ -126,7 +126,7 @@ class MLTrainingClient:
         ::
 
             job_id = await ml_training_client.submit_custom_training_job(
-                org_id=organization_id,
+                organization_id=organization_id,
                 dataset_id=dataset_id,
                 registry_item_id="your-registry-item-id",
                 model_name="your-model-name",
