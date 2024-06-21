@@ -1,8 +1,9 @@
 import pytest
 
 from viam.components.generic import Generic
+from viam.components.motor import Motor
 from viam.proto.app.robot import ComponentConfig
-from viam.resource.easy_resource import _parse_model, EasyResource
+from viam.resource.easy_resource import _parse_model, EasyResource, stub_model
 from viam.resource.registry import Registry
 from viam.resource.types import Model, ModelFamily
 
@@ -31,3 +32,13 @@ class TestEasyResource:
         # can it be instantiated:
         resource = SubclassTest.new(ComponentConfig(name="hello"), {})
         assert resource.name == "hello"
+
+    def test_stubs(self, clear_registry):
+        class MyMotor(Motor, EasyResource):
+            MODEL = "org:type:name"
+        with pytest.raises(TypeError):
+            # this has unimplemented abstract methods and should fail with TypeError
+            MyMotor('name')
+
+        MyMotor = stub_model(MyMotor)
+        MyMotor('name') # this has been stubbed and should now succeed
