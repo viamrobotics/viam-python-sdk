@@ -220,22 +220,23 @@ All components must inherit from this class.</p>
 <p>Report the position of the encoder.
 The value returned is the current position in terms of it’s <code class="docutils literal notranslate"><span class="pre">position_type</span></code>.
 The position will be either in relative units (ticks away from a zero position) for
-<code class="docutils literal notranslate"><span class="pre">PositionType.TICKS</span></code> or absolute units (degrees along a circle) for <code class="docutils literal notranslate"><span class="pre">PositionType.DEGREES</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">PositionType.POSITION_TYPE_TICKS_COUNT</span></code> or absolute units (degrees along a circle)
+for <code class="docutils literal notranslate"><span class="pre">PositionType.POSITION_TYPE_ANGLE_DEGREES</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_encoder&#39;</span><span class="p">)</span>
 
 <span class="c1"># Get the position of the encoder in ticks</span>
-<span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_encoder</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">encoder</span><span class="o">.</span><span class="n">PositionTypeTicks</span><span class="p">)</span>
+<span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_encoder</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">PositionType</span><span class="o">.</span><span class="n">POSITION_TYPE_TICKS_COUNT</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The encoder position is currently &quot;</span><span class="p">,</span> <span class="n">position</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">position</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>position_type</strong> (<em>PositionType.ValueType</em>) – The desired output type of the position.</p>
+<dd class="field-odd"><p><strong>position_type</strong> (<a class="reference internal" href="client/index.html#viam.components.encoder.client.PositionType" title="viam.components.encoder.client.PositionType"><em>PositionType</em></a>) – The desired output type of the position.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple containing two values; the first [0] the Position of the encoder
-which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
-and the second [1] the type of position the encoder returns (ticks or degrees).</p>
+<dd class="field-even"><p>A tuple containing two values; the first [0] the position of the encoder which can either be
+ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
+position the encoder returns (ticks or degrees).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Tuple[float, <a class="reference internal" href="client/index.html#viam.components.encoder.client.PositionType" title="viam.components.encoder.client.PositionType">PositionType</a>]</p>
@@ -251,7 +252,7 @@ and the second [1] the type of position the encoder returns (ticks or degrees).<
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<p>Return a dictionary of the types of position reporting this encoder supports</p>
+<p>Return a dictionary of the types of position reporting this encoder supports.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_encoder</span> <span class="o">=</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_encoder&#39;</span><span class="p">)</span>
 
 <span class="c1"># Get whether the encoder returns position in ticks or degrees.</span>
