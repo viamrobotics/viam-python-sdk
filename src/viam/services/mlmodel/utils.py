@@ -65,7 +65,7 @@ def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
 
     def get_tensor_data(ndarray: NDArray):
         """Takes an ndarray and returns the corresponding tensor data class instance
-        e.g. FlatTensorDataInt8, FlatTensorDataUInt8 etc."""
+        for example FlatTensorDataInt8, FlatTensorDataUInt8 etc."""
         tensor_data_class = dtype_name_to_tensor_data_class[ndarray.dtype.name]
         data = ndarray.flatten()
         if tensor_data_class == FlatTensorDataInt8 or tensor_data_class == FlatTensorDataUInt8:
@@ -77,7 +77,7 @@ def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
 
     def get_tensor_data_type(ndarray: NDArray):
         """Takes ndarray and returns a FlatTensor datatype property to be set
-        e.g. "float_tensor", "uint32_tensor" etc."""
+        for example "float_tensor", "uint32_tensor" etc."""
         if ndarray.dtype == np.float32:
             return "float_tensor"
         elif ndarray.dtype == np.float64:

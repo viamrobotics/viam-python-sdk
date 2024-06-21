@@ -1,4 +1,6 @@
+import argparse
 import io
+import logging as pylogging
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
@@ -35,6 +37,16 @@ from .types import Reconfigurable, Stoppable
 LOGGER = logging.getLogger(__name__)
 
 
+def _parse_module_args() -> argparse.Namespace:
+    """
+    Parse command-line args. Used by the various `Module` entrypoints.
+    """
+    p = argparse.ArgumentParser(description="Start this viam python module")
+    p.add_argument('socket_path', help="path where this module will serve a unix socket")
+    p.add_argument('--log-level', type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
+    return p.parse_args()
+
+
 class Module:
     _address: str
     _parent_address: Optional[str] = None
@@ -57,12 +69,38 @@ class Module:
         Returns:
             Module: a new Module instance
         """
-        args = sys.argv
-        if len(args) < 2:
-            raise Exception("Need socket path as command line argument")
-        address = args[1]
-        log_level = logging.DEBUG if (len(args) == 3 and "=debug" in args[2].lower()) else logging.INFO
-        return cls(address, log_level=log_level)
+        args = _parse_module_args()
+        return cls(args.socket_path, log_level=args.log_level)
+
+    @classmethod
+    async def run_with_models(cls, *models: ResourceBase):
+        """
+        Module entrypoint that takes a list of ResourceBase implementations.
+        In most cases you'll want to use run_from_registry instead (see below).
+        """
+        module = cls.from_args()
+        for model in models:
+            if not hasattr(model, 'MODEL'):
+                raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
+            module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
+        await module.start()
+
+    @classmethod
+    async def run_from_registry(cls):
+        """
+        Module entrypoint that automatically includes all the resources you've created in your program.
+
+        Example:
+
+        if __name__ == '__main__':
+            asyncio.run(Module.run_from_registry())
+
+        Full example at examples/easy_resource/main.py.
+        """
+        module = cls.from_args()
+        for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
+            module.add_model_from_registry(*key.split('/'))  # pyright: ignore [reportArgumentType]
+        await module.start()
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
         # When a module is launched by viam-server, its stdout is not connected to a tty.  In
@@ -129,7 +167,7 @@ class Module:
 
     def set_ready(self, ready: bool):
         """Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful
-        in instances where the module is not instantly ready (e.g. waiting on hardware)
+        in instances where the module is not instantly ready (for example waiting on hardware)
 
         Args:
             ready (bool): Whether the module is ready

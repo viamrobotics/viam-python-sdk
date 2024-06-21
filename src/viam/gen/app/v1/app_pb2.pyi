@@ -2322,15 +2322,19 @@ global___ModuleMetadata = ModuleMetadata
 class MLModelMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+    model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
 
     @property
     def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """A list of package versions for a ML model"""
 
-    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
         ...
 global___MLModelMetadata = MLModelMetadata
 

@@ -94,6 +94,7 @@ ROVER_RENTAL_ROBOT = RoverRentalRobot(
 ROVER_RENTAL_ROBOTS = [ROVER_RENTAL_ROBOT]
 FILTER = "filter"
 ERRORS_ONLY = True
+LOG_LEVELS = ["error", "warn"]
 HOST = "host"
 LEVEL = "level"
 LOGGER_NAME = "logger_name"
@@ -467,10 +468,10 @@ class TestClient:
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM)
+            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
-            assert service.errors_only == ERRORS_ONLY
+            assert service.levels == LOG_LEVELS
             assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
 
     @pytest.mark.asyncio
