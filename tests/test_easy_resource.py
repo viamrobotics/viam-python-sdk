@@ -41,4 +41,4 @@ class TestEasyResource:
             MyMotor('name')
 
         MyMotor = stub_model(MyMotor)
-        MyMotor('name') # this has been stubbed and should now succeed
+        MyMotor('name')  # this has been stubbed and should now succeed
