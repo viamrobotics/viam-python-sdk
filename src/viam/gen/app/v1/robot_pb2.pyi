@@ -339,6 +339,7 @@ class ServiceConfig(google.protobuf.message.Message):
     MODEL_FIELD_NUMBER: builtins.int
     API_FIELD_NUMBER: builtins.int
     SERVICE_CONFIGS_FIELD_NUMBER: builtins.int
+    LOG_CONFIGURATION_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
     'deprecated; use api'
@@ -359,13 +360,17 @@ class ServiceConfig(google.protobuf.message.Message):
     def service_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]:
         ...
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=..., api: builtins.str=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=...) -> None:
+    @property
+    def log_configuration(self) -> global___LogConfiguration:
         ...
 
-    def HasField(self, field_name: typing.Literal['attributes', b'attributes']) -> builtins.bool:
+    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=..., api: builtins.str=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., log_configuration: global___LogConfiguration | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing.Literal['attributes', b'attributes', 'log_configuration', b'log_configuration']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'log_configuration', b'log_configuration', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
         ...
 global___ServiceConfig = ServiceConfig
 

@@ -117,6 +117,7 @@ class DataClient:
 
     For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
     """
+
     @dataclass
     class TabularData:
         """Class representing a piece of tabular data and associated metadata."""
