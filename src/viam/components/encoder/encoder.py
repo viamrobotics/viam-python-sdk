@@ -68,23 +68,25 @@ class Encoder(ComponentBase):
         Report the position of the encoder.
         The value returned is the current position in terms of it's ``position_type``.
         The position will be either in relative units (ticks away from a zero position) for
-        ``PositionType.TICKS`` or absolute units (degrees along a circle) for ``PositionType.DEGREES``.
+        ``PositionType.POSITION_TYPE_TICKS_COUNT`` or absolute units (degrees along a circle)
+        for ``PositionType.POSITION_TYPE_ANGLE_DEGREES``.
 
         ::
 
             my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
 
             # Get the position of the encoder in ticks
-            position = await my_encoder.get_position(encoder.PositionTypeTicks)
+            position = await my_encoder.get_position(PositionType.POSITION_TYPE_TICKS_COUNT)
             print("The encoder position is currently ", position[0], position[1])
 
         Args:
-            position_type (PositionType.ValueType): The desired output type of the position.
+            position_type (PositionType): The desired output type of the position.
 
         Returns:
-            Tuple[float, PositionType]: A tuple containing two values; the first [0] the Position of the encoder
-            which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
-            and the second [1] the type of position the encoder returns (ticks or degrees).
+            Tuple[float, PositionType]:
+            A tuple containing two values; the first [0] the position of the encoder which can either be
+            ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
+            position the encoder returns (ticks or degrees).
 
         For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
         """
@@ -99,7 +101,7 @@ class Encoder(ComponentBase):
         **kwargs,
     ) -> Properties:
         """
-        Return a dictionary of the types of position reporting this encoder supports
+        Return a dictionary of the types of position reporting this encoder supports.
 
         ::
 
