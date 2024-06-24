@@ -62,7 +62,7 @@ def stub_model(cls: ABCMeta) -> ABCMeta:
     Normally this class would fail to instantiate. With the decorator, it will succeed but the unimplemented
     methods will throw errors at runtime.
     """
-    for attr in cls.__abstractmethods__:
+    for attr in list(cls.__abstractmethods__):
         val = getattr(cls, attr)
         is_async = inspect.iscoroutinefunction(val)
         stub_fn = _create_stub_fn(attr, is_async)
