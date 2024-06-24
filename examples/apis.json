@@ -1,11 +1,13 @@
 {
   "base": {
-    "func": "is_moving"
+    "func": "is_moving",
+    "packagePath": "viam.components"
   },
   "board": {
     "func": "gpio_pin_by_name",
     "comment": "Note that the pin supplied is a placeholder. Please change this to a valid pin you are using.",
-    "args": ["\"16\""]
+    "args": ["\"16\""],
+    "packagePath": "viam.components"
   },
   "camera": {
     "func": "get_image",
@@ -76,7 +78,7 @@
     "importName": "MLModelClient"
   },
   "slam": {
-    "fullImportText": "viam.services",
+    "packagePath": "viam.services",
     "importName": "SLAMClient"
   }
 }
