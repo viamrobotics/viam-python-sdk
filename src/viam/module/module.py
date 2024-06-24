@@ -42,8 +42,8 @@ def _parse_module_args() -> argparse.Namespace:
     Parse command-line args. Used by the various `Module` entrypoints.
     """
     p = argparse.ArgumentParser(description="Start this viam python module")
-    p.add_argument('socket_path', help="path where this module will serve a unix socket")
-    p.add_argument('--log-level', type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
+    p.add_argument("socket_path", help="path where this module will serve a unix socket")
+    p.add_argument("--log-level", type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
     return p.parse_args()
 
 
@@ -80,7 +80,7 @@ class Module:
         """
         module = cls.from_args()
         for model in models:
-            if not hasattr(model, 'MODEL'):
+            if not hasattr(model, "MODEL"):
                 raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
             module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
         await module.start()
@@ -99,7 +99,7 @@ class Module:
         """
         module = cls.from_args()
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
-            module.add_model_from_registry(*key.split('/'))  # pyright: ignore [reportArgumentType]
+            module.add_model_from_registry(*key.split("/"))  # pyright: ignore [reportArgumentType]
         await module.start()
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
