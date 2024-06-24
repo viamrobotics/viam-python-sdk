@@ -1,18 +1,19 @@
 import abc
 import sys
-from typing import Any, Final, List, Mapping, Optional, Union
+from typing import Final, List, Mapping, Optional
 
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.utils import ValueTypes
+
+from ..service_base import ServiceBase
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
     from typing_extensions import TypeAlias
-
-from ..service_base import ServiceBase
 
 
 class CaptureAllResult:
@@ -25,7 +26,14 @@ class CaptureAllResult:
     "the classifier/detector was requested, but there were no results".
     """
 
-    def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
+    def __init__(
+        self,
+        image: Optional[ViamImage] = None,
+        classifications: Optional[List[Classification]] = None,
+        detections: Optional[List[Detection]] = None,
+        objects: Optional[List[PointCloudObject]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+    ):
         """
         Args:
             image (ViamImage|None): The image from the GetImage request of the camera, if it was requested.
@@ -37,11 +45,11 @@ class CaptureAllResult:
         Returns:
             None
         """
-        self.image: Union[ViamImage, None] = image
-        self.detections: Union[List[Detection], None] = detections
-        self.classifications: Union[List[Classification], None] = classifications
-        self.objects: Union[List[PointCloudObject], None] = objects
-        self.extra: dict = extra
+        self.image = image
+        self.classifications = classifications
+        self.detections = detections
+        self.objects = objects
+        self.extra = extra
 
 
 class Vision(ServiceBase):
@@ -77,7 +85,7 @@ class Vision(ServiceBase):
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> CaptureAllResult:
         """Get the next image, detections, classifications, and objects all together,
@@ -118,7 +126,7 @@ class Vision(ServiceBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
@@ -153,7 +161,7 @@ class Vision(ServiceBase):
         self,
         image: ViamImage,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
@@ -193,7 +201,7 @@ class Vision(ServiceBase):
         camera_name: str,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of classifications in the next image given a camera and a classifier
@@ -226,7 +234,7 @@ class Vision(ServiceBase):
         image: ViamImage,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of classifications in the given image using the specified classifier
@@ -261,7 +269,7 @@ class Vision(ServiceBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[PointCloudObject]:
         """
@@ -301,7 +309,7 @@ class Vision(ServiceBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> Properties:
         """
