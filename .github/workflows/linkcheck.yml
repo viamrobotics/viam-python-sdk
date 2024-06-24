@@ -1,0 +1,47 @@
+# .github/workflows/run-htmltest.yml
+# (c) 2021 Robb Romans
+#
+# Run htmltest link checker on generated HTML output in dist/
+# https://github.com/wjdp/htmltest
+#
+name: run-htmltest-external
+concurrency:
+  group: pullrequest-untrusted-htmltest-${{ github.event.number }}
+  cancel-in-progress: true
+on: pull_request
+jobs:
+  htmltest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: make install
+
+      - name: Generate docs
+        run: |
+          make documentation
+
+      - name: Test HTML
+        # https://github.com/wjdp/htmltest-action/
+        # Don't fail the build on broken links
+        continue-on-error: false
+        uses: wjdp/htmltest-action@master
+        with:
+          config: .htmltest.yml
+      - name: Archive htmltest results
+        uses: actions/upload-artifact@v3
+        # Note: Set ACTIONS_RUNTIME_TOKEN env variable to test with nektos/act
+        with:
+          name: htmltest-report
+          path: tmp/.htmltest/htmltest.log
+          retention-days: 7 # Default is 90 days

@@ -44,6 +44,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
     ``world_state`` message, the motion planning service will also account for those.
+
+    For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -103,6 +105,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             bool: Whether the move was successful.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -186,6 +190,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             str: ExecutionID of the ``move_on_globe()`` call, which can be used to track execution progress.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -264,6 +270,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -298,6 +306,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Args:
             component_name (ResourceName): The component to stop
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -350,6 +360,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus & replan history which matches the request
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -391,6 +403,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Returns:
             ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the
             associated IDs of all plans within the TTL ordered by timestamp in ascending order.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -441,6 +455,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         if extra is None:
             extra = {}
@@ -474,6 +490,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Returns:
             Dict[str, ValueTypes]: Result of the executed command.
+
+        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
         """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

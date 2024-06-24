@@ -46,7 +46,7 @@ The Viam Python SDK uses native libraries to support communication over WebRTC, 
    - The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam_rust_utils.dylib`, whereas on Linux it will be `libviam_rust_utils.so`
 1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
 1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
-1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, for example: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 
 If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the [releases](https://github.com/viamrobotics/rust-utils/releases/latest) page of the rust-utils library.
 
@@ -54,7 +54,7 @@ If you do **NOT** need communication over WebRTC (and thus, do not need the nati
 
 1. Download/clone this repository
 1. Run `poetry build` from the `viam-python-sdk` directory
-1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, for example: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 1. Ensure that every connection has the option `disable_webrtc` set to `True`: `viam.rpc.dial.DialOptions(disable_webrtc=True)`
    - For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)
 
@@ -70,6 +70,7 @@ To create a client application, to navigate to [app.viam.com](https://app.viam.c
    1. Setup Viam App Config on Single Board Computer (SBC)
    2. Download and Install Viam Server
    3. Wait until the robot shows as connected. If this doesn't happen try restarting the viam-server:
+
       ```
       sudo systemctl restart viam-server
       ```
@@ -99,7 +100,7 @@ Sessions are a safety feature that automatically cancel operations made by the p
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
 
-More examples can be found in the [`examples`](/examples) directory.
+More examples can be found in the [`examples`](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples) directory.
 
 ## Documentation
 

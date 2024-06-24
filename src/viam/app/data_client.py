@@ -114,6 +114,8 @@ class DataClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
+
+    For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
     """
 
     @dataclass
@@ -204,6 +206,8 @@ class DataClient:
             List[TabularData]: The tabular data,
             int: The count (number of entries),
             str: The last-returned page ID.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
 
@@ -250,6 +254,8 @@ class DataClient:
 
         Returns:
             List[Dict[str, ValueTypes]]: An array of data objects.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
@@ -283,6 +289,8 @@ class DataClient:
 
         Returns:
             List[Dict[str, ValueTypes]]: An array of data objects.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
@@ -325,7 +333,7 @@ class DataClient:
             last (str): Optional string indicating the ID of the last-returned data.
                         If provided, the server will return the next data entries after the `last` ID.
             include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.
-                                        Defaults to true (i.e., both the files' data and metadata are returned).
+                                        Defaults to true (that is, both the files' data and metadata are returned).
             count_only (bool): Whether to return only the total count of entries.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
                                           like cloud SLAM. Defaults to `False`
@@ -336,6 +344,8 @@ class DataClient:
             List[viam.proto.app.data.BinaryData]: The binary data,
             int: The count (number of entries),
             str: The last-returned page ID.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
         data_request = DataRequest(filter=filter)
@@ -400,6 +410,8 @@ class DataClient:
 
         Returns:
             List[viam.proto.app.data.BinaryData]: The binary data.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = BinaryDataByIDsRequest(binary_ids=binary_ids, include_binary=True)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
@@ -432,6 +444,8 @@ class DataClient:
 
         Returns:
             int: The number of items deleted.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days)
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
@@ -457,6 +471,8 @@ class DataClient:
 
         Returns:
             int: The number of items deleted.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
@@ -495,6 +511,8 @@ class DataClient:
 
         Returns:
             int: The number of items deleted.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
         response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
@@ -532,6 +550,8 @@ class DataClient:
 
         Raises:
             GRPCError: If no `BinaryID` objects or tags are provided.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
@@ -554,6 +574,8 @@ class DataClient:
 
         Raises:
             GRPCError: If no tags are provided.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
         request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -595,6 +617,8 @@ class DataClient:
 
         Returns:
             int: The number of tags removed.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
@@ -623,6 +647,8 @@ class DataClient:
 
         Returns:
             int: The number of tags removed.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -647,6 +673,8 @@ class DataClient:
 
         Returns:
             List[str]: The list of tags.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
         request = TagsByFilterRequest(filter=filter)
@@ -698,6 +726,8 @@ class DataClient:
 
         Returns:
             str: The bounding box ID.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = AddBoundingBoxToImageByIDRequest(
             label=label,
@@ -731,6 +761,8 @@ class DataClient:
         Args:
             bbox_id (str): The ID of the bounding box to remove.
             binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = RemoveBoundingBoxFromImageByIDRequest(bbox_id=bbox_id, binary_id=binary_id)
         await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
@@ -752,6 +784,8 @@ class DataClient:
 
         Returns:
             List[str]: The list of bounding box labels.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         filter = filter if filter else Filter()
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
@@ -771,6 +805,8 @@ class DataClient:
 
         Returns:
             str: The hostname of the federated database.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = GetDatabaseConnectionRequest(organization_id=organization_id)
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
@@ -791,6 +827,8 @@ class DataClient:
             organization_id (str): The ID of the organization.
                 You can obtain your organization ID from the Viam app's organization settings page.
             password (str): The password of the user.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
         await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
@@ -813,6 +851,8 @@ class DataClient:
 
         Returns:
             str: The dataset ID of the created dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
@@ -835,6 +875,8 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
@@ -857,6 +899,8 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
@@ -878,6 +922,8 @@ class DataClient:
         Args:
             id (str): The ID of the dataset.
             name (str): The new name of the dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
@@ -893,6 +939,8 @@ class DataClient:
 
         Args:
             id (str): The ID of the dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -931,6 +979,8 @@ class DataClient:
                 navigate to your dataset's page in the Viam app,
                 click **...** in the left-hand menu, and click **Copy dataset ID**.
             dataset_id (str): The ID of the dataset to be added to.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
@@ -969,6 +1019,8 @@ class DataClient:
                 navigate to your dataset's page in the Viam app,
                 click **...** in the left-hand menu, and click **Copy dataset ID**.
             dataset_id (str): The ID of the dataset to be removed from.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
@@ -1018,7 +1070,7 @@ class DataClient:
                 or .png extension will be saved to the images tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
         Raises:
@@ -1026,6 +1078,8 @@ class DataClient:
 
         Returns:
             str: The file_id of the uploaded data.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         sensor_contents = SensorData(
             metadata=(
@@ -1104,6 +1158,8 @@ class DataClient:
 
         Returns:
             str: The file_id of the uploaded data.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         sensor_contents = []
         if data_request_times:
@@ -1184,7 +1240,7 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
-            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 
@@ -1193,6 +1249,8 @@ class DataClient:
 
         Returns:
             str: The file_id of the uploaded data.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
         upload_metadata = UploadMetadata(
@@ -1266,6 +1324,8 @@ class DataClient:
 
         Returns:
             str: ID of the new file.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         metadata = UploadMetadata(
             part_id=part_id,
@@ -1320,6 +1380,8 @@ class DataClient:
 
         Returns:
             str: ID of the new file.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         path = Path(filepath)
         file_name = path.stem
