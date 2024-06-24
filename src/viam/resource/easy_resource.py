@@ -88,7 +88,7 @@ class EasyResource:
     See examples/easy_resource/main.py for extended usage.
     """
     SUBTYPE: Subtype
-    MODEL: Union[Model, str]
+    MODEL: Model
 
     def __init_subclass__(cls, register=True, **kwargs):
         """
