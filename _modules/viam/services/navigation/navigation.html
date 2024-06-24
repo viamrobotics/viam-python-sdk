@@ -104,6 +104,8 @@
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
+
+<span class="sd">    For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -131,6 +133,8 @@
 <span class="sd">            List[navigation.Path]: An array comprised of Paths, where each path is either a user-provided destination or</span>
 <span class="sd">            a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to</span>
 <span class="sd">            reach the specified destination or Waypoint.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -153,6 +157,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            navigation.GeoPoint: The current location of the robot in the navigation service,</span>
 <span class="sd">            represented in a GeoPoint with latitude and longitude values.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -178,6 +184,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service’s data storage.</span>
 <span class="sd">            These are objects designated for the robot to avoid when navigating.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -201,6 +209,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[navigation.Waypoint]: An array comprised of each Waypoint in the service’s data storage.</span>
 <span class="sd">            These are locations designated within a path for the robot to navigate to.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -225,6 +235,8 @@
 <span class="sd">                represented in a GeoPoint with latitude and longitude values.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -245,6 +257,8 @@
 <span class="sd">            id (str): The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -271,6 +285,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            navigation.Mode.ValueType: The Mode the service is operating in.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -295,6 +311,8 @@
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds)</span>
 <span class="sd">                before calling a time-out and closing the underlying RPC call.</span>
 <span class="sd">            mode (navigation.Mode.ValueType): The Mode for the service to operate in.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -316,6 +334,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            MapType.ValueType: Information about the type of map the service is using.</span>
+
+<span class="sd">        For more information, see `Navigation service &lt;https://docs.viam.com/services/navigation/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

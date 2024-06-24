@@ -134,6 +134,8 @@
 
 <span class="sd">    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the</span>
 <span class="sd">    ``world_state`` message, the motion planning service will also account for those.</span>
+
+<span class="sd">    For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -193,6 +195,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the move was successful.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -276,6 +280,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ExecutionID of the ``move_on_globe()`` call, which can be used to track execution progress.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -354,6 +360,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -388,6 +396,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to stop</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -440,6 +450,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus &amp; replan history which matches the request</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -481,6 +493,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the</span>
 <span class="sd">            associated IDs of all plans within the TTL ordered by timestamp in ascending order.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -531,6 +545,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -564,6 +580,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Dict[str, ValueTypes]: Result of the executed command.</span>
+
+<span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/services/motion/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>

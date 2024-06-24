@@ -412,6 +412,8 @@ Module Contents
    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
+   For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
    .. py:attribute:: SUBTYPE
       :type:  Final
@@ -441,6 +443,8 @@ Module Contents
       :returns: Chunks of the internal state of the SLAM algorithm
       :rtype: List[GetInternalStateResponse]
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float]) -> List[bytes]
@@ -466,6 +470,8 @@ Module Contents
                 GetPointCloudMapResponse.point_cloud_pcd_chunk values.
       :rtype: List[GetPointCloudMapResponse]
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_position(*, timeout: Optional[float]) -> viam.services.slam.Pose
@@ -486,6 +492,8 @@ Module Contents
       :returns: The current position of the specified component
       :rtype: Pose
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_properties(*, timeout: Optional[float]) -> Properties
@@ -505,6 +513,8 @@ Module Contents
 
       :returns: The properties of SLAM
       :rtype: Properties
+
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
 
 
 
@@ -647,6 +657,8 @@ Module Contents
       :returns: The current position of the specified component
       :rtype: Pose
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]
@@ -670,6 +682,8 @@ Module Contents
                 GetPointCloudMapResponse.point_cloud_pcd_chunk values.
       :rtype: List[GetPointCloudMapResponse]
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[bytes]
@@ -688,6 +702,8 @@ Module Contents
       :returns: Chunks of the internal state of the SLAM algorithm
       :rtype: List[GetInternalStateResponse]
 
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
+
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.slam.slam.SLAM.Properties
@@ -705,6 +721,8 @@ Module Contents
 
       :returns: The properties of SLAM
       :rtype: Properties
+
+      For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
 
 
 

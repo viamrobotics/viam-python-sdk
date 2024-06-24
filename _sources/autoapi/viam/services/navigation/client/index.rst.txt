@@ -673,6 +673,8 @@ Module Contents
                 reach the specified destination or Waypoint.
       :rtype: List[navigation.Path]
 
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+
 
 
    .. py:method:: get_location(*, timeout: Optional[float] = None) -> viam.services.navigation.GeoPoint
@@ -695,6 +697,8 @@ Module Contents
       :returns: The current location of the robot in the navigation service,
                 represented in a GeoPoint with latitude and longitude values.
       :rtype: navigation.GeoPoint
+
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
 
 
 
@@ -722,6 +726,8 @@ Module Contents
                 These are objects designated for the robot to avoid when navigating.
       :rtype: List[navigation.GeoGeometry]
 
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+
 
 
    .. py:method:: get_waypoints(*, timeout: Optional[float] = None) -> List[viam.services.navigation.Waypoint]
@@ -745,6 +751,8 @@ Module Contents
       :returns: An array comprised of each Waypoint in the service’s data storage.
                 These are locations designated within a path for the robot to navigate to.
       :rtype: List[navigation.Waypoint]
+
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
 
 
 
@@ -772,6 +780,8 @@ Module Contents
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+
 
 
    .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float] = None)
@@ -793,6 +803,8 @@ Module Contents
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
+
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
 
 
 
@@ -821,6 +833,8 @@ Module Contents
       :returns: The Mode the service is operating in.
       :rtype: navigation.Mode.ValueType
 
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+
 
 
    .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float] = None)
@@ -847,6 +861,8 @@ Module Contents
       :param mode: The Mode for the service to operate in.
       :type mode: navigation.Mode.ValueType
 
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.navigation.MapType.ValueType
@@ -868,6 +884,8 @@ Module Contents
 
       :returns: Information about the type of map the service is using.
       :rtype: MapType.ValueType
+
+      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
 
 
 
