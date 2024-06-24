@@ -96,8 +96,8 @@
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
-<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
+<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="p">,</span> <span class="n">Subtype</span>
 
 <span class="n">modelRegex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([^:]+):([^:]+):([^:]+)$&quot;</span><span class="p">)</span>
 
@@ -132,6 +132,7 @@
 
 <span class="sd">    See examples/easy_resource/main.py for extended usage.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Subtype</span>
     <span class="n">MODEL</span><span class="p">:</span> <span class="n">Model</span>
 
@@ -167,14 +168,15 @@
 <span class="sd">        This adds the model to the global registry. It is called by __init_subclass__ and you typically</span>
 <span class="sd">        won&#39;t call it directly.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;registering </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;registering </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
         <span class="c1"># note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()</span>
         <span class="c1"># walk in ResourceManager.register.</span>
         <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span></div>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="EasyResource.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;reconfigure </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span></div></div>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;reconfigure </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

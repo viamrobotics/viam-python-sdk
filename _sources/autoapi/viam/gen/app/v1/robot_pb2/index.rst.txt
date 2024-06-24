@@ -557,7 +557,7 @@ Module Contents
 
 .. py:data:: global___ProcessConfig
 
-.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., model: str = ..., api: str = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ...)
+.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., model: str = ..., api: str = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., log_configuration: global___LogConfiguration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -608,7 +608,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['attributes', b'attributes']) -> bool
+   .. py:property:: log_configuration
+      :type: global___LogConfiguration
+
+
+
+   .. py:method:: HasField(field_name: Literal['attributes', b'attributes', 'log_configuration', b'log_configuration']) -> bool
 
       Checks if a certain field is set for the message.
 

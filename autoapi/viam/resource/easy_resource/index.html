@@ -97,6 +97,21 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.ResourceBase.close"><code class="docutils literal notranslate"><span class="pre">ResourceBase.close()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.register_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.register_subtype()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_subtype()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_resource_creator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_validator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_validator()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_SUBTYPES()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_RESOURCE_CREATORS()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration.creator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.creator</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration.validator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.validator</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Model.model_family"><code class="docutils literal notranslate"><span class="pre">Model.model_family</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Model.name"><code class="docutils literal notranslate"><span class="pre">Model.name</span></code></a></li>
@@ -128,21 +143,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Subtype.__eq__"><code class="docutils literal notranslate"><span class="pre">Subtype.__eq__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Subtype.from_resource_name"><code class="docutils literal notranslate"><span class="pre">Subtype.from_resource_name()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Subtype.from_string"><code class="docutils literal notranslate"><span class="pre">Subtype.from_string()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.register_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.register_subtype()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_subtype()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_resource_creator()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.lookup_validator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_validator()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_SUBTYPES()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_RESOURCE_CREATORS()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration.creator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.creator</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration.validator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.validator</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.easy_resource.modelRegex"><code class="docutils literal notranslate"><span class="pre">modelRegex</span></code></a></li>
@@ -228,6 +228,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.easy_resource.ResourceBase" title="viam.resource.easy_resource.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceBase</span></code></a></p></td>
 <td><p>The base requirements for a Resource.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.easy_resource.Registry" title="viam.resource.easy_resource.Registry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Registry</span></code></a></p></td>
+<td><p>The global registry of robotic parts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a></p></td>
+<td><p>An object representing a resource creator to be registered.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
 <td><p>Represents a specific model within a family of models</p></td>
 </tr>
@@ -236,12 +242,6 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subtype</span></code></a></p></td>
 <td><p>Represents a known component/service (resource) API</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.easy_resource.Registry" title="viam.resource.easy_resource.Registry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Registry</span></code></a></p></td>
-<td><p>The global registry of robotic parts.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a></p></td>
-<td><p>An object representing a resource creator to be registered.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.easy_resource.EasyResource" title="viam.resource.easy_resource.EasyResource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EasyResource</span></code></a></p></td>
 <td><p>EasyResource is a mixin that simplifies the process of creating Viam modules (extension programs)</p></td>
@@ -495,6 +495,171 @@ non-Close methods are called.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.easy_resource.</span></span><span class="sig-name descname"><span class="pre">Registry</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry" title="Permalink to this definition"></a></dt>
+<dd><p>The global registry of robotic parts.</p>
+<p><strong>NB</strong> The Registry should almost never be used directly</p>
+<p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
+pre-registered (for example Arm, Motor).</p>
+<p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.register_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.register_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Register a Subtype with the Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><em>ResourceRegistration</em></a>) – Object containing registration data for the subtype</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype to register is already in the registry</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration is missing any necessary parameters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.register_resource_creator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.register_resource_creator" title="Permalink to this definition"></a></dt>
+<dd><p>Register a specific <code class="docutils literal notranslate"><span class="pre">Model</span></code> and validator function for the specific resource <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> with the Registry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+<li><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><em>ResourceCreatorRegistration</em></a>) – The registration functions of the model</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype and Model pairing is already registered</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration does not have creator</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered Subtype by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subtype</strong> (<em>str</em>) – The subtype of the resource</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype is not registered</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The registration object of the resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_resource_creator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.ResourceCreator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_resource_creator" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered resource creator by its subtype and model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype Model pairing is not registered</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The function to create the resource</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>ResourceCreator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_validator">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.Validator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_validator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_validator" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The function to validate the resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Validator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_SUBTYPES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_SUBTYPES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary of all registered resources
+- Key: Subtype of the resource
+- Value: The registration object for the resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All registered resources</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype">Subtype</a>, <a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCE_CREATORS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCE_CREATORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary of all registered resources
+- Key: subtype/model
+- Value: The ResourceCreatorRegistration for the resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All registered resources</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration">ResourceCreatorRegistration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.easy_resource.</span></span><span class="sig-name descname"><span class="pre">ResourceCreatorRegistration</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#ResourceCreatorRegistration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="Permalink to this definition"></a></dt>
+<dd><p>An object representing a resource creator to be registered.</p>
+<p>If creating a custom Resource creator, you should register the creator by creating a <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object and
+registering it to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration.creator">
+<span class="sig-name descname"><span class="pre">creator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.resource.types.ResourceCreator</span></em><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration.creator" title="Permalink to this definition"></a></dt>
+<dd><p>A function that can create a resource given a mapping of dependencies (<code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> to <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration.validator">
+<span class="sig-name descname"><span class="pre">validator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.resource.types.Validator</span></em><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration.validator" title="Permalink to this definition"></a></dt>
+<dd><p>A function that can validate a resource and return implicit dependencies.</p>
+<p>If called without a validator function, default to a function returning an empty Sequence</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.Model">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.easy_resource.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_family</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.easy_resource.ModelFamily" title="viam.resource.easy_resource.ModelFamily"><span class="pre">ModelFamily</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Model" title="Permalink to this definition"></a></dt>
 <dd><p>Represents a specific model within a family of models</p>
@@ -693,171 +858,6 @@ rather than raise an exception. Defaults to False.</p></li>
 <dd class="field-even"><p>Self</p>
 </dd>
 </dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.easy_resource.</span></span><span class="sig-name descname"><span class="pre">Registry</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry" title="Permalink to this definition"></a></dt>
-<dd><p>The global registry of robotic parts.</p>
-<p><strong>NB</strong> The Registry should almost never be used directly</p>
-<p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
-pre-registered (for example Arm, Motor).</p>
-<p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
-resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.register_subtype">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.register_subtype" title="Permalink to this definition"></a></dt>
-<dd><p>Register a Subtype with the Registry</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><em>ResourceRegistration</em></a>) – Object containing registration data for the subtype</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype to register is already in the registry</p></li>
-<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration is missing any necessary parameters</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.register_resource_creator">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.register_resource_creator" title="Permalink to this definition"></a></dt>
-<dd><p>Register a specific <code class="docutils literal notranslate"><span class="pre">Model</span></code> and validator function for the specific resource <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> with the Registry</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
-<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
-<li><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><em>ResourceCreatorRegistration</em></a>) – The registration functions of the model</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype and Model pairing is already registered</p></li>
-<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ValidationError" title="viam.errors.ValidationError"><strong>ValidationError</strong></a> – Raised if registration does not have creator</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_subtype">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
-<dd><p>Lookup and retrieve a registered Subtype by its name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>subtype</strong> (<em>str</em>) – The subtype of the resource</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype is not registered</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The registration object of the resource</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_resource_creator">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.ResourceCreator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_resource_creator" title="Permalink to this definition"></a></dt>
-<dd><p>Lookup and retrieve a registered resource creator by its subtype and model</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
-<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../components/board/service/index.html#viam.components.board.service.ResourceNotFoundError" title="viam.components.board.service.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype Model pairing is not registered</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The function to create the resource</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>ResourceCreator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.lookup_validator">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.Validator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_validator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.lookup_validator" title="Permalink to this definition"></a></dt>
-<dd><p>Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
-<li><p><strong>model</strong> (<a class="reference internal" href="#viam.resource.easy_resource.Model" title="viam.resource.easy_resource.Model"><em>Model</em></a>) – The Model of the resource</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The function to validate the resource</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Validator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_SUBTYPES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_SUBTYPES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.REGISTERED_SUBTYPES" title="Permalink to this definition"></a></dt>
-<dd><p>The dictionary of all registered resources
-- Key: Subtype of the resource
-- Value: The registration object for the resource</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>All registered resources</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[<a class="reference internal" href="#viam.resource.easy_resource.Subtype" title="viam.resource.easy_resource.Subtype">Subtype</a>, <a class="reference internal" href="../registry/index.html#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCE_CREATORS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCE_CREATORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.Registry.REGISTERED_RESOURCE_CREATORS" title="Permalink to this definition"></a></dt>
-<dd><p>The dictionary of all registered resources
-- Key: subtype/model
-- Value: The ResourceCreatorRegistration for the resource</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>All registered resources</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration">ResourceCreatorRegistration</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.easy_resource.</span></span><span class="sig-name descname"><span class="pre">ResourceCreatorRegistration</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#ResourceCreatorRegistration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration" title="Permalink to this definition"></a></dt>
-<dd><p>An object representing a resource creator to be registered.</p>
-<p>If creating a custom Resource creator, you should register the creator by creating a <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object and
-registering it to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration.creator">
-<span class="sig-name descname"><span class="pre">creator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.resource.types.ResourceCreator</span></em><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration.creator" title="Permalink to this definition"></a></dt>
-<dd><p>A function that can create a resource given a mapping of dependencies (<code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> to <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code></p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.ResourceCreatorRegistration.validator">
-<span class="sig-name descname"><span class="pre">validator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.resource.types.Validator</span></em><a class="headerlink" href="#viam.resource.easy_resource.ResourceCreatorRegistration.validator" title="Permalink to this definition"></a></dt>
-<dd><p>A function that can validate a resource and return implicit dependencies.</p>
-<p>If called without a validator function, default to a function returning an empty Sequence</p>
 </dd></dl>
 
 </dd></dl>
