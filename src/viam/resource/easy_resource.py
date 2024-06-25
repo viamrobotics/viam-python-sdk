@@ -36,14 +36,16 @@ def _create_stub_fn(name: str, is_async: bool) -> Callable:
     if is_async:
         # note: this is a pyright bug https://github.com/microsoft/pyright/issues/2136
         async def stub_fn(*args, **kwargs):  # pyright: ignore [reportRedeclaration]
-            logger.info(f'{name} not implemented')
-            raise MethodNotImplementedError(name)
-    else:
-        def stub_fn(*args, **kwargs):
-            logger.info(f'{name} not implemented')
+            logger.info(f"{name} not implemented")
             raise MethodNotImplementedError(name)
 
-    stub_fn.__name__ = f'{name}_stub'
+    else:
+
+        def stub_fn(*args, **kwargs):
+            logger.info(f"{name} not implemented")
+            raise MethodNotImplementedError(name)
+
+    stub_fn.__name__ = f"{name}_stub"
     return stub_fn
 
 
@@ -67,7 +69,7 @@ def stub_model(cls: ABCMeta) -> ABCMeta:
         is_async = inspect.iscoroutinefunction(val)
         stub_fn = _create_stub_fn(attr, is_async)
         setattr(cls, attr, stub_fn)
-        logger.debug('patched %s.%s with %s', cls, attr, stub_fn)
+        logger.debug("patched %s.%s with %s", cls, attr, stub_fn)
         cls.__abstractmethods__ -= {attr}
     return cls
 

@@ -37,9 +37,10 @@ class TestEasyResource:
     def test_stubs(self, clear_registry):
         class MyMotor(Motor, EasyResource):
             MODEL = "org:type:name"
+
         with pytest.raises(TypeError):
             # this has unimplemented abstract methods and should fail with TypeError
-            MyMotor('name')
+            MyMotor("name")
 
         MyMotor = stub_model(MyMotor)
-        MyMotor('name')  # this has been stubbed and should now succeed
+        MyMotor("name")  # this has been stubbed and should now succeed
