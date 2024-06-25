@@ -87,7 +87,7 @@ jobs:
 
   release:
     needs: [prepare, build]
-    if: github.repository_owner == 'viamrobotics
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
     steps:
