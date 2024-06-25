@@ -88,13 +88,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.resource.easy_resource</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">..errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span>
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
 <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="p">,</span> <span class="n">Subtype</span>
@@ -113,6 +116,50 @@
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MODEL </span><span class="si">{</span><span class="n">orig</span><span class="si">}</span><span class="s2"> doesn&#39;t match expected format &#39;org:type:name&#39;&quot;</span><span class="p">)</span>
     <span class="o">*</span><span class="n">family</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="o">*</span><span class="n">family</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_create_stub_fn</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_async</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This creates a sync or async stub function which returns a MethodNotImplementedError.</span>
+<span class="sd">    The stub_model decorator uses these to stub out an abstract base class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">is_async</span><span class="p">:</span>
+        <span class="c1"># note: this is a pyright bug https://github.com/microsoft/pyright/issues/2136</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">stub_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># pyright: ignore [reportRedeclaration]</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not implemented&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">stub_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not implemented&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">stub_fn</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">_stub&#39;</span>
+    <span class="k">return</span> <span class="n">stub_fn</span>
+
+
+<div class="viewcode-block" id="stub_model"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.stub_model">[docs]</a><span class="k">def</span> <span class="nf">stub_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">ABCMeta</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ABCMeta</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class decorator which adds error implementations of abstract functions. This means they will fail</span>
+<span class="sd">    when called, rather than the default where they fail when instantiated. This is intended for developers</span>
+<span class="sd">    who want to build and test incrementally, not for production use.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        @stub_model</span>
+<span class="sd">        class MyMotor(Motor, EasyResource):</span>
+<span class="sd">            MODEL = &#39;viam:motor:easy-resource-example&#39;</span>
+
+<span class="sd">    Normally this class would fail to instantiate. With the decorator, it will succeed but the unimplemented</span>
+<span class="sd">    methods will throw errors at runtime.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">__abstractmethods__</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="n">is_async</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">stub_fn</span> <span class="o">=</span> <span class="n">_create_stub_fn</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">is_async</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">stub_fn</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;patched </span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1"> with </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">stub_fn</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">__abstractmethods__</span> <span class="o">-=</span> <span class="p">{</span><span class="n">attr</span><span class="p">}</span>
+    <span class="k">return</span> <span class="bp">cls</span></div>
 
 
 <div class="viewcode-block" id="EasyResource"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource">[docs]</a><span class="k">class</span> <span class="nc">EasyResource</span><span class="p">:</span>
