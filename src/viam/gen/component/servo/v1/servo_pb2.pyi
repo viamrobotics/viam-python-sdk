@@ -18,7 +18,7 @@ class MoveRequest(google.protobuf.message.Message):
     name: builtins.str
     'the name of the servo, as registered'
     angle_deg: builtins.int
-    'the degrees by which to rotate the servo. Accepted values are between 0 and 180'
+    'the degrees by which to rotate the servo.'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
@@ -69,7 +69,7 @@ class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_DEG_FIELD_NUMBER: builtins.int
     position_deg: builtins.int
-    'the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180'
+    'the degrees from neutral by which the servo is currently rotated.'
 
     def __init__(self, *, position_deg: builtins.int=...) -> None:
         ...

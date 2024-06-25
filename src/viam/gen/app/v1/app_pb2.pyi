@@ -20,6 +20,27 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _AuthenticationType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _AuthenticationTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_AuthenticationType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    AUTHENTICATION_TYPE_UNSPECIFIED: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_WEB_OAUTH: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_API_KEY: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_ROBOT_PART_SECRET: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_LOCATION_SECRET: _AuthenticationType.ValueType
+
+class AuthenticationType(_AuthenticationType, metaclass=_AuthenticationTypeEnumTypeWrapper):
+    ...
+AUTHENTICATION_TYPE_UNSPECIFIED: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_WEB_OAUTH: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_API_KEY: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_ROBOT_PART_SECRET: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_LOCATION_SECRET: AuthenticationType.ValueType
+global___AuthenticationType = AuthenticationType
+
 class _FragmentVisibility:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -173,6 +194,7 @@ class RobotPartHistoryEntry(google.protobuf.message.Message):
     ROBOT_FIELD_NUMBER: builtins.int
     WHEN_FIELD_NUMBER: builtins.int
     OLD_FIELD_NUMBER: builtins.int
+    EDITED_BY_FIELD_NUMBER: builtins.int
     part: builtins.str
     robot: builtins.str
 
@@ -184,15 +206,36 @@ class RobotPartHistoryEntry(google.protobuf.message.Message):
     def old(self) -> global___RobotPart:
         ...
 
-    def __init__(self, *, part: builtins.str=..., robot: builtins.str=..., when: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___RobotPart | None=...) -> None:
+    @property
+    def edited_by(self) -> global___AuthenticatorInfo:
         ...
 
-    def HasField(self, field_name: typing.Literal['old', b'old', 'when', b'when']) -> builtins.bool:
+    def __init__(self, *, part: builtins.str=..., robot: builtins.str=..., when: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___RobotPart | None=..., edited_by: global___AuthenticatorInfo | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
+    def HasField(self, field_name: typing.Literal['edited_by', b'edited_by', 'old', b'old', 'when', b'when']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['edited_by', b'edited_by', 'old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
         ...
 global___RobotPartHistoryEntry = RobotPartHistoryEntry
+
+@typing.final
+class AuthenticatorInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TYPE_FIELD_NUMBER: builtins.int
+    VALUE_FIELD_NUMBER: builtins.int
+    IS_DEACTIVATED_FIELD_NUMBER: builtins.int
+    type: global___AuthenticationType.ValueType
+    value: builtins.str
+    is_deactivated: builtins.bool
+
+    def __init__(self, *, type: global___AuthenticationType.ValueType=..., value: builtins.str=..., is_deactivated: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['is_deactivated', b'is_deactivated', 'type', b'type', 'value', b'value']) -> None:
+        ...
+global___AuthenticatorInfo = AuthenticatorInfo
 
 @typing.final
 class ListOrganizationsRequest(google.protobuf.message.Message):
