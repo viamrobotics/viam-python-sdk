@@ -1,10 +1,13 @@
+import inspect
 import re
-from typing import Mapping, Union
+from abc import ABCMeta
+from typing import Callable, Mapping, Union
 
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 
 from .. import logging
+from ..errors import MethodNotImplementedError
 from .base import ResourceBase
 from .registry import Registry, ResourceCreatorRegistration
 from .types import Model, ModelFamily, Subtype
@@ -23,6 +26,50 @@ def _parse_model(orig: Union[str, Model]) -> Model:
         raise ValueError(f"MODEL {orig} doesn't match expected format 'org:type:name'")
     *family, name = match.groups()
     return Model(ModelFamily(*family), name)
+
+
+def _create_stub_fn(name: str, is_async: bool) -> Callable:
+    """
+    This creates a sync or async stub function which returns a MethodNotImplementedError.
+    The stub_model decorator uses these to stub out an abstract base class.
+    """
+    if is_async:
+        # note: this is a pyright bug https://github.com/microsoft/pyright/issues/2136
+        async def stub_fn(*args, **kwargs):  # pyright: ignore [reportRedeclaration]
+            logger.info(f'{name} not implemented')
+            raise MethodNotImplementedError(name)
+    else:
+        def stub_fn(*args, **kwargs):
+            logger.info(f'{name} not implemented')
+            raise MethodNotImplementedError(name)
+
+    stub_fn.__name__ = f'{name}_stub'
+    return stub_fn
+
+
+def stub_model(cls: ABCMeta) -> ABCMeta:
+    """
+    Class decorator which adds error implementations of abstract functions. This means they will fail
+    when called, rather than the default where they fail when instantiated. This is intended for developers
+    who want to build and test incrementally, not for production use.
+
+    Example:
+
+        @stub_model
+        class MyMotor(Motor, EasyResource):
+            MODEL = 'viam:motor:easy-resource-example'
+
+    Normally this class would fail to instantiate. With the decorator, it will succeed but the unimplemented
+    methods will throw errors at runtime.
+    """
+    for attr in list(cls.__abstractmethods__):
+        val = getattr(cls, attr)
+        is_async = inspect.iscoroutinefunction(val)
+        stub_fn = _create_stub_fn(attr, is_async)
+        setattr(cls, attr, stub_fn)
+        logger.debug('patched %s.%s with %s', cls, attr, stub_fn)
+        cls.__abstractmethods__ -= {attr}
+    return cls
 
 
 class EasyResource:
