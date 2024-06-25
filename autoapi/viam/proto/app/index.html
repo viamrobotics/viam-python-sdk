@@ -254,6 +254,13 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations.HasField"><code class="docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.AuthenticationType"><code class="docutils literal notranslate"><span class="pre">AuthenticationType</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.AuthenticatorInfo"><code class="docutils literal notranslate"><span class="pre">AuthenticatorInfo</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthenticatorInfo.type"><code class="docutils literal notranslate"><span class="pre">AuthenticatorInfo.type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthenticatorInfo.value"><code class="docutils literal notranslate"><span class="pre">AuthenticatorInfo.value</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthenticatorInfo.is_deactivated"><code class="docutils literal notranslate"><span class="pre">AuthenticatorInfo.is_deactivated</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.Authorization"><code class="docutils literal notranslate"><span class="pre">Authorization</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Authorization.authorization_type"><code class="docutils literal notranslate"><span class="pre">Authorization.authorization_type</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Authorization.authorization_id"><code class="docutils literal notranslate"><span class="pre">Authorization.authorization_id</span></code></a></li>
@@ -935,6 +942,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.robot"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.robot</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.when"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.when</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.old"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.old</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.edited_by"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.edited_by</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.HasField"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -1220,6 +1228,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations" title="viam.proto.app.APIKeyWithAuthorizations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.AuthenticationType" title="viam.proto.app.AuthenticationType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthenticationType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.AuthenticatorInfo" title="viam.proto.app.AuthenticatorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthenticatorInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Authorization</span></code></a></p></td>
@@ -2904,6 +2918,37 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.AuthenticationType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">AuthenticationType</span></span><a class="headerlink" href="#viam.proto.app.AuthenticationType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_AuthenticationType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.AuthenticatorInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">AuthenticatorInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___AuthenticationType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_deactivated</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.AuthenticatorInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthenticatorInfo.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___AuthenticationType</span></em><a class="headerlink" href="#viam.proto.app.AuthenticatorInfo.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthenticatorInfo.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthenticatorInfo.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthenticatorInfo.is_deactivated">
+<span class="sig-name descname"><span class="pre">is_deactivated</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.AuthenticatorInfo.is_deactivated" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -6631,7 +6676,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.RobotPartHistoryEntry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">RobotPartHistoryEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RobotPart</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">RobotPartHistoryEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RobotPart</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edited_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___AuthenticatorInfo</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -6657,9 +6702,14 @@ shown below.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">old</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___RobotPart</span></em><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry.old" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.RobotPartHistoryEntry.edited_by">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">edited_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___AuthenticatorInfo</span></em><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry.edited_by" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.RobotPartHistoryEntry.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'old'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'old'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'when'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'when'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'edited_by'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'edited_by'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'old'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'old'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'when'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'when'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.RobotPartHistoryEntry.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will

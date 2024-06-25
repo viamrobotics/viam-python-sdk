@@ -3453,7 +3453,7 @@ Module Contents
 
 
 
-.. py:class:: RobotPartHistoryEntryPB(*, part: str = ..., robot: str = ..., when: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___RobotPart | None = ...)
+.. py:class:: RobotPartHistoryEntryPB(*, part: str = ..., robot: str = ..., when: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___RobotPart | None = ..., edited_by: global___AuthenticatorInfo | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3483,7 +3483,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['old', b'old', 'when', b'when']) -> bool
+   .. py:property:: edited_by
+      :type: global___AuthenticatorInfo
+
+
+
+   .. py:method:: HasField(field_name: Literal['edited_by', b'edited_by', 'old', b'old', 'when', b'when']) -> bool
 
       Checks if a certain field is set for the message.
 
