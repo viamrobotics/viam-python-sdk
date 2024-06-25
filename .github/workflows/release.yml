@@ -69,19 +69,19 @@ jobs:
       - name: Add + Commit
         uses: EndBug/add-and-commit@v9
         with:
-          new_branch: v${{ env.SDK_VERSION }}
+          new_branch: release/v${{ env.SDK_VERSION }}
           message: Bump version to ${{ env.SDK_VERSION }}
 
       - name: Open PR
         run: |
-          gh pr create -t "v${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the release branch back into main upon successful release" -B "main" -H "v${{ env.SDK_VERSION }}"
+          gh pr create -t "release/v${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the release branch back into main upon successful release" -B "main" -H "release/v${{ env.SDK_VERSION }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     uses: ./.github/workflows/build-wheels.yml
     with:
-      branch: v${{ needs.prepare.outputs.version }}
+      branch: release/v${{ needs.prepare.outputs.version }}
     needs: prepare
     if: github.repository_owner == 'viamrobotics'
 
@@ -103,4 +103,4 @@ jobs:
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
-          target_commitish: v${{ needs.prepare.outputs.version }}
+          target_commitish: release/v${{ needs.prepare.outputs.version }}
