@@ -195,7 +195,7 @@ class DataClient:
             limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.
             sort_order (viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the object identifier of the last-returned data.
-                        This object identifier is returned by calls to `BinaryDataByFilter` as the `last` value.
+                        This object identifier is returned by calls to `TabularDataByFilter` as the `last` value.
                         If provided, the server will return the next data entries after the last object identifier.
             count_only (bool): Whether to return only the total count of entries.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
