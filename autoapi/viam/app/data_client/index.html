@@ -2670,11 +2670,12 @@ If the file is not empty, it will be overwritten.</p>
 data.</p></li>
 <li><p><strong>limit</strong> (<em>int</em>) – The maximum number of entries to include in a page. Defaults to 50 if unspecified.</p></li>
 <li><p><strong>sort_order</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><em>viam.proto.app.data.Order</em></a>) – The desired sort order of the data.</p></li>
-<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
-If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
+<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the object identifier of the last-returned data.
+This object identifier is returned by calls to <cite>TabularDataByFilter</cite> as the <cite>last</cite> value.
+If provided, the server will return the next data entries after the last object identifier.</p></li>
 <li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
 <li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-like cloud SLAM. Defaults to <cite>False</cite></p></li>
+like cloud SLAM. Defaults to <cite>False</cite>.</p></li>
 <li><p><strong>dest</strong> (<em>str</em>) – Optional filepath for writing retrieved data.</p></li>
 </ul>
 </dd>
@@ -2780,13 +2781,14 @@ If the file is not empty, it will be overwritten.</p>
 data.</p></li>
 <li><p><strong>limit</strong> (<em>int</em>) – The maximum number of entries to include in a page. Defaults to 50 if unspecified.</p></li>
 <li><p><strong>sort_order</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><em>viam.proto.app.data.Order</em></a>) – The desired sort order of the data.</p></li>
-<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
-If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
+<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the object identifier of the last-returned data.
+This object identifier is returned by calls to <cite>BinaryDataByFilter</cite> as the <cite>last</cite> value.
+If provided, the server will return the next data entries after the last object identifier.</p></li>
 <li><p><strong>include_binary_data</strong> (<em>bool</em>) – Boolean specifying whether to actually include the binary file data with each retrieved file.
 Defaults to true (that is, both the files’ data and metadata are returned).</p></li>
 <li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
 <li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-like cloud SLAM. Defaults to <cite>False</cite></p></li>
+like cloud SLAM. Defaults to <cite>False</cite>.</p></li>
 <li><p><strong>dest</strong> (<em>str</em>) – Optional filepath for writing retrieved data.</p></li>
 </ul>
 </dd>

@@ -1988,13 +1988,14 @@ Module Contents
       :type limit: int
       :param sort_order: The desired sort order of the data.
       :type sort_order: viam.proto.app.data.Order
-      :param last: Optional string indicating the ID of the last-returned data.
-                   If provided, the server will return the next data entries after the `last` ID.
+      :param last: Optional string indicating the object identifier of the last-returned data.
+                   This object identifier is returned by calls to `TabularDataByFilter` as the `last` value.
+                   If provided, the server will return the next data entries after the last object identifier.
       :type last: str
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool
       :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                    like cloud SLAM. Defaults to `False`
+                                    like cloud SLAM. Defaults to `False`.
       :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
@@ -2099,8 +2100,9 @@ Module Contents
       :type limit: int
       :param sort_order: The desired sort order of the data.
       :type sort_order: viam.proto.app.data.Order
-      :param last: Optional string indicating the ID of the last-returned data.
-                   If provided, the server will return the next data entries after the `last` ID.
+      :param last: Optional string indicating the object identifier of the last-returned data.
+                   This object identifier is returned by calls to `BinaryDataByFilter` as the `last` value.
+                   If provided, the server will return the next data entries after the last object identifier.
       :type last: str
       :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
                                   Defaults to true (that is, both the files' data and metadata are returned).
@@ -2108,7 +2110,7 @@ Module Contents
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool
       :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                    like cloud SLAM. Defaults to `False`
+                                    like cloud SLAM. Defaults to `False`.
       :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
