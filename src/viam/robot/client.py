@@ -793,7 +793,7 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(self, name: str, level: str, time: datetime, log: str, stack: str):
+    async def log(self, name: str, level: str, time: datetime, message: str, stack: str):
         """Send log from Python module over gRPC.
 
         Create a LogEntry object from the log to send to RDK.
@@ -802,12 +802,12 @@ class RobotClient:
             name (str): The logger's name.
             level (str): The level of the log.
             time (datetime): The log creation time.
-            log (str): The log message.
+            message (str): The log message.
             stack (str): The stack information of the log.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
-        entry = LogEntry(level=level, time=datetime_to_timestamp(time), logger_name=name, message=log, stack=stack)
+        entry = LogEntry(level=level, time=datetime_to_timestamp(time), logger_name=name, message=message, stack=stack)
         request = LogRequest(logs=[entry])
         await self._client.Log(request)
 

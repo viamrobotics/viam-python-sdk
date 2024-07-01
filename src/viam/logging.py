@@ -43,7 +43,7 @@ class _ModuleHandler(logging.Handler):
     def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
         name = record.name.split(".")[-1]
-        message = f"{record.filename}:{record.lineno}\t{record.msg}"
+        message = f"{record.filename}:{record.lineno}\t{record.getMessage()}"
         stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
         time = datetime.fromtimestamp(record.created)
 
