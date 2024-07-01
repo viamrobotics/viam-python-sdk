@@ -44,7 +44,6 @@ FILTER = create_filter(
 )
 SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(organization_id=ORG_ID)
 TRAINING_METADATA = TrainingJobMetadata(
-    request=SUBMIT_JOB_REQUEST,
     status=TRAINING_STATUS,
     created_on=CREATED_ON,
     last_modified=LAST_MODIFIED,
