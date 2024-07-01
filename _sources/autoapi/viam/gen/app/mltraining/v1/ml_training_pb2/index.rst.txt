@@ -357,7 +357,7 @@ Module Contents
 
 .. py:data:: global___ListTrainingJobsResponse
 
-.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: TrainingJobMetadata(*, id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -417,11 +417,6 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: request
-      :type: global___SubmitTrainingJobRequest
-
-
-
    .. py:property:: error_status
       :type: google.rpc.status_pb2.Status
 
@@ -452,7 +447,7 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'request', b'request', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> bool
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> bool
 
       Checks if a certain field is set for the message.
 
