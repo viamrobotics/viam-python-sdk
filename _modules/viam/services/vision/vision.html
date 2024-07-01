@@ -399,11 +399,12 @@
 <span class="sd">        state whether the service implements the classification, detection, and/or 3D object segmentation methods.</span>
 
 <span class="sd">        ::</span>
-<span class="sd">                # Grab the detector you configured on your machine</span>
-<span class="sd">                my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
-<span class="sd">                properties = await my_detector.get_properties()</span>
-<span class="sd">                properties.detections_supported      # returns True</span>
-<span class="sd">                properties.classifications_supported # returns False</span>
+
+<span class="sd">            # Grab the detector you configured on your machine</span>
+<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+<span class="sd">            properties = await my_detector.get_properties()</span>
+<span class="sd">            properties.detections_supported      # returns True</span>
+<span class="sd">            properties.classifications_supported # returns False</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: The properties of the vision service</span>

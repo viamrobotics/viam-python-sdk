@@ -1583,14 +1583,13 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 </dl>
 <p>Get info about what vision methods the vision service provides. Currently returns boolean values that
 state whether the service implements the classification, detection, and/or 3D object segmentation methods.</p>
-<dl class="simple">
-<dt>::</dt><dd><p># Grab the detector you configured on your machine
-my_detector = VisionClient.from_robot(robot, “my_detector”)
-properties = await my_detector.get_properties()
-properties.detections_supported      # returns True
-properties.classifications_supported # returns False</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the detector you configured on your machine</span>
+<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span>      <span class="c1"># returns True</span>
+<span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span> <span class="c1"># returns False</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The properties of the vision service</p>
