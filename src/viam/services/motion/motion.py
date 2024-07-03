@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Final, Iterable, Mapping, Optional, Sequence
+from typing import Any, Final, Iterable, Mapping, Optional
 
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
 from viam.proto.service.motion import Constraints, GetPlanResponse, ListPlanStatusesResponse, MotionConfiguration
@@ -82,11 +82,11 @@ class Motion(ServiceBase):
         component_name: ResourceName,
         destination: GeoPoint,
         movement_sensor_name: ResourceName,
-        obstacles: Optional[Sequence[GeoGeometry]] = None,
+        obstacles: Optional[Iterable[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
-        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
+        bounding_regions: Optional[Iterable[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -119,13 +119,13 @@ class Motion(ServiceBase):
 
         Args:
             component_name (ResourceName): The ResourceName of the base to move.
-            destination (GeoPoint): The location of the component’s destination, represented in geographic notation as a
+            destination (GeoPoint): The location of the component's destination, represented in geographic notation as a
                 GeoPoint (lat, lng).
             movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
-                the machine’s location.
-            obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
+                the machine's location.
+            obstacles (Optional[Iterable[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
                 with each represented as a GeoGeometry. Default: None
-            heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report
+            heading (Optional[float]): The compass heading, in degrees, that the machine's movement sensor should report
                 at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
                 motion service. This parameter and each of its fields are optional.
@@ -138,7 +138,7 @@ class Motion(ServiceBase):
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
-            bounding_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
+            bounding_regions (Optional[Iterable[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
                 the underlying RPC call.
@@ -193,7 +193,7 @@ class Motion(ServiceBase):
 
         Args:
             component_name (ResourceName): The ResourceName of the base to move.
-            destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.
+            destination (Pose): The destination, which can be any Pose with respect to the SLAM map's origin.
             slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
                 This parameter and each of its fields are optional.
@@ -327,7 +327,7 @@ class Motion(ServiceBase):
         self,
         component_name: ResourceName,
         destination_frame: str,
-        supplemental_transforms: Optional[Sequence[Transform]] = None,
+        supplemental_transforms: Optional[Iterable[Transform]] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,

@@ -55,7 +55,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot, "builtin")
+            service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
             my_command = {
               "cmnd": "dosomething",
@@ -63,7 +63,7 @@ class ServiceBase(abc.ABC, ResourceBase):
             }
 
             # Can be used with any resource, using the motion service as an example
-            await motion.do_command(command=my_command)
+            await service.do_command(command=my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute

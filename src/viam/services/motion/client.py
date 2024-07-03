@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Mapping, Optional, Sequence
+from typing import Any, Iterable, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -79,11 +79,11 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         component_name: ResourceName,
         destination: GeoPoint,
         movement_sensor_name: ResourceName,
-        obstacles: Optional[Sequence[GeoGeometry]] = None,
+        obstacles: Optional[Iterable[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
-        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
+        bounding_regions: Optional[Iterable[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -190,7 +190,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         self,
         component_name: ResourceName,
         destination_frame: str,
-        supplemental_transforms: Optional[Sequence[Transform]] = None,
+        supplemental_transforms: Optional[Iterable[Transform]] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -208,28 +208,6 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         return response.pose
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
-        """Send/receive arbitrary commands
-
-        ::
-
-            # Access the motion service
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
-
-            my_command = {
-              "command": "dosomething",
-              "someparameter": 52
-            }
-
-            await motion.do_command(my_command)
-
-        Args:
-            command (Dict[str, ValueTypes]): The command to execute.
-
-        Returns:
-            Dict[str, ValueTypes]: Result of the executed command.
-
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
-        """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
