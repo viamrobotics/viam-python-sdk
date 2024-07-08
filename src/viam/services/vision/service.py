@@ -58,7 +58,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
             detections=result.detections,
             classifications=result.classifications,
             objects=result.objects,
-            extra=dict_to_struct(result.extra),
+            extra=dict_to_struct(result.extra if result.extra else {}),
         )
         await stream.send_message(response)
 
