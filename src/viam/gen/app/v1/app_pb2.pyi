@@ -1715,6 +1715,37 @@ class Fragment(google.protobuf.message.Message):
 global___Fragment = Fragment
 
 @typing.final
+class FragmentHistoryEntry(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_FIELD_NUMBER: builtins.int
+    EDITED_ON_FIELD_NUMBER: builtins.int
+    OLD_FIELD_NUMBER: builtins.int
+    EDITED_BY_FIELD_NUMBER: builtins.int
+    fragment: builtins.str
+
+    @property
+    def edited_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def old(self) -> global___Fragment:
+        ...
+
+    @property
+    def edited_by(self) -> global___AuthenticatorInfo:
+        ...
+
+    def __init__(self, *, fragment: builtins.str=..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___Fragment | None=..., edited_by: global___AuthenticatorInfo | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'fragment', b'fragment', 'old', b'old']) -> None:
+        ...
+global___FragmentHistoryEntry = FragmentHistoryEntry
+
+@typing.final
 class ListFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -1898,6 +1929,52 @@ class DeleteFragmentResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteFragmentResponse = DeleteFragmentResponse
+
+@typing.final
+class GetFragmentHistoryRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    PAGE_LIMIT_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    page_token: builtins.str
+    page_limit: builtins.int
+
+    def __init__(self, *, id: builtins.str=..., page_token: builtins.str | None=..., page_limit: builtins.int | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_page_limit', b'_page_limit', '_page_token', b'_page_token', 'page_limit', b'page_limit', 'page_token', b'page_token']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_page_limit', b'_page_limit', '_page_token', b'_page_token', 'id', b'id', 'page_limit', b'page_limit', 'page_token', b'page_token']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_page_limit', b'_page_limit']) -> typing.Literal['page_limit'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
+        ...
+global___GetFragmentHistoryRequest = GetFragmentHistoryRequest
+
+@typing.final
+class GetFragmentHistoryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HISTORY_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+
+    @property
+    def history(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentHistoryEntry]:
+        ...
+
+    def __init__(self, *, history: collections.abc.Iterable[global___FragmentHistoryEntry] | None=..., next_page_token: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['history', b'history', 'next_page_token', b'next_page_token']) -> None:
+        ...
+global___GetFragmentHistoryResponse = GetFragmentHistoryResponse
 
 @typing.final
 class ListRobotsRequest(google.protobuf.message.Message):
