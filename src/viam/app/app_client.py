@@ -1726,8 +1726,9 @@ class AppClient:
             name (str): New name to associate with the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
                 passing this parameter will leave the fragment's config unchanged.
-            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed to view the fragment.
-                Not passing this parameter will leave the fragment's visibility unchanged. A fragment is private by default when created.
+            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
+                to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
+                A fragment is private by default when created.
 
         Raises:
             GRPCError: if an invalid ID, name, or config is passed.
