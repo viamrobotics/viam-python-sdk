@@ -1,6 +1,6 @@
 # TODO: Update type checking based with RSDK-4089
 # pyright: reportGeneralTypeIssues=false
-from google.api.httpbody_pb2 import HttpBody
+from google.api.httpbody_pb2 import HttpBody  # type: ignore
 from grpclib.server import Stream
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
