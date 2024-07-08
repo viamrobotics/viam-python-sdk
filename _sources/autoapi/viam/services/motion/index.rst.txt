@@ -414,14 +414,15 @@ Package Contents
       :async:
 
 
-      Get the Pose and observer frame for any given component on a robot. A ``component_name`` can be created like this::
-
-          component_name = Arm.get_resource_name("arm")
-
-      Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
-      (``Base``, ``Gripper``, etc).
+      Get the Pose and observer frame for any given component on a robot.
 
       ::
+
+          # Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
+          # (``Base``, ``Gripper``, etc).
+
+          # Create a `component_name`:
+          component_name = Arm.get_resource_name("arm")
 
           from viam.components.gripper import Gripper
           from viam.services.motion import MotionClient

@@ -517,14 +517,15 @@
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the Pose and observer frame for any given component on a robot. A ``component_name`` can be created like this::</span>
-
-<span class="sd">            component_name = Arm.get_resource_name(&quot;arm&quot;)</span>
-
-<span class="sd">        Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
-<span class="sd">        (``Base``, ``Gripper``, etc).</span>
+<span class="sd">        Get the Pose and observer frame for any given component on a robot.</span>
 
 <span class="sd">        ::</span>
+
+<span class="sd">            # Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
+<span class="sd">            # (``Base``, ``Gripper``, etc).</span>
+
+<span class="sd">            # Create a `component_name`:</span>
+<span class="sd">            component_name = Arm.get_resource_name(&quot;arm&quot;)</span>
 
 <span class="sd">            from viam.components.gripper import Gripper</span>
 <span class="sd">            from viam.services.motion import MotionClient</span>
