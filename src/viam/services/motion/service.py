@@ -72,6 +72,7 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
             request.obstacles,
             request.heading,
             request.motion_configuration,
+            bounding_regions=request.bounding_regions,
             extra=struct_to_dict(request.extra),
             timeout=timeout,
         )
@@ -125,6 +126,6 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         assert request is not None
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await service.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await service.do_command(struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
