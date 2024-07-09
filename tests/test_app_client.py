@@ -3,14 +3,14 @@ from datetime import datetime
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import APIKeyAuthorization, AppClient, FragmentVisibility, FragmentVisibilityPB
+from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
 from viam.proto.app import (
     APIKey,
     APIKeyWithAuthorizations,
     Authorization,
     AuthorizationDetails,
     AuthorizedPermissions,
-    Fragment,
+    Fragment as FragmentPB,
     Location,
     LocationAuth,
     Model,
@@ -103,13 +103,13 @@ STACK = "stack"
 LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None)
 LOG_ENTRIES = [LOG_ENTRY]
 ROBOT_CONFIG = {"key": "value"}
-FRAGMENT_VISIBILITY = [FragmentVisibility.PUBLIC]
+FRAGMENT_VISIBILITY = [Fragment.Visibility.PUBLIC]
 FRAGMENT_VISIBILITY_PB = [FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC]
 ORGANIZATION_OWNER = "organization_owner"
 PUBLIC = True
 ORGANIZATION_NAME = "organization_name"
 ONLY_USED_BY_OWNER = True
-FRAGMENT = Fragment(
+FRAGMENT = FragmentPB(
     id=ID,
     name=NAME,
     fragment=None,
