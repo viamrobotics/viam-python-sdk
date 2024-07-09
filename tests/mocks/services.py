@@ -1481,7 +1481,7 @@ class MockApp(UnimplementedAppServiceBase):
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.show_public = request.show_public
+        self.fragment_visibility = request.fragment_visibility
         await stream.send_message(ListFragmentsResponse(fragments=[self.fragment]))
 
     async def GetFragment(self, stream: Stream[GetFragmentRequest, GetFragmentResponse]) -> None:

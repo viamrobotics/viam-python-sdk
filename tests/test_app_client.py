@@ -3,14 +3,14 @@ from datetime import datetime
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import APIKeyAuthorization, AppClient
+from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
 from viam.proto.app import (
     APIKey,
     APIKeyWithAuthorizations,
     Authorization,
     AuthorizationDetails,
     AuthorizedPermissions,
-    Fragment,
+    Fragment as FragmentPB,
     Location,
     LocationAuth,
     Model,
@@ -103,12 +103,13 @@ STACK = "stack"
 LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None)
 LOG_ENTRIES = [LOG_ENTRY]
 ROBOT_CONFIG = {"key": "value"}
-SHOW_PUBLIC = True
+FRAGMENT_VISIBILITY = [Fragment.Visibility.PUBLIC]
+FRAGMENT_VISIBILITY_PB = [FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC]
 ORGANIZATION_OWNER = "organization_owner"
 PUBLIC = True
 ORGANIZATION_NAME = "organization_name"
 ONLY_USED_BY_OWNER = True
-FRAGMENT = Fragment(
+FRAGMENT = FragmentPB(
     id=ID,
     name=NAME,
     fragment=None,
@@ -596,8 +597,8 @@ class TestClient:
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragments = await client.list_fragments(org_id=ID, show_public=SHOW_PUBLIC)
-            assert service.show_public == SHOW_PUBLIC
+            fragments = await client.list_fragments(org_id=ID, visibilities=FRAGMENT_VISIBILITY)
+            assert service.fragment_visibility == FRAGMENT_VISIBILITY_PB
             assert [fragment.proto for fragment in fragments] == [FRAGMENT]
 
     @pytest.mark.asyncio
