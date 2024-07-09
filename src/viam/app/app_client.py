@@ -1646,8 +1646,8 @@ class AppClient:
                 fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.
                 .. deprecated:: 0.25.0
                     Use ``visiblities`` instead.
-            visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include in the results.
-                If empty, by default only public fragments will be returned.
+            visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include
+                in the results. If empty, by default only public fragments will be returned.
 
         Returns:
             List[viam.app.app_client.Fragment]: The list of fragments.
@@ -1734,8 +1734,8 @@ class AppClient:
             name (str): New name to associate with the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
                 passing this parameter will leave the fragment's config unchanged.
-            public (bool): **Deprecated**: Use ``visibility`` instead. Boolean specifying whether the fragment is public. Not passing this parameter
-                will leave the fragment's visibility unchanged. A fragment is private by default when created.
+            public (bool): **Deprecated**: Use ``visibility`` instead. Boolean specifying whether the fragment is public. Not passing this
+                parameter will leave the fragment's visibility unchanged. A fragment is private by default when created.
                 .. deprecated:: 0.25.0
                 Use ``visibility`` instead.
             visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
