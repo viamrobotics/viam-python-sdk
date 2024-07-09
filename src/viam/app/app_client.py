@@ -1646,7 +1646,7 @@ class AppClient:
                 fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.
 
                 .. deprecated:: 0.25.0
-                    Use ``visiblities`` instead.
+                    Use ``visibilities`` instead.
             visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include
                 in the results. If empty, by default only public fragments will be returned.
 
