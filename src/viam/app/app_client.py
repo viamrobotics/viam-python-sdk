@@ -1642,7 +1642,7 @@ class AppClient:
         Args:
             org_id (str): The ID of the organization to list fragments for.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            show_public (bool): **Deprecated**: Use visibilities instead. Optional boolean specifying whether or not to only show public
+            show_public (bool): **Deprecated**: Use ``visibilities`` instead. Optional boolean specifying whether or not to only show public
                 fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.
                 .. deprecated:: 0.25.0
                     Use ``visiblities`` instead.
@@ -1734,7 +1734,7 @@ class AppClient:
             name (str): New name to associate with the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
                 passing this parameter will leave the fragment's config unchanged.
-            public (bool): **Deprecated**: Use visibility instead. Boolean specifying whether the fragment is public. Not passing this parameter
+            public (bool): **Deprecated**: Use ``visibility`` instead. Boolean specifying whether the fragment is public. Not passing this parameter
                 will leave the fragment's visibility unchanged. A fragment is private by default when created.
                 .. deprecated:: 0.25.0
                 Use ``visibility`` instead.
