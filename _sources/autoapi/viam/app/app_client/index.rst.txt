@@ -56,6 +56,7 @@ Classes
    viam.app.app_client.DeleteRobotPartSecretRequest
    viam.app.app_client.DeleteRobotRequest
    viam.app.app_client.FragmentPB
+   viam.app.app_client.FragmentVisibilityPB
    viam.app.app_client.GetFragmentRequest
    viam.app.app_client.GetFragmentResponse
    viam.app.app_client.GetLocationRequest
@@ -1267,6 +1268,11 @@ Module Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: FragmentVisibilityPB
+
+   Bases: :py:obj:`_FragmentVisibility`
 
 
 .. py:class:: GetFragmentRequest(*, id: str = ...)
@@ -4667,6 +4673,51 @@ Module Contents
    Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
 
 
+   .. py:class:: Visibility
+
+      Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+      FragmentVisibility specifies who is permitted to view the fragment.
+
+
+      .. py:attribute:: PRIVATE
+         :value: 'private'
+
+
+         Only visible to members in the fragment's organization.
+
+
+      .. py:attribute:: PUBLIC
+         :value: 'public'
+
+
+         Visible to anyone and appears on the fragments page.
+
+
+      .. py:attribute:: PUBLIC_UNLISTED
+         :value: 'public_unlisted'
+
+
+         Visible to anyone but does not appear on the fragments page.
+
+
+      .. py:attribute:: UNSPECIFIED
+         :value: 'unspecified'
+
+
+         Uninitialized visibility.
+
+
+      .. py:method:: from_proto(visibility: viam.proto.app.FragmentVisibility.ValueType) -> Fragment
+         :classmethod:
+
+
+
+      .. py:method:: to_proto() -> viam.proto.app.FragmentVisibility.ValueType
+
+
+
    .. py:method:: from_proto(fragment: viam.proto.app.Fragment) -> typing_extensions.Self
       :classmethod:
 
@@ -4719,6 +4770,10 @@ Module Contents
 
    .. py:attribute:: only_used_by_owner
       :type:  bool
+
+
+   .. py:attribute:: visibility
+      :type:  Fragment.Visibility
 
 
    .. py:property:: proto
@@ -5864,7 +5919,7 @@ Module Contents
 
 
 
-   .. py:method:: list_fragments(org_id: str, show_public: bool = True) -> List[Fragment]
+   .. py:method:: list_fragments(org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment]] = None) -> List[Fragment]
       :async:
 
 
@@ -5872,13 +5927,20 @@ Module Contents
 
       ::
 
-          fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
+          fragments_list = await cloud.list_fragments(org_id="org-id", visibilities=[])
 
       :param org_id: The ID of the organization to list fragments for.
                      You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
-      :param show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
-                          return. If False, only private fragments will return. Defaults to True.
+      :param show_public: **Deprecated**: Use ``visibilities`` instead. Optional boolean specifying whether or not to only show public
+                          fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.
+
+                          .. deprecated:: 0.25.0
+                              Use ``visibilities`` instead.
+      :type show_public: bool
+      :param visibilities: List of FragmentVisibilities specifying which types of fragments to include
+                           in the results. If empty, by default only public fragments will be returned.
+      :type visibilities: Optional[List[Fragment.Visibility]]
 
       :returns: The list of fragments.
       :rtype: List[viam.app.app_client.Fragment]
@@ -5940,7 +6002,7 @@ Module Contents
 
 
 
-   .. py:method:: update_fragment(fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None) -> Fragment
+   .. py:method:: update_fragment(fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None, visibility: Optional[Fragment] = None) -> Fragment
       :async:
 
 
@@ -5959,9 +6021,16 @@ Module Contents
       :param config: Optional Dictionary representation of new config to assign to specified fragment. Not
                      passing this parameter will leave the fragment's config unchanged.
       :type config: Optional[Mapping[str, Any]]
-      :param public: Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
-                     visibility unchanged. A fragment is private by default when created.
+      :param public: **Deprecated**: Use ``visibility`` instead. Boolean specifying whether the fragment is public. Not passing this
+                     parameter will leave the fragment's visibility unchanged. A fragment is private by default when created.
+
+                     .. deprecated:: 0.25.0
+                         Use ``visibility`` instead.
       :type public: bool
+      :param visibility: Optional FragmentVisibility list specifying who should be allowed
+                         to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
+                         A fragment is private by default when created.
+      :type visibility: Optional[FragmentVisibility]
 
       :raises GRPCError: if an invalid ID, name, or config is passed.
 

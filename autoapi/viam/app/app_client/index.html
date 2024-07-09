@@ -271,6 +271,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentPB.HasField"><code class="docutils literal notranslate"><span class="pre">FragmentPB.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.app_client.FragmentVisibilityPB"><code class="docutils literal notranslate"><span class="pre">FragmentVisibilityPB</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.app.app_client.GetFragmentRequest"><code class="docutils literal notranslate"><span class="pre">GetFragmentRequest</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.GetFragmentRequest.id"><code class="docutils literal notranslate"><span class="pre">GetFragmentRequest.id</span></code></a></li>
 </ul>
@@ -897,6 +898,15 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.app.app_client.Fragment"><code class="docutils literal notranslate"><span class="pre">Fragment</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.PRIVATE"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.PRIVATE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.PUBLIC"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.PUBLIC</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.PUBLIC_UNLISTED"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.PUBLIC_UNLISTED</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.UNSPECIFIED"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.UNSPECIFIED</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.from_proto"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.from_proto()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility.to_proto"><code class="docutils literal notranslate"><span class="pre">Fragment.Visibility.to_proto()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.from_proto"><code class="docutils literal notranslate"><span class="pre">Fragment.from_proto()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.id"><code class="docutils literal notranslate"><span class="pre">Fragment.id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.name"><code class="docutils literal notranslate"><span class="pre">Fragment.name</span></code></a></li>
@@ -908,6 +918,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.robot_part_count"><code class="docutils literal notranslate"><span class="pre">Fragment.robot_part_count</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.organization_count"><code class="docutils literal notranslate"><span class="pre">Fragment.organization_count</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.only_used_by_owner"><code class="docutils literal notranslate"><span class="pre">Fragment.only_used_by_owner</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.visibility"><code class="docutils literal notranslate"><span class="pre">Fragment.visibility</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.proto"><code class="docutils literal notranslate"><span class="pre">Fragment.proto</span></code></a></li>
 </ul>
 </li>
@@ -1171,331 +1182,334 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.FragmentPB" title="viam.app.app_client.FragmentPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FragmentPB</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetFragmentRequest" title="viam.app.app_client.GetFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFragmentRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.FragmentVisibilityPB" title="viam.app.app_client.FragmentVisibilityPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FragmentVisibilityPB</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetFragmentRequest" title="viam.app.app_client.GetFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFragmentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetFragmentResponse" title="viam.app.app_client.GetFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFragmentResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetFragmentResponse" title="viam.app.app_client.GetFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFragmentResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetLocationRequest" title="viam.app.app_client.GetLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetLocationRequest" title="viam.app.app_client.GetLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetLocationResponse" title="viam.app.app_client.GetLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetLocationResponse" title="viam.app.app_client.GetLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetModuleRequest" title="viam.app.app_client.GetModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModuleRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetModuleRequest" title="viam.app.app_client.GetModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModuleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetModuleResponse" title="viam.app.app_client.GetModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModuleResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetModuleResponse" title="viam.app.app_client.GetModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetModuleResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationNamespaceAvailabilityRequest" title="viam.app.app_client.GetOrganizationNamespaceAvailabilityRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationNamespaceAvailabilityRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationNamespaceAvailabilityRequest" title="viam.app.app_client.GetOrganizationNamespaceAvailabilityRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationNamespaceAvailabilityRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationNamespaceAvailabilityResponse" title="viam.app.app_client.GetOrganizationNamespaceAvailabilityResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationNamespaceAvailabilityResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationNamespaceAvailabilityResponse" title="viam.app.app_client.GetOrganizationNamespaceAvailabilityResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationNamespaceAvailabilityResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationRequest" title="viam.app.app_client.GetOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationRequest" title="viam.app.app_client.GetOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationResponse" title="viam.app.app_client.GetOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationResponse" title="viam.app.app_client.GetOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationsWithAccessToLocationRequest" title="viam.app.app_client.GetOrganizationsWithAccessToLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationsWithAccessToLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationsWithAccessToLocationRequest" title="viam.app.app_client.GetOrganizationsWithAccessToLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationsWithAccessToLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationsWithAccessToLocationResponse" title="viam.app.app_client.GetOrganizationsWithAccessToLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationsWithAccessToLocationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetOrganizationsWithAccessToLocationResponse" title="viam.app.app_client.GetOrganizationsWithAccessToLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrganizationsWithAccessToLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRegistryItemRequest" title="viam.app.app_client.GetRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRegistryItemRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRegistryItemRequest" title="viam.app.app_client.GetRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRegistryItemRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRegistryItemResponse" title="viam.app.app_client.GetRegistryItemResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRegistryItemResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRegistryItemResponse" title="viam.app.app_client.GetRegistryItemResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRegistryItemResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotAPIKeysRequest" title="viam.app.app_client.GetRobotAPIKeysRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotAPIKeysRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotAPIKeysRequest" title="viam.app.app_client.GetRobotAPIKeysRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotAPIKeysRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotAPIKeysResponse" title="viam.app.app_client.GetRobotAPIKeysResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotAPIKeysResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotAPIKeysResponse" title="viam.app.app_client.GetRobotAPIKeysResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotAPIKeysResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartHistoryRequest" title="viam.app.app_client.GetRobotPartHistoryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartHistoryRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartHistoryRequest" title="viam.app.app_client.GetRobotPartHistoryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartHistoryRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartHistoryResponse" title="viam.app.app_client.GetRobotPartHistoryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartHistoryResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartHistoryResponse" title="viam.app.app_client.GetRobotPartHistoryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartHistoryResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartLogsRequest" title="viam.app.app_client.GetRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartLogsRequest" title="viam.app.app_client.GetRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartLogsResponse" title="viam.app.app_client.GetRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartLogsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartLogsResponse" title="viam.app.app_client.GetRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartLogsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartRequest" title="viam.app.app_client.GetRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartRequest" title="viam.app.app_client.GetRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartResponse" title="viam.app.app_client.GetRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartResponse" title="viam.app.app_client.GetRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartsRequest" title="viam.app.app_client.GetRobotPartsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartsRequest" title="viam.app.app_client.GetRobotPartsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartsResponse" title="viam.app.app_client.GetRobotPartsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotPartsResponse" title="viam.app.app_client.GetRobotPartsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotPartsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotRequest" title="viam.app.app_client.GetRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotRequest" title="viam.app.app_client.GetRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotResponse" title="viam.app.app_client.GetRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRobotResponse" title="viam.app.app_client.GetRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRobotResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRoverRentalRobotsRequest" title="viam.app.app_client.GetRoverRentalRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRoverRentalRobotsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRoverRentalRobotsRequest" title="viam.app.app_client.GetRoverRentalRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRoverRentalRobotsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetRoverRentalRobotsResponse" title="viam.app.app_client.GetRoverRentalRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRoverRentalRobotsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetRoverRentalRobotsResponse" title="viam.app.app_client.GetRoverRentalRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetRoverRentalRobotsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetUserIDByEmailRequest" title="viam.app.app_client.GetUserIDByEmailRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUserIDByEmailRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetUserIDByEmailRequest" title="viam.app.app_client.GetUserIDByEmailRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUserIDByEmailRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.GetUserIDByEmailResponse" title="viam.app.app_client.GetUserIDByEmailResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUserIDByEmailResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.GetUserIDByEmailResponse" title="viam.app.app_client.GetUserIDByEmailResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetUserIDByEmailResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListAuthorizationsRequest" title="viam.app.app_client.ListAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListAuthorizationsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListAuthorizationsRequest" title="viam.app.app_client.ListAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListAuthorizationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListAuthorizationsResponse" title="viam.app.app_client.ListAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListAuthorizationsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListAuthorizationsResponse" title="viam.app.app_client.ListAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListAuthorizationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListFragmentsRequest" title="viam.app.app_client.ListFragmentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListFragmentsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListFragmentsRequest" title="viam.app.app_client.ListFragmentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListFragmentsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListFragmentsResponse" title="viam.app.app_client.ListFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListFragmentsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListFragmentsResponse" title="viam.app.app_client.ListFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListFragmentsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListKeysRequest" title="viam.app.app_client.ListKeysRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListKeysRequest" title="viam.app.app_client.ListKeysRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListKeysResponse" title="viam.app.app_client.ListKeysResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListKeysResponse" title="viam.app.app_client.ListKeysResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListLocationsRequest" title="viam.app.app_client.ListLocationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListLocationsRequest" title="viam.app.app_client.ListLocationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListLocationsResponse" title="viam.app.app_client.ListLocationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListLocationsResponse" title="viam.app.app_client.ListLocationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListModulesRequest" title="viam.app.app_client.ListModulesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListModulesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListModulesRequest" title="viam.app.app_client.ListModulesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListModulesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListModulesResponse" title="viam.app.app_client.ListModulesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListModulesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListModulesResponse" title="viam.app.app_client.ListModulesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListModulesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationMembersRequest" title="viam.app.app_client.ListOrganizationMembersRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationMembersRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationMembersRequest" title="viam.app.app_client.ListOrganizationMembersRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationMembersRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationMembersResponse" title="viam.app.app_client.ListOrganizationMembersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationMembersResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationMembersResponse" title="viam.app.app_client.ListOrganizationMembersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationMembersResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsByUserRequest" title="viam.app.app_client.ListOrganizationsByUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsByUserRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsByUserRequest" title="viam.app.app_client.ListOrganizationsByUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsByUserRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsByUserResponse" title="viam.app.app_client.ListOrganizationsByUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsByUserResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsByUserResponse" title="viam.app.app_client.ListOrganizationsByUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsByUserResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsRequest" title="viam.app.app_client.ListOrganizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsRequest" title="viam.app.app_client.ListOrganizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsResponse" title="viam.app.app_client.ListOrganizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListOrganizationsResponse" title="viam.app.app_client.ListOrganizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListOrganizationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListRegistryItemsRequest" title="viam.app.app_client.ListRegistryItemsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRegistryItemsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListRegistryItemsRequest" title="viam.app.app_client.ListRegistryItemsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRegistryItemsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListRegistryItemsResponse" title="viam.app.app_client.ListRegistryItemsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRegistryItemsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListRegistryItemsResponse" title="viam.app.app_client.ListRegistryItemsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRegistryItemsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListRobotsRequest" title="viam.app.app_client.ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListRobotsRequest" title="viam.app.app_client.ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ListRobotsResponse" title="viam.app.app_client.ListRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ListRobotsResponse" title="viam.app.app_client.ListRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Location" title="viam.app.app_client.Location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Location</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Location" title="viam.app.app_client.Location"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Location</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuth" title="viam.app.app_client.LocationAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuth</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuth" title="viam.app.app_client.LocationAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuth</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuthRequest" title="viam.app.app_client.LocationAuthRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuthRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuthRequest" title="viam.app.app_client.LocationAuthRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuthRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuthResponse" title="viam.app.app_client.LocationAuthResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuthResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.LocationAuthResponse" title="viam.app.app_client.LocationAuthResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationAuthResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.MarkPartAsMainRequest" title="viam.app.app_client.MarkPartAsMainRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.MarkPartAsMainRequest" title="viam.app.app_client.MarkPartAsMainRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.MarkPartForRestartRequest" title="viam.app.app_client.MarkPartForRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.MarkPartForRestartRequest" title="viam.app.app_client.MarkPartForRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Model" title="viam.app.app_client.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Model" title="viam.app.app_client.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Module" title="viam.app.app_client.Module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Module</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Module" title="viam.app.app_client.Module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Module</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ModuleFileInfo" title="viam.app.app_client.ModuleFileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleFileInfo</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ModuleFileInfo" title="viam.app.app_client.ModuleFileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleFileInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotPartRequest" title="viam.app.app_client.NewRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotPartRequest" title="viam.app.app_client.NewRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotPartResponse" title="viam.app.app_client.NewRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotPartResponse" title="viam.app.app_client.NewRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotRequest" title="viam.app.app_client.NewRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotRequest" title="viam.app.app_client.NewRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotResponse" title="viam.app.app_client.NewRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.NewRobotResponse" title="viam.app.app_client.NewRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Organization" title="viam.app.app_client.Organization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Organization</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Organization" title="viam.app.app_client.Organization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Organization</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationIdentity" title="viam.app.app_client.OrganizationIdentity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationIdentity</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationIdentity" title="viam.app.app_client.OrganizationIdentity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationIdentity</span></code></a></p></td>
 <td><p>Location</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationInvite" title="viam.app.app_client.OrganizationInvite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationInvite</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationInvite" title="viam.app.app_client.OrganizationInvite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationInvite</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationMember" title="viam.app.app_client.OrganizationMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationMember</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.OrganizationMember" title="viam.app.app_client.OrganizationMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationMember</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.OrgDetails" title="viam.app.app_client.OrgDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrgDetails</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.OrgDetails" title="viam.app.app_client.OrgDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrgDetails</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RegistryItem" title="viam.app.app_client.RegistryItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItem</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RegistryItem" title="viam.app.app_client.RegistryItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItem</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RegistryItemStatus" title="viam.app.app_client.RegistryItemStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItemStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RegistryItemStatus" title="viam.app.app_client.RegistryItemStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItemStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RemoveRoleRequest" title="viam.app.app_client.RemoveRoleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RemoveRoleRequest" title="viam.app.app_client.RemoveRoleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ResendOrganizationInviteRequest" title="viam.app.app_client.ResendOrganizationInviteRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ResendOrganizationInviteRequest" title="viam.app.app_client.ResendOrganizationInviteRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ResendOrganizationInviteResponse" title="viam.app.app_client.ResendOrganizationInviteResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ResendOrganizationInviteResponse" title="viam.app.app_client.ResendOrganizationInviteResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Robot" title="viam.app.app_client.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Robot" title="viam.app.app_client.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartPB" title="viam.app.app_client.RobotPartPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartPB</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartPB" title="viam.app.app_client.RobotPartPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartPB</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntryPB" title="viam.app.app_client.RobotPartHistoryEntryPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntryPB</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntryPB" title="viam.app.app_client.RobotPartHistoryEntryPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntryPB</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RotateKeyRequest" title="viam.app.app_client.RotateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RotateKeyRequest" title="viam.app.app_client.RotateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RotateKeyResponse" title="viam.app.app_client.RotateKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RotateKeyResponse" title="viam.app.app_client.RotateKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RoverRentalRobot" title="viam.app.app_client.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RoverRentalRobot" title="viam.app.app_client.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.SharedSecret" title="viam.app.app_client.SharedSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SharedSecret</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.SharedSecret" title="viam.app.app_client.SharedSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SharedSecret</span></code></a></p></td>
 <td><p>SharedSecret is a secret used for LocationAuth and RobotParts.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.ShareLocationRequest" title="viam.app.app_client.ShareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.ShareLocationRequest" title="viam.app.app_client.ShareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.TailRobotPartLogsRequest" title="viam.app.app_client.TailRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.TailRobotPartLogsRequest" title="viam.app.app_client.TailRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.TailRobotPartLogsResponse" title="viam.app.app_client.TailRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.TailRobotPartLogsResponse" title="viam.app.app_client.TailRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UnshareLocationRequest" title="viam.app.app_client.UnshareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UnshareLocationRequest" title="viam.app.app_client.UnshareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateFragmentRequest" title="viam.app.app_client.UpdateFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateFragmentRequest" title="viam.app.app_client.UpdateFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateFragmentResponse" title="viam.app.app_client.UpdateFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateFragmentResponse" title="viam.app.app_client.UpdateFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateLocationRequest" title="viam.app.app_client.UpdateLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateLocationRequest" title="viam.app.app_client.UpdateLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateLocationResponse" title="viam.app.app_client.UpdateLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateLocationResponse" title="viam.app.app_client.UpdateLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateModuleRequest" title="viam.app.app_client.UpdateModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateModuleRequest" title="viam.app.app_client.UpdateModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateModuleResponse" title="viam.app.app_client.UpdateModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateModuleResponse" title="viam.app.app_client.UpdateModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationInviteAuthorizationsRequest" title="viam.app.app_client.UpdateOrganizationInviteAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationInviteAuthorizationsRequest" title="viam.app.app_client.UpdateOrganizationInviteAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationInviteAuthorizationsResponse" title="viam.app.app_client.UpdateOrganizationInviteAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationInviteAuthorizationsResponse" title="viam.app.app_client.UpdateOrganizationInviteAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationRequest" title="viam.app.app_client.UpdateOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationRequest" title="viam.app.app_client.UpdateOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationResponse" title="viam.app.app_client.UpdateOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateOrganizationResponse" title="viam.app.app_client.UpdateOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRegistryItemRequest" title="viam.app.app_client.UpdateRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRegistryItemRequest" title="viam.app.app_client.UpdateRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotPartRequest" title="viam.app.app_client.UpdateRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotPartRequest" title="viam.app.app_client.UpdateRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotPartResponse" title="viam.app.app_client.UpdateRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotPartResponse" title="viam.app.app_client.UpdateRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotRequest" title="viam.app.app_client.UpdateRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotRequest" title="viam.app.app_client.UpdateRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotResponse" title="viam.app.app_client.UpdateRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UpdateRobotResponse" title="viam.app.app_client.UpdateRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.UploadModuleFileRequest" title="viam.app.app_client.UploadModuleFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.UploadModuleFileRequest" title="viam.app.app_client.UploadModuleFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Visibility" title="viam.app.app_client.Visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Visibility</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Visibility" title="viam.app.app_client.Visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Visibility</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.PackageType" title="viam.app.app_client.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.PackageType" title="viam.app.app_client.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.LogEntryPB" title="viam.app.app_client.LogEntryPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntryPB</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.LogEntryPB" title="viam.app.app_client.LogEntryPB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntryPB</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPart</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPart</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>RobotPart</cite> proto message.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>LogEntry</cite> proto message.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fragment</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fragment</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>Fragment</cite> proto message.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>RobotPartHistoryEntry</cite> proto message.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.APIKeyAuthorization" title="viam.app.app_client.APIKeyAuthorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyAuthorization</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.APIKeyAuthorization" title="viam.app.app_client.APIKeyAuthorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyAuthorization</span></code></a></p></td>
 <td><p>A class with the necessary authorization data for creating an API key.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.AppClient" title="viam.app.app_client.AppClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.AppClient" title="viam.app.app_client.AppClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppClient</span></code></a></p></td>
 <td><p>gRPC client for method calls to app.</p></td>
 </tr>
 </tbody>
@@ -2653,6 +2667,12 @@ be raised.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentVisibilityPB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.app_client.</span></span><span class="sig-name descname"><span class="pre">FragmentVisibilityPB</span></span><a class="headerlink" href="#viam.app.app_client.FragmentVisibilityPB" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_FragmentVisibility</span></code></p>
 </dd></dl>
 
 <dl class="py class">
@@ -6251,6 +6271,47 @@ be raised.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.app_client.</span></span><span class="sig-name descname"><span class="pre">Fragment</span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#Fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.Fragment" title="Permalink to this definition"></a></dt>
 <dd><p>A class that mirrors the <cite>Fragment</cite> proto message.</p>
 <p>Use this class to make the attributes of a <cite>viam.proto.app.RobotPart</cite> more accessible and easier to read/interpret.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Visibility</span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#Fragment.Visibility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>FragmentVisibility specifies who is permitted to view the fragment.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.PRIVATE">
+<span class="sig-name descname"><span class="pre">PRIVATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'private'</span></em><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.PRIVATE" title="Permalink to this definition"></a></dt>
+<dd><p>Only visible to members in the fragment’s organization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.PUBLIC">
+<span class="sig-name descname"><span class="pre">PUBLIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'public'</span></em><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.PUBLIC" title="Permalink to this definition"></a></dt>
+<dd><p>Visible to anyone and appears on the fragments page.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.PUBLIC_UNLISTED">
+<span class="sig-name descname"><span class="pre">PUBLIC_UNLISTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'public_unlisted'</span></em><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.PUBLIC_UNLISTED" title="Permalink to this definition"></a></dt>
+<dd><p>Visible to anyone but does not appear on the fragments page.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.UNSPECIFIED">
+<span class="sig-name descname"><span class="pre">UNSPECIFIED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'unspecified'</span></em><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.UNSPECIFIED" title="Permalink to this definition"></a></dt>
+<dd><p>Uninitialized visibility.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.from_proto">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visibility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.FragmentVisibility.ValueType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#Fragment.Visibility.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.from_proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.Visibility.to_proto">
+<span class="sig-name descname"><span class="pre">to_proto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.proto.app.FragmentVisibility.ValueType</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#Fragment.Visibility.to_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.Fragment.Visibility.to_proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.Fragment.from_proto">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Fragment" title="viam.proto.app.Fragment"><span class="pre">viam.proto.app.Fragment</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#Fragment.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.Fragment.from_proto" title="Permalink to this definition"></a></dt>
@@ -6316,6 +6377,11 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.app_client.Fragment.only_used_by_owner">
 <span class="sig-name descname"><span class="pre">only_used_by_owner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.app.app_client.Fragment.only_used_by_owner" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.Fragment.visibility">
+<span class="sig-name descname"><span class="pre">visibility</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility" title="viam.app.app_client.Fragment.Visibility"><span class="pre">Fragment.Visibility</span></a></em><a class="headerlink" href="#viam.app.app_client.Fragment.visibility" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -7514,9 +7580,9 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_fragments">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_fragments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_fragments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_fragments" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_fragments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visibilities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_fragments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_fragments" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of fragments under the currently authed-to organization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fragments_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_fragments</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;org-id&quot;</span><span class="p">,</span> <span class="n">show_public</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fragments_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_fragments</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;org-id&quot;</span><span class="p">,</span> <span class="n">visibilities</span><span class="o">=</span><span class="p">[])</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -7524,8 +7590,14 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list fragments for.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
-<li><p><strong>show_public</strong> – Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
-return. If False, only private fragments will return. Defaults to True.</p></li>
+<li><p><strong>show_public</strong> (<em>bool</em>) – <p><strong>Deprecated</strong>: Use <code class="docutils literal notranslate"><span class="pre">visibilities</span></code> instead. Optional boolean specifying whether or not to only show public
+fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.25.0: </span>Use <code class="docutils literal notranslate"><span class="pre">visibilities</span></code> instead.</p>
+</div>
+</p></li>
+<li><p><strong>visibilities</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="#viam.app.app_client.Fragment.Visibility" title="viam.app.app_client.Fragment.Visibility"><em>Fragment.Visibility</em></a><em>]</em><em>]</em>) – List of FragmentVisibilities specifying which types of fragments to include
+in the results. If empty, by default only public fragments will be returned.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -7597,7 +7669,7 @@ assigned by updating the fragment.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_fragment">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_fragment" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visibility</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_fragment" title="Permalink to this definition"></a></dt>
 <dd><p>Update a fragment name AND its config and/or visibility.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updated_fragment</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_fragment</span><span class="p">(</span>
     <span class="n">fragment_id</span><span class="o">=</span><span class="s2">&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;</span><span class="p">,</span>
@@ -7611,8 +7683,15 @@ assigned by updating the fragment.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – New name to associate with the fragment.</p></li>
 <li><p><strong>config</strong> (<em>Optional</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Optional Dictionary representation of new config to assign to specified fragment. Not
 passing this parameter will leave the fragment’s config unchanged.</p></li>
-<li><p><strong>public</strong> (<em>bool</em>) – Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment’s
-visibility unchanged. A fragment is private by default when created.</p></li>
+<li><p><strong>public</strong> (<em>bool</em>) – <p><strong>Deprecated</strong>: Use <code class="docutils literal notranslate"><span class="pre">visibility</span></code> instead. Boolean specifying whether the fragment is public. Not passing this
+parameter will leave the fragment’s visibility unchanged. A fragment is private by default when created.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.25.0: </span>Use <code class="docutils literal notranslate"><span class="pre">visibility</span></code> instead.</p>
+</div>
+</p></li>
+<li><p><strong>visibility</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.FragmentVisibility" title="viam.gen.app.v1.app_pb2.FragmentVisibility"><em>FragmentVisibility</em></a><em>]</em>) – Optional FragmentVisibility list specifying who should be allowed
+to view the fragment. Not passing this parameter will leave the fragment’s visibility unchanged.
+A fragment is private by default when created.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>

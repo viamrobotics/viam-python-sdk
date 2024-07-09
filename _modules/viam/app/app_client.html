@@ -90,6 +90,7 @@
   <h1>Source code for viam.app.app_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
@@ -138,6 +139,7 @@
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentVisibility</span> <span class="k">as</span> <span class="n">FragmentVisibilityPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetFragmentRequest</span><span class="p">,</span>
     <span class="n">GetFragmentResponse</span><span class="p">,</span>
@@ -374,6 +376,50 @@
 <span class="sd">    Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="Fragment.Visibility"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.Fragment.Visibility">[docs]</a>    <span class="k">class</span> <span class="nc">Visibility</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        FragmentVisibility specifies who is permitted to view the fragment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">PRIVATE</span> <span class="o">=</span> <span class="s2">&quot;private&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Only visible to members in the fragment&#39;s organization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">PUBLIC</span> <span class="o">=</span> <span class="s2">&quot;public&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Visible to anyone and appears on the fragments page.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">PUBLIC_UNLISTED</span> <span class="o">=</span> <span class="s2">&quot;public_unlisted&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Visible to anyone but does not appear on the fragments page.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">UNSPECIFIED</span> <span class="o">=</span> <span class="s2">&quot;unspecified&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Uninitialized visibility.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Fragment.Visibility.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.Fragment.Visibility.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">visibility</span><span class="p">:</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Fragment.Visibility&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">visibility</span> <span class="o">==</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PRIVATE</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">PRIVATE</span>
+            <span class="k">if</span> <span class="n">visibility</span> <span class="o">==</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PUBLIC</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">PUBLIC</span>
+            <span class="k">if</span> <span class="n">visibility</span> <span class="o">==</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PUBLIC_UNLISTED</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">PUBLIC_UNLISTED</span>
+            <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">UNSPECIFIED</span></div>
+
+<div class="viewcode-block" id="Fragment.Visibility.to_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.Fragment.Visibility.to_proto">[docs]</a>        <span class="k">def</span> <span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">PRIVATE</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PRIVATE</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">PUBLIC</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PUBLIC</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">PUBLIC_UNLISTED</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_PUBLIC_UNLISTED</span>
+            <span class="k">return</span> <span class="n">FragmentVisibilityPB</span><span class="o">.</span><span class="n">FRAGMENT_VISIBILITY_UNSPECIFIED</span></div></div>
+
 <div class="viewcode-block" id="Fragment.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.Fragment.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fragment</span><span class="p">:</span> <span class="n">FragmentPB</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `Fragment` from the .proto defined `Fragment`.</span>
@@ -395,6 +441,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">robot_part_count</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">robot_part_count</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">organization_count</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">only_used_by_owner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">visibility</span> <span class="o">=</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">.</span><span class="n">visibility</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -407,6 +454,7 @@
     <span class="n">robot_part_count</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">organization_count</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">only_used_by_owner</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">visibility</span><span class="p">:</span> <span class="n">Visibility</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FragmentPB</span><span class="p">:</span>
@@ -421,6 +469,7 @@
             <span class="n">robot_part_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_part_count</span><span class="p">,</span>
             <span class="n">organization_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span><span class="p">,</span>
             <span class="n">only_used_by_owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span><span class="p">,</span>
+            <span class="n">visibility</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(),</span>
         <span class="p">)</span></div>
 
 
@@ -1671,25 +1720,36 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">visibilities</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            fragments_list = await cloud.list_fragments(org_id=&quot;org-id&quot;, show_public=False)</span>
+<span class="sd">            fragments_list = await cloud.list_fragments(org_id=&quot;org-id&quot;, visibilities=[])</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list fragments for.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
-<span class="sd">            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will</span>
-<span class="sd">                return. If False, only private fragments will return. Defaults to True.</span>
+<span class="sd">            show_public (bool): **Deprecated**: Use ``visibilities`` instead. Optional boolean specifying whether or not to only show public</span>
+<span class="sd">                fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.</span>
+
+<span class="sd">                .. deprecated:: 0.25.0</span>
+<span class="sd">                    Use ``visibilities`` instead.</span>
+<span class="sd">            visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include</span>
+<span class="sd">                in the results. If empty, by default only public fragments will be returned.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.Fragment]: The list of fragments.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">show_public</span><span class="o">=</span><span class="n">show_public</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
+            <span class="n">fragment_visibility</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">,</span> <span class="n">visibilities</span> <span class="k">if</span> <span class="n">visibilities</span> <span class="k">else</span> <span class="p">[]),</span>
+            <span class="n">show_public</span><span class="o">=</span><span class="n">show_public</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListFragmentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListFragments</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">fragment</span><span class="p">)</span> <span class="k">for</span> <span class="n">fragment</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">fragments</span><span class="p">]</span></div>
 
@@ -1745,7 +1805,12 @@
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.update_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.app_client.AppClient.update_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_fragment</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">public</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">public</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">visibility</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a fragment name AND its config and/or visibility.</span>
 
@@ -1760,8 +1825,14 @@
 <span class="sd">            name (str): New name to associate with the fragment.</span>
 <span class="sd">            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not</span>
 <span class="sd">                passing this parameter will leave the fragment&#39;s config unchanged.</span>
-<span class="sd">            public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment&#39;s</span>
-<span class="sd">                visibility unchanged. A fragment is private by default when created.</span>
+<span class="sd">            public (bool): **Deprecated**: Use ``visibility`` instead. Boolean specifying whether the fragment is public. Not passing this</span>
+<span class="sd">                parameter will leave the fragment&#39;s visibility unchanged. A fragment is private by default when created.</span>
+
+<span class="sd">                .. deprecated:: 0.25.0</span>
+<span class="sd">                    Use ``visibility`` instead.</span>
+<span class="sd">            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed</span>
+<span class="sd">                to view the fragment. Not passing this parameter will leave the fragment&#39;s visibility unchanged.</span>
+<span class="sd">                A fragment is private by default when created.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if an invalid ID, name, or config is passed.</span>
@@ -1771,7 +1842,13 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateFragmentRequest</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">,</span>
+            <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">()</span> <span class="k">if</span> <span class="n">visibility</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 
