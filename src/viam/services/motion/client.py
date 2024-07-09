@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Mapping, Optional
+from typing import Any, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
@@ -30,6 +30,7 @@ from viam.proto.service.motion import (
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
+    PlanStatusWithID,
     StopPlanRequest,
     StopPlanResponse,
 )
@@ -79,11 +80,11 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         component_name: ResourceName,
         destination: GeoPoint,
         movement_sensor_name: ResourceName,
-        obstacles: Optional[Iterable[GeoGeometry]] = None,
+        obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
-        bounding_regions: Optional[Iterable[GeoGeometry]] = None,
+        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -109,7 +110,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         destination: Pose,
         slam_service_name: ResourceName,
         configuration: Optional[MotionConfiguration] = None,
-        obstacles: Optional[Iterable[Geometry]] = None,
+        obstacles: Optional[Sequence[Geometry]] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -174,7 +175,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> ListPlanStatusesResponse:
+    ) -> Sequence[PlanStatusWithID]:
         if extra is None:
             extra = {}
 
@@ -184,13 +185,13 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             extra=dict_to_struct(extra),
         )
         response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout)
-        return response
+        return response.plan_statuses_with_ids
 
     async def get_pose(
         self,
         component_name: ResourceName,
         destination_frame: str,
-        supplemental_transforms: Optional[Iterable[Transform]] = None,
+        supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,

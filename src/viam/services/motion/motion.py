@@ -1,8 +1,14 @@
 import abc
-from typing import Any, Final, Iterable, Mapping, Optional
+import sys
+from typing import Any, Final, Mapping, Optional, Sequence
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
-from viam.proto.service.motion import Constraints, GetPlanResponse, ListPlanStatusesResponse, MotionConfiguration
+from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.utils import ValueTypes
 
@@ -17,6 +23,8 @@ class Motion(ServiceBase):
 
     For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
     """
+
+    Plan: "TypeAlias" = GetPlanResponse
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion"
@@ -82,11 +90,11 @@ class Motion(ServiceBase):
         component_name: ResourceName,
         destination: GeoPoint,
         movement_sensor_name: ResourceName,
-        obstacles: Optional[Iterable[GeoGeometry]] = None,
+        obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
-        bounding_regions: Optional[Iterable[GeoGeometry]] = None,
+        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -123,14 +131,14 @@ class Motion(ServiceBase):
                 GeoPoint (lat, lng).
             movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
                 the machine's location.
-            obstacles (Optional[Iterable[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
+            obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
                 with each represented as a GeoGeometry. Default: None
             heading (Optional[float]): The compass heading, in degrees, that the machine's movement sensor should report
                 at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
                 motion service. This parameter and each of its fields are optional.
 
-                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
+                - obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair
                 you want to use for transient obstacle avoidance.
 
                 - position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.
@@ -138,7 +146,7 @@ class Motion(ServiceBase):
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
-            bounding_regions (Optional[Iterable[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
+            bounding_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
                 the underlying RPC call.
@@ -158,7 +166,7 @@ class Motion(ServiceBase):
         destination: Pose,
         slam_service_name: ResourceName,
         configuration: Optional[MotionConfiguration] = None,
-        obstacles: Optional[Iterable[Geometry]] = None,
+        obstacles: Optional[Sequence[Geometry]] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -198,7 +206,7 @@ class Motion(ServiceBase):
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
                 This parameter and each of its fields are optional.
 
-                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
+                - obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
                 for transient obstacle avoidance.
 
                 - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
@@ -206,7 +214,7 @@ class Motion(ServiceBase):
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
-            obstacles (Optional[Iterable[Geometry]]): Obstacles to be considered for motion planning.
+            obstacles (Optional[Sequence[Geometry]]): Obstacles to be considered for motion planning.
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
                 RPC call.
@@ -252,7 +260,7 @@ class Motion(ServiceBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> GetPlanResponse:
+    ) -> Plan:
         """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()`` call to move a component.
 
         The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
@@ -296,7 +304,7 @@ class Motion(ServiceBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> ListPlanStatusesResponse:
+    ) -> Sequence[PlanStatusWithID]:
         """Returns the statuses of plans created by `move_on_globe()` or ``move_on_map()`` calls that meet at least one of the following
         conditions since the motion service initialized:
 
@@ -327,7 +335,7 @@ class Motion(ServiceBase):
         self,
         component_name: ResourceName,
         destination_frame: str,
-        supplemental_transforms: Optional[Iterable[Transform]] = None,
+        supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,

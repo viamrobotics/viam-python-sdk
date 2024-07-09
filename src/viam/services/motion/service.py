@@ -109,7 +109,8 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.list_plan_statuses(request.only_active_plans, extra=struct_to_dict(request.extra), timeout=timeout)
-        await stream.send_message(result)
+        response = ListPlanStatusesResponse(plan_statuses_with_ids=result)
+        await stream.send_message(response)
 
     async def GetPlan(self, stream: Stream[GetPlanRequest, GetPlanResponse]) -> None:
         request = await stream.recv_message()

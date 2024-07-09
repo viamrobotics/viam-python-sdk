@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Mapping, Optional
+from typing import Any, Mapping, Optional, Sequence
 from unittest.mock import patch
 
 import pytest
@@ -53,11 +53,11 @@ def motion():
             component_name: ResourceName,
             destination: GeoPoint,
             movement_sensor_name: ResourceName,
-            obstacles: Optional[Iterable[GeoGeometry]] = None,
+            obstacles: Optional[Sequence[GeoGeometry]] = None,
             heading: Optional[float] = None,
             configuration: Optional[MotionConfiguration] = None,
             *,
-            bounding_regions: Optional[Iterable[GeoGeometry]] = None,
+            bounding_regions: Optional[Sequence[GeoGeometry]] = None,
             extra: Optional[Mapping[str, ValueTypes]] = None,
             timeout: Optional[float] = None
         ) -> str:
@@ -69,7 +69,7 @@ def motion():
             destination: Pose,
             slam_service_name: ResourceName,
             configuration: Optional[MotionConfiguration] = None,
-            obstacles: Optional[Iterable[Geometry]] = None,
+            obstacles: Optional[Sequence[Geometry]] = None,
             *,
             extra: Optional[Mapping[str, ValueTypes]] = None,
             timeout: Optional[float] = None
@@ -101,7 +101,7 @@ def motion():
             self,
             component_name: ResourceName,
             destination_frame: str,
-            supplemental_transforms: Optional[Iterable[Transform]] = None,
+            supplemental_transforms: Optional[Sequence[Transform]] = None,
             *,
             extra: Optional[Mapping[str, Any]] = None,
             timeout: Optional[float] = None
@@ -308,7 +308,7 @@ class TestMotionService:
     @pytest.mark.asyncio
     async def test_list_plan_statuses(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "list_plan_statuses") as patched_method:
-            response = ListPlanStatusesResponse(plan_statuses_with_ids=[PlanStatusWithID(plan_id="lpsr_pswid")])
+            response = [PlanStatusWithID(plan_id="lpsr_pswid")]
             patched_method.return_value = response
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
@@ -339,195 +339,3 @@ class TestMotionService:
                 patched_method.assert_called_once()
                 assert patched_method.call_args.args[0] == command
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
-
-
-# class TestClient:
-#     @pytest.mark.asyncio
-#     async def test_plan_and_move(self, service: MockMotion):
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             assert service.timeout is None
-#             assert service.constraints is None
-#             timeout = 1.4
-#             success = await client.move(
-#                 Arm.get_resource_name("arm"), PoseInFrame(), constraints=MOVE_CONSTRAINTS, extra={"foo": "bar"}, timeout=timeout
-#             )
-#             assert success == MOVE_RESPONSES["arm"]
-#             assert service.extra == {"foo": "bar"}
-#             assert service.timeout == loose_approx(timeout)
-#             assert service.constraints is not None
-#             assert service.constraints.linear_constraint == [LinearConstraint(), LinearConstraint(line_tolerance_mm=2)]
-#             success = await client.move(Gantry.get_resource_name("gantry"), PoseInFrame())
-#             assert success == MOVE_RESPONSES["gantry"]
-#             assert service.extra == {}
-#             assert service.timeout is None
-
-#     @pytest.mark.asyncio
-#     async def test_get_pose(self, service: MockMotion):
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             pose = await client.get_pose(Arm.get_resource_name("arm"), "x", extra={"foo": "bar"})
-#             assert pose == GET_POSE_RESPONSES["arm"]
-#             assert service.extra == {"foo": "bar"}
-#             pose = await client.get_pose(Gantry.get_resource_name("gantry"), "y")
-#             assert pose == GET_POSE_RESPONSES["gantry"]
-#             assert service.extra == {}
-
-#     @pytest.mark.asyncio
-#     async def test_move_on_map(self, service: MockMotion):
-#         component_rn = Base.get_resource_name("move_on_globe_base")
-#         slam_rn = ResourceName(namespace="rdk", type="service", subtype="slam", name="move_on_map_slam")
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             execution_id = await client.move_on_map(
-#                 component_rn,
-#                 Pose(),
-#                 slam_service_name=slam_rn,
-#                 configuration=MOTION_CONFIGURATION,
-#             )
-#             assert service.component_name == component_rn
-#             assert service.slam_service == slam_rn
-#             assert service.execution_id == execution_id
-#             assert service.extra == {}
-#             assert service.timeout is None
-#             timeout = 50
-#             extra = {"max_iter": 1}
-#             execution_id = await client.move_on_map(
-#                 component_rn,
-#                 Pose(),
-#                 slam_service_name=slam_rn,
-#                 configuration=MOTION_CONFIGURATION,
-#                 extra=extra,
-#                 timeout=timeout,
-#             )
-#             assert service.component_name == component_rn
-#             assert service.slam_service == slam_rn
-#             assert service.execution_id == execution_id
-#             assert service.extra == extra
-#             assert service.timeout == loose_approx(timeout)
-
-#     @pytest.mark.asyncio
-#     async def test_move_on_globe(self, service: MockMotion):
-#         component_rn = Base.get_resource_name("move_on_globe_base")
-#         movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
-#         destination = GeoPoint(latitude=123, longitude=456)
-#         obstacles = [GeoGeometry(location=GeoPoint(latitude=111, longitude=222))]
-#         bounding_regions = [GeoGeometry(location=GeoPoint(latitude=3, longitude=4))]
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             execution_id = await client.move_on_globe(
-#                 component_rn,
-#                 destination,
-#                 movement_rn,
-#                 obstacles,
-#                 heading=182,
-#                 configuration=MOTION_CONFIGURATION,
-#             )
-#             assert service.component_name == component_rn
-#             assert service.movement_sensor == movement_rn
-#             assert service.destination == destination
-#             assert service.obstacles == obstacles
-#             assert service.heading == 182
-#             assert service.configuration == MOTION_CONFIGURATION
-#             assert service.execution_id == execution_id
-#             assert service.extra == {}
-#             assert service.timeout is None
-#             timeout = 50
-#             extra = {"max_iter": 1}
-#             execution_id = await client.move_on_globe(
-#                 component_rn,
-#                 destination,
-#                 movement_rn,
-#                 obstacles,
-#                 heading=182,
-#                 configuration=MOTION_CONFIGURATION,
-#                 extra=extra,
-#                 bounding_regions=bounding_regions,
-#                 timeout=timeout,
-#             )
-#             assert service.component_name == component_rn
-#             assert service.movement_sensor == movement_rn
-#             assert service.destination == destination
-#             assert service.obstacles == obstacles
-#             assert service.heading == 182
-#             assert service.configuration == MOTION_CONFIGURATION
-#             assert service.bounding_regions == bounding_regions
-#             assert service.execution_id == execution_id
-#             assert service.extra == extra
-#             assert service.timeout == loose_approx(timeout)
-
-#     @pytest.mark.asyncio
-#     async def test_stop_plan(self, service: MockMotion):
-#         component_rn = Base.get_resource_name("stop_plan_base")
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             await client.stop_plan(component_rn)
-#             assert service.component_name == component_rn
-#             assert service.extra == {}
-#             assert service.timeout is None
-#             timeout = 50
-#             extra = {"max_iter": 1}
-#             await client.stop_plan(component_rn, extra=extra, timeout=timeout)
-#             assert service.component_name == component_rn
-#             assert service.extra == extra
-#             assert service.timeout == loose_approx(timeout)
-
-#     @pytest.mark.asyncio
-#     async def test_get_plan(self, service: MockMotion):
-#         component_rn = Base.get_resource_name("get_plan_base")
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             response = await client.get_plan(component_rn)
-#             assert service.component_name == component_rn
-#             assert not service.last_plan_only
-#             assert service.execution_id == ""
-#             assert service.extra == {}
-#             assert service.timeout is None
-#             assert response == GET_PLAN_RESPONSE
-#             last_plan_only = True
-#             execution_id = "execution_id"
-#             timeout = 50
-#             extra = {"some": "extra"}
-#             response = await client.get_plan(
-#                 component_rn,
-#                 last_plan_only=last_plan_only,
-#                 execution_id=execution_id,
-#                 extra=extra,
-#                 timeout=timeout,
-#             )
-#             assert service.component_name == component_rn
-#             assert service.last_plan_only == last_plan_only
-#             assert service.execution_id == execution_id
-#             assert service.extra == extra
-#             assert service.timeout == loose_approx(timeout)
-#             assert response == GET_PLAN_RESPONSE
-
-#     @pytest.mark.asyncio
-#     async def test_list_plan_statuses(self, service: MockMotion):
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             response = await client.list_plan_statuses()
-#             assert not service.only_active_plans
-#             assert service.extra == {}
-#             assert service.timeout is None
-#             assert response == LIST_PLAN_STATUSES_RESPONSE
-#             only_active_plans = True
-#             timeout = 50
-#             extra = {"some": "extra"}
-#             response = await client.list_plan_statuses(
-#                 only_active_plans=only_active_plans,
-#                 extra=extra,
-#                 timeout=timeout,
-#             )
-#             assert service.only_active_plans == only_active_plans
-#             assert service.extra == extra
-#             assert service.timeout == loose_approx(timeout)
-#             assert response == LIST_PLAN_STATUSES_RESPONSE
-
-#     @pytest.mark.asyncio
-#     async def test_do(self, service: MockMotion):
-#         async with ChannelFor([service]) as channel:
-#             client = MotionClient(MOTION_SERVICE_NAME, channel)
-#             command = {"command": "args"}
-#             response = await client.do_command(command)
-#             assert response == command
