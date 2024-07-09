@@ -280,57 +280,55 @@ class LogEntry:
         )
 
 
-class FragmentVisibility(str, Enum):
-    """
-    FragmentVisibility specifies who is permitted to view the fragment.
-    """
-
-    PRIVATE = "private"
-    """
-    Only visible to members in the fragment's organization.
-    """
-
-    PUBLIC = "public"
-    """
-    Visible to anyone and appears on the fragments page.
-    """
-
-    PUBLIC_UNLISTED = "public_unlisted"
-    """
-    Visible to anyone but does not appear on the fragments page.
-    """
-
-    UNSPECIFIED = "unspecified"
-    """
-    Uninitialized visibility.
-    """
-
-
 class Fragment:
     """A class that mirrors the `Fragment` proto message.
 
     Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
     """
 
-    @classmethod
-    def visibility_from_proto(cls, visibility: FragmentVisibilityPB.ValueType) -> FragmentVisibility:
-        if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE:
-            return FragmentVisibility.PRIVATE
-        if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC:
-            return FragmentVisibility.PUBLIC
-        if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED:
-            return FragmentVisibility.PUBLIC_UNLISTED
-        return FragmentVisibility.UNSPECIFIED
+    class Visibility(str, Enum):
+        """
+        FragmentVisibility specifies who is permitted to view the fragment.
+        """
 
-    @classmethod
-    def visibility_to_proto(cls, visibility: FragmentVisibility) -> FragmentVisibilityPB.ValueType:
-        if visibility == FragmentVisibility.PRIVATE:
-            return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE
-        if visibility == FragmentVisibility.PUBLIC:
-            return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC
-        if visibility == FragmentVisibility.PUBLIC_UNLISTED:
-            return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED
-        return FragmentVisibilityPB.FRAGMENT_VISIBILITY_UNSPECIFIED
+        PRIVATE = "private"
+        """
+        Only visible to members in the fragment's organization.
+        """
+
+        PUBLIC = "public"
+        """
+        Visible to anyone and appears on the fragments page.
+        """
+
+        PUBLIC_UNLISTED = "public_unlisted"
+        """
+        Visible to anyone but does not appear on the fragments page.
+        """
+
+        UNSPECIFIED = "unspecified"
+        """
+        Uninitialized visibility.
+        """
+
+        @classmethod
+        def from_proto(cls, visibility: FragmentVisibilityPB.ValueType) -> "Fragment.Visibility":
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE:
+                return Fragment.Visibility.PRIVATE
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC:
+                return Fragment.Visibility.PUBLIC
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED:
+                return Fragment.Visibility.PUBLIC_UNLISTED
+            return Fragment.Visibility.UNSPECIFIED
+
+        def to_proto(self) -> FragmentVisibilityPB.ValueType:
+            if self == self.PRIVATE:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE
+            if self == self.PUBLIC:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC
+            if self == self.PUBLIC_UNLISTED:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED
+            return FragmentVisibilityPB.FRAGMENT_VISIBILITY_UNSPECIFIED
 
     @classmethod
     def from_proto(cls, fragment: FragmentPB) -> Self:
@@ -353,7 +351,7 @@ class Fragment:
         self.robot_part_count = fragment.robot_part_count
         self.organization_count = fragment.organization_count
         self.only_used_by_owner = fragment.only_used_by_owner
-        self.visibility = self.visibility_from_proto(fragment.visibility)
+        self.visibility = Fragment.Visibility.from_proto(fragment.visibility)
         return self
 
     id: str
@@ -366,7 +364,7 @@ class Fragment:
     robot_part_count: int
     organization_count: int
     only_used_by_owner: bool
-    visibility: FragmentVisibility
+    visibility: Visibility
 
     @property
     def proto(self) -> FragmentPB:
@@ -381,7 +379,7 @@ class Fragment:
             robot_part_count=self.robot_part_count,
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
-            visibility=self.visibility_to_proto(self.visibility),
+            visibility=self.visibility.to_proto(),
         )
 
 
@@ -1632,7 +1630,9 @@ class AppClient:
         request = DeleteRobotRequest(id=robot_id)
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
-    async def list_fragments(self, org_id: str, show_public: bool = True, visibilities: List[FragmentVisibility] = []) -> List[Fragment]:
+    async def list_fragments(
+        self, org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment.Visibility]] = None
+    ) -> List[Fragment]:
         """Get a list of fragments under the currently authed-to organization.
 
         ::
@@ -1644,13 +1644,19 @@ class AppClient:
                 You can obtain your organization ID from the Viam app's organization settings page.
             visibilities: List of FragmentVisibilities specifying which types of fragments to include in the results.
                 If empty, by default only public fragments will be returned.
+            show_public: Deprecated: use visibilities instead. Optional boolean specifying whether or not to only show public
+                fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.
 
         Returns:
             List[viam.app.app_client.Fragment]: The list of fragments.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = ListFragmentsRequest(organization_id=org_id, fragment_visibility=map(Fragment.visibility_to_proto, visibilities))
+        request = ListFragmentsRequest(
+            organization_id=org_id,
+            fragment_visibility=map(Fragment.Visibility.to_proto, visibilities if visibilities else []),
+            show_public=show_public,
+        )
         response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
@@ -1711,7 +1717,7 @@ class AppClient:
         name: str,
         config: Optional[Mapping[str, Any]] = None,
         public: Optional[bool] = None,
-        visibility: Optional[FragmentVisibility] = None,
+        visibility: Optional[Fragment.Visibility] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1729,6 +1735,8 @@ class AppClient:
             visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
                 to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
                 A fragment is private by default when created.
+            public (bool): Deprecated: use visibility instead. Boolean specifying whether the fragment is public. Not passing this parameter
+                will leave the fragment's visibility unchanged. A fragment is private by default when created.
 
         Raises:
             GRPCError: if an invalid ID, name, or config is passed.
@@ -1743,7 +1751,7 @@ class AppClient:
             name=name,
             config=dict_to_struct(config) if config else None,
             public=public,
-            visibility=Fragment.visibility_to_proto(visibility) if visibility else None,
+            visibility=visibility.to_proto() if visibility else None,
         )
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
