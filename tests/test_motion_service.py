@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Mapping
+from typing import Any, Iterable, Mapping, Optional
 from unittest.mock import patch
 
 import pytest
@@ -40,11 +40,11 @@ def motion():
             self,
             component_name: ResourceName,
             destination: PoseInFrame,
-            world_state: WorldState | None = None,
-            constraints: Constraints | None = None,
+            world_state: Optional[WorldState] = None,
+            constraints: Optional[Constraints] = None,
             *,
-            extra: Mapping[str, Any] | None = None,
-            timeout: float | None = None
+            extra: Optional[Mapping[str, Any]] = None,
+            timeout: Optional[float] = None
         ) -> bool:
             raise NotImplementedError
 
@@ -53,13 +53,13 @@ def motion():
             component_name: ResourceName,
             destination: GeoPoint,
             movement_sensor_name: ResourceName,
-            obstacles: Iterable[GeoGeometry] | None = None,
-            heading: float | None = None,
-            configuration: MotionConfiguration | None = None,
+            obstacles: Optional[Iterable[GeoGeometry]] = None,
+            heading: Optional[float] = None,
+            configuration: Optional[MotionConfiguration] = None,
             *,
-            bounding_regions: Iterable[GeoGeometry] | None = None,
-            extra: Mapping[str, ValueTypes] | None = None,
-            timeout: float | None = None
+            bounding_regions: Optional[Iterable[GeoGeometry]] = None,
+            extra: Optional[Mapping[str, ValueTypes]] = None,
+            timeout: Optional[float] = None
         ) -> str:
             raise NotImplementedError
 
@@ -68,16 +68,16 @@ def motion():
             component_name: ResourceName,
             destination: Pose,
             slam_service_name: ResourceName,
-            configuration: MotionConfiguration | None = None,
-            obstacles: Iterable[Geometry] | None = None,
+            configuration: Optional[MotionConfiguration] = None,
+            obstacles: Optional[Iterable[Geometry]] = None,
             *,
-            extra: Mapping[str, ValueTypes] | None = None,
-            timeout: float | None = None
+            extra: Optional[Mapping[str, ValueTypes]] = None,
+            timeout: Optional[float] = None
         ) -> str:
             raise NotImplementedError
 
         async def stop_plan(
-            self, component_name: ResourceName, *, extra: Mapping[str, ValueTypes] | None = None, timeout: float | None = None
+            self, component_name: ResourceName, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None
         ):
             raise NotImplementedError
 
@@ -85,15 +85,15 @@ def motion():
             self,
             component_name: ResourceName,
             last_plan_only: bool = False,
-            execution_id: str | None = None,
+            execution_id: Optional[str] = None,
             *,
-            extra: Mapping[str, ValueTypes] | None = None,
-            timeout: float | None = None
+            extra: Optional[Mapping[str, ValueTypes]] = None,
+            timeout: Optional[float] = None
         ) -> GetPlanResponse:
             raise NotImplementedError
 
         async def list_plan_statuses(
-            self, only_active_plans: bool = False, *, extra: Mapping[str, ValueTypes] | None = None, timeout: float | None = None
+            self, only_active_plans: bool = False, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None
         ) -> ListPlanStatusesResponse:
             raise NotImplementedError
 
@@ -101,10 +101,10 @@ def motion():
             self,
             component_name: ResourceName,
             destination_frame: str,
-            supplemental_transforms: Iterable[Transform] | None = None,
+            supplemental_transforms: Optional[Iterable[Transform]] = None,
             *,
-            extra: Mapping[str, Any] | None = None,
-            timeout: float | None = None
+            extra: Optional[Mapping[str, Any]] = None,
+            timeout: Optional[float] = None
         ) -> PoseInFrame:
             raise NotImplementedError
 
