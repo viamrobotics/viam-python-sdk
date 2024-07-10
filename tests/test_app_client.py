@@ -4,13 +4,9 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
+from viam.proto.app import APIKey, APIKeyWithAuthorizations, Authorization, AuthorizationDetails, AuthorizedPermissions
+from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import (
-    APIKey,
-    APIKeyWithAuthorizations,
-    Authorization,
-    AuthorizationDetails,
-    AuthorizedPermissions,
-    Fragment as FragmentPB,
     Location,
     LocationAuth,
     Model,
