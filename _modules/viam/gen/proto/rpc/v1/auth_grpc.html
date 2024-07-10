@@ -112,7 +112,7 @@
 <div class="viewcode-block" id="UnimplementedAuthServiceBase.Authenticate"><a class="viewcode-back" href="../../../../../../autoapi/viam/proto/rpc/auth/index.html#viam.proto.rpc.auth.UnimplementedAuthServiceBase.Authenticate">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="s1">&#39;grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">GRPCError</span><span class="p">(</span><span class="n">grpclib</span><span class="o">.</span><span class="n">const</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="AuthServiceStub"><a class="viewcode-back" href="../../../../../../autoapi/viam/rpc/dial/index.html#viam.proto.rpc.auth.AuthServiceStub">[docs]</a><span class="k">class</span> <span class="nc">AuthServiceStub</span><span class="p">:</span>
+<div class="viewcode-block" id="AuthServiceStub"><a class="viewcode-back" href="../../../../../../autoapi/viam/proto/rpc/auth/index.html#viam.proto.rpc.auth.AuthServiceStub">[docs]</a><span class="k">class</span> <span class="nc">AuthServiceStub</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Channel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Authenticate</span> <span class="o">=</span> <span class="n">grpclib</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">UnaryUnaryMethod</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="s1">&#39;/proto.rpc.v1.AuthService/Authenticate&#39;</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">rpc</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">auth_pb2</span><span class="o">.</span><span class="n">AuthenticateRequest</span><span class="p">,</span> <span class="n">proto</span><span class="o">.</span><span class="n">rpc</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">auth_pb2</span><span class="o">.</span><span class="n">AuthenticateResponse</span><span class="p">)</span></div>
@@ -144,7 +144,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

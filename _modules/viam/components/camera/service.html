@@ -90,7 +90,7 @@
   <h1>Source code for viam.components.camera.service</h1><div class="highlight"><pre>
 <span></span><span class="c1"># TODO: Update type checking based with RSDK-4089</span>
 <span class="c1"># pyright: reportGeneralTypeIssues=false</span>
-<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>
+<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span>
@@ -208,7 +208,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

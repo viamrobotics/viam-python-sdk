@@ -23,6 +23,7 @@ Attributes
    viam.gen.app.v1.robot_pb2.CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET
    viam.gen.app.v1.robot_pb2.global___CredentialsType
    viam.gen.app.v1.robot_pb2.global___RobotConfig
+   viam.gen.app.v1.robot_pb2.global___LogPatternConfig
    viam.gen.app.v1.robot_pb2.global___LocationSecret
    viam.gen.app.v1.robot_pb2.global___AppValidationStatus
    viam.gen.app.v1.robot_pb2.global___CloudConfig
@@ -62,6 +63,7 @@ Classes
 
    viam.gen.app.v1.robot_pb2.CredentialsType
    viam.gen.app.v1.robot_pb2.RobotConfig
+   viam.gen.app.v1.robot_pb2.LogPatternConfig
    viam.gen.app.v1.robot_pb2.LocationSecret
    viam.gen.app.v1.robot_pb2.AppValidationStatus
    viam.gen.app.v1.robot_pb2.CloudConfig
@@ -122,7 +124,7 @@ Module Contents
 
 .. py:data:: global___CredentialsType
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ...)
+.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -200,6 +202,11 @@ Module Contents
 
 
 
+   .. py:property:: log
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogPatternConfig]
+
+
+
    .. py:method:: HasField(field_name: Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> bool
 
       Checks if a certain field is set for the message.
@@ -238,6 +245,25 @@ Module Contents
 
 
 .. py:data:: global___RobotConfig
+
+.. py:class:: LogPatternConfig(*, pattern: str = ..., level: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   LogPatternConfig allows you to specify a 2-tuple consisting
+   of a logger name and its corresponding log level.
+
+
+   .. py:attribute:: pattern
+      :type:  str
+
+
+   .. py:attribute:: level
+      :type:  str
+
+
+.. py:data:: global___LogPatternConfig
 
 .. py:class:: LocationSecret(*, id: str = ..., secret: str = ...)
 

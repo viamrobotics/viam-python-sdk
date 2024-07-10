@@ -1,0 +1,69 @@
+viam.services.motion.service
+============================
+
+.. py:module:: viam.services.motion.service
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.services.motion.service.MotionRPCService
+
+
+Module Contents
+---------------
+
+.. py:class:: MotionRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.service.motion.UnimplementedMotionServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.services.motion.motion.Motion`\ ]
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:method:: Move(stream: grpclib.server.Stream[viam.proto.service.motion.MoveRequest, viam.proto.service.motion.MoveResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: MoveOnMap(stream: grpclib.server.Stream[viam.proto.service.motion.MoveOnMapRequest, viam.proto.service.motion.MoveOnMapResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: MoveOnGlobe(stream: grpclib.server.Stream[viam.proto.service.motion.MoveOnGlobeRequest, viam.proto.service.motion.MoveOnGlobeResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPose(stream: grpclib.server.Stream[viam.proto.service.motion.GetPoseRequest, viam.proto.service.motion.GetPoseResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StopPlan(stream: grpclib.server.Stream[viam.proto.service.motion.StopPlanRequest, viam.proto.service.motion.StopPlanResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListPlanStatuses(stream: grpclib.server.Stream[viam.proto.service.motion.ListPlanStatusesRequest, viam.proto.service.motion.ListPlanStatusesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPlan(stream: grpclib.server.Stream[viam.proto.service.motion.GetPlanRequest, viam.proto.service.motion.GetPlanResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+

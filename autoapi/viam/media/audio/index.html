@@ -68,27 +68,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioChunk"><code class="docutils literal notranslate"><span class="pre">AudioChunk</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioChunk.data"><code class="docutils literal notranslate"><span class="pre">AudioChunk.data</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioChunk.length"><code class="docutils literal notranslate"><span class="pre">AudioChunk.length</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioChunkInfo"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioChunkInfo.sample_format"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.sample_format</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioChunkInfo.channels"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.channels</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioChunkInfo.sampling_rate"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.sampling_rate</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.Stream"><code class="docutils literal notranslate"><span class="pre">Stream</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Stream.next"><code class="docutils literal notranslate"><span class="pre">Stream.next()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Stream.__aiter__"><code class="docutils literal notranslate"><span class="pre">Stream.__aiter__()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Stream.__anext__"><code class="docutils literal notranslate"><span class="pre">Stream.__anext__()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.StreamReader"><code class="docutils literal notranslate"><span class="pre">StreamReader</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.StreamReader.read"><code class="docutils literal notranslate"><span class="pre">StreamReader.read()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.Audio"><code class="docutils literal notranslate"><span class="pre">Audio</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio.info"><code class="docutils literal notranslate"><span class="pre">Audio.info</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio.chunk"><code class="docutils literal notranslate"><span class="pre">Audio.chunk</span></code></a></li>
@@ -154,18 +133,6 @@
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.AudioChunk" title="viam.media.audio.AudioChunk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioChunk</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.audio.AudioChunkInfo" title="viam.media.audio.AudioChunkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioChunkInfo</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.Stream" title="viam.media.audio.Stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stream</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.audio.StreamReader" title="viam.media.audio.StreamReader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamReader</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.Audio" title="viam.media.audio.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a></p></td>
 <td><p>A block of audio data containing information about the block and the audio data</p></td>
 </tr>
@@ -174,88 +141,6 @@
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunk">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioChunk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.media.audio.AudioChunk" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunk.data">
-<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.media.audio.AudioChunk.data" title="Permalink to this definition"></a></dt>
-<dd><p>Data is PCM data that is organized according to the sample format
-along with its possible interleaving. Data in each format is
-Little Endian.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunk.length">
-<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.media.audio.AudioChunk.length" title="Permalink to this definition"></a></dt>
-<dd><p>Length is the number of samples</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunkInfo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioChunkInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___SampleFormat</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.media.audio.AudioChunkInfo" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunkInfo.sample_format">
-<span class="sig-name descname"><span class="pre">sample_format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___SampleFormat</span></em><a class="headerlink" href="#viam.media.audio.AudioChunkInfo.sample_format" title="Permalink to this definition"></a></dt>
-<dd><p>Actual sample encoding format of the response</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunkInfo.channels">
-<span class="sig-name descname"><span class="pre">channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.media.audio.AudioChunkInfo.channels" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.AudioChunkInfo.sampling_rate">
-<span class="sig-name descname"><span class="pre">sampling_rate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.media.audio.AudioChunkInfo.sampling_rate" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.media.audio.Stream">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">Stream</span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#Stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Stream" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamType</span></code>]</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.media.audio.Stream.next">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StreamType</span></span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#Stream.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Stream.next" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.media.audio.Stream.__aiter__">
-<span class="sig-name descname"><span class="pre">__aiter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">collections.abc.AsyncIterator</span></span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#Stream.__aiter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Stream.__aiter__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.media.audio.Stream.__anext__">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__anext__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StreamType</span></span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#Stream.__anext__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Stream.__anext__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.media.audio.StreamReader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">StreamReader</span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#StreamReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.StreamReader" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamType</span></code>]</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.media.audio.StreamReader.read">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">StreamType</span></span></span><a class="reference internal" href="../../../../_modules/viam/streams.html#StreamReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.StreamReader.read" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.audio.Audio">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">Audio</span></span><a class="reference internal" href="../../../../_modules/viam/media/audio.html#Audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Audio" title="Permalink to this definition"></a></dt>
@@ -296,7 +181,7 @@ shown below.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

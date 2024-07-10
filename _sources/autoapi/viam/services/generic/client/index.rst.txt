@@ -4,24 +4,11 @@ viam.services.generic.client
 .. py:module:: viam.services.generic.client
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   viam.services.generic.client.ValueTypes
-
-
 Classes
 -------
 
 .. autoapisummary::
 
-   viam.services.generic.client.DoCommandRequest
-   viam.services.generic.client.DoCommandResponse
-   viam.services.generic.client.GenericServiceStub
-   viam.services.generic.client.ReconfigurableResourceRPCClientBase
-   viam.services.generic.client.Generic
    viam.services.generic.client.GenericClient
 
 
@@ -30,274 +17,11 @@ Functions
 
 .. autoapisummary::
 
-   viam.services.generic.client.dict_to_struct
-   viam.services.generic.client.struct_to_dict
    viam.services.generic.client.do_command
 
 
 Module Contents
 ---------------
-
-.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   DoCommandRequest represents a generic DoCommand input
-
-
-   .. py:attribute:: name
-      :type:  str
-
-
-   .. py:property:: command
-      :type: google.protobuf.struct_pb2.Struct
-
-
-
-   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   DoCommandResponse represents a generic DoCommand output
-
-
-   .. py:property:: result
-      :type: google.protobuf.struct_pb2.Struct
-
-
-
-   .. py:method:: HasField(field_name: Literal['result', b'result']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
-
-.. py:class:: ReconfigurableResourceRPCClientBase
-
-   Bases: :py:obj:`ResourceRPCClientBase`
-
-
-   A base RPC client that can reset its channel.
-
-   Useful if connection is lost and then regained.
-
-
-   .. py:method:: reset_channel(channel: grpclib.client.Channel)
-
-      Called when the RPC channel was reset. Passes in the new channel.
-
-      :param channel: The new RPC Channel
-      :type channel: Channel
-
-
-
-.. py:data:: ValueTypes
-
-   Types that can be encoded into a protobuf `Value`
-
-.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
-
-.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
-
-.. py:class:: Generic(name: str)
-
-   Bases: :py:obj:`viam.services.service_base.ServiceBase`
-
-
-   Generic service, which represents any type of service that can execute arbitrary commands
-
-   This acts as an abstract base class for any drivers representing generic services.
-   This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
-
-   To create a Generic service (an arbitrary service that can process commands), this ``Generic`` service should be subclassed
-   and the ``do_command`` function implemented.
-
-   Example::
-
-       class ComplexService(Generic):
-
-           async def do_command(
-               self,
-               command: Mapping[str, ValueTypes],
-               *,
-               timeout: Optional[float] = None,
-               **kwargs
-           ) -> Mapping[str, ValueTypes]:
-               result = {key: False for key in command.keys()}
-               for (name, args) in command.items():
-                   if name == 'set_val':
-                       self.set_val(*args)
-                       result[name] = True
-                   if name == 'get_val':
-                       result[name] = self.val
-                   if name == 'complex_command':
-                       self.complex_command(*args)
-                       result[name] = True
-               return result
-
-           def set_val(self, val: int):
-               self.val = val
-
-           def complex_command(self, arg1, arg2, arg3):
-               ...
-
-   To execute commands, simply call the ``do_command`` function with the appropriate parameters.
-   ::
-
-       await service.do_command({'set_val': 10})
-       service.val  # 10
-       await service.do_command({'set_val': 5})
-       service.val  # 5
-
-
-   .. py:attribute:: SUBTYPE
-      :type:  Final
-
-
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
-      :classmethod:
-
-
-      Get the service named ``name`` from the provided robot.
-
-      ::
-
-          async def connect() -> ViamClient:
-              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-              return await ViamClient.create_from_dial_options(dial_options)
-
-          async def main():
-              robot = await connect()
-
-              # Can be used with any resource, using the motion service as an example
-              motion = MotionClient.from_robot(robot=robot, name="builtin")
-
-              robot.close()
-
-      :param robot: The robot
-      :type robot: RobotClient
-      :param name: The name of the service
-      :type name: str
-
-      :returns: The service, if it exists on the robot
-      :rtype: Self
-
-
-
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
-      :abstractmethod:
-
-      :async:
-
-
-      Send/receive arbitrary commands.
-
-      ::
-
-          motion = MotionClient.from_robot(robot, "builtin")
-
-          my_command = {
-            "cmnd": "dosomething",
-            "someparameter": 52
-          }
-
-          # Can be used with any resource, using the motion service as an example
-          await motion.do_command(command=my_command)
-
-      :param command: The command to execute
-      :type command: Dict[str, ValueTypes]
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, ValueTypes]
-
-
-
-   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
-      :classmethod:
-
-
-      Get the ResourceName for this Resource with the given name
-
-      ::
-
-          # Can be used with any resource, using an arm as an example
-          my_arm_name = my_arm.get_resource_name("my_arm")
-
-      :param name: The name of the Resource
-      :type name: str
-
-      :returns: The ResourceName of this Resource
-      :rtype: ResourceName
-
-
-
-   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
-
-      Get the ``Operation`` associated with the currently running function.
-
-      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
-      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
-      ).
-
-      :param kwargs: The kwargs object containing the operation
-      :type kwargs: Mapping[str, Any]
-
-      :returns: The operation associated with this function
-      :rtype: viam.operations.Operation
-
-
-
-   .. py:method:: close()
-      :async:
-
-
-      Safely shut down the resource and prevent further use.
-
-      Close must be idempotent. Later configuration may allow a resource to be "open" again.
-      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
-      non-Close methods are called.
-
-      ::
-
-          await component.close()
-
-
-
 
 .. py:class:: GenericClient(name: str, channel: grpclib.client.Channel)
 
@@ -315,7 +39,7 @@ Module Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot, "builtin")
+          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",
@@ -323,7 +47,7 @@ Module Contents
           }
 
           # Can be used with any resource, using the motion service as an example
-          await motion.do_command(command=my_command)
+          await service.do_command(command=my_command)
 
       :param command: The command to execute
       :type command: Dict[str, ValueTypes]

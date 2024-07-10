@@ -374,7 +374,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot, "builtin")
+          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",
@@ -382,7 +382,7 @@ Package Contents
           }
 
           # Can be used with any resource, using the motion service as an example
-          await motion.do_command(command=my_command)
+          await service.do_command(command=my_command)
 
       :param command: The command to execute
       :type command: Dict[str, ValueTypes]
@@ -475,7 +475,7 @@ Package Contents
 
 
 
-.. py:class:: CaptureAllResult(image=None, classifications=None, detections=None, objects=None, extra={})
+.. py:class:: CaptureAllResult(image: Optional[viam.media.video.ViamImage] = None, classifications: Optional[List[viam.proto.service.vision.Classification]] = None, detections: Optional[List[viam.proto.service.vision.Detection]] = None, objects: Optional[List[viam.proto.common.PointCloudObject]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None)
 
    CaptureAllResult represents the collection of things that you have requested from the
    CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
@@ -515,7 +515,7 @@ Package Contents
       - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
 
 
-   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> CaptureAllResult
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> CaptureAllResult
       :abstractmethod:
 
       :async:
@@ -558,7 +558,7 @@ Package Contents
 
 
 
-   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :abstractmethod:
 
       :async:
@@ -590,7 +590,7 @@ Package Contents
 
 
 
-   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :abstractmethod:
 
       :async:
@@ -626,7 +626,7 @@ Package Contents
 
 
 
-   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :abstractmethod:
 
       :async:
@@ -657,7 +657,7 @@ Package Contents
 
 
 
-   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :abstractmethod:
 
       :async:
@@ -691,7 +691,7 @@ Package Contents
 
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
       :abstractmethod:
 
       :async:
@@ -729,7 +729,7 @@ Package Contents
 
 
 
-   .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Properties
+   .. py:method:: get_properties(*, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Properties
       :abstractmethod:
 
       :async:
@@ -794,7 +794,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot, "builtin")
+          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",
@@ -802,7 +802,7 @@ Package Contents
           }
 
           # Can be used with any resource, using the motion service as an example
-          await motion.do_command(command=my_command)
+          await service.do_command(command=my_command)
 
       :param command: The command to execute
       :type command: Dict[str, ValueTypes]

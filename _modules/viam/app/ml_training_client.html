@@ -113,7 +113,7 @@
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="MLTrainingClient"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient">[docs]</a><span class="k">class</span> <span class="nc">MLTrainingClient</span><span class="p">:</span>
+<div class="viewcode-block" id="MLTrainingClient"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient">[docs]</a><span class="k">class</span> <span class="nc">MLTrainingClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for working with ML training jobs.</span>
 
 <span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs.</span>
@@ -161,7 +161,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span> <span class="o">=</span> <span class="n">MLTrainingServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
-<div class="viewcode-block" id="MLTrainingClient.submit_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_training_job</span><span class="p">(</span>
+<div class="viewcode-block" id="MLTrainingClient.submit_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_training_job</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -208,7 +208,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">SubmitTrainingJobResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">SubmitTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
-<div class="viewcode-block" id="MLTrainingClient.submit_custom_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_custom_training_job</span><span class="p">(</span>
+<div class="viewcode-block" id="MLTrainingClient.submit_custom_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_custom_training_job</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a custom training job.</span>
@@ -246,7 +246,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">SubmitCustomTrainingJobResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">SubmitCustomTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
-<div class="viewcode-block" id="MLTrainingClient.get_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.get_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingJobMetadata</span><span class="p">:</span>
+<div class="viewcode-block" id="MLTrainingClient.get_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.get_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingJobMetadata</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets training job data.</span>
 
 <span class="sd">        ::</span>
@@ -268,7 +268,7 @@
 
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">metadata</span></div>
 
-<div class="viewcode-block" id="MLTrainingClient.list_training_jobs"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.list_training_jobs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_training_jobs</span><span class="p">(</span>
+<div class="viewcode-block" id="MLTrainingClient.list_training_jobs"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.list_training_jobs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_training_jobs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">training_status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TrainingStatus</span><span class="o">.</span><span class="n">ValueType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -299,7 +299,7 @@
 
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">jobs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MLTrainingClient.cancel_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.cancel_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="MLTrainingClient.cancel_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.cancel_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancels the specified training job.</span>
 
 <span class="sd">        ::</span>
@@ -319,7 +319,7 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">CancelTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MLTrainingClient.delete_completed_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_completed_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="MLTrainingClient.delete_completed_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_completed_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a completed training job from the database, whether the job succeeded or failed.</span>
 
 <span class="sd">        ::</span>
@@ -343,7 +343,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

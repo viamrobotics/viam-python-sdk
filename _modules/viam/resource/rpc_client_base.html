@@ -95,7 +95,7 @@
 <span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceStubBase</span>
 
 
-<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.components.arm.client.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
+<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">ResourceRPCClientBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base RPC client for a resource.</span>
@@ -106,13 +106,13 @@
     <span class="n">client</span><span class="p">:</span> <span class="n">Any</span></div>
 
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/client/index.html#viam.components.arm.client.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A base RPC client that can reset its channel.</span>
 
 <span class="sd">    Useful if connection is lost and then regained.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/client/index.html#viam.components.arm.client.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Called when the RPC channel was reset. Passes in the new channel.</span>
 
 <span class="sd">        Args:</span>
@@ -130,7 +130,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

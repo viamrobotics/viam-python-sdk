@@ -110,7 +110,7 @@
 <span class="n">RESOURCE_TYPE_SERVICE</span> <span class="o">=</span> <span class="s2">&quot;service&quot;</span>
 
 
-<div class="viewcode-block" id="Subtype"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype">[docs]</a><span class="k">class</span> <span class="nc">Subtype</span><span class="p">:</span>
+<div class="viewcode-block" id="Subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype">[docs]</a><span class="k">class</span> <span class="nc">Subtype</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a known component/service (resource) API&quot;&quot;&quot;</span>
 
     <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span>
@@ -127,21 +127,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">resource_type</span> <span class="o">=</span> <span class="n">resource_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource_subtype</span> <span class="o">=</span> <span class="n">resource_subtype</span>
 
-<div class="viewcode-block" id="Subtype.__str__"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Subtype.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_type</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_subtype</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="Subtype.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Subtype.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;viam.resource.types.Subtype </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
 
-<div class="viewcode-block" id="Subtype.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="Subtype.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Subtype.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Subtype.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Subtype.from_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.from_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Subtype.from_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.from_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_resource_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">resource_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert a ```ResourceName``` into a ```Subtype```</span>
 
@@ -153,7 +153,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">resource_name</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">.</span><span class="n">subtype</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Subtype.from_string"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.Subtype.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Subtype.from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.from_string">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)</span>
 
@@ -173,7 +173,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span></div></div>
 
 
-<div class="viewcode-block" id="ModelFamily"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.ModelFamily">[docs]</a><span class="k">class</span> <span class="nc">ModelFamily</span><span class="p">:</span>
+<div class="viewcode-block" id="ModelFamily"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.ModelFamily">[docs]</a><span class="k">class</span> <span class="nc">ModelFamily</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a family of related models&quot;&quot;&quot;</span>
 
     <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span>
@@ -190,16 +190,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">namespace</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">family</span> <span class="o">=</span> <span class="n">family</span>
 
-<div class="viewcode-block" id="ModelFamily.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.ModelFamily.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="ModelFamily.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.ModelFamily.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="ModelFamily.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.ModelFamily.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="ModelFamily.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.ModelFamily.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;viam.resource.types.ModelFamily </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
 
-<div class="viewcode-block" id="ModelFamily.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.ModelFamily.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="ModelFamily.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.ModelFamily.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ModelFamily.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.ModelFamily.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="ModelFamily.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.ModelFamily.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div></div>
@@ -208,7 +208,7 @@
 <span class="n">ModelFamily</span><span class="o">.</span><span class="n">DEFAULT</span> <span class="o">=</span> <span class="n">ModelFamily</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="o">.</span><span class="n">DEFAULT_FAMILY_NAME</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a specific model within a family of models&quot;&quot;&quot;</span>
 
     <span class="n">model_family</span><span class="p">:</span> <span class="n">ModelFamily</span>
@@ -221,21 +221,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">model_family</span> <span class="o">=</span> <span class="n">model_family</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-<div class="viewcode-block" id="Model.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Model.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model_family</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="Model.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="Model.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;viam.resource.types.Model </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
 
-<div class="viewcode-block" id="Model.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="Model.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Model.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Model.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Model</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Model.from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.Model.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Model.from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Model.from_string">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ```Model``` from its string representation (namespace:family:name).</span>
 
@@ -266,7 +266,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">model_family</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="resource_name_from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.components.arm.arm.resource_name_from_string">[docs]</a><span class="k">def</span> <span class="nf">resource_name_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
+<div class="viewcode-block" id="resource_name_from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.resource_name_from_string">[docs]</a><span class="k">def</span> <span class="nf">resource_name_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a ResourceName from its string representation (namespace:resource_type:resource_subtype/&lt;optional_remote:&gt;name)</span>
 
 <span class="sd">    Args:</span>
@@ -296,11 +296,11 @@
 <span class="n">Validator</span><span class="p">:</span> <span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">ComponentConfig</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
 
 
-<div class="viewcode-block" id="SupportsGetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.SupportsGetGeometries">[docs]</a><span class="nd">@runtime_checkable</span>
+<div class="viewcode-block" id="SupportsGetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.SupportsGetGeometries">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">SupportsGetGeometries</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SupportsGetGeometries.GetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.components.arm.arm.SupportsGetGeometries.GetGeometries">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGeometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetGeometriesResponse</span><span class="p">:</span>
+<div class="viewcode-block" id="SupportsGetGeometries.GetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.SupportsGetGeometries.GetGeometries">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGeometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetGeometriesResponse</span><span class="p">:</span>
         <span class="o">...</span></div></div>
 </pre></div>
 
@@ -311,7 +311,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

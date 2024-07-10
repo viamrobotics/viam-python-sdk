@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.services.motion.motion &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.services.motion.service" href="../service/index.html" />
+    <link rel="prev" title="viam.services.motion.client" href="../client/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.services</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html">viam.services.generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html">viam.services.mlmodel</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.services.motion</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html">viam.services.motion.client</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.services.motion.motion</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.motion.Motion"><code class="docutils literal notranslate"><span class="pre">Motion</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.Plan"><code class="docutils literal notranslate"><span class="pre">Motion.Plan</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Motion.SUBTYPE</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.move"><code class="docutils literal notranslate"><span class="pre">Motion.move()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.move_on_globe"><code class="docutils literal notranslate"><span class="pre">Motion.move_on_globe()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.move_on_map"><code class="docutils literal notranslate"><span class="pre">Motion.move_on_map()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.stop_plan"><code class="docutils literal notranslate"><span class="pre">Motion.stop_plan()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.get_plan"><code class="docutils literal notranslate"><span class="pre">Motion.get_plan()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.list_plan_statuses"><code class="docutils literal notranslate"><span class="pre">Motion.list_plan_statuses()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.get_pose"><code class="docutils literal notranslate"><span class="pre">Motion.get_pose()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.from_robot"><code class="docutils literal notranslate"><span class="pre">Motion.from_robot()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.do_command"><code class="docutils literal notranslate"><span class="pre">Motion.do_command()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Motion.get_resource_name()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.get_operation"><code class="docutils literal notranslate"><span class="pre">Motion.get_operation()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.motion.motion.Motion.close"><code class="docutils literal notranslate"><span class="pre">Motion.close()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../service/index.html">viam.services.motion.service</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../navigation/index.html">viam.services.navigation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html">viam.services.sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html">viam.services.slam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vision/index.html">viam.services.vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html">viam.proto</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.services</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.services.motion</a></li>
+      <li class="breadcrumb-item active">viam.services.motion.motion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/services/motion/motion/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.services.motion.motion">
+<span id="viam-services-motion-motion"></span><h1>viam.services.motion.motion<a class="headerlink" href="#module-viam.services.motion.motion" title="Permalink to this heading"></a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.motion.motion.Motion" title="viam.services.motion.motion.Motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Motion</span></code></a></p></td>
+<td><p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.motion.motion.</span></span><span class="sig-name descname"><span class="pre">Motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a></p>
+<p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p>
+<p>The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
+<code class="docutils literal notranslate"><span class="pre">world_state</span></code> message, the motion planning service will also account for those.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.Plan">
+<span class="sig-name descname"><span class="pre">Plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">GetPlanResponse</span></em><a class="headerlink" href="#viam.services.motion.motion.Motion.Plan" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.motion.motion.Motion.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.move">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><span class="pre">viam.proto.common.WorldState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><span class="pre">viam.proto.service.motion.Constraints</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.move" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Plan and execute a movement to move the component specified to its goal destination.</p>
+<p>Note: Frames designated with respect to components can also be used as the <code class="docutils literal notranslate"><span class="pre">component_name</span></code> when calling for a move. This
+technique allows for planning and moving the frame itself to the <code class="docutils literal notranslate"><span class="pre">destination</span></code>. To do so, simply create a resource name with
+originating ReferenceFrame’s name. Then pass in the resource name into <code class="docutils literal notranslate"><span class="pre">component_name</span></code>. Ex:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;externalFrame&quot;</span><span class="p">)</span>
+<span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MotionServiceClient</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">resource_name</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
+<span class="n">gripper_name</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<span class="n">my_frame</span> <span class="o">=</span> <span class="s2">&quot;my_gripper_offset&quot;</span>
+
+<span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">o_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_z</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Move the gripper</span>
+<span class="n">moved</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripper_name</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="o">=</span><span class="n">PoseInFrame</span><span class="p">(</span><span class="n">reference_frame</span><span class="o">=</span><span class="s2">&quot;myFrame&quot;</span><span class="p">,</span>
+                                              <span class="n">pose</span><span class="o">=</span><span class="n">goal_pose</span><span class="p">),</span>
+                      <span class="n">world_state</span><span class="o">=</span><span class="n">worldState</span><span class="p">,</span>
+                      <span class="n">constraints</span><span class="o">=</span><span class="p">{},</span>
+                      <span class="n">extra</span><span class="o">=</span><span class="p">{})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – Name of a component on a given robot.</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><em>viam.proto.common.PoseInFrame</em></a>) – The destination to move to, expressed as a <code class="docutils literal notranslate"><span class="pre">Pose</span></code> and the frame in which it was
+observed.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><em>viam.proto.common.WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any constraints
+expressed in the WorldState message.</p></li>
+<li><p><strong>constraints</strong> (<a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><em>viam.proto.service.motion.Constraints</em></a>) – When supplied, the motion service will create a plan that obeys any
+specified constraints.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the move was successful.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.move_on_globe">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_on_globe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><span class="pre">viam.proto.common.GeoPoint</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">movement_sensor_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><span class="pre">viam.proto.common.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.MotionConfiguration" title="viam.proto.service.motion.MotionConfiguration"><span class="pre">viam.proto.service.motion.MotionConfiguration</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounding_regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><span class="pre">viam.proto.common.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.move_on_globe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.move_on_globe" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Move a component to a specific latitude and longitude, using a <code class="docutils literal notranslate"><span class="pre">MovementSensor</span></code> to check the location.</p>
+<p><code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> is non blocking, meaning the motion service will move the component to the destination
+GPS point after <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> returns.</p>
+<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call returns a unique ExecutionID which you can use to identify all plans
+generated during the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call.</p>
+<p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the ResourceNames of the base and movement sensor</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="n">mvmnt_sensor_resource_name</span> <span class="o">=</span> <span class="n">MovementSensor</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span>
+    <span class="s2">&quot;my_movement_sensor&quot;</span><span class="p">)</span>
+<span class="c1">#  Define a destination GeoPoint at the GPS coordinates [0, 0]</span>
+<span class="n">my_destination</span> <span class="o">=</span> <span class="n">movement_sensor</span><span class="o">.</span><span class="n">GeoPoint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Move the base component to the designated geographic location, as reported by the movement sensor</span>
+<span class="n">execution_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move_on_globe</span><span class="p">(</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">my_destination</span><span class="p">,</span>
+    <span class="n">movement_sensor_name</span><span class="o">=</span><span class="n">mvmnt_sensor_resource_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the base to move.</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="../../../components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint" title="viam.components.movement_sensor.GeoPoint"><em>GeoPoint</em></a>) – The location of the component’s destination, represented in geographic notation as a
+GeoPoint (lat, lng).</p></li>
+<li><p><strong>movement_sensor_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the movement sensor that you want to use to check
+the machine’s location.</p></li>
+<li><p><strong>obstacles</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoGeometry" title="viam.gen.common.v1.common_pb2.GeoGeometry"><em>GeoGeometry</em></a><em>]</em><em>]</em>) – Obstacles to consider when planning the motion of the component,
+with each represented as a GeoGeometry. Default: None</p></li>
+<li><p><strong>heading</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – The compass heading, in degrees, that the machine’s movement sensor should report
+at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</p></li>
+<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MotionConfiguration" title="viam.gen.service.motion.v1.motion_pb2.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this
+motion service. This parameter and each of its fields are optional.</p>
+<ul>
+<li><p>obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair</p></li>
+</ul>
+<p>you want to use for transient obstacle avoidance.</p>
+<ul>
+<li><p>position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.</p></li>
+<li><p>obstacle_polling_frequency_hz (float): The frequency in Hz to poll the vision service for new obstacles.</p></li>
+<li><p>plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</p></li>
+<li><p>linear_m_per_sec (float): Linear velocity this machine should target when moving.</p></li>
+<li><p>angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
+</ul>
+</p></li>
+<li><p><strong>bounding_regions</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoGeometry" title="viam.gen.common.v1.common_pb2.GeoGeometry"><em>GeoGeometry</em></a><em>]</em><em>]</em>) – Set of obstacles which the robot must remain within while navigating</p></li>
+<li><p><strong>extra</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Extra options to pass to the underlying RPC call.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing
+the underlying RPC call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ExecutionID of the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call, which can be used to track execution progress.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.move_on_map">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_on_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Pose" title="viam.proto.common.Pose"><span class="pre">viam.proto.common.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">slam_service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.MotionConfiguration" title="viam.proto.service.motion.MotionConfiguration"><span class="pre">viam.proto.service.motion.MotionConfiguration</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.move_on_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.move_on_map" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Move a component to a specific pose, using a <code class="docutils literal notranslate"><span class="pre">SlamService</span></code> for the SLAM map, using a <code class="docutils literal notranslate"><span class="pre">SLAM</span> <span class="pre">Service</span></code> to check the location.</p>
+<p><code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> is non blocking, meaning the motion service will move the component to the destination
+Pose point after <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> returns.</p>
+<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call returns a unique ExecutionID which you can use to identify all plans
+generated during the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
+<p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the ResourceNames of the base component and SLAM service</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="n">my_slam_service_name</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define a destination pose with respect to the origin of the map from the SLAM service &quot;my_slam_service&quot;</span>
+<span class="n">my_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Move the base component to the destination pose of Y=10, a location of</span>
+<span class="c1"># (0, 10, 0) in respect to the origin of the map</span>
+<span class="n">execution_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move_on_map</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">,</span>
+                                        <span class="n">destination</span><span class="o">=</span><span class="n">my_pose</span><span class="p">,</span>
+                                        <span class="n">slam_service_name</span><span class="o">=</span><span class="n">my_slam_service_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the base to move.</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="../../../components/arm/index.html#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination, which can be any Pose with respect to the SLAM map’s origin.</p></li>
+<li><p><strong>slam_service_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the SLAM service from which the SLAM map is requested.</p></li>
+<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MotionConfiguration" title="viam.gen.service.motion.v1.motion_pb2.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this motion service.
+This parameter and each of its fields are optional.</p>
+<ul>
+<li><p>obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</p></li>
+</ul>
+<p>for transient obstacle avoidance.</p>
+<ul>
+<li><p>position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</p></li>
+<li><p>obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</p></li>
+<li><p>plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</p></li>
+<li><p>linear_m_per_sec (float): Linear velocity this machine should target when moving.</p></li>
+<li><p>angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
+</ul>
+</p></li>
+<li><p><strong>obstacles</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Geometry" title="viam.gen.common.v1.common_pb2.Geometry"><em>Geometry</em></a><em>]</em><em>]</em>) – Obstacles to be considered for motion planning.</p></li>
+<li><p><strong>extra</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Extra options to pass to the underlying RPC call.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+RPC call.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ExecutionID of the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call, which can be used to track execution progress.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.stop_plan">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.stop_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.stop_plan" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Stop a component being moved by an in progress <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming a `move_on_globe()` started the execution</span>
+<span class="c1"># Stop the base component which was instructed to move by `move_on_globe()`</span>
+<span class="c1"># or `move_on_map()`</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">stop_plan</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">mvmnt_sensor</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component to stop</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.get_plan">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_plan_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.Plan" title="viam.gen.service.motion.v1.motion_pb2.Plan"><span class="pre">Plan</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.get_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.get_plan" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>By default: returns the plan history of the most recent <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call to move a component.</p>
+<p>The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.</p>
+<p>Returns a result if both of the following conditions are met:</p>
+<ul class="simple">
+<li><p>the execution (call to <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code>) is still executing <strong>or</strong> changed state within the last 24 hours</p></li>
+<li><p>the robot has not reinitialized</p></li>
+</ul>
+<p>Plans never change.</p>
+<p>Replans always create new plans.</p>
+<p>Replans share the ExecutionID of the previously executing plan.</p>
+<p>All repeated fields are in time ascending order.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="c1"># Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_plan</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component to stop</p></li>
+<li><p><strong>last_plan_only</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will only return the last plan for the component / execution.</p></li>
+<li><p><strong>execution_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – If supplied, the response will only return plans with the provided execution_id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current PlanWithStatus &amp; replan history which matches the request</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">GetPlanResponse</span></code> (GetPlanResponse)</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.list_plan_statuses">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_plan_statuses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">only_active_plans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.PlanStatusWithID" title="viam.proto.service.motion.PlanStatusWithID"><span class="pre">viam.proto.service.motion.PlanStatusWithID</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.list_plan_statuses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.list_plan_statuses" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Returns the statuses of plans created by <cite>move_on_globe()</cite> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> calls that meet at least one of the following
+conditions since the motion service initialized:</p>
+<ul class="simple">
+<li><p>the plan’s status is in progress</p></li>
+<li><p>the plan’s status changed state within the last 24 hours</p></li>
+</ul>
+<p>All repeated fields are in chronological order.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="c1"># List the plan statuses of the motion service within the TTL</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">list_plan_statuses</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>only_active_plans</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will filter out any plans that are not executing.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of last known statuses with the
+associated IDs of all plans within the TTL ordered by timestamp in ascending order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesResponse</span></code> (ListPlanStatusesResponse)</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.get_pose">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supplemental_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/motion.html#Motion.get_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.motion.Motion.get_pose" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the Pose and observer frame for any given component on a robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
+<span class="c1"># (``Base``, ``Gripper``, etc).</span>
+
+<span class="c1"># Create a `component_name`:</span>
+<span class="n">component_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;arm&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">viam.components.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>
+<span class="kn">from</span> <span class="nn">viam.services.motion</span> <span class="kn">import</span> <span class="n">MotionClient</span>
+
+<span class="c1"># Assume that the connect function is written and will return a valid machine.</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+<span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="n">gripperName</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<span class="n">gripperPoseInWorld</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripperName</span><span class="p">,</span>
+                                        <span class="n">destination_frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – Name of a component on a robot.</p></li>
+<li><p><strong>destination_frame</strong> (<em>str</em>) – Name of the desired reference frame.</p></li>
+<li><p><strong>supplemental_transforms</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><em>viam.proto.common.Transform</em></a><em>]</em><em>]</em>) – Transforms used to augment the robot’s frame while
+calculating pose.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pose of the given component and the frame in which it was observed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Pose</span></code> (PoseInFrame)</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/services/motion/">Motion service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.motion.motion.Motion.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Can be used with any resource, using the motion service as an example</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+    <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.services.motion.motion.Motion.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/receive arbitrary commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
+
+<span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;someparameter&quot;</span><span class="p">:</span> <span class="mi">52</span>
+<span class="p">}</span>
+
+<span class="c1"># Can be used with any resource, using the motion service as an example</span>
+<span class="k">await</span> <span class="n">service</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">my_command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the executed command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.motion.motion.Motion.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.motion.motion.Motion.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.motion.Motion.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.motion.motion.Motion.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../client/index.html" class="btn btn-neutral float-left" title="viam.services.motion.client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../service/index.html" class="btn btn-neutral float-right" title="viam.services.motion.service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

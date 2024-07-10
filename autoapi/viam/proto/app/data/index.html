@@ -568,7 +568,7 @@ Do not edit manually!</p>
 <td><p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest" title="viam.proto.app.data.DeleteTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a></p></td>
-<td><p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>.</p></td>
+<td><p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse" title="viam.proto.app.data.DeleteTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataResponse returns the number of tabular datapoints deleted.</p></td>
@@ -1789,9 +1789,12 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>.
-For example if <cite>delete_older_than_days</cite> is 10, this deletes any data that was captured up to 10 days ago.
-If it is 0, all existing data is deleted.</p>
+<p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>
+in UTC time. For example, if delete_older_than_days=1 and the request is made at 1AM EST on March 11
+(March 11 5AM UTC), this deletes all data captured through March 10 11:59:59PM UTC.
+If the request is at 10PM EST on March 11 (March 12 2AM UTC), this deletes all data captured
+through March 11 11:59:59PM UTC.
+If delete_older_than_days is 0, all existing data is deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.organization_id">
 <span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id" title="Permalink to this definition"></a></dt>
@@ -2399,7 +2402,7 @@ be raised.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

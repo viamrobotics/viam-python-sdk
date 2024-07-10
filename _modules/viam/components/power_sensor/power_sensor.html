@@ -96,7 +96,7 @@
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">SensorReading</span>
 
 
-<div class="viewcode-block" id="PowerSensor"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/service/index.html#viam.components.power_sensor.client.PowerSensor">[docs]</a><span class="k">class</span> <span class="nc">PowerSensor</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+<div class="viewcode-block" id="PowerSensor"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor">[docs]</a><span class="k">class</span> <span class="nc">PowerSensor</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;PowerSensor reports information about voltage, current and power.</span>
 
 <span class="sd">    This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.</span>
@@ -113,7 +113,7 @@
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;power_sensor&quot;</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="PowerSensor.get_voltage"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/service/index.html#viam.components.power_sensor.client.PowerSensor.get_voltage">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="PowerSensor.get_voltage"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_voltage">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the voltage reading of a specified device and whether it is AC or DC.</span>
 
@@ -133,7 +133,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="PowerSensor.get_current"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/service/index.html#viam.components.power_sensor.client.PowerSensor.get_current">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="PowerSensor.get_current"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_current">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current of a specified device and whether it is AC or DC.</span>
 
@@ -153,7 +153,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="PowerSensor.get_power"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/service/index.html#viam.components.power_sensor.client.PowerSensor.get_power">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="PowerSensor.get_power"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_power">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the power reading in watts.</span>
 
@@ -172,7 +172,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="PowerSensor.get_readings"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/service/index.html#viam.components.power_sensor.client.PowerSensor.get_readings">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span>
+<div class="viewcode-block" id="PowerSensor.get_readings"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_readings">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the measurements or readings that this power sensor provides. If a sensor is not configured correctly or fails to read a</span>
@@ -201,7 +201,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

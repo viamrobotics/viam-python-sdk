@@ -220,7 +220,7 @@ and the <code class="docutils literal notranslate"><span class="pre">do_command<
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../module/module/index.html#viam.module.module.RobotClient" title="viam.module.module.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
 </ul>
 </dd>
@@ -241,7 +241,7 @@ and the <code class="docutils literal notranslate"><span class="pre">do_command<
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Send/receive arbitrary commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
 
 <span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>
@@ -249,7 +249,7 @@ and the <code class="docutils literal notranslate"><span class="pre">do_command<
 <span class="p">}</span>
 
 <span class="c1"># Can be used with any resource, using the motion service as an example</span>
-<span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">my_command</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">service</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">my_command</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -334,7 +334,7 @@ non-Close methods are called.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -101,7 +101,7 @@
     <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 
 
-<div class="viewcode-block" id="ServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/vision/index.html#viam.resource.manager.ServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/services/service_base/index.html#viam.services.service_base.ServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class describes the base functionality required for a Viam Service.</span>
 <span class="sd">    All services must inherit from this class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -111,7 +111,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-<div class="viewcode-block" id="ServiceBase.from_robot"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/vision/index.html#viam.resource.manager.ServiceBase.from_robot">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ServiceBase.from_robot"><a class="viewcode-back" href="../../../autoapi/viam/services/service_base/index.html#viam.services.service_base.ServiceBase.from_robot">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_robot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="s2">&quot;RobotClient&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the service named ``name`` from the provided robot.</span>
 
@@ -140,12 +140,12 @@
         <span class="n">service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ServiceBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/vision/index.html#viam.resource.manager.ServiceBase.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
+<div class="viewcode-block" id="ServiceBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/services/service_base/index.html#viam.services.service_base.ServiceBase.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/receive arbitrary commands.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot, &quot;builtin&quot;)</span>
+<span class="sd">            service = SERVICE.from_robot(robot, &quot;builtin&quot;)  # replace SERVICE with the appropriate class</span>
 
 <span class="sd">            my_command = {</span>
 <span class="sd">              &quot;cmnd&quot;: &quot;dosomething&quot;,</span>
@@ -153,7 +153,7 @@
 <span class="sd">            }</span>
 
 <span class="sd">            # Can be used with any resource, using the motion service as an example</span>
-<span class="sd">            await motion.do_command(command=my_command)</span>
+<span class="sd">            await service.do_command(command=my_command)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            command (Dict[str, ValueTypes]): The command to execute</span>
@@ -171,7 +171,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

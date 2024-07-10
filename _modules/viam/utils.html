@@ -125,7 +125,7 @@
 <span class="sd">&quot;&quot;&quot;Types that can be returned from a sensor&quot;&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="primitive_to_value"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.primitive_to_value">[docs]</a><span class="k">def</span> <span class="nf">primitive_to_value</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">ValueTypes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
+<div class="viewcode-block" id="primitive_to_value"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.primitive_to_value">[docs]</a><span class="k">def</span> <span class="nf">primitive_to_value</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">ValueTypes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a new google.protobuf.struct_pb2.Value</span>
 <span class="sd">    Supports primitive types of</span>
@@ -173,7 +173,7 @@
     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="value_to_primitive"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.value_to_primitive">[docs]</a><span class="k">def</span> <span class="nf">value_to_primitive</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ValueTypes</span><span class="p">:</span>
+<div class="viewcode-block" id="value_to_primitive"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.value_to_primitive">[docs]</a><span class="k">def</span> <span class="nf">value_to_primitive</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ValueTypes</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;list_value&quot;</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">value_to_primitive</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">list_value</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;struct_value&quot;</span><span class="p">):</span>
@@ -189,7 +189,7 @@
     <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="resource_names_for_resource"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.resource_names_for_resource">[docs]</a><span class="k">def</span> <span class="nf">resource_names_for_resource</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]:</span>
+<div class="viewcode-block" id="resource_names_for_resource"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.resource_names_for_resource">[docs]</a><span class="k">def</span> <span class="nf">resource_names_for_resource</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]:</span>
     <span class="n">rns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">klass</span> <span class="ow">in</span> <span class="n">resource</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">mro</span><span class="p">():</span>
@@ -204,7 +204,7 @@
     <span class="k">return</span> <span class="n">rns</span></div>
 
 
-<div class="viewcode-block" id="message_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.message_to_struct">[docs]</a><span class="k">def</span> <span class="nf">message_to_struct</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
+<div class="viewcode-block" id="message_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.message_to_struct">[docs]</a><span class="k">def</span> <span class="nf">message_to_struct</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
     <span class="n">struct</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
     <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
         <span class="n">MessageToDict</span><span class="p">(</span>
@@ -219,12 +219,12 @@
 <span class="n">_T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_T&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Message</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="struct_to_message"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.struct_to_message">[docs]</a><span class="k">def</span> <span class="nf">struct_to_message</span><span class="p">(</span><span class="n">struct</span><span class="p">:</span> <span class="n">Struct</span><span class="p">,</span> <span class="n">message_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
+<div class="viewcode-block" id="struct_to_message"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.struct_to_message">[docs]</a><span class="k">def</span> <span class="nf">struct_to_message</span><span class="p">(</span><span class="n">struct</span><span class="p">:</span> <span class="n">Struct</span><span class="p">,</span> <span class="n">message_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
     <span class="n">dct</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ParseDict</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="n">message_type</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="dict_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.dict_to_struct">[docs]</a><span class="k">def</span> <span class="nf">dict_to_struct</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
+<div class="viewcode-block" id="dict_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.dict_to_struct">[docs]</a><span class="k">def</span> <span class="nf">dict_to_struct</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">_convert</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">ValueTypes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">v</span>
@@ -243,11 +243,11 @@
     <span class="k">return</span> <span class="n">struct</span></div>
 
 
-<div class="viewcode-block" id="struct_to_dict"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.struct_to_dict">[docs]</a><span class="k">def</span> <span class="nf">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">:</span> <span class="n">Struct</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
+<div class="viewcode-block" id="struct_to_dict"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.struct_to_dict">[docs]</a><span class="k">def</span> <span class="nf">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">:</span> <span class="n">Struct</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value_to_primitive</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">struct</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
 
 
-<div class="viewcode-block" id="datetime_to_timestamp"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.datetime_to_timestamp">[docs]</a><span class="k">def</span> <span class="nf">datetime_to_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Timestamp</span><span class="p">]:</span>
+<div class="viewcode-block" id="datetime_to_timestamp"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.datetime_to_timestamp">[docs]</a><span class="k">def</span> <span class="nf">datetime_to_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Timestamp</span><span class="p">]:</span>
     <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">()</span>
@@ -255,7 +255,7 @@
     <span class="k">return</span> <span class="n">timestamp</span></div>
 
 
-<div class="viewcode-block" id="get_geometries"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.get_geometries">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span>
+<div class="viewcode-block" id="get_geometries"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.get_geometries">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">SupportsGetGeometries</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
     <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -265,7 +265,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">geometry</span> <span class="k">for</span> <span class="n">geometry</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">geometries</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="sensor_readings_native_to_value"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.sensor_readings_native_to_value">[docs]</a><span class="k">def</span> <span class="nf">sensor_readings_native_to_value</span><span class="p">(</span><span class="n">readings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Value</span><span class="p">]:</span>
+<div class="viewcode-block" id="sensor_readings_native_to_value"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.sensor_readings_native_to_value">[docs]</a><span class="k">def</span> <span class="nf">sensor_readings_native_to_value</span><span class="p">(</span><span class="n">readings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Value</span><span class="p">]:</span>
     <span class="n">prim_readings</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">readings</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">reading</span> <span class="ow">in</span> <span class="n">readings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reading</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">):</span>
@@ -283,7 +283,7 @@
     <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">primitive_to_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">prim_readings</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
 
 
-<div class="viewcode-block" id="sensor_readings_value_to_native"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.sensor_readings_value_to_native">[docs]</a><span class="k">def</span> <span class="nf">sensor_readings_value_to_native</span><span class="p">(</span><span class="n">readings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Value</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
+<div class="viewcode-block" id="sensor_readings_value_to_native"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.sensor_readings_value_to_native">[docs]</a><span class="k">def</span> <span class="nf">sensor_readings_value_to_native</span><span class="p">(</span><span class="n">readings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Value</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
     <span class="n">prim_readings</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value_to_primitive</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">readings</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">reading</span> <span class="ow">in</span> <span class="n">prim_readings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reading</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
@@ -299,21 +299,21 @@
     <span class="k">return</span> <span class="n">prim_readings</span></div>
 
 
-<div class="viewcode-block" id="PointerCounter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.PointerCounter">[docs]</a><span class="k">class</span> <span class="nc">PointerCounter</span><span class="p">:</span>
+<div class="viewcode-block" id="PointerCounter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.PointerCounter">[docs]</a><span class="k">class</span> <span class="nc">PointerCounter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
-<div class="viewcode-block" id="PointerCounter.increment"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.PointerCounter.increment">[docs]</a>    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="PointerCounter.increment"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.PointerCounter.increment">[docs]</a>    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span></div>
 
-<div class="viewcode-block" id="PointerCounter.decrement"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.PointerCounter.decrement">[docs]</a>    <span class="k">def</span> <span class="nf">decrement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="PointerCounter.decrement"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.PointerCounter.decrement">[docs]</a>    <span class="k">def</span> <span class="nf">decrement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Pointer count cannot go below zero&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -322,7 +322,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span></div>
 
-<div class="viewcode-block" id="PointerCounter.wait"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.PointerCounter.wait">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="PointerCounter.wait"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.PointerCounter.wait">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span></div>
 
     <span class="nd">@property</span>
@@ -335,7 +335,7 @@
 <span class="n">_R</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_R&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="to_thread"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.to_thread">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">to_thread</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_R</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_R</span><span class="p">:</span>
+<div class="viewcode-block" id="to_thread"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.to_thread">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">to_thread</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_R</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_R</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously run a function in a separate thread.</span>
 
 <span class="sd">    This is a copy of the function defined in the python source,</span>
@@ -351,7 +351,7 @@
     <span class="k">return</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">func_call</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 
 
-<div class="viewcode-block" id="from_dm_from_extra"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.from_dm_from_extra">[docs]</a><span class="k">def</span> <span class="nf">from_dm_from_extra</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="from_dm_from_extra"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.from_dm_from_extra">[docs]</a><span class="k">def</span> <span class="nf">from_dm_from_extra</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Used in modular filter components to get the &#39;fromDataManagement&#39; value from an extra map.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -359,7 +359,7 @@
     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">extra</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fromDataManagement&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="create_filter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.app.app_client.create_filter">[docs]</a><span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
+<div class="viewcode-block" id="create_filter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.create_filter">[docs]</a><span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
     <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -432,7 +432,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -107,11 +107,11 @@
 <span class="n">Resource</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ResourceBase</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.module.module.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">resource</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="ResourceCreatorRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.module.module.ResourceCreatorRegistration">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="ResourceCreatorRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ResourceCreatorRegistration</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a resource creator to be registered.</span>
 
@@ -130,7 +130,7 @@
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="ResourceRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.module.module.ResourceRegistration">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="ResourceRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceRegistration">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ResourceRegistration</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">Resource</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a resource to be registered.</span>
 
@@ -160,7 +160,7 @@
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
+<div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The global registry of robotic parts.</span>
 
 <span class="sd">    **NB** The Registry should almost never be used directly</span>
@@ -176,7 +176,7 @@
     <span class="n">_RESOURCES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_lock</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Lock</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Registry.register_subtype"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.register_subtype">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.register_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_subtype">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">register_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ResourceRegistration</span><span class="p">[</span><span class="n">Resource</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a Subtype with the Registry</span>
 
@@ -196,7 +196,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Passed resource registration does not have correct parameters&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Registry.register_resource_creator"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.register_resource_creator">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.register_resource_creator"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_resource_creator">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">register_resource_creator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ResourceCreatorRegistration</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry</span>
 
@@ -219,7 +219,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;A creator function was not provided&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Registry.lookup_subtype"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.lookup_subtype">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.lookup_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_subtype">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">lookup_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceRegistration</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered Subtype by its name</span>
 
@@ -238,7 +238,7 @@
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Registry.lookup_resource_creator"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.lookup_resource_creator">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.lookup_resource_creator"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_resource_creator">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">lookup_resource_creator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ResourceCreator&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered resource creator by its subtype and model</span>
 
@@ -258,7 +258,7 @@
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Registry.lookup_validator"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.lookup_validator">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.lookup_validator"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_validator">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">lookup_validator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Validator&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None</span>
 
@@ -276,7 +276,7 @@
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Registry.REGISTERED_SUBTYPES"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.REGISTERED_SUBTYPES">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.REGISTERED_SUBTYPES"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_SUBTYPES">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">REGISTERED_SUBTYPES</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">ResourceRegistration</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The dictionary of all registered resources</span>
 <span class="sd">        - Key: Subtype of the resource</span>
@@ -288,7 +288,7 @@
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Registry.REGISTERED_RESOURCE_CREATORS"><a class="viewcode-back" href="../../../autoapi/viam/utils/index.html#viam.module.module.Registry.REGISTERED_RESOURCE_CREATORS">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Registry.REGISTERED_RESOURCE_CREATORS"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_RESOURCE_CREATORS">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">REGISTERED_RESOURCE_CREATORS</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ResourceCreatorRegistration&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The dictionary of all registered resources</span>
 <span class="sd">        - Key: subtype/model</span>
@@ -308,7 +308,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

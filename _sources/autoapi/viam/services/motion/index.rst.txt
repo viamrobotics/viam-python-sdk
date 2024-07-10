@@ -11,6 +11,8 @@ Submodules
    :maxdepth: 1
 
    /autoapi/viam/services/motion/client/index
+   /autoapi/viam/services/motion/motion/index
+   /autoapi/viam/services/motion/service/index
 
 
 Classes
@@ -18,12 +20,38 @@ Classes
 
 .. autoapisummary::
 
+   viam.services.motion.Constraints
    viam.services.motion.MotionConfiguration
    viam.services.motion.MotionClient
 
 
 Package Contents
 ----------------
+
+.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
+
+
+   .. py:property:: linear_constraint
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LinearConstraint]
+
+      Typed message for a specific constraint
+
+
+   .. py:property:: orientation_constraint
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrientationConstraint]
+
+
+
+   .. py:property:: collision_specification
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+
+      Arc constraint, Time constraint, and others will be added here when they are supported
+
 
 .. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
@@ -113,19 +141,10 @@ Package Contents
 
 .. py:class:: MotionClient(name: str, channel: grpclib.client.Channel)
 
-   Bases: :py:obj:`viam.services.service_client_base.ServiceClientBase`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.services.motion.motion.Motion`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
 
-   Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
-
-   The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
-   ``world_state`` message, the motion planning service will also account for those.
-
-   For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
-
-
-   .. py:attribute:: SUBTYPE
-      :type:  Final
+   gRPC client for the Motion service.
 
 
    .. py:attribute:: client
@@ -215,22 +234,22 @@ Package Contents
 
       :param component_name: The ResourceName of the base to move.
       :type component_name: ResourceName
-      :param destination: The location of the component’s destination, represented in geographic notation as a
+      :param destination: The location of the component's destination, represented in geographic notation as a
                           GeoPoint (lat, lng).
       :type destination: GeoPoint
       :param movement_sensor_name: The ResourceName of the movement sensor that you want to use to check
-                                   the machine’s location.
+                                   the machine's location.
       :type movement_sensor_name: ResourceName
       :param obstacles: Obstacles to consider when planning the motion of the component,
                         with each represented as a GeoGeometry. Default: None
       :type obstacles: Optional[Sequence[GeoGeometry]]
-      :param heading: The compass heading, in degrees, that the machine’s movement sensor should report
+      :param heading: The compass heading, in degrees, that the machine's movement sensor should report
                       at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
       :type heading: Optional[float]
       :param configuration: The configuration you want to set across this machine for this
                             motion service. This parameter and each of its fields are optional.
 
-                            - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
+                            - obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair
                             you want to use for transient obstacle avoidance.
 
                             - position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.
@@ -254,7 +273,7 @@ Package Contents
 
 
 
-   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Iterable[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Sequence[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
 
 
@@ -287,14 +306,14 @@ Package Contents
 
       :param component_name: The ResourceName of the base to move.
       :type component_name: ResourceName
-      :param destination: The destination, which can be any Pose with respect to the SLAM map’s origin.
+      :param destination: The destination, which can be any Pose with respect to the SLAM map's origin.
       :type destination: Pose
       :param slam_service_name: The ResourceName of the SLAM service from which the SLAM map is requested.
       :type slam_service_name: ResourceName
       :param configuration: The configuration you want to set across this machine for this motion service.
                             This parameter and each of its fields are optional.
 
-                            - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
+                            - obstacle_detectors (Sequence[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
                             for transient obstacle avoidance.
 
                             - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
@@ -304,7 +323,7 @@ Package Contents
                             - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
       :type configuration: Optional[MotionConfiguration]
       :param obstacles: Obstacles to be considered for motion planning.
-      :type obstacles: Optional[Iterable[Geometry]]
+      :type obstacles: Optional[Sequence[Geometry]]
       :param extra: Extra options to pass to the underlying RPC call.
       :type extra: Optional[Dict[str, Any]]
       :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
@@ -381,7 +400,7 @@ Package Contents
 
 
 
-   .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.ListPlanStatusesResponse
+   .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Sequence[viam.proto.service.motion.PlanStatusWithID]
       :async:
 
 
@@ -410,7 +429,7 @@ Package Contents
 
 
 
-   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[List[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
+   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[Sequence[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
       :async:
 
 
@@ -454,42 +473,55 @@ Package Contents
       :async:
 
 
-      Send/receive arbitrary commands
+      Send/receive arbitrary commands.
 
       ::
 
-          # Access the motion service
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
-            "command": "dosomething",
+            "cmnd": "dosomething",
             "someparameter": 52
           }
 
-          await motion.do_command(my_command)
+          # Can be used with any resource, using the motion service as an example
+          await service.do_command(command=my_command)
 
-      :param command: The command to execute.
+      :param command: The command to execute
       :type command: Dict[str, ValueTypes]
 
-      :returns: Result of the executed command.
+      :returns: Result of the executed command
       :rtype: Dict[str, ValueTypes]
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
 
 
-
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str = 'builtin') -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
 
-      Get the service client named ``name`` from the provided robot.
+      Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
 
       :param robot: The robot
       :type robot: RobotClient
-      :param name: The name of the service client
+      :param name: The name of the service
       :type name: str
 
-      :returns: The service client, if it exists on the robot
+      :returns: The service, if it exists on the robot
       :rtype: Self
 
 

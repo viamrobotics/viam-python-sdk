@@ -91,7 +91,7 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
 
 
-<div class="viewcode-block" id="ViamError"><a class="viewcode-back" href="../../autoapi/viam/services/vision/client/index.html#viam.components.audio_input.service.ViamError">[docs]</a><span class="k">class</span> <span class="nc">ViamError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="ViamError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ViamError">[docs]</a><span class="k">class</span> <span class="nc">ViamError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base Viam Error</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -99,7 +99,7 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="InsecureConnectionError"><a class="viewcode-back" href="../../autoapi/viam/rpc/dial/index.html#viam.components.audio_input.service.InsecureConnectionError">[docs]</a><span class="k">class</span> <span class="nc">InsecureConnectionError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="InsecureConnectionError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.InsecureConnectionError">[docs]</a><span class="k">class</span> <span class="nc">InsecureConnectionError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when establishing an insecure connection</span>
 
@@ -116,7 +116,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DuplicateResourceError"><a class="viewcode-back" href="../../autoapi/viam/resource/registry/index.html#viam.components.audio_input.service.DuplicateResourceError">[docs]</a><span class="k">class</span> <span class="nc">DuplicateResourceError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="DuplicateResourceError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.DuplicateResourceError">[docs]</a><span class="k">class</span> <span class="nc">DuplicateResourceError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when attempting to register a resource</span>
 <span class="sd">    with the same name as an existing resource already in</span>
@@ -129,7 +129,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ViamGRPCError"><a class="viewcode-back" href="../../autoapi/viam/rpc/server/index.html#viam.components.audio_input.service.ViamGRPCError">[docs]</a><span class="k">class</span> <span class="nc">ViamGRPCError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="ViamGRPCError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ViamGRPCError">[docs]</a><span class="k">class</span> <span class="nc">ViamGRPCError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised if it could happen as a part of GRPC calls.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -143,7 +143,7 @@
         <span class="k">return</span> <span class="n">GRPCError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ResourceNotFoundError"><a class="viewcode-back" href="../../autoapi/viam/services/service_client_base/index.html#viam.components.audio_input.service.ResourceNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ResourceNotFoundError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceNotFoundError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ResourceNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ResourceNotFoundError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when a resource is not found in the registry</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -155,7 +155,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">NOT_FOUND</span></div>
 
 
-<div class="viewcode-block" id="MethodNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/resource/easy_resource/index.html#viam.components.audio_input.service.MethodNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">MethodNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<div class="viewcode-block" id="MethodNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.MethodNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">MethodNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when specific methods are unimplemented.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -165,7 +165,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
 
 
-<div class="viewcode-block" id="NotSupportedError"><a class="viewcode-back" href="../../autoapi/viam/media/video/index.html#viam.components.audio_input.service.NotSupportedError">[docs]</a><span class="k">class</span> <span class="nc">NotSupportedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<div class="viewcode-block" id="NotSupportedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NotSupportedError">[docs]</a><span class="k">class</span> <span class="nc">NotSupportedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when specific component functionality is not supported</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -175,7 +175,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
 
 
-<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../autoapi/viam/resource/registry/index.html#viam.components.audio_input.service.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<div class="viewcode-block" id="ValidationError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ValidationError">[docs]</a><span class="k">class</span> <span class="nc">ValidationError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when there is an error during module validation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -185,7 +185,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span></div>
 
 
-<div class="viewcode-block" id="NoCaptureToStoreError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.components.audio_input.service.NoCaptureToStoreError">[docs]</a><span class="k">class</span> <span class="nc">NoCaptureToStoreError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<div class="viewcode-block" id="NoCaptureToStoreError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NoCaptureToStoreError">[docs]</a><span class="k">class</span> <span class="nc">NoCaptureToStoreError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised in filter module to signal that data capture should not be stored</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -202,7 +202,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -92,7 +92,7 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 
-<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>
+<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>  <span class="c1"># type: ignore</span>
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
@@ -211,7 +211,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

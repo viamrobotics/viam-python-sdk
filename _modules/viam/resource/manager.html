@@ -104,7 +104,7 @@
 <span class="n">ResourceType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;ResourceType&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ResourceBase</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.resource.manager.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">:</span>
+<div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../../autoapi/viam/resource/manager/index.html#viam.resource.manager.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Registry containing all components registered to this server.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -120,7 +120,7 @@
         <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ResourceManager.register"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.resource.manager.ResourceManager.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceManager.register"><a class="viewcode-back" href="../../../autoapi/viam/resource/manager/index.html#viam.resource.manager.ResourceManager.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Register a new resource with the registry.</span>
 <span class="sd">        Resources may not have the same name.</span>
@@ -158,7 +158,7 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rnames</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ResourceManager.get_resource"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.resource.manager.ResourceManager.get_resource">[docs]</a>    <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
+<div class="viewcode-block" id="ResourceManager.get_resource"><a class="viewcode-back" href="../../../autoapi/viam/resource/manager/index.html#viam.resource.manager.ResourceManager.get_resource">[docs]</a>    <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a resource from the registry.</span>
 <span class="sd">        If a unique short name version is given, return a remote resource with the name.</span>
@@ -183,7 +183,7 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">of_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">subtype</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ResourceManager.remove_resource"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.resource.manager.ResourceManager.remove_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceManager.remove_resource"><a class="viewcode-back" href="../../../autoapi/viam/resource/manager/index.html#viam.resource.manager.ResourceManager.remove_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the resource with the specified ```ResourceName```.</span>
 
 <span class="sd">        Args:</span>
@@ -198,7 +198,7 @@
             <span class="k">finally</span><span class="p">:</span>
                 <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="ResourceManager.close"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.resource.manager.ResourceManager.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceManager.close"><a class="viewcode-back" href="../../../autoapi/viam/resource/manager/index.html#viam.resource.manager.ResourceManager.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the resourcce manager by removing all resources.</span>
 <span class="sd">        Please note that any errors will not raise an exception. Errors will still be logged.&quot;&quot;&quot;</span>
         <span class="n">rns</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
@@ -223,7 +223,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

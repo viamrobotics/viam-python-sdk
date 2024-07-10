@@ -4,29 +4,11 @@ viam.media.video
 .. py:module:: viam.media.video
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   viam.media.video.RGBA_HEADER_LENGTH
-   viam.media.video.RGBA_MAGIC_NUMBER
-
-
-Exceptions
-----------
-
-.. autoapisummary::
-
-   viam.media.video.NotSupportedError
-
-
 Classes
 -------
 
 .. autoapisummary::
 
-   viam.media.video.Format
    viam.media.video.CameraMimeType
    viam.media.video.ViamImage
    viam.media.video.NamedImage
@@ -34,25 +16,6 @@ Classes
 
 Module Contents
 ---------------
-
-.. py:exception:: NotSupportedError(message: str)
-
-   Bases: :py:obj:`ViamGRPCError`
-
-
-   Exception raised when specific component functionality is not supported
-
-
-.. py:class:: Format
-
-   Bases: :py:obj:`_Format`
-
-
-.. py:data:: RGBA_HEADER_LENGTH
-   :value: 12
-
-
-.. py:data:: RGBA_MAGIC_NUMBER
 
 .. py:class:: CameraMimeType
 
