@@ -2,7 +2,7 @@ import wave
 from datetime import timedelta
 from io import BytesIO
 
-from google.api.httpbody_pb2 import HttpBody
+from google.api.httpbody_pb2 import HttpBody  # type: ignore
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 

@@ -56,6 +56,7 @@ class RobotConfig(google.protobuf.message.Message):
     PACKAGES_FIELD_NUMBER: builtins.int
     OVERWRITE_FRAGMENT_STATUS_FIELD_NUMBER: builtins.int
     ENABLE_WEB_PROFILE_FIELD_NUMBER: builtins.int
+    LOG_FIELD_NUMBER: builtins.int
     debug: builtins.bool
     'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
     disable_partial_start: builtins.bool
@@ -102,13 +103,17 @@ class RobotConfig(google.protobuf.message.Message):
     def overwrite_fragment_status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AppValidationStatus]:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=...) -> None:
+    @property
+    def log(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogPatternConfig]:
+        ...
+
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'services', b'services']) -> None:
+    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'services', b'services']) -> None:
         ...
 
     @typing.overload
@@ -127,6 +132,24 @@ class RobotConfig(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing.Literal['_network', b'_network']) -> typing.Literal['network'] | None:
         ...
 global___RobotConfig = RobotConfig
+
+@typing.final
+class LogPatternConfig(google.protobuf.message.Message):
+    """LogPatternConfig allows you to specify a 2-tuple consisting
+    of a logger name and its corresponding log level.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PATTERN_FIELD_NUMBER: builtins.int
+    LEVEL_FIELD_NUMBER: builtins.int
+    pattern: builtins.str
+    level: builtins.str
+
+    def __init__(self, *, pattern: builtins.str=..., level: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['level', b'level', 'pattern', b'pattern']) -> None:
+        ...
+global___LogPatternConfig = LogPatternConfig
 
 @typing.final
 class LocationSecret(google.protobuf.message.Message):

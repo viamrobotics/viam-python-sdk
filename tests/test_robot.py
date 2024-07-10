@@ -54,7 +54,7 @@ from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
-from viam.services.motion.client import MotionClient
+from viam.services.mlmodel.client import MLModelClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
@@ -177,7 +177,7 @@ def service() -> RobotService:
                 position_supported=True,
                 compass_heading_supported=False,
             ),
-            accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
+            accuracy=MovementSensor.Accuracy(accuracy={"foo": 0.1, "bar": 2, "baz": 3.14}),
             readings={"a": 1, "b": 2, "c": 3},
         ),
         MockMLModel("mlmodel1"),
@@ -403,10 +403,9 @@ class TestRobotClient:
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            client._resource_names.append(ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type="service", subtype="motion", name="motion1"))
             with pytest.raises(ResourceNotFoundError):
-                MotionClient.from_robot(client)
-            MotionClient.from_robot(client, "motion1")
+                MLModelClient.from_robot(client, "mlmodel")
+            MLModelClient.from_robot(client, "mlmodel1")
             await client.close()
 
     @pytest.mark.asyncio
@@ -501,7 +500,7 @@ class TestRobotClient:
             assert await motor.is_moving() is True
 
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.stop_all({arm.get_resource_name(arm.name): extra})
+            await client.stop_all({arm.get_resource_name(arm.name): extra})  # type: ignore
 
             assert await arm.is_moving() is False
             assert arm.extra == extra

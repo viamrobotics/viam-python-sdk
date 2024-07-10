@@ -15,7 +15,7 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   grpclib = ">=0.4.7,<1"
   googleapis-common-protos = ">=1.60.0,<2"
   typing-extensions = ">=4.8.0,<5"
-  protobuf = ">=4.24.3,<5"
+  protobuf = ">=4.24.3"
   numpy = { version = ">=1.21,<2", optional = true }
 
   [tool.poetry.group.dev.dependencies]
@@ -48,6 +48,7 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   ]
   Pillow = ">=9.1.0,<11"
   pyright = "^1.1.339"
+  pytest-mock = "^3.14.0"
 
   [tool.poetry.extras]
   mlmodel = ["numpy"]
