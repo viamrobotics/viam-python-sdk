@@ -20,6 +20,7 @@ if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
 		fi
         $SUDO apt install -qqy python3-venv
         if ! python3 -m venv $VENV_NAME; then
+            echo "Installing python3-venv failed."
             echo $ENV_ERROR >&2
             exit 1
         fi
