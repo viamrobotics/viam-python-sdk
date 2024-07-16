@@ -206,7 +206,7 @@ class ViamClient:
 
         Args:
             address (Optional[str]): The address (FQDN) of the machine. Defaults to None.
-            id (Optional[str]): THe ID (as a UUID) of the machine. Defaults to None.
+            id (Optional[str]): The ID (as a UUID) of the machine. Defaults to None.
 
         Raises:
             ValueError: If neither an address nor ID is provided.
