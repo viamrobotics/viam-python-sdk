@@ -1990,6 +1990,43 @@ class ListRobotsRequest(google.protobuf.message.Message):
 global___ListRobotsRequest = ListRobotsRequest
 
 @typing.final
+class ListMachineFragmentsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MACHINE_ID_FIELD_NUMBER: builtins.int
+    ADDITIONAL_FRAGMENT_IDS_FIELD_NUMBER: builtins.int
+    machine_id: builtins.str
+    "the machine_id used to filter fragments defined in a machine's parts.\n    Also returns any fragments nested within the fragments defined in parts.\n    "
+
+    @property
+    def additional_fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """additional fragment_ids to append to the response. useful when needing to view fragments that will be
+        provisionally added to the machine alongside existing fragments.
+        """
+
+    def __init__(self, *, machine_id: builtins.str=..., additional_fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['additional_fragment_ids', b'additional_fragment_ids', 'machine_id', b'machine_id']) -> None:
+        ...
+global___ListMachineFragmentsRequest = ListMachineFragmentsRequest
+
+@typing.final
+class ListMachineFragmentsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
+        ...
+
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
+        ...
+global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
+
+@typing.final
 class ListRobotsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOTS_FIELD_NUMBER: builtins.int
