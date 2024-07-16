@@ -10,7 +10,7 @@ from viam.app.data_client import DataClient
 from viam.app.ml_training_client import MLTrainingClient
 from viam.app.provisioning_client import ProvisioningClient
 from viam.robot.client import RobotClient
-from viam.rpc.dial import DialOptions, _dial_app, _get_access_token, Credentials
+from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)
 
@@ -52,8 +52,7 @@ class ViamClient:
             raise ValueError("dial_options.auth_entity cannot be None.")
 
         self = cls()
-        self._credentials = dial_options.credentials
-        self._auth_entity = dial_options.auth_entity
+        self._dial_options = dial_options
         self._location_id = None
         if dial_options.credentials.type == "robot-location-secret":
             self._location_id = dial_options.auth_entity.split(".")[1]
@@ -68,8 +67,7 @@ class ViamClient:
     _metadata: Mapping[str, str]
     _closed: bool = False
     _location_id: Optional[str]
-    _credentials: Credentials
-    _auth_entity: str
+    _dial_options: DialOptions
 
     @property
     def data_client(self) -> DataClient:
@@ -191,6 +189,21 @@ class ViamClient:
         A connection can be attempted using either the machine's address or its ID.
         If both an address and ID are provided, the address will take precedence and the ID will be ignored.
 
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+
+            async def main():
+                viam_client = await connect()
+
+                # Connect to a machine and obtain a RobotClient
+                # Replace "<MACHINE_ADDRESS>" (including brackets) with your machine's connection address
+                machine = await viam_client.connect_to_machine(address="<MACHINE_ADDRESS>")
+
         Args:
             address (Optional[str]): The address (FQDN) of the machine. Defaults to None.
             id (Optional[str]): THe ID (as a UUID) of the machine. Defaults to None.
@@ -209,11 +222,7 @@ class ViamClient:
             main_part = [p for p in parts if p.main_part][0]
             address = main_part.fqdn
 
-        if self._credentials.type == "api-key":
-            opts = RobotClient.Options.with_api_key(api_key=self._credentials.payload, api_key_id=self._auth_entity)
-        else:
-            dial_opts = DialOptions(credentials=self._credentials, auth_entity=self._auth_entity)
-            opts = RobotClient.Options(dial_options=dial_opts)
+        opts = RobotClient.Options(dial_options=self._dial_options)
 
         assert address is not None
         return await RobotClient.at_address(address, opts)
