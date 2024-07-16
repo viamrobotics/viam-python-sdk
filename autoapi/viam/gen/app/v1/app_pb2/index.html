@@ -450,6 +450,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___ListRobotsRequest" title="viam.gen.app.v1.app_pb2.global___ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListRobotsRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___ListMachineFragmentsRequest" title="viam.gen.app.v1.app_pb2.global___ListMachineFragmentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListMachineFragmentsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___ListMachineFragmentsResponse" title="viam.gen.app.v1.app_pb2.global___ListMachineFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListMachineFragmentsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___ListRobotsResponse" title="viam.gen.app.v1.app_pb2.global___ListRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListRobotsResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -998,6 +1004,12 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListRobotsRequest" title="viam.gen.app.v1.app_pb2.ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMachineFragmentsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMachineFragmentsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListRobotsResponse" title="viam.gen.app.v1.app_pb2.ListRobotsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsResponse</span></code></a></p></td>
@@ -5021,6 +5033,55 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___ListRobotsRequest">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListRobotsRequest</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___ListRobotsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">ListMachineFragmentsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">machine_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_fragment_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest.machine_id">
+<span class="sig-name descname"><span class="pre">machine_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest.machine_id" title="Permalink to this definition"></a></dt>
+<dd><p>the machine_id used to filter fragments defined in a machine’s parts.
+Also returns any fragments nested within the fragments defined in parts.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest.additional_fragment_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">additional_fragment_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest.additional_fragment_ids" title="Permalink to this definition"></a></dt>
+<dd><p>additional fragment_ids to append to the response. useful when needing to view fragments that will be
+provisionally added to the machine alongside existing fragments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___ListMachineFragmentsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListMachineFragmentsRequest</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___ListMachineFragmentsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">ListMachineFragmentsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Fragment</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse.fragments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fragments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Fragment</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse.fragments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___ListMachineFragmentsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListMachineFragmentsResponse</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___ListMachineFragmentsResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

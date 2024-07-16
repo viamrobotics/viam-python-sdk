@@ -134,6 +134,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateFragment"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateFragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateFragment"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateFragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteFragment"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteFragment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListMachineFragments"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListMachineFragments()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetFragmentHistory"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetFragmentHistory()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.AddRole"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.AddRole()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.RemoveRole"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.RemoveRole()</span></code></a></li>
@@ -211,6 +212,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.CreateFragment"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.CreateFragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.UpdateFragment"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.UpdateFragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.DeleteFragment"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.DeleteFragment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.ListMachineFragments"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.ListMachineFragments()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.GetFragmentHistory"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.GetFragmentHistory()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.AddRole"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.AddRole()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.RemoveRole"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.RemoveRole()</span></code></a></li>
@@ -668,6 +670,15 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.ListLocationsResponse"><code class="docutils literal notranslate"><span class="pre">ListLocationsResponse</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListLocationsResponse.locations"><code class="docutils literal notranslate"><span class="pre">ListLocationsResponse.locations</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsRequest"><code class="docutils literal notranslate"><span class="pre">ListMachineFragmentsRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsRequest.machine_id"><code class="docutils literal notranslate"><span class="pre">ListMachineFragmentsRequest.machine_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsRequest.additional_fragment_ids"><code class="docutils literal notranslate"><span class="pre">ListMachineFragmentsRequest.additional_fragment_ids</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsResponse"><code class="docutils literal notranslate"><span class="pre">ListMachineFragmentsResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsResponse.fragments"><code class="docutils literal notranslate"><span class="pre">ListMachineFragmentsResponse.fragments</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.ListModulesRequest"><code class="docutils literal notranslate"><span class="pre">ListModulesRequest</span></code></a><ul>
@@ -1535,6 +1546,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ListLocationsResponse" title="viam.proto.app.ListLocationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsRequest" title="viam.proto.app.ListMachineFragmentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMachineFragmentsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ListMachineFragmentsResponse" title="viam.proto.app.ListMachineFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMachineFragmentsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ListModulesRequest" title="viam.proto.app.ListModulesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListModulesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -2237,6 +2254,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.ListMachineFragments">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListMachineFragments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest"><span class="pre">app.v1.app_pb2.ListMachineFragmentsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse"><span class="pre">app.v1.app_pb2.ListMachineFragmentsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.ListMachineFragments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.ListMachineFragments" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.GetFragmentHistory">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetFragmentHistory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.GetFragmentHistoryRequest" title="viam.gen.app.v1.app_pb2.GetFragmentHistoryRequest"><span class="pre">app.v1.app_pb2.GetFragmentHistoryRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.GetFragmentHistoryResponse" title="viam.gen.app.v1.app_pb2.GetFragmentHistoryResponse"><span class="pre">app.v1.app_pb2.GetFragmentHistoryResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.GetFragmentHistory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.GetFragmentHistory" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -2704,6 +2730,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.DeleteFragment">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteFragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteFragmentRequest" title="viam.gen.app.v1.app_pb2.DeleteFragmentRequest"><span class="pre">app.v1.app_pb2.DeleteFragmentRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteFragmentResponse" title="viam.gen.app.v1.app_pb2.DeleteFragmentResponse"><span class="pre">app.v1.app_pb2.DeleteFragmentResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.DeleteFragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.DeleteFragment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.ListMachineFragments">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListMachineFragments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsRequest"><span class="pre">app.v1.app_pb2.ListMachineFragmentsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse" title="viam.gen.app.v1.app_pb2.ListMachineFragmentsResponse"><span class="pre">app.v1.app_pb2.ListMachineFragmentsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.ListMachineFragments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.ListMachineFragments" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -5202,6 +5233,45 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.ListLocationsResponse.locations">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">locations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Location</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.ListLocationsResponse.locations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.ListMachineFragmentsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">ListMachineFragmentsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">machine_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_fragment_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.ListMachineFragmentsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.ListMachineFragmentsRequest.machine_id">
+<span class="sig-name descname"><span class="pre">machine_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.ListMachineFragmentsRequest.machine_id" title="Permalink to this definition"></a></dt>
+<dd><p>the machine_id used to filter fragments defined in a machine’s parts.
+Also returns any fragments nested within the fragments defined in parts.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.ListMachineFragmentsRequest.additional_fragment_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">additional_fragment_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.ListMachineFragmentsRequest.additional_fragment_ids" title="Permalink to this definition"></a></dt>
+<dd><p>additional fragment_ids to append to the response. useful when needing to view fragments that will be
+provisionally added to the machine alongside existing fragments.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.ListMachineFragmentsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">ListMachineFragmentsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Fragment</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.ListMachineFragmentsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.ListMachineFragmentsResponse.fragments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fragments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Fragment</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.ListMachineFragmentsResponse.fragments" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
