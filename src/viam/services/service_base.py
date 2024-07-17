@@ -27,7 +27,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            async def connect() -> ViamClient:
+            async def connect() -> RobotClient:
                 # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
                 options = RobotClient.Options.with_api_key("<API-KEY>", "<API-KEY-ID>")
                 # Replace "<MACHINE-URL>" (included brackets) with your machine's connection URL or FQDN
