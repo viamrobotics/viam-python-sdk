@@ -219,7 +219,7 @@ class ViamClient:
 
         if id is not None and address is None:
             parts = await self.app_client.get_robot_parts(id)
-            main_part = [p for p in parts if p.main_part][0]
+            main_part = next(p for p in parts if p.main_part)
             address = main_part.fqdn
 
         opts = RobotClient.Options(dial_options=self._dial_options)
