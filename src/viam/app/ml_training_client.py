@@ -119,7 +119,7 @@ class MLTrainingClient:
         return response.id
 
     async def submit_custom_training_job(
-        self, org_id: str, dataset_id: str, registry_item_id: str, model_name: str, model_version: str
+        self, org_id: str, dataset_id: str, registry_item_id: str, registry_item_version: str, model_name: str, model_version: str
     ) -> str:
         """Submit a custom training job.
 
@@ -149,6 +149,7 @@ class MLTrainingClient:
         request = SubmitCustomTrainingJobRequest(
             dataset_id=dataset_id,
             registry_item_id=registry_item_id,
+            registry_item_version=registry_item_version,
             organization_id=org_id,
             model_name=model_name,
             model_version=model_version,
