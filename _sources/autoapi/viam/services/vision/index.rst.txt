@@ -400,10 +400,11 @@ Package Contents
 
       ::
 
-          async def connect() -> ViamClient:
+          async def connect() -> RobotClient:
               # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-              return await ViamClient.create_from_dial_options(dial_options)
+              options = RobotClient.Options.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              # Replace "<MACHINE-URL>" (included brackets) with your machine's connection URL or FQDN
+              return await RobotClient.at_address("<MACHINE-URL>", options)
 
           async def main():
               robot = await connect()
@@ -761,10 +762,11 @@ Package Contents
 
       ::
 
-          async def connect() -> ViamClient:
+          async def connect() -> RobotClient:
               # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-              return await ViamClient.create_from_dial_options(dial_options)
+              options = RobotClient.Options.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              # Replace "<MACHINE-URL>" (included brackets) with your machine's connection URL or FQDN
+              return await RobotClient.at_address("<MACHINE-URL>", options)
 
           async def main():
               robot = await connect()

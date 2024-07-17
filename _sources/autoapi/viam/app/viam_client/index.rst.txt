@@ -174,3 +174,39 @@ Module Contents
 
 
 
+   .. py:method:: connect_to_machine(*, address: Optional[str] = None, id: Optional[str] = None) -> viam.robot.client.RobotClient
+      :async:
+
+
+      Connect to a machine using existing credentials.
+
+      A connection can be attempted using either the machine's address or its ID.
+      If both an address and ID are provided, the address will take precedence and the ID will be ignored.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+
+          async def main():
+              viam_client = await connect()
+
+              # Connect to a machine and obtain a RobotClient
+              # Replace "<MACHINE_ADDRESS>" (including brackets) with your machine's connection address
+              machine = await viam_client.connect_to_machine(address="<MACHINE_ADDRESS>")
+
+      :param address: The address (FQDN) of the machine. Defaults to None.
+      :type address: Optional[str]
+      :param id: The ID (as a UUID) of the machine. Defaults to None.
+      :type id: Optional[str]
+
+      :raises ValueError: If neither an address nor ID is provided.
+
+      :returns: The active connection to the machine.
+      :rtype: RobotClient
+
+
+

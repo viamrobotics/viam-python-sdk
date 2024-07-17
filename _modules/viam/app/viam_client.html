@@ -99,6 +99,7 @@
 <span class="kn">from</span> <span class="nn">viam.app.data_client</span> <span class="kn">import</span> <span class="n">DataClient</span>
 <span class="kn">from</span> <span class="nn">viam.app.ml_training_client</span> <span class="kn">import</span> <span class="n">MLTrainingClient</span>
 <span class="kn">from</span> <span class="nn">viam.app.provisioning_client</span> <span class="kn">import</span> <span class="n">ProvisioningClient</span>
+<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_dial_app</span><span class="p">,</span> <span class="n">_get_access_token</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -141,6 +142,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dial_options.auth_entity cannot be None.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span> <span class="o">=</span> <span class="n">dial_options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;robot-location-secret&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -155,6 +157,7 @@
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">_dial_options</span><span class="p">:</span> <span class="n">DialOptions</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClient</span><span class="p">:</span>
@@ -268,7 +271,51 @@
             <span class="k">return</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing gRPC channel to app.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="ViamClient.connect_to_machine"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.connect_to_machine">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">connect_to_machine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Connect to a machine using existing credentials.</span>
+
+<span class="sd">        A connection can be attempted using either the machine&#39;s address or its ID.</span>
+<span class="sd">        If both an address and ID are provided, the address will take precedence and the ID will be ignored.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                viam_client = await connect()</span>
+
+<span class="sd">                # Connect to a machine and obtain a RobotClient</span>
+<span class="sd">                # Replace &quot;&lt;MACHINE_ADDRESS&gt;&quot; (including brackets) with your machine&#39;s connection address</span>
+<span class="sd">                machine = await viam_client.connect_to_machine(address=&quot;&lt;MACHINE_ADDRESS&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            address (Optional[str]): The address (FQDN) of the machine. Defaults to None.</span>
+<span class="sd">            id (Optional[str]): The ID (as a UUID) of the machine. Defaults to None.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If neither an address nor ID is provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RobotClient: The active connection to the machine.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">address</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a machine address or ID must be provided&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_client</span><span class="o">.</span><span class="n">get_robot_parts</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="n">main_part</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">main_part</span><span class="p">)</span>
+            <span class="n">address</span> <span class="o">=</span> <span class="n">main_part</span><span class="o">.</span><span class="n">fqdn</span>
+
+        <span class="n">opts</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">dial_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">address</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

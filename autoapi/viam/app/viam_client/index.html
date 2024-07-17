@@ -78,6 +78,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.billing_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.billing_client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.provisioning_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.provisioning_client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.close"><code class="docutils literal notranslate"><span class="pre">ViamClient.close()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.connect_to_machine"><code class="docutils literal notranslate"><span class="pre">ViamClient.connect_to_machine()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -295,6 +296,45 @@ To use the <cite>ProvisioningClient</cite>, you must first instantiate a <cite>V
 <dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.close" title="Permalink to this definition"></a></dt>
 <dd><p>Close opened channels used for the various service stubs initialized.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.connect_to_machine">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">connect_to_machine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.connect_to_machine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.connect_to_machine" title="Permalink to this definition"></a></dt>
+<dd><p>Connect to a machine using existing credentials.</p>
+<p>A connection can be attempted using either the machine’s address or its ID.
+If both an address and ID are provided, the address will take precedence and the ID will be ignored.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Connect to a machine and obtain a RobotClient</span>
+    <span class="c1"># Replace &quot;&lt;MACHINE_ADDRESS&gt;&quot; (including brackets) with your machine&#39;s connection address</span>
+    <span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">connect_to_machine</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s2">&quot;&lt;MACHINE_ADDRESS&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The address (FQDN) of the machine. Defaults to None.</p></li>
+<li><p><strong>id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The ID (as a UUID) of the machine. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If neither an address nor ID is provided.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The active connection to the machine.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient">RobotClient</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
