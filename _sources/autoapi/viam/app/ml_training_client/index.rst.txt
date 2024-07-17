@@ -98,7 +98,7 @@ Module Contents
 
 
 
-   .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, model_name: str, model_version: str) -> str
+   .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, registry_item_version: str, model_name: str, model_version: str) -> str
       :async:
 
 
@@ -110,6 +110,7 @@ Module Contents
               organization_id=organization_id,
               dataset_id=dataset_id,
               registry_item_id="your-registry-item-id",
+              registry_item_version="your-registry-item-version",
               model_name="your-model-name",
               model_version="1"
           )
@@ -119,7 +120,9 @@ Module Contents
       :param dataset_id: the id of the dataset
       :type dataset_id: str
       :param registry_item_id: the id of the registry item
-      :type registry_item_id: List[str]
+      :type registry_item_id: str
+      :param registry_item_version: the version of the registry item
+      :type registry_item_version: str
       :param model_name: the model name
       :type model_name: str
       :param model_version: the model version

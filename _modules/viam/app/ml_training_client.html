@@ -209,7 +209,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
 <div class="viewcode-block" id="MLTrainingClient.submit_custom_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_custom_training_job</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a custom training job.</span>
 
@@ -219,6 +219,7 @@
 <span class="sd">                organization_id=organization_id,</span>
 <span class="sd">                dataset_id=dataset_id,</span>
 <span class="sd">                registry_item_id=&quot;your-registry-item-id&quot;,</span>
+<span class="sd">                registry_item_version=&quot;your-registry-item-version&quot;,</span>
 <span class="sd">                model_name=&quot;your-model-name&quot;,</span>
 <span class="sd">                model_version=&quot;1&quot;</span>
 <span class="sd">            )</span>
@@ -226,7 +227,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the id of the org to submit the training job to</span>
 <span class="sd">            dataset_id (str): the id of the dataset</span>
-<span class="sd">            registry_item_id (List[str]): the id of the registry item</span>
+<span class="sd">            registry_item_id (str): the id of the registry item</span>
+<span class="sd">            registry_item_version (str): the version of the registry item</span>
 <span class="sd">            model_name (str): the model name</span>
 <span class="sd">            model_version (str): the model version</span>
 
@@ -239,6 +241,7 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">(</span>
             <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
             <span class="n">registry_item_id</span><span class="o">=</span><span class="n">registry_item_id</span><span class="p">,</span>
+            <span class="n">registry_item_version</span><span class="o">=</span><span class="n">registry_item_version</span><span class="p">,</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
             <span class="n">model_version</span><span class="o">=</span><span class="n">model_version</span><span class="p">,</span>
