@@ -137,7 +137,7 @@ class MLTrainingClient:
         Args:
             org_id (str): the id of the org to submit the training job to
             dataset_id (str): the id of the dataset
-            registry_item_id (List[str]): the id of the registry item
+            registry_item_id (str): the id of the registry item
             registry_item_version (str): the version of the registry item
             model_name (str): the model name
             model_version (str): the model version
