@@ -19,6 +19,15 @@ class CameraMimeType(str, Enum):
 
     @classmethod
     def from_string(cls, value: str) -> Self:
+        """Return the mimetype from a string.
+
+        Args:
+            value (str): The mimetype as a string
+
+        Returns:
+            Self: The mimetype
+        """
+        value = value.removesuffix("+lazy") # ViamImage does lazy encoding by default
         return cls(value)
 
     @classmethod
