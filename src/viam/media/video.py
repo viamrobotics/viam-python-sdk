@@ -27,7 +27,7 @@ class CameraMimeType(str, Enum):
         Returns:
             Self: The mimetype
         """
-        value = value.removesuffix("+lazy") # ViamImage does lazy encoding by default
+        value = value.removesuffix("+lazy")  # ViamImage does lazy encoding by default
         return cls(value)
 
     @classmethod
