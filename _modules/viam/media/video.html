@@ -109,7 +109,16 @@
 
 <div class="viewcode-block" id="CameraMimeType.from_string"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_string">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the mimetype from a string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (str): The mimetype as a string</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Self: The mimetype</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">value_mime</span> <span class="o">=</span> <span class="n">value</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;+lazy&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span>  <span class="c1"># ViamImage lazy encodes by default</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value_mime</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CameraMimeType.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CameraMimeType&quot;</span><span class="p">:</span>
