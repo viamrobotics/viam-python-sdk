@@ -8,6 +8,8 @@ from ....gen.app.mltraining.v1.ml_training_pb2 import (
     CancelTrainingJobResponse,
     DeleteCompletedTrainingJobRequest,
     DeleteCompletedTrainingJobResponse,
+    GetTrainingJobLogsRequest,
+    GetTrainingJobLogsResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
@@ -18,6 +20,7 @@ from ....gen.app.mltraining.v1.ml_training_pb2 import (
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
+    TrainingJobLogEntry,
     TrainingJobMetadata,
     TrainingStatus,
 )
@@ -30,6 +33,8 @@ __all__ = [
     "CancelTrainingJobResponse",
     "DeleteCompletedTrainingJobRequest",
     "DeleteCompletedTrainingJobResponse",
+    "GetTrainingJobLogsRequest",
+    "GetTrainingJobLogsResponse",
     "GetTrainingJobRequest",
     "GetTrainingJobResponse",
     "ListTrainingJobsRequest",
@@ -40,6 +45,7 @@ __all__ = [
     "SubmitCustomTrainingJobResponse",
     "SubmitTrainingJobRequest",
     "SubmitTrainingJobResponse",
+    "TrainingJobLogEntry",
     "TrainingJobMetadata",
     "TrainingStatus",
 ]

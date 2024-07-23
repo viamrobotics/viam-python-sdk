@@ -2683,15 +2683,23 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
+    URL_FIELD_NUMBER: builtins.int
     item_id: builtins.str
     type: app.packages.v1.packages_pb2.PackageType.ValueType
     description: builtins.str
     visibility: global___Visibility.ValueType
+    url: builtins.str
 
-    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=...) -> None:
+    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'item_id', b'item_id', 'type', b'type', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_url', b'_url', 'url', b'url']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'type', b'type', 'url', b'url', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_url', b'_url']) -> typing.Literal['url'] | None:
         ...
 global___UpdateRegistryItemRequest = UpdateRegistryItemRequest
 

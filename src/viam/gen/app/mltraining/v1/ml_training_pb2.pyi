@@ -330,3 +330,65 @@ class DeleteCompletedTrainingJobResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteCompletedTrainingJobResponse = DeleteCompletedTrainingJobResponse
+
+@typing.final
+class TrainingJobLogEntry(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LEVEL_FIELD_NUMBER: builtins.int
+    TIME_FIELD_NUMBER: builtins.int
+    MESSAGE_FIELD_NUMBER: builtins.int
+    level: builtins.str
+    message: builtins.str
+
+    @property
+    def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, level: builtins.str=..., time: google.protobuf.timestamp_pb2.Timestamp | None=..., message: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['time', b'time']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['level', b'level', 'message', b'message', 'time', b'time']) -> None:
+        ...
+global___TrainingJobLogEntry = TrainingJobLogEntry
+
+@typing.final
+class GetTrainingJobLogsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    page_token: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., page_token: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_page_token', b'_page_token', 'page_token', b'page_token']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_page_token', b'_page_token', 'id', b'id', 'page_token', b'page_token']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
+        ...
+global___GetTrainingJobLogsRequest = GetTrainingJobLogsRequest
+
+@typing.final
+class GetTrainingJobLogsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOGS_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+
+    @property
+    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrainingJobLogEntry]:
+        ...
+
+    def __init__(self, *, logs: collections.abc.Iterable[global___TrainingJobLogEntry] | None=..., next_page_token: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['logs', b'logs', 'next_page_token', b'next_page_token']) -> None:
+        ...
+global___GetTrainingJobLogsResponse = GetTrainingJobLogsResponse
