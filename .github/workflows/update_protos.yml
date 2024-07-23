@@ -25,6 +25,11 @@ jobs:
       - name: Install package
         run: poetry install --all-extras
 
+      - name: Store API version
+        run: |
+          python3 update_pi_version.py ${{ github.event.client_payload.tag }}
+          echo "Updated API version to ${{ github.event.client_payload.tag }} in pyproject.toml"
+
       - name: Generate buf
         run: make buf
         env:
