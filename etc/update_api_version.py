@@ -21,6 +21,7 @@ def update_version(new_version: str):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
+        print(len(sys.argv), sys.argv)
         print("Usage: python update_version.py <new_version>")
         sys.exit(1)
 
