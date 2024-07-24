@@ -2,7 +2,7 @@ import re
 import sys
 
 
-file_path = "pyproject.toml"
+file_path = "src/viam/__init__.py"
 
 
 def update_version(new_version: str):
