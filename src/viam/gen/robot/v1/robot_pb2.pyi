@@ -812,15 +812,23 @@ global___GetMachineStatusRequest = GetMachineStatusRequest
 class GetMachineStatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCES_FIELD_NUMBER: builtins.int
+    CONFIG_FIELD_NUMBER: builtins.int
 
     @property
     def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceStatus]:
         ...
 
-    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=...) -> None:
+    @property
+    def config(self) -> global___ConfigStatus:
         ...
 
-    def ClearField(self, field_name: typing.Literal['resources', b'resources']) -> None:
+    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'resources', b'resources']) -> None:
         ...
 global___GetMachineStatusResponse = GetMachineStatusResponse
 
@@ -858,8 +866,11 @@ class ResourceStatus(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     STATE_FIELD_NUMBER: builtins.int
     LAST_UPDATED_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
     state: global___ResourceStatus.State.ValueType
     'current state.'
+    revision: builtins.str
+    'revision of the last config that successfully updated this resource.'
 
     @property
     def name(self) -> common.v1.common_pb2.ResourceName:
@@ -869,12 +880,34 @@ class ResourceStatus(google.protobuf.message.Message):
     def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """state transition timestamp."""
 
-    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name', 'state', b'state']) -> None:
+    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
         ...
 global___ResourceStatus = ResourceStatus
+
+@typing.final
+class ConfigStatus(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    REVISION_FIELD_NUMBER: builtins.int
+    LAST_UPDATED_FIELD_NUMBER: builtins.int
+    revision: builtins.str
+    'revision of the last config that the machine successfully ingested.'
+
+    @property
+    def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """config ingestion timestamp."""
+
+    def __init__(self, *, revision: builtins.str=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['last_updated', b'last_updated']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'revision', b'revision']) -> None:
+        ...
+global___ConfigStatus = ConfigStatus
