@@ -251,12 +251,12 @@ from viam.proto.app.mltraining import (
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
-    MLTrainingServiceBase,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
+    UnimplementedMLTrainingServiceBase,
 )
 from viam.proto.app.packages import PackageType
 from viam.proto.common import (
@@ -1065,7 +1065,7 @@ class MockDataSync(DataSyncServiceBase):
         await stream.send_message(StreamingDataCaptureUploadResponse(file_id=self.file_upload_response))
 
 
-class MockMLTraining(MLTrainingServiceBase):
+class MockMLTraining(UnimplementedMLTrainingServiceBase):
     def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
         self.job_id = job_id
         self.training_metadata = training_metadata
