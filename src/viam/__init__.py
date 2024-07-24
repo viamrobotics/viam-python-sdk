@@ -14,6 +14,8 @@ try:
 except PackageNotFoundError:
     pass
 
+api_version = "0.1.327"
+
 ##########################################################
 # #################### TASK PREFIX ##################### #
 # ###### Used to give each task a unique identifier #### #
