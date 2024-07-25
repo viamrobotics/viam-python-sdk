@@ -32,6 +32,7 @@ class _ModuleHandler(logging.Handler):
         try:
             self.loop = asyncio.get_event_loop()
         except RuntimeError:
+            self._logger.warn("Created an event loop from a new thread. We recommend initializing loggers in the main module thread.")
             # If the log is coming from a thread that doesn't have an event loop, create and set a new one.
             self.loop = asyncio.new_event_loop()
             asyncio.set_event_loop(self.loop)
