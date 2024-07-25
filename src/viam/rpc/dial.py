@@ -1,4 +1,5 @@
 import ctypes
+import os
 import pathlib
 import re
 import socket
@@ -278,12 +279,11 @@ class _Runtime:
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
-    print(__file__)
-    with open("src/viam/__init__.py", "r") as file:
+    directory = os.path.dirname(__file__)
+    with open(os.path.join(directory, "../__init__.py"), "r") as file:
         match = re.search(r'api_version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
         api_version = match.group(1) if match else None
-
-    with open("pyproject.toml", "r") as file:
+    with open(os.path.join(directory, "../../../pyproject.toml"), "r") as file:
         match = re.search(r'version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
         sdk_version = match.group(1) if match else None
 
