@@ -86,7 +86,7 @@ class _ColorFormatter(logging.Formatter):
 
 
 def getLogger(name: str) -> logging.Logger:
-    # If creating a thread with a logger, this function should be called outside of or in the `__init__()` of the thread.
+    # Warning: unstable if invoked in a different thread than that of the module. We recommend initializing the logger in the main module thread, then passing it as an argument to any child threads.
     logger = LOGGERS.get(name)
     if logger:
         return logger
