@@ -29,6 +29,12 @@ class _ModuleHandler(logging.Handler):
         addHandlers(self._logger, True)
         super().__init__()
         self._logger.setLevel(self.level)
+        try:
+            self.loop = asyncio.get_event_loop()
+        except RuntimeError:
+            # If the log is coming from a thread that doesn't have an event loop, create and set a new one.
+            self.loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self.loop)
 
     def setLevel(self, level: Union[int, str]) -> None:
         self._logger.setLevel(level)
@@ -49,18 +55,9 @@ class _ModuleHandler(logging.Handler):
 
         try:
             assert self._parent is not None
-            try:
-                loop = asyncio.get_event_loop()
-                loop.create_task(
-                    self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
-                ).add_done_callback(self.handle_task_result)
-            except RuntimeError:
-                # If the log is coming from a thread that doesn't have an event loop, create and set a new one.
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                loop.create_task(
-                    self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
-                ).add_done_callback(self.handle_task_result)
+            self.loop.create_task(
+                self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
+            ).add_done_callback(self.handle_task_result)
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
             self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
