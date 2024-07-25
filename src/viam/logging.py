@@ -86,6 +86,7 @@ class _ColorFormatter(logging.Formatter):
 
 
 def getLogger(name: str) -> logging.Logger:
+    # If creating a thread with a logger, this function should be called outside of or in the `__init__()` of the thread.
     logger = LOGGERS.get(name)
     if logger:
         return logger
