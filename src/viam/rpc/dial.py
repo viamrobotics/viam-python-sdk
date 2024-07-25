@@ -279,14 +279,12 @@ class _Runtime:
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     with open("../__init__.py", "r") as file:
-        api_version_match = re.search(r'api_version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
-        if api_version_match:
-            api_version = api_version_match.group(1)
+        match = re.search(r'api_version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
+        api_version = match.group(1) if match else None
 
     with open("../../../pyproject.toml", "r") as file:
-        sdk_version_match = re.search(r'version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
-        if sdk_version_match:
-            sdk_version = sdk_version_match.group(1)
+        match = re.search(r'version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
+        sdk_version = match.group(1) if match else None
 
     async def send_request(event: SendRequest):
         event.metadata["viam-client"] = f'python;{sdk_version};{api_version}'
