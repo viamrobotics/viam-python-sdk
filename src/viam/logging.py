@@ -4,7 +4,7 @@ import sys
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from threading import Thread, Lock
+from threading import Lock, Thread
 from typing import TYPE_CHECKING, Dict, Iterable, List, Optional, Union
 
 from grpclib.exceptions import StreamTerminatedError
