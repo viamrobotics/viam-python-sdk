@@ -2,15 +2,12 @@ import re
 import sys
 
 
-file_path = "src/viam/__init__.py"
-
-
-def update_version(new_version: str):
+def update_version(file_path: str, new_version: str):
     with open(file_path, "r") as file:
         data = file.read()
 
     data = re.sub(
-        r'(api_version\s*=\s*)"[0-9]+\.[0-9]+\.[0-9]+"',
+        r'(API_VERSION\s*=\s*)"[0-9]+\.[0-9]+\.[0-9]+"',
         f'\\1"{new_version}"',
         data
     )
@@ -20,8 +17,8 @@ def update_version(new_version: str):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python etc/update_version.py <new_version>")
+    if len(sys.argv) != 3:
+        print("Usage: python etc/update_version.py <file_path> <new_version>")
         sys.exit(1)
 
-    update_version(sys.argv[1])
+    update_version(sys.argv[1], sys.argv[2])
