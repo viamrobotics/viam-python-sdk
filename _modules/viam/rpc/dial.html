@@ -101,6 +101,7 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">grpclib.const</span> <span class="kn">import</span> <span class="n">Cardinality</span>
+<span class="kn">from</span> <span class="nn">grpclib.events</span> <span class="kn">import</span> <span class="n">SendRequest</span><span class="p">,</span> <span class="n">listen</span>
 <span class="kn">from</span> <span class="nn">grpclib.metadata</span> <span class="kn">import</span> <span class="n">Deadline</span><span class="p">,</span> <span class="n">_MetadataLike</span>
 <span class="kn">from</span> <span class="nn">grpclib.protocol</span> <span class="kn">import</span> <span class="n">H2Protocol</span>
 <span class="kn">from</span> <span class="nn">grpclib.stream</span> <span class="kn">import</span> <span class="n">_RecvType</span><span class="p">,</span> <span class="n">_SendType</span>
@@ -111,6 +112,7 @@
 <span class="kn">from</span> <span class="nn">viam.proto.rpc.auth</span> <span class="kn">import</span> <span class="n">AuthenticateRequest</span><span class="p">,</span> <span class="n">AuthServiceStub</span>
 <span class="kn">from</span> <span class="nn">viam.proto.rpc.auth</span> <span class="kn">import</span> <span class="n">Credentials</span> <span class="k">as</span> <span class="n">PBCredentials</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">to_thread</span>
+<span class="kn">from</span> <span class="nn">viam.version_metadata</span> <span class="kn">import</span> <span class="n">API_VERSION</span><span class="p">,</span> <span class="n">SDK_VERSION</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -367,15 +369,20 @@
 
 
 <div class="viewcode-block" id="dial"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.dial">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">dial</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ViamChannel</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">SendRequest</span><span class="p">):</span>
+        <span class="n">event</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;viam-client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;python;</span><span class="si">{</span><span class="n">SDK_VERSION</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">API_VERSION</span><span class="si">}</span><span class="s2">&quot;</span>
+
     <span class="n">opts</span> <span class="o">=</span> <span class="n">options</span> <span class="k">if</span> <span class="n">options</span> <span class="k">else</span> <span class="n">DialOptions</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">disable_webrtc</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+        <span class="n">listen</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">SendRequest</span><span class="p">,</span> <span class="n">send_request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ViamChannel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
     <span class="n">runtime</span> <span class="o">=</span> <span class="n">_Runtime</span><span class="p">()</span>
     <span class="n">path</span><span class="p">,</span> <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">runtime</span><span class="o">.</span><span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connecting to socket: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">chan</span> <span class="o">=</span> <span class="n">Channel</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">listen</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">SendRequest</span><span class="p">,</span> <span class="n">send_request</span><span class="p">)</span>
 
         <span class="k">def</span> <span class="nf">release</span><span class="p">():</span>
             <span class="n">runtime</span><span class="o">.</span><span class="n">free_str</span><span class="p">(</span><span class="n">path_ptr</span><span class="p">)</span>
