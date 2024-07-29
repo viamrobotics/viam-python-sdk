@@ -280,7 +280,7 @@ class _Runtime:
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
-        event.metadata["viam-client"] = f"python;{SDK_VERSION};{API_VERSION}"
+        event.metadata["viam-client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
 
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
