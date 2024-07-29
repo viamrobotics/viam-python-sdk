@@ -8,7 +8,7 @@ on:
 
 jobs:
   update-protos:
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,8 +27,8 @@ jobs:
 
       - name: Store API version
         run: |
-          python3 etc/_update_version_metadata.py src/viam/versions.py ${{ github.event.client_payload.tag }}
-          echo "Updated API version to ${{ github.event.client_payload.tag }} in versions.py"
+          python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
+          echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: make buf
