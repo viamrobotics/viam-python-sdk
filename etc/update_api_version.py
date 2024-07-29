@@ -18,7 +18,7 @@ def update_version(file_path: str, new_version: str):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python etc/update_version.py <file_path> <new_version>")
+        print("Usage: python3 etc/update_version.py <file_path> <new_version>")
         sys.exit(1)
 
     update_version(sys.argv[1], sys.argv[2])

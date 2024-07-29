@@ -27,8 +27,8 @@ jobs:
 
       - name: Store API version
         run: |
-          python3 etc/update_api_version.py ${{ github.event.client_payload.tag }}
-          echo "Updated API version to ${{ github.event.client_payload.tag }} in pyproject.toml"
+          python3 etc/update_api_version.py src/viam/versions.py ${{ github.event.client_payload.tag }}
+          echo "Updated API version to ${{ github.event.client_payload.tag }} in versions.py"
 
       - name: Generate buf
         run: make buf
