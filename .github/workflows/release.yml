@@ -68,7 +68,7 @@ jobs:
 
       - name: Store SDK version
         run: |
-          python3 etc/update_api_version.py src/viam/versions.py sdk ${{ env.SDK_VERSION }}
+          python3 etc/_update_version_metadata.py src/viam/versions.py sdk ${{ env.SDK_VERSION }}
           echo "Updated SDK version to ${{ env.SDK_VERSION }} in versions.py"
 
       - name: Add + Commit

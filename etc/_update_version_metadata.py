@@ -1,8 +1,10 @@
 import re
 import sys
 
+from typing import Literal, Union
 
-def update_version(file_path: str, version_type: str, new_version: str):
+
+def update_version(file_path: str, version_type: Union[Literal["api"], Literal["sdk"]], new_version: str):
     with open(file_path, "r") as file:
         data = file.read()
 
