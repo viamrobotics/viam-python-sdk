@@ -1,10 +1,10 @@
 import re
 import sys
 
-from typing import Literal, Union
+from typing import Literal
 
 
-def update_version(file_path: str, version_type: Union[Literal["api"], Literal["sdk"]], new_version: str):
+def update_version(file_path: str, version_type: Literal["api", "sdk"], new_version: str):
     with open(file_path, "r") as file:
         data = file.read()
 
@@ -27,4 +27,4 @@ if __name__ == "__main__":
         print("Usage: python3 etc/update_version.py <file_path> sdk|api <new_version>")
         sys.exit(1)
 
-    update_version(sys.argv[1], sys.argv[2], sys.argv[3])
+    update_version(sys.argv[1], sys.argv[2], sys.argv[3])  # type: ignore - can't make runtime values Literal
