@@ -11,6 +11,7 @@ from typing import Callable, Literal, Optional, Tuple, Type, Union
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
+from grpclib.events import SendRequest, listen
 from grpclib.metadata import Deadline, _MetadataLike
 from grpclib.protocol import H2Protocol
 from grpclib.stream import _RecvType, _SendType
@@ -21,6 +22,7 @@ from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
 from viam.utils import to_thread
+from viam.version_metadata import API_VERSION, SDK_VERSION
 
 LOGGER = logging.getLogger(__name__)
 
@@ -277,15 +279,20 @@ class _Runtime:
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
+    async def send_request(event: SendRequest):
+        event.metadata["viam-client"] = f"python;{SDK_VERSION};{API_VERSION}"
+
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
         channel = await _dial_direct(address, options)
+        listen(channel, SendRequest, send_request)
         return ViamChannel(channel, lambda: None)
     runtime = _Runtime()
     path, path_ptr = await runtime.dial(address, opts)
     if path:
         LOGGER.info(f"Connecting to socket: {path}")
         chan = Channel(path=path, ssl=None)
+        listen(chan, SendRequest, send_request)
 
         def release():
             runtime.free_str(path_ptr)
