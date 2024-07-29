@@ -1,5 +1,4 @@
 import ctypes
-import os
 import pathlib
 import re
 import socket
@@ -23,6 +22,7 @@ from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
 from viam.utils import to_thread
+from viam.versions import API_VERSION, SDK_VERSION
 
 LOGGER = logging.getLogger(__name__)
 
@@ -279,16 +279,8 @@ class _Runtime:
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
-    directory = os.path.dirname(__file__)
-    with open(os.path.join(directory, "../__init__.py"), "r") as file:
-        match = re.search(r'api_version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
-        api_version = match.group(1) if match else None
-    with open(os.path.join(directory, "../../../pyproject.toml"), "r") as file:
-        match = re.search(r'version\s*=\s*"([0-9]+\.[0-9]+\.[0-9]+)"', file.read())
-        sdk_version = match.group(1) if match else None
-
     async def send_request(event: SendRequest):
-        event.metadata["viam-client"] = f'python;{sdk_version};{api_version}'
+        event.metadata["viam-client"] = f'python;{SDK_VERSION};{API_VERSION}'
 
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
