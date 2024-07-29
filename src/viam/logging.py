@@ -20,7 +20,7 @@ LOGGERS: Dict[str, logging.Logger] = {}
 _MODULE_PARENT: Optional["RobotClient"] = None
 
 
-class SingletonEventLoopThread:
+class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
     _ready_event = asyncio.Event()
@@ -31,7 +31,7 @@ class SingletonEventLoopThread:
         if cls._instance is None:
             with cls._lock:
                 if cls._instance is None:
-                    cls._instance = super(SingletonEventLoopThread, cls).__new__(cls)
+                    cls._instance = super(_SingletonEventLoopThread, cls).__new__(cls)
                     cls._instance._loop = None
                     cls._instance._thread = Thread(target=cls._instance._run)
                     cls._instance._thread.start()
@@ -50,7 +50,7 @@ class SingletonEventLoopThread:
 
     def get_loop(self):
         if self._loop is None:
-            raise RuntimeError("Event loop is None. Did you call .start() and .wait_until_ready?")
+            raise RuntimeError("Event loop is None. Did you call .start() and .wait_until_ready()?")
         return self._loop
 
     async def wait_until_ready(self):
@@ -60,6 +60,7 @@ class SingletonEventLoopThread:
 class _ModuleHandler(logging.Handler):
     _parent: "RobotClient"
     _logger: logging.Logger
+    _worker: _SingletonEventLoopThread
 
     def __init__(self, parent: "RobotClient"):
         super().__init__()
@@ -67,14 +68,7 @@ class _ModuleHandler(logging.Handler):
         self._logger = logging.getLogger("ModuleLogger")
         addHandlers(self._logger, True)
         self._logger.setLevel(self.level)
-        self._worker = SingletonEventLoopThread()
-        try:
-            self.loop = asyncio.get_event_loop()
-        except RuntimeError:
-            self._logger.warn("Creating an event loop from a new thread. We recommend initializing loggers in the main module thread.")
-            # If the log is coming from a thread that doesn't have an event loop, create and set a new one.
-            self.loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(self.loop)
+        self._worker = _SingletonEventLoopThread()
 
     def setLevel(self, level: Union[int, str]) -> None:
         self._logger.setLevel(level)
