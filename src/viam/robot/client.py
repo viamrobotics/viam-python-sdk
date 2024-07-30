@@ -602,7 +602,7 @@ class RobotClient:
     async def get_status(self, components: Optional[List[ResourceName]] = None):
         """
         Get the status of the machine's components. You can optionally
-        provide a list of ``ResourceName`` for which you want statuses.
+        provide a list of ``ResourceName``s for which you want statuses.
 
         ::
 
