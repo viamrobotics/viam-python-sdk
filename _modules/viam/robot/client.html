@@ -691,8 +691,8 @@
     <span class="c1">##########</span>
 <div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
-<span class="sd">        provide a list of ``ResourceName`` for which you want statuses.</span>
+<span class="sd">        Get the status of the machine&#39;s components. You can optionally</span>
+<span class="sd">        provide a list of ``ResourceName``s for which you want statuses.</span>
 
 <span class="sd">        ::</span>
 
@@ -702,6 +702,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of</span>
 <span class="sd">                ``ResourceName`` for components you want statuses.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.robot.Status]: A list of statuses for each requested resource.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
