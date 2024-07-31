@@ -35,6 +35,7 @@ from viam.proto.robot import (
     ResourceNamesResponse,
     RobotServiceStub,
     ShutdownRequest,
+    Status,
     StopAllRequest,
     StopExtraParameters,
     TransformPoseRequest,
