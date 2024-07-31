@@ -599,7 +599,7 @@ class RobotClient:
     ##########
     # STATUS #
     ##########
-    async def get_status(self, components: Optional[List[ResourceName]] = None) -> List[Status]:
+    async def get_status(self, components: Optional[List[ResourceName]] = None) -> List[viam.proto.robot.Status]:
         """
         Get the status of the machine's components. You can optionally
         provide a list of ``ResourceName``s for which you want statuses.
