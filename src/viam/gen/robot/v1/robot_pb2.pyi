@@ -911,3 +911,30 @@ class ConfigStatus(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'revision', b'revision']) -> None:
         ...
 global___ConfigStatus = ConfigStatus
+
+@typing.final
+class GetVersionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetVersionRequest = GetVersionRequest
+
+@typing.final
+class GetVersionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PLATFORM_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
+    API_VERSION_FIELD_NUMBER: builtins.int
+    platform: builtins.str
+    'platform type of viam-server (ie. `rdk` or `micro-rdk`).'
+    version: builtins.str
+    'version of viam-server. If built without a version, it will be dev-<git hash>.'
+    api_version: builtins.str
+
+    def __init__(self, *, platform: builtins.str=..., version: builtins.str=..., api_version: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['api_version', b'api_version', 'platform', b'platform', 'version', b'version']) -> None:
+        ...
+global___GetVersionResponse = GetVersionResponse
