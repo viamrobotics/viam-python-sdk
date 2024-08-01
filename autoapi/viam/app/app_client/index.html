@@ -1785,8 +1785,8 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list fragments for.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
-<li><p><strong>show_public</strong> (<em>bool</em>) – <p><strong>Deprecated</strong>: Use <code class="docutils literal notranslate"><span class="pre">visibilities</span></code> instead. Optional boolean specifying whether or not to only show public
-fragments. If True, only public fragments will return. If False, only private fragments will return. Defaults to True.</p>
+<li><p><strong>show_public</strong> (<em>bool</em>) – <p>Optional boolean specifying whether or not to only show public fragments. If True, only public fragments
+will return. If False, only private fragments will return. Defaults to True.</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.25.0: </span>Use <code class="docutils literal notranslate"><span class="pre">visibilities</span></code> instead.</p>
 </div>
@@ -1878,8 +1878,8 @@ assigned by updating the fragment.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – New name to associate with the fragment.</p></li>
 <li><p><strong>config</strong> (<em>Optional</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Optional Dictionary representation of new config to assign to specified fragment. Not
 passing this parameter will leave the fragment’s config unchanged.</p></li>
-<li><p><strong>public</strong> (<em>bool</em>) – <p><strong>Deprecated</strong>: Use <code class="docutils literal notranslate"><span class="pre">visibility</span></code> instead. Boolean specifying whether the fragment is public. Not passing this
-parameter will leave the fragment’s visibility unchanged. A fragment is private by default when created.</p>
+<li><p><strong>public</strong> (<em>bool</em>) – <p>Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment’s
+visibility unchanged. A fragment is private by default when created.</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.25.0: </span>Use <code class="docutils literal notranslate"><span class="pre">visibility</span></code> instead.</p>
 </div>
