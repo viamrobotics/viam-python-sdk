@@ -94,6 +94,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.RestartModule"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.RestartModule()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.Shutdown"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.Shutdown()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetMachineStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetMachineStatus()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetVersion"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetVersion()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -119,6 +120,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.RestartModule"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.RestartModule()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.Shutdown"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.Shutdown()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.GetMachineStatus"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.GetMachineStatus()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.GetVersion"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.GetVersion()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.BlockForOperationRequest"><code class="docutils literal notranslate"><span class="pre">BlockForOperationRequest</span></code></a><ul>
@@ -202,6 +204,13 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.GetStatusResponse"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.GetVersionRequest"><code class="docutils literal notranslate"><span class="pre">GetVersionRequest</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.GetVersionResponse"><code class="docutils literal notranslate"><span class="pre">GetVersionResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetVersionResponse.platform"><code class="docutils literal notranslate"><span class="pre">GetVersionResponse.platform</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetVersionResponse.version"><code class="docutils literal notranslate"><span class="pre">GetVersionResponse.version</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetVersionResponse.api_version"><code class="docutils literal notranslate"><span class="pre">GetVersionResponse.api_version</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.LogRequest"><code class="docutils literal notranslate"><span class="pre">LogRequest</span></code></a><ul>
@@ -460,6 +469,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.GetStatusResponse" title="viam.proto.robot.GetStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.GetVersionRequest" title="viam.proto.robot.GetVersionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetVersionRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.GetVersionResponse" title="viam.proto.robot.GetVersionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetVersionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.LogRequest" title="viam.proto.robot.LogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogRequest</span></code></a></p></td>
@@ -744,6 +759,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.GetVersion">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetVersionRequest" title="viam.gen.robot.v1.robot_pb2.GetVersionRequest"><span class="pre">robot.v1.robot_pb2.GetVersionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetVersionResponse" title="viam.gen.robot.v1.robot_pb2.GetVersionResponse"><span class="pre">robot.v1.robot_pb2.GetVersionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.GetVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.GetVersion" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -859,6 +883,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.UnimplementedRobotServiceBase.GetMachineStatus">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetMachineStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetMachineStatusRequest" title="viam.gen.robot.v1.robot_pb2.GetMachineStatusRequest"><span class="pre">robot.v1.robot_pb2.GetMachineStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetMachineStatusResponse" title="viam.gen.robot.v1.robot_pb2.GetMachineStatusResponse"><span class="pre">robot.v1.robot_pb2.GetMachineStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#UnimplementedRobotServiceBase.GetMachineStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.UnimplementedRobotServiceBase.GetMachineStatus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.UnimplementedRobotServiceBase.GetVersion">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetVersionRequest" title="viam.gen.robot.v1.robot_pb2.GetVersionRequest"><span class="pre">robot.v1.robot_pb2.GetVersionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetVersionResponse" title="viam.gen.robot.v1.robot_pb2.GetVersionResponse"><span class="pre">robot.v1.robot_pb2.GetVersionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#UnimplementedRobotServiceBase.GetVersion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.UnimplementedRobotServiceBase.GetVersion" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1300,6 +1329,43 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.robot.GetStatusResponse.status">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.GetStatusResponse.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetVersionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetVersionRequest</span></span><a class="headerlink" href="#viam.proto.robot.GetVersionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetVersionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetVersionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetVersionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetVersionResponse.platform">
+<span class="sig-name descname"><span class="pre">platform</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetVersionResponse.platform" title="Permalink to this definition"></a></dt>
+<dd><p>platform type of viam-server (ie. <cite>rdk</cite> or <cite>micro-rdk</cite>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetVersionResponse.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetVersionResponse.version" title="Permalink to this definition"></a></dt>
+<dd><p>version of viam-server. If built without a version, it will be dev-&lt;git hash&gt;.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetVersionResponse.api_version">
+<span class="sig-name descname"><span class="pre">api_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetVersionResponse.api_version" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
