@@ -23,7 +23,8 @@ typecheck:
 _buf: clean
 	rm -rf src/viam/gen
 	chmod +x plugin/main.py
-	buf generate buf.build/viamrobotics/api
+	$(eval API_VERSION := $(shell grep 'API_VERSION' src/viam/version_metadata.py | awk -F '"' '{print $$2}'))
+	buf generate buf.build/viamrobotics/api:v${API_VERSION}
 	buf generate buf.build/viamrobotics/goutils
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
