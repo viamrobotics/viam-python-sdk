@@ -1,4 +1,4 @@
 import viam
 
-API_VERSION = "0.1.327"
+API_VERSION = "v0.1.330"
 SDK_VERSION = viam.__version__
