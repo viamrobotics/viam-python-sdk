@@ -36,6 +36,8 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    GetVersionRequest,
+    GetVersionResponse,
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
@@ -153,6 +155,12 @@ GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
     machine_part_id="the-machine-part-id",
 )
 
+GET_VERVSION_RESPONSE = GetVersionResponse(
+    platform="rdk",
+    version="0.2.0",
+    api_version="0.3.0",
+)
+
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -212,6 +220,11 @@ def service() -> RobotService:
         assert request is not None
         await stream.send_message(GET_CLOUD_METADATA_RESPONSE)
 
+    async def GetVersion(stream: Stream[GetVersionRequest, GetVersionResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GET_VERVSION_RESPONSE)
+
     async def Shutdown(stream: Stream[ShutdownRequest, ShutdownResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -226,6 +239,7 @@ def service() -> RobotService:
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
     service.Shutdown = Shutdown
+    service.GetVersion = GetVersion
 
     return service
 
@@ -438,6 +452,14 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             md = await client.get_cloud_metadata()
             assert md == GET_CLOUD_METADATA_RESPONSE
+            await client.close()
+
+    @pytest.mark.asyncio
+    async def test_get_version(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            md = await client.get_version()
+            assert md == GET_VERVSION_RESPONSE
             await client.close()
 
     @pytest.mark.asyncio

@@ -29,6 +29,8 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    GetVersionRequest,
+    GetVersionResponse,
     LogRequest,
     Operation,
     ResourceNamesRequest,
@@ -868,3 +870,27 @@ class RobotClient:
                 raise e
             else:
                 raise e
+
+    ######################
+    # Get Version #
+    ######################
+
+    async def get_version(self) -> GetVersionResponse:
+        """
+        Get version information about the robot.
+
+        ::
+
+            result = machine.get_version()
+            print(result.platform)
+            print(result.version)
+            print(result.api_version)
+
+        Returns:
+            viam.proto.robot.GetVersionResponse: Robot version related information.
+
+        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        """
+
+        request = GetVersionRequest()
+        return await self._client.GetVersion(request)
