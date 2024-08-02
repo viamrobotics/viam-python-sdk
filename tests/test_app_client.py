@@ -7,6 +7,8 @@ from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, Fragme
 from viam.proto.app import APIKey, APIKeyWithAuthorizations, Authorization, AuthorizationDetails, AuthorizedPermissions
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import (
+    AuthenticatorInfo,
+    FragmentHistoryEntry,
     Location,
     LocationAuth,
     Model,
@@ -36,6 +38,8 @@ ID = "id"
 IDS = [ID]
 NAME = "name"
 CID = "cid"
+PAGE_TOKEN=""
+PAGE_LIMIT=10
 TIME = datetime_to_timestamp(datetime.now())
 PUBLIC_NAMESPACE = "public_namespace"
 DEFAULT_REGION = "default_region"
@@ -122,6 +126,9 @@ LOCATION_AUTH = LocationAuth(secret=SECRET, location_id=ID, secrets=None)
 PART = "part"
 ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(part=PART, robot=ID, when=TIME, old=None)
 ROBOT_PART_HISTORY = [ROBOT_PART_HISTORY_ENTRY]
+AUTHENTICATOR_INFO = AuthenticatorInfo(value="value", is_deactivated=True, type=1)
+FRAGMENT_HISTORY_ENTRY = FragmentHistoryEntry(fragment=ID, edited_by=AUTHENTICATOR_INFO, old=FRAGMENT, edited_on=TIME)
+FRAGMENT_HISTORY = [FRAGMENT_HISTORY_ENTRY]
 TYPE = "robot"
 ROLE = "operator"
 API_KEY = "key"
@@ -210,6 +217,7 @@ def service() -> MockApp:
         available=AVAILABLE,
         location_auth=LOCATION_AUTH,
         robot_part_history=ROBOT_PART_HISTORY,
+        fragment_history=FRAGMENT_HISTORY,
         authorizations=AUTHORIZATIONS,
         url=URL,
         module=MODULE,
@@ -629,6 +637,16 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             await client.delete_fragment(fragment_id=ID)
             assert service.id == ID
+
+    @pytest.mark.asyncio
+    async def test_get_fragment_history(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            fragment_history = await client.get_fragment_history(id=ID, page_token="", page_limit=20)
+            assert service.fragment.id == ID
+            assert len(fragment_history) == len(FRAGMENT_HISTORY)
+            for i in range(len(FRAGMENT_HISTORY)):
+                assert fragment_history[i].proto == FRAGMENT_HISTORY[i]
 
     @pytest.mark.asyncio
     async def test_add_role(self, service: MockApp):
