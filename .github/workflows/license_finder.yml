@@ -8,21 +8,27 @@ on:
 
 jobs:
   license_finder:
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     name: Audit 3rd-Party Licenses
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64-cache
     timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Poetry
+        run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - run: gem install license_finder
 
       - name: Install package
         run: poetry install --all-extras
