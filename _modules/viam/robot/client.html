@@ -125,11 +125,9 @@
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
     <span class="n">RobotServiceStub</span><span class="p">,</span>
     <span class="n">ShutdownRequest</span><span class="p">,</span>
-    <span class="n">StopAllRequest</span><span class="p">,</span>
-    <span class="n">StopExtraParameters</span><span class="p">,</span>
-    <span class="n">TransformPoseRequest</span><span class="p">,</span>
-    <span class="n">TransformPoseResponse</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">PBStatus</span>
+<span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">StopAllRequest</span><span class="p">,</span> <span class="n">StopExtraParameters</span><span class="p">,</span> <span class="n">TransformPoseRequest</span><span class="p">,</span> <span class="n">TransformPoseResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
@@ -689,7 +687,7 @@
     <span class="c1">##########</span>
     <span class="c1"># STATUS #</span>
     <span class="c1">##########</span>
-<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PBStatus</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the status of the machine&#39;s components. You can optionally</span>
 <span class="sd">        provide a list of ``ResourceName``s for which you want statuses.</span>
