@@ -35,11 +35,9 @@ from viam.proto.robot import (
     ResourceNamesResponse,
     RobotServiceStub,
     ShutdownRequest,
-    StopAllRequest,
-    StopExtraParameters,
-    TransformPoseRequest,
-    TransformPoseResponse,
 )
+from viam.proto.robot import Status as PBStatus
+from viam.proto.robot import StopAllRequest, StopExtraParameters, TransformPoseRequest, TransformPoseResponse
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
@@ -599,7 +597,7 @@ class RobotClient:
     ##########
     # STATUS #
     ##########
-    async def get_status(self, components: Optional[List[ResourceName]] = None):
+    async def get_status(self, components: Optional[List[ResourceName]] = None) -> List[PBStatus]:
         """
         Get the status of the machine's components. You can optionally
         provide a list of ``ResourceName``s for which you want statuses.
