@@ -604,3 +604,23 @@ Module Contents
 
 
 
+   .. py:method:: get_version() -> viam.proto.robot.GetVersionResponse
+      :async:
+
+
+      Get version information about the robot.
+
+      ::
+
+          result = machine.get_version()
+          print(result.platform)
+          print(result.version)
+          print(result.api_version)
+
+      :returns: Robot version related information.
+      :rtype: viam.proto.robot.GetVersionResponse
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
+
+

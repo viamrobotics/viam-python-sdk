@@ -96,6 +96,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_cloud_metadata"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_cloud_metadata()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.shutdown"><code class="docutils literal notranslate"><span class="pre">RobotClient.shutdown()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_version"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_version()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -758,6 +759,27 @@ keyed on the resource’s <code class="docutils literal notranslate"><span class
 robot server shuts down before having a chance to send a response. Raised with
 status Unavailable if server is unavailable, or if robot server is in the process of
 shutting down when response is ready.</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_version">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetVersionResponse" title="viam.proto.robot.GetVersionResponse"><span class="pre">viam.proto.robot.GetVersionResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_version"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_version" title="Permalink to this definition"></a></dt>
+<dd><p>Get version information about the robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">api_version</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Robot version related information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetVersionResponse" title="viam.proto.robot.GetVersionResponse">viam.proto.robot.GetVersionResponse</a></p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
