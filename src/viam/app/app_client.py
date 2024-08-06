@@ -386,6 +386,7 @@ class Fragment:
             visibility=self.visibility.to_proto(),
         )
 
+
 class FragmentHistoryEntry:
     """A class that mirror the `FragmentHistoryEntry` proto message.
 

@@ -1202,7 +1202,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.robot_part_history = robot_part_history
         self.fragment_history = fragment_history
         self.page_token = page_token
-        self.page_limit=page_limit
+        self.page_limit = page_limit
         self.authorizations = authorizations
         self.url = url
         self.module = module
