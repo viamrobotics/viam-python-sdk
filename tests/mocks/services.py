@@ -1175,6 +1175,8 @@ class MockApp(UnimplementedAppServiceBase):
         location_auth: LocationAuth,
         robot_part_history: List[RobotPartHistoryEntry],
         fragment_history: List[FragmentHistoryEntry],
+        page_token: str,
+        page_limit: int,
         authorizations: List[Authorization],
         url: str,
         module: Module,
@@ -1186,6 +1188,7 @@ class MockApp(UnimplementedAppServiceBase):
         items: List[RegistryItem],
         package_type: PackageType.ValueType,
     ):
+        self.page_token = None
         self.organizations = organizations
         self.location = location
         self.robot = robot
@@ -1198,6 +1201,8 @@ class MockApp(UnimplementedAppServiceBase):
         self.location_auth = location_auth
         self.robot_part_history = robot_part_history
         self.fragment_history = fragment_history
+        self.page_token = page_token
+        self.page_limit=page_limit
         self.authorizations = authorizations
         self.url = url
         self.module = module
@@ -1497,6 +1502,8 @@ class MockApp(UnimplementedAppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.id = request.id
+        self.page_token = request.page_token
+        self.page_limit = request.page_limit
         await stream.send_message(GetFragmentHistoryResponse(history=self.fragment_history))
 
     async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:

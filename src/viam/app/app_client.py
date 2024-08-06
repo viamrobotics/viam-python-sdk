@@ -8,8 +8,10 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
-from viam.proto.app import AddRoleRequest, APIKeyWithAuthorizations, AppServiceStub
 from viam.proto.app import (
+    AddRoleRequest,
+    APIKeyWithAuthorizations,
+    AppServiceStub,
     AuthenticatorInfo,
     Authorization,
     AuthorizedPermissions,
@@ -383,83 +385,6 @@ class Fragment:
             only_used_by_owner=self.only_used_by_owner,
             visibility=self.visibility.to_proto(),
         )
-
-
-# class AuthenticatorInfo:
-#     class AuthenticationType(str, Enum):
-#         """
-#         AuthenticationType specifies the authentication method used by the caller in editing the fragment.
-#         """
-#
-#         WEB_OAUTH = "web_oauth"
-#         """
-#         Caller authenticated via oauth, presumably via Viam app frontend.
-#         """
-#
-#         API_KEY = "api_key"
-#         """
-#         Caller authenticated via api key.
-#         """
-#
-#         ROBOT_PART_SECRET = "robot_part_secret"
-#         """
-#         Caller authenticated via robot part secret.
-#         """
-#
-#         LOCATION_SECRET = "location_secret"
-#         """
-#         Caller authenticated via location secret.
-#         """
-#
-#         UNSPECIFIED = "unspecified"
-#
-#         """
-#         Unspecified authentication type.
-#         """
-#
-#         @classmethod
-#         def from_proto(cls, authentication_type: AuthenticationTypePB.ValueType):
-#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_WEB_OAUTH:
-#                 return AuthenticatorInfo.AuthenticationType.WEB_OAUTH
-#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_API_KEY:
-#                 return AuthenticatorInfo.AuthenticationType.API_KEY
-#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_LOCATION_SECRET:
-#                 return AuthenticatorInfo.AuthenticationType.LOCATION_SECRET
-#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_ROBOT_PART_SECRET:
-#                 return AuthenticatorInfo.AuthenticationType.ROBOT_PART_SECRET
-#             return AuthenticatorInfo.AuthenticationType.UNSPECIFIED
-#
-#         def to_proto(self) -> AuthenticationTypePB.ValueType:
-#             if self == self.WEB_OAUTH:
-#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_WEB_OAUTH
-#             if self == self.API_KEY:
-#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_API_KEY
-#             if self == self.LOCATION_SECRET:
-#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_LOCATION_SECRET
-#             if self == self.ROBOT_PART_SECRET:
-#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_ROBOT_PART_SECRET
-#             return AuthenticationTypePB.AUTHENTICATION_TYPE_UNSPECIFIED
-#
-#     @classmethod
-#     def from_proto(cls, auth_info: AuthenticatorInfoPB) -> Self:
-#         self = cls()
-#         self.type = AuthenticatorInfo.AuthenticationType.from_proto(auth_info.type)
-#         self.value = auth_info.value
-#         self.is_deactivated = auth_info.is_deactivated
-#         return self
-#
-#     @classmethod
-#     def to_proto(self) -> AuthenticatorInfoPB:
-#         return AuthenticatorInfoPB(
-#             is_deactivated=self.is_deactivated,
-#             value=self.value,
-#             type=AuthenticatorInfo.AuthenticationType.to_proto(self.type)
-#         )
-#
-#     type: AuthenticationType
-#     value: str
-#     is_deactivated: bool
-
 
 class FragmentHistoryEntry:
     """A class that mirror the `FragmentHistoryEntry` proto message.
@@ -1925,7 +1850,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
 
-        request: GetFragmentHistoryRequest = GetFragmentHistoryRequest(id=id, page_token=page_token, page_limit=page_limit)
+        request = GetFragmentHistoryRequest(id=id, page_token=page_token, page_limit=page_limit)
         response: GetFragmentHistoryResponse = await self._app_client.GetFragmentHistory(request, metadata=self._metadata)
         return [FragmentHistoryEntry.from_proto(fragment_history) for fragment_history in response.history]
 

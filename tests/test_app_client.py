@@ -37,8 +37,8 @@ ID = "id"
 IDS = [ID]
 NAME = "name"
 CID = "cid"
-PAGE_TOKEN = ""
-PAGE_LIMIT = 10
+PAGE_TOKEN = "123"
+PAGE_LIMIT = 20
 TIME = datetime_to_timestamp(datetime.now())
 PUBLIC_NAMESPACE = "public_namespace"
 DEFAULT_REGION = "default_region"
@@ -217,6 +217,8 @@ def service() -> MockApp:
         location_auth=LOCATION_AUTH,
         robot_part_history=ROBOT_PART_HISTORY,
         fragment_history=FRAGMENT_HISTORY,
+        page_limit=PAGE_LIMIT,
+        page_token=PAGE_TOKEN,
         authorizations=AUTHORIZATIONS,
         url=URL,
         module=MODULE,
@@ -641,9 +643,12 @@ class TestClient:
     async def test_get_fragment_history(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragment_history = await client.get_fragment_history(id=ID, page_token="", page_limit=20)
+            fragment_history = await client.get_fragment_history(id=ID, page_token=PAGE_TOKEN, page_limit=PAGE_LIMIT)
             assert service.fragment.id == ID
             assert len(fragment_history) == len(FRAGMENT_HISTORY)
+            assert service.id == ID
+            assert service.page_token == PAGE_TOKEN
+            assert service.page_limit == PAGE_LIMIT
             for i in range(len(FRAGMENT_HISTORY)):
                 assert fragment_history[i].proto == FRAGMENT_HISTORY[i]
 
