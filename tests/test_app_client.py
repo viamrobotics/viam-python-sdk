@@ -4,10 +4,9 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
-from viam.proto.app import APIKey, APIKeyWithAuthorizations, Authorization, AuthorizationDetails, AuthorizedPermissions
+from viam.proto.app import APIKey, APIKeyWithAuthorizations, AuthenticatorInfo, Authorization, AuthorizationDetails, AuthorizedPermissions
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import (
-    AuthenticatorInfo,
     FragmentHistoryEntry,
     Location,
     LocationAuth,
@@ -38,8 +37,8 @@ ID = "id"
 IDS = [ID]
 NAME = "name"
 CID = "cid"
-PAGE_TOKEN=""
-PAGE_LIMIT=10
+PAGE_TOKEN = ""
+PAGE_LIMIT = 10
 TIME = datetime_to_timestamp(datetime.now())
 PUBLIC_NAMESPACE = "public_namespace"
 DEFAULT_REGION = "default_region"

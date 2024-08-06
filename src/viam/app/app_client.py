@@ -8,11 +8,9 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
-from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry
+from viam.proto.app import AddRoleRequest, APIKeyWithAuthorizations, AppServiceStub
 from viam.proto.app import (
-    AddRoleRequest,
-    APIKeyWithAuthorizations,
-    AppServiceStub,
+    AuthenticatorInfo,
     Authorization,
     AuthorizedPermissions,
     ChangeRoleRequest,
@@ -50,12 +48,13 @@ from viam.proto.app import (
     DeleteRobotRequest,
 )
 from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
 from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import (
-    GetFragmentRequest,
-    GetFragmentResponse,
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
+    GetFragmentRequest,
+    GetFragmentResponse,
     GetLocationRequest,
     GetLocationResponse,
     GetModuleRequest,
@@ -131,7 +130,6 @@ from viam.proto.app import (
 )
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
-from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
 from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
@@ -191,8 +189,7 @@ class RobotPart:
         self.location_id = robot_part.location_id
         self.robot_config = struct_to_dict(robot_part.robot_config) if robot_part.HasField("robot_config") else None
         self.last_access = robot_part.last_access.ToDatetime() if robot_part.HasField("last_access") else None
-        self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField(
-            "user_supplied_info") else None
+        self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None
         self.main_part = robot_part.main_part
         self.fqdn = robot_part.fqdn
         self.local_fqdn = robot_part.local_fqdn
@@ -388,6 +385,82 @@ class Fragment:
         )
 
 
+# class AuthenticatorInfo:
+#     class AuthenticationType(str, Enum):
+#         """
+#         AuthenticationType specifies the authentication method used by the caller in editing the fragment.
+#         """
+#
+#         WEB_OAUTH = "web_oauth"
+#         """
+#         Caller authenticated via oauth, presumably via Viam app frontend.
+#         """
+#
+#         API_KEY = "api_key"
+#         """
+#         Caller authenticated via api key.
+#         """
+#
+#         ROBOT_PART_SECRET = "robot_part_secret"
+#         """
+#         Caller authenticated via robot part secret.
+#         """
+#
+#         LOCATION_SECRET = "location_secret"
+#         """
+#         Caller authenticated via location secret.
+#         """
+#
+#         UNSPECIFIED = "unspecified"
+#
+#         """
+#         Unspecified authentication type.
+#         """
+#
+#         @classmethod
+#         def from_proto(cls, authentication_type: AuthenticationTypePB.ValueType):
+#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_WEB_OAUTH:
+#                 return AuthenticatorInfo.AuthenticationType.WEB_OAUTH
+#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_API_KEY:
+#                 return AuthenticatorInfo.AuthenticationType.API_KEY
+#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_LOCATION_SECRET:
+#                 return AuthenticatorInfo.AuthenticationType.LOCATION_SECRET
+#             if authentication_type == AuthenticationTypePB.AUTHENTICATION_TYPE_ROBOT_PART_SECRET:
+#                 return AuthenticatorInfo.AuthenticationType.ROBOT_PART_SECRET
+#             return AuthenticatorInfo.AuthenticationType.UNSPECIFIED
+#
+#         def to_proto(self) -> AuthenticationTypePB.ValueType:
+#             if self == self.WEB_OAUTH:
+#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_WEB_OAUTH
+#             if self == self.API_KEY:
+#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_API_KEY
+#             if self == self.LOCATION_SECRET:
+#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_LOCATION_SECRET
+#             if self == self.ROBOT_PART_SECRET:
+#                 return AuthenticationTypePB.AUTHENTICATION_TYPE_ROBOT_PART_SECRET
+#             return AuthenticationTypePB.AUTHENTICATION_TYPE_UNSPECIFIED
+#
+#     @classmethod
+#     def from_proto(cls, auth_info: AuthenticatorInfoPB) -> Self:
+#         self = cls()
+#         self.type = AuthenticatorInfo.AuthenticationType.from_proto(auth_info.type)
+#         self.value = auth_info.value
+#         self.is_deactivated = auth_info.is_deactivated
+#         return self
+#
+#     @classmethod
+#     def to_proto(self) -> AuthenticatorInfoPB:
+#         return AuthenticatorInfoPB(
+#             is_deactivated=self.is_deactivated,
+#             value=self.value,
+#             type=AuthenticatorInfo.AuthenticationType.to_proto(self.type)
+#         )
+#
+#     type: AuthenticationType
+#     value: str
+#     is_deactivated: bool
+
+
 class FragmentHistoryEntry:
     """A class that mirror the `FragmentHistoryEntry` proto message.
 
@@ -406,16 +479,15 @@ class FragmentHistoryEntry:
         """
         self = cls()
         self.fragment = fragment_history_entry.fragment
-        self.edited_on = fragment_history_entry.edited_on.ToDatetime() if fragment_history_entry.HasField(
-            "edited_on") else None
-        self.old = Fragment.from_proto(fragment_history_entry.old) if fragment_history_entry.HasField("old") else None
-        self.edited_by = fragment_history_entry.edited_by if fragment_history_entry.HasField("edited_by") else None
+        self.edited_on = fragment_history_entry.edited_on.ToDatetime()
+        self.old = Fragment.from_proto(fragment_history_entry.old)
+        self.edited_by = fragment_history_entry.edited_by
         return self
 
     fragment: str
-    edited_on: Optional[datetime]
-    old: Optional[Fragment]
-    edited_by: Optional[str]
+    edited_on: datetime
+    old: Fragment
+    edited_by: AuthenticatorInfo
 
     @property
     def proto(self) -> FragmentHistoryEntryPB:
@@ -423,7 +495,7 @@ class FragmentHistoryEntry:
             fragment=self.fragment,
             edited_on=datetime_to_timestamp(self.edited_on),
             edited_by=self.edited_by,
-            old=self.old.proto if self.old else None
+            old=self.old.proto if self.old else None,
         )
 
 
@@ -447,8 +519,7 @@ class RobotPartHistoryEntry:
         self.part = robot_part_history_entry.part
         self.robot = robot_part_history_entry.robot
         self.when = robot_part_history_entry.when.ToDatetime() if robot_part_history_entry.HasField("when") else None
-        self.old = RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField(
-            "old") else None
+        self.old = RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField("old") else None
         return self
 
     part: str
@@ -473,10 +544,10 @@ class APIKeyAuthorization:
     """
 
     def __init__(
-            self,
-            role: Union[Literal["owner"], Literal["operator"]],
-            resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            resource_id: str,
+        self,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
     ):
         """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
         resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
@@ -547,13 +618,13 @@ class AppClient:
     _organization_id: Optional[str] = None
 
     async def _create_authorization(
-            self,
-            organization_id: str,
-            identity_id: str,
-            identity_type: str,
-            role: Union[Literal["owner"], Literal["operator"]],
-            resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            resource_id: str,
+        self,
+        organization_id: str,
+        identity_id: str,
+        identity_type: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
     ) -> Authorization:
         return Authorization(
             authorization_type="role",
@@ -571,10 +642,8 @@ class AppClient:
             organization_id=org_id,
             identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
-            # type ignoring because it's technically a string
-            role=auth._role,
-            # type ignoring because this is technically a string
-            resource_type=auth._resource_type,
+            role=auth._role,  # type: ignore -- Ignoring because this is technically a `string`
+            resource_type=auth._resource_type,  # type: ignore -- Ignoring because this is technically a `string`
             resource_id=auth._resource_id,
         )
 
@@ -613,8 +682,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateOrganizationRequest(name=name)
-        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request,
-                                                                                         metadata=self._metadata)
+        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
         return response.organization
 
     async def list_organizations(self) -> List[Organization]:
@@ -670,8 +738,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListOrganizationsByUserRequest(user_id=user_id)
-        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request,
-                                                                                                   metadata=self._metadata)
+        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
         return list(response.orgs)
 
     async def get_organization(self, org_id: str) -> Organization:
@@ -719,12 +786,12 @@ class AppClient:
         return response.available
 
     async def update_organization(
-            self,
-            org_id: str,
-            name: Optional[str] = None,
-            public_namespace: Optional[str] = None,
-            region: Optional[str] = None,
-            cid: Optional[str] = None,
+        self,
+        org_id: str,
+        name: Optional[str] = None,
+        public_namespace: Optional[str] = None,
+        region: Optional[str] = None,
+        cid: Optional[str] = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -750,8 +817,7 @@ class AppClient:
             cid=cid,
             name=name,
         )
-        response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request,
-                                                                                         metadata=self._metadata)
+        response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
     async def delete_organization(self, org_id: str) -> None:
@@ -787,16 +853,15 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListOrganizationMembersRequest(organization_id=org_id)
-        response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request,
-                                                                                                   metadata=self._metadata)
+        response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
     async def create_organization_invite(
-            self,
-            org_id: str,
-            email: str,
-            authorizations: Optional[List[Authorization]] = None,
-            send_email_invite: bool = True,
+        self,
+        org_id: str,
+        email: str,
+        authorizations: Optional[List[Authorization]] = None,
+        send_email_invite: bool = True,
     ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
@@ -827,16 +892,15 @@ class AppClient:
         request = CreateOrganizationInviteRequest(
             organization_id=org_id, email=email, authorizations=authorizations, send_email_invite=send_email_invite
         )
-        response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request,
-                                                                                                     metadata=self._metadata)
+        response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
     async def update_organization_invite_authorizations(
-            self,
-            org_id: str,
-            email: str,
-            add_authorizations: Optional[List[Authorization]] = None,
-            remove_authorizations: Optional[List[Authorization]] = None,
+        self,
+        org_id: str,
+        email: str,
+        add_authorizations: Optional[List[Authorization]] = None,
+        remove_authorizations: Optional[List[Authorization]] = None,
     ) -> OrganizationInvite:
         """Update the authorizations attached to an organization invite that has already been created.
 
@@ -879,8 +943,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateOrganizationInviteAuthorizationsRequest(
-            organization_id=org_id, email=email, add_authorizations=add_authorizations,
-            remove_authorizations=remove_authorizations
+            organization_id=org_id, email=email, add_authorizations=add_authorizations, remove_authorizations=remove_authorizations
         )
         response: UpdateOrganizationInviteAuthorizationsResponse = await self._app_client.UpdateOrganizationInviteAuthorizations(
             request, metadata=self._metadata
@@ -948,8 +1011,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ResendOrganizationInviteRequest(organization_id=org_id, email=email)
-        response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request,
-                                                                                                     metadata=self._metadata)
+        response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
     async def create_location(self, org_id: str, name: str, parent_location_id: Optional[str] = None) -> Location:
@@ -997,13 +1059,11 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = GetLocationRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = GetLocationRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
-    async def update_location(self, location_id: str, name: Optional[str] = None,
-                              parent_location_id: Optional[str] = None) -> Location:
+    async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
         """Change the name of a location and/or assign it a new parent location.
 
         ::
@@ -1138,8 +1198,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = LocationAuthRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
         return response.auth
 
@@ -1163,10 +1222,8 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = CreateLocationSecretRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "")
-        response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request,
-                                                                                             metadata=self._metadata)
+        request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
         return response.auth
 
     async def delete_location_secret(self, secret_id: str, location_id: Optional[str] = None) -> None:
@@ -1188,8 +1245,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteLocationSecretRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "",
-            secret_id=secret_id
+            location_id=location_id if location_id else self._location_id if self._location_id else "", secret_id=secret_id
         )
         await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
@@ -1232,8 +1288,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRoverRentalRobotsRequest(org_id=org_id)
-        response: GetRoverRentalRobotsResponse = await self._app_client.GetRoverRentalRobots(request,
-                                                                                             metadata=self._metadata)
+        response: GetRoverRentalRobotsResponse = await self._app_client.GetRoverRentalRobots(request, metadata=self._metadata)
         return list(response.robots)
 
     async def get_robot_parts(self, robot_id: str) -> List[RobotPart]:
@@ -1294,12 +1349,12 @@ class AppClient:
         return RobotPart.from_proto(robot_part=response.part)
 
     async def get_robot_part_logs(
-            self,
-            robot_part_id: str,
-            filter: Optional[str] = None,
-            dest: Optional[str] = None,
-            log_levels: List[str] = [],
-            num_log_entries: int = 100,
+        self,
+        robot_part_id: str,
+        filter: Optional[str] = None,
+        dest: Optional[str] = None,
+        log_levels: List[str] = [],
+        num_log_entries: int = 100,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -1333,8 +1388,7 @@ class AppClient:
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token,
-                log_levels=log_levels
+                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1357,20 +1411,19 @@ class AppClient:
                     file.write(f"{time}\t{level}\t{logger_name}\t{file_name:<64}{message}\n")
                     file.flush()
             except Exception as e:
-                LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}",
-                             exc_info=e)
+                LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}", exc_info=e)
 
         return logs
 
     async def _get_robot_part_logs(
-            self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
     ) -> Tuple[List[LogEntry], str]:
         request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
     async def tail_robot_part_logs(
-            self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
+        self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
     ) -> _LogsStream[List[LogEntry]]:
         """Get an asynchronous iterator that receives live robot part logs.
 
@@ -1424,12 +1477,10 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotPartHistoryRequest(id=robot_part_id)
-        response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request,
-                                                                                           metadata=self._metadata)
+        response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
-    async def update_robot_part(self, robot_part_id: str, name: str,
-                                robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
+    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
         """Change the name and assign an optional new configuration to a robot part.
 
         ::
@@ -1451,8 +1502,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name,
-                                         robot_config=dict_to_struct(robot_config) if robot_config else None)
+        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -1576,8 +1626,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateRobotPartSecretRequest(part_id=robot_part_id)
-        response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request,
-                                                                                               metadata=self._metadata)
+        response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request, metadata=self._metadata)
         return RobotPart.from_proto(response.part)
 
     async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
@@ -1621,8 +1670,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = ListRobotsRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = ListRobotsRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
         return list(response.robots)
 
@@ -1646,8 +1694,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = NewRobotRequest(
-            location=location_id if location_id else self._location_id if self._location_id else "", name=name)
+        request = NewRobotRequest(location=location_id if location_id else self._location_id if self._location_id else "", name=name)
         response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
@@ -1676,8 +1723,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateRobotRequest(
-            id=robot_id, name=name,
-            location=location_id if location_id else self._location_id if self._location_id else ""
+            id=robot_id, name=name, location=location_id if location_id else self._location_id if self._location_id else ""
         )
         response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot
@@ -1701,7 +1747,7 @@ class AppClient:
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
     async def list_fragments(
-            self, org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment.Visibility]] = None
+        self, org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment.Visibility]] = None
     ) -> List[Fragment]:
         """Get a list of fragments under the currently authed-to organization.
 
@@ -1780,18 +1826,17 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None,
-                                        organization_id=org_id)
+        request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None, organization_id=org_id)
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
     async def update_fragment(
-            self,
-            fragment_id: str,
-            name: str,
-            config: Optional[Mapping[str, Any]] = None,
-            public: Optional[bool] = None,
-            visibility: Optional[Fragment.Visibility] = None,
+        self,
+        fragment_id: str,
+        name: str,
+        config: Optional[Mapping[str, Any]] = None,
+        public: Optional[bool] = None,
+        visibility: Optional[Fragment.Visibility] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1852,15 +1897,14 @@ class AppClient:
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    async def get_fragment_history(self,
-                                   id: str,
-                                   page_token: Optional[str] = "",
-                                   page_limit: Optional[int] = 10) -> list[FragmentHistoryEntry]:
+    async def get_fragment_history(
+        self, id: str, page_token: Optional[str] = "", page_limit: Optional[int] = 10
+    ) -> List[FragmentHistoryEntry]:
         """Get fragment history.
 
         ::
 
-            await cloud.get_fragment_history(
+            fragment_history = await cloud.get_fragment_history(
                 id = "12a12ab1-1234-5678-abcd-abcd01234567",
                 page_token = "pg-token",
                 page_limit = 10
@@ -1881,19 +1925,17 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
 
-        request: GetFragmentHistoryRequest = GetFragmentHistoryRequest(id=id, page_token=page_token,
-                                                                       page_limit=page_limit)
-        response: GetFragmentHistoryResponse = await self._app_client.GetFragmentHistory(request,
-                                                                                         metadata=self._metadata)
+        request: GetFragmentHistoryRequest = GetFragmentHistoryRequest(id=id, page_token=page_token, page_limit=page_limit)
+        response: GetFragmentHistoryResponse = await self._app_client.GetFragmentHistory(request, metadata=self._metadata)
         return [FragmentHistoryEntry.from_proto(fragment_history) for fragment_history in response.history]
 
     async def add_role(
-            self,
-            org_id: str,
-            identity_id: str,
-            role: Union[Literal["owner"], Literal["operator"]],
-            resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            resource_id: str,
+        self,
+        org_id: str,
+        identity_id: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
     ) -> None:
         """Add a role under the currently authed-to organization.
 
@@ -1932,12 +1974,12 @@ class AppClient:
         await self._app_client.AddRole(request, metadata=self._metadata)
 
     async def remove_role(
-            self,
-            org_id: str,
-            identity_id: str,
-            role: Union[Literal["owner"], Literal["operator"]],
-            resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            resource_id: str,
+        self,
+        org_id: str,
+        identity_id: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
     ) -> None:
         """Remove a role under the currently authed-to organization.
 
@@ -1976,16 +2018,16 @@ class AppClient:
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
     async def change_role(
-            self,
-            organization_id: str,
-            old_identity_id: str,
-            old_role: Union[Literal["owner"], Literal["operator"]],
-            old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            old_resource_id: str,
-            new_identity_id: str,
-            new_role: Union[Literal["owner"], Literal["operator"]],
-            new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
-            new_resource_id: str,
+        self,
+        organization_id: str,
+        old_identity_id: str,
+        old_role: Union[Literal["owner"], Literal["operator"]],
+        old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        old_resource_id: str,
+        new_identity_id: str,
+        new_role: Union[Literal["owner"], Literal["operator"]],
+        new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        new_resource_id: str,
     ) -> None:
         """Changes a role to a new role.
 
@@ -2061,8 +2103,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListAuthorizationsRequest(organization_id=org_id, resource_ids=resource_ids)
-        response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request,
-                                                                                         metadata=self._metadata)
+        response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
     async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
@@ -2134,7 +2175,7 @@ class AppClient:
         await self._app_client.CreateRegistryItem(request, metadata=self._metadata)
 
     async def update_registry_item(
-            self, item_id: str, type: PackageType.ValueType, description: str, visibility: Visibility.ValueType
+        self, item_id: str, type: PackageType.ValueType, description: str, visibility: Visibility.ValueType
     ) -> None:
         """Update a registry item.
 
@@ -2153,14 +2194,14 @@ class AppClient:
         await self._app_client.UpdateRegistryItem(request, metadata=self._metadata)
 
     async def list_registry_items(
-            self,
-            organization_id: str,
-            types: List[PackageType.ValueType],
-            visibilities: List[Visibility.ValueType],
-            platforms: List[str],
-            statuses: List[RegistryItemStatus.ValueType],
-            search_term: Optional[str] = None,
-            page_token: Optional[str] = None,
+        self,
+        organization_id: str,
+        types: List[PackageType.ValueType],
+        visibilities: List[Visibility.ValueType],
+        platforms: List[str],
+        statuses: List[RegistryItemStatus.ValueType],
+        search_term: Optional[str] = None,
+        page_token: Optional[str] = None,
     ) -> List[RegistryItem]:
         """List the registry items in an organization.
 
@@ -2231,13 +2272,13 @@ class AppClient:
         return response.module_id, response.url
 
     async def update_module(
-            self,
-            module_id: str,
-            url: str,
-            description: str,
-            models: Optional[List[Model]],
-            entrypoint: str,
-            public: bool = False,
+        self,
+        module_id: str,
+        url: str,
+        description: str,
+        models: Optional[List[Model]],
+        entrypoint: str,
+        public: bool = False,
     ) -> str:
         """Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
 
@@ -2348,8 +2389,7 @@ class AppClient:
 
     # TODO(RSDK-5569): when user-based auth exists, make `name` default to `None` and let
     # app deal with setting a default.
-    async def create_key(self, org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> \
-            Tuple[str, str]:
+    async def create_key(self, org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
         """Creates a new API key.
 
         ::
