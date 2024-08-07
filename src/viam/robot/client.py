@@ -27,6 +27,8 @@ from viam.proto.robot import (
     GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
+    GetMachineStatusRequest,
+    GetMachineStatusResponse,
     GetStatusRequest,
     GetStatusResponse,
     GetVersionRequest,
@@ -894,3 +896,25 @@ class RobotClient:
 
         request = GetVersionRequest()
         return await self._client.GetVersion(request)
+
+    ######################
+    # Get Machine Status #
+    ######################
+
+    async def get_machine_status(self) -> GetMachineStatusResponse:
+        """
+        Get status information about the robot.
+
+        ::
+
+            machine_status = machine.get_machine_status()
+            resource_statuses = machine_status.resources
+
+        Returns:
+            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the robot.
+
+        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        """
+
+        request = GetMachineStatusRequest()
+        return await self._client.GetMachineStatus(request)
