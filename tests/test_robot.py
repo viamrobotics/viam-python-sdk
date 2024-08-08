@@ -36,6 +36,9 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    GetMachineStatusRequest,
+    GetMachineStatusResponse,
+    ResourceStatus,
     GetVersionRequest,
     GetVersionResponse,
     Operation,
@@ -161,6 +164,15 @@ GET_VERVSION_RESPONSE = GetVersionResponse(
     api_version="0.3.0",
 )
 
+GET_MACHINE_STATUS_RESPONSE = GetMachineStatusResponse(
+    resources=[
+        ResourceStatus(
+            name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="arm1"),
+            state=ResourceStatus.State.STATE_READY,
+        )
+    ]
+)
+
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -225,6 +237,11 @@ def service() -> RobotService:
         assert request is not None
         await stream.send_message(GET_VERVSION_RESPONSE)
 
+    async def GetMachineStatus(stream: Stream[GetMachineStatusRequest, GetMachineStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GET_MACHINE_STATUS_RESPONSE)
+
     async def Shutdown(stream: Stream[ShutdownRequest, ShutdownResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -240,6 +257,7 @@ def service() -> RobotService:
     service.GetCloudMetadata = GetCloudMetadata
     service.Shutdown = Shutdown
     service.GetVersion = GetVersion
+    service.GetMachineStatus = GetMachineStatus
 
     return service
 
@@ -460,6 +478,14 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             md = await client.get_version()
             assert md == GET_VERVSION_RESPONSE
+            await client.close()
+
+    @pytest.mark.asyncio
+    async def test_get_machine_status(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            statuses = await client.get_machine_status()
+            assert statuses == GET_MACHINE_STATUS_RESPONSE
             await client.close()
 
     @pytest.mark.asyncio
