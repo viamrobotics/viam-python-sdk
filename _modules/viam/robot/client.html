@@ -117,6 +117,8 @@
     <span class="n">GetCloudMetadataResponse</span><span class="p">,</span>
     <span class="n">GetOperationsRequest</span><span class="p">,</span>
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
+    <span class="n">GetMachineStatusRequest</span><span class="p">,</span>
+    <span class="n">GetMachineStatusResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
     <span class="n">GetStatusResponse</span><span class="p">,</span>
     <span class="n">GetVersionRequest</span><span class="p">,</span>
@@ -983,7 +985,29 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetVersionRequest</span><span class="p">()</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetVersion</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetVersion</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+    <span class="c1">######################</span>
+    <span class="c1"># Get Machine Status #</span>
+    <span class="c1">######################</span>
+
+<div class="viewcode-block" id="RobotClient.get_machine_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_machine_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_machine_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetMachineStatusResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get status information about the robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            machine_status = await machine.get_machine_status()</span>
+<span class="sd">            resource_statuses = machine_status.resources</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the robot.</span>
+
+<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetMachineStatusRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetMachineStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

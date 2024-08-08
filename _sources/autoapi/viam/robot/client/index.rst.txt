@@ -624,3 +624,21 @@ Module Contents
 
 
 
+   .. py:method:: get_machine_status() -> viam.proto.robot.GetMachineStatusResponse
+      :async:
+
+
+      Get status information about the robot.
+
+      ::
+
+          machine_status = await machine.get_machine_status()
+          resource_statuses = machine_status.resources
+
+      :returns: current status of the resources (List[ResourceStatus]) of the robot.
+      :rtype: viam.proto.robot.GetMachineStatusResponse
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
+
+
