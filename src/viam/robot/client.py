@@ -907,7 +907,7 @@ class RobotClient:
 
         ::
 
-            machine_status = machine.get_machine_status()
+            machine_status = await machine.get_machine_status()
             resource_statuses = machine_status.resources
 
         Returns:
