@@ -39,4 +39,5 @@ jobs:
 
       - name: Run license finder
         run: |
+          pipx install pipenv
           poetry run license_finder --python-version=3
