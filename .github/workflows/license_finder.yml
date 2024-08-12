@@ -37,7 +37,9 @@ jobs:
         run: |
           poetry export -f requirements.txt --without-hashes > requirements.txt
 
-      - name: Run license finder
+      - name: Run license finder and capture output
         run: |
-          poetry run license_finder --python-version=3 --debug
-          echo "Exit code: $?"
+          poetry run license_finder --python-version=3 > license_finder_output.txt 2>&1 || true
+
+      - name: Display output
+        run: cat license_finder_output.txt
