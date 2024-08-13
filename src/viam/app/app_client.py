@@ -388,7 +388,7 @@ class Fragment:
 
 
 class FragmentHistoryEntry:
-    """A class that mirror the `FragmentHistoryEntry` proto message.
+    """A class that mirrors the `FragmentHistoryEntry` proto message.
 
     Use this class to make the attributes of a `viam.proto.app.FragmentHistoryEntry` more accessible and easier to read/interpret.
     """
