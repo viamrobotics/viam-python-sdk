@@ -39,5 +39,5 @@ jobs:
 
       - name: Run license finder and capture output
         run: |
-          pip --version
+          curl -sS https://bootstrap.pypa.io/get-pip.py | python3
           /opt/hostedtoolcache/Ruby/3.3.4/x64/lib/ruby/gems/3.3.0/gems/license_finder-7.2.1/bin/license_finder_pip.py requirements.txt
