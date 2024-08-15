@@ -40,5 +40,5 @@ jobs:
 
       - name: Run license finder
         run: |
-          license_finder
-          echo "Exit code: $?"
+          /opt/hostedtoolcache/Ruby/*/x64/lib/ruby/gems/*/gems/license_finder-*/bin/license_finder_pip.py requirements.txt
+          poetry run license_finder --python-version=3
