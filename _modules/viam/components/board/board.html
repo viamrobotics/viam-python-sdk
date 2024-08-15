@@ -527,7 +527,7 @@
 <span class="sd">            di11 = await my_board.digital_interrupt_by_name(name=&quot;11&quot;))</span>
 
 <span class="sd">            # Iterate over stream of ticks from pins 8 and 11.</span>
-<span class="sd">            async for tick in my_board.stream_ticks([di8, di11]):</span>
+<span class="sd">            async for tick in await my_board.stream_ticks([di8, di11]):</span>
 <span class="sd">                print(f&quot;Pin {tick.pin_name} changed to {&#39;high&#39; if tick.high else &#39;low&#39;} at {tick.time}&quot;)</span>
 
 
