@@ -1116,9 +1116,9 @@ class DataClient:
         component_type: str,
         component_name: str,
         method_name: str,
+        data_request_times: List[Tuple[datetime, datetime]],
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
-        data_request_times: Optional[List[Tuple[datetime, datetime]]] = None,
     ) -> str:
         """Upload tabular sensor data.
 
