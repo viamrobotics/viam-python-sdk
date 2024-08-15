@@ -1132,7 +1132,7 @@ class DataClient:
 
             file_id = await data_client.tabular_data_capture_upload(
                 part_id="INSERT YOUR PART ID",
-                component_type='motor',
+                component_type='rdk:component:motor',
                 component_name='left_motor',
                 method_name='IsPowered',
                 tags=["tag_1", "tag_2"],
@@ -1164,9 +1164,8 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         sensor_contents = []
-        if data_request_times:
-            if len(data_request_times) != len(tabular_data):
-                raise ValueError("data_request_times and tabular_data lengths must be equal.")
+        if len(data_request_times) != len(tabular_data):
+            raise ValueError("data_request_times and tabular_data lengths must be equal.")
 
         for idx, tab in enumerate(tabular_data):
             s = Struct()
