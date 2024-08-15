@@ -1143,7 +1143,7 @@ class DataClient:
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
             part_id (str): Part ID of the component used to capture the data.
-            component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
+            component_type (str): Type of the component used to capture the data (for example, "rdk:component:movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             data_request_times [List[Tuple[datetime.datetime, datetime.datetime]]]: List of tuples, each containing `datetime` objects
