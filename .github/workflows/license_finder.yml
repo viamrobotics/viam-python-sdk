@@ -8,7 +8,7 @@ on:
 
 jobs:
   license_finder:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     name: Audit 3rd-Party Licenses
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11.5"
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -36,7 +36,8 @@ jobs:
       - name: Generate requirements.txt (exclude dev dependencies)
         run: |
           poetry export -f requirements.txt --without-hashes > requirements.txt
+          pip install -r requirements.txt
 
       - name: Run license finder
         run: |
-          poetry run license_finder --python-version=3
+          license_finder
