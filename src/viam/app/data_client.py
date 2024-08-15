@@ -1146,12 +1146,11 @@ class DataClient:
             component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
+            data_request_times [List[Tuple[datetime.datetime, datetime.datetime]]]: List of tuples, each containing `datetime` objects
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of
+                tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same metadata.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
-                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-                Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the
-                same metadata.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
