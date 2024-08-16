@@ -181,7 +181,7 @@ class Vision(ServiceBase):
             detections = await my_detector.get_detections(img)
 
         Args:
-            image (Image | RawImage): The image to get detections from
+            image (ViamImage): The image to get detections from
 
         Raises:
             ViamError: Raised if given an image without a specified width and height
@@ -254,7 +254,7 @@ class Vision(ServiceBase):
             classifications = await my_classifier.get_classifications(img, 2)
 
         Args:
-            image (Image | RawImage): The image to get detections from
+            image (ViamImage): The image to get detections from
             count (int): The number of classifications desired
 
         Returns:

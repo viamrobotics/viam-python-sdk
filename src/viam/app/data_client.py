@@ -1116,9 +1116,9 @@ class DataClient:
         component_type: str,
         component_name: str,
         method_name: str,
+        data_request_times: List[Tuple[datetime, datetime]],
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
-        data_request_times: Optional[List[Tuple[datetime, datetime]]] = None,
     ) -> str:
         """Upload tabular sensor data.
 
@@ -1132,7 +1132,7 @@ class DataClient:
 
             file_id = await data_client.tabular_data_capture_upload(
                 part_id="INSERT YOUR PART ID",
-                component_type='motor',
+                component_type='rdk:component:motor',
                 component_name='left_motor',
                 method_name='IsPowered',
                 tags=["tag_1", "tag_2"],
@@ -1143,15 +1143,14 @@ class DataClient:
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
             part_id (str): Part ID of the component used to capture the data.
-            component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
+            component_type (str): Type of the component used to capture the data (for example, "rdk:component:movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
+            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing `datetime` objects
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of
+                tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same metadata.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
-                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-                Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the
-                same metadata.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1164,9 +1163,8 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
         sensor_contents = []
-        if data_request_times:
-            if len(data_request_times) != len(tabular_data):
-                raise ValueError("data_request_times and tabular_data lengths must be equal.")
+        if len(data_request_times) != len(tabular_data):
+            raise ValueError("data_request_times and tabular_data lengths must be equal.")
 
         for idx, tab in enumerate(tabular_data):
             s = Struct()
