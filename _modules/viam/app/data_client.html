@@ -1206,9 +1206,9 @@
         <span class="n">component_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]],</span>
         <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
 
@@ -1222,7 +1222,7 @@
 
 <span class="sd">            file_id = await data_client.tabular_data_capture_upload(</span>
 <span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
-<span class="sd">                component_type=&#39;motor&#39;,</span>
+<span class="sd">                component_type=&#39;rdk:component:motor&#39;,</span>
 <span class="sd">                component_name=&#39;left_motor&#39;,</span>
 <span class="sd">                method_name=&#39;IsPowered&#39;,</span>
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
@@ -1233,15 +1233,14 @@
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
-<span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;rdk:component:movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
+<span class="sd">            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing `datetime` objects</span>
+<span class="sd">                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of</span>
+<span class="sd">                tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the same metadata.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
-<span class="sd">            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing</span>
-<span class="sd">                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.</span>
-<span class="sd">                Passing a list of tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the</span>
-<span class="sd">                same metadata.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
@@ -1254,9 +1253,8 @@
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data_request_times and tabular_data lengths must be equal.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data_request_times and tabular_data lengths must be equal.&quot;</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>

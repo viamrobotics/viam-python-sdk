@@ -234,7 +234,7 @@ Package Contents
           detections = await my_detector.get_detections(img)
 
       :param image: The image to get detections from
-      :type image: Image | RawImage
+      :type image: ViamImage
 
       :raises ViamError: Raised if given an image without a specified width and height
 
@@ -297,7 +297,7 @@ Package Contents
           classifications = await my_classifier.get_classifications(img, 2)
 
       :param image: The image to get detections from
-      :type image: Image | RawImage
+      :type image: ViamImage
       :param count: The number of classifications desired
       :type count: int
 
@@ -614,7 +614,7 @@ Package Contents
           detections = await my_detector.get_detections(img)
 
       :param image: The image to get detections from
-      :type image: Image | RawImage
+      :type image: ViamImage
 
       :raises ViamError: Raised if given an image without a specified width and height
 
@@ -681,7 +681,7 @@ Package Contents
           classifications = await my_classifier.get_classifications(img, 2)
 
       :param image: The image to get detections from
-      :type image: Image | RawImage
+      :type image: ViamImage
       :param count: The number of classifications desired
       :type count: int
 
