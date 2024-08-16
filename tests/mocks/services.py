@@ -5,6 +5,7 @@ from grpclib.server import Stream
 from numpy.typing import NDArray
 
 from viam.app.data_client import DataClient
+from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
 from viam.media.video import ViamImage
 from viam.proto.app import (
     AddRoleRequest,
@@ -1173,6 +1174,7 @@ class MockApp(UnimplementedAppServiceBase):
         available: bool,
         location_auth: LocationAuth,
         robot_part_history: List[RobotPartHistoryEntry],
+        fragment_history: List[FragmentHistoryEntry],
         authorizations: List[Authorization],
         url: str,
         module: Module,
@@ -1195,6 +1197,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.available = available
         self.location_auth = location_auth
         self.robot_part_history = robot_part_history
+        self.fragment_history = fragment_history
         self.authorizations = authorizations
         self.url = url
         self.module = module
@@ -1489,6 +1492,14 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.fragment_id = request.id
         await stream.send_message(GetFragmentResponse(fragment=self.fragment))
+
+    async def GetFragmentHistory(self, stream: Stream[GetFragmentHistoryRequest, GetFragmentHistoryResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.page_token = request.page_token
+        self.page_limit = request.page_limit
+        await stream.send_message(GetFragmentHistoryResponse(history=self.fragment_history))
 
     async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:
         request = await stream.recv_message()

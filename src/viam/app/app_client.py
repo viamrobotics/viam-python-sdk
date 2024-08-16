@@ -12,6 +12,7 @@ from viam.proto.app import (
     AddRoleRequest,
     APIKeyWithAuthorizations,
     AppServiceStub,
+    AuthenticatorInfo,
     Authorization,
     AuthorizedPermissions,
     ChangeRoleRequest,
@@ -49,8 +50,11 @@ from viam.proto.app import (
     DeleteRobotRequest,
 )
 from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
 from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import (
+    GetFragmentHistoryRequest,
+    GetFragmentHistoryResponse,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -380,6 +384,44 @@ class Fragment:
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
             visibility=self.visibility.to_proto(),
+        )
+
+
+class FragmentHistoryEntry:
+    """A class that mirrors the `FragmentHistoryEntry` proto message.
+
+    Use this class to make the attributes of a `viam.proto.app.FragmentHistoryEntry` more accessible and easier to read/interpret.
+    """
+
+    @classmethod
+    def from_proto(cls, fragment_history_entry: FragmentHistoryEntryPB) -> Self:
+        """Create a `FragmentHistoryEntry` from the .proto defined `FragmentHistoryEntry`.
+
+        Args:
+            fragment_history_entry (viam.proto.app.FragmentHistoryEntry): The object to copy from.
+
+        Returns:
+            FragmentHistoryEntry: The `FragmentHistoryEntry`.
+        """
+        self = cls()
+        self.fragment = fragment_history_entry.fragment
+        self.edited_on = fragment_history_entry.edited_on.ToDatetime()
+        self.old = Fragment.from_proto(fragment_history_entry.old)
+        self.edited_by = fragment_history_entry.edited_by
+        return self
+
+    fragment: str
+    edited_on: datetime
+    old: Fragment
+    edited_by: AuthenticatorInfo
+
+    @property
+    def proto(self) -> FragmentHistoryEntryPB:
+        return FragmentHistoryEntryPB(
+            fragment=self.fragment,
+            edited_on=datetime_to_timestamp(self.edited_on),
+            edited_by=self.edited_by,
+            old=self.old.proto if self.old else None,
         )
 
 
@@ -1780,6 +1822,38 @@ class AppClient:
         """
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
+
+    async def get_fragment_history(
+        self, id: str, page_token: Optional[str] = "", page_limit: Optional[int] = 10
+    ) -> List[FragmentHistoryEntry]:
+        """Get fragment history.
+
+        ::
+
+            fragment_history = await cloud.get_fragment_history(
+                id = "12a12ab1-1234-5678-abcd-abcd01234567",
+                page_token = "pg-token",
+                page_limit = 10
+            )
+
+        Args:
+            id (str): ID of the fragment to fetch history for.
+            page_token (Optional[str]): the page token for the fragment history collection
+            page_limit (Optional[int]): the number of fragment history documents to return in the result.
+                The default page limit is 10.
+
+        Raises:
+            GRPCError: if an invalid fragment id, page token or page limit is passed.
+
+        Returns:
+            viam.app.app_client.FragmentHistoryResponse: The fragment history document(s).
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+        """
+
+        request = GetFragmentHistoryRequest(id=id, page_token=page_token, page_limit=page_limit)
+        response: GetFragmentHistoryResponse = await self._app_client.GetFragmentHistory(request, metadata=self._metadata)
+        return [FragmentHistoryEntry.from_proto(fragment_history) for fragment_history in response.history]
 
     async def add_role(
         self,
