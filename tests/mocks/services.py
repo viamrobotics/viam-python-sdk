@@ -1198,8 +1198,6 @@ class MockApp(UnimplementedAppServiceBase):
         self.location_auth = location_auth
         self.robot_part_history = robot_part_history
         self.fragment_history = fragment_history
-        self.page_token = ""
-        self.page_limit = 0
         self.authorizations = authorizations
         self.url = url
         self.module = module
