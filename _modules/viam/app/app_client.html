@@ -102,6 +102,7 @@
     <span class="n">AddRoleRequest</span><span class="p">,</span>
     <span class="n">APIKeyWithAuthorizations</span><span class="p">,</span>
     <span class="n">AppServiceStub</span><span class="p">,</span>
+    <span class="n">AuthenticatorInfo</span><span class="p">,</span>
     <span class="n">Authorization</span><span class="p">,</span>
     <span class="n">AuthorizedPermissions</span><span class="p">,</span>
     <span class="n">ChangeRoleRequest</span><span class="p">,</span>
@@ -139,8 +140,11 @@
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentHistoryEntry</span> <span class="k">as</span> <span class="n">FragmentHistoryEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentVisibility</span> <span class="k">as</span> <span class="n">FragmentVisibilityPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetFragmentHistoryRequest</span><span class="p">,</span>
+    <span class="n">GetFragmentHistoryResponse</span><span class="p">,</span>
     <span class="n">GetFragmentRequest</span><span class="p">,</span>
     <span class="n">GetFragmentResponse</span><span class="p">,</span>
     <span class="n">GetLocationRequest</span><span class="p">,</span>
@@ -470,6 +474,44 @@
             <span class="n">organization_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span><span class="p">,</span>
             <span class="n">only_used_by_owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span><span class="p">,</span>
             <span class="n">visibility</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FragmentHistoryEntry"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.FragmentHistoryEntry">[docs]</a><span class="k">class</span> <span class="nc">FragmentHistoryEntry</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class that mirrors the `FragmentHistoryEntry` proto message.</span>
+
+<span class="sd">    Use this class to make the attributes of a `viam.proto.app.FragmentHistoryEntry` more accessible and easier to read/interpret.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="FragmentHistoryEntry.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.FragmentHistoryEntry.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fragment_history_entry</span><span class="p">:</span> <span class="n">FragmentHistoryEntryPB</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `FragmentHistoryEntry` from the .proto defined `FragmentHistoryEntry`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fragment_history_entry (viam.proto.app.FragmentHistoryEntry): The object to copy from.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            FragmentHistoryEntry: The `FragmentHistoryEntry`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fragment</span> <span class="o">=</span> <span class="n">fragment_history_entry</span><span class="o">.</span><span class="n">fragment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edited_on</span> <span class="o">=</span> <span class="n">fragment_history_entry</span><span class="o">.</span><span class="n">edited_on</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="o">=</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment_history_entry</span><span class="o">.</span><span class="n">old</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edited_by</span> <span class="o">=</span> <span class="n">fragment_history_entry</span><span class="o">.</span><span class="n">edited_by</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="n">fragment</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">edited_on</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">old</span><span class="p">:</span> <span class="n">Fragment</span>
+    <span class="n">edited_by</span><span class="p">:</span> <span class="n">AuthenticatorInfo</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FragmentHistoryEntryPB</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">FragmentHistoryEntryPB</span><span class="p">(</span>
+            <span class="n">fragment</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fragment</span><span class="p">,</span>
+            <span class="n">edited_on</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edited_on</span><span class="p">),</span>
+            <span class="n">edited_by</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edited_by</span><span class="p">,</span>
+            <span class="n">old</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="o">.</span><span class="n">proto</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1870,6 +1912,38 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.get_fragment_history"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_fragment_history">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_fragment_history</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">page_limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FragmentHistoryEntry</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get fragment history.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            fragment_history = await cloud.get_fragment_history(</span>
+<span class="sd">                id = &quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;,</span>
+<span class="sd">                page_token = &quot;pg-token&quot;,</span>
+<span class="sd">                page_limit = 10</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): ID of the fragment to fetch history for.</span>
+<span class="sd">            page_token (Optional[str]): the page token for the fragment history collection</span>
+<span class="sd">            page_limit (Optional[int]): the number of fragment history documents to return in the result.</span>
+<span class="sd">                The default page limit is 10.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: if an invalid fragment id, page token or page limit is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.app.app_client.FragmentHistoryResponse: The fragment history document(s).</span>
+
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetFragmentHistoryRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">page_limit</span><span class="o">=</span><span class="n">page_limit</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetFragmentHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetFragmentHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">FragmentHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">fragment_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AppClient.add_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.add_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_role</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

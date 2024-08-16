@@ -20,6 +20,7 @@ Classes
    viam.app.app_client.RobotPart
    viam.app.app_client.LogEntry
    viam.app.app_client.Fragment
+   viam.app.app_client.FragmentHistoryEntry
    viam.app.app_client.RobotPartHistoryEntry
    viam.app.app_client.APIKeyAuthorization
    viam.app.app_client.AppClient
@@ -282,6 +283,48 @@ Module Contents
 
    .. py:property:: proto
       :type: viam.proto.app.Fragment
+
+
+
+.. py:class:: FragmentHistoryEntry
+
+   A class that mirrors the `FragmentHistoryEntry` proto message.
+
+   Use this class to make the attributes of a `viam.proto.app.FragmentHistoryEntry` more accessible and easier to read/interpret.
+
+
+   .. py:method:: from_proto(fragment_history_entry: viam.proto.app.FragmentHistoryEntry) -> typing_extensions.Self
+      :classmethod:
+
+
+      Create a `FragmentHistoryEntry` from the .proto defined `FragmentHistoryEntry`.
+
+      :param fragment_history_entry: The object to copy from.
+      :type fragment_history_entry: viam.proto.app.FragmentHistoryEntry
+
+      :returns: The `FragmentHistoryEntry`.
+      :rtype: FragmentHistoryEntry
+
+
+
+   .. py:attribute:: fragment
+      :type:  str
+
+
+   .. py:attribute:: edited_on
+      :type:  datetime.datetime
+
+
+   .. py:attribute:: old
+      :type:  Fragment
+
+
+   .. py:attribute:: edited_by
+      :type:  viam.proto.app.AuthenticatorInfo
+
+
+   .. py:property:: proto
+      :type: viam.proto.app.FragmentHistoryEntry
 
 
 
@@ -1560,6 +1603,37 @@ Module Contents
       :type fragment_id: str
 
       :raises GRPCError: If an invalid fragment ID is passed.
+
+      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+
+
+
+   .. py:method:: get_fragment_history(id: str, page_token: Optional[str] = '', page_limit: Optional[int] = 10) -> List[FragmentHistoryEntry]
+      :async:
+
+
+      Get fragment history.
+
+      ::
+
+          fragment_history = await cloud.get_fragment_history(
+              id = "12a12ab1-1234-5678-abcd-abcd01234567",
+              page_token = "pg-token",
+              page_limit = 10
+          )
+
+      :param id: ID of the fragment to fetch history for.
+      :type id: str
+      :param page_token: the page token for the fragment history collection
+      :type page_token: Optional[str]
+      :param page_limit: the number of fragment history documents to return in the result.
+                         The default page limit is 10.
+      :type page_limit: Optional[int]
+
+      :raises GRPCError: if an invalid fragment id, page token or page limit is passed.
+
+      :returns: The fragment history document(s).
+      :rtype: viam.app.app_client.FragmentHistoryResponse
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 

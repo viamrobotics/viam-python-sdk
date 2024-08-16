@@ -122,6 +122,15 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.Fragment.proto"><code class="docutils literal notranslate"><span class="pre">Fragment.proto</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.from_proto"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.from_proto()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.fragment"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.fragment</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.edited_on"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.edited_on</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.old"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.old</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.edited_by"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.edited_by</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry.proto"><code class="docutils literal notranslate"><span class="pre">FragmentHistoryEntry.proto</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry.from_proto"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.from_proto()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry.part"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.part</span></code></a></li>
@@ -182,6 +191,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_fragment"><code class="docutils literal notranslate"><span class="pre">AppClient.create_fragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_fragment"><code class="docutils literal notranslate"><span class="pre">AppClient.update_fragment()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.delete_fragment"><code class="docutils literal notranslate"><span class="pre">AppClient.delete_fragment()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_fragment_history"><code class="docutils literal notranslate"><span class="pre">AppClient.get_fragment_history()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.add_role"><code class="docutils literal notranslate"><span class="pre">AppClient.add_role()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.remove_role"><code class="docutils literal notranslate"><span class="pre">AppClient.remove_role()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.change_role"><code class="docutils literal notranslate"><span class="pre">AppClient.change_role()</span></code></a></li>
@@ -274,13 +284,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fragment</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>Fragment</cite> proto message.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry" title="viam.app.app_client.FragmentHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FragmentHistoryEntry</span></code></a></p></td>
+<td><p>A class that mirrors the <cite>FragmentHistoryEntry</cite> proto message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
 <td><p>A class that mirrors the <cite>RobotPartHistoryEntry</cite> proto message.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.APIKeyAuthorization" title="viam.app.app_client.APIKeyAuthorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyAuthorization</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.APIKeyAuthorization" title="viam.app.app_client.APIKeyAuthorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyAuthorization</span></code></a></p></td>
 <td><p>A class with the necessary authorization data for creating an API key.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.app.app_client.AppClient" title="viam.app.app_client.AppClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppClient</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.app.app_client.AppClient" title="viam.app.app_client.AppClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppClient</span></code></a></p></td>
 <td><p>gRPC client for method calls to app.</p></td>
 </tr>
 </tbody>
@@ -582,6 +595,55 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.app.app_client.Fragment.proto">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Fragment" title="viam.proto.app.Fragment"><span class="pre">viam.proto.app.Fragment</span></a></em><a class="headerlink" href="#viam.app.app_client.Fragment.proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.app.app_client.</span></span><span class="sig-name descname"><span class="pre">FragmentHistoryEntry</span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#FragmentHistoryEntry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry" title="Permalink to this definition"></a></dt>
+<dd><p>A class that mirrors the <cite>FragmentHistoryEntry</cite> proto message.</p>
+<p>Use this class to make the attributes of a <cite>viam.proto.app.FragmentHistoryEntry</cite> more accessible and easier to read/interpret.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.from_proto">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_history_entry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.FragmentHistoryEntry" title="viam.proto.app.FragmentHistoryEntry"><span class="pre">viam.proto.app.FragmentHistoryEntry</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#FragmentHistoryEntry.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.from_proto" title="Permalink to this definition"></a></dt>
+<dd><p>Create a <cite>FragmentHistoryEntry</cite> from the .proto defined <cite>FragmentHistoryEntry</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fragment_history_entry</strong> (<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.FragmentHistoryEntry" title="viam.proto.app.FragmentHistoryEntry"><em>viam.proto.app.FragmentHistoryEntry</em></a>) – The object to copy from.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <cite>FragmentHistoryEntry</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry" title="viam.app.app_client.FragmentHistoryEntry">FragmentHistoryEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.fragment">
+<span class="sig-name descname"><span class="pre">fragment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.fragment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.edited_on">
+<span class="sig-name descname"><span class="pre">edited_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.edited_on" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.old">
+<span class="sig-name descname"><span class="pre">old</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></em><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.old" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.edited_by">
+<span class="sig-name descname"><span class="pre">edited_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthenticatorInfo" title="viam.proto.app.AuthenticatorInfo"><span class="pre">viam.proto.app.AuthenticatorInfo</span></a></em><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.edited_by" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.app_client.FragmentHistoryEntry.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.FragmentHistoryEntry" title="viam.proto.app.FragmentHistoryEntry"><span class="pre">viam.proto.app.FragmentHistoryEntry</span></a></em><a class="headerlink" href="#viam.app.app_client.FragmentHistoryEntry.proto" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1916,6 +1978,39 @@ A fragment is private by default when created.</p></li>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid fragment ID is passed.</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/fleet/">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_fragment_history">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_fragment_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.FragmentHistoryEntry" title="viam.app.app_client.FragmentHistoryEntry"><span class="pre">FragmentHistoryEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_fragment_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_fragment_history" title="Permalink to this definition"></a></dt>
+<dd><p>Get fragment history.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fragment_history</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_fragment_history</span><span class="p">(</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;</span><span class="p">,</span>
+    <span class="n">page_token</span> <span class="o">=</span> <span class="s2">&quot;pg-token&quot;</span><span class="p">,</span>
+    <span class="n">page_limit</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – ID of the fragment to fetch history for.</p></li>
+<li><p><strong>page_token</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the page token for the fragment history collection</p></li>
+<li><p><strong>page_limit</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – the number of fragment history documents to return in the result.
+The default page limit is 10.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError</strong> – if an invalid fragment id, page token or page limit is passed.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The fragment history document(s).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>viam.app.app_client.FragmentHistoryResponse</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/fleet/">Fleet Management API</a>.</p>
