@@ -1,10 +1,11 @@
 {
-  "module_name": "",
+  "module_name": "{{cookiecutter.module_name}}",
   "visibility": "public",
+  "language": "{{cookiecutter.language}}",
   "models": [
     {
-      "api": "rdk:",
-      "model": ""
+      "api": "{{cookiecutter.resource_type}}",
+      "model": "{{cookiecutter.namespace}}.{{cookiecutter.module_name}}.{{cookiecutter.model_name}}"
     }
   ],
   "entrypoint": "run.sh"
