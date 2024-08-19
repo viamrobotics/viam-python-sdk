@@ -364,7 +364,6 @@ class Board(ComponentBase):
         """
         ...
 
-
     @abc.abstractmethod
     async def set_power_mode(
         self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs
