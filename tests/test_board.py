@@ -93,36 +93,10 @@ class TestBoard:
         assert pin.name == "pin1"
 
     @pytest.mark.asyncio
-    async def test_analog_names(self, board: MockBoard):
-        names = await board.analog_names()
-        assert names == ["reader1", "writer1"]
-
-    @pytest.mark.asyncio
-    async def test_digital_interrupt_names(self, board: MockBoard):
-        names = await board.digital_interrupt_names()
-        assert names == ["interrupt1"]
-
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
-
-    @pytest.mark.asyncio
-    async def test_status(self, board: MockBoard):
-        status = await create_status(board)
-        read1 = await board.analogs["reader1"].read()
-        # Analog writers typically don't have read statuses, but the mock board
-        # doesn't make that distinction.
-        read2 = await board.analogs["writer1"].read()
-        val = await board.digital_interrupts["interrupt1"].value()
-        assert status.name == MockBoard.get_resource_name(board.name)
-        assert status.status == message_to_struct(
-            BoardStatus(
-                analogs={"reader1": int(read1.value), "writer1": int(read2.value)},
-                digital_interrupts={"interrupt1": val},
-            )
-        )
 
     @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard):
@@ -391,9 +365,6 @@ class TestClient:
             reader = await client.analog_by_name("reader1")
             assert reader.name == "reader1"
 
-            names = await client.analog_names()
-            assert names == ["reader1"]
-
     @pytest.mark.asyncio
     async def test_digital_interrupt_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -401,9 +372,6 @@ class TestClient:
 
             interrupt = await client.digital_interrupt_by_name("interrupt1")
             assert interrupt.name == "interrupt1"
-
-            names = await client.digital_interrupt_names()
-            assert names == ["interrupt1"]
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):
