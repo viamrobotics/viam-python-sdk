@@ -2,8 +2,16 @@
   "module_name": "MyModule",
   "language": "python",
   "namespace": "ns",
-  "resource_type": ["arm", "base", "motor", "vision"],
+  "resources": [
+    "arm component",
+    "base component",
+    "motor component",
+    "vision service"
+  ],
+  "resource_type": "{{cookiecutter.resource.split(' ')[1]}}",
+  "api": "rdk:{{cookiecutter.resource_type}}:{{cookiecutter.resource.split(' ')[0]}}",
   "model_name": "model",
+  "model": "{{cookiecutter.namespace}}.{{cookiecutter.module_name}}.{{cookiecutter.model_name}}",
   "initialize_workflow": "n",
   "__generated_on": "{{cookiecutter._current_datetime.strftime('%Y-%m-%d %H:%M:%S')}}"
 }
