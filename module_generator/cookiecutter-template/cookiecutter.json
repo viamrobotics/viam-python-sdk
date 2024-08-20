@@ -1,6 +1,6 @@
 {
   "module_name": "MyModule",
-  "language": "python",
+  "language": ["python"],
   "namespace": "ns",
   "resource": [
     "arm component",
@@ -8,11 +8,13 @@
     "motor component",
     "vision service"
   ],
-  "__resource": "{{cookiecutter.resource.split(' ')[0]}}",
-  "resource_type": "{{cookiecutter.resource.split(' ')[1]}}",
-  "api": "rdk:{{cookiecutter.resource_type}}:{{cookiecutter.__resource",
   "model_name": "model",
-  "model": "{{cookiecutter.namespace}}.{{cookiecutter.module_name}}.{{cookiecutter.model_name}}",
   "initialize_workflow": "n",
-  "__generated_on": "{{cookiecutter._current_datetime.strftime('%Y-%m-%d %H:%M:%S')}}"
+
+  "__resource": "{{cookiecutter.resource.split(' ')[0]}}",
+  "__resource_type": "{{cookiecutter.resource.split(' ')[1]}}",
+  "__api": "rdk:{{cookiecutter.__resource_type}}:{{cookiecutter.__resource}}",
+  "__model": "{{cookiecutter.namespace}}.{{cookiecutter.module_name}}.{{cookiecutter.model_name}}",
+  "__generator_version": "0.1.0",
+  "__generated_on": "0-0-0 0:0:0"
 }
