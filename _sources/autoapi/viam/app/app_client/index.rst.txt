@@ -478,7 +478,7 @@ Module Contents
 
       ::
 
-          org_list = await cloud.get_organization_with_access_to_location("location-id")
+          org_list = await cloud.get_organizations_with_access_to_location("location-id")
 
       :param location_id: The ID of the location.
       :type location_id: str
@@ -585,6 +585,7 @@ Module Contents
       Delete an organization
 
       ::
+
           await cloud.delete_organization("org-id")
 
       :param org_id: The ID of the organization.
@@ -1266,7 +1267,7 @@ Module Contents
       :async:
 
 
-      Gets the Robot API Keys for the robot.
+      Gets the API Keys for the machine.
 
       ::
 

@@ -722,7 +722,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            org_list = await cloud.get_organization_with_access_to_location(&quot;location-id&quot;)</span>
+<span class="sd">            org_list = await cloud.get_organizations_with_access_to_location(&quot;location-id&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): The ID of the location.</span>
@@ -840,6 +840,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete an organization</span>
 
 <span class="sd">        ::</span>
+
 <span class="sd">            await cloud.delete_organization(&quot;org-id&quot;)</span>
 
 <span class="sd">        Args:</span>
@@ -1566,7 +1567,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot_api_keys"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_api_keys">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_api_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyWithAuthorizations</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the Robot API Keys for the robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the API Keys for the machine.</span>
 
 <span class="sd">        ::</span>
 

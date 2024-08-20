@@ -801,7 +801,7 @@
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_organizations_with_access_to_location">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_organizations_with_access_to_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationIdentity" title="viam.proto.app.OrganizationIdentity"><span class="pre">viam.proto.app.OrganizationIdentity</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_organizations_with_access_to_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_organizations_with_access_to_location" title="Permalink to this definition"></a></dt>
 <dd><p>Get all organizations that have access to a location.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">org_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_organization_with_access_to_location</span><span class="p">(</span><span class="s2">&quot;location-id&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">org_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_organizations_with_access_to_location</span><span class="p">(</span><span class="s2">&quot;location-id&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -917,10 +917,9 @@ characters.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_organization">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_organization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_organization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_organization" title="Permalink to this definition"></a></dt>
 <dd><p>Delete an organization</p>
-<dl class="simple">
-<dt>::</dt><dd><p>await cloud.delete_organization(“org-id”)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_organization</span><span class="p">(</span><span class="s2">&quot;org-id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization.
@@ -1627,7 +1626,7 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_api_keys">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_api_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.APIKeyWithAuthorizations" title="viam.proto.app.APIKeyWithAuthorizations"><span class="pre">viam.proto.app.APIKeyWithAuthorizations</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_api_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_api_keys" title="Permalink to this definition"></a></dt>
-<dd><p>Gets the Robot API Keys for the robot.</p>
+<dd><p>Gets the API Keys for the machine.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_api_keys</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;robot-id&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
