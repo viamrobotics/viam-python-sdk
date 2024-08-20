@@ -632,7 +632,7 @@ class AppClient:
 
         ::
 
-            org_list = await cloud.get_organization_with_access_to_location("location-id")
+            org_list = await cloud.get_organizations_with_access_to_location("location-id")
 
         Args:
             location_id (str): The ID of the location.
@@ -750,6 +750,7 @@ class AppClient:
         """Delete an organization
 
         ::
+
             await cloud.delete_organization("org-id")
 
         Args:
@@ -1476,7 +1477,7 @@ class AppClient:
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
     async def get_robot_api_keys(self, robot_id: str) -> List[APIKeyWithAuthorizations]:
-        """Gets the Robot API Keys for the robot.
+        """Gets the API Keys for the machine.
 
         ::
 
