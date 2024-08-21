@@ -4,12 +4,12 @@ import os
 from importlib import import_module
 
 
-def get_resource_class(resource_type: str, resource_name: str):
+def __get_resource_class(resource_type: str, resource_name: str):
     module = import_module(f"viam.{resource_type}s.{resource_name}")
-    return getattr(module, resource_name.capitalize())
+    return getattr(module, "".join(word.capitalize() for word in resource_name.split("_")))
 
 
-def generate_method_stubs(module: type) -> str:
+def __generate_method_stubs(module: type) -> str:
     methods = inspect.getmembers(module, predicate=inspect.isfunction)
     stubs = []
     for name, method in methods:
@@ -22,8 +22,10 @@ def generate_method_stubs(module: type) -> str:
 
 
 def generate_code(resource_type: str, resource_name: str, model_name: str, namespace: str, module_name: str) -> None:
-    module = get_resource_class(resource_type, resource_name)
-    method_stubs = generate_method_stubs(module)
+    viam_module = __get_resource_class(resource_type, resource_name)
+    method_stubs = __generate_method_stubs(viam_module)
+
+    viam_class = "".join(word.capitalize() for word in resource_name.split("_"))
 
     file_path = os.path.join(os.getcwd(), "src/__main__.py")
     with open(file_path, 'w') as file:
@@ -35,11 +37,11 @@ from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.easy_resource import EasyResource
 from viam.resource.types import Model, ModelFamily
-from viam.{resource_type}s.{resource_name} import {resource_name.capitalize()}
+from viam.{resource_type}s.{resource_name} import {viam_class}
 
 
-class {model_name.capitalize()}({resource_name.capitalize()}, EasyResource):
-    """This is your custom {resource_name.capitalize()} {resource_type}.
+class {model_name.capitalize()}({viam_class}, EasyResource):
+    """This is your custom {viam_class} {resource_type}.
 
     All the methods listed are optional.
     You can implement the methods you want and remove the methods you don't need.

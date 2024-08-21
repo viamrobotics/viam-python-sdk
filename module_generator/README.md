@@ -90,7 +90,7 @@ Create a Python module named `rover` in the namespace `test`. Add a vision servi
 `module_generator/rover/README.md`
 
 ```
-# Rover Module
+# rover Module
 
 This module implements the Vision API in the `test:rover:vizz` model.
 
