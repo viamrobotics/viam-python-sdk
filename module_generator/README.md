@@ -69,24 +69,6 @@ Create a Python module named `rover` in the namespace `test`. Add a vision servi
 }
 ```
 
-`module_generator/rover/meta.json`
-
-```json
-{
-  "module_name": "rover",
-  "visibility": "public",
-  "language": "python",
-  "generator": "0.14.0",
-  "models": [
-    {
-      "api": "rdk:service:vision",
-      "model": "test:rover:vizz"
-    }
-  ],
-  "entrypoint": "run.sh"
-}
-```
-
 `module_generator/rover/README.md`
 
 ```
