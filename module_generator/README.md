@@ -1,6 +1,8 @@
 # Module Generator Template
 
-> DISCLAIMER: This is the Python module template for what will eventually be a CLI module generator. It is very much a work in progress, and significant changes will follow. Using this is **NOT** recommended until it is ready.
+> NOTE: This README is more for the development team as the module generator is still very much a WIP.
+
+> DISCLAIMER: This is the Python module template for what will eventually be a CLI module generator. Significant changes will follow in the following weeks. Using this is **NOT** recommended until it is ready.
 
 ## How to Use
 
@@ -9,7 +11,7 @@
 3. Fill out the prompts given (see below).
 4. The necessary files for the created module will be generated in a new directory `module_generator/<MODULE_NAME>`.
 
-NOTE: The imports in `module_generator/<MODULE_NAME>/src/__main__.py` may have to be adjusted. More details below in the example. **THIS IS NOT IDEAL**
+> TODO: The imports in `module_generator/<MODULE_NAME>/src/__main__.py` may have to be adjusted. More details below in the example. HAVING TO FIX THE IMPORTS IS NOT IDEAL.
 
 ## Prompts
 
@@ -70,18 +72,59 @@ Create a Python module named `rover` in the namespace `test`. Add a vision servi
 
 `module_generator/rover/README.md`
 
+> TODO: There is still some todos to fill out, like sample attributes and configuration
+
+````
+# [rover Module](https://app.viam.com/module/viam/rover)
+
+This [module](https://docs.viam.com/registry/#modular-resources) implements the [rdk:service:vision API](https://python.viam.dev/autoapi/viam/services/vision/#api) in a `vizz` model.
+
+## Configure your rover vision
+
+Navigate to the [**CONFIGURE** tab](https://docs.viam.com/configure/) of your [machine](https://docs.viam.com/fleet/machines/) in [the Viam app](https://app.viam.com/).
+[Add vision / rover to your machine](https://docs.viam.com/configure/#services).
+
+On the new component panel, copy and paste the following attribute template into your vision’s attributes field:
+
+```json
+{
+  <INSERT SAMPLE ATTRIBUTES>
+}
 ```
-# rover Module
 
-This module implements the Vision API in the `test:rover:vizz` model.
+> [!NOTE]
+> For more information, see [Configure a Machine](https://docs.viam.com/configure/).
 
-More information on the Vision Service can be found here: https://python.viam.dev/autoapi/viam/services/vision/index.html.
+### Attributes
 
+The following attributes are available for `test:rover:vizz` visions:
+
+| Name    | Type   | Required?    | Description |
+| ------- | ------ | ------------ | ----------- |
+| `todo1` | string | **Required** | TODO        |
+| `todo2` | string | Optional     | TODO        |
+
+### Example configuration
+
+```json
+{
+  <INSERT SAMPLE CONFIGURATION(S)>
+}
 ```
+
+### Next steps
+
+- To test your vision, go to the [**CONTROL** tab](https://docs.viam.com/fleet/control/).
+- To write code against your vision, use one of the [available SDKs](https://docs.viam.com/sdks/).
+- To view examples using a vision service, explore [these tutorials](https://docs.viam.com/tutorials/).
+
+````
 
 `module_generator/rover/src/__main__.py`
 
-This is the raw file right after generation. This newly created file has some missing imports, which will be fixed below. **TODO: THIS IS NOT IDEAL.**
+This is the raw file right after generation. This newly created file has some missing imports, which will be fixed below.
+
+> TODO: HAVING TO FIX THE IMPORTS IS NOT IDEAL.
 
 ```python
 import asyncio
