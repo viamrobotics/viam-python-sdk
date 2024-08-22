@@ -44,7 +44,7 @@ class {model_name.capitalize()}({viam_class}, EasyResource):
     """This is your custom {viam_class} {resource_type}.
 
     All the methods listed are optional.
-    You can implement the methods you want and remove the methods you don't need.
+    You can implement the methods you want and ignore the methods you don't need.
     """
     MODEL: ClassVar[Model] = Model(ModelFamily("{namespace}", "{module_name}"), "{model_name}")
 

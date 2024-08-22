@@ -1,6 +1,6 @@
 # Module Generator Template
 
-This is the Python module template for [CLI module generator](https://docs.viam.com/cli/#module).
+> DISCLAIMER: This is the Python module template for what will eventually be a CLI module generator. It is very much a work in progress, and significant changes will follow. Using this is **NOT** recommended until it is ready.
 
 ## How to Use
 
