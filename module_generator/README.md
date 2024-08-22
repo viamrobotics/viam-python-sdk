@@ -9,7 +9,7 @@
 3. Fill out the prompts given (see below).
 4. The necessary files for the created module will be generated in a new directory `module_generator/<MODULE_NAME>`.
 
-NOTE: The imports in `module_generator/<MODULE_NAME>/src/__main__.py` may have to be adjusted. More details below in the example.
+NOTE: The imports in `module_generator/<MODULE_NAME>/src/__main__.py` may have to be adjusted. More details below in the example. **THIS IS NOT IDEAL**
 
 ## Prompts
 
@@ -27,7 +27,6 @@ To create a module, the generator needs the user to fill out information about t
 When a module is created using the template, there are a couple of different files created or populated. Some files to note:
 
 - `.viam-gen-info` saves the user inputs, the module creation time, and the generator version.
-- `meta.json` saves the `module_name`, `visibility` (default to public), `language`, `generator_version`, `model`, `api`, and `entrypoint` (default to `run.sh`) into a json file.
 - `src/__main__.py` contains all the functions available to the resource.
 
 ---
@@ -82,7 +81,7 @@ More information on the Vision Service can be found here: https://python.viam.de
 
 `module_generator/rover/src/__main__.py`
 
-This is the raw file right after generation. This newly created file has some missing imports, which will be fixed below.
+This is the raw file right after generation. This newly created file has some missing imports, which will be fixed below. **TODO: THIS IS NOT IDEAL.**
 
 ```python
 import asyncio
