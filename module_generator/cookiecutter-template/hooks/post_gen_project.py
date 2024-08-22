@@ -35,6 +35,7 @@ from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.easy_resource import EasyResource
+from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
 from viam.{resource_type}s.{resource_name} import {viam_class}
 
@@ -84,6 +85,10 @@ class {model_name.capitalize()}({viam_class}, EasyResource):
         return super().reconfigure(config, dependencies)
 
     {method_stubs}
+
+
+Registry.register_resource_creator({viam_class}.SUBTYPE, {model_name.capitalize()}.MODEL, ResourceCreatorRegistration({model_name.capitalize()}.new, {model_name.capitalize()}.validate_config))
+
 
 if __name__ == "__main__":
     """This function will run your module and make it available to the machine."""
