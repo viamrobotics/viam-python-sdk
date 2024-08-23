@@ -70,6 +70,25 @@ Create a Python module named `rover` in the namespace `test`. Add a vision servi
 }
 ```
 
+`module_generator/rover/meta.json`
+
+```json
+{
+  "module_id": "rover",
+  "visibility": "public",
+  "url": "",
+  "description": "Module with a vizz vision component",
+  "generator": "0.14.0",
+  "models": [
+    {
+      "api": "rdk:component:vision",
+      "model": "test:rover:vizz"
+    }
+  ],
+  "entrypoint": "run.sh"
+}
+```
+
 `module_generator/rover/README.md`
 
 > TODO: There is still some todos to fill out, like sample attributes and configuration
