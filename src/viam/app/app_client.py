@@ -1847,7 +1847,7 @@ class AppClient:
             GRPCError: if an invalid fragment id, page token or page limit is passed.
 
         Returns:
-            viam.app.app_client.FragmentHistoryResponse: The fragment history document(s).
+            viam.app.app_client.FragmentHistoryResponse: A list of documents with the fragment history.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
