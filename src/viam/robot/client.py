@@ -108,8 +108,8 @@ class RobotClient:
     class Options:
         refresh_interval: int = 0
         """
-        How often to refresh the status/parts of the robot in seconds.
-        If not set, the robot will not be refreshed automatically
+        How often to refresh the status of the parts of the machine in seconds.
+        If not set, the machine will not be refreshed automatically
         """
 
         dial_options: Optional[DialOptions] = None
@@ -124,7 +124,7 @@ class RobotClient:
 
         check_connection_interval: int = 10
         """
-        The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks
+        The frequency (in seconds) at which to check if the machine is still connected. 0 (zero) signifies no connection checks
         """
 
         attempt_reconnect_interval: int = 1
@@ -172,7 +172,7 @@ class RobotClient:
 
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
-        """Create a robot client that is connected to the robot at the provided address.
+        """Create a robot client that is connected to the machine at the provided address.
 
         ::
 
@@ -192,7 +192,7 @@ class RobotClient:
                 robot = await connect()
 
         Args:
-            address (str): Address of the robot (IP address, URL, etc.)
+            address (str): Address of the machine (IP address, URL, etc.)
             options (Options): Options for connecting and refreshing
 
         Returns:
@@ -264,9 +264,9 @@ class RobotClient:
         try:
             await self.refresh()
         except Exception:
-            LOGGER.error("Unable to establish a connection to the robot. Ensure the robot is online and reachable and try again.")
+            LOGGER.error("Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.")
             await self.close()
-            raise ConnectionError("Unable to establish a connection to the robot.")
+            raise ConnectionError("Unable to establish a connection to the machine.")
 
         if options.refresh_interval > 0:
             self._refresh_task = asyncio.create_task(
@@ -631,7 +631,7 @@ class RobotClient:
 
     async def get_operations(self) -> List[Operation]:
         """
-        Get the list of operations currently running on the robot.
+        Get the list of operations currently running on the machine.
 
         ::
 
@@ -648,7 +648,7 @@ class RobotClient:
 
     async def cancel_operation(self, id: str):
         """
-        Cancels the specified operation on the robot.
+        Cancels the specified operation on the machine.
 
         ::
 
@@ -664,7 +664,7 @@ class RobotClient:
 
     async def block_for_operation(self, id: str):
         """
-        Blocks on the specified operation on the robot. This function will only return when the specific operation
+        Blocks on the specified operation on the machine. This function will only return when the specific operation
         has finished or has been cancelled.
 
         ::
@@ -770,11 +770,11 @@ class RobotClient:
 
     async def stop_all(self, extra: Dict[ResourceName, Dict[str, Any]] = {}):
         """
-        Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+        Cancel all current and outstanding operations for the machine and stop all actuators and movement.
 
         ::
 
-            # Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+            # Cancel all current and outstanding operations for the machine and stop all actuators and movement.
             await robot.stop_all()
 
         ::
@@ -822,7 +822,7 @@ class RobotClient:
 
     async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
         """
-        Get app-related information about the robot.
+        Get app-related information about the machine.
 
         ::
 
@@ -879,7 +879,7 @@ class RobotClient:
 
     async def get_version(self) -> GetVersionResponse:
         """
-        Get version information about the robot.
+        Get version information about the machine.
 
         ::
 
@@ -903,7 +903,7 @@ class RobotClient:
 
     async def get_machine_status(self) -> GetMachineStatusResponse:
         """
-        Get status information about the robot.
+        Get status information about the machine.
 
         ::
 
@@ -911,7 +911,7 @@ class RobotClient:
             resource_statuses = machine_status.resources
 
         Returns:
-            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the robot.
+            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the machine.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
