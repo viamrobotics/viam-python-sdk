@@ -82,8 +82,8 @@ Module Contents
          :value: 0
 
 
-         How often to refresh the status/parts of the robot in seconds.
-         If not set, the robot will not be refreshed automatically
+         How often to refresh the status of the parts of the machine in seconds.
+         If not set, the machine will not be refreshed automatically
 
 
       .. py:attribute:: dial_options
@@ -105,7 +105,7 @@ Module Contents
          :value: 10
 
 
-         The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks
+         The frequency (in seconds) at which to check if the machine is still connected. 0 (zero) signifies no connection checks
 
 
       .. py:attribute:: attempt_reconnect_interval
@@ -162,7 +162,7 @@ Module Contents
       :async:
 
 
-      Create a robot client that is connected to the robot at the provided address.
+      Create a robot client that is connected to the machine at the provided address.
 
       ::
 
@@ -181,7 +181,7 @@ Module Contents
               # Make a RobotClient
               robot = await connect()
 
-      :param address: Address of the robot (IP address, URL, etc.)
+      :param address: Address of the machine (IP address, URL, etc.)
       :type address: str
       :param options: Options for connecting and refreshing
       :type options: Options
@@ -399,7 +399,7 @@ Module Contents
       :async:
 
 
-      Get the list of operations currently running on the robot.
+      Get the list of operations currently running on the machine.
 
       ::
 
@@ -416,7 +416,7 @@ Module Contents
       :async:
 
 
-      Cancels the specified operation on the robot.
+      Cancels the specified operation on the machine.
 
       ::
 
@@ -433,7 +433,7 @@ Module Contents
       :async:
 
 
-      Blocks on the specified operation on the robot. This function will only return when the specific operation
+      Blocks on the specified operation on the machine. This function will only return when the specific operation
       has finished or has been cancelled.
 
       ::
@@ -526,11 +526,11 @@ Module Contents
       :async:
 
 
-      Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+      Cancel all current and outstanding operations for the machine and stop all actuators and movement.
 
       ::
 
-          # Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+          # Cancel all current and outstanding operations for the machine and stop all actuators and movement.
           await robot.stop_all()
 
       ::
@@ -572,7 +572,7 @@ Module Contents
       :async:
 
 
-      Get app-related information about the robot.
+      Get app-related information about the machine.
 
       ::
 
@@ -608,7 +608,7 @@ Module Contents
       :async:
 
 
-      Get version information about the robot.
+      Get version information about the machine.
 
       ::
 
@@ -628,14 +628,14 @@ Module Contents
       :async:
 
 
-      Get status information about the robot.
+      Get status information about the machine.
 
       ::
 
           machine_status = await machine.get_machine_status()
           resource_statuses = machine_status.resources
 
-      :returns: current status of the resources (List[ResourceStatus]) of the robot.
+      :returns: current status of the resources (List[ResourceStatus]) of the machine.
       :rtype: viam.proto.robot.GetMachineStatusResponse
 
       For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.

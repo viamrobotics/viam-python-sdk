@@ -198,8 +198,8 @@
     <span class="k">class</span> <span class="nc">Options</span><span class="p">:</span>
         <span class="n">refresh_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        How often to refresh the status/parts of the robot in seconds.</span>
-<span class="sd">        If not set, the robot will not be refreshed automatically</span>
+<span class="sd">        How often to refresh the status of the parts of the machine in seconds.</span>
+<span class="sd">        If not set, the machine will not be refreshed automatically</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">dial_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -214,7 +214,7 @@
 
         <span class="n">check_connection_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks</span>
+<span class="sd">        The frequency (in seconds) at which to check if the machine is still connected. 0 (zero) signifies no connection checks</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">attempt_reconnect_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
@@ -262,7 +262,7 @@
 
 <div class="viewcode-block" id="RobotClient.at_address"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.at_address">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">at_address</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot client that is connected to the robot at the provided address.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot client that is connected to the machine at the provided address.</span>
 
 <span class="sd">        ::</span>
 
@@ -282,7 +282,7 @@
 <span class="sd">                robot = await connect()</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            address (str): Address of the robot (IP address, URL, etc.)</span>
+<span class="sd">            address (str): Address of the machine (IP address, URL, etc.)</span>
 <span class="sd">            options (Options): Options for connecting and refreshing</span>
 
 <span class="sd">        Returns:</span>
@@ -354,9 +354,9 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the robot. Ensure the robot is online and reachable and try again.&quot;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.&quot;</span><span class="p">)</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the robot.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the machine.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
@@ -721,7 +721,7 @@
 
 <div class="viewcode-block" id="RobotClient.get_operations"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_operations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Operation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the list of operations currently running on the robot.</span>
+<span class="sd">        Get the list of operations currently running on the machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -738,7 +738,7 @@
 
 <div class="viewcode-block" id="RobotClient.cancel_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.cancel_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cancels the specified operation on the robot.</span>
+<span class="sd">        Cancels the specified operation on the machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -754,7 +754,7 @@
 
 <div class="viewcode-block" id="RobotClient.block_for_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.block_for_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_for_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Blocks on the specified operation on the robot. This function will only return when the specific operation</span>
+<span class="sd">        Blocks on the specified operation on the machine. This function will only return when the specific operation</span>
 <span class="sd">        has finished or has been cancelled.</span>
 
 <span class="sd">        ::</span>
@@ -860,11 +860,11 @@
 
 <div class="viewcode-block" id="RobotClient.stop_all"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.stop_all">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+<span class="sd">        Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+<span class="sd">            # Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
 <span class="sd">            await robot.stop_all()</span>
 
 <span class="sd">        ::</span>
@@ -912,7 +912,7 @@
 
 <div class="viewcode-block" id="RobotClient.get_cloud_metadata"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_cloud_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_cloud_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCloudMetadataResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get app-related information about the robot.</span>
+<span class="sd">        Get app-related information about the machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -969,7 +969,7 @@
 
 <div class="viewcode-block" id="RobotClient.get_version"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_version">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetVersionResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get version information about the robot.</span>
+<span class="sd">        Get version information about the machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -993,7 +993,7 @@
 
 <div class="viewcode-block" id="RobotClient.get_machine_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_machine_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_machine_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetMachineStatusResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get status information about the robot.</span>
+<span class="sd">        Get status information about the machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -1001,7 +1001,7 @@
 <span class="sd">            resource_statuses = machine_status.resources</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the robot.</span>
+<span class="sd">            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the machine.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
