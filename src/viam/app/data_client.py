@@ -835,19 +835,19 @@ class DataClient:
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
         await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
 
-    async def create_dataset(self, name: str, organization_id: str) -> str:
+    async def create_dataset(self, dataset_id: str, organization_id: str) -> str:
         """Create a new dataset.
 
         ::
 
-            name = await data_client.create_dataset(
+            dataset_id = await data_client.create_dataset(
                 name="<dataset-name>",
                 organization_id="<your-org-id>"
             )
-            print(name)
+            print(dataset_id)
 
         Args:
-            name (str): The name of the dataset being created.
+            dataset_id (str): The id of the created dataset.
             organization_id (str): The ID of the organization where the dataset is being created.
                 You can obtain your organization ID from the Viam app's organization settings page.
 
