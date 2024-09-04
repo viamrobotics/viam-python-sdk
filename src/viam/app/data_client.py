@@ -762,7 +762,7 @@ class DataClient:
 
         Args:
             bbox_id (str): The ID of the bounding box to remove.
-            binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from.
+            binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to remove the bounding box from.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
