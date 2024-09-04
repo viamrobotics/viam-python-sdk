@@ -113,8 +113,8 @@ class Base(ComponentBase):
         **kwargs,
     ):
         """Set the linear and angular velocity of the Base
-        When ``linear`` is 0, the the base will spin.
-        When ``angular`` is 0, the the base will move in a straight line.
+        When ``linear`` is 0, the base will spin.
+        When ``angular`` is 0, the base will move in a straight line.
         When both ``linear`` and ``angular`` are 0, the base will stop.
         When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,
         with a tighter radius if angular power is greater than linear power.

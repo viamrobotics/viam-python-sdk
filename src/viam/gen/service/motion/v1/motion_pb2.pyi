@@ -476,7 +476,7 @@ class GetPlanRequest(google.protobuf.message.Message):
     name: builtins.str
     'The name of the motion service'
     last_plan_only: builtins.bool
-    'If supplied, the response will only return\n    the the last plan for the component / execution\n    '
+    'If supplied, the response will only return\n    the last plan for the component / execution\n    '
     execution_id: builtins.str
     'If you want to know about the plans of a previous execution'
 

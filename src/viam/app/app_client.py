@@ -1442,7 +1442,7 @@ class AppClient:
                 robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart")
 
         Args:
-            robot_id (str): ID of the the robot to create a new part for.
+            robot_id (str): ID of the robot to create a new part for.
             part_name (str): Name of the new part.
 
         Raises:

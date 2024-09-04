@@ -40,7 +40,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         """Get the readings from the specific sensors provided
 
         Args:
-            sensors (List[viam.proto.common.ResourceName]): The ``ResourceName`` of the the ``Sensor`` resources to get readings from
+            sensors (List[viam.proto.common.ResourceName]): The ``ResourceName`` of the ``Sensor`` resources to get readings from
 
         Returns:
             Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by ``ResourceName``
