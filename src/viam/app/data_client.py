@@ -847,7 +847,7 @@ class DataClient:
             print(dataset_id)
 
         Args:
-            dataset_id (str): The id of the created dataset.
+            name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
                 You can obtain your organization ID from the Viam app's organization settings page.
 
