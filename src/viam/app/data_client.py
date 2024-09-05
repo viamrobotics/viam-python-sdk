@@ -835,7 +835,7 @@ class DataClient:
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
         await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
 
-    async def create_dataset(self, dataset_id: str, organization_id: str) -> str:
+    async def create_dataset(self, name: str, organization_id: str) -> str:
         """Create a new dataset.
 
         ::
