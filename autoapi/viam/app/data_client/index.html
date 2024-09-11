@@ -423,8 +423,8 @@ str: The last-returned page ID.</p>
 <dd><p>Filter and download binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -533,8 +533,8 @@ all data being deleted. Exercise caution when using this option.</p>
 <dd><p>Filter and delete binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -576,8 +576,8 @@ all data being deleted. Exercise caution when using this option.</p>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -642,8 +642,8 @@ tagged.</p></li>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1011,8 +1011,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <p>This BinaryData will be tagged with the VIAM_DATASET_{id} label.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_binary_ids</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1052,8 +1052,8 @@ click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset
 <p>This BinaryData will lose the VIAM_DATASET_{id} tag.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
-    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_binary_ids</span> <span class="o">=</span> <span class="p">[]</span>
