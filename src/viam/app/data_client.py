@@ -840,11 +840,11 @@ class DataClient:
 
         ::
 
-            name = await data_client.create_dataset(
+            dataset_id = await data_client.create_dataset(
                 name="<dataset-name>",
                 organization_id="<your-org-id>"
             )
-            print(name)
+            print(dataset_id)
 
         Args:
             name (str): The name of the dataset being created.
