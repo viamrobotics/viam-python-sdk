@@ -146,7 +146,7 @@
 
 
 <div class="viewcode-block" id="RobotClient"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient">[docs]</a><span class="k">class</span> <span class="nc">RobotClient</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for a Robot. This class should be used for all interactions with a robot.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for a machine. This class should be used for all interactions with a machine.</span>
 
 <span class="sd">    There are 2 ways to instantiate a robot client::</span>
 
@@ -155,12 +155,12 @@
 
 <span class="sd">    You can use the client standalone or within a context::</span>
 
-<span class="sd">        robot = await RobotClient.at_address(...)</span>
-<span class="sd">        async with await RobotClient.with_channel(...) as robot: ...</span>
+<span class="sd">        machine = await RobotClient.at_address(...)</span>
+<span class="sd">        async with await RobotClient.with_channel(...) as machine: ...</span>
 
-<span class="sd">    You must ``close()`` the robot to release resources.</span>
+<span class="sd">    You must ``close()`` the machine to release resources.</span>
 
-<span class="sd">    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are</span>
+<span class="sd">    Note: Machines used within a context are automatically closed UNLESS created with a channel. Machines created using ``with_channel`` are</span>
 <span class="sd">    not automatically closed.</span>
 
 <span class="sd">    Establish a Connection::</span>
@@ -183,10 +183,10 @@
 
 <span class="sd">        async def main():</span>
 <span class="sd">            # Make a RobotClient</span>
-<span class="sd">            robot = await connect()</span>
+<span class="sd">            machine = await connect()</span>
 <span class="sd">            print(&#39;Resources:&#39;)</span>
-<span class="sd">            print(robot.resource_names)</span>
-<span class="sd">            await robot.close()</span>
+<span class="sd">            print(machine.resource_names)</span>
+<span class="sd">            await machine.close()</span>
 
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
@@ -219,7 +219,7 @@
 
         <span class="n">attempt_reconnect_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts</span>
+<span class="sd">        The frequency (in seconds) at which to attempt to reconnect a disconnected machine. 0 (zero) signifies no reconnection attempts</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">disable_sessions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -241,7 +241,7 @@
 
 <span class="sd">                opts = RobotClient.Options.with_api_key(api_key, api_key_id)</span>
 
-<span class="sd">                robot = await RobotClient.at_address(&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;, opts)</span>
+<span class="sd">                machine = await RobotClient.at_address(&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;, opts)</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                api_key (str): your API key</span>
@@ -279,7 +279,7 @@
 
 <span class="sd">            async def main():</span>
 <span class="sd">                # Make a RobotClient</span>
-<span class="sd">                robot = await connect()</span>
+<span class="sd">                machine = await connect()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            address (str): Address of the machine (IP address, URL, etc.)</span>
@@ -292,15 +292,15 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">)</span>
-        <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">robot</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span>
-        <span class="k">return</span> <span class="n">robot</span></div>
+        <span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">machine</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="k">return</span> <span class="n">machine</span></div>
 
 <div class="viewcode-block" id="RobotClient.with_channel"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.with_channel">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">with_channel</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Channel</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">],</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot that is connected to a robot over the given channel.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a machine that is connected to a machine over the given channel.</span>
 
-<span class="sd">        Any robots created using this method will *NOT* automatically close the channel upon exit.</span>
+<span class="sd">        Any machines created using this method will *NOT* automatically close the channel upon exit.</span>
 
 <span class="sd">        ::</span>
 
@@ -312,10 +312,10 @@
 <span class="sd">                async with await dial(&#39;ADDRESS&#39;, DialOptions()) as channel:</span>
 <span class="sd">                    return await RobotClient.with_channel(channel, RobotClient.Options())</span>
 
-<span class="sd">            robot = await connect_with_channel()</span>
+<span class="sd">            machine = await connect_with_channel()</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``</span>
+<span class="sd">            channel (ViamChannel): The channel that is connected to a machine, obtained by ``viam.rpc.dial``</span>
 <span class="sd">            options (Options): Options for refreshing. Any connection options will be ignored.</span>
 
 <span class="sd">        Returns:</span>
@@ -388,11 +388,11 @@
 
 <div class="viewcode-block" id="RobotClient.refresh"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.refresh">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Manually refresh the underlying parts of this robot</span>
+<span class="sd">        Manually refresh the underlying parts of this machine.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await robot.refresh()</span>
+<span class="sd">            await machine.refresh()</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -467,7 +467,7 @@
                     <span class="n">connection_error</span> <span class="o">=</span> <span class="n">e</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">connection_error</span><span class="p">:</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Lost connection to robot.&quot;</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Lost connection to machine.&quot;</span>
                 <span class="k">if</span> <span class="n">reconnect_every</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">+=</span> <span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot; Attempting to reconnect to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="si">}</span><span class="s2"> every </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2"> second</span><span class="si">{</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">reconnect_every</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -514,7 +514,7 @@
 
                     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully reconnected robot&quot;</span><span class="p">)</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully reconnected machine&quot;</span><span class="p">)</span>
                     <span class="k">break</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to reconnect, trying again in </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2">sec&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
@@ -529,7 +529,7 @@
 <span class="sd">        method for obtaining components.</span>
 <span class="sd">        ::</span>
 
-<span class="sd">            arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">        Because this function returns a generic ``ComponentBase`` rather than the specific</span>
 <span class="sd">        component type, it will be necessary to cast the returned component to the desired component. This can be done using a few</span>
@@ -537,14 +537,14 @@
 
 <span class="sd">        - Assertion::</span>
 
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
+<span class="sd">            arm = machine.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
 <span class="sd">            assert isinstance(arm, Arm)</span>
 <span class="sd">            end_pos = await arm.get_end_position()</span>
 
 <span class="sd">        - Explicit cast::</span>
 
 <span class="sd">            from typing import cast</span>
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
+<span class="sd">            arm = machine.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
 <span class="sd">            arm = cast(Arm, arm)</span>
 <span class="sd">            end_pos = await arm.get_end_position()</span>
 
@@ -553,7 +553,7 @@
 <span class="sd">            - Note: If using an IDE, a type error may be shown which can be ignored.</span>
 <span class="sd">            ::</span>
 
-<span class="sd">                arm: Arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))  # type: ignore</span>
+<span class="sd">                arm: Arm = machine.get_component(Arm.get_resource_name(&quot;my_arm&quot;))  # type: ignore</span>
 <span class="sd">                end_pos = await arm.get_end_position()</span>
 
 <span class="sd">        Args:</span>
@@ -580,20 +580,20 @@
 <span class="sd">        method for obtaining services.</span>
 <span class="sd">        ::</span>
 
-<span class="sd">            service = MyService.from_robot(robot=robot, name=&quot;my_service&quot;)</span>
+<span class="sd">            service = MyService.from_robot(robot=machine, name=&quot;my_service&quot;)</span>
 
 <span class="sd">        Because this function returns a generic ``ServiceBase`` rather than a specific service type, it will be necessary to cast the</span>
 <span class="sd">        returned service to the desired service. This can be done using a few methods:</span>
 
 <span class="sd">        - Assertion::</span>
 
-<span class="sd">            service = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
+<span class="sd">            service = machine.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
 <span class="sd">            assert isinstance(service, MyService)</span>
 
 <span class="sd">        - Explicit cast::</span>
 
 <span class="sd">            from typing import cast</span>
-<span class="sd">            service = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
+<span class="sd">            service = machine.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
 <span class="sd">            service = cast(MyService, my_service)</span>
 
 <span class="sd">        - Declare type on variable assignment</span>
@@ -601,7 +601,7 @@
 <span class="sd">            - Note: If using an IDE, a type error may be shown which can be ignored.</span>
 <span class="sd">            ::</span>
 
-<span class="sd">                service: MyService = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))  # type: ignore</span>
+<span class="sd">                service: MyService = machine.get_service(MyService.get_resource_name(&quot;my_service&quot;))  # type: ignore</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (viam.proto.common.ResourceName): The service&#39;s ResourceName</span>
@@ -627,7 +627,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            resource_names = robot.resource_names</span>
+<span class="sd">            resource_names = machine.resource_names</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.common.ResourceName]: The list of resource names</span>
@@ -652,7 +652,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await robot.close()</span>
+<span class="sd">            await machine.close()</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -699,7 +699,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            # Get the status of the resources on the machine.</span>
-<span class="sd">            statuses = await robot.get_status()</span>
+<span class="sd">            statuses = await machine.get_status()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of</span>
@@ -725,10 +725,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            operations = await robot.get_operations()</span>
+<span class="sd">            operations = await machine.get_operations()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.</span>
+<span class="sd">            List[viam.proto.robot.Operation]: The list of operations currently running on a given machine.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -742,7 +742,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await robot.cancel_operation(&quot;INSERT OPERATION ID&quot;)</span>
+<span class="sd">            await machine.cancel_operation(&quot;INSERT OPERATION ID&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): ID of operation to cancel.</span>
@@ -759,7 +759,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await robot.block_for_operation(&quot;INSERT OPERATION ID&quot;)</span>
+<span class="sd">            await machine.block_for_operation(&quot;INSERT OPERATION ID&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): ID of operation to block on.</span>
@@ -775,16 +775,16 @@
 
 <div class="viewcode-block" id="RobotClient.get_frame_system_config"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_frame_system_config">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame_system_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">FrameSystemConfig</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the configuration of the frame system of a given robot.</span>
+<span class="sd">        Get the configuration of the frame system of a given machine.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            # Get a list of each of the reference frames configured on the machine.</span>
-<span class="sd">            frame_system = await robot.get_frame_system_config()</span>
+<span class="sd">            frame_system = await machine.get_frame_system_config()</span>
 <span class="sd">            print(f&quot;frame system configuration: {frame_system}&quot;)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot&#39;s frame system.</span>
+<span class="sd">            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given machine&#39;s frame system.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -800,7 +800,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            pose = await robot.transform_pose(PoseInFrame(), &quot;origin&quot;)</span>
+<span class="sd">            pose = await machine.transform_pose(PoseInFrame(), &quot;origin&quot;)</span>
 
 <span class="sd">        Args:</span>
 
@@ -833,13 +833,13 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            # Define a new discovery query.</span>
-<span class="sd">            q = robot.DiscoveryQuery(subtype=acme.API, model=&quot;some model&quot;)</span>
+<span class="sd">            q = machine.DiscoveryQuery(subtype=acme.API, model=&quot;some model&quot;)</span>
 
 <span class="sd">            # Define a list of discovery queries.</span>
 <span class="sd">            qs = [q]</span>
 
 <span class="sd">            # Get component configurations with these queries.</span>
-<span class="sd">            component_configs = await robot.discover_components(qs)</span>
+<span class="sd">            component_configs = await machine.discover_components(qs)</span>
 
 <span class="sd">        Args:</span>
 
@@ -865,11 +865,11 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            # Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
-<span class="sd">            await robot.stop_all()</span>
+<span class="sd">            await machine.stop_all()</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await robot.stop_all()</span>
+<span class="sd">            await machine.stop_all()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources&#39; ``stop`` methods,</span>
@@ -939,10 +939,14 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Shutdown shuts down the machine.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            machine.shutdown()</span>
+
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if</span>
-<span class="sd">              robot server shuts down before having a chance to send a response. Raised with</span>
-<span class="sd">              status Unavailable if server is unavailable, or if robot server is in the process of</span>
+<span class="sd">              the machine server shuts down before having a chance to send a response. Raised with</span>
+<span class="sd">              status Unavailable if server is unavailable, or if machine server is in the process of</span>
 <span class="sd">              shutting down when response is ready.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
@@ -979,7 +983,7 @@
 <span class="sd">            print(result.api_version)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.robot.GetVersionResponse: Robot version related information.</span>
+<span class="sd">            viam.proto.robot.GetVersionResponse: Machine version related information.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

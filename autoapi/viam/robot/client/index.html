@@ -159,7 +159,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotClient</span></code></a></p></td>
-<td><p>gRPC client for a Robot. This class should be used for all interactions with a robot.</p></td>
+<td><p>gRPC client for a machine. This class should be used for all interactions with a machine.</p></td>
 </tr>
 </tbody>
 </table>
@@ -174,19 +174,19 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.robot.client.</span></span><span class="sig-name descname"><span class="pre">RobotClient</span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for a Robot. This class should be used for all interactions with a robot.</p>
+<dd><p>gRPC client for a machine. This class should be used for all interactions with a machine.</p>
 <p>There are 2 ways to instantiate a robot client:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can use the client standalone or within a context:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span> <span class="o">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">machine</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
 </div>
-<p>You must <code class="docutils literal notranslate"><span class="pre">close()</span></code> the robot to release resources.</p>
-<p>Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using <code class="docutils literal notranslate"><span class="pre">with_channel</span></code> are
+<p>You must <code class="docutils literal notranslate"><span class="pre">close()</span></code> the machine to release resources.</p>
+<p>Note: Machines used within a context are automatically closed UNLESS created with a channel. Machines created using <code class="docutils literal notranslate"><span class="pre">with_channel</span></code> are
 not automatically closed.</p>
 <p>Establish a Connection:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
@@ -207,10 +207,10 @@ not automatically closed.</p>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># Make a RobotClient</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resources:&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">machine</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
@@ -248,7 +248,7 @@ If not set, the machine will not be refreshed automatically</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.attempt_reconnect_interval">
 <span class="sig-name descname"><span class="pre">attempt_reconnect_interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#viam.robot.client.RobotClient.Options.attempt_reconnect_interval" title="Permalink to this definition"></a></dt>
-<dd><p>The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts</p>
+<dd><p>The frequency (in seconds) at which to attempt to reconnect a disconnected machine. 0 (zero) signifies no reconnection attempts</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -268,7 +268,7 @@ If not set, the machine will not be refreshed automatically</p>
 
 <span class="n">opts</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">)</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+<span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -314,7 +314,7 @@ If not set, the machine will not be refreshed automatically</p>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># Make a RobotClient</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -341,8 +341,8 @@ If not set, the machine will not be refreshed automatically</p>
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<p>Create a robot that is connected to a robot over the given channel.</p>
-<p>Any robots created using this method will <em>NOT</em> automatically close the channel upon exit.</p>
+<p>Create a machine that is connected to a machine over the given channel.</p>
+<p>Any machines created using this method will <em>NOT</em> automatically close the channel upon exit.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
 
@@ -351,13 +351,13 @@ If not set, the machine will not be refreshed automatically</p>
     <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s1">&#39;ADDRESS&#39;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">())</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">())</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
+<span class="n">machine</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><em>ViamChannel</em></a>) – The channel that is connected to a robot, obtained by <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial</span></code></p></li>
+<li><p><strong>channel</strong> (<a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><em>ViamChannel</em></a>) – The channel that is connected to a machine, obtained by <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial</span></code></p></li>
 <li><p><strong>options</strong> (<a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><em>Options</em></a>) – Options for refreshing. Any connection options will be ignored.</p></li>
 </ul>
 </dd>
@@ -374,8 +374,8 @@ If not set, the machine will not be refreshed automatically</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.refresh">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.refresh" title="Permalink to this definition"></a></dt>
-<dd><p>Manually refresh the underlying parts of this robot</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+<dd><p>Manually refresh the underlying parts of this machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
@@ -387,7 +387,7 @@ If not set, the machine will not be refreshed automatically</p>
 <dd><p>Get a component using its ResourceName.</p>
 <p>This function should not be called directly except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Component.from_robot(...)</span></code> is the preferred
 method for obtaining components.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Because this function returns a generic <code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code> rather than the specific
@@ -395,7 +395,7 @@ component type, it will be necessary to cast the returned component to the desir
 different methods:</p>
 <ul>
 <li><p>Assertion:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arm</span><span class="p">,</span> <span class="n">Arm</span><span class="p">)</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
@@ -403,7 +403,7 @@ different methods:</p>
 </li>
 <li><p>Explicit cast:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
-<span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
 <span class="n">arm</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Arm</span><span class="p">,</span> <span class="n">arm</span><span class="p">)</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
@@ -414,7 +414,7 @@ different methods:</p>
 <div><ul class="simple">
 <li><p>Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -447,21 +447,21 @@ different methods:</p>
 <dd><p>Get a service using its ResourceName</p>
 <p>This function should not be called directly except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Service.from_robot(...)</span></code> is the preferred
 method for obtaining services.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">MyService</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">MyService</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_service&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Because this function returns a generic <code class="docutils literal notranslate"><span class="pre">ServiceBase</span></code> rather than a specific service type, it will be necessary to cast the
 returned service to the desired service. This can be done using a few methods:</p>
 <ul>
 <li><p>Assertion:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">MyService</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>Explicit cast:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
-<span class="n">service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MyService</span><span class="p">,</span> <span class="n">my_service</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -471,7 +471,7 @@ returned service to the desired service. This can be done using a few methods:</
 <div><ul class="simple">
 <li><p>Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span><span class="p">:</span> <span class="n">MyService</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span><span class="p">:</span> <span class="n">MyService</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -501,7 +501,7 @@ returned service to the desired service. This can be done using a few methods:</
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.resource_names">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.client.RobotClient.resource_names" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of all resource names</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_names</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_names</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">resource_names</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -519,7 +519,7 @@ returned service to the desired service. This can be done using a few methods:</
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.close">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.close" title="Permalink to this definition"></a></dt>
 <dd><p>Cleanly close the underlying connections and stop any periodic tasks.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
@@ -541,7 +541,7 @@ returned service to the desired service. This can be done using a few methods:</
 <dd><p>Get the status of the machine’s components. You can optionally
 provide a list of <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> for which you want statuses.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the status of the resources on the machine.</span>
-<span class="n">statuses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+<span class="n">statuses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -563,12 +563,12 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_operations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Operation" title="viam.proto.robot.Operation"><span class="pre">viam.proto.robot.Operation</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_operations" title="Permalink to this definition"></a></dt>
 <dd><p>Get the list of operations currently running on the machine.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_operations</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_operations</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The list of operations currently running on a given robot.</p>
+<dd class="field-odd"><p>The list of operations currently running on a given machine.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Operation" title="viam.proto.robot.Operation">viam.proto.robot.Operation</a>]</p>
@@ -581,7 +581,7 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.cancel_operation">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.cancel_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.cancel_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Cancels the specified operation on the machine.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">cancel_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">cancel_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -597,7 +597,7 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">block_for_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.block_for_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.block_for_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Blocks on the specified operation on the machine. This function will only return when the specific operation
 has finished or has been cancelled.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">block_for_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">block_for_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -611,15 +611,15 @@ has finished or has been cancelled.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_frame_system_config">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame_system_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig"><span class="pre">viam.proto.robot.FrameSystemConfig</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_frame_system_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_frame_system_config" title="Permalink to this definition"></a></dt>
-<dd><p>Get the configuration of the frame system of a given robot.</p>
+<dd><p>Get the configuration of the frame system of a given machine.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of each of the reference frames configured on the machine.</span>
-<span class="n">frame_system</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_frame_system_config</span><span class="p">()</span>
+<span class="n">frame_system</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_frame_system_config</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;frame system configuration: </span><span class="si">{</span><span class="n">frame_system</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The configuration of a given robot’s frame system.</p>
+<dd class="field-odd"><p>The configuration of a given machine’s frame system.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig">viam.proto.robot.FrameSystemConfig</a>]</p>
@@ -632,7 +632,7 @@ has finished or has been cancelled.</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pose">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pose" title="Permalink to this definition"></a></dt>
 <dd><p>Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">transform_pose</span><span class="p">(</span><span class="n">PoseInFrame</span><span class="p">(),</span> <span class="s2">&quot;origin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">transform_pose</span><span class="p">(</span><span class="n">PoseInFrame</span><span class="p">(),</span> <span class="s2">&quot;origin&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -666,13 +666,13 @@ has finished or has been cancelled.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><span class="pre">viam.proto.robot.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Discovery" title="viam.proto.robot.Discovery"><span class="pre">viam.proto.robot.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.discover_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
 <dd><p>Get the list of discovered component configurations.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new discovery query.</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="n">acme</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;some model&quot;</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="n">acme</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;some model&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define a list of discovery queries.</span>
 <span class="n">qs</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">]</span>
 
 <span class="c1"># Get component configurations with these queries.</span>
-<span class="n">component_configs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">discover_components</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span>
+<span class="n">component_configs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">discover_components</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -694,10 +694,10 @@ has finished or has been cancelled.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.stop_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.stop_all" title="Permalink to this definition"></a></dt>
 <dd><p>Cancel all current and outstanding operations for the machine and stop all actuators and movement.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
-<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -754,11 +754,14 @@ keyed on the resource’s <code class="docutils literal notranslate"><span class
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.shutdown">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.shutdown" title="Permalink to this definition"></a></dt>
 <dd><p>Shutdown shuts down the machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">machine</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>GRPCError</strong> – Raised with DeadlineExceeded status if shutdown request times out, or if
-robot server shuts down before having a chance to send a response. Raised with
-status Unavailable if server is unavailable, or if robot server is in the process of
+the machine server shuts down before having a chance to send a response. Raised with
+status Unavailable if server is unavailable, or if machine server is in the process of
 shutting down when response is ready.</p>
 </dd>
 </dl>
@@ -777,7 +780,7 @@ shutting down when response is ready.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Robot version related information.</p>
+<dd class="field-odd"><p>Machine version related information.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetVersionResponse" title="viam.proto.robot.GetVersionResponse">viam.proto.robot.GetVersionResponse</a></p>
