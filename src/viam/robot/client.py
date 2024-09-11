@@ -56,7 +56,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 class RobotClient:
-    """gRPC client for a Robot. This class should be used for all interactions with a robot.
+    """gRPC client for a machine. This class should be used for all interactions with a machine.
 
     There are 2 ways to instantiate a robot client::
 
@@ -65,12 +65,12 @@ class RobotClient:
 
     You can use the client standalone or within a context::
 
-        robot = await RobotClient.at_address(...)
-        async with await RobotClient.with_channel(...) as robot: ...
+        machine = await RobotClient.at_address(...)
+        async with await RobotClient.with_channel(...) as machine: ...
 
-    You must ``close()`` the robot to release resources.
+    You must ``close()`` the machine to release resources.
 
-    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are
+    Note: Machines used within a context are automatically closed UNLESS created with a channel. Machines created using ``with_channel`` are
     not automatically closed.
 
     Establish a Connection::
@@ -93,10 +93,10 @@ class RobotClient:
 
         async def main():
             # Make a RobotClient
-            robot = await connect()
+            machine = await connect()
             print('Resources:')
-            print(robot.resource_names)
-            await robot.close()
+            print(machine.resource_names)
+            await machine.close()
 
         if __name__ == '__main__':
             asyncio.run(main())
@@ -129,7 +129,7 @@ class RobotClient:
 
         attempt_reconnect_interval: int = 1
         """
-        The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
+        The frequency (in seconds) at which to attempt to reconnect a disconnected machine. 0 (zero) signifies no reconnection attempts
         """
 
         disable_sessions: bool = False
@@ -151,7 +151,7 @@ class RobotClient:
 
                 opts = RobotClient.Options.with_api_key(api_key, api_key_id)
 
-                robot = await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
+                machine = await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
             Args:
                 api_key (str): your API key
@@ -189,7 +189,7 @@ class RobotClient:
 
             async def main():
                 # Make a RobotClient
-                robot = await connect()
+                machine = await connect()
 
         Args:
             address (str): Address of the machine (IP address, URL, etc.)
@@ -202,15 +202,15 @@ class RobotClient:
         """
         logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
-        robot = await cls._with_channel(channel, options, True)
-        robot._address = address
-        return robot
+        machine = await cls._with_channel(channel, options, True)
+        machine._address = address
+        return machine
 
     @classmethod
     async def with_channel(cls, channel: Union[Channel, ViamChannel], options: Options) -> Self:
-        """Create a robot that is connected to a robot over the given channel.
+        """Create a machine that is connected to a machine over the given channel.
 
-        Any robots created using this method will *NOT* automatically close the channel upon exit.
+        Any machines created using this method will *NOT* automatically close the channel upon exit.
 
         ::
 
@@ -222,10 +222,10 @@ class RobotClient:
                 async with await dial('ADDRESS', DialOptions()) as channel:
                     return await RobotClient.with_channel(channel, RobotClient.Options())
 
-            robot = await connect_with_channel()
+            machine = await connect_with_channel()
 
         Args:
-            channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``
+            channel (ViamChannel): The channel that is connected to a machine, obtained by ``viam.rpc.dial``
             options (Options): Options for refreshing. Any connection options will be ignored.
 
         Returns:
@@ -298,11 +298,11 @@ class RobotClient:
 
     async def refresh(self):
         """
-        Manually refresh the underlying parts of this robot
+        Manually refresh the underlying parts of this machine.
 
         ::
 
-            await robot.refresh()
+            await machine.refresh()
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
@@ -377,7 +377,7 @@ class RobotClient:
                     connection_error = e
                     await asyncio.sleep(0.1)
             if connection_error:
-                msg = "Lost connection to robot."
+                msg = "Lost connection to machine."
                 if reconnect_every > 0:
                     msg += (
                         f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
@@ -424,7 +424,7 @@ class RobotClient:
 
                     await self.refresh()
                     self._connected = True
-                    LOGGER.debug("Successfully reconnected robot")
+                    LOGGER.debug("Successfully reconnected machine")
                     break
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
@@ -439,7 +439,7 @@ class RobotClient:
         method for obtaining components.
         ::
 
-            arm = Arm.from_robot(robot=robot, name="my_arm")
+            arm = Arm.from_robot(robot=machine, name="my_arm")
 
         Because this function returns a generic ``ComponentBase`` rather than the specific
         component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
@@ -447,14 +447,14 @@ class RobotClient:
 
         - Assertion::
 
-            arm = robot.get_component(Arm.get_resource_name("my_arm"))
+            arm = machine.get_component(Arm.get_resource_name("my_arm"))
             assert isinstance(arm, Arm)
             end_pos = await arm.get_end_position()
 
         - Explicit cast::
 
             from typing import cast
-            arm = robot.get_component(Arm.get_resource_name("my_arm"))
+            arm = machine.get_component(Arm.get_resource_name("my_arm"))
             arm = cast(Arm, arm)
             end_pos = await arm.get_end_position()
 
@@ -463,7 +463,7 @@ class RobotClient:
             - Note: If using an IDE, a type error may be shown which can be ignored.
             ::
 
-                arm: Arm = robot.get_component(Arm.get_resource_name("my_arm"))  # type: ignore
+                arm: Arm = machine.get_component(Arm.get_resource_name("my_arm"))  # type: ignore
                 end_pos = await arm.get_end_position()
 
         Args:
@@ -490,20 +490,20 @@ class RobotClient:
         method for obtaining services.
         ::
 
-            service = MyService.from_robot(robot=robot, name="my_service")
+            service = MyService.from_robot(robot=machine, name="my_service")
 
         Because this function returns a generic ``ServiceBase`` rather than a specific service type, it will be necessary to cast the
         returned service to the desired service. This can be done using a few methods:
 
         - Assertion::
 
-            service = robot.get_service(MyService.get_resource_name("my_service"))
+            service = machine.get_service(MyService.get_resource_name("my_service"))
             assert isinstance(service, MyService)
 
         - Explicit cast::
 
             from typing import cast
-            service = robot.get_service(MyService.get_resource_name("my_service"))
+            service = machine.get_service(MyService.get_resource_name("my_service"))
             service = cast(MyService, my_service)
 
         - Declare type on variable assignment
@@ -511,7 +511,7 @@ class RobotClient:
             - Note: If using an IDE, a type error may be shown which can be ignored.
             ::
 
-                service: MyService = robot.get_service(MyService.get_resource_name("my_service"))  # type: ignore
+                service: MyService = machine.get_service(MyService.get_resource_name("my_service"))  # type: ignore
 
         Args:
             name (viam.proto.common.ResourceName): The service's ResourceName
@@ -537,7 +537,7 @@ class RobotClient:
 
         ::
 
-            resource_names = robot.resource_names
+            resource_names = machine.resource_names
 
         Returns:
             List[viam.proto.common.ResourceName]: The list of resource names
@@ -562,7 +562,7 @@ class RobotClient:
 
         ::
 
-            await robot.close()
+            await machine.close()
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
@@ -609,7 +609,7 @@ class RobotClient:
         ::
 
             # Get the status of the resources on the machine.
-            statuses = await robot.get_status()
+            statuses = await machine.get_status()
 
         Args:
             components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
@@ -635,10 +635,10 @@ class RobotClient:
 
         ::
 
-            operations = await robot.get_operations()
+            operations = await machine.get_operations()
 
         Returns:
-            List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.
+            List[viam.proto.robot.Operation]: The list of operations currently running on a given machine.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
@@ -652,7 +652,7 @@ class RobotClient:
 
         ::
 
-            await robot.cancel_operation("INSERT OPERATION ID")
+            await machine.cancel_operation("INSERT OPERATION ID")
 
         Args:
             id (str): ID of operation to cancel.
@@ -669,7 +669,7 @@ class RobotClient:
 
         ::
 
-            await robot.block_for_operation("INSERT OPERATION ID")
+            await machine.block_for_operation("INSERT OPERATION ID")
 
         Args:
             id (str): ID of operation to block on.
@@ -685,16 +685,16 @@ class RobotClient:
 
     async def get_frame_system_config(self, additional_transforms: Optional[List[Transform]] = None) -> List[FrameSystemConfig]:
         """
-        Get the configuration of the frame system of a given robot.
+        Get the configuration of the frame system of a given machine.
 
         ::
 
             # Get a list of each of the reference frames configured on the machine.
-            frame_system = await robot.get_frame_system_config()
+            frame_system = await machine.get_frame_system_config()
             print(f"frame system configuration: {frame_system}")
 
         Returns:
-            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot's frame system.
+            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given machine's frame system.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
@@ -710,7 +710,7 @@ class RobotClient:
 
         ::
 
-            pose = await robot.transform_pose(PoseInFrame(), "origin")
+            pose = await machine.transform_pose(PoseInFrame(), "origin")
 
         Args:
 
@@ -743,13 +743,13 @@ class RobotClient:
         ::
 
             # Define a new discovery query.
-            q = robot.DiscoveryQuery(subtype=acme.API, model="some model")
+            q = machine.DiscoveryQuery(subtype=acme.API, model="some model")
 
             # Define a list of discovery queries.
             qs = [q]
 
             # Get component configurations with these queries.
-            component_configs = await robot.discover_components(qs)
+            component_configs = await machine.discover_components(qs)
 
         Args:
 
@@ -775,11 +775,11 @@ class RobotClient:
         ::
 
             # Cancel all current and outstanding operations for the machine and stop all actuators and movement.
-            await robot.stop_all()
+            await machine.stop_all()
 
         ::
 
-            await robot.stop_all()
+            await machine.stop_all()
 
         Args:
             extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources' ``stop`` methods,
@@ -849,10 +849,14 @@ class RobotClient:
         """
         Shutdown shuts down the machine.
 
+        ::
+
+            machine.shutdown()
+
         Raises:
             GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
-              robot server shuts down before having a chance to send a response. Raised with
-              status Unavailable if server is unavailable, or if robot server is in the process of
+              the machine server shuts down before having a chance to send a response. Raised with
+              status Unavailable if server is unavailable, or if machine server is in the process of
               shutting down when response is ready.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
@@ -889,7 +893,7 @@ class RobotClient:
             print(result.api_version)
 
         Returns:
-            viam.proto.robot.GetVersionResponse: Robot version related information.
+            viam.proto.robot.GetVersionResponse: Machine version related information.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
