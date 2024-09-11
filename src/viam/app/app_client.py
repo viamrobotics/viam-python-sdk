@@ -1606,7 +1606,7 @@ class AppClient:
 
         ::
 
-            new_machine_id = await cloud.new_robot(name="beepboop")
+            new_machine_id = await cloud.new_robot(name="beepboop", location_id="my-location-id")
 
         Args:
             name (str): Name of the new robot.
@@ -2324,12 +2324,12 @@ class AppClient:
             from viam.app.app_client import APIKeyAuthorization
 
             auth = APIKeyAuthorization(
-            role="owner",
-            resource_type="robot",
-            resource_id="your-robot-id123"
+                role="owner",
+                resource_type="robot",
+                resource_id="your-robot-id123"
             )
 
-            api_key, api_key_id = cloud.create_key([auth], "my_key")
+            api_key, api_key_id = cloud.create_key("your-org-id", [auth], "my_key")
 
         Args:
             org_id (str): The ID of the organization to create the key for.
