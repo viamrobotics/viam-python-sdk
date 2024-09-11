@@ -1401,7 +1401,7 @@ Module Contents
 
       ::
 
-          new_machine_id = await cloud.new_robot(name="beepboop")
+          new_machine_id = await cloud.new_robot(name="beepboop", location_id="my-location-id")
 
       :param name: Name of the new robot.
       :type name: str
@@ -2057,12 +2057,12 @@ Module Contents
           from viam.app.app_client import APIKeyAuthorization
 
           auth = APIKeyAuthorization(
-          role="owner",
-          resource_type="robot",
-          resource_id="your-robot-id123"
+              role="owner",
+              resource_type="robot",
+              resource_id="your-robot-id123"
           )
 
-          api_key, api_key_id = cloud.create_key([auth], "my_key")
+          api_key, api_key_id = cloud.create_key("your-org-id", [auth], "my_key")
 
       :param org_id: The ID of the organization to create the key for.
                      You can obtain your organization ID from the Viam app's organization settings page.

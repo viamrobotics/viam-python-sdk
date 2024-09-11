@@ -1696,7 +1696,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            new_machine_id = await cloud.new_robot(name=&quot;beepboop&quot;)</span>
+<span class="sd">            new_machine_id = await cloud.new_robot(name=&quot;beepboop&quot;, location_id=&quot;my-location-id&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the new robot.</span>
@@ -2414,12 +2414,12 @@
 <span class="sd">            from viam.app.app_client import APIKeyAuthorization</span>
 
 <span class="sd">            auth = APIKeyAuthorization(</span>
-<span class="sd">            role=&quot;owner&quot;,</span>
-<span class="sd">            resource_type=&quot;robot&quot;,</span>
-<span class="sd">            resource_id=&quot;your-robot-id123&quot;</span>
+<span class="sd">                role=&quot;owner&quot;,</span>
+<span class="sd">                resource_type=&quot;robot&quot;,</span>
+<span class="sd">                resource_id=&quot;your-robot-id123&quot;</span>
 <span class="sd">            )</span>
 
-<span class="sd">            api_key, api_key_id = cloud.create_key([auth], &quot;my_key&quot;)</span>
+<span class="sd">            api_key, api_key_id = cloud.create_key(&quot;your-org-id&quot;, [auth], &quot;my_key&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the key for.</span>

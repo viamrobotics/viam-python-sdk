@@ -1760,7 +1760,7 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.new_robot">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.new_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.new_robot" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new robot.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_machine_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">new_robot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;beepboop&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_machine_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">new_robot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;beepboop&quot;</span><span class="p">,</span> <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;my-location-id&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -2420,12 +2420,12 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.app.app_client</span> <span class="kn">import</span> <span class="n">APIKeyAuthorization</span>
 
 <span class="n">auth</span> <span class="o">=</span> <span class="n">APIKeyAuthorization</span><span class="p">(</span>
-<span class="n">role</span><span class="o">=</span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
-<span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;robot&quot;</span><span class="p">,</span>
-<span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;your-robot-id123&quot;</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+    <span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;robot&quot;</span><span class="p">,</span>
+    <span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;your-robot-id123&quot;</span>
 <span class="p">)</span>
 
-<span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span> <span class="o">=</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_key</span><span class="p">([</span><span class="n">auth</span><span class="p">],</span> <span class="s2">&quot;my_key&quot;</span><span class="p">)</span>
+<span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span> <span class="o">=</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_key</span><span class="p">(</span><span class="s2">&quot;your-org-id&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">auth</span><span class="p">],</span> <span class="s2">&quot;my_key&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
