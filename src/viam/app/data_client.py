@@ -339,7 +339,8 @@ class DataClient:
             )
             
             while True:
-                data, count, last = await data_client.binary_data_by_filter(my_filter, last=last, include_binary_data=False)
+                data, count, last = await data_client.binary_data_by_filter(
+                    my_filter, last=last, include_binary_data=False)
                 if not data:
                     break
                 my_untagged_data.extend(data)
