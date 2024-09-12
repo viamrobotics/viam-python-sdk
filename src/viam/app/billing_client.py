@@ -90,7 +90,7 @@ class BillingClient:
 
         ::
 
-            await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "<FILENAME>")
+            await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "invoice.pdf")
 
         Args:
             invoice_id (str): the ID of the invoice being requested
