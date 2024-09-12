@@ -315,8 +315,10 @@ class DataClient:
         ::
 
             from viam.utils import create_filter
-
-
+            from viam.proto.app.data import Filter, TagsFilter, TagsFilterType
+            
+            
+            # Get data captured from camera components
             my_data = []
             last = None
             my_filter = create_filter(component_name="camera")
@@ -325,6 +327,22 @@ class DataClient:
                 if not data:
                     break
                 my_data.extend(data)
+            
+            # Get untagged data from a dataset
+            
+            my_untagged_data = []
+            last = None
+            tags_filter = TagsFilter(type=TagsFilterType.TAGS_FILTER_TYPE_UNTAGGED)
+            my_filter = Filter(
+                dataset_id="66db6fe7d93d1ade24cd1dc3",
+                tags_filter=tags_filter
+            )
+            
+            while True:
+                data, count, last = await data_client.binary_data_by_filter(my_filter, last=last, include_binary_data=False)
+                if not data:
+                    break
+                my_untagged_data.extend(data)
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
