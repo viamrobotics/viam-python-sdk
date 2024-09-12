@@ -83,14 +83,16 @@ class MLTrainingClient:
         """Submit a training job.
 
         ::
+            from viam.proto.app.mltraining import ModelType
+
 
             job_id = await ml_training_client.submit_training_job(
-                organization_id=organization_id,
-                dataset_id=dataset_id,
-                model_name="your-model-name",
+                org_id="<organization-id>",
+                dataset_id="<dataset-id>",
+                model_name="<your-model-name>",
                 model_version="1",
-                model_type="ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION",
-                tags=tags
+                model_type=ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION,
+                tags=["tag1", "tag2"]
             )
 
         Args:
@@ -99,7 +101,7 @@ class MLTrainingClient:
             model_name (str): the model name
             model_version (str): the model version
             model_type (ModelType.ValueType): the model type
-            tags (List[str]): the tags
+            tags (List[str]): the labels to train the model on
 
         Returns:
             str: the id of the training job
@@ -126,11 +128,11 @@ class MLTrainingClient:
         ::
 
             job_id = await ml_training_client.submit_custom_training_job(
-                organization_id=organization_id,
-                dataset_id=dataset_id,
-                registry_item_id="your-registry-item-id",
-                registry_item_version="your-registry-item-version",
-                model_name="your-model-name",
+                org_id="<organization-id>",
+                dataset_id="<dataset-id>",
+                registry_item_id="viam:classification-tflite",
+                registry_item_version="2024-08-13T12-11-54",
+                model_name="<your-model-name>",
                 model_version="1"
             )
 
@@ -165,7 +167,7 @@ class MLTrainingClient:
         ::
 
             job_metadata = await ml_training_client.get_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
             id (str): the id of the requested training job.
@@ -191,7 +193,7 @@ class MLTrainingClient:
         ::
 
             jobs_metadata = await ml_training_client.list_training_jobs(
-                org_id="INSERT YOUR ORG ID")
+                org_id="<org-id>")
 
             first_job_id = jobs_metadata[1].id
 
@@ -218,7 +220,7 @@ class MLTrainingClient:
         ::
 
             await ml_training_client.cancel_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
             id (str): the id of the job to be canceled.
@@ -238,7 +240,7 @@ class MLTrainingClient:
         ::
 
             await ml_training_client.delete_completed_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
             id (str): the id of the training job
