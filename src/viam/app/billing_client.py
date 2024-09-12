@@ -72,13 +72,13 @@ class BillingClient:
 
         ::
 
-           usage = await viam_client.billing_client.get_current_month_usage("<ORG-ID>")
+           usage = await billing_client.get_current_month_usage("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the organization to request usage data for
 
         Returns:
-            viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information
+            viam.proto.app.billing.GetCurrentMonthUsageResponse: the current month usage information
 
         For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
         """
@@ -90,12 +90,12 @@ class BillingClient:
 
         ::
 
-            await viam_client.billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "<FILENAME>")
+            await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "<FILENAME>")
 
         Args:
             invoice_id (str): the ID of the invoice being requested
             org_id (str): the ID of the org to request data from
-            dest (str): filepath to save the invoice to
+            dest (str): the filepath to save the invoice to
 
         For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
         """
@@ -111,13 +111,13 @@ class BillingClient:
 
         ::
 
-            summary = await viam_client.billing_client.get_invoices_summary("<ORG-ID>")
+            summary = await billing_client.get_invoices_summary("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the org to request data for
 
         Returns:
-            viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices
+            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all org invoices
 
         For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
         """
@@ -129,13 +129,13 @@ class BillingClient:
 
         ::
 
-            information = await viam_client.billing_client.get_org_billing_information("<ORG-ID>")
+            information = await billing_client.get_org_billing_information("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the org to request data for
 
         Returns:
-            viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information
+            viam.proto.app.billing.GetOrgBillingInformationResponse: the org billing information
 
         For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
         """
