@@ -405,8 +405,10 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.utils import create_filter</span>
+<span class="sd">            from viam.proto.app.data import Filter, TagsFilter, TagsFilterType</span>
 
 
+<span class="sd">            # Get data captured from camera components</span>
 <span class="sd">            my_data = []</span>
 <span class="sd">            last = None</span>
 <span class="sd">            my_filter = create_filter(component_name=&quot;camera&quot;)</span>
@@ -415,6 +417,23 @@
 <span class="sd">                if not data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(data)</span>
+
+<span class="sd">            # Get untagged data from a dataset</span>
+
+<span class="sd">            my_untagged_data = []</span>
+<span class="sd">            last = None</span>
+<span class="sd">            tags_filter = TagsFilter(type=TagsFilterType.TAGS_FILTER_TYPE_UNTAGGED)</span>
+<span class="sd">            my_filter = Filter(</span>
+<span class="sd">                dataset_id=&quot;66db6fe7d93d1ade24cd1dc3&quot;,</span>
+<span class="sd">                tags_filter=tags_filter</span>
+<span class="sd">            )</span>
+
+<span class="sd">            while True:</span>
+<span class="sd">                data, count, last = await data_client.binary_data_by_filter(</span>
+<span class="sd">                    my_filter, last=last, include_binary_data=False)</span>
+<span class="sd">                if not data:</span>
+<span class="sd">                    break</span>
+<span class="sd">                my_untagged_data.extend(data)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary</span>

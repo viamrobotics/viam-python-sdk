@@ -374,8 +374,10 @@ You can obtain your organization ID from the Viam app’s organization settings 
 in the returned tuple. If a destination is provided, the data will be saved to that file.
 If the file is not empty, it will be overwritten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">TagsFilter</span><span class="p">,</span> <span class="n">TagsFilterType</span>
 
 
+<span class="c1"># Get data captured from camera components</span>
 <span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
@@ -384,6 +386,23 @@ If the file is not empty, it will be overwritten.</p>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Get untagged data from a dataset</span>
+
+<span class="n">my_untagged_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">tags_filter</span> <span class="o">=</span> <span class="n">TagsFilter</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">TagsFilterType</span><span class="o">.</span><span class="n">TAGS_FILTER_TYPE_UNTAGGED</span><span class="p">)</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="s2">&quot;66db6fe7d93d1ade24cd1dc3&quot;</span><span class="p">,</span>
+    <span class="n">tags_filter</span><span class="o">=</span><span class="n">tags_filter</span>
+<span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+        <span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">,</span> <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">my_untagged_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
