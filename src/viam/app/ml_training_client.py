@@ -96,15 +96,15 @@ class MLTrainingClient:
             )
 
         Args:
-            org_id (str): the id of the org to submit the training job to
-            dataset_id (str): the id of the dataset
-            model_name (str): the model name
-            model_version (str): the model version
-            model_type (ModelType.ValueType): the model type
-            tags (List[str]): the labels to train the model on
+            org_id (str): the ID of the org to submit the training job to.
+            dataset_id (str): the ID of the dataset to train the model on.
+            model_name (str): the model name.
+            model_version (str): the model version.
+            model_type (ModelType.ValueType): the model type.
+            tags (List[str]): the labels to train the model on.
 
         Returns:
-            str: the id of the training job
+            str: the ID of the training job.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -137,15 +137,15 @@ class MLTrainingClient:
             )
 
         Args:
-            org_id (str): the id of the org to submit the training job to
-            dataset_id (str): the id of the dataset
-            registry_item_id (str): the id of the registry item
-            registry_item_version (str): the version of the registry item
-            model_name (str): the model name
-            model_version (str): the model version
+            org_id (str): the ID of the org to submit the training job to.
+            dataset_id (str): the ID of the dataset to train the model on.
+            registry_item_id (str): the ID of the training script from the registry.
+            registry_item_version (str): the version of the training script from the registry.
+            model_name (str): the model name.
+            model_version (str): the model version.
 
         Returns:
-            str: the id of the training job
+            str: the ID of the training job.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -170,10 +170,10 @@ class MLTrainingClient:
                 id="<job-id>")
 
         Args:
-            id (str): the id of the requested training job.
+            id (str): the ID of the requested training job.
 
         Returns:
-            viam.proto.app.mltraining.TrainingJobMetadata: training job data.
+            viam.proto.app.mltraining.TrainingJobMetadata: the training job data.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -198,12 +198,12 @@ class MLTrainingClient:
             first_job_id = jobs_metadata[1].id
 
         Args:
-            org_id (str): the id of the org to request training job data from.
-            training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.
+            org_id (str): the ID of the org to request training job data from.
+            training_status (Optional[TrainingStatus]): the status to filter the training jobs list by.
                 If unspecified, all training jobs will be returned.
 
         Returns:
-            List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.
+            List[viam.proto.app.mltraining.TrainingJobMetadata]: the list of training job data.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -223,10 +223,10 @@ class MLTrainingClient:
                 id="<job-id>")
 
         Args:
-            id (str): the id of the job to be canceled.
+            id (str): the ID of the job to cancel.
 
         Raises:
-            GRPCError: if no training job exists with the given id.
+            GRPCError: if no training job exists with the given ID.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -243,7 +243,7 @@ class MLTrainingClient:
                 id="<job-id>")
 
         Args:
-            id (str): the id of the training job
+            id (str): the ID of the training job to delete.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
