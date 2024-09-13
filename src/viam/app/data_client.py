@@ -242,7 +242,7 @@ class DataClient:
         """Obtain unified tabular data and metadata, queried with SQL.
 
         ::
-        
+
             data = await data_client.tabular_data_by_sql(
                 org_id="<YOUR-ORG-ID>",
                 sql_query="SELECT * FROM readings LIMIT 5"
@@ -476,7 +476,7 @@ class DataClient:
         """Delete tabular data older than a specified number of days.
 
         ::
-        
+
             tabular_data = await data_client.delete_tabular_data(
                 organization_id="<YOUR-ORG-ID>",
                 delete_older_than_days=150
