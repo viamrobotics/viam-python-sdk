@@ -1,10 +1,13 @@
 [tool.poetry]
 name = "viam-sdk"
-version = "0.21.1"
+version = "0.29.1"
 description = "Viam Robotics Python SDK"
 authors = [ "Naveed <naveed@viam.com>" ]
 license = "Apache-2.0"
 readme = "README.md"
+homepage = "https://www.viam.com"
+repository = "https://github.com/viamrobotics/viam-python-sdk"
+documentation = "https://python.viam.dev"
 packages = [
   { include = "viam", from = "src" },
 ]
@@ -12,13 +15,10 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
 
   [tool.poetry.dependencies]
   python = ">=3.8.1,<3.13"
-  grpclib = [
-    {version = "<0.4.7rc-1", python = "<3.12"},
-    {version = ">=0.4.7rc-1", python = ">=3.12"},
-  ]
+  grpclib = ">=0.4.7,<1"
   googleapis-common-protos = ">=1.60.0,<2"
   typing-extensions = ">=4.8.0,<5"
-  protobuf = ">=4.24.3,<5"
+  protobuf = ">=4.24.3"
   numpy = { version = ">=1.21,<2", optional = true }
 
   [tool.poetry.group.dev.dependencies]
@@ -51,6 +51,7 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   ]
   Pillow = ">=9.1.0,<11"
   pyright = "^1.1.339"
+  pytest-mock = "^3.14.0"
 
   [tool.poetry.extras]
   mlmodel = ["numpy"]

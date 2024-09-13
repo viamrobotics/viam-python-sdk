@@ -799,3 +799,142 @@ class ShutdownResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___ShutdownResponse = ShutdownResponse
+
+@typing.final
+class GetMachineStatusRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetMachineStatusRequest = GetMachineStatusRequest
+
+@typing.final
+class GetMachineStatusResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCES_FIELD_NUMBER: builtins.int
+    CONFIG_FIELD_NUMBER: builtins.int
+
+    @property
+    def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceStatus]:
+        ...
+
+    @property
+    def config(self) -> global___ConfigStatus:
+        ...
+
+    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'resources', b'resources']) -> None:
+        ...
+global___GetMachineStatusResponse = GetMachineStatusResponse
+
+@typing.final
+class ResourceStatus(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    class _State:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+
+    class _StateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[ResourceStatus._State.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+        STATE_UNSPECIFIED: ResourceStatus._State.ValueType
+        STATE_UNCONFIGURED: ResourceStatus._State.ValueType
+        'a newly created resource.'
+        STATE_CONFIGURING: ResourceStatus._State.ValueType
+        'a resource that is being configured.'
+        STATE_READY: ResourceStatus._State.ValueType
+        'a resource that has been successfully configured once and is not being\n        re-configured or removed.\n        '
+        STATE_REMOVING: ResourceStatus._State.ValueType
+        'a resource that is being removed from the robot.'
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        ...
+    STATE_UNSPECIFIED: ResourceStatus.State.ValueType
+    STATE_UNCONFIGURED: ResourceStatus.State.ValueType
+    'a newly created resource.'
+    STATE_CONFIGURING: ResourceStatus.State.ValueType
+    'a resource that is being configured.'
+    STATE_READY: ResourceStatus.State.ValueType
+    'a resource that has been successfully configured once and is not being\n    re-configured or removed.\n    '
+    STATE_REMOVING: ResourceStatus.State.ValueType
+    'a resource that is being removed from the robot.'
+    NAME_FIELD_NUMBER: builtins.int
+    STATE_FIELD_NUMBER: builtins.int
+    LAST_UPDATED_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
+    state: global___ResourceStatus.State.ValueType
+    'current state.'
+    revision: builtins.str
+    'revision of the last config that successfully updated this resource.'
+
+    @property
+    def name(self) -> common.v1.common_pb2.ResourceName:
+        """resource name."""
+
+    @property
+    def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """state transition timestamp."""
+
+    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
+        ...
+global___ResourceStatus = ResourceStatus
+
+@typing.final
+class ConfigStatus(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    REVISION_FIELD_NUMBER: builtins.int
+    LAST_UPDATED_FIELD_NUMBER: builtins.int
+    revision: builtins.str
+    'revision of the last config that the machine successfully ingested.'
+
+    @property
+    def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """config ingestion timestamp."""
+
+    def __init__(self, *, revision: builtins.str=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['last_updated', b'last_updated']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'revision', b'revision']) -> None:
+        ...
+global___ConfigStatus = ConfigStatus
+
+@typing.final
+class GetVersionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetVersionRequest = GetVersionRequest
+
+@typing.final
+class GetVersionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PLATFORM_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
+    API_VERSION_FIELD_NUMBER: builtins.int
+    platform: builtins.str
+    'platform type of viam-server (ie. `rdk` or `micro-rdk`).'
+    version: builtins.str
+    'version of viam-server. If built without a version, it will be dev-<git hash>.'
+    api_version: builtins.str
+
+    def __init__(self, *, platform: builtins.str=..., version: builtins.str=..., api_version: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['api_version', b'api_version', 'platform', b'platform', 'version', b'version']) -> None:
+        ...
+global___GetVersionResponse = GetVersionResponse

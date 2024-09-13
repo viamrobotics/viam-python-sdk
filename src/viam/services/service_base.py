@@ -27,10 +27,11 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            async def connect() -> ViamClient:
+            async def connect() -> RobotClient:
                 # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-                return await ViamClient.create_from_dial_options(dial_options)
+                options = RobotClient.Options.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                # Replace "<MACHINE-URL>" (included brackets) with your machine's connection URL or FQDN
+                return await RobotClient.at_address("<MACHINE-URL>", options)
 
             async def main():
                 robot = await connect()
@@ -55,7 +56,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot, "builtin")
+            service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
 
             my_command = {
               "cmnd": "dosomething",
@@ -63,7 +64,7 @@ class ServiceBase(abc.ABC, ResourceBase):
             }
 
             # Can be used with any resource, using the motion service as an example
-            await motion.do_command(command=my_command)
+            await service.do_command(command=my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute

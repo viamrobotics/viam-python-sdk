@@ -25,6 +25,11 @@ jobs:
       - name: Install package
         run: poetry install --all-extras
 
+      - name: Store API version
+        run: |
+          python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
+          echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
+
       - name: Generate buf
         run: make buf
         env:

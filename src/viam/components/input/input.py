@@ -139,6 +139,8 @@ class Controller(ComponentBase):
     ::
 
         from viam.components.input import Control, Controller, EventType
+
+    For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -164,6 +166,8 @@ class Controller(ComponentBase):
 
         Returns:
             List[Control]: List of controls provided by the Controller
+
+        For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
         """
         ...
 
@@ -189,6 +193,8 @@ class Controller(ComponentBase):
 
         Returns:
             Dict[Control, Event]: The most recent event for each input
+
+        For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
         """
         ...
 
@@ -252,6 +258,8 @@ class Controller(ComponentBase):
                 trigger the function
             function (ControlFunction): The function to run on
                 specific triggers
+
+        For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
         """
         ...
 
@@ -277,5 +285,7 @@ class Controller(ComponentBase):
 
         Args:
             event (Event): The event to trigger
+
+        For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
         """
         raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")

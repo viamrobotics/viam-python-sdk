@@ -1,23 +1,86 @@
 {
-  "base": { "func": "is_moving" },
+  "base": {
+    "func": "is_moving",
+    "packagePath": "viam.components"
+  },
   "board": {
     "func": "gpio_pin_by_name",
     "comment": "Note that the pin supplied is a placeholder. Please change this to a valid pin you are using.",
-    "args": ["\"16\""]
+    "args": ["\"16\""],
+    "packagePath": "viam.components"
   },
-  "camera": { "func": "get_image" },
-  "encoder": { "func": "get_position" },
-  "motor": { "func": "is_moving" },
-  "sensor": { "func": "get_readings" },
-  "servo": { "func": "get_position" },
-  "arm": { "func": "get_end_position" },
-  "gantry": { "func": "get_lengths" },
-  "gripper": { "func": "is_moving" },
-  "movement_sensor": { "func": "get_linear_acceleration" },
-  "input_controller": { "func": "get_controls" },
-  "audio": { "func": "get_properties" },
-  "pose_tracker": { "func": "get_poses" },
-  "power_sensor": { "func": "get_power" },
-  "motion": { "func": "get_pose" },
-  "vision": { "func": "get_properties" }
+  "camera": {
+    "func": "get_image",
+    "packagePath": "viam.components"
+  },
+  "encoder": {
+    "func": "get_position",
+    "packagePath": "viam.components"
+  },
+  "motor": {
+    "func": "is_moving",
+    "packagePath": "viam.components"
+  },
+  "sensor": {
+    "func": "get_readings",
+    "packagePath": "viam.components"
+  },
+  "servo": {
+    "func": "get_position",
+    "packagePath": "viam.components"
+  },
+  "arm": {
+    "func": "get_end_position",
+    "packagePath": "viam.components"
+  },
+  "gantry": {
+    "func": "get_lengths",
+    "packagePath": "viam.components"
+  },
+  "gripper": {
+    "func": "is_moving",
+    "packagePath": "viam.components"
+  },
+  "movement_sensor": {
+    "func": "get_linear_acceleration",
+    "packagePath": "viam.components"
+  },
+  "input_controller": {
+    "func": "get_controls",
+    "packagePath": "viam.components",
+    "packageName": "input",
+    "importName": "Controller"
+  },
+  "audio": {
+    "func": "get_properties",
+    "packagePath": "viam.components"
+  },
+  "pose_tracker": {
+    "func": "get_poses",
+    "packagePath": "viam.components"
+  },
+  "power_sensor": {
+    "func": "get_power",
+    "packagePath": "viam.components"
+  },
+  "motion": {
+    "func": "get_pose",
+    "packagePath": "viam.services",
+    "importName": "MotionClient"
+  },
+  "vision": {
+    "func": "get_properties",
+    "packagePath": "viam.services",
+    "importName": "VisionClient"
+  },
+  "mlmodel": {
+    "func": "metadata",
+    "packagePath": "viam.services",
+    "importName": "MLModelClient"
+  },
+  "slam": {
+    "func": "get_point_cloud_map",
+    "packagePath": "viam.services",
+    "importName": "SLAMClient"
+  }
 }

@@ -154,6 +154,7 @@ class TestVision:
             return_detections=True,
             extra=extra,
         )
+        assert response.image is not None
         assert response.image.data == VISION_IMAGE.data
         assert response.image.mime_type == VISION_IMAGE.mime_type
         assert response.detections == DETECTIONS
@@ -333,6 +334,7 @@ class TestClient:
                 return_object_point_clouds=True,
                 extra=extra,
             )
+            assert response.image is not None
             assert response.image.data == VISION_IMAGE.data
             assert response.image.mime_type == VISION_IMAGE.mime_type
             assert response.detections is None

@@ -31,6 +31,8 @@ from viam.proto.robot import (
     RestartModuleResponse,
     SendSessionHeartbeatRequest,
     SendSessionHeartbeatResponse,
+    ShutdownRequest,
+    ShutdownResponse,
     StartSessionRequest,
     StartSessionResponse,
     StopAllRequest,
@@ -115,3 +117,6 @@ class MockRobot(UnimplementedRobotServiceBase):
 
     async def GetCloudMetadata(self, stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
         raise MethodNotImplementedError("GetCloudMetadata").grpc_error
+
+    async def Shutdown(self, stream: Stream[ShutdownRequest, ShutdownResponse]) -> None:
+        raise MethodNotImplementedError("Shutdown").grpc_error

@@ -19,6 +19,8 @@ class Base(ComponentBase):
     ::
 
         from viam.components.base import Base
+
+    For more information, see `Base component <https://docs.viam.com/components/base/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -62,6 +64,8 @@ class Base(ComponentBase):
                 Negative implies backwards.
             velocity (float): The velocity (in millimeters per second) to move.
                 Negative implies backwards.
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...
 
@@ -93,6 +97,8 @@ class Base(ComponentBase):
             velocity (float): The angular velocity (in degrees per second)
                 to spin.
                 Given a positive angle and a positive velocity, the base will turn to the left.
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...
 
@@ -107,8 +113,8 @@ class Base(ComponentBase):
         **kwargs,
     ):
         """Set the linear and angular velocity of the Base
-        When ``linear`` is 0, the the base will spin.
-        When ``angular`` is 0, the the base will move in a straight line.
+        When ``linear`` is 0, the base will spin.
+        When ``angular`` is 0, the base will move in a straight line.
         When both ``linear`` and ``angular`` are 0, the base will stop.
         When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,
         with a tighter radius if angular power is greater than linear power.
@@ -146,6 +152,8 @@ class Base(ComponentBase):
                 for wheeled base. Positive implies forwards.
             angular (Vector3): The angular component. Only the Z component is used
                 for wheeled base. Positive turns left; negative turns right.
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...
 
@@ -174,6 +182,8 @@ class Base(ComponentBase):
         Args:
             linear (Vector3): Velocity in mm/sec
             angular (Vector3): Velocity in deg/sec
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
 
     @abc.abstractmethod
@@ -196,6 +206,8 @@ class Base(ComponentBase):
 
             # Stop the base.
             await my_base.stop()
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...
 
@@ -214,6 +226,8 @@ class Base(ComponentBase):
 
         Returns:
             bool: Whether the base is moving.
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...
 
@@ -240,5 +254,7 @@ class Base(ComponentBase):
 
         Returns:
             Properties: The properties of the base
+
+        For more information, see `Base component <https://docs.viam.com/components/base/>`_.
         """
         ...

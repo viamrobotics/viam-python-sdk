@@ -3,14 +3,11 @@ from datetime import datetime
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import APIKeyAuthorization, AppClient
+from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
+from viam.proto.app import APIKey, APIKeyWithAuthorizations, AuthenticatorInfo, Authorization, AuthorizationDetails, AuthorizedPermissions
+from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import (
-    APIKey,
-    APIKeyWithAuthorizations,
-    Authorization,
-    AuthorizationDetails,
-    AuthorizedPermissions,
-    Fragment,
+    FragmentHistoryEntry,
     Location,
     LocationAuth,
     Model,
@@ -40,6 +37,8 @@ ID = "id"
 IDS = [ID]
 NAME = "name"
 CID = "cid"
+PAGE_TOKEN = "123"
+PAGE_LIMIT = 20
 TIME = datetime_to_timestamp(datetime.now())
 PUBLIC_NAMESPACE = "public_namespace"
 DEFAULT_REGION = "default_region"
@@ -94,6 +93,7 @@ ROVER_RENTAL_ROBOT = RoverRentalRobot(
 ROVER_RENTAL_ROBOTS = [ROVER_RENTAL_ROBOT]
 FILTER = "filter"
 ERRORS_ONLY = True
+LOG_LEVELS = ["error", "warn"]
 HOST = "host"
 LEVEL = "level"
 LOGGER_NAME = "logger_name"
@@ -102,12 +102,13 @@ STACK = "stack"
 LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None)
 LOG_ENTRIES = [LOG_ENTRY]
 ROBOT_CONFIG = {"key": "value"}
-SHOW_PUBLIC = True
+FRAGMENT_VISIBILITY = [Fragment.Visibility.PUBLIC]
+FRAGMENT_VISIBILITY_PB = [FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC]
 ORGANIZATION_OWNER = "organization_owner"
 PUBLIC = True
 ORGANIZATION_NAME = "organization_name"
 ONLY_USED_BY_OWNER = True
-FRAGMENT = Fragment(
+FRAGMENT = FragmentPB(
     id=ID,
     name=NAME,
     fragment=None,
@@ -124,6 +125,9 @@ LOCATION_AUTH = LocationAuth(secret=SECRET, location_id=ID, secrets=None)
 PART = "part"
 ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(part=PART, robot=ID, when=TIME, old=None)
 ROBOT_PART_HISTORY = [ROBOT_PART_HISTORY_ENTRY]
+AUTHENTICATOR_INFO = AuthenticatorInfo(value="value", is_deactivated=True, type=1)
+FRAGMENT_HISTORY_ENTRY = FragmentHistoryEntry(fragment=ID, edited_by=AUTHENTICATOR_INFO, old=FRAGMENT, edited_on=TIME)
+FRAGMENT_HISTORY = [FRAGMENT_HISTORY_ENTRY]
 TYPE = "robot"
 ROLE = "operator"
 API_KEY = "key"
@@ -212,6 +216,7 @@ def service() -> MockApp:
         available=AVAILABLE,
         location_auth=LOCATION_AUTH,
         robot_part_history=ROBOT_PART_HISTORY,
+        fragment_history=FRAGMENT_HISTORY,
         authorizations=AUTHORIZATIONS,
         url=URL,
         module=MODULE,
@@ -467,10 +472,10 @@ class TestClient:
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM)
+            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
-            assert service.errors_only == ERRORS_ONLY
+            assert service.levels == LOG_LEVELS
             assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
 
     @pytest.mark.asyncio
@@ -595,8 +600,8 @@ class TestClient:
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragments = await client.list_fragments(org_id=ID, show_public=SHOW_PUBLIC)
-            assert service.show_public == SHOW_PUBLIC
+            fragments = await client.list_fragments(org_id=ID, visibilities=FRAGMENT_VISIBILITY)
+            assert service.fragment_visibility == FRAGMENT_VISIBILITY_PB
             assert [fragment.proto for fragment in fragments] == [FRAGMENT]
 
     @pytest.mark.asyncio
@@ -631,6 +636,19 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             await client.delete_fragment(fragment_id=ID)
             assert service.id == ID
+
+    @pytest.mark.asyncio
+    async def test_get_fragment_history(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            fragment_history = await client.get_fragment_history(id=ID, page_token=PAGE_TOKEN, page_limit=PAGE_LIMIT)
+            assert service.fragment.id == ID
+            assert len(fragment_history) == len(FRAGMENT_HISTORY)
+            assert service.id == ID
+            assert service.page_token == PAGE_TOKEN
+            assert service.page_limit == PAGE_LIMIT
+            for i in range(len(FRAGMENT_HISTORY)):
+                assert fragment_history[i].proto == FRAGMENT_HISTORY[i]
 
     @pytest.mark.asyncio
     async def test_add_role(self, service: MockApp):

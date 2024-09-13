@@ -30,6 +30,8 @@ class Board(ComponentBase):
     ::
 
         from viam.components.board import Board
+
+    For more information, see `Board component <https://docs.viam.com/components/board/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -38,7 +40,7 @@ class Board(ComponentBase):
 
     class Analog:
         """
-        AnalogReader represents an analog pin reader or writer that resides on a Board.
+        Analog represents an analog pin reader or writer that resides on a Board.
         """
 
         name: str
@@ -49,6 +51,8 @@ class Board(ComponentBase):
         Value contains the result of reading an analog reader. It contains the raw data read,
         the reader's minimum and maximum possible values, and its step size (the minimum possible
         change between values it can read).
+
+        For more information, see `analogs <https://docs.viam.com/components/board/#analogs>`_.
         """
 
         def __init__(self, name: str):
@@ -63,7 +67,7 @@ class Board(ComponentBase):
 
                 my_board = Board.from_robot(robot=robot, name="my_board")
 
-                # Get the AnalogReader "my_example_analog_reader".
+                # Get the Analog "my_example_analog_reader".
                 reader = await my_board.analog_reader_by_name(
                     name="my_example_analog_reader")
 
@@ -73,22 +77,30 @@ class Board(ComponentBase):
 
             Returns:
                 Value: The current value, including the min, max, and step_size of the reader.
+
+            For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
             """
             ...
 
         @abc.abstractmethod
         async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
             """
-            Write a value to the analog writer.
+            Write a value to the Analog writer.
 
             ::
+
                 my_board = Board.from_robot(robot=robot, name="my_board")
 
-                # Get the AnalogWriter "my_example_analog_writer".
+                # Get the Analog "my_example_analog_writer".
                 writer = await my_board.analog_by_name(
                     name="my_example_analog_writer")
 
                 await writer.write(42)
+
+            Args:
+                value (int): Value to write to the analog writer.
+
+            For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
             """
             ...
 
@@ -97,10 +109,12 @@ class Board(ComponentBase):
         DigitalInterrupt represents a configured interrupt on the Board that
         when interrupted, calls the added callbacks. Post processors can
         be added to modify what Value it ultimately returns.
+
+        For more information, see `digital_interrupts <https://docs.viam.com/components/board/#digital_interrupts>`_.
         """
 
         name: str
-        """The name of the digital interrupt"""
+        """The name of the digital interrupt."""
 
         def __init__(self, name: str):
             self.name = name
@@ -125,16 +139,19 @@ class Board(ComponentBase):
 
             Returns:
                 int: The current value.
+
+            For more information, see
+            `Board component DigitalInterrupt API <https://docs.viam.com/components/board/#digitalinterrupt-api>`_.
             """
             ...
 
     class GPIOPin:
         """
-        Abstract representation of an individual GPIO pin on a board
+        Abstract representation of an individual GPIO pin on a board.
         """
 
         name: str
-        """The name of the GPIO pin"""
+        """The name of the GPIO pin."""
 
         def __init__(self, name: str):
             self.name = name
@@ -156,6 +173,8 @@ class Board(ComponentBase):
 
             Args:
                 high (bool): When true, sets the pin to high. When false, sets the pin to low.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -176,6 +195,8 @@ class Board(ComponentBase):
 
             Returns:
                 bool: Indicates if the state of the pin is high.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -196,6 +217,8 @@ class Board(ComponentBase):
 
             Returns:
                 float: The duty cycle.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -217,6 +240,8 @@ class Board(ComponentBase):
 
             Args:
                 duty_cycle (float): The duty cycle.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -237,6 +262,8 @@ class Board(ComponentBase):
 
             Returns:
                 int: The PWM frequency.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -265,6 +292,8 @@ class Board(ComponentBase):
 
             Args:
                 frequency (int): The frequency, in Hz.
+
+            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -285,6 +314,8 @@ class Board(ComponentBase):
 
         Returns:
             Analog: The analog reader or writer.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -306,6 +337,8 @@ class Board(ComponentBase):
 
         Returns:
             DigitalInterrupt: The digital interrupt.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -326,6 +359,8 @@ class Board(ComponentBase):
 
         Returns:
             GPIOPin: The pin.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -343,6 +378,8 @@ class Board(ComponentBase):
 
         Returns:
             List[str]: The list of names of all known analog readers/writers.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -360,6 +397,8 @@ class Board(ComponentBase):
 
         Returns:
             List[str]: The names of the digital interrupts.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -380,6 +419,8 @@ class Board(ComponentBase):
         Args:
             mode (PowerMode): The desired power mode.
             duration (Optional[timedelta]): Requested duration to stay in power mode.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...
 
@@ -396,7 +437,7 @@ class Board(ComponentBase):
             di11 = await my_board.digital_interrupt_by_name(name="11"))
 
             # Iterate over stream of ticks from pins 8 and 11.
-            async for tick in my_board.stream_ticks([di8, di11]):
+            async for tick in await my_board.stream_ticks([di8, di11]):
                 print(f"Pin {tick.pin_name} changed to {'high' if tick.high else 'low'} at {tick.time}")
 
 
@@ -405,5 +446,7 @@ class Board(ComponentBase):
 
         Returns:
             TickStream: stream of ticks.
+
+        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
         """
         ...

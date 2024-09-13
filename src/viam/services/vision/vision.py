@@ -1,18 +1,19 @@
 import abc
 import sys
-from typing import Any, Final, List, Mapping, Optional, Union
+from typing import Final, List, Mapping, Optional
 
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.utils import ValueTypes
+
+from ..service_base import ServiceBase
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
     from typing_extensions import TypeAlias
-
-from ..service_base import ServiceBase
 
 
 class CaptureAllResult:
@@ -25,7 +26,14 @@ class CaptureAllResult:
     "the classifier/detector was requested, but there were no results".
     """
 
-    def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
+    def __init__(
+        self,
+        image: Optional[ViamImage] = None,
+        classifications: Optional[List[Classification]] = None,
+        detections: Optional[List[Detection]] = None,
+        objects: Optional[List[PointCloudObject]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+    ):
         """
         Args:
             image (ViamImage|None): The image from the GetImage request of the camera, if it was requested.
@@ -37,11 +45,11 @@ class CaptureAllResult:
         Returns:
             None
         """
-        self.image: Union[ViamImage, None] = image
-        self.detections: Union[List[Detection], None] = detections
-        self.classifications: Union[List[Classification], None] = classifications
-        self.objects: Union[List[PointCloudObject], None] = objects
-        self.extra: dict = extra
+        self.image = image
+        self.classifications = classifications
+        self.detections = detections
+        self.objects = objects
+        self.extra = extra
 
 
 class Vision(ServiceBase):
@@ -51,6 +59,8 @@ class Vision(ServiceBase):
     This acts as an abstract base class for any drivers representing specific
     vision implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -75,7 +85,7 @@ class Vision(ServiceBase):
         return_detections: bool = False,
         return_object_point_clouds: bool = False,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> CaptureAllResult:
         """Get the next image, detections, classifications, and objects all together,
@@ -106,6 +116,8 @@ class Vision(ServiceBase):
             vision.CaptureAllResult: A class that stores all potential returns from the vision service.
             It can  return the image from the camera along with its associated detections, classifications,
             and objects, as well as any extra info the model may provide.
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -114,7 +126,7 @@ class Vision(ServiceBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
@@ -139,6 +151,8 @@ class Vision(ServiceBase):
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -147,7 +161,7 @@ class Vision(ServiceBase):
         self,
         image: ViamImage,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
@@ -167,7 +181,7 @@ class Vision(ServiceBase):
             detections = await my_detector.get_detections(img)
 
         Args:
-            image (Image | RawImage): The image to get detections from
+            image (ViamImage): The image to get detections from
 
         Raises:
             ViamError: Raised if given an image without a specified width and height
@@ -176,6 +190,8 @@ class Vision(ServiceBase):
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -185,7 +201,7 @@ class Vision(ServiceBase):
         camera_name: str,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of classifications in the next image given a camera and a classifier
@@ -207,6 +223,8 @@ class Vision(ServiceBase):
 
         returns:
             List[viam.proto.service.vision.Classification]: The list of Classifications
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -216,7 +234,7 @@ class Vision(ServiceBase):
         image: ViamImage,
         count: int,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of classifications in the given image using the specified classifier
@@ -236,11 +254,13 @@ class Vision(ServiceBase):
             classifications = await my_classifier.get_classifications(img, 2)
 
         Args:
-            image (Image | RawImage): The image to get detections from
+            image (ViamImage): The image to get detections from
             count (int): The number of classifications desired
 
         Returns:
             List[viam.proto.service.vision.Classification]: The list of Classifications
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -249,7 +269,7 @@ class Vision(ServiceBase):
         self,
         camera_name: str,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> List[PointCloudObject]:
         """
@@ -280,6 +300,8 @@ class Vision(ServiceBase):
 
         Returns:
             List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...
 
@@ -287,7 +309,7 @@ class Vision(ServiceBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> Properties:
         """
@@ -295,13 +317,16 @@ class Vision(ServiceBase):
         state whether the service implements the classification, detection, and/or 3D object segmentation methods.
 
         ::
-                # Grab the detector you configured on your machine
-                my_detector = VisionClient.from_robot(robot, "my_detector")
-                properties = await my_detector.get_properties()
-                properties.detections_supported      # returns True
-                properties.classifications_supported # returns False
+
+            # Grab the detector you configured on your machine
+            my_detector = VisionClient.from_robot(robot, "my_detector")
+            properties = await my_detector.get_properties()
+            properties.detections_supported      # returns True
+            properties.classifications_supported # returns False
 
         Returns:
             Properties: The properties of the vision service
+
+        For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
         """
         ...

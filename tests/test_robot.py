@@ -1,5 +1,6 @@
 import asyncio
 from typing import Any, Dict, List, Optional, Tuple
+from unittest import mock
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
@@ -31,14 +32,21 @@ from viam.proto.robot import (
     FrameSystemConfigResponse,
     GetCloudMetadataRequest,
     GetCloudMetadataResponse,
+    GetMachineStatusRequest,
+    GetMachineStatusResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    GetVersionRequest,
+    GetVersionResponse,
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
+    ResourceStatus,
     RobotServiceStub,
+    ShutdownRequest,
+    ShutdownResponse,
     Status,
     StopAllRequest,
     StopExtraParameters,
@@ -51,7 +59,7 @@ from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
-from viam.services.motion.client import MotionClient
+from viam.services.mlmodel.client import MLModelClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
@@ -150,6 +158,21 @@ GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
     machine_part_id="the-machine-part-id",
 )
 
+GET_VERVSION_RESPONSE = GetVersionResponse(
+    platform="rdk",
+    version="0.2.0",
+    api_version="0.3.0",
+)
+
+GET_MACHINE_STATUS_RESPONSE = GetMachineStatusResponse(
+    resources=[
+        ResourceStatus(
+            name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="arm1"),
+            state=ResourceStatus.State.STATE_READY,
+        )
+    ]
+)
+
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -174,7 +197,7 @@ def service() -> RobotService:
                 position_supported=True,
                 compass_heading_supported=False,
             ),
-            accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
+            accuracy=MovementSensor.Accuracy(accuracy={"foo": 0.1, "bar": 2, "baz": 3.14}),
             readings={"a": 1, "b": 2, "c": 3},
         ),
         MockMLModel("mlmodel1"),
@@ -209,6 +232,22 @@ def service() -> RobotService:
         assert request is not None
         await stream.send_message(GET_CLOUD_METADATA_RESPONSE)
 
+    async def GetVersion(stream: Stream[GetVersionRequest, GetVersionResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GET_VERVSION_RESPONSE)
+
+    async def GetMachineStatus(stream: Stream[GetMachineStatusRequest, GetMachineStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GET_MACHINE_STATUS_RESPONSE)
+
+    async def Shutdown(stream: Stream[ShutdownRequest, ShutdownResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = ShutdownResponse()
+        await stream.send_message(response)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
@@ -216,6 +255,9 @@ def service() -> RobotService:
     service.DiscoverComponents = DiscoverComponents
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
+    service.Shutdown = Shutdown
+    service.GetVersion = GetVersion
+    service.GetMachineStatus = GetMachineStatus
 
     return service
 
@@ -393,10 +435,9 @@ class TestRobotClient:
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            client._resource_names.append(ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type="service", subtype="motion", name="motion1"))
             with pytest.raises(ResourceNotFoundError):
-                MotionClient.from_robot(client)
-            MotionClient.from_robot(client, "motion1")
+                MLModelClient.from_robot(client, "mlmodel")
+            MLModelClient.from_robot(client, "mlmodel1")
             await client.close()
 
     @pytest.mark.asyncio
@@ -429,6 +470,22 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             md = await client.get_cloud_metadata()
             assert md == GET_CLOUD_METADATA_RESPONSE
+            await client.close()
+
+    @pytest.mark.asyncio
+    async def test_get_version(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            md = await client.get_version()
+            assert md == GET_VERVSION_RESPONSE
+            await client.close()
+
+    @pytest.mark.asyncio
+    async def test_get_machine_status(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            statuses = await client.get_machine_status()
+            assert statuses == GET_MACHINE_STATUS_RESPONSE
             await client.close()
 
     @pytest.mark.asyncio
@@ -491,7 +548,7 @@ class TestRobotClient:
             assert await motor.is_moving() is True
 
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.stop_all({arm.get_resource_name(arm.name): extra})
+            await client.stop_all({arm.get_resource_name(arm.name): extra})  # type: ignore
 
             assert await arm.is_moving() is False
             assert arm.extra == extra
@@ -599,3 +656,21 @@ class TestRobotClient:
 
             await client.close()
             Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = old_create_client
+
+    @pytest.mark.asyncio
+    async def test_shutdown(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+
+            async def shutdown_client_mock(self):
+                return await self._client.Shutdown(ShutdownRequest())
+
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
+                shutdown_mock.return_value = await shutdown_client_mock(client)
+                shutdown_response = await client.shutdown()
+
+                assert shutdown_response == ShutdownResponse()
+                shutdown_mock.assert_called_once()
+
+                await client.close()

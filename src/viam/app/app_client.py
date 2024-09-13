@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from enum import Enum
 from typing import Any, AsyncIterator, List, Literal, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
@@ -11,6 +12,7 @@ from viam.proto.app import (
     AddRoleRequest,
     APIKeyWithAuthorizations,
     AppServiceStub,
+    AuthenticatorInfo,
     Authorization,
     AuthorizedPermissions,
     ChangeRoleRequest,
@@ -48,7 +50,11 @@ from viam.proto.app import (
     DeleteRobotRequest,
 )
 from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
+from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import (
+    GetFragmentHistoryRequest,
+    GetFragmentHistoryResponse,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -284,6 +290,50 @@ class Fragment:
     Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
     """
 
+    class Visibility(str, Enum):
+        """
+        FragmentVisibility specifies who is permitted to view the fragment.
+        """
+
+        PRIVATE = "private"
+        """
+        Only visible to members in the fragment's organization.
+        """
+
+        PUBLIC = "public"
+        """
+        Visible to anyone and appears on the fragments page.
+        """
+
+        PUBLIC_UNLISTED = "public_unlisted"
+        """
+        Visible to anyone but does not appear on the fragments page.
+        """
+
+        UNSPECIFIED = "unspecified"
+        """
+        Uninitialized visibility.
+        """
+
+        @classmethod
+        def from_proto(cls, visibility: FragmentVisibilityPB.ValueType) -> "Fragment.Visibility":
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE:
+                return Fragment.Visibility.PRIVATE
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC:
+                return Fragment.Visibility.PUBLIC
+            if visibility == FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED:
+                return Fragment.Visibility.PUBLIC_UNLISTED
+            return Fragment.Visibility.UNSPECIFIED
+
+        def to_proto(self) -> FragmentVisibilityPB.ValueType:
+            if self == self.PRIVATE:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PRIVATE
+            if self == self.PUBLIC:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC
+            if self == self.PUBLIC_UNLISTED:
+                return FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC_UNLISTED
+            return FragmentVisibilityPB.FRAGMENT_VISIBILITY_UNSPECIFIED
+
     @classmethod
     def from_proto(cls, fragment: FragmentPB) -> Self:
         """Create a `Fragment` from the .proto defined `Fragment`.
@@ -305,6 +355,7 @@ class Fragment:
         self.robot_part_count = fragment.robot_part_count
         self.organization_count = fragment.organization_count
         self.only_used_by_owner = fragment.only_used_by_owner
+        self.visibility = Fragment.Visibility.from_proto(fragment.visibility)
         return self
 
     id: str
@@ -317,6 +368,7 @@ class Fragment:
     robot_part_count: int
     organization_count: int
     only_used_by_owner: bool
+    visibility: Visibility
 
     @property
     def proto(self) -> FragmentPB:
@@ -331,6 +383,45 @@ class Fragment:
             robot_part_count=self.robot_part_count,
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
+            visibility=self.visibility.to_proto(),
+        )
+
+
+class FragmentHistoryEntry:
+    """A class that mirrors the `FragmentHistoryEntry` proto message.
+
+    Use this class to make the attributes of a `viam.proto.app.FragmentHistoryEntry` more accessible and easier to read/interpret.
+    """
+
+    @classmethod
+    def from_proto(cls, fragment_history_entry: FragmentHistoryEntryPB) -> Self:
+        """Create a `FragmentHistoryEntry` from the .proto defined `FragmentHistoryEntry`.
+
+        Args:
+            fragment_history_entry (viam.proto.app.FragmentHistoryEntry): The object to copy from.
+
+        Returns:
+            FragmentHistoryEntry: The `FragmentHistoryEntry`.
+        """
+        self = cls()
+        self.fragment = fragment_history_entry.fragment
+        self.edited_on = fragment_history_entry.edited_on.ToDatetime()
+        self.old = Fragment.from_proto(fragment_history_entry.old)
+        self.edited_by = fragment_history_entry.edited_by
+        return self
+
+    fragment: str
+    edited_on: datetime
+    old: Fragment
+    edited_by: AuthenticatorInfo
+
+    @property
+    def proto(self) -> FragmentHistoryEntryPB:
+        return FragmentHistoryEntryPB(
+            fragment=self.fragment,
+            edited_on=datetime_to_timestamp(self.edited_on),
+            edited_by=self.edited_by,
+            old=self.old.proto if self.old else None,
         )
 
 
@@ -387,7 +478,7 @@ class APIKeyAuthorization:
         """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
         resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
             Must match `resource_id`.
-        resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+        resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
         """
         self._role = role
         self._resource_type = resource_type
@@ -430,6 +521,7 @@ class AppClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
+    For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
@@ -493,6 +585,8 @@ class AppClient:
 
         Returns:
             str: The ID of the user.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetUserIDByEmailRequest(email=email)
         response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
@@ -510,6 +604,8 @@ class AppClient:
 
         Returns:
             Organization: The created organization.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateOrganizationRequest(name=name)
         response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
@@ -524,6 +620,8 @@ class AppClient:
 
         Returns:
             List[viam.proto.app.Organization]: The list of organizations.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListOrganizationsRequest()
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
@@ -534,13 +632,15 @@ class AppClient:
 
         ::
 
-            org_list = await cloud.get_organization_with_access_to_location("location-id")
+            org_list = await cloud.get_organizations_with_access_to_location("location-id")
 
         Args:
             location_id (str): The ID of the location.
 
         Returns:
             List[viam.proto.app.OrganizationIdentity]: The list of organizations.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetOrganizationsWithAccessToLocationRequest(location_id=location_id)
         response: GetOrganizationsWithAccessToLocationResponse = await self._app_client.GetOrganizationsWithAccessToLocation(
@@ -560,6 +660,8 @@ class AppClient:
 
         Returns:
             List[OrgDetails]: The list of organizations.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListOrganizationsByUserRequest(user_id=user_id)
         response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
@@ -576,6 +678,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Organization: The requested organization.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetOrganizationRequest(organization_id=org_id)
         response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
@@ -594,10 +698,12 @@ class AppClient:
                 characters.
 
         Raises:
-            GRPCError: If an invalid namespace (e.g., "") is provided.
+            GRPCError: If an invalid namespace (for example, "") is provided.
 
         Returns:
             bool: True if the provided namespace is available.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetOrganizationNamespaceAvailabilityRequest(public_namespace=public_namespace)
         response: GetOrganizationNamespaceAvailabilityResponse = await self._app_client.GetOrganizationNamespaceAvailability(
@@ -627,6 +733,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Organization: The updated organization.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateOrganizationRequest(
             organization_id=org_id,
@@ -642,10 +750,14 @@ class AppClient:
         """Delete an organization
 
         ::
+
             await cloud.delete_organization("org-id")
 
         Args:
             org_id (str): The ID of the organization.
+                You can obtain your organization ID from the Viam app's organization settings page.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteOrganizationRequest(organization_id=org_id)
         await self._app_client.DeleteOrganization(request, metadata=self._metadata)
@@ -659,17 +771,24 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list members of.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
             [0] of organization members, and the second [1] of organization invites.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListOrganizationMembersRequest(organization_id=org_id)
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
     async def create_organization_invite(
-        self, org_id: str, email: str, authorizations: Optional[List[Authorization]] = None, send_email_invite=True
+        self,
+        org_id: str,
+        email: str,
+        authorizations: Optional[List[Authorization]] = None,
+        send_email_invite: bool = True,
     ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
@@ -679,6 +798,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address to send the invite to.
             authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
                 authorizations to include in the invite. If not provided, full owner permissions will
@@ -690,6 +810,11 @@ class AppClient:
 
         Raises:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
+
+        Returns:
+            OrganizationInvite: The organization invite.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateOrganizationInviteRequest(
             organization_id=org_id, email=email, authorizations=authorizations, send_email_invite=send_email_invite
@@ -706,8 +831,8 @@ class AppClient:
     ) -> OrganizationInvite:
         """Update the authorizations attached to an organization invite that has already been created.
 
-        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
-        at least one authorization overall.
+        Note that an invite can only have one authorization at each resource (for example, organization, location, robot, etc.) level and
+        must have at least one authorization overall.
 
         ::
 
@@ -730,16 +855,19 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite is for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): Email of the user the invite was sent to.
             add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
             remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
 
         Raises:
-            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
-                remove when the invite only contains one authorization).
+            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (for example an
+                authorization to remove when the invite only contains one authorization).
 
         Returns:
             viam.proto.app.OrganizationInvite: The updated invite.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateOrganizationInviteAuthorizationsRequest(
             organization_id=org_id, email=email, add_authorizations=add_authorizations, remove_authorizations=remove_authorizations
@@ -761,7 +889,10 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to remove the user from.
+                You can obtain your organization ID from the Viam app's organization settings page.
             user_id (str): The ID of the user to remove.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteOrganizationMemberRequest(organization_id=org_id, user_id=user_id)
         await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
@@ -775,10 +906,13 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address the pending invite was sent to.
 
         Raises:
             GRPCError: If no pending invite is associated with the provided email address.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteOrganizationInviteRequest(organization_id=org_id, email=email)
         await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
@@ -788,14 +922,20 @@ class AppClient:
 
         ::
 
-            await cloud.resend_organization_invite("org-id", "youremail@email.com")
+            org_invite = await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address associated with the invite.
 
         Raises:
             GRPCError: If no pending invite is associated with the provided email address.
+
+        Returns:
+            viam.proto.app.OrganizationInvite: The organization invite sent.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ResendOrganizationInviteRequest(organization_id=org_id, email=email)
         response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
@@ -810,15 +950,18 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the location under.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): Name of the location.
             parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
                 location ID is provided.
 
         Raises:
-            GRPCError: If either an invalid name (e.g., ""), or parent location ID (e.g., a nonexistent ID) is passed.
+            GRPCError: If either an invalid name (for example, ""), or parent location ID (for example, a nonexistent ID) is passed.
 
         Returns:
             viam.proto.app.Location: The newly created location.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateLocationRequest(organization_id=org_id, name=name, parent_location_id=parent_location_id)
         response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
@@ -840,6 +983,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Location: The location.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetLocationRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
@@ -873,16 +1018,18 @@ class AppClient:
 
         Args:
             location_id (str): ID of the location to update. Must be specified.
-            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
-                change).
+            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (that is, the name
+                doesn't change).
             parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string
-                "" (i.e., no new parent location is assigned).
+                "" (that is, no new parent location is assigned).
 
         Raises:
             GRPCError: If either an invalid location ID, name, or parent location ID is passed.
 
         Returns:
             viam.proto.app.Location: The newly updated location.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id)
         response: UpdateLocationResponse = await self._app_client.UpdateLocation(request, metadata=self._metadata)
@@ -900,6 +1047,8 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid location ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteLocationRequest(location_id=location_id)
         await self._app_client.DeleteLocation(request, metadata=self._metadata)
@@ -913,9 +1062,12 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to list locations for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListLocationsRequest(organization_id=org_id)
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
@@ -931,6 +1083,8 @@ class AppClient:
         Args:
             organization_id (str): The ID of the organization.
             location_id (str): The ID of the location.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
         await self._app_client.ShareLocation(request, metadata=self._metadata)
@@ -945,6 +1099,8 @@ class AppClient:
         Args:
             organization_id (str): The ID of the organization.
             location_id (str): The ID of the location.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
         await self._app_client.UnshareLocation(request, metadata=self._metadata)
@@ -966,6 +1122,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.LocationAuth: The `LocationAuth` containing location secrets.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
@@ -988,6 +1146,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.LocationAuth: The specified location's `LocationAuth` containing the newly created secret.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
@@ -1008,6 +1168,8 @@ class AppClient:
         Raises:
             GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn't passed and there was no location
                 ID provided at `AppClient` instantiation.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteLocationSecretRequest(
             location_id=location_id if location_id else self._location_id if self._location_id else "", secret_id=secret_id
@@ -1029,6 +1191,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Robot: The robot.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotRequest(id=robot_id)
         response: GetRobotResponse = await self._app_client.GetRobot(request, metadata=self._metadata)
@@ -1043,9 +1207,12 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list rover rental robots for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRoverRentalRobotsRequest(org_id=org_id)
         response: GetRoverRentalRobotsResponse = await self._app_client.GetRoverRentalRobots(request, metadata=self._metadata)
@@ -1067,6 +1234,8 @@ class AppClient:
 
         Returns:
             List[viam.app.app_client.RobotPart]: The list of robot parts.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
         response: GetRobotPartsResponse = await self._app_client.GetRobotParts(request, metadata=self._metadata)
@@ -1090,6 +1259,8 @@ class AppClient:
 
         Returns:
             viam.app.app_client.RobotPart: The robot part.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotPartRequest(id=robot_part_id)
         response: GetRobotPartResponse = await self._app_client.GetRobotPart(request, metadata=self._metadata)
@@ -1109,7 +1280,7 @@ class AppClient:
         robot_part_id: str,
         filter: Optional[str] = None,
         dest: Optional[str] = None,
-        errors_only: bool = True,
+        log_levels: List[str] = [],
         num_log_entries: int = 100,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
@@ -1121,10 +1292,10 @@ class AppClient:
 
         Args:
             robot_part_id (str): ID of the robot part to get logs from.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
-                filter).
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                no filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
-            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
+            log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                 `num_log_entries` logs will be returned, whichever comes first.
 
@@ -1133,17 +1304,18 @@ class AppClient:
 
         Returns:
             List[viam.app.app_client.LogEntry]: The list of log entries.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         if num_log_entries < 0:
             raise ValueError("'num_log_entries must be at least 0.")
         logs_left = num_log_entries
-        errors_only = errors_only if errors_only else True
         page_token = ""
         logs = []
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", errors_only=errors_only, page_token=page_token
+                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1170,8 +1342,10 @@ class AppClient:
 
         return logs
 
-    async def _get_robot_part_logs(self, robot_part_id: str, filter: str, errors_only: bool, page_token: str) -> Tuple[List[LogEntry], str]:
-        request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
+    async def _get_robot_part_logs(
+        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+    ) -> Tuple[List[LogEntry], str]:
+        request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
@@ -1188,8 +1362,8 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
-                filter).
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
+                no filter).
 
         Returns:
             _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.
@@ -1226,6 +1400,8 @@ class AppClient:
 
         Returns:
             List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part's history.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotPartHistoryRequest(id=robot_part_id)
         response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
@@ -1250,6 +1426,8 @@ class AppClient:
 
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
@@ -1264,7 +1442,7 @@ class AppClient:
                 robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart")
 
         Args:
-            robot_id (str): ID of the the robot to create a new part for.
+            robot_id (str): ID of the robot to create a new part for.
             part_name (str): Name of the new part.
 
         Raises:
@@ -1272,6 +1450,8 @@ class AppClient:
 
         Returns:
             str: The new robot part's ID.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = NewRobotPartRequest(robot_id=robot_id, part_name=part_name)
         response: NewRobotPartResponse = await self._app_client.NewRobotPart(request, metadata=self._metadata)
@@ -1290,12 +1470,14 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
     async def get_robot_api_keys(self, robot_id: str) -> List[APIKeyWithAuthorizations]:
-        """Gets the Robot API Keys for the robot.
+        """Gets the API Keys for the machine.
 
         ::
 
@@ -1306,6 +1488,8 @@ class AppClient:
 
         Returns:
             List[APIKeyWithAuthorizations]: The list of API keys.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRobotAPIKeysRequest(robot_id=robot_id)
         response: GetRobotAPIKeysResponse = await self._app_client.GetRobotAPIKeys(request, metadata=self._metadata)
@@ -1324,6 +1508,8 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = MarkPartAsMainRequest(part_id=robot_part_id)
         await self._app_client.MarkPartAsMain(request, metadata=self._metadata)
@@ -1341,6 +1527,8 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = MarkPartForRestartRequest(part_id=robot_part_id)
         await self._app_client.MarkPartForRestart(request, metadata=self._metadata)
@@ -1361,6 +1549,8 @@ class AppClient:
 
         Returns:
             viam.app.app_client.RobotPart: The robot part the new secret was generated for.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateRobotPartSecretRequest(part_id=robot_part_id)
         response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request, metadata=self._metadata)
@@ -1381,6 +1571,8 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid robot part ID or secret ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteRobotPartSecretRequest(part_id=robot_part_id, secret_id=secret_id)
         await self._app_client.DeleteRobotPartSecret(request, metadata=self._metadata)
@@ -1402,6 +1594,8 @@ class AppClient:
 
         Returns:
             List[viam.proto.app.Robot]: The list of robots.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListRobotsRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
@@ -1412,7 +1606,7 @@ class AppClient:
 
         ::
 
-            new_machine_id = await cloud.new_robot(name="beepboop")
+            new_machine_id = await cloud.new_robot(name="beepboop", location_id="my-location-id")
 
         Args:
             name (str): Name of the new robot.
@@ -1424,6 +1618,8 @@ class AppClient:
 
         Returns:
             str: The new robot's ID.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = NewRobotRequest(location=location_id if location_id else self._location_id if self._location_id else "", name=name)
         response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
@@ -1450,6 +1646,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Robot: The newly updated robot.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateRobotRequest(
             id=robot_id, name=name, location=location_id if location_id else self._location_id if self._location_id else ""
@@ -1469,26 +1667,42 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid robot ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteRobotRequest(id=robot_id)
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
-    async def list_fragments(self, org_id: str, show_public: bool = True) -> List[Fragment]:
+    async def list_fragments(
+        self, org_id: str, show_public: bool = True, visibilities: Optional[List[Fragment.Visibility]] = None
+    ) -> List[Fragment]:
         """Get a list of fragments under the currently authed-to organization.
 
         ::
 
-            fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
+            fragments_list = await cloud.list_fragments(org_id="org-id", visibilities=[])
 
         Args:
             org_id (str): The ID of the organization to list fragments for.
-            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
-                return. If False, only private fragments will return. Defaults to True.
+                You can obtain your organization ID from the Viam app's organization settings page.
+            show_public (bool): Optional boolean specifying whether or not to only show public fragments. If True, only public fragments
+                will return. If False, only private fragments will return. Defaults to True.
+
+                .. deprecated:: 0.25.0
+                    Use ``visibilities`` instead.
+            visibilities (Optional[List[Fragment.Visibility]]): List of FragmentVisibilities specifying which types of fragments to include
+                in the results. If empty, by default only public fragments will be returned.
 
         Returns:
             List[viam.app.app_client.Fragment]: The list of fragments.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = ListFragmentsRequest(organization_id=org_id, show_public=show_public)
+        request = ListFragmentsRequest(
+            organization_id=org_id,
+            fragment_visibility=map(Fragment.Visibility.to_proto, visibilities if visibilities else []),
+            show_public=show_public,
+        )
         response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
@@ -1510,6 +1724,8 @@ class AppClient:
 
         Returns:
             viam.app.app_client.Fragment: The fragment.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetFragmentRequest(id=fragment_id)
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
@@ -1523,7 +1739,8 @@ class AppClient:
             new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
         Args:
-            org_id (str): The ID of the organization to create the ragment within.
+            org_id (str): The ID of the organization to create the fragment within.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): Name of the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be
                 assigned by updating the fragment.
@@ -1533,13 +1750,20 @@ class AppClient:
 
         Returns:
             viam.app.app_client.Fragment: The newly created fragment.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None, organization_id=org_id)
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
     async def update_fragment(
-        self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
+        self,
+        fragment_id: str,
+        name: str,
+        config: Optional[Mapping[str, Any]] = None,
+        public: Optional[bool] = None,
+        visibility: Optional[Fragment.Visibility] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1557,13 +1781,27 @@ class AppClient:
             public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
                 visibility unchanged. A fragment is private by default when created.
 
+                .. deprecated:: 0.25.0
+                    Use ``visibility`` instead.
+            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
+                to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
+                A fragment is private by default when created.
+
         Raises:
             GRPCError: if an invalid ID, name, or config is passed.
 
         Returns:
             viam.app.app_client.Fragment: The newly updated fragment.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
-        request = UpdateFragmentRequest(id=fragment_id, name=name, config=dict_to_struct(config) if config else None, public=public)
+        request = UpdateFragmentRequest(
+            id=fragment_id,
+            name=name,
+            config=dict_to_struct(config) if config else None,
+            public=public,
+            visibility=visibility.to_proto() if visibility else None,
+        )
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
@@ -1580,9 +1818,43 @@ class AppClient:
 
         Raises:
             GRPCError: If an invalid fragment ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
+
+    async def get_fragment_history(
+        self, id: str, page_token: Optional[str] = "", page_limit: Optional[int] = 10
+    ) -> List[FragmentHistoryEntry]:
+        """Get fragment history.
+
+        ::
+
+            fragment_history = await cloud.get_fragment_history(
+                id = "12a12ab1-1234-5678-abcd-abcd01234567",
+                page_token = "pg-token",
+                page_limit = 10
+            )
+
+        Args:
+            id (str): ID of the fragment to fetch history for.
+            page_token (Optional[str]): the page token for the fragment history collection
+            page_limit (Optional[int]): the number of fragment history documents to return in the result.
+                The default page limit is 10.
+
+        Raises:
+            GRPCError: if an invalid fragment id, page token or page limit is passed.
+
+        Returns:
+            viam.app.app_client.FragmentHistoryResponse: A list of documents with the fragment history.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+        """
+
+        request = GetFragmentHistoryRequest(id=id, page_token=page_token, page_limit=page_limit)
+        response: GetFragmentHistoryResponse = await self._app_client.GetFragmentHistory(request, metadata=self._metadata)
+        return [FragmentHistoryEntry.from_proto(fragment_history) for fragment_history in response.history]
 
     async def add_role(
         self,
@@ -1605,14 +1877,17 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the role in.
-            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+                You can obtain your organization ID from the Viam app's organization settings page.
+            identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `resource_id`.
-            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         authorization = await self._create_authorization(
             organization_id=org_id,
@@ -1646,14 +1921,17 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization the role exists in.
-            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+                You can obtain your organization ID from the Viam app's organization settings page.
+            identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
                 removed from. Must match `resource_id`.
-            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         authorization = await self._create_authorization(
             organization_id=org_id,
@@ -1695,17 +1973,19 @@ class AppClient:
 
         Args:
             organization_id (str): ID of the organization
-            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            old_identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
             old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
                 added to. Must match `old_resource_id`.
-            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
-            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
+            new_identity_id (str): New ID of the entity the role blongs to (for example, a user ID).
             new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
             new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `new_resource_id`.
-            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            new_resource_id (str): New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         old_authorization = await self._create_authorization(
             organization_id=organization_id,
@@ -1746,6 +2026,8 @@ class AppClient:
 
         Returns:
             List[viam.proto.app.Authorization]: The list of authorizations.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListAuthorizationsRequest(organization_id=org_id, resource_ids=resource_ids)
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
@@ -1769,13 +2051,15 @@ class AppClient:
 
         Args:
             permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate
-                (e.g., "read_organization", "control_robot")
+                (for example, "read_organization", "control_robot")
 
         Raises:
             GRPCError: If the list of permissions to validate is empty.
 
         Returns:
             List[viam.proto.app.AuthorizedPermissions]: The permissions argument, with invalid permissions filtered out.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CheckPermissionsRequest(permissions=permissions)
         response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
@@ -1793,6 +2077,8 @@ class AppClient:
 
         Returns:
             RegistryItem: The registry item.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetRegistryItemRequest(item_id=item_id)
         response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
@@ -1809,6 +2095,8 @@ class AppClient:
             organization_id (str): The organization to create the registry item under.
             name (str): The name of the registry item, which must be unique within your org.
             type (PackageType.ValueType): The type of the item in the registry.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateRegistryItemRequest(organization_id=organization_id, name=name, type=type)
         await self._app_client.CreateRegistryItem(request, metadata=self._metadata)
@@ -1855,6 +2143,8 @@ class AppClient:
 
         Returns:
             List[RegistryItem]: The list of registry items.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListRegistryItemsRequest(
             organization_id=organization_id,
@@ -1877,6 +2167,8 @@ class AppClient:
 
         Args:
             item_id (str): The ID of the registry item.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteRegistryItemRequest(item_id=item_id)
         await self._app_client.DeleteRegistryItem(request, metadata=self._metadata)
@@ -1891,13 +2183,16 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the module under.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): The name of the module. Must be unique within your organization.
 
         Raises:
-            GRPCError: If an invalid name (e.g., "") is passed.
+            GRPCError: If an invalid name (for example, "") is passed.
 
         Returns:
             Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateModuleRequest(organization_id=org_id, name=name)
         response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
@@ -1923,8 +2218,8 @@ class AppClient:
                 entrypoint="exec")
 
         Args:
-            module_id (str): ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
-                "my-org:my-module").
+            module_id (str): ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
+                (for example, "my-org:my-module").
             url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
             models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.
@@ -1936,6 +2231,8 @@ class AppClient:
 
         Returns:
             str: The URL of the newly updated module.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = UpdateModuleRequest(
             module_id=module_id,
@@ -1961,6 +2258,8 @@ class AppClient:
 
         Returns:
             str: ID of uploaded file.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request_module_file_info = UploadModuleFileRequest(module_file_info=module_file_info)
         request_file = UploadModuleFileRequest(file=file)
@@ -1988,6 +2287,8 @@ class AppClient:
 
         Returns:
             viam.proto.app.Module: The module.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = GetModuleRequest(module_id=module_id)
         response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
@@ -2002,9 +2303,12 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list modules for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.Module]: The list of modules.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = ListModulesRequest(organization_id=org_id)
         response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
@@ -2020,15 +2324,16 @@ class AppClient:
             from viam.app.app_client import APIKeyAuthorization
 
             auth = APIKeyAuthorization(
-            role="owner",
-            resource_type="robot",
-            resource_id="your-robot-id123"
+                role="owner",
+                resource_type="robot",
+                resource_id="your-robot-id123"
             )
 
-            api_key, api_key_id = cloud.create_key([auth], "my_key")
+            api_key, api_key_id = cloud.create_key("your-org-id", [auth], "my_key")
 
         Args:
             org_id (str): The ID of the organization to create the key for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
                 with the key.
             name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
@@ -2038,6 +2343,8 @@ class AppClient:
 
         Returns:
             Tuple[str, str]: The api key and api key ID.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         name = name if name is not None else str(datetime.now())
         authorizations_pb = [await self._create_authorization_for_new_api_key(org_id, auth) for auth in authorizations]
@@ -2054,6 +2361,8 @@ class AppClient:
 
         Args:
             id (str): The ID of the API key.
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = DeleteKeyRequest(id=id)
         await self._app_client.DeleteKey(request, metadata=self._metadata)
@@ -2071,6 +2380,8 @@ class AppClient:
 
         Returns:
             Tuple[str, str]: The API key and API key id
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = CreateKeyFromExistingKeyAuthorizationsRequest(id=id)
         response: CreateKeyFromExistingKeyAuthorizationsResponse = await self._app_client.CreateKeyFromExistingKeyAuthorizations(
@@ -2088,6 +2399,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list API keys for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""
@@ -2107,6 +2419,8 @@ class AppClient:
 
         Returns:
             Tuple[str, str]: The API key and API key id
+
+        For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
         request = RotateKeyRequest(id=id)
         response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)

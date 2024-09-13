@@ -20,6 +20,27 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _AuthenticationType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _AuthenticationTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_AuthenticationType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    AUTHENTICATION_TYPE_UNSPECIFIED: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_WEB_OAUTH: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_API_KEY: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_ROBOT_PART_SECRET: _AuthenticationType.ValueType
+    AUTHENTICATION_TYPE_LOCATION_SECRET: _AuthenticationType.ValueType
+
+class AuthenticationType(_AuthenticationType, metaclass=_AuthenticationTypeEnumTypeWrapper):
+    ...
+AUTHENTICATION_TYPE_UNSPECIFIED: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_WEB_OAUTH: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_API_KEY: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_ROBOT_PART_SECRET: AuthenticationType.ValueType
+AUTHENTICATION_TYPE_LOCATION_SECRET: AuthenticationType.ValueType
+global___AuthenticationType = AuthenticationType
+
 class _FragmentVisibility:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -173,6 +194,7 @@ class RobotPartHistoryEntry(google.protobuf.message.Message):
     ROBOT_FIELD_NUMBER: builtins.int
     WHEN_FIELD_NUMBER: builtins.int
     OLD_FIELD_NUMBER: builtins.int
+    EDITED_BY_FIELD_NUMBER: builtins.int
     part: builtins.str
     robot: builtins.str
 
@@ -184,15 +206,36 @@ class RobotPartHistoryEntry(google.protobuf.message.Message):
     def old(self) -> global___RobotPart:
         ...
 
-    def __init__(self, *, part: builtins.str=..., robot: builtins.str=..., when: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___RobotPart | None=...) -> None:
+    @property
+    def edited_by(self) -> global___AuthenticatorInfo:
         ...
 
-    def HasField(self, field_name: typing.Literal['old', b'old', 'when', b'when']) -> builtins.bool:
+    def __init__(self, *, part: builtins.str=..., robot: builtins.str=..., when: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___RobotPart | None=..., edited_by: global___AuthenticatorInfo | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
+    def HasField(self, field_name: typing.Literal['edited_by', b'edited_by', 'old', b'old', 'when', b'when']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['edited_by', b'edited_by', 'old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
         ...
 global___RobotPartHistoryEntry = RobotPartHistoryEntry
+
+@typing.final
+class AuthenticatorInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TYPE_FIELD_NUMBER: builtins.int
+    VALUE_FIELD_NUMBER: builtins.int
+    IS_DEACTIVATED_FIELD_NUMBER: builtins.int
+    type: global___AuthenticationType.ValueType
+    value: builtins.str
+    is_deactivated: builtins.bool
+
+    def __init__(self, *, type: global___AuthenticationType.ValueType=..., value: builtins.str=..., is_deactivated: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['is_deactivated', b'is_deactivated', 'type', b'type', 'value', b'value']) -> None:
+        ...
+global___AuthenticatorInfo = AuthenticatorInfo
 
 @typing.final
 class ListOrganizationsRequest(google.protobuf.message.Message):
@@ -1672,6 +1715,37 @@ class Fragment(google.protobuf.message.Message):
 global___Fragment = Fragment
 
 @typing.final
+class FragmentHistoryEntry(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_FIELD_NUMBER: builtins.int
+    EDITED_ON_FIELD_NUMBER: builtins.int
+    OLD_FIELD_NUMBER: builtins.int
+    EDITED_BY_FIELD_NUMBER: builtins.int
+    fragment: builtins.str
+
+    @property
+    def edited_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def old(self) -> global___Fragment:
+        ...
+
+    @property
+    def edited_by(self) -> global___AuthenticatorInfo:
+        ...
+
+    def __init__(self, *, fragment: builtins.str=..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___Fragment | None=..., edited_by: global___AuthenticatorInfo | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'fragment', b'fragment', 'old', b'old']) -> None:
+        ...
+global___FragmentHistoryEntry = FragmentHistoryEntry
+
+@typing.final
 class ListFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -1857,6 +1931,52 @@ class DeleteFragmentResponse(google.protobuf.message.Message):
 global___DeleteFragmentResponse = DeleteFragmentResponse
 
 @typing.final
+class GetFragmentHistoryRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    PAGE_LIMIT_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    page_token: builtins.str
+    page_limit: builtins.int
+
+    def __init__(self, *, id: builtins.str=..., page_token: builtins.str | None=..., page_limit: builtins.int | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_page_limit', b'_page_limit', '_page_token', b'_page_token', 'page_limit', b'page_limit', 'page_token', b'page_token']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_page_limit', b'_page_limit', '_page_token', b'_page_token', 'id', b'id', 'page_limit', b'page_limit', 'page_token', b'page_token']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_page_limit', b'_page_limit']) -> typing.Literal['page_limit'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
+        ...
+global___GetFragmentHistoryRequest = GetFragmentHistoryRequest
+
+@typing.final
+class GetFragmentHistoryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HISTORY_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+
+    @property
+    def history(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentHistoryEntry]:
+        ...
+
+    def __init__(self, *, history: collections.abc.Iterable[global___FragmentHistoryEntry] | None=..., next_page_token: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['history', b'history', 'next_page_token', b'next_page_token']) -> None:
+        ...
+global___GetFragmentHistoryResponse = GetFragmentHistoryResponse
+
+@typing.final
 class ListRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1868,6 +1988,43 @@ class ListRobotsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___ListRobotsRequest = ListRobotsRequest
+
+@typing.final
+class ListMachineFragmentsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MACHINE_ID_FIELD_NUMBER: builtins.int
+    ADDITIONAL_FRAGMENT_IDS_FIELD_NUMBER: builtins.int
+    machine_id: builtins.str
+    "the machine_id used to filter fragments defined in a machine's parts.\n    Also returns any fragments nested within the fragments defined in parts.\n    "
+
+    @property
+    def additional_fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """additional fragment_ids to append to the response. useful when needing to view fragments that will be
+        provisionally added to the machine alongside existing fragments.
+        """
+
+    def __init__(self, *, machine_id: builtins.str=..., additional_fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['additional_fragment_ids', b'additional_fragment_ids', 'machine_id', b'machine_id']) -> None:
+        ...
+global___ListMachineFragmentsRequest = ListMachineFragmentsRequest
+
+@typing.final
+class ListMachineFragmentsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
+        ...
+
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
+        ...
+global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
 
 @typing.final
 class ListRobotsResponse(google.protobuf.message.Message):
@@ -2322,15 +2479,19 @@ global___ModuleMetadata = ModuleMetadata
 class MLModelMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+    model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
 
     @property
     def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """A list of package versions for a ML model"""
 
-    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
         ...
 global___MLModelMetadata = MLModelMetadata
 
@@ -2522,15 +2683,23 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
+    URL_FIELD_NUMBER: builtins.int
     item_id: builtins.str
     type: app.packages.v1.packages_pb2.PackageType.ValueType
     description: builtins.str
     visibility: global___Visibility.ValueType
+    url: builtins.str
 
-    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=...) -> None:
+    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'item_id', b'item_id', 'type', b'type', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_url', b'_url', 'url', b'url']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'type', b'type', 'url', b'url', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_url', b'_url']) -> typing.Literal['url'] | None:
         ...
 global___UpdateRegistryItemRequest = UpdateRegistryItemRequest
 
@@ -2637,6 +2806,29 @@ class DeleteRegistryItemResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteRegistryItemResponse = DeleteRegistryItemResponse
+
+@typing.final
+class TransferRegistryItemRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: builtins.int
+    NEW_PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    item_id: builtins.str
+    new_public_namespace: builtins.str
+
+    def __init__(self, *, item_id: builtins.str=..., new_public_namespace: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['item_id', b'item_id', 'new_public_namespace', b'new_public_namespace']) -> None:
+        ...
+global___TransferRegistryItemRequest = TransferRegistryItemRequest
+
+@typing.final
+class TransferRegistryItemResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___TransferRegistryItemResponse = TransferRegistryItemResponse
 
 @typing.final
 class CreateModuleRequest(google.protobuf.message.Message):

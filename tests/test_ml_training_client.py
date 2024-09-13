@@ -18,6 +18,7 @@ JOB_ID = "job-id"
 ORG_ID = "org-id"
 DATASET_ID = "dataset-id"
 REGISTRY_ITEM_ID = "registry-item-id"
+REGISTRY_ITEM_VERSION = "registry-item-version"
 MODEL_ID = "model-id"
 MODEL_NAME = "model-name"
 MODEL_VERSION = "model-version"
@@ -44,7 +45,6 @@ FILTER = create_filter(
 )
 SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(organization_id=ORG_ID)
 TRAINING_METADATA = TrainingJobMetadata(
-    request=SUBMIT_JOB_REQUEST,
     status=TRAINING_STATUS,
     created_on=CREATED_ON,
     last_modified=LAST_MODIFIED,
@@ -81,7 +81,12 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
             id = await client.submit_custom_training_job(
-                org_id=ORG_ID, dataset_id=DATASET_ID, registry_item_id=REGISTRY_ITEM_ID, model_name=MODEL_NAME, model_version=MODEL_VERSION
+                org_id=ORG_ID,
+                dataset_id=DATASET_ID,
+                registry_item_id=REGISTRY_ITEM_ID,
+                registry_item_version=REGISTRY_ITEM_VERSION,
+                model_name=MODEL_NAME,
+                model_version=MODEL_VERSION,
             )
             assert id == JOB_ID
 

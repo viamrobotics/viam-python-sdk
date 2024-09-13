@@ -14,6 +14,8 @@ class Navigation(ServiceBase):
     This acts as an abstract base class for any drivers representing specific
     navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -24,7 +26,7 @@ class Navigation(ServiceBase):
     async def get_paths(self, *, timeout: Optional[float]) -> List[Path]:
         """
         Get each path, the series of geo points the robot plans to travel through
-        to get to a destination waypoint, in the machine’s motion planning.
+        to get to a destination waypoint, in the machine's motion planning.
 
         ::
 
@@ -41,6 +43,8 @@ class Navigation(ServiceBase):
             List[navigation.Path]: An array comprised of Paths, where each path is either a user-provided destination or
             a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
             reach the specified destination or Waypoint.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -63,13 +67,15 @@ class Navigation(ServiceBase):
         Returns:
             navigation.GeoPoint: The current location of the robot in the navigation service,
             represented in a GeoPoint with latitude and longitude values.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
     @abc.abstractmethod
     async def get_obstacles(self, *, timeout: Optional[float]) -> List[GeoGeometry]:
         """
-        Get an array or list of the obstacles currently in the service’s data storage.
+        Get an array or list of the obstacles currently in the service's data storage.
         These are objects designated for the robot to avoid when navigating.
         These include all transient obstacles which are discovered by the vision services configured for the navigation service,
         in addition to the obstacles that are configured as a part of the service.
@@ -86,15 +92,17 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service’s data storage.
+            List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service's data storage.
             These are objects designated for the robot to avoid when navigating.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
     @abc.abstractmethod
     async def get_waypoints(self, *, timeout: Optional[float]) -> List[Waypoint]:
         """
-        Get an array of waypoints currently in the service’s data storage.
+        Get an array of waypoints currently in the service's data storage.
         These are locations designated within a path for the robot to navigate to.
 
         ::
@@ -109,15 +117,17 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            List[navigation.Waypoint]: An array comprised of each Waypoint in the service’s data storage.
+            List[navigation.Waypoint]: An array comprised of each Waypoint in the service's data storage.
             These are locations designated within a path for the robot to navigate to.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
     @abc.abstractmethod
     async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float]):
         """
-        Add a waypoint to the service’s data storage.
+        Add a waypoint to the service's data storage.
 
         ::
 
@@ -135,13 +145,15 @@ class Navigation(ServiceBase):
                 represented in a GeoPoint with latitude and longitude values.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
     @abc.abstractmethod
     async def remove_waypoint(self, id: str, *, timeout: Optional[float]):
         """
-        Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
+        Remove a waypoint from the service's data storage. If the robot is currently navigating to this waypoint,
         the motion will be canceled, and the robot will proceed to the next waypoint.
 
         ::
@@ -152,9 +164,11 @@ class Navigation(ServiceBase):
             await my_nav.remove_waypoint(waypoint_id)
 
         Args:
-            id (str): The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.
+            id (str): The MongoDB ObjectID of the Waypoint to remove from the service's data storage.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -181,6 +195,8 @@ class Navigation(ServiceBase):
 
         Returns:
             navigation.Mode.ValueType: The Mode the service is operating in.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -205,6 +221,8 @@ class Navigation(ServiceBase):
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
             mode (navigation.Mode.ValueType): The Mode for the service to operate in.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...
 
@@ -226,5 +244,7 @@ class Navigation(ServiceBase):
 
         Returns:
             MapType.ValueType: Information about the type of map the service is using.
+
+        For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
         """
         ...

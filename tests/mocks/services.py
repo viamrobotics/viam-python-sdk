@@ -5,6 +5,7 @@ from grpclib.server import Stream
 from numpy.typing import NDArray
 
 from viam.app.data_client import DataClient
+from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
 from viam.media.video import ViamImage
 from viam.proto.app import (
     AddRoleRequest,
@@ -251,12 +252,12 @@ from viam.proto.app.mltraining import (
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
-    MLTrainingServiceBase,
     SubmitCustomTrainingJobRequest,
     SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
+    UnimplementedMLTrainingServiceBase,
 )
 from viam.proto.app.packages import PackageType
 from viam.proto.common import (
@@ -1065,7 +1066,7 @@ class MockDataSync(DataSyncServiceBase):
         await stream.send_message(StreamingDataCaptureUploadResponse(file_id=self.file_upload_response))
 
 
-class MockMLTraining(MLTrainingServiceBase):
+class MockMLTraining(UnimplementedMLTrainingServiceBase):
     def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
         self.job_id = job_id
         self.training_metadata = training_metadata
@@ -1173,6 +1174,7 @@ class MockApp(UnimplementedAppServiceBase):
         available: bool,
         location_auth: LocationAuth,
         robot_part_history: List[RobotPartHistoryEntry],
+        fragment_history: List[FragmentHistoryEntry],
         authorizations: List[Authorization],
         url: str,
         module: Module,
@@ -1195,6 +1197,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.available = available
         self.location_auth = location_auth
         self.robot_part_history = robot_part_history
+        self.fragment_history = fragment_history
         self.authorizations = authorizations
         self.url = url
         self.module = module
@@ -1388,6 +1391,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.robot_part_id = request.id
         self.filter = request.filter
         self.errors_only = request.errors_only
+        self.levels = request.levels
         await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
@@ -1480,7 +1484,7 @@ class MockApp(UnimplementedAppServiceBase):
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.show_public = request.show_public
+        self.fragment_visibility = request.fragment_visibility
         await stream.send_message(ListFragmentsResponse(fragments=[self.fragment]))
 
     async def GetFragment(self, stream: Stream[GetFragmentRequest, GetFragmentResponse]) -> None:
@@ -1488,6 +1492,14 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.fragment_id = request.id
         await stream.send_message(GetFragmentResponse(fragment=self.fragment))
+
+    async def GetFragmentHistory(self, stream: Stream[GetFragmentHistoryRequest, GetFragmentHistoryResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.page_token = request.page_token
+        self.page_limit = request.page_limit
+        await stream.send_message(GetFragmentHistoryResponse(history=self.fragment_history))
 
     async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:
         request = await stream.recv_message()

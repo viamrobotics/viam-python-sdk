@@ -16,6 +16,8 @@ class Gripper(ComponentBase):
     ::
 
         from viam.components.gripper import Gripper
+
+    For more information, see `Gripper component <https://docs.viam.com/components/gripper/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -39,6 +41,8 @@ class Gripper(ComponentBase):
 
             # Open the gripper.
             await my_gripper.open()
+
+        For more information, see `Gripper component <https://docs.viam.com/components/gripper/>`_.
         """
         ...
 
@@ -62,6 +66,8 @@ class Gripper(ComponentBase):
 
         Returns:
             bool: Indicates if the gripper grabbed something.
+
+        For more information, see `Gripper component <https://docs.viam.com/components/gripper/>`_.
         """
         ...
 
@@ -82,6 +88,8 @@ class Gripper(ComponentBase):
 
             # Stop the gripper.
             await my_gripper.stop()
+
+        For more information, see `Gripper component <https://docs.viam.com/components/gripper/>`_.
         """
         ...
 
@@ -100,5 +108,7 @@ class Gripper(ComponentBase):
 
         Returns:
             bool: Whether the gripper is moving.
+
+        For more information, see `Gripper component <https://docs.viam.com/components/gripper/>`_.
         """
         ...
