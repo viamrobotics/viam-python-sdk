@@ -1,3 +1,4 @@
+import asyncio
 from typing import TYPE_CHECKING, Callable, List, Optional
 
 from grpclib import GRPCError, Status
@@ -112,7 +113,10 @@ class Server(ResourceManager):
             else:
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
-            await self._server.wait_closed()
+            task = asyncio.create_task(self._server.wait_closed())
+            await self._server._server_closed_fut
+            logging.shutdown()
+            await task
             await self.close()
             LOGGER.debug("gRPC server closed")
 

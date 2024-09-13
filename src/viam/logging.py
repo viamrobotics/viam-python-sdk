@@ -24,7 +24,8 @@ class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
     _ready_event = asyncio.Event()
-    _thread = None
+    _loop: asyncio.AbstractEventLoop = None
+    _thread: Thread = None
 
     def __new__(cls):
         # Ensure singleton precondition
@@ -44,9 +45,10 @@ class _SingletonEventLoopThread:
         self._loop.run_forever()
 
     def stop(self):
-        if self._loop is not None:
+        if self._loop is not None and not self._loop.is_closed():
+            # Stop the event loop only if it's still running
             self._loop.call_soon_threadsafe(self._loop.stop)
-            self._loop.close()
+            self._thread.join()
 
     def get_loop(self):
         if self._loop is None:
@@ -200,3 +202,7 @@ def setLevel(level: int):
 
 def silence():
     setLevel(FATAL + 1)
+
+
+def shutdown():
+    logging.shutdown()
