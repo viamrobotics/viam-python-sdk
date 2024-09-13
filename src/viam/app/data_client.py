@@ -177,14 +177,13 @@ class DataClient:
 
             from viam.proto.app.data import Filter
 
-            my_data = []
-            last = None
-            my_filter = Filter(component_name="left_motor")
-            while True:
-                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)
-                if not tabular_data:
-                    break
-                my_data.extend(tabular_data)
+            left_motor_filter = create_filter(
+            component_name="motor-1"
+            )
+
+            data, count, last = await data_client.tabular_data_by_filter(filter=left_motor_filter)
+            for tab in data:
+                print(tab)
 
 
         Args:
@@ -194,9 +193,9 @@ class DataClient:
             sort_order (viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the ID of the last-returned data.
                         If provided, the server will return the next data entries after the `last` ID.
-            count_only (bool): Whether to return only the total count of entries.
+            count_only (bool): Whether to return only the total count of entries. Optional.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                          like cloud SLAM. Defaults to `False`
+                                          like cloud SLAM. Optional, defaults to `False`.
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
@@ -239,7 +238,10 @@ class DataClient:
 
         ::
 
-            data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="SELECT * FROM readings LIMIT 5")
+            data = await data_client.tabular_data_by_sql(
+                org_id="<YOUR-ORG-ID>",
+                sql_query="SELECT * FROM readings LIMIT 5"
+                )
 
 
         Args:
@@ -259,17 +261,42 @@ class DataClient:
         ::
             # using bson
             import bson
-            tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
-                bson.dumps({ '$match': { 'location_id': '<location-id>' } }),
-                bson.dumps({ "$limit": 5 })
-            ])
+            import bson.json_util
 
-            # using pymongo
-            import bson
-            tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
-                bson.encode({ '$match': { 'location_id': '<location-id>' } }),
-                bson.encode({ "$limit": 5 })
-            ])
+            def mql_to_binary(mql_pipeline):
+                binary_pipeline = []
+                for stage in mql_pipeline:
+                    # Parse the JSON string to a Python dict
+                    parsed_stage = bson.json_util.loads(stage)
+                    # Convert the dict to BSON
+                    bson_stage = bson.BSON.encode(parsed_stage)
+                    binary_pipeline.append(bson_stage)
+                return binary_pipeline
+
+            mql_pipeline=[
+                bson.json_util.dumps({ '$match': { 'location_id': '<YOUR_LOCATION_ID>' } }),
+                bson.json_util.dumps({ "$limit": 5 })
+            ]
+
+            binary_pipeline = mql_to_binary(mql_pipeline)
+
+            # using bson dumps
+            tabular_data = await data_client.tabular_data_by_mql(
+                organization_id="<YOUR-ORG-ID>",
+                mql_binary=binary_pipeline
+                )
+
+            print(f"Tabular Data 1: {tabular_data}")
+
+            # using encoding
+            tabular_data = await data_client.tabular_data_by_mql(
+                organization_id="<YOUR-ORG-ID>",
+                mql_binary=[
+                    bson.BSON.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
+                    bson.BSON.encode({ "$limit": 5 })
+                ])
+
+            print(f"Tabular Data 2: {tabular_data}")
 
 
         Args:
@@ -304,14 +331,17 @@ class DataClient:
             from viam.proto.app.data import Filter
 
 
-            my_data = []
-            last = None
-            my_filter = Filter(component_name="camera")
-            while True:
-                data, count, last = await data_client.binary_data_by_filter(my_filter, last)
-                if not data:
-                    break
-                my_data.extend(data)
+            camera_filter = create_filter(
+                component_name="camera-1"
+                )
+
+            data, count, last = await data_client.binary_data_by_filter(
+                filter=camera_filter,
+                limit=1,
+                include_binary_data=True
+                )
+            for binary in data:
+                print(binary)
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
@@ -370,12 +400,12 @@ class DataClient:
             from viam.proto.app.data import BinaryID
 
             binary_metadata = await data_client.binary_data_by_filter(
-                include_file_data=False
+                include_binary_data=False
             )
 
             my_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -412,12 +442,10 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
-
-            my_filter = Filter(component_name="left_motor")
-            days_of_data_to_delete = 10
             tabular_data = await data_client.delete_tabular_data(
-                org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
+                organization_id="<YOUR-ORG-ID>",
+                delete_older_than_days=150
+                )
 
         Args:
             organization_id (str): ID of organization to delete data from.
@@ -440,14 +468,15 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="left_motor")
+            my_filter = create_filter(component_name="left_motor", organization_ids=["<YOUR-ORG-ID>"])
             res = await data_client.delete_binary_data_by_filter(my_filter)
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
-                all data being deleted. Exercise caution when using this option.
+                all data being deleted. Exercise caution when using this option. You must specify any organization ID with
+                "organization_ids" when using this option.
 
         Returns:
             int: The number of items deleted.
@@ -463,14 +492,18 @@ class DataClient:
         ::
 
             from viam.proto.app.data import BinaryID
+            from viam.utils import create_filter
 
+            my_filter = create_filter(component_name="camera-1", organization_ids=["<YOUR-ORG-ID>"])
             binary_metadata = await data_client.binary_data_by_filter(
-                include_file_data=False
-            )
+                filter=my_filter,
+                limit=20,
+                include_binary_data=False
+                )
 
             my_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -479,7 +512,7 @@ class DataClient:
                     )
                 )
 
-            binary_data = await data_client.delete_binary_data_by_ids(my_ids)
+            binary_data = await data_client.binary_data_by_ids(my_ids)
 
         Args:
             binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.
@@ -500,16 +533,20 @@ class DataClient:
         ::
 
             from viam.proto.app.data import BinaryID
+            from viam.utils import create_filter
 
             tags = ["tag1", "tag2"]
 
+            my_filter = create_filter(component_name="camera-1", organization_ids=["<YOUR-ORG-ID>"])
             binary_metadata = await data_client.binary_data_by_filter(
-                include_file_data=False
-            )
+                filter=my_filter,
+                limit=20,
+                include_binary_data=False
+                )
 
             my_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -559,16 +596,21 @@ class DataClient:
         ::
 
             from viam.proto.app.data import BinaryID
+            from viam.utils import create_filter
 
             tags = ["tag1", "tag2"]
 
+            my_filter = create_filter(component_name="camera-1")
+
             binary_metadata = await data_client.binary_data_by_filter(
-                include_file_data=False
+                filter=my_filter,
+                limit=50,
+                include_binary_data=False
             )
 
             my_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -663,12 +705,12 @@ class DataClient:
             from viam.proto.app.data import BinaryID
 
             MY_BINARY_ID = BinaryID(
-                file_id=your-file_id,
-                organization_id=your-org-id,
-                location_id=your-location-id
+                file_id="<YOUR-FILE-ID>",
+                organization_id="<YOUR-ORG-ID>",
+                location_id="<YOUR-LOCATION-ID>"
             )
 
-            bbox_label = await data_client.add_bounding_box_to_image_by_id(
+            bbox_id = await data_client.add_bounding_box_to_image_by_id(
                 binary_id=MY_BINARY_ID,
                 label="label",
                 x_min_normalized=0,
@@ -677,7 +719,7 @@ class DataClient:
                 y_max_normalized=.3
             )
 
-            print(bbox_label)
+            print(bbox_id)
 
         Args:
             binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.
@@ -740,6 +782,8 @@ class DataClient:
             bounding_box_labels = await data_client.bounding_box_labels_by_filter(
                 my_filter)
 
+            print(bounding_box_labels)
+
         Args:
             filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
                 return.
@@ -757,7 +801,7 @@ class DataClient:
 
         ::
 
-            data_client.get_database_connection(org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
+            hostname = await data_client.get_database_connection(organization_id="<YOUR-ORG-ID>")
 
         Args:
             organization_id (str): Organization to retrieve the connection for.
@@ -773,6 +817,13 @@ class DataClient:
         """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
         password of the existing database user.
 
+        ::
+
+            await data_client.configure_database_user(
+                organization_id="<YOUR-ORG-ID>",
+                password="Your_Password@1234"
+            )
+
         Args:
             organization_id (str): The ID of the organization.
             password (str): The password of the user.
@@ -786,8 +837,8 @@ class DataClient:
         ::
 
             name = await data_client.create_dataset(
-                name="<dataset-name>",
-                organization_id="<your-org-id>"
+                name="<DATASET-NAME>",
+                organization_id="<YOUR-ORG-ID>"
             )
             print(name)
 
@@ -808,12 +859,13 @@ class DataClient:
         ::
 
             datasets = await data_client.list_dataset_by_ids(
-                ids=["abcd-1234xyz-8765z-123abc"]
+                ids=["<YOUR-DATASET-ID-1>, <YOUR-DATASET-ID-2>"]
             )
             print(datasets)
 
         Args:
-            ids (List[str]): The IDs of the datasets being called for.
+            ids (List[str]): The IDs of the datasets being called for. You can retrieve these values by navigating to the **DATASETS**
+            sub-tab of the **DATA** tab, clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
 
         Returns:
             Sequence[Dataset]: The list of datasets.
@@ -828,8 +880,8 @@ class DataClient:
 
         ::
 
-            datasets = await data_client.list_dataset_by_ids(
-                ids=["abcd-1234xyz-8765z-123abc"]
+            datasets = await data_client.list_datasets_by_organization_id(
+                organization_id="YOUR-ORG-ID"
             )
             print(datasets)
 
@@ -852,12 +904,13 @@ class DataClient:
         ::
 
             await data_client.rename_dataset(
-                id="abcd-1234xyz-8765z-123abc",
-                name="<dataset-name>"
+                id="<YOUR-DATASET-ID>",
+                name="MyDataset"
             )
 
         Args:
-            id (str): The ID of the dataset.
+            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
+            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
             name (str): The new name of the dataset.
         """
         request = RenameDatasetRequest(id=id, name=name)
@@ -873,7 +926,8 @@ class DataClient:
             )
 
         Args:
-            id (str): The ID of the dataset.
+            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
+            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -893,7 +947,7 @@ class DataClient:
 
             my_binary_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_binary_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -929,7 +983,7 @@ class DataClient:
 
             my_binary_ids = []
 
-            for obj in binary_metadata:
+            for obj in binary_metadata[0]:
                 my_binary_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -1149,7 +1203,7 @@ class DataClient:
                 component_type='motor',
                 component_name='left_motor',
                 method_name='IsPowered',
-                data_request_times=[(time_requested, time_received)],
+                data_request_times=[time_requested, time_received],
                 tags=["tag_1", "tag_2"]
             )
 
