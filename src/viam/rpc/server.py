@@ -113,11 +113,14 @@ class Server(ResourceManager):
             else:
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
+
+            # This has to be done for a bug in Python 3.12, where logger handlers hang on shutdown
             task = asyncio.create_task(self._server.wait_closed())
             if self._server._server_closed_fut is not None:
                 await self._server._server_closed_fut
             logging.shutdown()
             await task
+
             await self.close()
             LOGGER.debug("gRPC server closed")
 
