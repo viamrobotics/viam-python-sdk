@@ -512,7 +512,7 @@ class DataClient:
                     )
                 )
 
-            binary_data = await data_client.binary_data_by_ids(my_ids)
+            binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
         Args:
             binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.
