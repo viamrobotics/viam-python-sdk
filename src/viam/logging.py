@@ -24,8 +24,8 @@ class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
     _ready_event = asyncio.Event()
-    _loop: asyncio.AbstractEventLoop = None
-    _thread: Thread = None
+    _loop: asyncio.AbstractEventLoop
+    _thread: Thread
 
     def __new__(cls):
         # Ensure singleton precondition
@@ -33,7 +33,6 @@ class _SingletonEventLoopThread:
             with cls._lock:
                 if cls._instance is None:
                     cls._instance = super(_SingletonEventLoopThread, cls).__new__(cls)
-                    cls._instance._loop = None
                     cls._instance._thread = Thread(target=cls._instance._run)
                     cls._instance._thread.start()
         return cls._instance

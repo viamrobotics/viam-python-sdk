@@ -114,7 +114,8 @@ class Server(ResourceManager):
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
             task = asyncio.create_task(self._server.wait_closed())
-            await self._server._server_closed_fut
+            if self._server._server_closed_fut is not None:
+                await self._server._server_closed_fut
             logging.shutdown()
             await task
             await self.close()
