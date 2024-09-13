@@ -162,13 +162,13 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">           usage = await viam_client.billing_client.get_current_month_usage(&quot;&lt;ORG-ID&gt;&quot;)</span>
+<span class="sd">           usage = await billing_client.get_current_month_usage(&quot;&lt;ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the organization to request usage data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information</span>
+<span class="sd">            viam.proto.app.billing.GetCurrentMonthUsageResponse: the current month usage information</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -180,12 +180,12 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await viam_client.billing_client.get_invoice_pdf(&quot;&lt;INVOICE-ID&gt;&quot;, &quot;&lt;ORG-ID&gt;&quot;, &quot;&lt;FILENAME&gt;&quot;)</span>
+<span class="sd">            await billing_client.get_invoice_pdf(&quot;&lt;INVOICE-ID&gt;&quot;, &quot;&lt;ORG-ID&gt;&quot;, &quot;invoice.pdf&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            invoice_id (str): the ID of the invoice being requested</span>
 <span class="sd">            org_id (str): the ID of the org to request data from</span>
-<span class="sd">            dest (str): filepath to save the invoice to</span>
+<span class="sd">            dest (str): the filepath to save the invoice to</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -201,13 +201,13 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            summary = await viam_client.billing_client.get_invoices_summary(&quot;&lt;ORG-ID&gt;&quot;)</span>
+<span class="sd">            summary = await billing_client.get_invoices_summary(&quot;&lt;ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the org to request data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices</span>
+<span class="sd">            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all org invoices</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -219,13 +219,13 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            information = await viam_client.billing_client.get_org_billing_information(&quot;&lt;ORG-ID&gt;&quot;)</span>
+<span class="sd">            information = await billing_client.get_org_billing_information(&quot;&lt;ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the org to request data for</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information</span>
+<span class="sd">            viam.proto.app.billing.GetOrgBillingInformationResponse: the org billing information</span>
 
 <span class="sd">        For more information, see `Billing Client API &lt;https://docs.viam.com/appendix/apis/billing-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

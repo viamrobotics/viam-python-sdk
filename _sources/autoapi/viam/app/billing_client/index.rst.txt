@@ -68,12 +68,12 @@ Module Contents
 
       ::
 
-         usage = await viam_client.billing_client.get_current_month_usage("<ORG-ID>")
+         usage = await billing_client.get_current_month_usage("<ORG-ID>")
 
       :param org_id: the ID of the organization to request usage data for
       :type org_id: str
 
-      :returns: Current month usage information
+      :returns: the current month usage information
       :rtype: viam.proto.app.billing.GetCurrentMonthUsageResponse
 
       For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
@@ -88,13 +88,13 @@ Module Contents
 
       ::
 
-          await viam_client.billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "<FILENAME>")
+          await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "invoice.pdf")
 
       :param invoice_id: the ID of the invoice being requested
       :type invoice_id: str
       :param org_id: the ID of the org to request data from
       :type org_id: str
-      :param dest: filepath to save the invoice to
+      :param dest: the filepath to save the invoice to
       :type dest: str
 
       For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
@@ -109,12 +109,12 @@ Module Contents
 
       ::
 
-          summary = await viam_client.billing_client.get_invoices_summary("<ORG-ID>")
+          summary = await billing_client.get_invoices_summary("<ORG-ID>")
 
       :param org_id: the ID of the org to request data for
       :type org_id: str
 
-      :returns: Summary of org invoices
+      :returns: the summaries of all org invoices
       :rtype: viam.proto.app.billing.GetInvoicesSummaryResponse
 
       For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
@@ -129,12 +129,12 @@ Module Contents
 
       ::
 
-          information = await viam_client.billing_client.get_org_billing_information("<ORG-ID>")
+          information = await billing_client.get_org_billing_information("<ORG-ID>")
 
       :param org_id: the ID of the org to request data for
       :type org_id: str
 
-      :returns: The org billing information
+      :returns: the org billing information
       :rtype: viam.proto.app.billing.GetOrgBillingInformationResponse
 
       For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
