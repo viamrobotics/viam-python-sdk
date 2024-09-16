@@ -17,6 +17,7 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = GenericServiceStub(channel)
         super().__init__(name)
 
