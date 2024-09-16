@@ -173,26 +173,28 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a training job.</span>
 
 <span class="sd">        ::</span>
+<span class="sd">            from viam.proto.app.mltraining import ModelType</span>
+
 
 <span class="sd">            job_id = await ml_training_client.submit_training_job(</span>
-<span class="sd">                organization_id=organization_id,</span>
-<span class="sd">                dataset_id=dataset_id,</span>
-<span class="sd">                model_name=&quot;your-model-name&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;organization-id&gt;&quot;,</span>
+<span class="sd">                dataset_id=&quot;&lt;dataset-id&gt;&quot;,</span>
+<span class="sd">                model_name=&quot;&lt;your-model-name&gt;&quot;,</span>
 <span class="sd">                model_version=&quot;1&quot;,</span>
-<span class="sd">                model_type=&quot;ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION&quot;,</span>
-<span class="sd">                tags=tags</span>
+<span class="sd">                model_type=ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION,</span>
+<span class="sd">                tags=[&quot;tag1&quot;, &quot;tag2&quot;]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): the id of the org to submit the training job to</span>
-<span class="sd">            dataset_id (str): the id of the dataset</span>
-<span class="sd">            model_name (str): the model name</span>
-<span class="sd">            model_version (str): the model version</span>
-<span class="sd">            model_type (ModelType.ValueType): the model type</span>
-<span class="sd">            tags (List[str]): the tags</span>
+<span class="sd">            org_id (str): the ID of the org to submit the training job to.</span>
+<span class="sd">            dataset_id (str): the ID of the dataset to train the model on.</span>
+<span class="sd">            model_name (str): the model name.</span>
+<span class="sd">            model_version (str): the model version.</span>
+<span class="sd">            model_type (ModelType.ValueType): the model type.</span>
+<span class="sd">            tags (List[str]): the labels to train the model on.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: the id of the training job</span>
+<span class="sd">            str: the ID of the training job.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -216,24 +218,24 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            job_id = await ml_training_client.submit_custom_training_job(</span>
-<span class="sd">                organization_id=organization_id,</span>
-<span class="sd">                dataset_id=dataset_id,</span>
-<span class="sd">                registry_item_id=&quot;your-registry-item-id&quot;,</span>
-<span class="sd">                registry_item_version=&quot;your-registry-item-version&quot;,</span>
-<span class="sd">                model_name=&quot;your-model-name&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;organization-id&gt;&quot;,</span>
+<span class="sd">                dataset_id=&quot;&lt;dataset-id&gt;&quot;,</span>
+<span class="sd">                registry_item_id=&quot;viam:classification-tflite&quot;,</span>
+<span class="sd">                registry_item_version=&quot;2024-08-13T12-11-54&quot;,</span>
+<span class="sd">                model_name=&quot;&lt;your-model-name&gt;&quot;,</span>
 <span class="sd">                model_version=&quot;1&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): the id of the org to submit the training job to</span>
-<span class="sd">            dataset_id (str): the id of the dataset</span>
-<span class="sd">            registry_item_id (str): the id of the registry item</span>
-<span class="sd">            registry_item_version (str): the version of the registry item</span>
-<span class="sd">            model_name (str): the model name</span>
-<span class="sd">            model_version (str): the model version</span>
+<span class="sd">            org_id (str): the ID of the org to submit the training job to.</span>
+<span class="sd">            dataset_id (str): the ID of the dataset to train the model on.</span>
+<span class="sd">            registry_item_id (str): the ID of the training script from the registry.</span>
+<span class="sd">            registry_item_version (str): the version of the training script from the registry.</span>
+<span class="sd">            model_name (str): the model name.</span>
+<span class="sd">            model_version (str): the model version.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: the id of the training job</span>
+<span class="sd">            str: the ID of the training job.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -255,13 +257,13 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            job_metadata = await ml_training_client.get_training_job(</span>
-<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
+<span class="sd">                id=&quot;&lt;job-id&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): the id of the requested training job.</span>
+<span class="sd">            id (str): the ID of the requested training job.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.mltraining.TrainingJobMetadata: training job data.</span>
+<span class="sd">            viam.proto.app.mltraining.TrainingJobMetadata: the training job data.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -281,17 +283,17 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            jobs_metadata = await ml_training_client.list_training_jobs(</span>
-<span class="sd">                org_id=&quot;INSERT YOUR ORG ID&quot;)</span>
+<span class="sd">                org_id=&quot;&lt;org-id&gt;&quot;)</span>
 
 <span class="sd">            first_job_id = jobs_metadata[1].id</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): the id of the org to request training job data from.</span>
-<span class="sd">            training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.</span>
+<span class="sd">            org_id (str): the ID of the org to request training job data from.</span>
+<span class="sd">            training_status (Optional[TrainingStatus]): the status to filter the training jobs list by.</span>
 <span class="sd">                If unspecified, all training jobs will be returned.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.</span>
+<span class="sd">            List[viam.proto.app.mltraining.TrainingJobMetadata]: the list of training job data.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -308,13 +310,13 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await ml_training_client.cancel_training_job(</span>
-<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
+<span class="sd">                id=&quot;&lt;job-id&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): the id of the job to be canceled.</span>
+<span class="sd">            id (str): the ID of the job to cancel.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: if no training job exists with the given id.</span>
+<span class="sd">            GRPCError: if no training job exists with the given ID.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -328,10 +330,10 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await ml_training_client.delete_completed_training_job(</span>
-<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
+<span class="sd">                id=&quot;&lt;job-id&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): the id of the training job</span>
+<span class="sd">            id (str): the ID of the training job to delete.</span>
 
 <span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

@@ -68,30 +68,32 @@ Module Contents
       Submit a training job.
 
       ::
+          from viam.proto.app.mltraining import ModelType
+
 
           job_id = await ml_training_client.submit_training_job(
-              organization_id=organization_id,
-              dataset_id=dataset_id,
-              model_name="your-model-name",
+              org_id="<organization-id>",
+              dataset_id="<dataset-id>",
+              model_name="<your-model-name>",
               model_version="1",
-              model_type="ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION",
-              tags=tags
+              model_type=ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION,
+              tags=["tag1", "tag2"]
           )
 
-      :param org_id: the id of the org to submit the training job to
+      :param org_id: the ID of the org to submit the training job to.
       :type org_id: str
-      :param dataset_id: the id of the dataset
+      :param dataset_id: the ID of the dataset to train the model on.
       :type dataset_id: str
-      :param model_name: the model name
+      :param model_name: the model name.
       :type model_name: str
-      :param model_version: the model version
+      :param model_version: the model version.
       :type model_version: str
-      :param model_type: the model type
+      :param model_type: the model type.
       :type model_type: ModelType.ValueType
-      :param tags: the tags
+      :param tags: the labels to train the model on.
       :type tags: List[str]
 
-      :returns: the id of the training job
+      :returns: the ID of the training job.
       :rtype: str
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
@@ -107,28 +109,28 @@ Module Contents
       ::
 
           job_id = await ml_training_client.submit_custom_training_job(
-              organization_id=organization_id,
-              dataset_id=dataset_id,
-              registry_item_id="your-registry-item-id",
-              registry_item_version="your-registry-item-version",
-              model_name="your-model-name",
+              org_id="<organization-id>",
+              dataset_id="<dataset-id>",
+              registry_item_id="viam:classification-tflite",
+              registry_item_version="2024-08-13T12-11-54",
+              model_name="<your-model-name>",
               model_version="1"
           )
 
-      :param org_id: the id of the org to submit the training job to
+      :param org_id: the ID of the org to submit the training job to.
       :type org_id: str
-      :param dataset_id: the id of the dataset
+      :param dataset_id: the ID of the dataset to train the model on.
       :type dataset_id: str
-      :param registry_item_id: the id of the registry item
+      :param registry_item_id: the ID of the training script from the registry.
       :type registry_item_id: str
-      :param registry_item_version: the version of the registry item
+      :param registry_item_version: the version of the training script from the registry.
       :type registry_item_version: str
-      :param model_name: the model name
+      :param model_name: the model name.
       :type model_name: str
-      :param model_version: the model version
+      :param model_version: the model version.
       :type model_version: str
 
-      :returns: the id of the training job
+      :returns: the ID of the training job.
       :rtype: str
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
@@ -144,12 +146,12 @@ Module Contents
       ::
 
           job_metadata = await ml_training_client.get_training_job(
-              id="INSERT YOUR JOB ID")
+              id="<job-id>")
 
-      :param id: the id of the requested training job.
+      :param id: the ID of the requested training job.
       :type id: str
 
-      :returns: training job data.
+      :returns: the training job data.
       :rtype: viam.proto.app.mltraining.TrainingJobMetadata
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
@@ -165,17 +167,17 @@ Module Contents
       ::
 
           jobs_metadata = await ml_training_client.list_training_jobs(
-              org_id="INSERT YOUR ORG ID")
+              org_id="<org-id>")
 
           first_job_id = jobs_metadata[1].id
 
-      :param org_id: the id of the org to request training job data from.
+      :param org_id: the ID of the org to request training job data from.
       :type org_id: str
-      :param training_status: status of training jobs to filter the list by.
+      :param training_status: the status to filter the training jobs list by.
                               If unspecified, all training jobs will be returned.
       :type training_status: Optional[TrainingStatus]
 
-      :returns: a list of training job data.
+      :returns: the list of training job data.
       :rtype: List[viam.proto.app.mltraining.TrainingJobMetadata]
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
@@ -191,12 +193,12 @@ Module Contents
       ::
 
           await ml_training_client.cancel_training_job(
-              id="INSERT YOUR JOB ID")
+              id="<job-id>")
 
-      :param id: the id of the job to be canceled.
+      :param id: the ID of the job to cancel.
       :type id: str
 
-      :raises GRPCError: if no training job exists with the given id.
+      :raises GRPCError: if no training job exists with the given ID.
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
 
@@ -211,9 +213,9 @@ Module Contents
       ::
 
           await ml_training_client.delete_completed_training_job(
-              id="INSERT YOUR JOB ID")
+              id="<job-id>")
 
-      :param id: the id of the training job
+      :param id: the ID of the training job to delete.
       :type id: str
 
       For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
