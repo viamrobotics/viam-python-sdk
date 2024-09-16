@@ -83,26 +83,28 @@ class MLTrainingClient:
         """Submit a training job.
 
         ::
+            from viam.proto.app.mltraining import ModelType
+
 
             job_id = await ml_training_client.submit_training_job(
-                organization_id=organization_id,
-                dataset_id=dataset_id,
-                model_name="your-model-name",
+                org_id="<organization-id>",
+                dataset_id="<dataset-id>",
+                model_name="<your-model-name>",
                 model_version="1",
-                model_type="ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION",
-                tags=tags
+                model_type=ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION,
+                tags=["tag1", "tag2"]
             )
 
         Args:
-            org_id (str): the id of the org to submit the training job to
-            dataset_id (str): the id of the dataset
-            model_name (str): the model name
-            model_version (str): the model version
-            model_type (ModelType.ValueType): the model type
-            tags (List[str]): the tags
+            org_id (str): the ID of the org to submit the training job to.
+            dataset_id (str): the ID of the dataset to train the model on.
+            model_name (str): the model name.
+            model_version (str): the model version.
+            model_type (ModelType.ValueType): the model type.
+            tags (List[str]): the labels to train the model on.
 
         Returns:
-            str: the id of the training job
+            str: the ID of the training job.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -126,24 +128,24 @@ class MLTrainingClient:
         ::
 
             job_id = await ml_training_client.submit_custom_training_job(
-                organization_id=organization_id,
-                dataset_id=dataset_id,
-                registry_item_id="your-registry-item-id",
-                registry_item_version="your-registry-item-version",
-                model_name="your-model-name",
+                org_id="<organization-id>",
+                dataset_id="<dataset-id>",
+                registry_item_id="viam:classification-tflite",
+                registry_item_version="2024-08-13T12-11-54",
+                model_name="<your-model-name>",
                 model_version="1"
             )
 
         Args:
-            org_id (str): the id of the org to submit the training job to
-            dataset_id (str): the id of the dataset
-            registry_item_id (str): the id of the registry item
-            registry_item_version (str): the version of the registry item
-            model_name (str): the model name
-            model_version (str): the model version
+            org_id (str): the ID of the org to submit the training job to.
+            dataset_id (str): the ID of the dataset to train the model on.
+            registry_item_id (str): the ID of the training script from the registry.
+            registry_item_version (str): the version of the training script from the registry.
+            model_name (str): the model name.
+            model_version (str): the model version.
 
         Returns:
-            str: the id of the training job
+            str: the ID of the training job.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -165,13 +167,13 @@ class MLTrainingClient:
         ::
 
             job_metadata = await ml_training_client.get_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
-            id (str): the id of the requested training job.
+            id (str): the ID of the requested training job.
 
         Returns:
-            viam.proto.app.mltraining.TrainingJobMetadata: training job data.
+            viam.proto.app.mltraining.TrainingJobMetadata: the training job data.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -191,17 +193,17 @@ class MLTrainingClient:
         ::
 
             jobs_metadata = await ml_training_client.list_training_jobs(
-                org_id="INSERT YOUR ORG ID")
+                org_id="<org-id>")
 
             first_job_id = jobs_metadata[1].id
 
         Args:
-            org_id (str): the id of the org to request training job data from.
-            training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.
+            org_id (str): the ID of the org to request training job data from.
+            training_status (Optional[TrainingStatus]): the status to filter the training jobs list by.
                 If unspecified, all training jobs will be returned.
 
         Returns:
-            List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.
+            List[viam.proto.app.mltraining.TrainingJobMetadata]: the list of training job data.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -218,13 +220,13 @@ class MLTrainingClient:
         ::
 
             await ml_training_client.cancel_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
-            id (str): the id of the job to be canceled.
+            id (str): the ID of the job to cancel.
 
         Raises:
-            GRPCError: if no training job exists with the given id.
+            GRPCError: if no training job exists with the given ID.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
@@ -238,10 +240,10 @@ class MLTrainingClient:
         ::
 
             await ml_training_client.delete_completed_training_job(
-                id="INSERT YOUR JOB ID")
+                id="<job-id>")
 
         Args:
-            id (str): the id of the training job
+            id (str): the ID of the training job to delete.
 
         For more information, see `ML Training Client API <https://docs.viam.com/appendix/apis/ml-training-client/>`_.
         """
