@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+from concurrent.futures import Future
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
@@ -61,6 +62,7 @@ class _ModuleHandler(logging.Handler):
     _parent: "RobotClient"
     _logger: logging.Logger
     _worker: _SingletonEventLoopThread
+    _futures: List[Future]
 
     def __init__(self, parent: "RobotClient"):
         super().__init__()
@@ -69,6 +71,7 @@ class _ModuleHandler(logging.Handler):
         addHandlers(self._logger, True)
         self._logger.setLevel(self.level)
         self._worker = _SingletonEventLoopThread()
+        self._futures = []
 
     def setLevel(self, level: Union[int, str]) -> None:
         self._logger.setLevel(level)
@@ -89,10 +92,11 @@ class _ModuleHandler(logging.Handler):
 
         try:
             loop = self._worker.get_loop()
-            asyncio.run_coroutine_threadsafe(
+            fut = asyncio.run_coroutine_threadsafe(
                 self._asynchronously_emit(record, name, message, stack, time),
                 loop,
             )
+            self._futures.append(fut)
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
             self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
@@ -107,6 +111,8 @@ class _ModuleHandler(logging.Handler):
         task.add_done_callback(lambda t: asyncio.run_coroutine_threadsafe(self.handle_task_result(t), self._worker.get_loop()))
 
     def close(self):
+        for fut in self._futures:
+            fut.cancel()
         self._worker.stop()
         super().close()
 
@@ -200,3 +206,7 @@ def setLevel(level: int):
 
 def silence():
     setLevel(FATAL + 1)
+
+
+def shutdown():
+    logging.shutdown()
