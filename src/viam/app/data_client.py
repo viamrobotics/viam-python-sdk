@@ -177,15 +177,16 @@ class DataClient:
 
         ::
 
-            from viam.utils import create_filter
+            my_data = []
+            my_filter = create_filter(component_name="motor-1")
+            last = None
+            while True:
+                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last=last)
+                if not tabular_data:
+                    break
+                my_data.extend(tabular_data)
 
-            left_motor_filter = create_filter(
-            component_name="motor-1"
-            )
-
-            data, count, last = await data_client.tabular_data_by_filter(filter=left_motor_filter)
-            for tab in data:
-                print(tab)
+            print(f"My data: {my_data}")
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
@@ -293,7 +294,7 @@ class DataClient:
             tabular_data = await data_client.tabular_data_by_mql(
                 organization_id="<YOUR-ORG-ID>",
                 mql_binary=binary_pipeline
-                )
+            )
 
             print(f"Tabular Data 1: {tabular_data}")
 
@@ -343,17 +344,19 @@ class DataClient:
             from viam.utils import create_filter
             from viam.proto.app.data import Filter, TagsFilter, TagsFilterType
 
-            camera_filter = create_filter(
-                component_name="camera-1"
-                )
+            # Get data captured from camera components
+            my_data = []
+            last = None
+            my_filter = create_filter(component_name="camera-1")
 
-            data, count, last = await data_client.binary_data_by_filter(
-                filter=camera_filter,
-                limit=1,
-                include_binary_data=True
-                )
-            for binary in data:
-                print(binary)
+            while True:
+                data, count, last = await data_client.binary_data_by_filter(
+                my_filter, limit=1, last=last)
+                if not data:
+                    break
+                my_data.extend(data)
+
+            print(f"My data: {my_data}")
 
             # Get untagged data from a dataset
 
@@ -432,13 +435,13 @@ class DataClient:
 
             from viam.proto.app.data import BinaryID
 
-            binary_metadata = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 include_binary_data=False
             )
 
             my_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -480,7 +483,7 @@ class DataClient:
             tabular_data = await data_client.delete_tabular_data(
                 organization_id="<YOUR-ORG-ID>",
                 delete_older_than_days=150
-                )
+            )
 
         Args:
             organization_id (str): ID of organization to delete data from.
@@ -536,15 +539,15 @@ class DataClient:
             from viam.utils import create_filter
 
             my_filter = create_filter(component_name="camera-1", organization_ids=["<YOUR-ORG-ID>"])
-            binary_metadata = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 filter=my_filter,
                 limit=20,
                 include_binary_data=False
-                )
+            )
 
             my_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -581,7 +584,7 @@ class DataClient:
             tags = ["tag1", "tag2"]
 
             my_filter = create_filter(component_name="camera-1", organization_ids=["<YOUR-ORG-ID>"])
-            binary_metadata = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 filter=my_filter,
                 limit=20,
                 include_binary_data=False
@@ -589,7 +592,7 @@ class DataClient:
 
             my_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -649,7 +652,7 @@ class DataClient:
 
             my_filter = create_filter(component_name="camera-1")
 
-            binary_metadata = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 filter=my_filter,
                 limit=50,
                 include_binary_data=False
@@ -657,7 +660,7 @@ class DataClient:
 
             my_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -1019,13 +1022,13 @@ class DataClient:
 
             from viam.proto.app.data import BinaryID
 
-            binary_metadata, _, _ = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 include_binary_data=False
             )
 
             my_binary_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_binary_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
@@ -1059,13 +1062,13 @@ class DataClient:
 
             from viam.proto.app.data import BinaryID
 
-            binary_metadata, _, _ = await data_client.binary_data_by_filter(
+            binary_metadata, count, last = await data_client.binary_data_by_filter(
                 include_binary_data=False
             )
 
             my_binary_ids = []
 
-            for obj in binary_metadata[0]:
+            for obj in binary_metadata:
                 my_binary_ids.append(
                     BinaryID(
                         file_id=obj.metadata.id,
