@@ -24,7 +24,7 @@ class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
     _ready_event = asyncio.Event()
-    _loop: asyncio.AbstractEventLoop
+    _loop: Union[asyncio.AbstractEventLoop, None]
     _thread: Thread
 
     def __new__(cls):
@@ -33,6 +33,7 @@ class _SingletonEventLoopThread:
             with cls._lock:
                 if cls._instance is None:
                     cls._instance = super(_SingletonEventLoopThread, cls).__new__(cls)
+                    cls._instance._loop = None
                     cls._instance._thread = Thread(target=cls._instance._run)
                     cls._instance._thread.start()
         return cls._instance
@@ -47,6 +48,7 @@ class _SingletonEventLoopThread:
         if self._loop is not None and not self._loop.is_closed():
             # Stop the event loop only if it's still running
             self._loop.call_soon_threadsafe(self._loop.stop)
+            self._loop.close()
             self._thread.join()
 
     def get_loop(self):
