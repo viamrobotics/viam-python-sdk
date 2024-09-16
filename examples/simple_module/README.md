@@ -39,7 +39,7 @@ An example configuration for a Sensor component could look like this:
       "type": "sensor",
       "model": "viam:sensor:mysensor",
       "attributes": {
-        "multiplier": 2,
+        "multiplier": 2
       },
       "depends_on": []
     }
