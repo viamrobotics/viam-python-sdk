@@ -160,6 +160,7 @@ class Module:
         """Stop the module service and gRPC server"""
         LOGGER.debug("Shutting down module")
         try:
+            logging.shutdown()
             if self.parent is not None:
                 await self.parent.close()
         except Exception as e:
