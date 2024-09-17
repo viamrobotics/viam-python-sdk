@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import sys
-from concurrent.futures import Future
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
@@ -25,7 +24,8 @@ class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
     _ready_event = asyncio.Event()
-    _thread = None
+    _loop: Union[asyncio.AbstractEventLoop, None]
+    _thread: Thread
 
     def __new__(cls):
         # Ensure singleton precondition
@@ -47,7 +47,7 @@ class _SingletonEventLoopThread:
     def stop(self):
         if self._loop is not None:
             self._loop.call_soon_threadsafe(self._loop.stop)
-            self._loop.close()
+        self._thread.join()
 
     def get_loop(self):
         if self._loop is None:
@@ -62,7 +62,6 @@ class _ModuleHandler(logging.Handler):
     _parent: "RobotClient"
     _logger: logging.Logger
     _worker: _SingletonEventLoopThread
-    _futures: List[Future]
 
     def __init__(self, parent: "RobotClient"):
         super().__init__()
@@ -71,7 +70,6 @@ class _ModuleHandler(logging.Handler):
         addHandlers(self._logger, True)
         self._logger.setLevel(self.level)
         self._worker = _SingletonEventLoopThread()
-        self._futures = []
 
     def setLevel(self, level: Union[int, str]) -> None:
         self._logger.setLevel(level)
@@ -92,11 +90,10 @@ class _ModuleHandler(logging.Handler):
 
         try:
             loop = self._worker.get_loop()
-            fut = asyncio.run_coroutine_threadsafe(
+            asyncio.run_coroutine_threadsafe(
                 self._asynchronously_emit(record, name, message, stack, time),
                 loop,
             )
-            self._futures.append(fut)
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
             self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
@@ -111,8 +108,6 @@ class _ModuleHandler(logging.Handler):
         task.add_done_callback(lambda t: asyncio.run_coroutine_threadsafe(self.handle_task_result(t), self._worker.get_loop()))
 
     def close(self):
-        for fut in self._futures:
-            fut.cancel()
         self._worker.stop()
         super().close()
 
