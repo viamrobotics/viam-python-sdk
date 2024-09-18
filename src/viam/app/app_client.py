@@ -653,10 +653,10 @@ class AppClient:
 
         ::
 
-            org_list = await cloud.list_organizations_by_user("user-id")
+            org_list = await cloud.list_organizations_by_user("<YOUR-USER-ID>")
 
         Args:
-            user_id (str): The ID of the user
+            user_id (str): The ID of the user. You can retrieve this with the get_user_id_by_email() method.
 
         Returns:
             List[OrgDetails]: The list of organizations.
@@ -670,8 +670,12 @@ class AppClient:
     async def get_organization(self, org_id: str) -> Organization:
         """Return details about the requested organization.
 
+        ::
+
+            org = await cloud.get_organization("<YOUR-ORG-ID>")
+
         Args:
-            org_id (str): The ID of the organization to query.
+            org_id (str): The ID of the organization to query. You can retrieve this from the organization settings page.
 
         Raises:
             GRPCError: If the provided org_id is invalid, or not currently authed to.
@@ -721,6 +725,14 @@ class AppClient:
     ) -> Organization:
         """Updates organization details.
 
+        ::
+
+            organization = await cloud.update_organization(
+                org_id="<YOUR-ORG-ID>",
+                name="Artoo's Org",
+                public_namespace="artoo"
+            )
+
         Args:
             org_id (str): The ID of the organization to update.
             name (Optional[str]): If provided, updates the org's name.
@@ -751,7 +763,7 @@ class AppClient:
 
         ::
 
-            await cloud.delete_organization("org-id")
+            await cloud.delete_organization("<YOUR-ORG-ID>")
 
         Args:
             org_id (str): The ID of the organization.
@@ -767,7 +779,7 @@ class AppClient:
 
         ::
 
-            member_list, invite_list = await cloud.list_organization_members("org-id")
+            member_list, invite_list = await cloud.list_organization_members("<YOUR-ORG-ID>")
 
         Args:
             org_id (str): The ID of the organization to list members of.
@@ -794,7 +806,7 @@ class AppClient:
 
         ::
 
-            await cloud.create_organization_invite("org-id", "youremail@email.com")
+            await cloud.create_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
@@ -838,19 +850,21 @@ class AppClient:
 
             from viam.proto.app import Authorization
 
-            authorization_to_add = Authorization(
-                authorization_type="some type of auth",
-                authorization_id="identifier",
-                resource_type="abc",
-                resource_id="resource-identifier123",
-                identity_id="id12345",
-                organization_id="org_id_123"
+            auth = Authorization(
+                authorization_type="role",
+                authorization_id="location_owner",
+                resource_type="location", # "robot", "location", or "organization"
+                # machine id, location id or org id
+                resource_id="012456lni0",
+                identity_id="",
+                organization_id="<YOUR-ORG-ID>",
+                identity_type=""
             )
 
             update_invite = await cloud.update_organization_invite_authorizations(
-                org_id="org_id_123",
+                org_id="<YOUR-ORG-ID>",
                 email="notarealemail@viam.com",
-                add_authorizations =[authorization_to_add]
+                add_authorizations=[auth]
             )
 
         Args:
@@ -882,7 +896,7 @@ class AppClient:
 
         ::
 
-            member_list, invite_list = await cloud.list_organization_members()
+            member_list, invite_list = await cloud.list_organization_members(org_id="<YOUR-ORG-ID>")
             first_user_id = member_list[0].user_id
 
             await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
@@ -902,7 +916,7 @@ class AppClient:
 
         ::
 
-            await cloud.delete_organization_invite("org-id", "youremail@email.com")
+            await cloud.delete_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
@@ -922,7 +936,7 @@ class AppClient:
 
         ::
 
-            org_invite = await cloud.resend_organization_invite("org-id", "youremail@email.com")
+            org_invite = await cloud.resend_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
@@ -946,7 +960,7 @@ class AppClient:
 
         ::
 
-            my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
+            my_new_location = await cloud.create_location(org_id="<YOUR-ORG-ID>", name="Robotville", parent_location_id="111ab12345")
 
         Args:
             org_id (str): The ID of the organization to create the location under.
@@ -1058,7 +1072,7 @@ class AppClient:
 
         ::
 
-            locations = await cloud.list_locations("org-id")
+            locations = await cloud.list_locations("<YOUR-ORG-ID>")
 
         Args:
             org_id (str): The ID of the org to list locations for.
@@ -1078,7 +1092,7 @@ class AppClient:
 
         ::
 
-            await cloud.share_location("organization-id", "location-id")
+            await cloud.share_location("<YOUR-ORG-ID>", "<YOUR-LOCATION-ID>")
 
         Args:
             organization_id (str): The ID of the organization.
@@ -1094,7 +1108,7 @@ class AppClient:
 
         ::
 
-            await cloud.unshare_location("organization-id", "location-id")
+            await cloud.unshare_location("<YOUR-ORG-ID>", "<YOUR-LOCATION-ID>")
 
         Args:
             organization_id (str): The ID of the organization.
@@ -1134,7 +1148,7 @@ class AppClient:
 
         ::
 
-            new_loc_auth = await cloud.create_location_secret()
+            new_loc_auth = await cloud.create_location_secret(location_id="123xy12345")
 
         Args:
             location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at
@@ -1159,7 +1173,9 @@ class AppClient:
         ::
 
             await cloud.delete_location_secret(
-                secret_id="abcd123-456-7890ab-cxyz98-989898xyzxyz")
+                secret_id="abcd123-456-7890ab-cxyz98-989898xyzxyz",
+                location_id="123xy12345"
+            )
 
         Args:
             location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.
@@ -1177,20 +1193,20 @@ class AppClient:
         await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
     async def get_robot(self, robot_id: str) -> Robot:
-        """Get a robot.
+        """Get a machine.
 
         ::
 
-            robot = await cloud.get_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
+            machine = await cloud.get_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
         Args:
-            robot_id (str): ID of the robot to get.
+            robot_id (str): ID of the machine to get. You can copy this value from the URL of the machine's page.
 
         Raises:
-            GRPCError: If an invalid robot ID is passed.
+            GRPCError: If an invalid machine ID is passed.
 
         Returns:
-            viam.proto.app.Robot: The robot.
+            viam.proto.app.Robot: The machine.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1219,21 +1235,22 @@ class AppClient:
         return list(response.robots)
 
     async def get_robot_parts(self, robot_id: str) -> List[RobotPart]:
-        """Get a list of all the parts under a specific robot.
+        """Get a list of all the parts under a specific machine.
 
         ::
 
             list_of_parts = await cloud.get_robot_parts(
-                robot_id="1a123456-x1yz-0ab0-a12xyzabc")
+                robot_id="1a123456-x1yz-0ab0-a12xyzabc"
+            )
 
         Args:
-            robot_id (str): ID of the robot to get parts from.
+            robot_id (str): ID of the machine to get parts from.
 
         Raises:
-            GRPCError: If an invalid robot ID is passed.
+            GRPCError: If an invalid machine ID is passed.
 
         Returns:
-            List[viam.app.app_client.RobotPart]: The list of robot parts.
+            List[viam.app.app_client.RobotPart]: The list of machine parts.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1242,16 +1259,18 @@ class AppClient:
         return [RobotPart.from_proto(robot_part=part) for part in response.parts]
 
     async def get_robot_part(self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart:
-        """Get a robot part.
+        """Get a machine part.
 
         ::
 
             my_robot_part = await cloud.get_robot_part(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+            )
 
         Args:
-            robot_part_id (str): ID of the robot part to get.
-            dest (Optional[str]): Optional filepath to write the robot part's config file in JSON format to.
+            robot_part_id (str): ID of the machine part to get. You can retrieve this value by navigating to the machine's page,
+                clicking on the part status dropdown, and clicking the copy icon next to Part ID.
+            dest (Optional[str]): Optional filepath to write the machine part's config file in JSON format to.
             indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
@@ -1288,10 +1307,11 @@ class AppClient:
         ::
 
             part_logs = await cloud.get_robot_part_logs(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22", num_log_entries=20)
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22", num_log_entries=20
+            )
 
         Args:
-            robot_part_id (str): ID of the robot part to get logs from.
+            robot_part_id (str): ID of the machine part to get logs from.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                 no filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
@@ -1352,21 +1372,22 @@ class AppClient:
     async def tail_robot_part_logs(
         self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
     ) -> _LogsStream[List[LogEntry]]:
-        """Get an asynchronous iterator that receives live robot part logs.
+        """Get an asynchronous iterator that receives live machine part logs.
 
         ::
 
             logs_stream = await cloud.tail_robot_part_logs(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+            )
 
         Args:
-            robot_part_id (str): ID of the robot part to retrieve logs from.
+            robot_part_id (str): ID of the machine part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                 no filter).
 
         Returns:
-            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.
+            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live machine part logs.
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
@@ -1385,21 +1406,22 @@ class AppClient:
         return _LogsStreamWithIterator(read())
 
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
-        """Get a list containing the history of a robot part.
+        """Get a list containing the history of a machine part.
 
         ::
 
             part_history = await cloud.get_robot_part_history(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+            )
 
         Args:
-            robot_part_id (str): ID of the robot part to retrieve history from.
+            robot_part_id (str): ID of the machine part to retrieve history from.
 
         Raises:
-            GRPCError: If an invalid robot part ID is provided.
+            GRPCError: If an invalid machine part ID is provided.
 
         Returns:
-            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part's history.
+            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the machine part's history.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1408,21 +1430,22 @@ class AppClient:
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
     async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
-        """Change the name and assign an optional new configuration to a robot part.
+        """Change the name and assign an optional new configuration to a machine part.
 
         ::
 
-            my_robot_part = await cloud.update_robot_part(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+            my_machine_part = await cloud.update_robot_part(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+            )
 
         Args:
             robot_part_id (str): ID of the robot part to update.
             name (str): New name to be updated on the robot part.
-            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the robot part. The robot
+            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine
                 part's config will remain as is (no change) if one isn't passed.
 
         Raises:
-            GRPCError: If either an invalid robot part ID, name, or config is passed.
+            GRPCError: If either an invalid machine part ID, name, or config is passed.
 
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
@@ -1434,22 +1457,23 @@ class AppClient:
         return RobotPart.from_proto(robot_part=response.part)
 
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
-        """Create a new robot part.
+        """Create a new machine part.
 
         ::
 
             new_part_id = await cloud.new_robot_part(
-                robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart")
+                robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart"
+            )
 
         Args:
-            robot_id (str): ID of the robot to create a new part for.
+            robot_id (str): ID of the machine to create a new part for.
             part_name (str): Name of the new part.
 
         Raises:
-            GRPCError: If either an invalid robot ID or name is passed.
+            GRPCError: If either an invalid machine ID or name is passed.
 
         Returns:
-            str: The new robot part's ID.
+            str: The new machine part's ID.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1458,18 +1482,19 @@ class AppClient:
         return response.part_id
 
     async def delete_robot_part(self, robot_part_id: str) -> None:
-        """Delete the specified robot part.
+        """Delete the specified machine part.
 
         ::
 
             await cloud.delete_robot_part(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+            )
 
         Args:
-            robot_part_id (str): ID of the robot part to delete. Must be specified.
+            robot_part_id (str): ID of the machine part to delete. Must be specified.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1481,10 +1506,10 @@ class AppClient:
 
         ::
 
-            await cloud.get_robot_api_keys(robot_id="robot-id")
+            api_keys = await cloud.get_robot_api_keys(robot_id="robot-id")
 
         Args:
-            robot_id (str): The ID of the robot
+            robot_id (str): The ID of the machine.
 
         Returns:
             List[APIKeyWithAuthorizations]: The list of API keys.
@@ -1496,7 +1521,7 @@ class AppClient:
         return list(response.api_keys)
 
     async def mark_part_as_main(self, robot_part_id: str) -> None:
-        """Mark a robot part as the main part of a robot.
+        """Mark a machine part as the main part of a machine.
 
         ::
 
@@ -1504,10 +1529,10 @@ class AppClient:
                 robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
-            robot_part_id (str): ID of the robot part to mark as main.
+            robot_part_id (str): ID of the machine part to mark as main.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1515,7 +1540,7 @@ class AppClient:
         await self._app_client.MarkPartAsMain(request, metadata=self._metadata)
 
     async def mark_part_for_restart(self, robot_part_id: str) -> None:
-        """Mark the specified robot part for restart.
+        """Mark the specified machine part for restart.
 
         ::
 
@@ -1523,10 +1548,10 @@ class AppClient:
                 robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
-            robot_part_id (str): ID of the robot part to mark for restart.
+            robot_part_id (str): ID of the machine part to mark for restart.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1534,7 +1559,7 @@ class AppClient:
         await self._app_client.MarkPartForRestart(request, metadata=self._metadata)
 
     async def create_robot_part_secret(self, robot_part_id: str) -> RobotPart:
-        """Create a robot part secret.
+        """Create a machine part secret.
 
         ::
 
@@ -1542,13 +1567,13 @@ class AppClient:
                 robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
-            robot_part_id (str): ID of the robot part to create a secret for.
+            robot_part_id (str): ID of the machine part to create a secret for.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         Returns:
-            viam.app.app_client.RobotPart: The robot part the new secret was generated for.
+            viam.app.app_client.RobotPart: The machine part the new secret was generated for.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1557,7 +1582,7 @@ class AppClient:
         return RobotPart.from_proto(response.part)
 
     async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
-        """Delete a robot part secret.
+        """Delete a machine part secret.
 
         ::
 
@@ -1566,11 +1591,11 @@ class AppClient:
                 secret_id="123xyz12-abcd-4321-12ab-12xy1xyz12xy")
 
         Args:
-            robot_part_id (str): ID of the robot part to delete the secret from.
+            robot_part_id (str): ID of the machine part to delete the secret from.
             secret_id (str): ID of the secret to delete.
 
         Raises:
-            GRPCError: If an invalid robot part ID or secret ID is passed.
+            GRPCError: If an invalid machine part ID or secret ID is passed.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1578,14 +1603,14 @@ class AppClient:
         await self._app_client.DeleteRobotPartSecret(request, metadata=self._metadata)
 
     async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
-        """Get a list of all robots under the specified location.
+        """Get a list of all machines under the specified location.
 
         ::
 
             list_of_machines = await cloud.list_robots(location_id="123ab12345")
 
         Args:
-            location_id (Optional[str]): ID of the location to retrieve the robots from. Defaults to the location ID provided at
+            location_id (Optional[str]): ID of the location to retrieve the machines from. Defaults to the location ID provided at
                 `AppClient` instantiation.
 
         Raises:
@@ -1602,15 +1627,15 @@ class AppClient:
         return list(response.robots)
 
     async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
-        """Create a new robot.
+        """Create a new machine.
 
         ::
 
             new_machine_id = await cloud.new_robot(name="beepboop", location_id="my-location-id")
 
         Args:
-            name (str): Name of the new robot.
-            location_id (Optional[str]): ID of the location under which to create the robot. Defaults to the current authorized location.
+            name (str): Name of the new machine.
+            location_id (Optional[str]): ID of the location under which to create the machine. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
@@ -1626,26 +1651,28 @@ class AppClient:
         return response.id
 
     async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
-        """Change the name of an existing robot.
+        """Change the name of an existing machine.
 
         ::
 
             updated_robot = await cloud.update_robot(
                 robot_id="1a123456-x1yz-0ab0-a12xyzabc",
-                name="Orange-Robot")
+                name="Orange-Robot",
+                location_id="23ab12345"
+            )
 
         Args:
-            robot_id (str): ID of the robot to update.
-            name (str): New name to be updated on the robot.
-            location_id (Optional[str]): ID of the location under which the robot exists. Defaults to the location ID provided at
+            robot_id (str): ID of the machine to update.
+            name (str): New name to be updated on the machine.
+            location_id (Optional[str]): ID of the location under which the machine exists. Defaults to the location ID provided at
                 `AppClient` instantiation
 
         Raises:
-            GRPCError: If either an invalid robot ID, name, or location ID is passed or a location ID isn't passed and there was no location
-                ID provided at `AppClient` instantiation.
+            GRPCError: If either an invalid machine ID, name, or location ID is passed or a location ID isn't passed and there was no
+                location ID provided at `AppClient` instantiation.
 
         Returns:
-            viam.proto.app.Robot: The newly updated robot.
+            viam.proto.app.Robot: The newly updated machine.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1656,17 +1683,17 @@ class AppClient:
         return response.robot
 
     async def delete_robot(self, robot_id: str) -> None:
-        """Delete the specified robot.
+        """Delete the specified machine.
 
         ::
 
             await cloud.delete_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
         Args:
-            robot_id (str): ID of the robot to delete.
+            robot_id (str): ID of the machine to delete.
 
         Raises:
-            GRPCError: If an invalid robot ID is passed.
+            GRPCError: If an invalid machine ID is passed.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -1869,11 +1896,12 @@ class AppClient:
         ::
 
             await cloud.add_role(
-                org_id="org-id",
+                org_id="<YOUR-ORG-ID>",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
-                resource_id="111ab12345")
+                resource_id="111ab12345"
+            )
 
         Args:
             org_id (str): The ID of the organization to create the role in.
@@ -1913,11 +1941,12 @@ class AppClient:
         ::
 
             await cloud.remove_role(
-                org_id="org-id",
+                org_id="<YOUR-ORG-ID>",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
-                resource_id="111ab12345")
+                resource_id="111ab12345"
+            )
 
         Args:
             org_id (str): The ID of the organization the role exists in.
@@ -1961,15 +1990,16 @@ class AppClient:
         ::
 
             await cloud.change_role(
-                organization_id="organization-id",
+                organization_id="<YOUR-ORG-ID>",
                 old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 old_role="operator",
                 old_resource_type="location",
                 old_resource_id="111ab12345",
                 new_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
-                new_role="owner",s
+                new_role="owner",
                 new_resource_type="organization",
-                new_resource_id="abc12345")
+                new_resource_id="abc12345"
+            )
 
         Args:
             organization_id (str): ID of the organization
@@ -1979,7 +2009,7 @@ class AppClient:
                 added to. Must match `old_resource_id`.
             old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).
 
-            new_identity_id (str): New ID of the entity the role blongs to (for example, a user ID).
+            new_identity_id (str): New ID of the entity the role belongs to (for example, a user ID).
             new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
             new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
                 Must match `new_resource_id`.
@@ -2013,7 +2043,7 @@ class AppClient:
         ::
 
             list_of_auths = await cloud.list_authorizations(
-                org_id="org-id",
+                org_id="<YOUR-ORG-ID>",
                 resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
 
         Args:
@@ -2043,7 +2073,7 @@ class AppClient:
             # Check whether the entity you're currently authenticated to has permission to control and/or
             # read logs from robots in the "organization-identifier123" org
             permissions = [AuthorizedPermissions(resource_type="organization",
-                                                 resource_id="organization-identifier123",
+                                                 resource_id="<YOUR-ORG-ID>",
                                                  permissions=["control_robot",
                                                               "read_robot_logs"])]
 
@@ -2073,7 +2103,9 @@ class AppClient:
             item = await cloud.get_registry_item("item-id")
 
         Args:
-            item_id (str): The ID of the registry item.
+            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
+                For example, `Viam's csi-cam-pi module's <https://app.viam.com/module/viam/csi-cam-pi>`_ item ID
+                would be `viam:csi-cam-pi`.
 
         Returns:
             RegistryItem: The registry item.
@@ -2089,7 +2121,9 @@ class AppClient:
 
         ::
 
-            await cloud.create_registry_item("org-id", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
+            from viam.proto.app.packages import PackageType
+
+            await cloud.create_registry_item("<YOUR-ORG-ID>", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
 
         Args:
             organization_id (str): The organization to create the registry item under.
@@ -2108,10 +2142,13 @@ class AppClient:
 
         ::
 
+            from viam.proto.app.packages import PackageType
+            from viam.proto.app import Visibility
+
             await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
 
         Args:
-            item_id (str): The ID of the registry item.
+            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
             type (PackageType.ValueType): The type of the item in the registry.
             description (str): The description of the registry item.
             visibility (Visibility.ValueType): The visibility of the registry item.
@@ -2131,6 +2168,29 @@ class AppClient:
         page_token: Optional[str] = None,
     ) -> List[RegistryItem]:
         """List the registry items in an organization.
+
+        ::
+
+            from viam.proto.app.packages import PackageType
+            from viam.proto.app import Visibility, RegistryItemStatus
+
+            # List private, published ml training scripts in your organization
+            registry_items = await cloud.list_registry_items(
+                organization_id="<YOUR-ORG-ID>",
+                types=[PackageType.PACKAGE_TYPE_ML_TRAINING],
+                visibilities=[Visibility.VISIBILITY_PRIVATE],
+                platforms=[""],
+                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+            )
+
+            # list public, published linux modules in all organizations
+            registry_items = await cloud.list_registry_items(
+                organization_id="",
+                types=[PackageType.PACKAGE_TYPE_MODULE],
+                visibilities=[Visibility.VISIBILITY_PUBLIC],
+                platforms=["linux/any"],
+                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+            )
 
         Args:
             organization_id (str): The ID of the organization to return registry items for.
@@ -2166,7 +2226,7 @@ class AppClient:
             await cloud.delete_registry_item("item-id")
 
         Args:
-            item_id (str): The ID of the registry item.
+            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -2211,18 +2271,27 @@ class AppClient:
 
         ::
 
+            from viam.proto.app import Model
+
+            model = Model(
+                api="rdk:component:base",
+                model="my-group:cool_new_hoverboard_module:wheeled"
+            )
+
             url_of_my_module = await cloud.update_module(
                 module_id="my-group:cool_new_hoverboard_module",
                 url="https://docsformymodule.viam.com",
+                models=[model],
                 description="A base to support hoverboards.",
-                entrypoint="exec")
+                entrypoint="exec"
+            )
 
         Args:
             module_id (str): ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
                 (for example, "my-org:my-module").
             url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
-            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.
+            models (List[viam.proto.app.Model]): list of models that are available in the module.
             entrypoint (str): The executable to run to start the module program.
             public (bool): The visibility that should be set for the module. Defaults to False (private).
 
@@ -2250,14 +2319,25 @@ class AppClient:
 
         ::
 
-            file_id = await cloud.upload_module_file(file=b"<file>")
+            from viam.proto.app import ModuleFileInfo
+
+            module_file_info = ModuleFileInfo(
+                module_id = "sierra:cool_new_hoverboard_module",
+                version = "1.0.0",
+                platform = "darwin/arm64"
+            )
+
+            file_id = await cloud.upload_module_file(
+                module_file_info=module_file_info,
+                file=b"<file>"
+            )
 
         Args:
             module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.
             file (bytes): Bytes of file to upload.
 
         Returns:
-            str: ID of uploaded file.
+            str: URL of uploaded file.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -2277,10 +2357,10 @@ class AppClient:
 
         ::
 
-            the_module = await cloud.get_module(module_id="my-cool-modular-base")
+            the_module = await cloud.get_module(module_id="my-group:my-cool-modular-base")
 
         Args:
-            module_id (str): ID of the module being retrieved, containing module name or namespace and module name.
+            module_id (str): ID of the module being retrieved, containing the namespace and module name.
 
         Raises:
             GRPCError: If an invalid module ID is passed.
@@ -2299,7 +2379,7 @@ class AppClient:
 
         ::
 
-            modules_list = await cloud.list_modules("org-id")
+            modules_list = await cloud.list_modules("<YOUR-ORG-ID>")
 
         Args:
             org_id (str): The ID of the organization to list modules for.
@@ -2329,7 +2409,11 @@ class AppClient:
                 resource_id="your-robot-id123"
             )
 
-            api_key, api_key_id = cloud.create_key("your-org-id", [auth], "my_key")
+            api_key, api_key_id = cloud.create_key(
+                org_id="<YOUR-ORG-ID>",
+                authorizations=[auth],
+                name="my_key"
+            )
 
         Args:
             org_id (str): The ID of the organization to create the key for.
@@ -2395,7 +2479,7 @@ class AppClient:
 
         ::
 
-            keys = await cloud.list_keys()
+            keys = await cloud.list_keys(org_id="<YOUR-ORG-ID>")
 
         Args:
             org_id (str): The ID of the organization to list API keys for.
