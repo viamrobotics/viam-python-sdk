@@ -694,7 +694,7 @@ class AppClient:
                 public_namespace="my-cool-organization")
 
         Args:
-            public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash
+            public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase alphanumeric and dash
                 characters.
 
         Raises:
