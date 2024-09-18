@@ -269,42 +269,21 @@ class DataClient:
 
         ::
 
-            # using bson
             import bson
-            import bson.json_util
 
-            def mql_to_binary(mql_pipeline):
-                binary_pipeline = []
-                for stage in mql_pipeline:
-                    # Parse the JSON string to a Python dict
-                    parsed_stage = bson.json_util.loads(stage)
-                    # Convert the dict to BSON
-                    bson_stage = bson.BSON.encode(parsed_stage)
-                    binary_pipeline.append(bson_stage)
-                return binary_pipeline
-
-            mql_pipeline=[
-                bson.json_util.dumps({ '$match': { 'location_id': '<YOUR_LOCATION_ID>' } }),
-                bson.json_util.dumps({ "$limit": 5 })
-            ]
-
-            binary_pipeline = mql_to_binary(mql_pipeline)
-
-            # using bson dumps
-            tabular_data = await data_client.tabular_data_by_mql(
-                organization_id="<YOUR-ORG-ID>",
-                mql_binary=binary_pipeline
-            )
+            # using bson package (pip install bson)
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
+                bson.dumps({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
+                bson.dumps({ '$limit': 5 })
+            ])
 
             print(f"Tabular Data 1: {tabular_data}")
 
-            # using encoding
-            tabular_data = await data_client.tabular_data_by_mql(
-                organization_id="<YOUR-ORG-ID>",
-                mql_binary=[
-                    bson.BSON.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
-                    bson.BSON.encode({ "$limit": 5 })
-                ])
+            # using pymongo package (pip install pymongo)
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
+                bson.BSON.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
+                bson.BSON.encode({ "$limit": 5 })
+            ])
 
             print(f"Tabular Data 2: {tabular_data}")
 
@@ -588,7 +567,7 @@ class DataClient:
                 filter=my_filter,
                 limit=20,
                 include_binary_data=False
-                )
+            )
 
             my_ids = []
 
