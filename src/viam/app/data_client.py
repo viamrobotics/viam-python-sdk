@@ -883,7 +883,7 @@ class DataClient:
 
         ::
 
-            name = await data_client.create_dataset(
+            dataset_id = await data_client.create_dataset(
                 name="<DATASET-NAME>",
                 organization_id="<YOUR-ORG-ID>"
             )
