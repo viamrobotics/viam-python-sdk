@@ -743,10 +743,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            org_list = await cloud.list_organizations_by_user(&quot;user-id&quot;)</span>
+<span class="sd">            org_list = await cloud.list_organizations_by_user(&quot;&lt;YOUR-USER-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            user_id (str): The ID of the user</span>
+<span class="sd">            user_id (str): The ID of the user. You can retrieve this with the get_user_id_by_email() method.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[OrgDetails]: The list of organizations.</span>
@@ -758,10 +758,15 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">orgs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return details about the requested organization.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the organization object for the requested organization containing the organization&#39;s ID,</span>
+<span class="sd">        name, public namespace, and more.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            org = await cloud.get_organization(&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (str): The ID of the organization to query.</span>
+<span class="sd">            org_id (str): The ID of the organization to query. You can retrieve this from the organization settings page.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the provided org_id is invalid, or not currently authed to.</span>
@@ -811,6 +816,14 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates organization details.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            organization = await cloud.update_organization(</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                name=&quot;Artoo&#39;s Org&quot;,</span>
+<span class="sd">                public_namespace=&quot;artoo&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to update.</span>
 <span class="sd">            name (Optional[str]): If provided, updates the org&#39;s name.</span>
@@ -841,7 +854,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.delete_organization(&quot;org-id&quot;)</span>
+<span class="sd">            await cloud.delete_organization(&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization.</span>
@@ -857,7 +870,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            member_list, invite_list = await cloud.list_organization_members(&quot;org-id&quot;)</span>
+<span class="sd">            member_list, invite_list = await cloud.list_organization_members(&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list members of.</span>
@@ -884,7 +897,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.create_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
+<span class="sd">            await cloud.create_organization_invite(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create an invite for.</span>
@@ -928,19 +941,20 @@
 
 <span class="sd">            from viam.proto.app import Authorization</span>
 
-<span class="sd">            authorization_to_add = Authorization(</span>
-<span class="sd">                authorization_type=&quot;some type of auth&quot;,</span>
-<span class="sd">                authorization_id=&quot;identifier&quot;,</span>
-<span class="sd">                resource_type=&quot;abc&quot;,</span>
-<span class="sd">                resource_id=&quot;resource-identifier123&quot;,</span>
-<span class="sd">                identity_id=&quot;id12345&quot;,</span>
-<span class="sd">                organization_id=&quot;org_id_123&quot;</span>
+<span class="sd">            auth = Authorization(</span>
+<span class="sd">                authorization_type=&quot;role&quot;,</span>
+<span class="sd">                authorization_id=&quot;location_owner&quot;,</span>
+<span class="sd">                resource_type=&quot;location&quot;, # &quot;robot&quot;, &quot;location&quot;, or &quot;organization&quot;</span>
+<span class="sd">                resource_id=&quot;012456lni0&quot;, # machine id, location id or org id</span>
+<span class="sd">                identity_id=&quot;&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                identity_type=&quot;&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">            update_invite = await cloud.update_organization_invite_authorizations(</span>
-<span class="sd">                org_id=&quot;org_id_123&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                email=&quot;notarealemail@viam.com&quot;,</span>
-<span class="sd">                add_authorizations =[authorization_to_add]</span>
+<span class="sd">                add_authorizations=[auth]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -972,7 +986,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            member_list, invite_list = await cloud.list_organization_members()</span>
+<span class="sd">            member_list, invite_list = await cloud.list_organization_members(org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 <span class="sd">            first_user_id = member_list[0].user_id</span>
 
 <span class="sd">            await cloud.delete_organization_member(org_id=&quot;org_id&quot;, user_id=first_user_id)</span>
@@ -992,7 +1006,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.delete_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
+<span class="sd">            await cloud.delete_organization_invite(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization that the invite to delete was for.</span>
@@ -1012,7 +1026,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            org_invite = await cloud.resend_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
+<span class="sd">            org_invite = await cloud.resend_organization_invite(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization that the invite to resend was for.</span>
@@ -1036,7 +1050,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_new_location = await cloud.create_location(org_id=&quot;org-id&quot;, name=&quot;Robotville&quot;, parent_location_id=&quot;111ab12345&quot;)</span>
+<span class="sd">            my_new_location = await cloud.create_location(org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, name=&quot;Robotville&quot;, parent_location_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the location under.</span>
@@ -1148,7 +1162,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            locations = await cloud.list_locations(&quot;org-id&quot;)</span>
+<span class="sd">            locations = await cloud.list_locations(&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the org to list locations for.</span>
@@ -1168,7 +1182,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.share_location(&quot;organization-id&quot;, &quot;location-id&quot;)</span>
+<span class="sd">            await cloud.share_location(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;&lt;YOUR-LOCATION-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization.</span>
@@ -1184,7 +1198,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.unshare_location(&quot;organization-id&quot;, &quot;location-id&quot;)</span>
+<span class="sd">            await cloud.unshare_location(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;&lt;YOUR-LOCATION-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization.</span>
@@ -1224,7 +1238,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            new_loc_auth = await cloud.create_location_secret()</span>
+<span class="sd">            new_loc_auth = await cloud.create_location_secret(location_id=&quot;123xy12345&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at</span>
@@ -1249,7 +1263,9 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.delete_location_secret(</span>
-<span class="sd">                secret_id=&quot;abcd123-456-7890ab-cxyz98-989898xyzxyz&quot;)</span>
+<span class="sd">                secret_id=&quot;abcd123-456-7890ab-cxyz98-989898xyzxyz&quot;,</span>
+<span class="sd">                location_id=&quot;123xy12345&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.</span>
@@ -1267,20 +1283,20 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a machine.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            robot = await cloud.get_robot(robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
+<span class="sd">            machine = await cloud.get_robot(robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): ID of the robot to get.</span>
+<span class="sd">            robot_id (str): ID of the machine to get. You can copy this value from the URL of the machine&#39;s page.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.Robot: The robot.</span>
+<span class="sd">            viam.proto.app.Robot: The machine.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1309,21 +1325,22 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot_parts"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_parts">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RobotPart</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all the parts under a specific robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all the parts under a specific machine.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            list_of_parts = await cloud.get_robot_parts(</span>
-<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
+<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): ID of the robot to get parts from.</span>
+<span class="sd">            robot_id (str): ID of the machine to get parts from.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.app.app_client.RobotPart]: The list of robot parts.</span>
+<span class="sd">            List[viam.app.app_client.RobotPart]: The list of machine parts.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1332,16 +1349,18 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">parts</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a machine part.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            my_robot_part = await cloud.get_robot_part(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to get.</span>
-<span class="sd">            dest (Optional[str]): Optional filepath to write the robot part&#39;s config file in JSON format to.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to get. You can retrieve this value by navigating to the machine&#39;s page,</span>
+<span class="sd">                clicking on the part status dropdown, and clicking the copy icon next to Part ID.</span>
+<span class="sd">            dest (Optional[str]): Optional filepath to write the machine part&#39;s config file in JSON format to.</span>
 <span class="sd">            indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.</span>
 
 <span class="sd">        Raises:</span>
@@ -1378,10 +1397,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            part_logs = await cloud.get_robot_part_logs(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;, num_log_entries=20)</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;,</span>
+<span class="sd">                num_log_entries=20</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to get logs from.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to get logs from.</span>
 <span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (that is,</span>
 <span class="sd">                no filter).</span>
 <span class="sd">            dest (Optional[str]): Optional filepath to write the log entries to.</span>
@@ -1442,21 +1463,22 @@
 <div class="viewcode-block" id="AppClient.tail_robot_part_logs"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.tail_robot_part_logs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tail_robot_part_logs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">errors_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_LogsStream</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that receives live robot part logs.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that receives live machine part logs.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            logs_stream = await cloud.tail_robot_part_logs(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to retrieve logs from.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to retrieve logs from.</span>
 <span class="sd">            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.</span>
 <span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (that is,</span>
 <span class="sd">                no filter).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.</span>
+<span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live machine part logs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
@@ -1475,21 +1497,22 @@
         <span class="k">return</span> <span class="n">_LogsStreamWithIterator</span><span class="p">(</span><span class="n">read</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot_part_history"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_history">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list containing the history of a robot part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list containing the history of a machine part.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            part_history = await cloud.get_robot_part_history(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to retrieve history from.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to retrieve history from.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID is provided.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID is provided.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part&#39;s history.</span>
+<span class="sd">            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the machine part&#39;s history.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1498,21 +1521,22 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">part_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">part_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a robot part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a machine part.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_robot_part = await cloud.update_robot_part(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+<span class="sd">            my_machine_part = await cloud.update_robot_part(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to update.</span>
 <span class="sd">            name (str): New name to be updated on the robot part.</span>
-<span class="sd">            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the robot part. The robot</span>
+<span class="sd">            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine</span>
 <span class="sd">                part&#39;s config will remain as is (no change) if one isn&#39;t passed.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid robot part ID, name, or config is passed.</span>
+<span class="sd">            GRPCError: If either an invalid machine part ID, name, or config is passed.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The newly updated robot part.</span>
@@ -1524,22 +1548,23 @@
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.new_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.new_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">new_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">part_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new robot part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new machine part.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            new_part_id = await cloud.new_robot_part(</span>
-<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;, part_name=&quot;myNewSubPart&quot;)</span>
+<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;, part_name=&quot;myNewSubPart&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): ID of the robot to create a new part for.</span>
+<span class="sd">            robot_id (str): ID of the machine to create a new part for.</span>
 <span class="sd">            part_name (str): Name of the new part.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid robot ID or name is passed.</span>
+<span class="sd">            GRPCError: If either an invalid machine ID or name is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The new robot part&#39;s ID.</span>
+<span class="sd">            str: The new machine part&#39;s ID.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1548,18 +1573,19 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">part_id</span></div>
 
 <div class="viewcode-block" id="AppClient.delete_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified robot part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified machine part.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.delete_robot_part(</span>
-<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to delete. Must be specified.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to delete. Must be specified.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1571,10 +1597,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.get_robot_api_keys(robot_id=&quot;robot-id&quot;)</span>
+<span class="sd">            api_keys = await cloud.get_robot_api_keys(robot_id=&quot;robot-id&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): The ID of the robot</span>
+<span class="sd">            robot_id (str): The ID of the machine.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[APIKeyWithAuthorizations]: The list of API keys.</span>
@@ -1586,7 +1612,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.mark_part_as_main"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_as_main">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_as_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a robot part as the main part of a robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a machine part as the main part of a machine.</span>
 
 <span class="sd">        ::</span>
 
@@ -1594,10 +1620,10 @@
 <span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to mark as main.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to mark as main.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1605,7 +1631,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartAsMain</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.mark_part_for_restart"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_for_restart">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_for_restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark the specified robot part for restart.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark the specified machine part for restart.</span>
 
 <span class="sd">        ::</span>
 
@@ -1613,10 +1639,10 @@
 <span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to mark for restart.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to mark for restart.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1624,7 +1650,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartForRestart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.create_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot part secret.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a machine part secret.</span>
 
 <span class="sd">        ::</span>
 
@@ -1632,13 +1658,13 @@
 <span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to create a secret for.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to create a secret for.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.app.app_client.RobotPart: The robot part the new secret was generated for.</span>
+<span class="sd">            viam.app.app_client.RobotPart: The machine part the new secret was generated for.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1647,7 +1673,7 @@
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.delete_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a robot part secret.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a machine part secret.</span>
 
 <span class="sd">        ::</span>
 
@@ -1656,11 +1682,11 @@
 <span class="sd">                secret_id=&quot;123xyz12-abcd-4321-12ab-12xy1xyz12xy&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to delete the secret from.</span>
+<span class="sd">            robot_part_id (str): ID of the machine part to delete the secret from.</span>
 <span class="sd">            secret_id (str): ID of the secret to delete.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot part ID or secret ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine part ID or secret ID is passed.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1668,14 +1694,14 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPartSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.list_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Robot</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all robots under the specified location.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all machines under the specified location.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            list_of_machines = await cloud.list_robots(location_id=&quot;123ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            location_id (Optional[str]): ID of the location to retrieve the robots from. Defaults to the location ID provided at</span>
+<span class="sd">            location_id (Optional[str]): ID of the location to retrieve the machines from. Defaults to the location ID provided at</span>
 <span class="sd">                `AppClient` instantiation.</span>
 
 <span class="sd">        Raises:</span>
@@ -1692,15 +1718,15 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.new_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.new_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">new_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new machine.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            new_machine_id = await cloud.new_robot(name=&quot;beepboop&quot;, location_id=&quot;my-location-id&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the new robot.</span>
-<span class="sd">            location_id (Optional[str]): ID of the location under which to create the robot. Defaults to the current authorized location.</span>
+<span class="sd">            name (str): Name of the new machine.</span>
+<span class="sd">            location_id (Optional[str]): ID of the location under which to create the machine. Defaults to the current authorized location.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid location ID is passed or one isn&#39;t passed and there was no location ID provided at `AppClient`</span>
@@ -1716,26 +1742,28 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
 <div class="viewcode-block" id="AppClient.update_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name of an existing robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name of an existing machine.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            updated_robot = await cloud.update_robot(</span>
 <span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;,</span>
-<span class="sd">                name=&quot;Orange-Robot&quot;)</span>
+<span class="sd">                name=&quot;Orange-Robot&quot;,</span>
+<span class="sd">                location_id=&quot;23ab12345&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): ID of the robot to update.</span>
-<span class="sd">            name (str): New name to be updated on the robot.</span>
-<span class="sd">            location_id (Optional[str]): ID of the location under which the robot exists. Defaults to the location ID provided at</span>
+<span class="sd">            robot_id (str): ID of the machine to update.</span>
+<span class="sd">            name (str): New name to be updated on the machine.</span>
+<span class="sd">            location_id (Optional[str]): ID of the location under which the machine exists. Defaults to the location ID provided at</span>
 <span class="sd">                `AppClient` instantiation</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid robot ID, name, or location ID is passed or a location ID isn&#39;t passed and there was no location</span>
-<span class="sd">                ID provided at `AppClient` instantiation.</span>
+<span class="sd">            GRPCError: If either an invalid machine ID, name, or location ID is passed or a location ID isn&#39;t passed and there was no</span>
+<span class="sd">                location ID provided at `AppClient` instantiation.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.app.Robot: The newly updated robot.</span>
+<span class="sd">            viam.proto.app.Robot: The newly updated machine.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1746,17 +1774,17 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">robot</span></div>
 
 <div class="viewcode-block" id="AppClient.delete_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified robot.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified machine.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.delete_robot(robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_id (str): ID of the robot to delete.</span>
+<span class="sd">            robot_id (str): ID of the machine to delete.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid robot ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid machine ID is passed.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1959,11 +1987,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.add_role(</span>
-<span class="sd">                org_id=&quot;org-id&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
 <span class="sd">                role=&quot;owner&quot;,</span>
 <span class="sd">                resource_type=&quot;location&quot;,</span>
-<span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
+<span class="sd">                resource_id=&quot;111ab12345&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the role in.</span>
@@ -2003,11 +2032,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.remove_role(</span>
-<span class="sd">                org_id=&quot;org-id&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
 <span class="sd">                role=&quot;owner&quot;,</span>
 <span class="sd">                resource_type=&quot;location&quot;,</span>
-<span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
+<span class="sd">                resource_id=&quot;111ab12345&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization the role exists in.</span>
@@ -2051,15 +2081,16 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.change_role(</span>
-<span class="sd">                organization_id=&quot;organization-id&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                old_identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
 <span class="sd">                old_role=&quot;operator&quot;,</span>
 <span class="sd">                old_resource_type=&quot;location&quot;,</span>
 <span class="sd">                old_resource_id=&quot;111ab12345&quot;,</span>
 <span class="sd">                new_identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
-<span class="sd">                new_role=&quot;owner&quot;,s</span>
+<span class="sd">                new_role=&quot;owner&quot;,</span>
 <span class="sd">                new_resource_type=&quot;organization&quot;,</span>
-<span class="sd">                new_resource_id=&quot;abc12345&quot;)</span>
+<span class="sd">                new_resource_id=&quot;abc12345&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): ID of the organization</span>
@@ -2069,7 +2100,7 @@
 <span class="sd">                added to. Must match `old_resource_id`.</span>
 <span class="sd">            old_resource_id (str): ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 
-<span class="sd">            new_identity_id (str): New ID of the entity the role blongs to (for example, a user ID).</span>
+<span class="sd">            new_identity_id (str): New ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            new_role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The new role.</span>
 <span class="sd">            new_resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
 <span class="sd">                Must match `new_resource_id`.</span>
@@ -2103,7 +2134,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            list_of_auths = await cloud.list_authorizations(</span>
-<span class="sd">                org_id=&quot;org-id&quot;,</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                resource_ids=[&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;])</span>
 
 <span class="sd">        Args:</span>
@@ -2133,7 +2164,7 @@
 <span class="sd">            # Check whether the entity you&#39;re currently authenticated to has permission to control and/or</span>
 <span class="sd">            # read logs from robots in the &quot;organization-identifier123&quot; org</span>
 <span class="sd">            permissions = [AuthorizedPermissions(resource_type=&quot;organization&quot;,</span>
-<span class="sd">                                                 resource_id=&quot;organization-identifier123&quot;,</span>
+<span class="sd">                                                 resource_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
 <span class="sd">                                                 permissions=[&quot;control_robot&quot;,</span>
 <span class="sd">                                                              &quot;read_robot_logs&quot;])]</span>
 
@@ -2163,7 +2194,10 @@
 <span class="sd">            item = await cloud.get_registry_item(&quot;item-id&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            item_id (str): The ID of the registry item.</span>
+<span class="sd">            item_id (str): The ID of the registry item. This is the namespace and name of the item in the</span>
+<span class="sd">                form `namespace:name`. For example, `Viam&#39;s csi-cam-pi module&#39;s &lt;https://app.viam.com/module/viam/csi-cam-pi&gt;`_ item ID</span>
+<span class="sd">                would be `viam:csi-cam-pi`. You can also use `org-id:name`. For example,</span>
+<span class="sd">                `abc01234-0123-4567-ab12-a11a00a2aa22:training-script`.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            RegistryItem: The registry item.</span>
@@ -2179,7 +2213,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.create_registry_item(&quot;org-id&quot;, &quot;name&quot;, PackageType.PACKAGE_TYPE_ML_MODEL)</span>
+<span class="sd">            from viam.proto.app.packages import PackageType</span>
+
+<span class="sd">            await cloud.create_registry_item(&quot;&lt;YOUR-ORG-ID&gt;&quot;, &quot;name&quot;, PackageType.PACKAGE_TYPE_ML_MODEL)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The organization to create the registry item under.</span>
@@ -2198,10 +2234,19 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.update_registry_item(&quot;item-id&quot;, PackageType.PACKAGE_TYPE_ML_TRAINING, &quot;description&quot;, Visibility.VISIBILITY_PUBLIC)</span>
+<span class="sd">            from viam.proto.app.packages import PackageType</span>
+<span class="sd">            from viam.proto.app import Visibility</span>
+
+<span class="sd">            await cloud.update_registry_item(</span>
+<span class="sd">                &quot;your-namespace:your-name&quot;,</span>
+<span class="sd">                PackageType.PACKAGE_TYPE_ML_TRAINING,</span>
+<span class="sd">                &quot;description&quot;,</span>
+<span class="sd">                Visibility.VISIBILITY_PUBLIC</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            item_id (str): The ID of the registry item.</span>
+<span class="sd">            item_id (str): The ID of the registry item, containing either the namespace and module name</span>
+<span class="sd">                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).</span>
 <span class="sd">            type (PackageType.ValueType): The type of the item in the registry.</span>
 <span class="sd">            description (str): The description of the registry item.</span>
 <span class="sd">            visibility (Visibility.ValueType): The visibility of the registry item.</span>
@@ -2221,6 +2266,29 @@
         <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RegistryItem</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the registry items in an organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.packages import PackageType</span>
+<span class="sd">            from viam.proto.app import Visibility, RegistryItemStatus</span>
+
+<span class="sd">            # List private, published ml training scripts in your organization</span>
+<span class="sd">            registry_items = await cloud.list_registry_items(</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                types=[PackageType.PACKAGE_TYPE_ML_TRAINING],</span>
+<span class="sd">                visibilities=[Visibility.VISIBILITY_PRIVATE],</span>
+<span class="sd">                platforms=[&quot;&quot;],</span>
+<span class="sd">                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]</span>
+<span class="sd">            )</span>
+
+<span class="sd">            # List public, published linux modules in all organizations</span>
+<span class="sd">            registry_items = await cloud.list_registry_items(</span>
+<span class="sd">                organization_id=&quot;&quot;,</span>
+<span class="sd">                types=[PackageType.PACKAGE_TYPE_MODULE],</span>
+<span class="sd">                visibilities=[Visibility.VISIBILITY_PUBLIC],</span>
+<span class="sd">                platforms=[&quot;linux/any&quot;],</span>
+<span class="sd">                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization to return registry items for.</span>
@@ -2253,10 +2321,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.delete_registry_item(&quot;item-id&quot;)</span>
+<span class="sd">            await cloud.delete_registry_item(&quot;your-namespace:your-name&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            item_id (str): The ID of the registry item.</span>
+<span class="sd">            item_id (str): The ID of the deleted registry item, containing either the namespace and module name</span>
+<span class="sd">                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2301,18 +2370,27 @@
 
 <span class="sd">        ::</span>
 
+<span class="sd">            from viam.proto.app import Model</span>
+
+<span class="sd">            model = Model(</span>
+<span class="sd">                api=&quot;rdk:component:base&quot;,</span>
+<span class="sd">                model=&quot;my-group:cool_new_hoverboard_module:wheeled&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">            url_of_my_module = await cloud.update_module(</span>
 <span class="sd">                module_id=&quot;my-group:cool_new_hoverboard_module&quot;,</span>
 <span class="sd">                url=&quot;https://docsformymodule.viam.com&quot;,</span>
+<span class="sd">                models=[model],</span>
 <span class="sd">                description=&quot;A base to support hoverboards.&quot;,</span>
-<span class="sd">                entrypoint=&quot;exec&quot;)</span>
+<span class="sd">                entrypoint=&quot;exec&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            module_id (str): ID of the module being updated, containing module name (for example, &quot;my-module&quot;) or namespace and module name</span>
-<span class="sd">                (for example, &quot;my-org:my-module&quot;).</span>
+<span class="sd">            module_id (str): ID of the module being updated, containing either the namespace and module name</span>
+<span class="sd">                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).</span>
 <span class="sd">            url (str): The url to reference for documentation and code (NOT the url of the module itself).</span>
 <span class="sd">            description (str): A short description of the module that explains its purpose.</span>
-<span class="sd">            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.</span>
+<span class="sd">            models (List[viam.proto.app.Model]): list of models that are available in the module.</span>
 <span class="sd">            entrypoint (str): The executable to run to start the module program.</span>
 <span class="sd">            public (bool): The visibility that should be set for the module. Defaults to False (private).</span>
 
@@ -2340,14 +2418,25 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            file_id = await cloud.upload_module_file(file=b&quot;&lt;file&gt;&quot;)</span>
+<span class="sd">            from viam.proto.app import ModuleFileInfo</span>
+
+<span class="sd">            module_file_info = ModuleFileInfo(</span>
+<span class="sd">                module_id = &quot;sierra:cool_new_hoverboard_module&quot;,</span>
+<span class="sd">                version = &quot;1.0.0&quot;,</span>
+<span class="sd">                platform = &quot;darwin/arm64&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">            file_id = await cloud.upload_module_file(</span>
+<span class="sd">                module_file_info=module_file_info,</span>
+<span class="sd">                file=b&quot;&lt;file&gt;&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.</span>
 <span class="sd">            file (bytes): Bytes of file to upload.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: ID of uploaded file.</span>
+<span class="sd">            str: URL of uploaded file.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -2367,10 +2456,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            the_module = await cloud.get_module(module_id=&quot;my-cool-modular-base&quot;)</span>
+<span class="sd">            the_module = await cloud.get_module(module_id=&quot;my-group:my-cool-modular-base&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            module_id (str): ID of the module being retrieved, containing module name or namespace and module name.</span>
+<span class="sd">            module_id (str): ID of the module being retrieved, containing either the namespace and module name</span>
+<span class="sd">                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid module ID is passed.</span>
@@ -2389,7 +2479,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            modules_list = await cloud.list_modules(&quot;org-id&quot;)</span>
+<span class="sd">            modules_list = await cloud.list_modules(&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list modules for.</span>
@@ -2419,7 +2509,11 @@
 <span class="sd">                resource_id=&quot;your-robot-id123&quot;</span>
 <span class="sd">            )</span>
 
-<span class="sd">            api_key, api_key_id = cloud.create_key(&quot;your-org-id&quot;, [auth], &quot;my_key&quot;)</span>
+<span class="sd">            api_key, api_key_id = cloud.create_key(</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                authorizations=[auth],</span>
+<span class="sd">                name=&quot;my_key&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the key for.</span>
@@ -2485,7 +2579,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            keys = await cloud.list_keys()</span>
+<span class="sd">            keys = await cloud.list_keys(org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list API keys for.</span>

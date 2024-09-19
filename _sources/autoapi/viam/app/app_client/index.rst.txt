@@ -498,9 +498,9 @@ Module Contents
 
       ::
 
-          org_list = await cloud.list_organizations_by_user("user-id")
+          org_list = await cloud.list_organizations_by_user("<YOUR-USER-ID>")
 
-      :param user_id: The ID of the user
+      :param user_id: The ID of the user. You can retrieve this with the get_user_id_by_email() method.
       :type user_id: str
 
       :returns: The list of organizations.
@@ -514,9 +514,14 @@ Module Contents
       :async:
 
 
-      Return details about the requested organization.
+      Retrieve the organization object for the requested organization containing the organization's ID,
+      name, public namespace, and more.
 
-      :param org_id: The ID of the organization to query.
+      ::
+
+          org = await cloud.get_organization("<YOUR-ORG-ID>")
+
+      :param org_id: The ID of the organization to query. You can retrieve this from the organization settings page.
       :type org_id: str
 
       :raises GRPCError: If the provided org_id is invalid, or not currently authed to.
@@ -558,6 +563,14 @@ Module Contents
 
       Updates organization details.
 
+      ::
+
+          organization = await cloud.update_organization(
+              org_id="<YOUR-ORG-ID>",
+              name="Artoo's Org",
+              public_namespace="artoo"
+          )
+
       :param org_id: The ID of the organization to update.
       :type org_id: str
       :param name: If provided, updates the org's name.
@@ -586,7 +599,7 @@ Module Contents
 
       ::
 
-          await cloud.delete_organization("org-id")
+          await cloud.delete_organization("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -604,7 +617,7 @@ Module Contents
 
       ::
 
-          member_list, invite_list = await cloud.list_organization_members("org-id")
+          member_list, invite_list = await cloud.list_organization_members("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list members of.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -626,7 +639,7 @@ Module Contents
 
       ::
 
-          await cloud.create_organization_invite("org-id", "youremail@email.com")
+          await cloud.create_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization to create an invite for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -665,19 +678,20 @@ Module Contents
 
           from viam.proto.app import Authorization
 
-          authorization_to_add = Authorization(
-              authorization_type="some type of auth",
-              authorization_id="identifier",
-              resource_type="abc",
-              resource_id="resource-identifier123",
-              identity_id="id12345",
-              organization_id="org_id_123"
+          auth = Authorization(
+              authorization_type="role",
+              authorization_id="location_owner",
+              resource_type="location", # "robot", "location", or "organization"
+              resource_id="012456lni0", # machine id, location id or org id
+              identity_id="",
+              organization_id="<YOUR-ORG-ID>",
+              identity_type=""
           )
 
           update_invite = await cloud.update_organization_invite_authorizations(
-              org_id="org_id_123",
+              org_id="<YOUR-ORG-ID>",
               email="notarealemail@viam.com",
-              add_authorizations =[authorization_to_add]
+              add_authorizations=[auth]
           )
 
       :param org_id: The ID of the organization that the invite is for.
@@ -708,7 +722,7 @@ Module Contents
 
       ::
 
-          member_list, invite_list = await cloud.list_organization_members()
+          member_list, invite_list = await cloud.list_organization_members(org_id="<YOUR-ORG-ID>")
           first_user_id = member_list[0].user_id
 
           await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
@@ -731,7 +745,7 @@ Module Contents
 
       ::
 
-          await cloud.delete_organization_invite("org-id", "youremail@email.com")
+          await cloud.delete_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to delete was for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -753,7 +767,7 @@ Module Contents
 
       ::
 
-          org_invite = await cloud.resend_organization_invite("org-id", "youremail@email.com")
+          org_invite = await cloud.resend_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to resend was for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -778,7 +792,7 @@ Module Contents
 
       ::
 
-          my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
+          my_new_location = await cloud.create_location(org_id="<YOUR-ORG-ID>", name="Robotville", parent_location_id="111ab12345")
 
       :param org_id: The ID of the organization to create the location under.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -895,7 +909,7 @@ Module Contents
 
       ::
 
-          locations = await cloud.list_locations("org-id")
+          locations = await cloud.list_locations("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the org to list locations for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -916,7 +930,7 @@ Module Contents
 
       ::
 
-          await cloud.share_location("organization-id", "location-id")
+          await cloud.share_location("<YOUR-ORG-ID>", "<YOUR-LOCATION-ID>")
 
       :param organization_id: The ID of the organization.
       :type organization_id: str
@@ -935,7 +949,7 @@ Module Contents
 
       ::
 
-          await cloud.unshare_location("organization-id", "location-id")
+          await cloud.unshare_location("<YOUR-ORG-ID>", "<YOUR-LOCATION-ID>")
 
       :param organization_id: The ID of the organization.
       :type organization_id: str
@@ -978,7 +992,7 @@ Module Contents
 
       ::
 
-          new_loc_auth = await cloud.create_location_secret()
+          new_loc_auth = await cloud.create_location_secret(location_id="123xy12345")
 
       :param location_id: ID of the location to generate a new secret for. Defaults to the location ID provided at
                           `AppClient` instantiation.
@@ -1003,7 +1017,9 @@ Module Contents
       ::
 
           await cloud.delete_location_secret(
-              secret_id="abcd123-456-7890ab-cxyz98-989898xyzxyz")
+              secret_id="abcd123-456-7890ab-cxyz98-989898xyzxyz",
+              location_id="123xy12345"
+          )
 
       :param location_id: ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.
       :type location_id: str
@@ -1021,18 +1037,18 @@ Module Contents
       :async:
 
 
-      Get a robot.
+      Get a machine.
 
       ::
 
-          robot = await cloud.get_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
+          machine = await cloud.get_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
-      :param robot_id: ID of the robot to get.
+      :param robot_id: ID of the machine to get. You can copy this value from the URL of the machine's page.
       :type robot_id: str
 
-      :raises GRPCError: If an invalid robot ID is passed.
+      :raises GRPCError: If an invalid machine ID is passed.
 
-      :returns: The robot.
+      :returns: The machine.
       :rtype: viam.proto.app.Robot
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1064,19 +1080,20 @@ Module Contents
       :async:
 
 
-      Get a list of all the parts under a specific robot.
+      Get a list of all the parts under a specific machine.
 
       ::
 
           list_of_parts = await cloud.get_robot_parts(
-              robot_id="1a123456-x1yz-0ab0-a12xyzabc")
+              robot_id="1a123456-x1yz-0ab0-a12xyzabc"
+          )
 
-      :param robot_id: ID of the robot to get parts from.
+      :param robot_id: ID of the machine to get parts from.
       :type robot_id: str
 
-      :raises GRPCError: If an invalid robot ID is passed.
+      :raises GRPCError: If an invalid machine ID is passed.
 
-      :returns: The list of robot parts.
+      :returns: The list of machine parts.
       :rtype: List[viam.app.app_client.RobotPart]
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1087,16 +1104,18 @@ Module Contents
       :async:
 
 
-      Get a robot part.
+      Get a machine part.
 
       ::
 
           my_robot_part = await cloud.get_robot_part(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+          )
 
-      :param robot_part_id: ID of the robot part to get.
+      :param robot_part_id: ID of the machine part to get. You can retrieve this value by navigating to the machine's page,
+                            clicking on the part status dropdown, and clicking the copy icon next to Part ID.
       :type robot_part_id: str
-      :param dest: Optional filepath to write the robot part's config file in JSON format to.
+      :param dest: Optional filepath to write the machine part's config file in JSON format to.
       :type dest: Optional[str]
       :param indent: Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
       :type indent: int
@@ -1119,9 +1138,11 @@ Module Contents
       ::
 
           part_logs = await cloud.get_robot_part_logs(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22", num_log_entries=20)
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22",
+              num_log_entries=20
+          )
 
-      :param robot_part_id: ID of the robot part to get logs from.
+      :param robot_part_id: ID of the machine part to get logs from.
       :type robot_part_id: str
       :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                      no filter).
@@ -1147,14 +1168,15 @@ Module Contents
       :async:
 
 
-      Get an asynchronous iterator that receives live robot part logs.
+      Get an asynchronous iterator that receives live machine part logs.
 
       ::
 
           logs_stream = await cloud.tail_robot_part_logs(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+          )
 
-      :param robot_part_id: ID of the robot part to retrieve logs from.
+      :param robot_part_id: ID of the machine part to retrieve logs from.
       :type robot_part_id: str
       :param errors_only: Boolean specifying whether or not to only include error logs. Defaults to True.
       :type errors_only: bool
@@ -1162,7 +1184,7 @@ Module Contents
                      no filter).
       :type filter: Optional[str]
 
-      :returns: The asynchronous iterator receiving live robot part logs.
+      :returns: The asynchronous iterator receiving live machine part logs.
       :rtype: _LogsStream[List[LogEntry]]
 
 
@@ -1171,19 +1193,20 @@ Module Contents
       :async:
 
 
-      Get a list containing the history of a robot part.
+      Get a list containing the history of a machine part.
 
       ::
 
           part_history = await cloud.get_robot_part_history(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+          )
 
-      :param robot_part_id: ID of the robot part to retrieve history from.
+      :param robot_part_id: ID of the machine part to retrieve history from.
       :type robot_part_id: str
 
-      :raises GRPCError: If an invalid robot part ID is provided.
+      :raises GRPCError: If an invalid machine part ID is provided.
 
-      :returns: The list of the robot part's history.
+      :returns: The list of the machine part's history.
       :rtype: List[viam.app.app_client.RobotPartHistoryEntry]
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1194,22 +1217,23 @@ Module Contents
       :async:
 
 
-      Change the name and assign an optional new configuration to a robot part.
+      Change the name and assign an optional new configuration to a machine part.
 
       ::
 
-          my_robot_part = await cloud.update_robot_part(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+          my_machine_part = await cloud.update_robot_part(
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+          )
 
       :param robot_part_id: ID of the robot part to update.
       :type robot_part_id: str
       :param name: New name to be updated on the robot part.
       :type name: str
-      :param robot_config: Optional new config represented as a dictionary to be updated on the robot part. The robot
+      :param robot_config: Optional new config represented as a dictionary to be updated on the machine part. The machine
                            part's config will remain as is (no change) if one isn't passed.
       :type robot_config: Mapping[str, Any]
 
-      :raises GRPCError: If either an invalid robot part ID, name, or config is passed.
+      :raises GRPCError: If either an invalid machine part ID, name, or config is passed.
 
       :returns: The newly updated robot part.
       :rtype: viam.app.app_client.RobotPart
@@ -1222,21 +1246,22 @@ Module Contents
       :async:
 
 
-      Create a new robot part.
+      Create a new machine part.
 
       ::
 
           new_part_id = await cloud.new_robot_part(
-              robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart")
+              robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart"
+          )
 
-      :param robot_id: ID of the robot to create a new part for.
+      :param robot_id: ID of the machine to create a new part for.
       :type robot_id: str
       :param part_name: Name of the new part.
       :type part_name: str
 
-      :raises GRPCError: If either an invalid robot ID or name is passed.
+      :raises GRPCError: If either an invalid machine ID or name is passed.
 
-      :returns: The new robot part's ID.
+      :returns: The new machine part's ID.
       :rtype: str
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1247,17 +1272,18 @@ Module Contents
       :async:
 
 
-      Delete the specified robot part.
+      Delete the specified machine part.
 
       ::
 
           await cloud.delete_robot_part(
-              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+              robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
+          )
 
-      :param robot_part_id: ID of the robot part to delete. Must be specified.
+      :param robot_part_id: ID of the machine part to delete. Must be specified.
       :type robot_part_id: str
 
-      :raises GRPCError: If an invalid robot part ID is passed.
+      :raises GRPCError: If an invalid machine part ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
@@ -1271,9 +1297,9 @@ Module Contents
 
       ::
 
-          await cloud.get_robot_api_keys(robot_id="robot-id")
+          api_keys = await cloud.get_robot_api_keys(robot_id="robot-id")
 
-      :param robot_id: The ID of the robot
+      :param robot_id: The ID of the machine.
       :type robot_id: str
 
       :returns: The list of API keys.
@@ -1287,17 +1313,17 @@ Module Contents
       :async:
 
 
-      Mark a robot part as the main part of a robot.
+      Mark a machine part as the main part of a machine.
 
       ::
 
           await cloud.mark_part_as_main(
               robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
-      :param robot_part_id: ID of the robot part to mark as main.
+      :param robot_part_id: ID of the machine part to mark as main.
       :type robot_part_id: str
 
-      :raises GRPCError: If an invalid robot part ID is passed.
+      :raises GRPCError: If an invalid machine part ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
@@ -1307,17 +1333,17 @@ Module Contents
       :async:
 
 
-      Mark the specified robot part for restart.
+      Mark the specified machine part for restart.
 
       ::
 
           await cloud.mark_part_for_restart(
               robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
-      :param robot_part_id: ID of the robot part to mark for restart.
+      :param robot_part_id: ID of the machine part to mark for restart.
       :type robot_part_id: str
 
-      :raises GRPCError: If an invalid robot part ID is passed.
+      :raises GRPCError: If an invalid machine part ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
@@ -1327,19 +1353,19 @@ Module Contents
       :async:
 
 
-      Create a robot part secret.
+      Create a machine part secret.
 
       ::
 
           part_with_new_secret = await cloud.create_robot_part_secret(
               robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
-      :param robot_part_id: ID of the robot part to create a secret for.
+      :param robot_part_id: ID of the machine part to create a secret for.
       :type robot_part_id: str
 
-      :raises GRPCError: If an invalid robot part ID is passed.
+      :raises GRPCError: If an invalid machine part ID is passed.
 
-      :returns: The robot part the new secret was generated for.
+      :returns: The machine part the new secret was generated for.
       :rtype: viam.app.app_client.RobotPart
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1350,7 +1376,7 @@ Module Contents
       :async:
 
 
-      Delete a robot part secret.
+      Delete a machine part secret.
 
       ::
 
@@ -1358,12 +1384,12 @@ Module Contents
               robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22",
               secret_id="123xyz12-abcd-4321-12ab-12xy1xyz12xy")
 
-      :param robot_part_id: ID of the robot part to delete the secret from.
+      :param robot_part_id: ID of the machine part to delete the secret from.
       :type robot_part_id: str
       :param secret_id: ID of the secret to delete.
       :type secret_id: str
 
-      :raises GRPCError: If an invalid robot part ID or secret ID is passed.
+      :raises GRPCError: If an invalid machine part ID or secret ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
@@ -1373,13 +1399,13 @@ Module Contents
       :async:
 
 
-      Get a list of all robots under the specified location.
+      Get a list of all machines under the specified location.
 
       ::
 
           list_of_machines = await cloud.list_robots(location_id="123ab12345")
 
-      :param location_id: ID of the location to retrieve the robots from. Defaults to the location ID provided at
+      :param location_id: ID of the location to retrieve the machines from. Defaults to the location ID provided at
                           `AppClient` instantiation.
       :type location_id: Optional[str]
 
@@ -1397,15 +1423,15 @@ Module Contents
       :async:
 
 
-      Create a new robot.
+      Create a new machine.
 
       ::
 
           new_machine_id = await cloud.new_robot(name="beepboop", location_id="my-location-id")
 
-      :param name: Name of the new robot.
+      :param name: Name of the new machine.
       :type name: str
-      :param location_id: ID of the location under which to create the robot. Defaults to the current authorized location.
+      :param location_id: ID of the location under which to create the machine. Defaults to the current authorized location.
       :type location_id: Optional[str]
 
       :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
@@ -1422,26 +1448,28 @@ Module Contents
       :async:
 
 
-      Change the name of an existing robot.
+      Change the name of an existing machine.
 
       ::
 
           updated_robot = await cloud.update_robot(
               robot_id="1a123456-x1yz-0ab0-a12xyzabc",
-              name="Orange-Robot")
+              name="Orange-Robot",
+              location_id="23ab12345"
+          )
 
-      :param robot_id: ID of the robot to update.
+      :param robot_id: ID of the machine to update.
       :type robot_id: str
-      :param name: New name to be updated on the robot.
+      :param name: New name to be updated on the machine.
       :type name: str
-      :param location_id: ID of the location under which the robot exists. Defaults to the location ID provided at
+      :param location_id: ID of the location under which the machine exists. Defaults to the location ID provided at
                           `AppClient` instantiation
       :type location_id: Optional[str]
 
-      :raises GRPCError: If either an invalid robot ID, name, or location ID is passed or a location ID isn't passed and there was no location
-          ID provided at `AppClient` instantiation.
+      :raises GRPCError: If either an invalid machine ID, name, or location ID is passed or a location ID isn't passed and there was no
+          location ID provided at `AppClient` instantiation.
 
-      :returns: The newly updated robot.
+      :returns: The newly updated machine.
       :rtype: viam.proto.app.Robot
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1452,16 +1480,16 @@ Module Contents
       :async:
 
 
-      Delete the specified robot.
+      Delete the specified machine.
 
       ::
 
           await cloud.delete_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
-      :param robot_id: ID of the robot to delete.
+      :param robot_id: ID of the machine to delete.
       :type robot_id: str
 
-      :raises GRPCError: If an invalid robot ID is passed.
+      :raises GRPCError: If an invalid machine ID is passed.
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
 
@@ -1649,11 +1677,12 @@ Module Contents
       ::
 
           await cloud.add_role(
-              org_id="org-id",
+              org_id="<YOUR-ORG-ID>",
               identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
               role="owner",
               resource_type="location",
-              resource_id="111ab12345")
+              resource_id="111ab12345"
+          )
 
       :param org_id: The ID of the organization to create the role in.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -1683,11 +1712,12 @@ Module Contents
       ::
 
           await cloud.remove_role(
-              org_id="org-id",
+              org_id="<YOUR-ORG-ID>",
               identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
               role="owner",
               resource_type="location",
-              resource_id="111ab12345")
+              resource_id="111ab12345"
+          )
 
       :param org_id: The ID of the organization the role exists in.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -1717,15 +1747,16 @@ Module Contents
       ::
 
           await cloud.change_role(
-              organization_id="organization-id",
+              organization_id="<YOUR-ORG-ID>",
               old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
               old_role="operator",
               old_resource_type="location",
               old_resource_id="111ab12345",
               new_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
-              new_role="owner",s
+              new_role="owner",
               new_resource_type="organization",
-              new_resource_id="abc12345")
+              new_resource_id="abc12345"
+          )
 
       :param organization_id: ID of the organization
       :type organization_id: str
@@ -1738,7 +1769,7 @@ Module Contents
       :type old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
       :param old_resource_id: ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type old_resource_id: str
-      :param new_identity_id: New ID of the entity the role blongs to (for example, a user ID).
+      :param new_identity_id: New ID of the entity the role belongs to (for example, a user ID).
       :type new_identity_id: str
       :param new_role: The new role.
       :type new_role: Union[Literal["owner"], Literal["operator"]]
@@ -1762,7 +1793,7 @@ Module Contents
       ::
 
           list_of_auths = await cloud.list_authorizations(
-              org_id="org-id",
+              org_id="<YOUR-ORG-ID>",
               resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
 
       :param org_id: The ID of the organization to list authorizations for.
@@ -1792,7 +1823,7 @@ Module Contents
           # Check whether the entity you're currently authenticated to has permission to control and/or
           # read logs from robots in the "organization-identifier123" org
           permissions = [AuthorizedPermissions(resource_type="organization",
-                                               resource_id="organization-identifier123",
+                                               resource_id="<YOUR-ORG-ID>",
                                                permissions=["control_robot",
                                                             "read_robot_logs"])]
 
@@ -1821,7 +1852,10 @@ Module Contents
 
           item = await cloud.get_registry_item("item-id")
 
-      :param item_id: The ID of the registry item.
+      :param item_id: The ID of the registry item. This is the namespace and name of the item in the
+                      form `namespace:name`. For example, `Viam's csi-cam-pi module's <https://app.viam.com/module/viam/csi-cam-pi>`_ item ID
+                      would be `viam:csi-cam-pi`. You can also use `org-id:name`. For example,
+                      `abc01234-0123-4567-ab12-a11a00a2aa22:training-script`.
       :type item_id: str
 
       :returns: The registry item.
@@ -1839,7 +1873,9 @@ Module Contents
 
       ::
 
-          await cloud.create_registry_item("org-id", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
+          from viam.proto.app.packages import PackageType
+
+          await cloud.create_registry_item("<YOUR-ORG-ID>", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
 
       :param organization_id: The organization to create the registry item under.
       :type organization_id: str
@@ -1860,9 +1896,18 @@ Module Contents
 
       ::
 
-          await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
+          from viam.proto.app.packages import PackageType
+          from viam.proto.app import Visibility
 
-      :param item_id: The ID of the registry item.
+          await cloud.update_registry_item(
+              "your-namespace:your-name",
+              PackageType.PACKAGE_TYPE_ML_TRAINING,
+              "description",
+              Visibility.VISIBILITY_PUBLIC
+          )
+
+      :param item_id: The ID of the registry item, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
       :type item_id: str
       :param type: The type of the item in the registry.
       :type type: PackageType.ValueType
@@ -1878,6 +1923,29 @@ Module Contents
 
 
       List the registry items in an organization.
+
+      ::
+
+          from viam.proto.app.packages import PackageType
+          from viam.proto.app import Visibility, RegistryItemStatus
+
+          # List private, published ml training scripts in your organization
+          registry_items = await cloud.list_registry_items(
+              organization_id="<YOUR-ORG-ID>",
+              types=[PackageType.PACKAGE_TYPE_ML_TRAINING],
+              visibilities=[Visibility.VISIBILITY_PRIVATE],
+              platforms=[""],
+              statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+          )
+
+          # List public, published linux modules in all organizations
+          registry_items = await cloud.list_registry_items(
+              organization_id="",
+              types=[PackageType.PACKAGE_TYPE_MODULE],
+              visibilities=[Visibility.VISIBILITY_PUBLIC],
+              platforms=["linux/any"],
+              statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+          )
 
       :param organization_id: The ID of the organization to return registry items for.
       :type organization_id: str
@@ -1909,9 +1977,10 @@ Module Contents
 
       ::
 
-          await cloud.delete_registry_item("item-id")
+          await cloud.delete_registry_item("your-namespace:your-name")
 
-      :param item_id: The ID of the registry item.
+      :param item_id: The ID of the deleted registry item, containing either the namespace and module name
+                      (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
       :type item_id: str
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -1952,21 +2021,30 @@ Module Contents
 
       ::
 
+          from viam.proto.app import Model
+
+          model = Model(
+              api="rdk:component:base",
+              model="my-group:cool_new_hoverboard_module:wheeled"
+          )
+
           url_of_my_module = await cloud.update_module(
               module_id="my-group:cool_new_hoverboard_module",
               url="https://docsformymodule.viam.com",
+              models=[model],
               description="A base to support hoverboards.",
-              entrypoint="exec")
+              entrypoint="exec"
+          )
 
-      :param module_id: ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
-                        (for example, "my-org:my-module").
+      :param module_id: ID of the module being updated, containing either the namespace and module name
+                        (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
       :type module_id: str
       :param url: The url to reference for documentation and code (NOT the url of the module itself).
       :type url: str
       :param description: A short description of the module that explains its purpose.
       :type description: str
       :param models: list of models that are available in the module.
-      :type models: Optional[List[viam.proto.app.Model]]
+      :type models: List[viam.proto.app.Model]
       :param entrypoint: The executable to run to start the module program.
       :type entrypoint: str
       :param public: The visibility that should be set for the module. Defaults to False (private).
@@ -1989,14 +2067,25 @@ Module Contents
 
       ::
 
-          file_id = await cloud.upload_module_file(file=b"<file>")
+          from viam.proto.app import ModuleFileInfo
+
+          module_file_info = ModuleFileInfo(
+              module_id = "sierra:cool_new_hoverboard_module",
+              version = "1.0.0",
+              platform = "darwin/arm64"
+          )
+
+          file_id = await cloud.upload_module_file(
+              module_file_info=module_file_info,
+              file=b"<file>"
+          )
 
       :param module_file_info: Relevant metadata.
       :type module_file_info: Optional[viam.proto.app.ModuleFileInfo]
       :param file: Bytes of file to upload.
       :type file: bytes
 
-      :returns: ID of uploaded file.
+      :returns: URL of uploaded file.
       :rtype: str
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -2011,9 +2100,10 @@ Module Contents
 
       ::
 
-          the_module = await cloud.get_module(module_id="my-cool-modular-base")
+          the_module = await cloud.get_module(module_id="my-group:my-cool-modular-base")
 
-      :param module_id: ID of the module being retrieved, containing module name or namespace and module name.
+      :param module_id: ID of the module being retrieved, containing either the namespace and module name
+                        (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
       :type module_id: str
 
       :raises GRPCError: If an invalid module ID is passed.
@@ -2033,7 +2123,7 @@ Module Contents
 
       ::
 
-          modules_list = await cloud.list_modules("org-id")
+          modules_list = await cloud.list_modules("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list modules for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -2062,7 +2152,11 @@ Module Contents
               resource_id="your-robot-id123"
           )
 
-          api_key, api_key_id = cloud.create_key("your-org-id", [auth], "my_key")
+          api_key, api_key_id = cloud.create_key(
+              org_id="<YOUR-ORG-ID>",
+              authorizations=[auth],
+              name="my_key"
+          )
 
       :param org_id: The ID of the organization to create the key for.
                      You can obtain your organization ID from the Viam app's organization settings page.
@@ -2128,7 +2222,7 @@ Module Contents
 
       ::
 
-          keys = await cloud.list_keys()
+          keys = await cloud.list_keys(org_id="<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list API keys for.
                      You can obtain your organization ID from the Viam app's organization settings page.
