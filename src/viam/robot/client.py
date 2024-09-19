@@ -907,12 +907,13 @@ class RobotClient:
 
     async def get_machine_status(self) -> GetMachineStatusResponse:
         """
-        Get status information about the machine.
+        Get status information about the machines resources and configuration.
 
         ::
 
             machine_status = await machine.get_machine_status()
             resource_statuses = machine_status.resources
+            config_status = machine_status.config
 
         Returns:
             viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) of the machine.
