@@ -71,6 +71,8 @@ class Motor(ComponentBase):
         Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
         When ``rpm`` or ``revolutions`` is a negative value, the rotation will be in the backward direction.
         Note: if both ``rpm`` and ``revolutions`` are negative, the motor will spin in the forward direction.
+        If ``revolutions != 0``, this will block until the number of revolutions has been completed or another operation comes in.
+        ``revolutions`` may not be 0.
 
         ::
 
@@ -83,7 +85,7 @@ class Motor(ComponentBase):
             rpm (float): Speed at which the motor should move in rotations per minute
                 (negative implies backwards).
             revolutions (float): Number of revolutions the motor should run for
-                (negative implies backwards).
+                (negative implies backwards). May not be 0.
 
         For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
         """
