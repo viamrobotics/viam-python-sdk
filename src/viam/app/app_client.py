@@ -668,7 +668,8 @@ class AppClient:
         return list(response.orgs)
 
     async def get_organization(self, org_id: str) -> Organization:
-        """Return details about the requested organization.
+        """Retrieve the organization object for the requested organization containing the organization's ID,
+        name, public namespace, and more.
 
         ::
 
@@ -854,8 +855,7 @@ class AppClient:
                 authorization_type="role",
                 authorization_id="location_owner",
                 resource_type="location", # "robot", "location", or "organization"
-                # machine id, location id or org id
-                resource_id="012456lni0",
+                resource_id="012456lni0", # machine id, location id or org id
                 identity_id="",
                 organization_id="<YOUR-ORG-ID>",
                 identity_type=""
@@ -1307,7 +1307,8 @@ class AppClient:
         ::
 
             part_logs = await cloud.get_robot_part_logs(
-                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22", num_log_entries=20
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22",
+                num_log_entries=20
             )
 
         Args:
@@ -2103,9 +2104,10 @@ class AppClient:
             item = await cloud.get_registry_item("item-id")
 
         Args:
-            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
-                For example, `Viam's csi-cam-pi module's <https://app.viam.com/module/viam/csi-cam-pi>`_ item ID
-                would be `viam:csi-cam-pi`.
+            item_id (str): The ID of the registry item. This is the namespace and name of the item in the
+                form `namespace:name`. For example, `Viam's csi-cam-pi module's <https://app.viam.com/module/viam/csi-cam-pi>`_ item ID
+                would be `viam:csi-cam-pi`. You can also use `org-id:name`. For example,
+                `abc01234-0123-4567-ab12-a11a00a2aa22:training-script`.
 
         Returns:
             RegistryItem: The registry item.
@@ -2145,10 +2147,16 @@ class AppClient:
             from viam.proto.app.packages import PackageType
             from viam.proto.app import Visibility
 
-            await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
+            await cloud.update_registry_item(
+                "your-namespace:your-name",
+                PackageType.PACKAGE_TYPE_ML_TRAINING,
+                "description",
+                Visibility.VISIBILITY_PUBLIC
+            )
 
         Args:
-            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
+            item_id (str): The ID of the registry item, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
             type (PackageType.ValueType): The type of the item in the registry.
             description (str): The description of the registry item.
             visibility (Visibility.ValueType): The visibility of the registry item.
@@ -2223,10 +2231,11 @@ class AppClient:
 
         ::
 
-            await cloud.delete_registry_item("item-id")
+            await cloud.delete_registry_item("your-namespace:your-name")
 
         Args:
-            item_id (str): The ID of the registry item. This is the namespace and name of the item in the form `namespace:name`.
+            item_id (str): The ID of the deleted registry item, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -2287,8 +2296,8 @@ class AppClient:
             )
 
         Args:
-            module_id (str): ID of the module being updated, containing module name (for example, "my-module") or namespace and module name
-                (for example, "my-org:my-module").
+            module_id (str): ID of the module being updated, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
             url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
             models (List[viam.proto.app.Model]): list of models that are available in the module.
@@ -2360,7 +2369,8 @@ class AppClient:
             the_module = await cloud.get_module(module_id="my-group:my-cool-modular-base")
 
         Args:
-            module_id (str): ID of the module being retrieved, containing the namespace and module name.
+            module_id (str): ID of the module being retrieved, containing either the namespace and module name
+                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
 
         Raises:
             GRPCError: If an invalid module ID is passed.
