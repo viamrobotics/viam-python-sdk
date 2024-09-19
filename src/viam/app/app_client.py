@@ -2191,7 +2191,7 @@ class AppClient:
                 statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
             )
 
-            # list public, published linux modules in all organizations
+            # List public, published linux modules in all organizations
             registry_items = await cloud.list_registry_items(
                 organization_id="",
                 types=[PackageType.PACKAGE_TYPE_MODULE],
