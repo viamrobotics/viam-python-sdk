@@ -263,16 +263,16 @@
 <dd><p>Filter and download tabular data. The data will be paginated into pages of <cite>limit</cite> items, and the pagination ID will be included
 in the returned tuple. If a destination is provided, the data will be saved to that file.
 If the file is not empty, it will be overwritten.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
-
-<span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;motor-1&quot;</span><span class="p">)</span>
 <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">tabular_data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="n">tabular_data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">tabular_data</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;My data: </span><span class="si">{</span><span class="n">my_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -308,7 +308,10 @@ str: The last-returned page ID.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_sql">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_sql" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain unified tabular data and metadata, queried with SQL.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_sql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="s2">&quot;SELECT * FROM readings LIMIT 5&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_sql</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">sql_query</span><span class="o">=</span><span class="s2">&quot;SELECT * FROM readings LIMIT 5&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -333,19 +336,23 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_mql">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_mql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_mql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_mql" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using bson</span>
-<span class="kn">import</span> <span class="nn">bson</span>
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;location-id&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
-    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bson</span>
+
+<span class="c1"># using bson package (pip install bson)</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;YOUR-LOCATION-ID&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$limit&#39;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
 <span class="p">])</span>
 
-<span class="c1"># using pymongo</span>
-<span class="kn">import</span> <span class="nn">bson</span>
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;location-id&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tabular Data 1: </span><span class="si">{</span><span class="n">tabular_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># using pymongo package (pip install pymongo)</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;YOUR-LOCATION-ID&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
     <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
 <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tabular Data 2: </span><span class="si">{</span><span class="n">tabular_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -376,16 +383,19 @@ If the file is not empty, it will be overwritten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">TagsFilter</span><span class="p">,</span> <span class="n">TagsFilterType</span>
 
-
 <span class="c1"># Get data captured from camera components</span>
 <span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera-1&quot;</span><span class="p">)</span>
+
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">my_filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;My data: </span><span class="si">{</span><span class="n">my_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get untagged data from a dataset</span>
 
@@ -442,7 +452,7 @@ str: The last-returned page ID.</p>
 <dd><p>Filter and download binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -484,12 +494,10 @@ str: The last-returned page ID.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_tabular_data">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_tabular_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_tabular_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_tabular_data" title="Permalink to this definition"></a></dt>
 <dd><p>Delete tabular data older than a specified number of days.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
-
-<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
-<span class="n">days_of_data_to_delete</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_tabular_data</span><span class="p">(</span>
-    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;</span><span class="p">,</span> <span class="n">days_of_data_to_delete</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_tabular_data</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">delete_older_than_days</span><span class="o">=</span><span class="mi">150</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -527,14 +535,16 @@ is 10, this deletes any data that was captured up to 10 days ago. If it is 0, al
 <dd><p>Filter and delete binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
-<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span> <span class="n">organization_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">])</span>
+
 <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – Optional <cite>Filter</cite> specifying binary data to delete. Passing an empty <cite>Filter</cite> will lead to
-all data being deleted. Exercise caution when using this option.</p>
+all data being deleted. Exercise caution when using this option. You must specify any organization ID with
+“organization_ids” when using this option.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The number of items deleted.</p>
@@ -551,8 +561,12 @@ all data being deleted. Exercise caution when using this option.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and delete binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera-1&quot;</span><span class="p">,</span> <span class="n">organization_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">])</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">my_filter</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -592,10 +606,14 @@ all data being deleted. Exercise caution when using this option.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_tags_to_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_tags_to_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Add tags to binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera-1&quot;</span><span class="p">,</span> <span class="n">organization_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">])</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">my_filter</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -658,10 +676,15 @@ tagged.</p></li>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Remove tags from binary data by IDs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera-1&quot;</span><span class="p">)</span>
+
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="n">my_filter</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -764,12 +787,12 @@ return.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
 <span class="n">MY_BINARY_ID</span> <span class="o">=</span> <span class="n">BinaryID</span><span class="p">(</span>
-    <span class="n">file_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">file_id</span><span class="p">,</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">-</span><span class="nb">id</span><span class="p">,</span>
-    <span class="n">location_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">location</span><span class="o">-</span><span class="nb">id</span>
+    <span class="n">file_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-FILE-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-LOCATION-ID&gt;&quot;</span>
 <span class="p">)</span>
 
-<span class="n">bbox_label</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
+<span class="n">bbox_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
     <span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_ID</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
     <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -778,7 +801,7 @@ return.</p>
     <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">bbox_label</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bbox_id</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -843,6 +866,8 @@ return.</p>
 <span class="n">my_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 <span class="n">bounding_box_labels</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">bounding_box_labels_by_filter</span><span class="p">(</span>
     <span class="n">my_filter</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bounding_box_labels</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -864,7 +889,7 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.get_database_connection">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_database_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.get_database_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.get_database_connection" title="Permalink to this definition"></a></dt>
 <dd><p>Get a connection to access a MongoDB Atlas Data federation instance.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_client</span><span class="o">.</span><span class="n">get_database_connection</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hostname</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">get_database_connection</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -888,8 +913,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dd><p>Configure a database user for the Viam organization’s MongoDB Atlas Data Federation instance. It can also be used to reset the
 password of the existing database user.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">configure_database_user</span><span class="p">(</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;your_password&quot;</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;Your_Password@1234&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -910,8 +935,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.create_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.create_dataset" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new dataset.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;dataset-name&gt;&quot;</span><span class="p">,</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;DATASET-NAME&gt;&quot;</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
 </pre></div>
@@ -939,7 +964,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/dataset/index.html#viam.proto.app.dataset.Dataset" title="viam.proto.app.dataset.Dataset"><span class="pre">viam.proto.app.dataset.Dataset</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.list_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.list_dataset_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of datasets using their IDs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_ids</span><span class="p">(</span>
-    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">]</span>
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;YOUR-DATASET-ID-1&gt;, &lt;YOUR-DATASET-ID-2&gt;&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
 </pre></div>
@@ -964,8 +989,8 @@ click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.list_datasets_by_organization_id">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_datasets_by_organization_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/dataset/index.html#viam.proto.app.dataset.Dataset" title="viam.proto.app.dataset.Dataset"><span class="pre">viam.proto.app.dataset.Dataset</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.list_datasets_by_organization_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.list_datasets_by_organization_id" title="Permalink to this definition"></a></dt>
 <dd><p>Get the datasets in an organization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_organization_id</span><span class="p">(</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="n">a12b3c4e</span><span class="o">-</span><span class="mi">1234</span><span class="o">-</span><span class="mi">1</span><span class="n">abc</span><span class="o">-</span><span class="n">ab1c</span><span class="o">-</span><span class="n">ab1c2d345abc</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_datasets_by_organization_id</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;YOUR-ORG-ID&quot;</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
 </pre></div>
@@ -990,15 +1015,17 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rename_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.rename_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.rename_dataset" title="Permalink to this definition"></a></dt>
 <dd><p>Rename a dataset specified by the dataset ID.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">rename_dataset</span><span class="p">(</span>
-    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;dataset-name&gt;&quot;</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-DATASET-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MyDataset&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> (<em>str</em>) – The ID of the dataset.</p></li>
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the dataset. You can retrieve this by navigating to the <strong>DATASETS</strong> sub-tab of the <strong>DATA</strong> tab,</p></li>
+<li><p><strong>dataset</strong> (<em>clicking on the</em>) – </p></li>
+<li><p><strong>ID.</strong> (<em>clicking the </em><em>...</em><em> menu and selecting Copy dataset</em>) – </p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The new name of the dataset.</p></li>
 </ul>
 </dd>
@@ -1017,7 +1044,11 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – The ID of the dataset.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the dataset. You can retrieve this by navigating to the <strong>DATASETS</strong> sub-tab of the <strong>DATA</strong> tab,</p></li>
+<li><p><strong>dataset</strong> (<em>clicking on the</em>) – </p></li>
+<li><p><strong>ID.</strong> (<em>clicking the </em><em>...</em><em> menu and selecting Copy dataset</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/data-client/">Data Client API</a>.</p>
@@ -1030,7 +1061,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <p>This BinaryData will be tagged with the VIAM_DATASET_{id} label.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -1071,7 +1102,7 @@ click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset
 <p>This BinaryData will lose the VIAM_DATASET_{id} tag.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -1223,7 +1254,7 @@ data.</p></li>
     <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span>
     <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
     <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
-    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">)],</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">],</span>
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>

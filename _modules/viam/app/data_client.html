@@ -267,17 +267,16 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.utils import create_filter</span>
-
 <span class="sd">            my_data = []</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;motor-1&quot;)</span>
 <span class="sd">            last = None</span>
-<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
 <span class="sd">            while True:</span>
-<span class="sd">                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)</span>
+<span class="sd">                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last=last)</span>
 <span class="sd">                if not tabular_data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(tabular_data)</span>
 
+<span class="sd">            print(f&quot;My data: {my_data}&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular</span>
@@ -335,7 +334,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            data = await data_client.tabular_data_by_sql(organization_id=&quot;&lt;your-org-id&gt;&quot;, sql_query=&quot;SELECT * FROM readings LIMIT 5&quot;)</span>
+<span class="sd">            data = await data_client.tabular_data_by_sql(</span>
+<span class="sd">                org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                sql_query=&quot;SELECT * FROM readings LIMIT 5&quot;</span>
+<span class="sd">            )</span>
 
 
 <span class="sd">        Args:</span>
@@ -357,19 +359,23 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # using bson</span>
 <span class="sd">            import bson</span>
-<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[</span>
-<span class="sd">                bson.dumps({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;location-id&gt;&#39; } }),</span>
-<span class="sd">                bson.dumps({ &quot;$limit&quot;: 5 })</span>
+
+<span class="sd">            # using bson package (pip install bson)</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_binary=[</span>
+<span class="sd">                bson.dumps({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } }),</span>
+<span class="sd">                bson.dumps({ &#39;$limit&#39;: 5 })</span>
 <span class="sd">            ])</span>
 
-<span class="sd">            # using pymongo</span>
-<span class="sd">            import bson</span>
-<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[</span>
-<span class="sd">                bson.encode({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;location-id&gt;&#39; } }),</span>
+<span class="sd">            print(f&quot;Tabular Data 1: {tabular_data}&quot;)</span>
+
+<span class="sd">            # using pymongo package (pip install pymongo)</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_binary=[</span>
+<span class="sd">                bson.encode({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } }),</span>
 <span class="sd">                bson.encode({ &quot;$limit&quot;: 5 })</span>
 <span class="sd">            ])</span>
+
+<span class="sd">            print(f&quot;Tabular Data 2: {tabular_data}&quot;)</span>
 
 
 <span class="sd">        Args:</span>
@@ -407,16 +413,19 @@
 <span class="sd">            from viam.utils import create_filter</span>
 <span class="sd">            from viam.proto.app.data import Filter, TagsFilter, TagsFilterType</span>
 
-
 <span class="sd">            # Get data captured from camera components</span>
 <span class="sd">            my_data = []</span>
 <span class="sd">            last = None</span>
-<span class="sd">            my_filter = create_filter(component_name=&quot;camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;camera-1&quot;)</span>
+
 <span class="sd">            while True:</span>
-<span class="sd">                data, count, last = await data_client.binary_data_by_filter(my_filter, last)</span>
+<span class="sd">                data, count, last = await data_client.binary_data_by_filter(</span>
+<span class="sd">                my_filter, limit=1, last=last)</span>
 <span class="sd">                if not data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(data)</span>
+
+<span class="sd">            print(f&quot;My data: {my_data}&quot;)</span>
 
 <span class="sd">            # Get untagged data from a dataset</span>
 
@@ -495,7 +504,7 @@
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -540,12 +549,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.utils import create_filter</span>
-
-<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
-<span class="sd">            days_of_data_to_delete = 10</span>
 <span class="sd">            tabular_data = await data_client.delete_tabular_data(</span>
-<span class="sd">                org_id=&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;, days_of_data_to_delete)</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                delete_older_than_days=150</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): ID of organization to delete data from.</span>
@@ -573,12 +580,14 @@
 
 <span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;, organization_ids=[&quot;&lt;YOUR-ORG-ID&gt;&quot;])</span>
+
 <span class="sd">            res = await data_client.delete_binary_data_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
-<span class="sd">                all data being deleted. Exercise caution when using this option.</span>
+<span class="sd">                all data being deleted. Exercise caution when using this option. You must specify any organization ID with</span>
+<span class="sd">                &quot;organization_ids&quot; when using this option.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
@@ -596,8 +605,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;camera-1&quot;, organization_ids=[&quot;&lt;YOUR-ORG-ID&gt;&quot;])</span>
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
+<span class="sd">                filter=my_filter,</span>
+<span class="sd">                limit=20,</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -635,10 +648,14 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
 <span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;camera-1&quot;, organization_ids=[&quot;&lt;YOUR-ORG-ID&gt;&quot;])</span>
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
+<span class="sd">                filter=my_filter,</span>
+<span class="sd">                limit=20,</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -698,10 +715,15 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
 <span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;camera-1&quot;)</span>
+
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
+<span class="sd">                filter=my_filter,</span>
+<span class="sd">                limit=50,</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -808,12 +830,12 @@
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
 
 <span class="sd">            MY_BINARY_ID = BinaryID(</span>
-<span class="sd">                file_id=your-file_id,</span>
-<span class="sd">                organization_id=your-org-id,</span>
-<span class="sd">                location_id=your-location-id</span>
+<span class="sd">                file_id=&quot;&lt;YOUR-FILE-ID&gt;&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                location_id=&quot;&lt;YOUR-LOCATION-ID&gt;&quot;</span>
 <span class="sd">            )</span>
 
-<span class="sd">            bbox_label = await data_client.add_bounding_box_to_image_by_id(</span>
+<span class="sd">            bbox_id = await data_client.add_bounding_box_to_image_by_id(</span>
 <span class="sd">                binary_id=MY_BINARY_ID,</span>
 <span class="sd">                label=&quot;label&quot;,</span>
 <span class="sd">                x_min_normalized=0,</span>
@@ -822,7 +844,7 @@
 <span class="sd">                y_max_normalized=.3</span>
 <span class="sd">            )</span>
 
-<span class="sd">            print(bbox_label)</span>
+<span class="sd">            print(bbox_id)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.</span>
@@ -889,6 +911,8 @@
 <span class="sd">            bounding_box_labels = await data_client.bounding_box_labels_by_filter(</span>
 <span class="sd">                my_filter)</span>
 
+<span class="sd">            print(bounding_box_labels)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will</span>
 <span class="sd">                return.</span>
@@ -908,7 +932,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            data_client.get_database_connection(org_id=&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;)</span>
+<span class="sd">            hostname = await data_client.get_database_connection(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): Organization to retrieve the connection for.</span>
@@ -930,8 +954,8 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await data_client.configure_database_user(</span>
-<span class="sd">                organization_id=&quot;&lt;your-org-id&gt;&quot;,</span>
-<span class="sd">                password=&quot;your_password&quot;</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                password=&quot;Your_Password@1234&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -950,8 +974,8 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            dataset_id = await data_client.create_dataset(</span>
-<span class="sd">                name=&quot;&lt;dataset-name&gt;&quot;,</span>
-<span class="sd">                organization_id=&quot;&lt;your-org-id&gt;&quot;</span>
+<span class="sd">                name=&quot;&lt;DATASET-NAME&gt;&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">            print(dataset_id)</span>
 
@@ -975,7 +999,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
-<span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
+<span class="sd">                ids=[&quot;&lt;YOUR-DATASET-ID-1&gt;, &lt;YOUR-DATASET-ID-2&gt;&quot;]</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
 
@@ -999,8 +1023,8 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            datasets = await data_client.list_dataset_by_organization_id(</span>
-<span class="sd">                organization_id=[&quot;&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;&quot;]</span>
+<span class="sd">            datasets = await data_client.list_datasets_by_organization_id(</span>
+<span class="sd">                organization_id=&quot;YOUR-ORG-ID&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
 
@@ -1026,12 +1050,13 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await data_client.rename_dataset(</span>
-<span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;,</span>
-<span class="sd">                name=&quot;&lt;dataset-name&gt;&quot;</span>
+<span class="sd">                id=&quot;&lt;YOUR-DATASET-ID&gt;&quot;,</span>
+<span class="sd">                name=&quot;MyDataset&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset.</span>
+<span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
+<span class="sd">            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
 <span class="sd">            name (str): The new name of the dataset.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
@@ -1049,7 +1074,8 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset.</span>
+<span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
+<span class="sd">            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1065,7 +1091,7 @@
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -1105,7 +1131,7 @@
 
 <span class="sd">            from viam.proto.app.data import BinaryID</span>
 
-<span class="sd">            binary_metadata, _, _ = await data_client.binary_data_by_filter(</span>
+<span class="sd">            binary_metadata, count, last = await data_client.binary_data_by_filter(</span>
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
@@ -1337,7 +1363,7 @@
 <span class="sd">                component_type=&#39;motor&#39;,</span>
 <span class="sd">                component_name=&#39;left_motor&#39;,</span>
 <span class="sd">                method_name=&#39;IsPowered&#39;,</span>
-<span class="sd">                data_request_times=[(time_requested, time_received)],</span>
+<span class="sd">                data_request_times=[time_requested, time_received],</span>
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;]</span>
 <span class="sd">            )</span>
 
