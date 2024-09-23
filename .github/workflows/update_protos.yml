@@ -25,7 +25,6 @@ jobs:
       - name: Install package
         run: |
           poetry install --all-extras
-          poetry run pip3 install -U protobuf
 
       - name: Store API version
         run: |
