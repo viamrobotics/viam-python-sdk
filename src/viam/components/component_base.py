@@ -38,7 +38,7 @@ class ComponentBase(abc.ABC, ResourceBase):
             Self: The component, if it exists on the robot
         """
         component = robot.get_component(cls.get_resource_name(name))
-        return cast(cls, component)
+        return cast(cls, component)  # type: ignore
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()
