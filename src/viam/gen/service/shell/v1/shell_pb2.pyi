@@ -146,7 +146,7 @@ class CopyFilesToMachineRequestMetadata(google.protobuf.message.Message):
     destination: builtins.str
     'destination is where the files should be placed. The receiver can choose to\n    reasonably modify this destination based on its implementation semantics.\n    '
     preserve: builtins.bool
-    'preserve indicates the receiver should use the metadata in the file to reflect\n    the same state in its filesystem as applicable.\n    '
+    'preserve indicates the the receiver should use the metadata in the file to reflect\n    the same state in its filesystem as applicable.\n    '
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
@@ -218,7 +218,7 @@ class CopyFilesFromMachineRequestMetadata(google.protobuf.message.Message):
     allow_recursion: builtins.bool
     'allow_recursion indicates if directories should be recursed into. If\n    a directory is encountered and this is false, an error MUST occur.\n    '
     preserve: builtins.bool
-    "preserve indicates the receiver should provide the metadata in the file\n    to reflect the same state in the sender's filesystem as applicable.\n    "
+    "preserve indicates the the receiver should provide the metadata in the file\n    to reflect the same state in the sender's filesystem as applicable.\n    "
 
     @property
     def paths(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
