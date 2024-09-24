@@ -415,7 +415,7 @@ Package Contents
       Name of a camera
 
 
-.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ...)
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ..., frame_rate: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -431,6 +431,12 @@ Package Contents
       :type:  bool
 
       A boolean property determining whether the camera supports the return of pointcloud data
+
+
+   .. py:attribute:: frame_rate
+      :type:  float
+
+      Optional camera frame rate for image capture timing
 
 
    .. py:property:: intrinsic_parameters
@@ -455,7 +461,7 @@ Package Contents
       Supported MIME types by the camera
 
 
-   .. py:method:: HasField(field_name: Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
+   .. py:method:: HasField(field_name: Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -470,6 +476,22 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_frame_rate', b'_frame_rate']) -> Literal['frame_rate'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

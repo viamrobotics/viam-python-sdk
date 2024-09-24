@@ -89,6 +89,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddBoundingBoxToImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddBoundingBoxToImageByID()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.RemoveBoundingBoxFromImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.RemoveBoundingBoxFromImageByID()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BoundingBoxLabelsByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BoundingBoxLabelsByFilter()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.UpdateBoundingBox"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.UpdateBoundingBox()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.GetDatabaseConnection"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.GetDatabaseConnection()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
@@ -113,6 +114,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.AddBoundingBoxToImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.AddBoundingBoxToImageByID</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.RemoveBoundingBoxFromImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.RemoveBoundingBoxFromImageByID</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.BoundingBoxLabelsByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.BoundingBoxLabelsByFilter</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.UpdateBoundingBox"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.UpdateBoundingBox</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.GetDatabaseConnection"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.GetDatabaseConnection</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ConfigureDatabaseUser</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.AddBinaryDataToDatasetByIDs</span></code></a></li>
@@ -136,6 +138,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddBoundingBoxToImageByID"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.AddBoundingBoxToImageByID()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveBoundingBoxFromImageByID"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.RemoveBoundingBoxFromImageByID()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.BoundingBoxLabelsByFilter"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.BoundingBoxLabelsByFilter()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.UpdateBoundingBox"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.UpdateBoundingBox()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.GetDatabaseConnection"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.GetDatabaseConnection()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
@@ -432,6 +435,19 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TagsFilterType"><code class="docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.bbox_id"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.bbox_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.label"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.label</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.x_min_normalized"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.x_min_normalized</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.y_min_normalized"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.y_min_normalized</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.x_max_normalized"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.x_max_normalized</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.y_max_normalized"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.y_max_normalized</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.binary_id"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.binary_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse"><code class="docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -614,7 +630,7 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
-<td><p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.</p></td>
+<td><p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -663,6 +679,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
 <td><p>TagsFilterType specifies how data can be filtered based on tags.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
+<td><p>UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
 </table>
@@ -820,6 +842,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.UpdateBoundingBox">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateBoundingBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxRequest" title="viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxRequest"><span class="pre">app.data.v1.data_pb2.UpdateBoundingBoxRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxResponse" title="viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxResponse"><span class="pre">app.data.v1.data_pb2.UpdateBoundingBoxResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.UpdateBoundingBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.UpdateBoundingBox" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.GetDatabaseConnection">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDatabaseConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest" title="viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest"><span class="pre">app.data.v1.data_pb2.GetDatabaseConnectionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse" title="viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse"><span class="pre">app.data.v1.data_pb2.GetDatabaseConnectionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.GetDatabaseConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.GetDatabaseConnection" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -946,6 +977,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.UpdateBoundingBox">
+<span class="sig-name descname"><span class="pre">UpdateBoundingBox</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.UpdateBoundingBox" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.GetDatabaseConnection">
 <span class="sig-name descname"><span class="pre">GetDatabaseConnection</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.GetDatabaseConnection" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1051,6 +1087,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.BoundingBoxLabelsByFilter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BoundingBoxLabelsByFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest"><span class="pre">app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse"><span class="pre">app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.BoundingBoxLabelsByFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.BoundingBoxLabelsByFilter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.UpdateBoundingBox">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateBoundingBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxRequest" title="viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxRequest"><span class="pre">app.data.v1.data_pb2.UpdateBoundingBoxRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxResponse" title="viam.gen.app.data.v1.data_pb2.UpdateBoundingBoxResponse"><span class="pre">app.data.v1.data_pb2.UpdateBoundingBoxResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.UpdateBoundingBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.UpdateBoundingBox" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -2120,7 +2161,7 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___BinaryID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.</p>
+<p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest.bbox_id">
 <span class="sig-name descname"><span class="pre">bbox_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest.bbox_id" title="Permalink to this definition"></a></dt>
@@ -2508,6 +2549,110 @@ be raised.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TagsFilterType</span></span><a class="headerlink" href="#viam.proto.app.data.TagsFilterType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TagsFilterType</span></code></p>
 <p>TagsFilterType specifies how data can be filtered based on tags.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">UpdateBoundingBoxRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___BinaryID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.bbox_id">
+<span class="sig-name descname"><span class="pre">bbox_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.bbox_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.label" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.x_min_normalized">
+<span class="sig-name descname"><span class="pre">x_min_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.x_min_normalized" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.y_min_normalized">
+<span class="sig-name descname"><span class="pre">y_min_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.y_min_normalized" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.x_max_normalized">
+<span class="sig-name descname"><span class="pre">x_max_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.x_max_normalized" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.y_max_normalized">
+<span class="sig-name descname"><span class="pre">y_max_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.y_max_normalized" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.binary_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___BinaryID</span></em><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.binary_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_label'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_label'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_x_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_x_max_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_x_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_x_min_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_y_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_y_max_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_y_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_y_min_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'binary_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'binary_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'label'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'label'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'x_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'x_max_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'x_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'x_min_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'y_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'y_max_normalized'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'y_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'y_min_normalized'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_label'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_label'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'label'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_x_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_x_max_normalized'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'x_max_normalized'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_x_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_x_min_normalized'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'x_min_normalized'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_y_max_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_y_max_normalized'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'y_max_normalized'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_y_min_normalized'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_y_min_normalized'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'y_min_normalized'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.UpdateBoundingBoxResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">UpdateBoundingBoxResponse</span></span><a class="headerlink" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 </section>

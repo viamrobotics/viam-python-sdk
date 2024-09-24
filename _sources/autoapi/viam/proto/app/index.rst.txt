@@ -1696,7 +1696,7 @@ Package Contents
 
 
 
-.. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ...)
+.. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ..., visibility: global___FragmentVisibility | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1716,12 +1716,16 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: visibility
+      :type:  global___FragmentVisibility
+
+
    .. py:property:: config
       :type: google.protobuf.struct_pb2.Struct
 
 
 
-   .. py:method:: HasField(field_name: Literal['config', b'config']) -> bool
+   .. py:method:: HasField(field_name: Literal['_visibility', b'_visibility', 'config', b'config', 'visibility', b'visibility']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1736,6 +1740,22 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_visibility', b'_visibility']) -> Literal['visibility'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -2629,7 +2649,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: global___FragmentVisibility = ...)
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2695,7 +2715,13 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'fragment', b'fragment']) -> bool
+   .. py:property:: last_updated
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      latest timestamp when fragment was updated
+
+
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3241,7 +3267,7 @@ Package Contents
 
 
 
-.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ...)
+.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3275,13 +3301,31 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: limit
+      :type:  int
+
+
+   .. py:attribute:: source
+      :type:  str
+
+
    .. py:property:: levels
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       logs of all levels are returned when the levels field is empty
 
 
-   .. py:method:: HasField(field_name: Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> bool
+   .. py:property:: start
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: end
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3299,8 +3343,12 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_end', b'_end']) -> Literal['end'] | None
+                  WhichOneof(oneof_group: Literal['_filter', b'_filter']) -> Literal['filter'] | None
+                  WhichOneof(oneof_group: Literal['_limit', b'_limit']) -> Literal['limit'] | None
                   WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
+                  WhichOneof(oneof_group: Literal['_source', b'_source']) -> Literal['source'] | None
+                  WhichOneof(oneof_group: Literal['_start', b'_start']) -> Literal['start'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -5239,7 +5287,7 @@ Package Contents
 
 
 
-.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ...)
+.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5318,7 +5366,13 @@ Package Contents
       List of secrets allowed for authentication.
 
 
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> bool
+   .. py:property:: last_updated
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      latest timestamp when a robot part was updated
+
+
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'last_access', b'last_access', 'last_updated', b'last_updated', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> bool
 
       Checks if a certain field is set for the message.
 

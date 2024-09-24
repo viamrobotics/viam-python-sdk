@@ -1165,7 +1165,7 @@ Package Contents
 
 
 
-.. py:class:: ResourceStatus(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., state: global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ...)
+.. py:class:: ResourceStatus(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., state: global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., error: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1202,14 +1202,20 @@ Package Contents
    .. py:attribute:: STATE_READY
       :type:  ResourceStatus
 
-      a resource that has been successfully configured once and is not being
-      re-configured or removed.
+      a resource that has been successfully configured once, and is not re-configuring,
+      being removed, or unhealthy.
 
 
    .. py:attribute:: STATE_REMOVING
       :type:  ResourceStatus
 
       a resource that is being removed from the robot.
+
+
+   .. py:attribute:: STATE_UNHEALTHY
+      :type:  ResourceStatus
+
+      a resource that is in an unhealthy state.
 
 
    .. py:attribute:: state
@@ -1222,6 +1228,13 @@ Package Contents
       :type:  str
 
       revision of the last config that successfully updated this resource.
+
+
+   .. py:attribute:: error
+      :type:  str
+
+      error details for a resource. This is guaranteed to be null if the
+      resource is ready and non-null if the resource unhealthy.
 
 
    .. py:property:: name

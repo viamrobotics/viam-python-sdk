@@ -54,6 +54,13 @@ Module Contents
 
 
 
+   .. py:method:: SendPaymentRequiredEmail(stream: grpclib.server.Stream[app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -86,6 +93,11 @@ Module Contents
 
 
 
+   .. py:method:: SendPaymentRequiredEmail(stream: grpclib.server.Stream[app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse]) -> None
+      :async:
+
+
+
 .. py:class:: BillingServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetCurrentMonthUsage
@@ -98,5 +110,8 @@ Module Contents
 
 
    .. py:attribute:: GetInvoicePdf
+
+
+   .. py:attribute:: SendPaymentRequiredEmail
 
 
