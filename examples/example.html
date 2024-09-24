@@ -166,7 +166,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f6b690532e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f6b69053650&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f6b690536a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f6b690536f0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f6b69053740&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f6b69053790&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f6b690537e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f6b69053830&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f6b69053880&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f6b690538d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f6b69053920&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f6b69053970&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f6b690539c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f6b69053a10&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f6b69053a60&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fd748c5b1a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fd748c5b560&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fd748c5b5b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fd748c5b600&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fd748c5b650&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fd748c5b6a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fd748c5b6f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fd748c5b740&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fd748c5b790&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fd748c5b7e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fd748c5b830&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fd748c5b880&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fd748c5b8d0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fd748c5b920&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fd748c5b970&gt;]
 </pre></div>
 </div>
 </div>
@@ -198,7 +198,7 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f6b68728080&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7fd74833c5c0&gt;
 </pre></div>
 </div>
 </div>
@@ -1049,104 +1049,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span> <span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">end_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;speed_test_run&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">left_motor_filter</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="nb">print</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/src/viam/app/data_client.py:222,</span> in <span class="ni">DataClient.tabular_data_by_filter</span><span class="nt">(self, filter, limit, sort_order, last, count_only, include_internal_data, dest)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="n">data_request</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">last</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="n">count_only</span><span class="p">,</span> <span class="n">include_internal_data</span><span class="o">=</span><span class="n">include_internal_data</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">222</span> <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">225</span>         <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>     <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span> <span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span> <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-sdk-kW_PCoAn-py3.12/lib/python3.12/site-packages/grpclib/client.py:903,</span> in <span class="ni">UnaryUnaryMethod.__call__</span><span class="nt">(self, message, timeout, metadata)</span>
-<span class="g g-Whitespace">    </span><span class="mi">895</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Coroutine to perform defined call.</span>
-<span class="g g-Whitespace">    </span><span class="mi">896</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">897</span><span class="sd"> :param message: message</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">900</span><span class="sd"> :return: message</span>
-<span class="g g-Whitespace">    </span><span class="mi">901</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">903</span>     <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="n">reply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">905</span> <span class="k">assert</span> <span class="n">reply</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-sdk-kW_PCoAn-py3.12/lib/python3.12/site-packages/grpclib/client.py:241,</span> in <span class="ni">Stream.send_message</span><span class="nt">(self, message, end)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Coroutine to send message to the server.</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="sd"> If client sends UNARY request, then you should call this coroutine only</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="sd"> additional HTTP/2 frame.</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request_done</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="n">end_stream</span> <span class="o">=</span> <span class="n">end</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cardinality</span><span class="o">.</span><span class="n">client_streaming</span><span class="p">:</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-sdk-kW_PCoAn-py3.12/lib/python3.12/site-packages/grpclib/client.py:173,</span> in <span class="ni">Stream.send_request</span><span class="nt">(self, end)</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s1">&#39;Unary request requires a message to be sent &#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>                         <span class="s1">&#39;before ending outgoing stream&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">__connect__</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">protocol</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">connection</span>\
-<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="p">(</span><span class="s1">&#39;:method&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="p">(</span><span class="s1">&#39;:scheme&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_scheme</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>         <span class="p">(</span><span class="s1">&#39;:path&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span>         <span class="p">(</span><span class="s1">&#39;:authority&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_authority</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="p">]</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-sdk-kW_PCoAn-py3.12/lib/python3.12/site-packages/grpclib/client.py:748,</span> in <span class="ni">Channel.__connect__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">746</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">748</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">750</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">_ChannelState</span><span class="o">.</span><span class="n">TRANSIENT_FAILURE</span>
-
-<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-sdk-kW_PCoAn-py3.12/lib/python3.12/site-packages/grpclib/client.py:725,</span> in <span class="ni">Channel._create_connection</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">_</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">create_unix_connection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_factory</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">722</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">723</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">725</span>     <span class="n">_</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_factory</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>         <span class="n">ssl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>         <span class="n">server_hostname</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">ssl_target_name_override</span>
-<span class="g g-Whitespace">    </span><span class="mi">732</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">733</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="k">return</span> <span class="n">protocol</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.12.6/x64/lib/python3.12/asyncio/base_events.py:1129,</span> in <span class="ni">BaseEventLoop.create_connection</span><span class="nt">(self, protocol_factory, host, port, ssl, family, proto, flags, sock, local_addr, server_hostname, ssl_handshake_timeout, ssl_shutdown_timeout, happy_eyeballs_delay, interleave, all_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1126</span>             <span class="k">raise</span> <span class="n">exceptions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1127</span>         <span class="c1"># Raise a combined exception so the user can see all</span>
-<span class="g g-Whitespace">   </span><span class="mi">1128</span>         <span class="c1"># the various error messages.</span>
-<span class="ne">-&gt; </span><span class="mi">1129</span>         <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;Multiple exceptions: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1130</span>             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span> <span class="k">for</span> <span class="n">exc</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1131</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1132</span>     <span class="n">exceptions</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="ne">OSError</span>: Multiple exceptions: [Errno 111] Connect call failed (&#39;::1&#39;, 9092, 0, 0), [Errno 111] Connect call failed (&#39;127.0.0.1&#39;, 9092)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=method_name: &quot;IsPowered&quot;
+, time_requested=datetime.datetime(2022, 1, 1, 1, 1, 1), time_received=datetime.datetime(2022, 12, 31, 23, 59, 59)), DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=location_id: &quot;loc-id&quot;
+, time_requested=datetime.datetime(2023, 1, 2, 0, 0), time_received=datetime.datetime(2023, 3, 4, 0, 0)), DataClient.TabularData(data={&#39;Position&#39;: 0.0}, metadata=, time_requested=datetime.datetime(2023, 5, 6, 0, 0), time_received=datetime.datetime(2023, 7, 8, 0, 0))]
+0
 </pre></div>
 </div>
 </div>
@@ -1167,6 +1073,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_received_1</span><span class="p">)],</span>
     <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;PowerPCT&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;IsPowered&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&#39;
 </pre></div>
 </div>
 </div>
