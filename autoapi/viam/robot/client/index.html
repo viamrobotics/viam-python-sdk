@@ -792,14 +792,15 @@ shutting down when response is ready.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_machine_status">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_machine_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse"><span class="pre">viam.proto.robot.GetMachineStatusResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_machine_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_machine_status" title="Permalink to this definition"></a></dt>
-<dd><p>Get status information about the machine.</p>
+<dd><p>Get status information about the machine’s resources and configuration.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">machine_status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_machine_status</span><span class="p">()</span>
 <span class="n">resource_statuses</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">resources</span>
+<span class="n">config_status</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">config</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>current status of the resources (List[ResourceStatus]) of the machine.</p>
+<dd class="field-odd"><p>current status of the resources (List[ResourceStatus]) and config of the machine.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse">viam.proto.robot.GetMachineStatusResponse</a></p>
