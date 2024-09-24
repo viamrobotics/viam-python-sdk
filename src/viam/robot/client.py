@@ -907,7 +907,7 @@ class RobotClient:
 
     async def get_machine_status(self) -> GetMachineStatusResponse:
         """
-        Get status information about the machines resources and configuration.
+        Get status information about the machine's resources and configuration.
 
         ::
 
