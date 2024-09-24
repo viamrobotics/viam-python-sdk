@@ -57,6 +57,8 @@ from ....gen.app.data.v1.data_pb2 import (
     TagsByFilterResponse,
     TagsFilter,
     TagsFilterType,
+    UpdateBoundingBoxRequest,
+    UpdateBoundingBoxResponse,
 )
 
 __all__ = [
@@ -116,4 +118,6 @@ __all__ = [
     "TagsByFilterResponse",
     "TagsFilter",
     "TagsFilterType",
+    "UpdateBoundingBoxRequest",
+    "UpdateBoundingBoxResponse",
 ]

@@ -966,7 +966,7 @@ global___AddBoundingBoxToImageByIDResponse = AddBoundingBoxToImageByIDResponse
 
 @typing.final
 class RemoveBoundingBoxFromImageByIDRequest(google.protobuf.message.Message):
-    """RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id."""
+    """RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
     BBOX_ID_FIELD_NUMBER: builtins.int
@@ -993,6 +993,66 @@ class RemoveBoundingBoxFromImageByIDResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___RemoveBoundingBoxFromImageByIDResponse = RemoveBoundingBoxFromImageByIDResponse
+
+@typing.final
+class UpdateBoundingBoxRequest(google.protobuf.message.Message):
+    """UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BINARY_ID_FIELD_NUMBER: builtins.int
+    BBOX_ID_FIELD_NUMBER: builtins.int
+    LABEL_FIELD_NUMBER: builtins.int
+    X_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
+    Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
+    X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    bbox_id: builtins.str
+    label: builtins.str
+    x_min_normalized: builtins.float
+    y_min_normalized: builtins.float
+    x_max_normalized: builtins.float
+    y_max_normalized: builtins.float
+
+    @property
+    def binary_id(self) -> global___BinaryID:
+        ...
+
+    def __init__(self, *, binary_id: global___BinaryID | None=..., bbox_id: builtins.str=..., label: builtins.str | None=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'bbox_id', b'bbox_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_label', b'_label']) -> typing.Literal['label'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_x_max_normalized', b'_x_max_normalized']) -> typing.Literal['x_max_normalized'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_x_min_normalized', b'_x_min_normalized']) -> typing.Literal['x_min_normalized'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_y_max_normalized', b'_y_max_normalized']) -> typing.Literal['y_max_normalized'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_y_min_normalized', b'_y_min_normalized']) -> typing.Literal['y_min_normalized'] | None:
+        ...
+global___UpdateBoundingBoxRequest = UpdateBoundingBoxRequest
+
+@typing.final
+class UpdateBoundingBoxResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateBoundingBoxResponse = UpdateBoundingBoxResponse
 
 @typing.final
 class BoundingBoxLabelsByFilterRequest(google.protobuf.message.Message):

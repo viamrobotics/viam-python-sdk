@@ -315,3 +315,26 @@ class GetInvoicePdfResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['chunk', b'chunk']) -> None:
         ...
 global___GetInvoicePdfResponse = GetInvoicePdfResponse
+
+@typing.final
+class SendPaymentRequiredEmailRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CUSTOMER_ORG_ID_FIELD_NUMBER: builtins.int
+    BILLING_OWNER_ORG_ID_FIELD_NUMBER: builtins.int
+    customer_org_id: builtins.str
+    billing_owner_org_id: builtins.str
+
+    def __init__(self, *, customer_org_id: builtins.str=..., billing_owner_org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_owner_org_id', b'billing_owner_org_id', 'customer_org_id', b'customer_org_id']) -> None:
+        ...
+global___SendPaymentRequiredEmailRequest = SendPaymentRequiredEmailRequest
+
+@typing.final
+class SendPaymentRequiredEmailResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SendPaymentRequiredEmailResponse = SendPaymentRequiredEmailResponse
