@@ -169,7 +169,6 @@ from viam.proto.app.data import (
     CaptureMetadata,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
-    DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
@@ -195,6 +194,7 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    UnimplementedDataServiceBase,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -209,7 +209,7 @@ from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 
 
-class MockData(DataServiceBase):
+class MockData(UnimplementedDataServiceBase):
     def __init__(self):
         self.tabular_data_requested = False
         self.tabular_response = [
