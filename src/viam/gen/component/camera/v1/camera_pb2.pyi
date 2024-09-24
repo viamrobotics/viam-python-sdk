@@ -227,8 +227,11 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     INTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
     DISTORTION_PARAMETERS_FIELD_NUMBER: builtins.int
     MIME_TYPES_FIELD_NUMBER: builtins.int
+    FRAME_RATE_FIELD_NUMBER: builtins.int
     supports_pcd: builtins.bool
     'A boolean property determining whether the camera supports the return of pointcloud data'
+    frame_rate: builtins.float
+    'Optional camera frame rate for image capture timing'
 
     @property
     def intrinsic_parameters(self) -> global___IntrinsicParameters:
@@ -248,13 +251,16 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     def mime_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Supported MIME types by the camera"""
 
-    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=..., mime_types: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=..., mime_types: collections.abc.Iterable[builtins.str] | None=..., frame_rate: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']) -> None:
+    def ClearField(self, field_name: typing.Literal['_frame_rate', b'_frame_rate', 'distortion_parameters', b'distortion_parameters', 'frame_rate', b'frame_rate', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_frame_rate', b'_frame_rate']) -> typing.Literal['frame_rate'] | None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 

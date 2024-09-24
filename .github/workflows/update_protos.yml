@@ -12,18 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1.28.1
+      - uses: bufbuild/buf-setup-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: arduino/setup-protoc@v1
+      - uses: arduino/setup-protoc@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: "28.2"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
 
       - name: Install package
-        run: poetry install --all-extras
+        run: |
+          poetry install --all-extras
 
       - name: Store API version
         run: |

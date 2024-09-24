@@ -1,7 +1,7 @@
 import inspect
 import re
 from abc import ABCMeta
-from typing import Callable, Mapping, Union
+from typing import Callable, ClassVar, Mapping, Union
 
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -92,8 +92,8 @@ class EasyResource:
     See examples/easy_resource/main.py for extended usage.
     """
 
-    SUBTYPE: Subtype
-    MODEL: Model
+    SUBTYPE: ClassVar[Subtype]
+    MODEL: ClassVar[Model]
 
     def __init_subclass__(cls, register=True, **kwargs):
         """
@@ -101,7 +101,7 @@ class EasyResource:
         """
         super().__init_subclass__(**kwargs)
         if not hasattr(cls, "MODEL"):
-            raise ValueError("please define a MODEL like 'org:type:name' on your class, for example 'viam:camera:IMX219'")
+            raise ValueError("Please define a MODEL with the format 'org:type:name' on your class, for example 'viam:camera:IMX219'")
         cls.MODEL = _parse_model(cls.MODEL)
         if register:
             cls.register()
@@ -117,7 +117,7 @@ class EasyResource:
         when an instance of your model is instantiated. You can override this in your subclass.
         """
         self = cls(config.name)
-        logger.debug("created %s %s %s", self.SUBTYPE, self.MODEL, config.name)
+        logger.debug("created %s %s %s", cls.SUBTYPE, cls.MODEL, config.name)
         self.reconfigure(config, dependencies)
         return self
 

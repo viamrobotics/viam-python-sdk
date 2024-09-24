@@ -17,6 +17,8 @@ from ...gen.app.v1.billing_pb2 import (
     InvoiceSummary,
     PaymentMethodCard,
     PaymentMethodType,
+    SendPaymentRequiredEmailRequest,
+    SendPaymentRequiredEmailResponse,
 )
 
 __all__ = [
@@ -36,4 +38,6 @@ __all__ = [
     "InvoiceSummary",
     "PaymentMethodCard",
     "PaymentMethodType",
+    "SendPaymentRequiredEmailRequest",
+    "SendPaymentRequiredEmailResponse",
 ]
