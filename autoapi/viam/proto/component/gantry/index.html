@@ -90,7 +90,17 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.GetPosition"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.GetPosition</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.MoveToPosition</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.Home"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.Home</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.GetLengths"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.GetLengths</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.Stop"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.Stop</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.IsMoving"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.IsMoving</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.GetGeometries</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.MoveToPosition()</span></code></a></li>
@@ -368,7 +378,47 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">GantryServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#GantryServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.GetPosition">
+<span class="sig-name descname"><span class="pre">GetPosition</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.GetPosition" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.MoveToPosition">
+<span class="sig-name descname"><span class="pre">MoveToPosition</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.MoveToPosition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.Home">
+<span class="sig-name descname"><span class="pre">Home</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.Home" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.GetLengths">
+<span class="sig-name descname"><span class="pre">GetLengths</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.GetLengths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.Stop">
+<span class="sig-name descname"><span class="pre">Stop</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.Stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.IsMoving">
+<span class="sig-name descname"><span class="pre">IsMoving</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.IsMoving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.DoCommand">
+<span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.GetGeometries">
+<span class="sig-name descname"><span class="pre">GetGeometries</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.GetGeometries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.UnimplementedGantryServiceBase">

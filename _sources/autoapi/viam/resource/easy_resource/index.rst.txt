@@ -71,11 +71,11 @@ Module Contents
 
 
    .. py:attribute:: SUBTYPE
-      :type:  viam.resource.types.Subtype
+      :type:  ClassVar[viam.resource.types.Subtype]
 
 
    .. py:attribute:: MODEL
-      :type:  viam.resource.types.Model
+      :type:  ClassVar[viam.resource.types.Model]
 
 
    .. py:method:: __init_subclass__(register=True, **kwargs)
@@ -84,6 +84,9 @@ Module Contents
 
       When you subclass this mixin, it parses cls.MODEL and registers cls in global registry.
 
+
+
+   .. py:attribute:: name
 
 
    .. py:method:: new(config: viam.proto.app.robot.ComponentConfig, dependencies: Mapping[viam.proto.common.ResourceName, viam.resource.base.ResourceBase])

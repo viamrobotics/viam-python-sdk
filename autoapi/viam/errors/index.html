@@ -156,6 +156,21 @@
 <dd><p>Explanation of the error</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">authenticated</span></span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -165,6 +180,16 @@
 <p>Exception raised when attempting to register a resource
 with the same name as an existing resource already in
 the registry</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.DuplicateResourceError.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.DuplicateResourceError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.DuplicateResourceError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -172,6 +197,16 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ViamGRPCError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grpc_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Status.INTERNAL</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ViamGRPCError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ViamGRPCError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamError" title="viam.errors.ViamError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamError</span></code></a></p>
 <p>Exception raised if it could happen as a part of GRPC calls.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ViamGRPCError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ViamGRPCError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.errors.ViamGRPCError.grpc_error">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grpc_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.GRPCError</span></em><a class="headerlink" href="#viam.errors.ViamGRPCError.grpc_error" title="Permalink to this definition"></a></dt>
@@ -184,6 +219,26 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ResourceNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ResourceNotFoundError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ResourceNotFoundError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when a resource is not found in the registry</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.resource">
+<span class="sig-name descname"><span class="pre">resource</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.resource" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ResourceNotFoundError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ResourceNotFoundError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -191,6 +246,16 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">MethodNotImplementedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#MethodNotImplementedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.MethodNotImplementedError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when specific methods are unimplemented.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.MethodNotImplementedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.MethodNotImplementedError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.MethodNotImplementedError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -198,6 +263,16 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NotSupportedError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#NotSupportedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NotSupportedError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when specific component functionality is not supported</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.NotSupportedError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.NotSupportedError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NotSupportedError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -205,6 +280,16 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">ValidationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/errors.html#ValidationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.ValidationError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised when there is an error during module validation</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ValidationError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#viam.errors.ValidationError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.ValidationError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.ValidationError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py exception">
@@ -212,6 +297,16 @@ the registry</p>
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.errors.</span></span><span class="sig-name descname"><span class="pre">NoCaptureToStoreError</span></span><a class="reference internal" href="../../../_modules/viam/errors.html#NoCaptureToStoreError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.errors.NoCaptureToStoreError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#viam.errors.ViamGRPCError" title="viam.errors.ViamGRPCError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamGRPCError</span></code></a></p>
 <p>Exception raised in filter module to signal that data capture should not be stored</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.NoCaptureToStoreError.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'no</span> <span class="pre">capture</span> <span class="pre">from</span> <span class="pre">filter</span> <span class="pre">module'</span></em><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.errors.NoCaptureToStoreError.grpc_code">
+<span class="sig-name descname"><span class="pre">grpc_code</span></span><a class="headerlink" href="#viam.errors.NoCaptureToStoreError.grpc_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>

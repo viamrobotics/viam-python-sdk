@@ -189,6 +189,12 @@ Package Contents
    For more information, see `ML model service <https://docs.viam.com/services/ml/deploy/>`_.
 
 
+   .. py:attribute:: channel
+
+
+   .. py:attribute:: client
+
+
    .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float] = None) -> Dict[str, numpy.typing.NDArray]
       :async:
 
@@ -363,6 +369,8 @@ Package Contents
 
    .. py:attribute:: SUBTYPE
       :type:  Final
+
+      The Subtype of the Resource
 
 
    .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float]) -> Dict[str, numpy.typing.NDArray]

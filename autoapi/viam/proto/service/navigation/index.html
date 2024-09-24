@@ -95,7 +95,19 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetMode</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.SetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.SetMode</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetLocation"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetLocation</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetWaypoints"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetWaypoints</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.AddWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.AddWaypoint</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.RemoveWaypoint</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetObstacles"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetObstacles</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetPaths"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetPaths</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.GetProperties"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.GetProperties</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub.DoCommand</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.navigation.UnimplementedNavigationServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedNavigationServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.UnimplementedNavigationServiceBase.GetMode"><code class="docutils literal notranslate"><span class="pre">UnimplementedNavigationServiceBase.GetMode()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.UnimplementedNavigationServiceBase.SetMode"><code class="docutils literal notranslate"><span class="pre">UnimplementedNavigationServiceBase.SetMode()</span></code></a></li>
@@ -446,7 +458,57 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">NavigationServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetMode">
+<span class="sig-name descname"><span class="pre">GetMode</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetMode" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.SetMode">
+<span class="sig-name descname"><span class="pre">SetMode</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.SetMode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetLocation">
+<span class="sig-name descname"><span class="pre">GetLocation</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetLocation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetWaypoints">
+<span class="sig-name descname"><span class="pre">GetWaypoints</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetWaypoints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.AddWaypoint">
+<span class="sig-name descname"><span class="pre">AddWaypoint</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.AddWaypoint" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.RemoveWaypoint">
+<span class="sig-name descname"><span class="pre">RemoveWaypoint</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.RemoveWaypoint" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetObstacles">
+<span class="sig-name descname"><span class="pre">GetObstacles</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetObstacles" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetPaths">
+<span class="sig-name descname"><span class="pre">GetPaths</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetPaths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.GetProperties">
+<span class="sig-name descname"><span class="pre">GetProperties</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.GetProperties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceStub.DoCommand">
+<span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.navigation.UnimplementedNavigationServiceBase">

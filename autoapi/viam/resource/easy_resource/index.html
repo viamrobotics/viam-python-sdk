@@ -74,6 +74,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">EasyResource.SUBTYPE</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.MODEL"><code class="docutils literal notranslate"><span class="pre">EasyResource.MODEL</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.__init_subclass__"><code class="docutils literal notranslate"><span class="pre">EasyResource.__init_subclass__()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.name"><code class="docutils literal notranslate"><span class="pre">EasyResource.name</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.new"><code class="docutils literal notranslate"><span class="pre">EasyResource.new()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.register"><code class="docutils literal notranslate"><span class="pre">EasyResource.register()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.reconfigure"><code class="docutils literal notranslate"><span class="pre">EasyResource.reconfigure()</span></code></a></li>
@@ -202,12 +203,12 @@ and resources (the resource classes provided by those extension programs).</p>
 <p>See examples/easy_resource/main.py for extended usage.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.SUBTYPE">
-<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></em><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.SUBTYPE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.SUBTYPE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.MODEL">
-<span class="sig-name descname"><span class="pre">MODEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></em><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.MODEL" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">MODEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.MODEL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -215,6 +216,11 @@ and resources (the resource classes provided by those extension programs).</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">register</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/easy_resource.html#EasyResource.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.__init_subclass__" title="Permalink to this definition"></a></dt>
 <dd><p>When you subclass this mixin, it parses cls.MODEL and registers cls in global registry.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.new">

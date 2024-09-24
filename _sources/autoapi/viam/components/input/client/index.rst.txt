@@ -33,6 +33,16 @@ Module Contents
    gRPC client for an Input Controller
 
 
+   .. py:attribute:: channel
+
+
+   .. py:attribute:: client
+
+
+   .. py:attribute:: callbacks
+      :type:  Dict[viam.components.input.input.Control, Dict[viam.components.input.input.EventType, Optional[viam.components.input.input.ControlFunction]]]
+
+
    .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[viam.components.input.input.Control]
       :async:
 

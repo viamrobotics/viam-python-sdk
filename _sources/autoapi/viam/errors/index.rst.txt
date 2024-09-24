@@ -51,6 +51,15 @@ Module Contents
       Explanation of the error
 
 
+   .. py:attribute:: address
+
+
+   .. py:attribute:: authenticated
+
+
+   .. py:attribute:: message
+
+
 .. py:exception:: DuplicateResourceError(name: str)
 
    Bases: :py:obj:`ViamError`
@@ -61,12 +70,24 @@ Module Contents
    the registry
 
 
+   .. py:attribute:: name
+
+
+   .. py:attribute:: message
+
+
 .. py:exception:: ViamGRPCError(message: str = '', grpc_code: grpclib.Status = Status.INTERNAL)
 
    Bases: :py:obj:`ViamError`
 
 
    Exception raised if it could happen as a part of GRPC calls.
+
+
+   .. py:attribute:: message
+
+
+   .. py:attribute:: grpc_code
 
 
    .. py:property:: grpc_error
@@ -82,12 +103,30 @@ Module Contents
    Exception raised when a resource is not found in the registry
 
 
+   .. py:attribute:: resource
+
+
+   .. py:attribute:: name
+
+
+   .. py:attribute:: message
+
+
+   .. py:attribute:: grpc_code
+
+
 .. py:exception:: MethodNotImplementedError(method_name: str)
 
    Bases: :py:obj:`ViamGRPCError`
 
 
    Exception raised when specific methods are unimplemented.
+
+
+   .. py:attribute:: message
+
+
+   .. py:attribute:: grpc_code
 
 
 .. py:exception:: NotSupportedError(message: str)
@@ -98,6 +137,12 @@ Module Contents
    Exception raised when specific component functionality is not supported
 
 
+   .. py:attribute:: message
+
+
+   .. py:attribute:: grpc_code
+
+
 .. py:exception:: ValidationError(message: str)
 
    Bases: :py:obj:`ViamGRPCError`
@@ -106,11 +151,25 @@ Module Contents
    Exception raised when there is an error during module validation
 
 
+   .. py:attribute:: message
+
+
+   .. py:attribute:: grpc_code
+
+
 .. py:exception:: NoCaptureToStoreError
 
    Bases: :py:obj:`ViamGRPCError`
 
 
    Exception raised in filter module to signal that data capture should not be stored
+
+
+   .. py:attribute:: message
+      :value: 'no capture from filter module'
+
+
+
+   .. py:attribute:: grpc_code
 
 

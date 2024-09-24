@@ -36,6 +36,9 @@ Module Contents
    Analog represents an analog pin reader or writer that resides on a Board.
 
 
+   .. py:attribute:: board
+
+
    .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.board.board.Board.Analog.Value
       :async:
 
@@ -96,6 +99,9 @@ Module Contents
    For more information, see `digital_interrupts <https://docs.viam.com/components/board/#digital_interrupts>`_.
 
 
+   .. py:attribute:: board
+
+
    .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
       :async:
 
@@ -129,6 +135,9 @@ Module Contents
 
 
    Abstract representation of an individual GPIO pin on a board.
+
+
+   .. py:attribute:: board
 
 
    .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> bool
@@ -277,6 +286,12 @@ Module Contents
 
 
    gRPC client for the Board component.
+
+
+   .. py:attribute:: channel
+
+
+   .. py:attribute:: client
 
 
    .. py:method:: analog_by_name(name: str) -> viam.components.board.board.Board.Analog

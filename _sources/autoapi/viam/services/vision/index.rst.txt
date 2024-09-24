@@ -142,6 +142,9 @@ Package Contents
       :type:  viam.proto.service.vision.VisionServiceStub
 
 
+   .. py:attribute:: channel
+
+
    .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.services.vision.vision.CaptureAllResult
       :async:
 
@@ -486,6 +489,21 @@ Package Contents
    "the classifier/detector was requested, but there were no results".
 
 
+   .. py:attribute:: image
+
+
+   .. py:attribute:: classifications
+
+
+   .. py:attribute:: detections
+
+
+   .. py:attribute:: objects
+
+
+   .. py:attribute:: extra
+
+
 .. py:class:: Vision(name: str)
 
    Bases: :py:obj:`viam.services.service_base.ServiceBase`
@@ -502,6 +520,8 @@ Package Contents
 
    .. py:attribute:: SUBTYPE
       :type:  Final
+
+      The Subtype of the Resource
 
 
    .. py:attribute:: Properties

@@ -95,6 +95,8 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient"><code class="docutils literal notranslate"><span class="pre">MLModelClient</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient.channel"><code class="docutils literal notranslate"><span class="pre">MLModelClient.channel</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient.client"><code class="docutils literal notranslate"><span class="pre">MLModelClient.client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient.infer"><code class="docutils literal notranslate"><span class="pre">MLModelClient.infer()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient.metadata"><code class="docutils literal notranslate"><span class="pre">MLModelClient.metadata()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.mlmodel.MLModelClient.from_robot"><code class="docutils literal notranslate"><span class="pre">MLModelClient.from_robot()</span></code></a></li>
@@ -355,6 +357,16 @@ be raised.</p>
 arm implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/services/ml/deploy/">ML model service</a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.mlmodel.MLModelClient.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#viam.services.mlmodel.MLModelClient.channel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.mlmodel.MLModelClient.client">
+<span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#viam.services.mlmodel.MLModelClient.client" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.mlmodel.MLModelClient.infer">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">infer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/mlmodel/client.html#MLModelClient.infer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.mlmodel.MLModelClient.infer" title="Permalink to this definition"></a></dt>
@@ -537,7 +549,8 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.mlmodel.MLModel.SUBTYPE">
 <span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.mlmodel.MLModel.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The Subtype of the Resource</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.mlmodel.MLModel.infer">

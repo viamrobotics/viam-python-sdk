@@ -71,7 +71,14 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#">viam.services.vision.vision</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult.image"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult.image</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult.classifications"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult.classifications</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult.detections"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult.detections</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult.objects"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult.objects</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.CaptureAllResult.extra"><code class="docutils literal notranslate"><span class="pre">CaptureAllResult.extra</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.vision.Vision"><code class="docutils literal notranslate"><span class="pre">Vision</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.Vision.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Vision.SUBTYPE</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.vision.Vision.Properties"><code class="docutils literal notranslate"><span class="pre">Vision.Properties</span></code></a></li>
@@ -165,6 +172,31 @@ returning the image on every call to a classifier/detector/etc would be costly a
 The default result for each field is None rather than the empty list to distinguish between
 “there was no request for the classifier/detector to return a result” vs.
 “the classifier/detector was requested, but there were no results”.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.vision.CaptureAllResult.image">
+<span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#viam.services.vision.vision.CaptureAllResult.image" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.vision.CaptureAllResult.classifications">
+<span class="sig-name descname"><span class="pre">classifications</span></span><a class="headerlink" href="#viam.services.vision.vision.CaptureAllResult.classifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.vision.CaptureAllResult.detections">
+<span class="sig-name descname"><span class="pre">detections</span></span><a class="headerlink" href="#viam.services.vision.vision.CaptureAllResult.detections" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.vision.CaptureAllResult.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><a class="headerlink" href="#viam.services.vision.vision.CaptureAllResult.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.vision.CaptureAllResult.extra">
+<span class="sig-name descname"><span class="pre">extra</span></span><a class="headerlink" href="#viam.services.vision.vision.CaptureAllResult.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -179,7 +211,8 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.vision.vision.Vision.SUBTYPE">
 <span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.vision.vision.Vision.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The Subtype of the Resource</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.vision.vision.Vision.Properties">

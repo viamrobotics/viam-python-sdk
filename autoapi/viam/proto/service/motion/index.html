@@ -92,7 +92,17 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.Move"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.Move</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.MoveOnMap"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.MoveOnMap</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.MoveOnGlobe"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.MoveOnGlobe</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.GetPose"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.GetPose</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.StopPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.StopPlan</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.ListPlanStatuses"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.ListPlanStatuses</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.GetPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.GetPlan</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub.DoCommand</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.Move"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.Move()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.UnimplementedMotionServiceBase.MoveOnMap"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotionServiceBase.MoveOnMap()</span></code></a></li>
@@ -532,7 +542,47 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MotionServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.Move">
+<span class="sig-name descname"><span class="pre">Move</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.Move" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.MoveOnMap">
+<span class="sig-name descname"><span class="pre">MoveOnMap</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.MoveOnMap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.MoveOnGlobe">
+<span class="sig-name descname"><span class="pre">MoveOnGlobe</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.MoveOnGlobe" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.GetPose">
+<span class="sig-name descname"><span class="pre">GetPose</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.GetPose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.StopPlan">
+<span class="sig-name descname"><span class="pre">StopPlan</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.StopPlan" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.ListPlanStatuses">
+<span class="sig-name descname"><span class="pre">ListPlanStatuses</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.ListPlanStatuses" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.GetPlan">
+<span class="sig-name descname"><span class="pre">GetPlan</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.GetPlan" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub.DoCommand">
+<span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.UnimplementedMotionServiceBase">
@@ -692,7 +742,7 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.last_plan_only">
 <span class="sig-name descname"><span class="pre">last_plan_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.last_plan_only" title="Permalink to this definition"></a></dt>
 <dd><p>If supplied, the response will only return
-the last plan for the component / execution</p>
+the the last plan for the component / execution</p>
 </dd></dl>
 
 <dl class="py attribute">

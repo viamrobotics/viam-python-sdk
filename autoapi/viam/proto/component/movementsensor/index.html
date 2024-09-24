@@ -98,7 +98,20 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearVelocity"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetLinearVelocity</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetAngularVelocity"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetAngularVelocity</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetCompassHeading"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetCompassHeading</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetOrientation"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetOrientation</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetPosition"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetPosition</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetProperties"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetProperties</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetAccuracy"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetAccuracy</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearAcceleration"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetLinearAcceleration</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetGeometries</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetReadings"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub.GetReadings</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.movementsensor.UnimplementedMovementSensorServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedMovementSensorServiceBase</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.UnimplementedMovementSensorServiceBase.GetLinearVelocity"><code class="docutils literal notranslate"><span class="pre">UnimplementedMovementSensorServiceBase.GetLinearVelocity()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.UnimplementedMovementSensorServiceBase.GetAngularVelocity"><code class="docutils literal notranslate"><span class="pre">UnimplementedMovementSensorServiceBase.GetAngularVelocity()</span></code></a></li>
@@ -452,7 +465,62 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.movementsensor.</span></span><span class="sig-name descname"><span class="pre">MovementSensorServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/component/movementsensor/v1/movementsensor_grpc.html#MovementSensorServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearVelocity">
+<span class="sig-name descname"><span class="pre">GetLinearVelocity</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearVelocity" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetAngularVelocity">
+<span class="sig-name descname"><span class="pre">GetAngularVelocity</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetAngularVelocity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetCompassHeading">
+<span class="sig-name descname"><span class="pre">GetCompassHeading</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetCompassHeading" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetOrientation">
+<span class="sig-name descname"><span class="pre">GetOrientation</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetOrientation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetPosition">
+<span class="sig-name descname"><span class="pre">GetPosition</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetPosition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetProperties">
+<span class="sig-name descname"><span class="pre">GetProperties</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetProperties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetAccuracy">
+<span class="sig-name descname"><span class="pre">GetAccuracy</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetAccuracy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearAcceleration">
+<span class="sig-name descname"><span class="pre">GetLinearAcceleration</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetLinearAcceleration" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.DoCommand">
+<span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetGeometries">
+<span class="sig-name descname"><span class="pre">GetGeometries</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetGeometries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.MovementSensorServiceStub.GetReadings">
+<span class="sig-name descname"><span class="pre">GetReadings</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.MovementSensorServiceStub.GetReadings" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.UnimplementedMovementSensorServiceBase">
