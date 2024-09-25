@@ -176,6 +176,7 @@ class DataClient:
         If the file is not empty, it will be overwritten.
 
         ::
+
             from viam.utils import create_filter
 
             my_data = []
