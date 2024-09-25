@@ -1274,10 +1274,10 @@ class AppClient:
             indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         Returns:
-            viam.app.app_client.RobotPart: The robot part.
+            viam.app.app_client.RobotPart: The machine part.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -2416,7 +2416,7 @@ class AppClient:
             auth = APIKeyAuthorization(
                 role="owner",
                 resource_type="robot",
-                resource_id="your-robot-id123"
+                resource_id="your-machine-id123"
             )
 
             api_key, api_key_id = cloud.create_key(
