@@ -176,6 +176,7 @@ class DataClient:
         If the file is not empty, it will be overwritten.
 
         ::
+            from viam.utils import create_filter
 
             my_data = []
             my_filter = create_filter(component_name="motor-1")
@@ -330,7 +331,7 @@ class DataClient:
 
             while True:
                 data, count, last = await data_client.binary_data_by_filter(
-                my_filter, limit=1, last=last)
+                    my_filter, limit=1, last=last)
                 if not data:
                     break
                 my_data.extend(data)
@@ -496,7 +497,7 @@ class DataClient:
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
-                all data being deleted. Exercise caution when using this option. You must specify any organization ID with
+                all data being deleted. Exercise caution when using this option. You must specify an organization ID with
                 "organization_ids" when using this option.
 
         Returns:
@@ -934,7 +935,7 @@ class DataClient:
         ::
 
             datasets = await data_client.list_datasets_by_organization_id(
-                organization_id="YOUR-ORG-ID"
+                organization_id="<YOUR-ORG-ID>"
             )
             print(datasets)
 
@@ -966,7 +967,7 @@ class DataClient:
 
         Args:
             id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
             name (str): The new name of the dataset.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
@@ -980,12 +981,12 @@ class DataClient:
         ::
 
             await data_client.delete_dataset(
-                id="abcd-1234xyz-8765z-123abc"
+                id="<YOUR-DATASET-ID>"
             )
 
         Args:
             id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
