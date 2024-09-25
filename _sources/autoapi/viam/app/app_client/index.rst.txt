@@ -1120,9 +1120,9 @@ Module Contents
       :param indent: Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
       :type indent: int
 
-      :raises GRPCError: If an invalid robot part ID is passed.
+      :raises GRPCError: If an invalid machine part ID is passed.
 
-      :returns: The robot part.
+      :returns: The machine part.
       :rtype: viam.app.app_client.RobotPart
 
       For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
@@ -2149,7 +2149,7 @@ Module Contents
           auth = APIKeyAuthorization(
               role="owner",
               resource_type="robot",
-              resource_id="your-robot-id123"
+              resource_id="your-machine-id123"
           )
 
           api_key, api_key_id = cloud.create_key(
