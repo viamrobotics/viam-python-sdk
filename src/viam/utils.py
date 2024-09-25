@@ -148,6 +148,8 @@ def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
             return {k: _convert(vv) for (k, vv) in v.items()}
         return v
 
+    if obj is None:
+        obj = {}
     struct = Struct()
     struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct

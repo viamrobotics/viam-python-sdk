@@ -56,12 +56,11 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = [(k, v) for k, v in kwargs.get('metadata', self.Metadata()).metadata.items()]
         request = GoForRequest(name=self.name, rpm=rpm, revolutions=revolutions, extra=dict_to_struct(extra))
-        await self.client.GoFor(request, timeout=timeout)
+        await self.client.GoFor(request, timeout=timeout, metadata=md)
 
     async def go_to(
         self,

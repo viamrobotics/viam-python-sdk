@@ -1,4 +1,6 @@
-from typing import Any, Protocol, runtime_checkable
+from typing import Any, Mapping, Optional, Protocol, runtime_checkable
+from string import ascii_lowercase
+from random import choice
 
 from grpclib.client import Channel
 
@@ -12,9 +14,25 @@ class ResourceRPCClientBase(Protocol):
     Resource RPC clients must inherit from this class
     """
 
+    class Metadata:
+        metadata: Mapping[str, str] = {}
+
+        def enable_debug_logging(self, key: str = ''):
+            """Enables server-side debug logging for resource methods.
+
+            Args:
+                key (str): The key to associate debug logs with. If not provided, will default to a randomly generated string value.
+            """
+            if key == '':
+                key = ''.join(choice(ascii_lowercase) for i in range(6))
+            self.metadata['dtname'] = key
+
+        def disable_debug_logging(self):
+            """Disables server-side debug logging for resource methods."""
+            del self.metadata['dtname']
+
     channel: Channel
     client: Any
-
 
 class ReconfigurableResourceRPCClientBase(ResourceRPCClientBase):
     """A base RPC client that can reset its channel.
