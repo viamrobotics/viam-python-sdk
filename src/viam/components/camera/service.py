@@ -84,13 +84,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         camera = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await camera.get_properties(timeout=timeout, metadata=stream.metadata)
-        response = GetPropertiesResponse(
-            supports_pcd=properties.supports_pcd,
-            intrinsic_parameters=properties.intrinsic_parameters,
-            distortion_parameters=properties.distortion_parameters,
-            mime_types=properties.mime_types,
-        )
-        await stream.send_message(response)
+        await stream.send_message(properties)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

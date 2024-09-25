@@ -62,6 +62,7 @@ def properties() -> Camera.Properties:
         intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
         distortion_parameters=DistortionParameters(model="no_distortion"),
         mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
+        frame_rate=10.0,
     )
 
 
@@ -202,6 +203,7 @@ class TestService:
             assert response.supports_pcd == properties.supports_pcd
             assert response.intrinsic_parameters == properties.intrinsic_parameters
             assert response.mime_types == properties.mime_types
+            assert response.frame_rate == properties.frame_rate
             assert camera.timeout == loose_approx(5.43)
 
     @pytest.mark.asyncio
