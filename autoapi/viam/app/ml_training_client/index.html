@@ -185,20 +185,18 @@ Calls to <cite>MLTrainingClient</cite> methods should be made through <cite>Viam
 <dt class="sig sig-object py" id="viam.app.ml_training_client.MLTrainingClient.submit_training_job">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">submit_training_job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.mltraining.ModelType.ValueType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/ml_training_client.html#MLTrainingClient.submit_training_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.ml_training_client.MLTrainingClient.submit_training_job" title="Permalink to this definition"></a></dt>
 <dd><p>Submit a training job.</p>
-<dl>
-<dt>::</dt><dd><p>from viam.proto.app.mltraining import ModelType</p>
-<dl class="simple">
-<dt>job_id = await ml_training_client.submit_training_job(</dt><dd><p>org_id=”&lt;organization-id&gt;”,
-dataset_id=”&lt;dataset-id&gt;”,
-model_name=”&lt;your-model-name&gt;”,
-model_version=”1”,
-model_type=ModelType.MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION,
-tags=[“tag1”, “tag2”]</p>
-</dd>
-</dl>
-<p>)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.mltraining</span> <span class="kn">import</span> <span class="n">ModelType</span>
+
+<span class="n">job_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ml_training_client</span><span class="o">.</span><span class="n">submit_training_job</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;organization-id&gt;&quot;</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="s2">&quot;&lt;dataset-id&gt;&quot;</span><span class="p">,</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;&lt;your-model-name&gt;&quot;</span><span class="p">,</span>
+    <span class="n">model_version</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">model_type</span><span class="o">=</span><span class="n">ModelType</span><span class="o">.</span><span class="n">MODEL_TYPE_SINGLE_LABEL_CLASSIFICATION</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
