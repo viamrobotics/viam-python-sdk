@@ -41,7 +41,7 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Get the end position of the arm as a Pose.
             pos = await my_arm.get_end_position()
@@ -70,7 +70,7 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Create a Pose for the arm.
             examplePose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
@@ -102,15 +102,14 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Declare a list of values with your desired rotational value for each joint on
-            # the arm.
+            # the arm. This example is for a 5dof arm.
             degrees = [0.0, 45.0, 0.0, 0.0, 0.0]
 
             # Declare a new JointPositions with these values.
-            jointPos = arm.move_to_joint_positions(
-                JointPositions(values=[0.0, 45.0, 0.0, 0.0, 0.0]))
+            jointPos = JointPositions(values=degrees)
 
             # Move each joint of the arm to the position these values specify.
             await my_arm.move_to_joint_positions(positions=jointPos)
@@ -135,7 +134,7 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Get the current position of each joint on the arm as JointPositions.
             pos = await my_arm.get_joint_positions()
@@ -162,7 +161,7 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
@@ -178,13 +177,13 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
 
             # Print if the arm is currently moving.
-            print(my_arm.is_moving())
+            print(await my_arm.is_moving())
 
         Returns:
             bool: Whether the arm is moving.
@@ -202,7 +201,7 @@ class Arm(ComponentBase):
 
         ::
 
-            my_arm = Arm.from_robot(robot=robot, name="my_arm")
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
 
             # Get the kinematics information associated with the arm.
             kinematics = await my_arm.get_kinematics()
