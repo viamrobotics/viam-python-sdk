@@ -31,6 +31,14 @@ class ResourceRPCClientBase(Protocol):
             """Disables server-side debug logging for resource methods."""
             del self.metadata['dtname']
 
+        def add_metadata(self, key: str, value: str):
+            """Adds a key-value pair to the metadata"""
+            self.metadata[key] = value
+
+        def delete_metadata(self, key: str):
+            """Removes a key-value pair from the metadata by key"""
+            del self.metadata[key]
+
         @property
         def proto(self):
             """Returns metadata in a gRPC-appropriate form"""
