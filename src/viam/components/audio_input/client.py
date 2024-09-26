@@ -29,9 +29,10 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
         self.client = AudioInputServiceStub(channel)
         super().__init__(name)
 
-    async def stream(self, *, timeout: Optional[float] = None, **__) -> Stream[Audio]:
+    async def stream(self, *, timeout: Optional[float] = None, **kwargs) -> Stream[Audio]:
         async def read() -> AsyncIterator[Audio]:
-            async with self.client.Chunks.open(timeout=timeout) as chunks_stream:
+            md = kwargs.get('metadata', self.Metadata()).proto
+            async with self.client.Chunks.open(timeout=timeout, metadata=md) as chunks_stream:
                 await chunks_stream.send_message(
                     ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED), end=True
                 )
@@ -52,15 +53,18 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
 
         return StreamWithIterator(read())
 
-    async def get_properties(self, *, timeout: Optional[float] = None, **__) -> AudioInput.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioInput.Properties:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = PropertiesRequest(name=self.name)
-        response: PropertiesResponse = await self.client.Properties(request, timeout=timeout)
+        response: PropertiesResponse = await self.client.Properties(request, timeout=timeout, metadata=md)
         return AudioInput.Properties.from_proto(response)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        md = kwargs.get('metadata', self.Metadata())
+        return await get_geometries(self.client, self.name, extra, timeout, md)

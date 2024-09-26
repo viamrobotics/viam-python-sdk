@@ -31,6 +31,11 @@ class ResourceRPCClientBase(Protocol):
             """Disables server-side debug logging for resource methods."""
             del self.metadata['dtname']
 
+        @property
+        def proto(self):
+            """Returns metadata in a gRPC-appropriate form"""
+            return [(k, v) for k, v in self.metadata.items()]
+
     channel: Channel
     client: Any
 

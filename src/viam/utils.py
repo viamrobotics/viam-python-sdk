@@ -15,6 +15,7 @@ from viam.proto.app.data import CaptureInterval, Filter, TagsFilter
 from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
+from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import Subtype, SupportsGetGeometries
 
 if sys.version_info >= (3, 9):
@@ -168,12 +169,15 @@ def datetime_to_timestamp(dt: Optional[datetime]) -> Optional[Timestamp]:
 
 
 async def get_geometries(
-    client: SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+        client: SupportsGetGeometries,
+        name: str,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        metadata: ResourceRPCClientBase.Metadata = ResourceRPCClientBase.Metadata(),
 ) -> List[Geometry]:
-    if extra is None:
-        extra = {}
+    md = metadata.proto
     request = GetGeometriesRequest(name=name, extra=dict_to_struct(extra))
-    response: GetGeometriesResponse = await client.GetGeometries(request, timeout=timeout)
+    response: GetGeometriesResponse = await client.GetGeometries(request, timeout=timeout, metadata=md)
     return [geometry for geometry in response.geometries]
 
 
