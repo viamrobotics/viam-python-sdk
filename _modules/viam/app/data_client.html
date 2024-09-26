@@ -267,6 +267,8 @@
 
 <span class="sd">        ::</span>
 
+<span class="sd">            from viam.utils import create_filter</span>
+
 <span class="sd">            my_data = []</span>
 <span class="sd">            my_filter = create_filter(component_name=&quot;motor-1&quot;)</span>
 <span class="sd">            last = None</span>
@@ -420,7 +422,7 @@
 
 <span class="sd">            while True:</span>
 <span class="sd">                data, count, last = await data_client.binary_data_by_filter(</span>
-<span class="sd">                my_filter, limit=1, last=last)</span>
+<span class="sd">                    my_filter, limit=1, last=last)</span>
 <span class="sd">                if not data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(data)</span>
@@ -586,7 +588,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
-<span class="sd">                all data being deleted. Exercise caution when using this option. You must specify any organization ID with</span>
+<span class="sd">                all data being deleted. Exercise caution when using this option. You must specify an organization ID with</span>
 <span class="sd">                &quot;organization_ids&quot; when using this option.</span>
 
 <span class="sd">        Returns:</span>
@@ -1024,7 +1026,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            datasets = await data_client.list_datasets_by_organization_id(</span>
-<span class="sd">                organization_id=&quot;YOUR-ORG-ID&quot;</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
 
@@ -1056,7 +1058,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
-<span class="sd">            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
+<span class="sd">                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
 <span class="sd">            name (str): The new name of the dataset.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
@@ -1070,12 +1072,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await data_client.delete_dataset(</span>
-<span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="sd">                id=&quot;&lt;YOUR-DATASET-ID&gt;&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
-<span class="sd">            clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
+<span class="sd">                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

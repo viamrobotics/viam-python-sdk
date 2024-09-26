@@ -107,6 +107,8 @@ Module Contents
 
       ::
 
+          from viam.utils import create_filter
+
           my_data = []
           my_filter = create_filter(component_name="motor-1")
           last = None
@@ -235,7 +237,7 @@ Module Contents
 
           while True:
               data, count, last = await data_client.binary_data_by_filter(
-              my_filter, limit=1, last=last)
+                  my_filter, limit=1, last=last)
               if not data:
                   break
               my_data.extend(data)
@@ -384,7 +386,7 @@ Module Contents
           res = await data_client.delete_binary_data_by_filter(my_filter)
 
       :param filter: Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
-                     all data being deleted. Exercise caution when using this option. You must specify any organization ID with
+                     all data being deleted. Exercise caution when using this option. You must specify an organization ID with
                      "organization_ids" when using this option.
       :type filter: viam.proto.app.data.Filter
 
@@ -822,7 +824,7 @@ Module Contents
       ::
 
           datasets = await data_client.list_datasets_by_organization_id(
-              organization_id="YOUR-ORG-ID"
+              organization_id="<YOUR-ORG-ID>"
           )
           print(datasets)
 
@@ -851,9 +853,8 @@ Module Contents
           )
 
       :param id: The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
+                 clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
       :type id: str
-      :param clicking on the dataset:
-      :param clicking the **...** menu and selecting **Copy dataset ID**.:
       :param name: The new name of the dataset.
       :type name: str
 
@@ -870,13 +871,12 @@ Module Contents
       ::
 
           await data_client.delete_dataset(
-              id="abcd-1234xyz-8765z-123abc"
+              id="<YOUR-DATASET-ID>"
           )
 
       :param id: The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
+                 clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
       :type id: str
-      :param clicking on the dataset:
-      :param clicking the **...** menu and selecting **Copy dataset ID**.:
 
       For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
