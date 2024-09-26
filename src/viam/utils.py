@@ -135,7 +135,7 @@ def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
     return ParseDict(dct, message_type())
 
 
-def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
+def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
     def _convert(v: ValueTypes) -> Any:
         if isinstance(v, bool):
             return v
