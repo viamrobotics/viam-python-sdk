@@ -22,7 +22,13 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         super().__init__(name, channel)
         self.client = SensorsServiceStub(channel)
 
-    async def get_sensors(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[ResourceName]:
+    async def get_sensors(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[ResourceName]:
         """Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
         Returns:

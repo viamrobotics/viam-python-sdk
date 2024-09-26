@@ -47,4 +47,4 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get('metadata', self.Metadata())
-        return await get_geometries(self.client, self.name, extra, timeout)
+        return await get_geometries(self.client, self.name, extra, timeout, md)

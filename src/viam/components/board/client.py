@@ -27,7 +27,7 @@ from viam.proto.component.board import (
     StreamTicksResponse,
     WriteAnalogRequest,
 )
-from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.streams import StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
@@ -48,7 +48,7 @@ class AnalogClient(Board.Analog):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Board.Analog.Value:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
         return await self.board.client.ReadAnalogReader(request, timeout=timeout, metadata=md)
 
@@ -60,7 +60,7 @@ class AnalogClient(Board.Analog):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = WriteAnalogRequest(name=self.board.name, pin=self.name, value=value, extra=dict_to_struct(extra))
         await self.board.client.WriteAnalog(request, timeout=timeout, metadata=md)
 
@@ -77,7 +77,7 @@ class DigitalInterruptClient(Board.DigitalInterrupt):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> int:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = GetDigitalInterruptValueRequest(board_name=self.board.name, digital_interrupt_name=self.name, extra=dict_to_struct(extra))
         response: GetDigitalInterruptValueResponse = await self.board.client.GetDigitalInterruptValue(request, timeout=timeout, metadata=md)
         return response.value
@@ -95,7 +95,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> bool:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = GetGPIORequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: GetGPIOResponse = await self.board.client.GetGPIO(request, timeout=timeout, metadata=md)
         return response.high
@@ -108,7 +108,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = SetGPIORequest(name=self.board.name, pin=self.name, high=high, extra=dict_to_struct(extra))
         await self.board.client.SetGPIO(request, timeout=timeout, metadata=md)
 
@@ -119,7 +119,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> float:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = PWMRequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: PWMResponse = await self.board.client.PWM(request, timeout=timeout, metadata=md)
         return response.duty_cycle_pct
@@ -132,7 +132,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = SetPWMRequest(name=self.board.name, pin=self.name, duty_cycle_pct=duty_cycle, extra=dict_to_struct(extra))
         await self.board.client.SetPWM(request, timeout=timeout, metadata=md)
 
@@ -143,7 +143,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> int:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = PWMFrequencyRequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: PWMFrequencyResponse = await self.board.client.PWMFrequency(request, timeout=timeout, metadata=md)
         return response.frequency_hz
@@ -156,7 +156,7 @@ class GPIOPinClient(Board.GPIOPin):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
         request = SetPWMFrequencyRequest(name=self.board.name, pin=self.name, frequency_hz=frequency, extra=dict_to_struct(extra))
         await self.board.client.SetPWMFrequency(request, timeout=timeout, metadata=md)
 
@@ -226,7 +226,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get('metadata', self.Metadata())
-        return await get_geometries(self.client, self.name, extra, timeout)
+        return await get_geometries(self.client, self.name, extra, timeout, md)
 
     async def write_analog(
         self,
@@ -248,17 +248,17 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> TickStream:
-        md = kwargs.get('metadata', self.Metadata()).proto
         names = []
         for di in interrupts:
             names.append(di.name)
         request = StreamTicksRequest(name=self.name, pin_names=names, extra=dict_to_struct(extra))
 
         async def read():
+            md = kwargs.get('metadata', self.Metadata()).proto
             tick_stream: ClientStream[StreamTicksRequest, StreamTicksResponse]
-            async with self.client.StreamTicks.open() as tick_stream:
+            async with self.client.StreamTicks.open(metadata=md) as tick_stream:
                 try:
-                    await tick_stream.send_message(request, end=True, metadata=md)
+                    await tick_stream.send_message(request, end=True)
                     async for tick in tick_stream:
                         yield tick
                 except Exception as e:

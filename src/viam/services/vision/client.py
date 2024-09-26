@@ -129,7 +129,8 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Classification]:
         md = kwargs.get('metadata', self.Metadata()).proto
         request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, n=count, extra=dict_to_struct(extra))
-        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request, timeout=timeout, metadata=md)
+        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(
+                request, timeout=timeout, metadata=md)
         return list(response.classifications)
 
     async def get_classifications(

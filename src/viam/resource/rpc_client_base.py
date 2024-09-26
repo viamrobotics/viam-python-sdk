@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional, Protocol, runtime_checkable
+from typing import Any, Dict, Protocol, runtime_checkable
 from string import ascii_lowercase
 from random import choice
 
@@ -15,7 +15,7 @@ class ResourceRPCClientBase(Protocol):
     """
 
     class Metadata:
-        metadata: Mapping[str, str] = {}
+        metadata: Dict[str, str] = {}
 
         def enable_debug_logging(self, key: str = ''):
             """Enables server-side debug logging for resource methods.
@@ -38,6 +38,7 @@ class ResourceRPCClientBase(Protocol):
 
     channel: Channel
     client: Any
+
 
 class ReconfigurableResourceRPCClientBase(ResourceRPCClientBase):
     """A base RPC client that can reset its channel.

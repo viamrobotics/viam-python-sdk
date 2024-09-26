@@ -133,7 +133,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
             return
 
         md = metadata.proto
-        request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra, metadata=md)
+        request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra)
         with self._lock:
             for control, callbacks in self.callbacks.items():
                 event = StreamEventsRequest.Events(
@@ -144,7 +144,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
                 request.events.append(event)
 
         try:
-            async with self.client.StreamEvents.open() as stream:
+            async with self.client.StreamEvents.open(metadata=md) as stream:
                 await stream.send_message(request, end=True)
                 self._send_connection_status(True)
                 reply: StreamEventsResponse
@@ -191,4 +191,4 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get('metadata', self.Metadata())
-        return await get_geometries(self.client, self.name, extra, timeout)
+        return await get_geometries(self.client, self.name, extra, timeout, md)
