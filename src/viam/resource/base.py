@@ -33,7 +33,7 @@ class ResourceBase(Protocol):
         ::
 
             # Can be used with any resource, using an arm as an example
-            my_arm_name = my_arm.get_resource_name("my_arm")
+            my_arm_name = Arm.get_resource_name("my_arm")
 
         Args:
             name (str): The name of the Resource
