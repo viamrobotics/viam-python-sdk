@@ -731,7 +731,7 @@ class RobotClient:
                 pose=pose
             )
 
-            pose = await machine.transform_pose(pose_in_frame, "world")
+            transformed_pose = await machine.transform_pose(pose_in_frame, "world")
 
         Args:
 
