@@ -774,7 +774,6 @@ class RobotClient:
 
             # Get component configurations with these queries.
             component_configs = await machine.discover_components(qs)
-            print(component_configs)
 
         Args:
 
