@@ -83,7 +83,8 @@ class RobotClient:
 
         async def connect(address) -> RobotClient:
             opts = RobotClient.Options(
-                disable_sessions=True, dial_options=DialOptions(timeout=10)).with_api_key(
+                disable_sessions=True,
+                dial_options=DialOptions(timeout=10)).with_api_key(
                     # Replace "<API-KEY>" (including brackets) with your API key
                     api_key='<API-KEY>',
                     # Replace "<API-KEY-ID>" (including brackets) with your API key
@@ -91,6 +92,7 @@ class RobotClient:
                     api_key_id='<API-KEY-ID>'
                 )
             return await RobotClient.at_address(address=address, options=opts)
+
 
         async def main():
             # Make a RobotClient
