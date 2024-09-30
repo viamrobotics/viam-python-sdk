@@ -725,8 +725,8 @@ class RobotClient:
             )
 
             pose_in_frame = PoseInFrame(
-                reference_frame="world",  # The reference frame in which this pose is expressed
-                pose=pose                 # The pose in that reference frame
+                reference_frame="world",
+                pose=pose
             )
 
             pose = await machine.transform_pose(pose_in_frame, "world")
