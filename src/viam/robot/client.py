@@ -81,19 +81,20 @@ class RobotClient:
         from viam.robot.client import RobotClient
 
 
-        async def connect():
-            opts = RobotClient.Options.with_api_key(
-                # Replace "<API-KEY>" (including brackets) with your machine's API key
-                api_key='<API-KEY>',
-                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
-                api_key_id='<API-KEY-ID>'
-            )
-            return await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
-
+        async def connect(address) -> RobotClient:
+            opts = RobotClient.Options(
+                disable_sessions=True, dial_options=DialOptions(timeout=10)).with_api_key(
+                    # Replace "<API-KEY>" (including brackets) with your API key
+                    api_key='<API-KEY>',
+                    # Replace "<API-KEY-ID>" (including brackets) with your API key
+                    # ID
+                    api_key_id='<API-KEY-ID>'
+                )
+            return await RobotClient.at_address(address=address, options=opts)
 
         async def main():
             # Make a RobotClient
-            machine = await connect()
+            machine = await connect('ADDRESS FROM CODE SAMPLE TAB OF VIAM APP')
             print('Resources:')
             print(machine.resource_names)
             await machine.close()
@@ -610,6 +611,7 @@ class RobotClient:
 
             # Get the status of the resources on the machine.
             statuses = await machine.get_status()
+            resource_statuses = machine_status.resources
 
         Args:
             components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
@@ -710,7 +712,24 @@ class RobotClient:
 
         ::
 
-            pose = await machine.transform_pose(PoseInFrame(), "origin")
+            from viam.proto.common import Pose, PoseInFrame
+
+            pose = Pose(
+                x=1.0,    # X coordinate in mm
+                y=2.0,    # Y coordinate in mm
+                z=3.0,    # Z coordinate in mm
+                o_x=0.0,  # Orientation radian X
+                o_y=0.0,  # Orientation radian Y
+                o_z=0.0,  # Orientation radian Z
+                theta=0.0 # Orientation angle in radians
+            )
+
+            pose_in_frame = PoseInFrame(
+                reference_frame="world",  # The reference frame in which this pose is expressed
+                pose=pose                 # The pose in that reference frame
+            )
+
+            pose = await machine.transform_pose(pose_in_frame, "world")
 
         Args:
 
@@ -738,25 +757,29 @@ class RobotClient:
         queries: List[DiscoveryQuery],
     ) -> List[Discovery]:
         """
-        Get the list of discovered component configurations.
+        Get a list of discovered potential component configurations.
+        Only implemented for webcam cameras in builtin components. Returns module names for modules.
 
         ::
 
+            from viam.proto.robot import DiscoveryQuery
+
             # Define a new discovery query.
-            q = machine.DiscoveryQuery(subtype=acme.API, model="some model")
+            q = DiscoveryQuery(subtype="camera", model="webcam")
 
             # Define a list of discovery queries.
             qs = [q]
 
-            # Get component configurations with these queries.
+            # # Get component configurations with these queries.
             component_configs = await machine.discover_components(qs)
+            print(component_configs)
 
         Args:
 
-            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.
+            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup potential configurations for.
 
         Returns:
-            List[Discovery]: A list of discovered component configurations.
+            List[Discovery]: A list of discovered potential component configurations.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
@@ -826,7 +849,7 @@ class RobotClient:
 
         ::
 
-            metadata = machine.get_cloud_metadata()
+            metadata = await machine.get_cloud_metadata()
             print(metadata.machine_id)
             print(metadata.machine_part_id)
             print(metadata.primary_org_id)
@@ -851,7 +874,7 @@ class RobotClient:
 
         ::
 
-            machine.shutdown()
+            await machine.shutdown()
 
         Raises:
             GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
@@ -887,7 +910,7 @@ class RobotClient:
 
         ::
 
-            result = machine.get_version()
+            result = await machine.get_version()
             print(result.platform)
             print(result.version)
             print(result.api_version)
