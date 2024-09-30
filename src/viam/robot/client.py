@@ -81,7 +81,7 @@ class RobotClient:
         from viam.robot.client import RobotClient
 
 
-        async def connect(address) -> RobotClient:
+        async def connect() -> RobotClient:
             opts = RobotClient.Options(
                 disable_sessions=True,
                 dial_options=DialOptions(timeout=10)).with_api_key(
