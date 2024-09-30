@@ -91,12 +91,12 @@ class RobotClient:
                     # ID
                     api_key_id='<API-KEY-ID>'
                 )
-            return await RobotClient.at_address(address=address, options=opts)
+            return await RobotClient.at_address(address="<ADDRESS-FROM-THE-VIAM-APP>", options=opts)
 
 
         async def main():
             # Make a RobotClient
-            machine = await connect('ADDRESS FROM CODE SAMPLE TAB OF VIAM APP')
+            machine = await connect()
             print('Resources:')
             print(machine.resource_names)
             await machine.close()
