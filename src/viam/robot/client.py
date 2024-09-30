@@ -720,10 +720,10 @@ class RobotClient:
                 x=1.0,    # X coordinate in mm
                 y=2.0,    # Y coordinate in mm
                 z=3.0,    # Z coordinate in mm
-                o_x=0.0,  # Orientation radian X
-                o_y=0.0,  # Orientation radian Y
-                o_z=0.0,  # Orientation radian Z
-                theta=0.0 # Orientation angle in radians
+                o_x=0.0,  # X component of orientation vector
+                o_y=0.0,  # Y component of orientation vector
+                o_z=0.0,  # Z component of orientation vector
+                theta=0.0 # Orientation angle in degrees
             )
 
             pose_in_frame = PoseInFrame(
