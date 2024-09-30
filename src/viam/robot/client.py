@@ -770,7 +770,7 @@ class RobotClient:
             # Define a list of discovery queries.
             qs = [q]
 
-            # # Get component configurations with these queries.
+            # Get component configurations with these queries.
             component_configs = await machine.discover_components(qs)
             print(component_configs)
 
