@@ -48,7 +48,10 @@ class Camera(ComponentBase):
 
         ::
 
-            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+           # from viam.media.video import CameraMimeType    
+           # Add the above to imports at top of file!
+        
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
             # Assume "frame" has a mime_type of "image/vnd.viam.dep"
             frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
@@ -74,10 +77,10 @@ class Camera(ComponentBase):
 
         ::
 
-            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
             images, metadata = await my_camera.get_images()
-            img0 = images[0].image
+            image_list = images[0]
             timestamp = metadata.captured_at
 
         Returns:
@@ -105,7 +108,7 @@ class Camera(ComponentBase):
             import numpy as np
             import open3d as o3d
 
-            data, _ = await camera.get_point_cloud()
+            data, _ = await my_camera.get_point_cloud()
 
             # write the point cloud into a temporary file
             with open("/tmp/pointcloud_data.pcd", "wb") as f:
@@ -128,7 +131,7 @@ class Camera(ComponentBase):
 
         ::
 
-            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
             properties = await my_camera.get_properties()
 
