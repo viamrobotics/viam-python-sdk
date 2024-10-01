@@ -43,7 +43,7 @@ Module Contents
       :type:  Dict[viam.components.input.input.Control, Dict[viam.components.input.input.EventType, Optional[viam.components.input.input.ControlFunction]]]
 
 
-   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[viam.components.input.input.Control]
+   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.components.input.input.Control]
       :async:
 
 
@@ -68,7 +68,7 @@ Module Contents
 
 
 
-   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
       :async:
 
 
@@ -94,7 +94,7 @@ Module Contents
 
 
 
-   .. py:method:: register_control_callback(control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction], extra: Optional[Dict[str, Any]] = None, **__)
+   .. py:method:: register_control_callback(control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction], extra: Optional[Dict[str, Any]] = None, **kwargs)
 
       Register a function that will fire on given EventTypes for a given
       Control
@@ -161,7 +161,7 @@ Module Contents
 
 
 
-   .. py:method:: trigger_event(event: viam.components.input.input.Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: trigger_event(event: viam.components.input.input.Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -184,7 +184,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -205,7 +205,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 

@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[float, bool]
+   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
       :async:
 
 
@@ -51,7 +51,7 @@ Module Contents
 
 
 
-   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[float, bool]
+   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
       :async:
 
 
@@ -73,7 +73,7 @@ Module Contents
 
 
 
-   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
+   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :async:
 
 
@@ -94,7 +94,7 @@ Module Contents
 
 
 
-   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.SensorReading]
       :async:
 
 
@@ -118,7 +118,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 

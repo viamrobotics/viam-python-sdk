@@ -82,13 +82,13 @@ Module Contents
 
 .. py:function:: struct_to_message(struct: google.protobuf.struct_pb2.Struct, message_type: Type[_T]) -> _T
 
-.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
+.. py:function:: dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> google.protobuf.struct_pb2.Struct
 
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
 .. py:function:: datetime_to_timestamp(dt: Optional[datetime.datetime]) -> Optional[google.protobuf.timestamp_pb2.Timestamp]
 
-.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, metadata: viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata = ResourceRPCClientBase.Metadata()) -> List[viam.proto.common.Geometry]
    :async:
 
 

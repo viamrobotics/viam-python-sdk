@@ -69,6 +69,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.metadata"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.metadata</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.enable_debug_logging"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.enable_debug_logging()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.disable_debug_logging"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.disable_debug_logging()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.add_metadata"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.add_metadata()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.delete_metadata"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.delete_metadata()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.proto"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.Metadata.proto</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.channel"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.channel</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.client"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.client</span></code></a></li>
 </ul>
@@ -141,6 +150,52 @@
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code></p>
 <p>Base RPC client for a resource.
 Resource RPC clients must inherit from this class</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Metadata</span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase.Metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.metadata">
+<span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.metadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.enable_debug_logging">
+<span class="sig-name descname"><span class="pre">enable_debug_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase.Metadata.enable_debug_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.enable_debug_logging" title="Permalink to this definition"></a></dt>
+<dd><p>Enables server-side debug logging for resource methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – The key to associate debug logs with. If not provided, will default to a randomly generated string value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.disable_debug_logging">
+<span class="sig-name descname"><span class="pre">disable_debug_logging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase.Metadata.disable_debug_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.disable_debug_logging" title="Permalink to this definition"></a></dt>
+<dd><p>Disables server-side debug logging for resource methods.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.add_metadata">
+<span class="sig-name descname"><span class="pre">add_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase.Metadata.add_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.add_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a key-value pair to the metadata</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.delete_metadata">
+<span class="sig-name descname"><span class="pre">delete_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase.Metadata.delete_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.delete_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Removes a key-value pair from the metadata by key</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.Metadata.proto" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Returns</span> <span class="pre">metadata</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">gRPC-appropriate</span> <span class="pre">form</span></span></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.channel">
 <span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span></em><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.channel" title="Permalink to this definition"></a></dt>

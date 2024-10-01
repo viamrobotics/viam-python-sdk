@@ -30,7 +30,7 @@ Module Contents
    .. py:attribute:: channel
 
 
-   .. py:method:: get_paths(*, timeout: Optional[float] = None) -> List[viam.proto.service.navigation.Path]
+   .. py:method:: get_paths(*, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.navigation.Path]
       :async:
 
 
@@ -57,7 +57,7 @@ Module Contents
 
 
 
-   .. py:method:: get_location(*, timeout: Optional[float] = None) -> viam.services.navigation.GeoPoint
+   .. py:method:: get_location(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.GeoPoint
       :async:
 
 
@@ -82,7 +82,7 @@ Module Contents
 
 
 
-   .. py:method:: get_obstacles(*, timeout: Optional[float] = None) -> List[viam.services.navigation.GeoGeometry]
+   .. py:method:: get_obstacles(*, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.GeoGeometry]
       :async:
 
 
@@ -110,7 +110,7 @@ Module Contents
 
 
 
-   .. py:method:: get_waypoints(*, timeout: Optional[float] = None) -> List[viam.services.navigation.Waypoint]
+   .. py:method:: get_waypoints(*, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.Waypoint]
       :async:
 
 
@@ -136,7 +136,7 @@ Module Contents
 
 
 
-   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float] = None)
+   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -164,7 +164,7 @@ Module Contents
 
 
 
-   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float] = None)
+   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -188,7 +188,7 @@ Module Contents
 
 
 
-   .. py:method:: get_mode(*, timeout: Optional[float] = None) -> viam.services.navigation.Mode.ValueType
+   .. py:method:: get_mode(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Mode.ValueType
       :async:
 
 
@@ -217,7 +217,7 @@ Module Contents
 
 
 
-   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float] = None)
+   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -245,7 +245,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.navigation.MapType.ValueType
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.MapType.ValueType
       :async:
 
 
@@ -269,7 +269,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 

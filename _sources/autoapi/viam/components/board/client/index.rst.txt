@@ -39,7 +39,7 @@ Module Contents
    .. py:attribute:: board
 
 
-   .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.board.board.Board.Analog.Value
+   .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.board.board.Board.Analog.Value
       :async:
 
 
@@ -102,7 +102,7 @@ Module Contents
    .. py:attribute:: board
 
 
-   .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
+   .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
       :async:
 
 
@@ -140,7 +140,7 @@ Module Contents
    .. py:attribute:: board
 
 
-   .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> bool
+   .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
 
@@ -163,7 +163,7 @@ Module Contents
 
 
 
-   .. py:method:: set(high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: set(high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -186,7 +186,7 @@ Module Contents
 
 
 
-   .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
+   .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :async:
 
 
@@ -209,7 +209,7 @@ Module Contents
 
 
 
-   .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -233,7 +233,7 @@ Module Contents
 
 
 
-   .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
+   .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
       :async:
 
 
@@ -256,7 +256,7 @@ Module Contents
 
 
 
-   .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -404,7 +404,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -425,7 +425,7 @@ Module Contents
 
 
 
-   .. py:method:: set_power_mode(mode: viam.proto.component.board.PowerMode.ValueType, duration: Optional[datetime.timedelta] = None, *, timeout: Optional[float] = None, **__)
+   .. py:method:: set_power_mode(mode: viam.proto.component.board.PowerMode.ValueType, duration: Optional[datetime.timedelta] = None, *, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -447,7 +447,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 
@@ -467,12 +467,12 @@ Module Contents
 
 
 
-   .. py:method:: write_analog(pin: str, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: write_analog(pin: str, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
 
-   .. py:method:: stream_ticks(interrupts: List[viam.components.board.board.Board.DigitalInterrupt], *, extra: Optional[Dict[str, Any]] = None, **__) -> viam.components.board.board.TickStream
+   .. py:method:: stream_ticks(interrupts: List[viam.components.board.board.Board.DigitalInterrupt], *, extra: Optional[Dict[str, Any]] = None, **kwargs) -> viam.components.board.board.TickStream
       :async:
 
 

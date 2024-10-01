@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.streams.Stream[viam.media.audio.Audio]
+   .. py:method:: stream(*, timeout: Optional[float] = None, **kwargs) -> viam.streams.Stream[viam.media.audio.Audio]
       :async:
 
 
@@ -40,7 +40,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.audio_input.audio_input.AudioInput.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.components.audio_input.audio_input.AudioInput.Properties
       :async:
 
 
@@ -51,7 +51,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -72,7 +72,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 

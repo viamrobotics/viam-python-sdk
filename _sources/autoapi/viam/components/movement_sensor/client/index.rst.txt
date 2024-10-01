@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :async:
 
 
@@ -51,7 +51,7 @@ Module Contents
 
 
 
-   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :async:
 
 
@@ -72,7 +72,7 @@ Module Contents
 
 
 
-   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :async:
 
 
@@ -96,7 +96,7 @@ Module Contents
 
 
 
-   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Vector3
+   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :async:
 
 
@@ -120,7 +120,7 @@ Module Contents
 
 
 
-   .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
+   .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :async:
 
 
@@ -141,7 +141,7 @@ Module Contents
 
 
 
-   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.Orientation
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Orientation
       :async:
 
 
@@ -162,7 +162,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Properties
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Properties
       :async:
 
 
@@ -183,7 +183,7 @@ Module Contents
 
 
 
-   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Accuracy
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Accuracy
       :async:
 
 
@@ -204,7 +204,7 @@ Module Contents
 
 
 
-   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.SensorReading]
       :async:
 
 
@@ -226,7 +226,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -247,7 +247,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 

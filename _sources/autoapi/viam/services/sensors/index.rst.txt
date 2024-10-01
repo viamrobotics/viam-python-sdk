@@ -42,7 +42,7 @@ Package Contents
       :type:  viam.proto.service.sensors.SensorsServiceStub
 
 
-   .. py:method:: get_sensors(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.ResourceName]
+   .. py:method:: get_sensors(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.ResourceName]
       :async:
 
 
@@ -53,7 +53,7 @@ Package Contents
 
 
 
-   .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[viam.proto.common.ResourceName, Mapping[str, viam.utils.SensorReading]]
+   .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[viam.proto.common.ResourceName, Mapping[str, viam.utils.SensorReading]]
       :async:
 
 
@@ -67,7 +67,7 @@ Package Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 

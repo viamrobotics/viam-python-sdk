@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: move_straight(distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: move_straight(distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -59,7 +59,7 @@ Module Contents
 
 
 
-   .. py:method:: spin(angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: spin(angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -86,7 +86,7 @@ Module Contents
 
 
 
-   .. py:method:: set_power(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: set_power(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -136,7 +136,7 @@ Module Contents
 
 
 
-   .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -160,7 +160,7 @@ Module Contents
 
 
 
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -180,7 +180,7 @@ Module Contents
 
 
 
-   .. py:method:: is_moving(*, timeout: Optional[float] = None, **__) -> bool
+   .. py:method:: is_moving(*, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
 
@@ -201,7 +201,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.base.Base.Properties
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.base.Base.Properties
       :async:
 
 
@@ -230,7 +230,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -251,7 +251,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 

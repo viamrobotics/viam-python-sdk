@@ -37,7 +37,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: do_command(command: Mapping[str, Any], *, timeout: Optional[float] = None, **__) -> Mapping[str, Any]
+   .. py:method:: do_command(command: Mapping[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
       :async:
 
 
@@ -58,7 +58,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 
@@ -146,7 +146,7 @@ Module Contents
 
 
 
-.. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+.. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
    :async:
 
 

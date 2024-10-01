@@ -25,6 +25,44 @@ Module Contents
    Resource RPC clients must inherit from this class
 
 
+   .. py:class:: Metadata
+
+      .. py:attribute:: metadata
+         :type:  Dict[str, str]
+
+
+      .. py:method:: enable_debug_logging(key: str = '')
+
+         Enables server-side debug logging for resource methods.
+
+         :param key: The key to associate debug logs with. If not provided, will default to a randomly generated string value.
+         :type key: str
+
+
+
+      .. py:method:: disable_debug_logging()
+
+         Disables server-side debug logging for resource methods.
+
+
+
+      .. py:method:: add_metadata(key: str, value: str)
+
+         Adds a key-value pair to the metadata
+
+
+
+      .. py:method:: delete_metadata(key: str)
+
+         Removes a key-value pair from the metadata by key
+
+
+
+      .. py:property:: proto
+         Returns metadata in a gRPC-appropriate form
+
+
+
    .. py:attribute:: channel
       :type:  grpclib.client.Channel
 

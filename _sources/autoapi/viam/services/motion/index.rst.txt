@@ -154,7 +154,7 @@ Package Contents
    .. py:attribute:: channel
 
 
-   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
 
@@ -204,7 +204,7 @@ Package Contents
 
 
 
-   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> str
       :async:
 
 
@@ -276,7 +276,7 @@ Package Contents
 
 
 
-   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Sequence[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Sequence[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> str
       :async:
 
 
@@ -340,7 +340,7 @@ Package Contents
 
 
 
-   .. py:method:: stop_plan(component_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop_plan(component_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -361,7 +361,7 @@ Package Contents
 
 
 
-   .. py:method:: get_plan(component_name: viam.proto.common.ResourceName, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.GetPlanResponse
+   .. py:method:: get_plan(component_name: viam.proto.common.ResourceName, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.service.motion.GetPlanResponse
       :async:
 
 
@@ -403,7 +403,7 @@ Package Contents
 
 
 
-   .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Sequence[viam.proto.service.motion.PlanStatusWithID]
+   .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> Sequence[viam.proto.service.motion.PlanStatusWithID]
       :async:
 
 
@@ -432,7 +432,7 @@ Package Contents
 
 
 
-   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[Sequence[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
+   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[Sequence[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.PoseInFrame
       :async:
 
 
@@ -472,7 +472,7 @@ Package Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 

@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
       :async:
 
 
@@ -49,7 +49,7 @@ Module Contents
 
 
 
-   .. py:method:: move_to_position(positions: List[float], speeds: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: move_to_position(positions: List[float], speeds: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -78,7 +78,7 @@ Module Contents
 
 
 
-   .. py:method:: home(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> bool
+   .. py:method:: home(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
 
@@ -97,7 +97,7 @@ Module Contents
 
 
 
-   .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[float]
+   .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
       :async:
 
 
@@ -117,7 +117,7 @@ Module Contents
 
 
 
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
 
@@ -135,7 +135,7 @@ Module Contents
 
 
 
-   .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
+   .. py:method:: is_moving(*, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
 
@@ -159,7 +159,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -180,7 +180,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 

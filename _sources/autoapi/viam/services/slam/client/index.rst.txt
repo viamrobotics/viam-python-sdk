@@ -30,7 +30,7 @@ Module Contents
    .. py:attribute:: channel
 
 
-   .. py:method:: get_position(*, timeout: Optional[float] = None) -> viam.services.slam.Pose
+   .. py:method:: get_position(*, timeout: Optional[float] = None, **kwargs) -> viam.services.slam.Pose
       :async:
 
 
@@ -50,7 +50,7 @@ Module Contents
 
 
 
-   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]
+   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float] = None, **kwargs) -> List[bytes]
       :async:
 
 
@@ -75,7 +75,7 @@ Module Contents
 
 
 
-   .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[bytes]
+   .. py:method:: get_internal_state(*, timeout: Optional[float] = None, **kwargs) -> List[bytes]
       :async:
 
 
@@ -95,7 +95,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.services.slam.slam.SLAM.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.services.slam.slam.SLAM.Properties
       :async:
 
 
@@ -115,7 +115,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 

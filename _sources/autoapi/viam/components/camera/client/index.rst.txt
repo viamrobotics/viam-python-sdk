@@ -29,7 +29,7 @@ Module Contents
    .. py:attribute:: client
 
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.media.video.ViamImage
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.media.video.ViamImage
       :async:
 
 
@@ -60,7 +60,7 @@ Module Contents
 
 
 
-   .. py:method:: get_images(*, timeout: Optional[float] = None, **__) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+   .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :async:
 
 
@@ -83,7 +83,7 @@ Module Contents
 
 
 
-   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]
       :async:
 
 
@@ -115,7 +115,7 @@ Module Contents
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.camera.Camera.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.components.camera.Camera.Properties
       :async:
 
 
@@ -134,7 +134,7 @@ Module Contents
 
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
 
@@ -155,7 +155,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 
 
