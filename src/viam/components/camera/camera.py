@@ -48,9 +48,8 @@ class Camera(ComponentBase):
 
         ::
 
-           # from viam.media.video import CameraMimeType    
-           # Add the above to imports at top of file!
-        
+           from viam.media.video import CameraMimeType
+
             my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
             # Assume "frame" has a mime_type of "image/vnd.viam.dep"
