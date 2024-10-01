@@ -33,12 +33,11 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = ResetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        await self.client.ResetPosition(request, timeout=timeout)
+        await self.client.ResetPosition(request, timeout=timeout, metadata=md)
 
     async def get_position(
         self,
@@ -46,12 +45,11 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Tuple[float, PositionType.ValueType]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPositionRequest(name=self.name, position_type=position_type, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.value, response.position_type
 
     async def get_properties(
@@ -59,12 +57,11 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Encoder.Properties:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
         return Encoder.Properties(
             ticks_count_supported=response.ticks_count_supported, angle_degrees_supported=response.angle_degrees_supported
         )
@@ -74,11 +71,13 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        md = kwargs.get('metadata', self.Metadata())
+        return await get_geometries(self.client, self.name, extra, timeout, md)

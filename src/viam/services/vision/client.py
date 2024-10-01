@@ -53,9 +53,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> CaptureAllResult:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = CaptureAllFromCameraRequest(
             name=self.name,
             camera_name=camera_name,
@@ -65,7 +65,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             return_object_point_clouds=return_object_point_clouds,
             extra=dict_to_struct(extra),
         )
-        response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout)
+        response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout, metadata=md)
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
         if return_image:
@@ -86,11 +86,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> List[Detection]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetDetectionsFromCameraRequest(name=self.name, camera_name=camera_name, extra=dict_to_struct(extra))
-        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout)
+        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout, metadata=md)
         return list(response.detections)
 
     async def get_detections(
@@ -99,9 +99,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> List[Detection]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         mime_type = CameraMimeType.JPEG
 
         if image.width is None or image.height is None:
@@ -115,7 +115,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
                 mime_type=mime_type,
                 extra=dict_to_struct(extra),
             )
-        response: GetDetectionsResponse = await self.client.GetDetections(request, timeout=timeout)
+        response: GetDetectionsResponse = await self.client.GetDetections(request, timeout=timeout, metadata=md)
         return list(response.detections)
 
     async def get_classifications_from_camera(
@@ -125,11 +125,12 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> List[Classification]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, n=count, extra=dict_to_struct(extra))
-        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request, timeout=timeout)
+        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(
+                request, timeout=timeout, metadata=md)
         return list(response.classifications)
 
     async def get_classifications(
@@ -139,9 +140,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> List[Classification]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
 
         mime_type = CameraMimeType.JPEG
         if image.width is None or image.height is None:
@@ -155,7 +156,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             n=count,
             extra=dict_to_struct(extra),
         )
-        response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)
+        response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout, metadata=md)
         return list(response.classifications)
 
     async def get_object_point_clouds(
@@ -164,16 +165,16 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> List[PointCloudObject]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetObjectPointCloudsRequest(
             name=self.name,
             camera_name=camera_name,
             mime_type=CameraMimeType.PCD,
             extra=dict_to_struct(extra),
         )
-        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
+        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout, metadata=md)
         return list(response.objects)
 
     async def get_properties(
@@ -181,14 +182,14 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> Vision.Properties:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPropertiesRequest(
             name=self.name,
             extra=dict_to_struct(extra),
         )
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
         return response
 
     async def do_command(
@@ -196,8 +197,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

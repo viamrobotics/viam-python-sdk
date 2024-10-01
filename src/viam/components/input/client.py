@@ -21,7 +21,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .input import Control, ControlFunction, Controller, Event, EventType
@@ -48,12 +48,11 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> List[Control]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetControlsRequest(controller=self.name, extra=dict_to_struct(extra))
-        response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout)
+        response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout, metadata=md)
         return [Control(control) for control in response.controls]
 
     async def get_events(
@@ -61,12 +60,11 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Dict[Control, Event]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetEventsRequest(controller=self.name, extra=dict_to_struct(extra))
-        response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout)
+        response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout, metadata=md)
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
 
     def register_control_callback(
@@ -75,10 +73,9 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         triggers: List[EventType],
         function: Optional[ControlFunction],
         extra: Optional[Dict[str, Any]] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata())
         self._callback_extra = dict_to_struct(extra)
         with self._lock:
             callbacks = self.callbacks.get(control, {})
@@ -99,7 +96,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
             except Exception:
                 LOGGER.exception("Exception raised by task = %r", task)
 
-        task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
+        task = asyncio.create_task(self._stream_events(md), name=f"{viam._TASK_PREFIX}-input_stream_events")
         task.add_done_callback(handle_task_result)
 
     def reset_channel(self, channel: Channel):
@@ -115,19 +112,18 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = TriggerEventRequest(controller=self.name, event=event.proto, extra=dict_to_struct(extra))
         try:
-            await self.client.TriggerEvent(request, timeout=timeout)
+            await self.client.TriggerEvent(request, timeout=timeout, metadata=md)
         except GRPCError as e:
             if e.status == Status.UNIMPLEMENTED and ("does not support triggering events" in e.message if e.message else False):
                 raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
             raise e
 
-    async def _stream_events(self):
+    async def _stream_events(self, metadata: ResourceRPCClientBase.Metadata):
         with self._stream_lock:
             if self._is_streaming:
                 return
@@ -136,6 +132,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         if not self.callbacks:
             return
 
+        md = metadata.proto
         request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra)
         with self._lock:
             for control, callbacks in self.callbacks.items():
@@ -147,7 +144,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
                 request.events.append(event)
 
         try:
-            async with self.client.StreamEvents.open() as stream:
+            async with self.client.StreamEvents.open(metadata=md) as stream:
                 await stream.send_message(request, end=True)
                 self._send_connection_status(True)
                 reply: StreamEventsResponse
@@ -185,11 +182,13 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        md = kwargs.get('metadata', self.Metadata())
+        return await get_geometries(self.client, self.name, extra, timeout, md)

@@ -32,26 +32,31 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         self.client = SLAMServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
+    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> Pose:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPositionRequest(name=self.name)
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.pose
 
-    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None, **kwargs) -> List[bytes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPointCloudMapRequest(name=self.name, return_edited_map=return_edited_map)
-        response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
+        response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout, metadata=md)
         return [r.point_cloud_pcd_chunk for r in response]
 
-    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_internal_state(self, *, timeout: Optional[float] = None, **kwargs) -> List[bytes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetInternalStateRequest(name=self.name)
-        response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
+        response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout, metadata=md)
         return [r.internal_state_chunk for r in response]
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> SLAM.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> SLAM.Properties:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name)
-        return await self.client.GetProperties(request, timeout=timeout)
+        return await self.client.GetProperties(request, timeout=timeout, metadata=md)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        md = kwargs.get('metadata', self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
