@@ -79,7 +79,7 @@ class Camera(ComponentBase):
             my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
             images, metadata = await my_camera.get_images()
-            image_list = images[0]
+            first_image = images[0]
             timestamp = metadata.captured_at
 
         Returns:
