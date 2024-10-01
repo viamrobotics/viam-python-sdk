@@ -138,7 +138,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_camera = Camera.from_robot(robot=robot, name=&quot;my_camera&quot;)</span>
+<span class="sd">           from viam.media.video import CameraMimeType</span>
+
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
 
 <span class="sd">            # Assume &quot;frame&quot; has a mime_type of &quot;image/vnd.viam.dep&quot;</span>
 <span class="sd">            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)</span>
@@ -164,10 +166,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_camera = Camera.from_robot(robot=robot, name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
 
 <span class="sd">            images, metadata = await my_camera.get_images()</span>
-<span class="sd">            img0 = images[0].image</span>
+<span class="sd">            first_image = images[0]</span>
 <span class="sd">            timestamp = metadata.captured_at</span>
 
 <span class="sd">        Returns:</span>
@@ -195,7 +197,7 @@
 <span class="sd">            import numpy as np</span>
 <span class="sd">            import open3d as o3d</span>
 
-<span class="sd">            data, _ = await camera.get_point_cloud()</span>
+<span class="sd">            data, _ = await my_camera.get_point_cloud()</span>
 
 <span class="sd">            # write the point cloud into a temporary file</span>
 <span class="sd">            with open(&quot;/tmp/pointcloud_data.pcd&quot;, &quot;wb&quot;) as f:</span>
@@ -218,7 +220,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_camera = Camera.from_robot(robot=robot, name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
 
 <span class="sd">            properties = await my_camera.get_properties()</span>
 

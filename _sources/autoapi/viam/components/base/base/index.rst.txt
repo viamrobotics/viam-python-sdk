@@ -67,7 +67,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Move the base 40 mm at a velocity of 90 mm/s, forward.
           await my_base.move_straight(distance=40, velocity=90)
@@ -99,7 +99,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Spin the base 10 degrees at an angular velocity of 15 deg/sec.
           await my_base.spin(angle=10, velocity=15)
@@ -130,7 +130,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Make your wheeled base move forward. Set linear power to 75%.
           print("move forward")
@@ -177,7 +177,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Set the linear velocity to 50 mm/sec and the angular velocity to
           # 15 degree/sec.
@@ -203,7 +203,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Move the base forward 10 mm at a velocity of 50 mm/s.
           await my_base.move_straight(distance=10, velocity=50)
@@ -225,7 +225,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Check whether the base is currently moving.
           moving = await my_base.is_moving()
@@ -248,7 +248,7 @@ Module Contents
 
       ::
 
-          my_base = Base.from_robot(robot=robot, name="my_base")
+          my_base = Base.from_robot(robot=machine, name="my_base")
 
           # Get the width and turning radius of the base
           properties = await my_base.get_properties()
@@ -337,7 +337,7 @@ Module Contents
       ::
 
           # Can be used with any resource, using an arm as an example
-          my_arm_name = my_arm.get_resource_name("my_arm")
+          my_arm_name = Arm.get_resource_name("my_arm")
 
       :param name: The name of the Resource
       :type name: str

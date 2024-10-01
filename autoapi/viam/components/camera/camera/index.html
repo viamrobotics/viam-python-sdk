@@ -193,14 +193,16 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 Be sure to close the image when finished.</p>
 <p>NOTE: If the mime type is <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> you can use <a class="reference internal" href="../../../media/video/index.html#viam.media.video.ViamImage.bytes_to_depth_array" title="viam.media.video.ViamImage.bytes_to_depth_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">viam.media.video.ViamImage.bytes_to_depth_array()</span></code></a>
 to convert the data to a standard representation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
 
-<span class="c1"># Assume &quot;frame&quot; has a mime_type of &quot;image/vnd.viam.dep&quot;</span>
-<span class="n">frame</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">)</span>
+ <span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 
-<span class="c1"># Convert &quot;frame&quot; to a standard 2D image representation.</span>
-<span class="c1"># Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].</span>
-<span class="n">standard_frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">bytes_to_depth_array</span><span class="p">()</span>
+ <span class="c1"># Assume &quot;frame&quot; has a mime_type of &quot;image/vnd.viam.dep&quot;</span>
+ <span class="n">frame</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">)</span>
+
+ <span class="c1"># Convert &quot;frame&quot; to a standard 2D image representation.</span>
+ <span class="c1"># Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].</span>
+ <span class="n">standard_frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">bytes_to_depth_array</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -226,10 +228,10 @@ to convert the data to a standard representation.</p>
 </dl>
 <p>Get simultaneous images from different imagers, along with associated metadata.
 This should not be used for getting a time series of images from the same imager.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 
 <span class="n">images</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
-<span class="n">img0</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">image</span>
+<span class="n">first_image</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">timestamp</span> <span class="o">=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">captured_at</span>
 </pre></div>
 </div>
@@ -261,7 +263,7 @@ by the mimetype.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
 
-<span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_point_cloud</span><span class="p">()</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_point_cloud</span><span class="p">()</span>
 
 <span class="c1"># write the point cloud into a temporary file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/pointcloud_data.pcd&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -290,7 +292,7 @@ and the second [1] the mimetype of the pointcloud (for example, PCD).</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the camera intrinsic parameters and camera distortion parameters</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 
 <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
 </pre></div>
@@ -381,7 +383,7 @@ and the second [1] the mimetype of the pointcloud (for example, PCD).</p>
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.components.camera.camera.Camera.get_resource_name" title="Permalink to this definition"></a></dt>
 <dd><p>Get the ResourceName for this Resource with the given name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
-<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

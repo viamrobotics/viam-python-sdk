@@ -131,7 +131,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Get the end position of the arm as a Pose.</span>
 <span class="sd">            pos = await my_arm.get_end_position()</span>
@@ -160,7 +160,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Create a Pose for the arm.</span>
 <span class="sd">            examplePose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)</span>
@@ -192,15 +192,14 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Declare a list of values with your desired rotational value for each joint on</span>
-<span class="sd">            # the arm.</span>
+<span class="sd">            # the arm. This example is for a 5dof arm.</span>
 <span class="sd">            degrees = [0.0, 45.0, 0.0, 0.0, 0.0]</span>
 
 <span class="sd">            # Declare a new JointPositions with these values.</span>
-<span class="sd">            jointPos = arm.move_to_joint_positions(</span>
-<span class="sd">                JointPositions(values=[0.0, 45.0, 0.0, 0.0, 0.0]))</span>
+<span class="sd">            jointPos = JointPositions(values=degrees)</span>
 
 <span class="sd">            # Move each joint of the arm to the position these values specify.</span>
 <span class="sd">            await my_arm.move_to_joint_positions(positions=jointPos)</span>
@@ -225,7 +224,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Get the current position of each joint on the arm as JointPositions.</span>
 <span class="sd">            pos = await my_arm.get_joint_positions()</span>
@@ -252,7 +251,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Stop all motion of the arm. It is assumed that the arm stops immediately.</span>
 <span class="sd">            await my_arm.stop()</span>
@@ -268,13 +267,13 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Stop all motion of the arm. It is assumed that the arm stops immediately.</span>
 <span class="sd">            await my_arm.stop()</span>
 
 <span class="sd">            # Print if the arm is currently moving.</span>
-<span class="sd">            print(my_arm.is_moving())</span>
+<span class="sd">            print(await my_arm.is_moving())</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the arm is moving.</span>
@@ -292,7 +291,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
+<span class="sd">            my_arm = Arm.from_robot(robot=machine, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">            # Get the kinematics information associated with the arm.</span>
 <span class="sd">            kinematics = await my_arm.get_kinematics()</span>

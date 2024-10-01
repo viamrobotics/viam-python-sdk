@@ -59,7 +59,9 @@ Module Contents
 
       ::
 
-          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+         from viam.media.video import CameraMimeType
+
+          my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
           # Assume "frame" has a mime_type of "image/vnd.viam.dep"
           frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
@@ -89,10 +91,10 @@ Module Contents
 
       ::
 
-          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+          my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
           images, metadata = await my_camera.get_images()
-          img0 = images[0].image
+          first_image = images[0]
           timestamp = metadata.captured_at
 
       :returns: A tuple containing two values; the first [0] a list of images
@@ -121,7 +123,7 @@ Module Contents
           import numpy as np
           import open3d as o3d
 
-          data, _ = await camera.get_point_cloud()
+          data, _ = await my_camera.get_point_cloud()
 
           # write the point cloud into a temporary file
           with open("/tmp/pointcloud_data.pcd", "wb") as f:
@@ -147,7 +149,7 @@ Module Contents
 
       ::
 
-          my_camera = Camera.from_robot(robot=robot, name="my_camera")
+          my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
           properties = await my_camera.get_properties()
 
@@ -226,7 +228,7 @@ Module Contents
       ::
 
           # Can be used with any resource, using an arm as an example
-          my_arm_name = my_arm.get_resource_name("my_arm")
+          my_arm_name = Arm.get_resource_name("my_arm")
 
       :param name: The name of the Resource
       :type name: str

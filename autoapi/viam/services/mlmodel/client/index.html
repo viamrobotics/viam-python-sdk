@@ -287,7 +287,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.mlmodel.client.MLModelClient.get_resource_name" title="Permalink to this definition"></a></dt>
 <dd><p>Get the ResourceName for this Resource with the given name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
-<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">my_arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
