@@ -138,7 +138,7 @@ Package Contents
       ::
 
           command = {"cmd": "test", "data1": 500}
-          result = component.do(command)
+          result = await component.do_command(command)
 
       :param command: The command to execute
       :type command: Mapping[str, ValueTypes]
