@@ -759,7 +759,8 @@ class RobotClient:
         queries: List[DiscoveryQuery],
     ) -> List[Discovery]:
         """
-        Get a list of discovered potential component configurations for webcam cameras, for example listing different supported resolutions. Returns module names for modules.
+        Get a list of discovered potential component configurations for webcam cameras, for example listing different supported resolutions.
+        Returns module names for modules.
 
         ::
 
