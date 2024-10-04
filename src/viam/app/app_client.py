@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 from enum import Enum
-from typing import Any, AsyncIterator, List, Literal, Mapping, Optional, Tuple, Union
+from typing import Any, AsyncIterator, Dict, List, Literal, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -205,9 +205,9 @@ class RobotPart:
     secret: str
     robot: str
     location_id: str
-    robot_config: Optional[Mapping[str, Any]]
+    robot_config: Optional[Dict[str, Any]]
     last_access: Optional[datetime]
-    user_supplied_info: Optional[Mapping[str, Any]]
+    user_supplied_info: Optional[Dict[str, Any]]
     main_part: bool
     fqdn: str
     local_fqdn: str
