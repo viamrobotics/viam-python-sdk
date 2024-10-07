@@ -8,7 +8,7 @@ on:
 
 jobs:
   license_finder:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     name: Audit 3rd-Party Licenses
     runs-on: ubuntu-latest
     timeout-minutes: 30
