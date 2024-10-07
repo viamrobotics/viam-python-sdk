@@ -8,7 +8,7 @@ on:
 
 jobs:
   license_finder:
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     name: Audit 3rd-Party Licenses
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -16,13 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
 
       - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11.5"
+        run: uv python install
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -30,12 +28,9 @@ jobs:
 
       - run: gem install license_finder
 
-      - name: Install package
-        run: poetry install --all-extras
-
       - name: Generate requirements.txt (exclude dev dependencies)
         run: |
-          poetry export -f requirements.txt --without-hashes > requirements.txt
+          uv pip compile pyproject.toml -o requirements.txt
           pip install -r requirements.txt
 
       - name: Run license finder

@@ -47,21 +47,18 @@ def service() -> MockProvisioning:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_network_list(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
             network_info = await client.get_network_list()
             assert network_info == NETWORK_INFO
 
-    @pytest.mark.asyncio
     async def test_get_smart_machine_status(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
             smart_machine_status = await client.get_smart_machine_status()
             assert smart_machine_status == SMART_MACHINE_STATUS_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_set_network_credentials(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
@@ -70,7 +67,6 @@ class TestClient:
             assert service.ssid == SSID
             assert service.psk == PSK
 
-    @pytest.mark.asyncio
     async def test_set_smart_machine_credentials(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)

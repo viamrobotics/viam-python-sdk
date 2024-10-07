@@ -14,7 +14,7 @@ class FileUploadServiceBase(abc.ABC):
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/proto.rpc.examples.fileupload.v1.FileUploadService/UploadFile': grpclib.const.Handler(self.UploadFile, grpclib.const.Cardinality.STREAM_STREAM, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileRequest, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileResponse)}
+        return {'/proto.rpc.examples.fileupload.v1.FileUploadService/UploadFile': grpclib.const.Handler(self.UploadFile, grpclib.const.Cardinality.STREAM_UNARY, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileRequest, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileResponse)}
 
 class UnimplementedFileUploadServiceBase(FileUploadServiceBase):
 
@@ -24,4 +24,4 @@ class UnimplementedFileUploadServiceBase(FileUploadServiceBase):
 class FileUploadServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
-        self.UploadFile = grpclib.client.StreamStreamMethod(channel, '/proto.rpc.examples.fileupload.v1.FileUploadService/UploadFile', proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileRequest, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileResponse)
+        self.UploadFile = grpclib.client.StreamUnaryMethod(channel, '/proto.rpc.examples.fileupload.v1.FileUploadService/UploadFile', proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileRequest, proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileResponse)

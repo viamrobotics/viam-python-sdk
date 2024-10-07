@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.generic import GenericClient, GenericRPCService
@@ -14,13 +13,11 @@ from .mocks.components import GEOMETRIES, MockGenericComponent
 class TestGenericComponent:
     generic = MockGenericComponent(name="generic")
 
-    @pytest.mark.asyncio
     async def test_do(self):
         result = await self.generic.do_command({"command": "args"}, timeout=1.82)
         assert result == {"command": True}
         assert self.generic.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         geometries = await self.generic.get_geometries()
         assert geometries == GEOMETRIES
@@ -34,7 +31,6 @@ class TestService:
         cls.manager = ResourceManager([cls.generic])
         cls.service = GenericRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericServiceStub(channel)
@@ -44,7 +40,6 @@ class TestService:
             assert result == {"command": True}
             assert self.generic.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericServiceStub(channel)
@@ -61,7 +56,6 @@ class TestClient:
         cls.manager = ResourceManager([cls.generic])
         cls.service = GenericRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericClient(self.name, channel)
@@ -69,7 +63,6 @@ class TestClient:
             assert result == {"command": True}
             assert self.generic.timeout == loose_approx(7.86)
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericClient(self.name, channel)

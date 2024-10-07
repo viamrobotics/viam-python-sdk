@@ -1,6 +1,6 @@
-from typing import Any, Dict, Protocol, runtime_checkable
-from string import ascii_lowercase
 from random import choice
+from string import ascii_lowercase
+from typing import Any, Dict, Protocol, runtime_checkable
 
 from grpclib.client import Channel
 
@@ -17,19 +17,19 @@ class ResourceRPCClientBase(Protocol):
     class Metadata:
         metadata: Dict[str, str] = {}
 
-        def enable_debug_logging(self, key: str = ''):
+        def enable_debug_logging(self, key: str = ""):
             """Enables server-side debug logging for resource methods.
 
             Args:
                 key (str): The key to associate debug logs with. If not provided, will default to a randomly generated string value.
             """
-            if key == '':
-                key = ''.join(choice(ascii_lowercase) for i in range(6))
-            self.metadata['dtname'] = key
+            if key == "":
+                key = "".join(choice(ascii_lowercase) for i in range(6))
+            self.metadata["dtname"] = key
 
         def disable_debug_logging(self):
             """Disables server-side debug logging for resource methods."""
-            del self.metadata['dtname']
+            del self.metadata["dtname"]
 
         def add_metadata(self, key: str, value: str):
             """Adds a key-value pair to the metadata"""

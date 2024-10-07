@@ -42,7 +42,7 @@ class TestViamImage:
         assert img4.height is None
 
     def test_bytes_to_depth_array(self):
-        with open(f"{os.path.dirname(__file__)}/../data/fakeDM.vnd.viam.dep", "rb") as depth_map:
+        with open(f"{os.path.dirname(__file__)}/data/fakeDM.vnd.viam.dep", "rb") as depth_map:
             img = ViamImage(depth_map.read(), CameraMimeType.VIAM_RAW_DEPTH)
         assert isinstance(img, ViamImage)
         standard_data = img.bytes_to_depth_array()

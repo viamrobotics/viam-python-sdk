@@ -39,20 +39,17 @@ def generic_service(gripper: Gripper) -> GenericRPCService:
 
 
 class TestGripper:
-    @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper):
         await gripper.open(timeout=1.82)
         assert gripper.opened is True
         assert gripper.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_grab(self, gripper: MockGripper):
         grabbed = await gripper.grab()
         assert gripper.opened is False
         assert isinstance(grabbed, bool)
         assert gripper.timeout is None
 
-    @pytest.mark.asyncio
     async def test_stop(self, gripper: MockGripper):
         assert gripper.is_stopped is True
         await gripper.open()
@@ -61,41 +58,35 @@ class TestGripper:
         assert gripper.is_stopped is True
         assert gripper.timeout == loose_approx(7.86)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, gripper: MockGripper):
         await gripper.open()
         assert await gripper.is_moving()
         await gripper.stop()
         assert not await gripper.is_moving()
 
-    @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper):
         command = {"command": "args"}
         resp = await gripper.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_status(self, gripper: MockGripper):
         await gripper.open()
         status = await create_status(gripper)
         assert status.name == gripper.get_resource_name(gripper.name)
         assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
-    @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper):
         assert gripper.extra is None
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await gripper.open(timeout=1.1, extra=extra)
         assert gripper.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, gripper: MockGripper):
         geometries = await gripper.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
@@ -104,7 +95,6 @@ class TestService:
             assert gripper.opened is True
             assert gripper.timeout == loose_approx(1.23)
 
-    @pytest.mark.asyncio
     async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
@@ -114,7 +104,6 @@ class TestService:
             assert isinstance(response.success, bool)
             assert gripper.timeout == loose_approx(4.56)
 
-    @pytest.mark.asyncio
     async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
@@ -129,7 +118,6 @@ class TestService:
             assert gripper.is_stopped is True
             assert gripper.timeout == loose_approx(7.89)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
@@ -139,7 +127,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.extra is None
@@ -149,7 +136,6 @@ class TestService:
             await client.Open(request)
             assert gripper.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
@@ -159,7 +145,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
@@ -169,7 +154,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
@@ -177,7 +161,6 @@ class TestClient:
             assert gripper.opened is True
             assert gripper.timeout == loose_approx(1.23)
 
-    @pytest.mark.asyncio
     async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
@@ -186,7 +169,6 @@ class TestClient:
             assert isinstance(grabbed, bool)
             assert gripper.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
@@ -198,7 +180,6 @@ class TestClient:
             assert gripper.is_stopped is True
             assert gripper.timeout == loose_approx(3.45)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
@@ -206,7 +187,6 @@ class TestClient:
             client = GripperClient(gripper.name, channel)
             assert await client.is_moving() is True
 
-    @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
@@ -214,7 +194,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.extra is None
@@ -223,7 +202,6 @@ class TestClient:
             await client.open(timeout=1.1, extra=extra)
             assert gripper.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)

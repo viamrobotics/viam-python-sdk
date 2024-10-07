@@ -44,7 +44,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = SetPowerRequest(name=self.name, power_pct=power, extra=dict_to_struct(extra))
         await self.client.SetPower(request, timeout=timeout, metadata=md)
 
@@ -57,7 +57,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GoForRequest(name=self.name, rpm=rpm, revolutions=revolutions, extra=dict_to_struct(extra))
         await self.client.GoFor(request, timeout=timeout, metadata=md)
 
@@ -70,7 +70,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GoToRequest(name=self.name, rpm=rpm, position_revolutions=position_revolutions, extra=dict_to_struct(extra))
         await self.client.GoTo(request, timeout=timeout, metadata=md)
 
@@ -82,7 +82,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = SetRPMRequest(name=self.name, rpm=rpm, extra=dict_to_struct(extra))
         await self.client.SetRPM(request, timeout=timeout, metadata=md)
 
@@ -94,7 +94,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = ResetZeroPositionRequest(name=self.name, offset=offset, extra=dict_to_struct(extra))
         await self.client.ResetZeroPosition(request, timeout=timeout, metadata=md)
 
@@ -105,7 +105,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> float:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.position
@@ -117,7 +117,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Motor.Properties:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
         return Motor.Properties(position_reporting=response.position_reporting)
@@ -129,7 +129,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout, metadata=md)
 
@@ -140,13 +140,13 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[bool, float]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = IsPoweredRequest(name=self.name, extra=dict_to_struct(extra))
         response: IsPoweredResponse = await self.client.IsPowered(request, timeout=timeout, metadata=md)
         return response.is_on, response.power_pct
 
     async def is_moving(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout, metadata=md)
         return response.is_moving
@@ -158,11 +158,11 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

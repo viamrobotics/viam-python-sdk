@@ -7,7 +7,6 @@ import pytest
 from viam.operations import METADATA_KEY, Operation, run_with_operation
 
 
-@pytest.mark.asyncio
 async def test_is_cancelled():
     event = asyncio.Event()
     opid = Operation("test-opid-0", event)
@@ -24,7 +23,6 @@ async def test_is_cancelled():
     assert await opid.is_cancelled() is True
 
 
-@pytest.mark.asyncio
 async def test_wrapper():
     class TestWrapperClass:
         long_running_task_cancelled = False
@@ -60,7 +58,6 @@ async def test_wrapper():
     assert await asyncio.create_task(test_obj.long_running(timeout=0.02)) is True
 
 
-@pytest.mark.asyncio
 async def test_wrapper_with_metadata():
     test_metadata_opid = "11111111-1111-1111-1111-111111111111"
 

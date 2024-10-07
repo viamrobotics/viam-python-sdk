@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
@@ -27,60 +26,50 @@ from .mocks.components import GEOMETRIES, MockGantry
 class TestGantry:
     gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         pos = await self.gantry.get_position()
         assert pos == [1, 2, 3]
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         await self.gantry.move_to_position([1, 8, 2], [3, 9, 12])
         assert self.gantry.position == [1, 8, 2]
 
-    @pytest.mark.asyncio
     async def test_get_lengths(self):
         lengths = await self.gantry.get_lengths()
         assert lengths == [4, 5, 6]
 
-    @pytest.mark.asyncio
     async def test_home(self):
         homed = await self.gantry.home()
         assert homed is True
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.gantry.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         assert self.gantry.is_stopped is False
         await self.gantry.stop()
         assert self.gantry.is_stopped is True
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         await self.gantry.move_to_position([1, 8, 2], [3, 9, 12])
         assert await self.gantry.is_moving()
         await self.gantry.stop()
         assert not await self.gantry.is_moving()
 
-    @pytest.mark.asyncio
     async def test_status(self):
         await self.gantry.move_to_position([1, 2, 3], [4, 5, 6])
         status = await create_status(self.gantry)
         assert status.name == MockGantry.get_resource_name(self.gantry.name)
         assert status.status == message_to_struct(GantryStatus(lengths_mm=[4, 5, 6], positions_mm=[1, 2, 3], is_moving=True))
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         assert self.gantry.extra is None or len(self.gantry.extra) == 0
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await self.gantry.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
         assert self.gantry.extra == extra
 
-    @pytest.mark.asyncio
     async def test_timeout(self):
         assert self.gantry.timeout is None
 
@@ -96,7 +85,6 @@ class TestGantry:
         await self.gantry.stop(timeout=4.4)
         assert self.gantry.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         geometries = await self.gantry.get_geometries()
         assert geometries == GEOMETRIES
@@ -109,7 +97,6 @@ class TestService:
         cls.manager = ResourceManager([cls.gantry])
         cls.service = GantryRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -118,7 +105,6 @@ class TestService:
             assert list(response.positions_mm) == [1, 2, 3]
             assert self.gantry.timeout == loose_approx(9.87)
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -128,7 +114,6 @@ class TestService:
             assert self.gantry.speeds == [3, 9, 12]
             assert self.gantry.timeout == loose_approx(18.2)
 
-    @pytest.mark.asyncio
     async def test_home(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -137,7 +122,6 @@ class TestService:
             assert response.homed is True
             assert self.gantry.timeout == loose_approx(18.2)
 
-    @pytest.mark.asyncio
     async def test_get_lengths(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -146,7 +130,6 @@ class TestService:
             assert list(response.lengths_mm) == [4, 5, 6]
             assert self.gantry.timeout == loose_approx(3.3)
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.is_stopped is False
@@ -156,7 +139,6 @@ class TestService:
             assert self.gantry.is_stopped is True
             assert self.gantry.timeout == loose_approx(1.1)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.is_stopped is True
@@ -166,7 +148,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.extra is None or len(self.gantry.extra) == 0
@@ -176,7 +157,6 @@ class TestService:
             await client.Stop(request)
             assert self.gantry.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -186,7 +166,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -202,7 +181,6 @@ class TestClient:
         cls.manager = ResourceManager([cls.gantry])
         cls.service = GantryRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
@@ -210,7 +188,6 @@ class TestClient:
             assert pos == [1, 2, 3]
             assert self.gantry.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
@@ -219,7 +196,6 @@ class TestClient:
             assert self.gantry.speeds == [3, 9, 12]
             assert self.gantry.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_home(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
@@ -227,7 +203,6 @@ class TestClient:
             assert homed is True
             assert self.gantry.timeout == loose_approx(5.5)
 
-    @pytest.mark.asyncio
     async def test_get_lengths(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
@@ -235,7 +210,6 @@ class TestClient:
             assert lengths == [4, 5, 6]
             assert self.gantry.timeout == loose_approx(5.5)
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
@@ -243,7 +217,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.is_stopped is False
@@ -252,7 +225,6 @@ class TestClient:
             assert self.gantry.is_stopped is True
             assert self.gantry.timeout is None
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.is_stopped is True
@@ -260,7 +232,6 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             assert await client.is_moving() is True
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.extra is None or len(self.gantry.extra) == 0
@@ -269,7 +240,6 @@ class TestClient:
             await client.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
             assert self.gantry.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)

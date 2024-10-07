@@ -28,7 +28,7 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, Any]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         try:
             response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
@@ -53,6 +53,6 @@ async def do_command(
     Returns:
         Dict[str, Any]: The result of the executed command
     """
-    md = kwargs.get('metadata', ResourceRPCClientBase.Metadata()).proto
+    md = kwargs.get("metadata", ResourceRPCClientBase.Metadata()).proto
     client = GenericClient(name, channel)
     return await client.do_command(command, timeout=timeout, metadata=md)

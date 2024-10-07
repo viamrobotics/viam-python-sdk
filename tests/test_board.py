@@ -68,7 +68,6 @@ def generic_service(board: MockBoard) -> GenericRPCService:
 
 
 class TestBoard:
-    @pytest.mark.asyncio
     async def test_analog_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
             await board.analog_by_name("does not exist")
@@ -76,7 +75,6 @@ class TestBoard:
         reader = await board.analog_by_name("reader1")
         assert reader.name == "reader1"
 
-    @pytest.mark.asyncio
     async def test_digital_interrupt_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
             await board.digital_interrupt_by_name("does not exist")
@@ -84,7 +82,6 @@ class TestBoard:
         interrupt = await board.digital_interrupt_by_name("interrupt1")
         assert interrupt.name == "interrupt1"
 
-    @pytest.mark.asyncio
     async def test_gpio_pin_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
             await board.digital_interrupt_by_name("does not exist")
@@ -92,23 +89,19 @@ class TestBoard:
         pin = await board.gpio_pin_by_name("pin1")
         assert pin.name == "pin1"
 
-    @pytest.mark.asyncio
     async def test_analog_names(self, board: MockBoard):
         names = await board.analog_names()
         assert names == ["reader1", "writer1"]
 
-    @pytest.mark.asyncio
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
         assert names == ["interrupt1"]
 
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
         status = await create_status(board)
         read1 = await board.analogs["reader1"].read()
@@ -124,7 +117,6 @@ class TestBoard:
             )
         )
 
-    @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard):
         pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
         pm_duration = timedelta(minutes=1)
@@ -133,12 +125,10 @@ class TestBoard:
         assert board.power_mode == pm_mode
         assert board.power_mode_duration == pm_duration
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, board: MockBoard):
         geometries = await board.get_geometries()
         assert geometries == GEOMETRIES
 
-    @pytest.mark.asyncio
     async def test_write_analog(self, board: MockBoard):
         value = 10
         pin = "writer1"
@@ -148,7 +138,6 @@ class TestBoard:
         assert writer.value == value
         assert writer.name == pin
 
-    @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
         int1 = board.digital_interrupts["interrupt1"]
         async for tick in await board.stream_ticks([int1]):
@@ -158,7 +147,6 @@ class TestBoard:
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_read_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -179,7 +167,6 @@ class TestService:
             assert reader.extra == extra
             assert reader.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_get_digital_interrupt_value(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -192,7 +179,6 @@ class TestService:
             response: GetDigitalInterruptValueResponse = await client.GetDigitalInterruptValue(request)
             assert response.value == 0
 
-    @pytest.mark.asyncio
     async def test_set_gpio(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -206,7 +192,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout == loose_approx(4.1)
 
-    @pytest.mark.asyncio
     async def test_get_gpio(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -224,7 +209,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -238,7 +222,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout == loose_approx(7.86)
 
-    @pytest.mark.asyncio
     async def test_set_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -252,7 +235,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout == loose_approx(1.213)
 
-    @pytest.mark.asyncio
     async def test_pwm_frequency(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -266,7 +248,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout == loose_approx(182)
 
-    @pytest.mark.asyncio
     async def test_set_pwm_freq(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -280,7 +261,6 @@ class TestService:
             assert pin.extra == extra
             assert pin.timeout is None
 
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -290,7 +270,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -298,7 +277,6 @@ class TestService:
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
 
-    @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -312,7 +290,6 @@ class TestService:
             assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
             assert board.power_mode_duration == pm_duration.ToTimedelta()
 
-    @pytest.mark.asyncio
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -326,7 +303,7 @@ class TestService:
             assert mock_analog.value == value
             assert mock_analog.name == pin
 
-    # @pytest.mark.asyncio
+    #
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -344,7 +321,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_analog_by_name(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -357,7 +333,6 @@ class TestClient:
             reader = await client.analog_by_name("reader1")
             assert reader.name == "reader1"
 
-    @pytest.mark.asyncio
     async def test_digital_interrupt_by_name(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -370,7 +345,6 @@ class TestClient:
             interrupt = await client.digital_interrupt_by_name("interrupt1")
             assert interrupt.name == "interrupt1"
 
-    @pytest.mark.asyncio
     async def test_gpio_pin_by_name(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -383,7 +357,6 @@ class TestClient:
             pin = await client.gpio_pin_by_name("pin1")
             assert pin.name == "pin1"
 
-    @pytest.mark.asyncio
     async def test_analog_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -394,7 +367,6 @@ class TestClient:
             names = await client.analog_names()
             assert names == ["reader1"]
 
-    @pytest.mark.asyncio
     async def test_digital_interrupt_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -405,7 +377,6 @@ class TestClient:
             names = await client.digital_interrupt_names()
             assert names == ["interrupt1"]
 
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(board.name, channel)
@@ -413,7 +384,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -426,7 +396,6 @@ class TestClient:
             pm_duration.FromTimedelta(pm_timedelta)
             assert board.power_mode_duration == pm_duration.ToTimedelta()
 
-    @pytest.mark.asyncio
     async def test_extra(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(board.name, channel)
@@ -435,7 +404,6 @@ class TestClient:
 
 
 class TestGPIOPinClient:
-    @pytest.mark.asyncio
     async def test_set(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -448,7 +416,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_get(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -460,7 +427,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout is None
 
-    @pytest.mark.asyncio
     async def test_set_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -472,7 +438,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout == loose_approx(3.23)
 
-    @pytest.mark.asyncio
     async def test_get_pwm(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -484,7 +449,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout == loose_approx(1.2345)
 
-    @pytest.mark.asyncio
     async def test_set_pwm_frequency(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -496,7 +460,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout == loose_approx(4.341)
 
-    @pytest.mark.asyncio
     async def test_get_pwm_freq(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -508,7 +471,6 @@ class TestGPIOPinClient:
             assert mock_pin.extra == extra
             assert mock_pin.timeout is None
 
-    @pytest.mark.asyncio
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
@@ -521,7 +483,6 @@ class TestGPIOPinClient:
             assert mock_analog.value == 42
             assert mock_analog.extra == extra
 
-    @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)

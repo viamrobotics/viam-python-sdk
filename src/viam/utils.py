@@ -169,11 +169,11 @@ def datetime_to_timestamp(dt: Optional[datetime]) -> Optional[Timestamp]:
 
 
 async def get_geometries(
-        client: SupportsGetGeometries,
-        name: str,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        metadata: ResourceRPCClientBase.Metadata = ResourceRPCClientBase.Metadata(),
+    client: SupportsGetGeometries,
+    name: str,
+    extra: Optional[Dict[str, Any]] = None,
+    timeout: Optional[float] = None,
+    metadata: ResourceRPCClientBase.Metadata = ResourceRPCClientBase.Metadata(),
 ) -> List[Geometry]:
     md = metadata.proto
     request = GetGeometriesRequest(name=name, extra=dict_to_struct(extra))

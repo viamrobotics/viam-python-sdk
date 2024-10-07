@@ -24,22 +24,19 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.bump_version.outputs.version }}
+      version: ${{ steps.set_version.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
 
       - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: poetry
+        run: uv python install 3.12
 
       - name: Install Package
-        run: poetry install --all-extras
+        run: uv sync --all-extras
 
       - name: Clean Format Test
         run: make clean format typecheck test
@@ -47,10 +44,14 @@ jobs:
       - name: Bump Version
         id: bump_version
         shell: bash
+        if: inputs.version != '-s'
+        run: uvx hatch version ${{ inputs.version }}
+
+      - name: Set Version
+        id: set_version
         run: |
-          poetry version ${{ inputs.version }}
-          echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
-          echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
+          echo "SDK_VERSION=$(uvx hatch version)" >> $GITHUB_ENV
+          echo "version=$(uvx hatch version)" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4

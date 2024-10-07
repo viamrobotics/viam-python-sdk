@@ -76,7 +76,7 @@ class ResourceBase(Protocol):
         ::
 
             command = {"cmd": "test", "data1": 500}
-            result = await component.do_command(command)
+            result = component.do(command)
 
         Args:
             command (Mapping[str, ValueTypes]): The command to execute

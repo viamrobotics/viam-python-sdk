@@ -55,7 +55,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> CaptureAllResult:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = CaptureAllFromCameraRequest(
             name=self.name,
             camera_name=camera_name,
@@ -88,7 +88,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[Detection]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetDetectionsFromCameraRequest(name=self.name, camera_name=camera_name, extra=dict_to_struct(extra))
         response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout, metadata=md)
         return list(response.detections)
@@ -101,7 +101,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[Detection]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         mime_type = CameraMimeType.JPEG
 
         if image.width is None or image.height is None:
@@ -127,10 +127,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[Classification]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, n=count, extra=dict_to_struct(extra))
         response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(
-                request, timeout=timeout, metadata=md)
+            request, timeout=timeout, metadata=md
+        )
         return list(response.classifications)
 
     async def get_classifications(
@@ -142,7 +143,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[Classification]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         mime_type = CameraMimeType.JPEG
         if image.width is None or image.height is None:
@@ -167,7 +168,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[PointCloudObject]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetObjectPointCloudsRequest(
             name=self.name,
             camera_name=camera_name,
@@ -184,7 +185,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Vision.Properties:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(
             name=self.name,
             extra=dict_to_struct(extra),
@@ -199,7 +200,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

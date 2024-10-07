@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
@@ -38,64 +37,53 @@ class TestArm:
     joint_pos = JointPositions(values=[1, 8, 2])
     kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         await self.arm.move_to_position(self.pose)
         assert self.arm.position == self.pose
 
-    @pytest.mark.asyncio
     async def test_get_end_position(self):
         pos = await self.arm.get_end_position()
         assert pos == self.pose
 
-    @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
         await self.arm.move_to_joint_positions(self.joint_pos)
         assert self.arm.joint_positions == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         assert self.arm.is_stopped is False
         await self.arm.stop()
         assert self.arm.is_stopped is True
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         await self.arm.move_to_position(self.pose)
         assert await self.arm.is_moving()
         await self.arm.stop()
         assert not await self.arm.is_moving()
 
-    @pytest.mark.asyncio
     async def test_get_kinematics(self):
         kd = await self.arm.get_kinematics(extra={"1": "2"})
         assert kd == self.kinematics
         assert self.arm.extra == {"1": "2"}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         geometries = await self.arm.get_geometries()
         assert geometries == GEOMETRIES
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_status(self):
         await self.arm.move_to_position(self.pose)
         status = await create_status(self.arm)
         assert status.name == MockArm.get_resource_name(self.arm.name)
         assert status.status == message_to_struct(ArmStatus(end_position=self.pose, joint_positions=self.joint_pos, is_moving=True))
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         await self.arm.get_end_position(extra={"foo": "bar"})
         assert self.arm.extra == {"foo": "bar"}
@@ -112,7 +100,6 @@ class TestService:
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -120,7 +107,6 @@ class TestService:
             await client.MoveToPosition(request)
             assert self.arm.position == self.pose
 
-    @pytest.mark.asyncio
     async def test_get_end_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -128,7 +114,6 @@ class TestService:
             response: GetEndPositionResponse = await client.GetEndPosition(request)
             assert response.pose == self.pose
 
-    @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -136,7 +121,6 @@ class TestService:
             await client.MoveToJointPositions(request)
             assert self.arm.joint_positions == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -144,7 +128,6 @@ class TestService:
             response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -155,7 +138,6 @@ class TestService:
             assert self.arm.is_stopped is True
             assert self.arm.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is True
@@ -165,7 +147,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -175,7 +156,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -183,7 +163,6 @@ class TestService:
             response: GetKinematicsResponse = await client.GetKinematics(request)
             assert (response.format, response.kinematics_data) == self.kinematics
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -191,7 +170,6 @@ class TestService:
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -212,35 +190,30 @@ class TestClient:
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
-    @pytest.mark.asyncio
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             await client.move_to_position(self.pose)
             assert self.arm.position == self.pose
 
-    @pytest.mark.asyncio
     async def test_get_end_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             pos = await client.get_end_position()
             assert pos == self.pose
 
-    @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             await client.move_to_joint_positions(self.joint_pos)
             assert self.arm.joint_positions == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
@@ -250,7 +223,6 @@ class TestClient:
             assert self.arm.is_stopped is True
             assert self.arm.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
@@ -258,7 +230,6 @@ class TestClient:
             self.arm.is_stopped = False
             assert await client.is_moving() is True
 
-    @pytest.mark.asyncio
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
@@ -266,14 +237,12 @@ class TestClient:
             assert kd == self.kinematics
             assert self.arm.extra == {"1": "2"}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
@@ -281,7 +250,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)

@@ -103,7 +103,7 @@ class Servo(ComponentBase):
 
             my_servo = Servo.from_robot(robot=robot, name="my_servo")
 
-            print(await my_servo.is_moving())
+            print(my_servo.is_moving())
 
 
         Returns:

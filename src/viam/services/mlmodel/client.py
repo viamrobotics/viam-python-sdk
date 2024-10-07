@@ -17,13 +17,13 @@ class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
         super().__init__(name)
 
     async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, NDArray]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = InferRequest(name=self.name, input_tensors=ndarrays_to_flat_tensors(input_tensors))
         response: InferResponse = await self.client.Infer(request, timeout=timeout, metadata=md)
         return flat_tensors_to_ndarrays(response.output_tensors)
 
     async def metadata(self, *, timeout: Optional[float] = None, **kwargs) -> Metadata:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MetadataRequest(name=self.name)
         response: MetadataResponse = await self.client.Metadata(request, timeout=timeout, metadata=md)
         return response.metadata

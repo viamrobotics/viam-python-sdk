@@ -67,6 +67,7 @@ To create a client application, to navigate to [app.viam.com](https://app.viam.c
 1. Create a location (for example `home`)
 2. Create a robot (for example `arduino`)
 3. Follow the steps on the setup tab:
+
    1. Setup Viam App Config on Single Board Computer (SBC)
    2. Download and Install Viam Server
    3. Wait until the robot shows as connected. If this doesn't happen try restarting the viam-server:
@@ -127,6 +128,6 @@ The SDK provides a number of abstract base components and services (collectively
 
 ## License
 
-Copyright 2021-2023 Viam Inc.
+Copyright 2021-2024 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE) file

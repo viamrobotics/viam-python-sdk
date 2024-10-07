@@ -138,14 +138,12 @@ def service(vision: MockVision) -> VisionRPCService:
 
 
 class TestVision:
-    @pytest.mark.asyncio
     async def test_get_properties(self, vision: MockVision):
         extra = {"foo": "get_properties"}
         response = await vision.get_properties(extra=extra)
         assert response == PROPERTIES
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_capture_all_from_camera(self, vision: MockVision):
         extra = {"foo": "capture_all_from_camera"}
         response = await vision.capture_all_from_camera(
@@ -162,42 +160,36 @@ class TestVision:
         assert response.objects is None
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections_from_camera(self, vision: MockVision):
         extra = {"foo": "get_detections_from_camera"}
         response = await vision.get_detections_from_camera("fake-camera", extra=extra)
         assert response == DETECTIONS
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections(self, vision: MockVision):
         extra = {"foo": "get_detections"}
         response = await vision.get_detections(IMAGE, extra=extra)
         assert response == DETECTIONS
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications_from_camera(self, vision: MockVision):
         extra = {"foo": "get_classifications_from_camera"}
         response = await vision.get_classifications_from_camera("fake-camera", 1, extra=extra)
         assert response == CLASSIFICATIONS
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications(self, vision: MockVision):
         extra = {"foo": "get_classifications"}
         response = await vision.get_classifications(IMAGE, 1, extra=extra)
         assert response == CLASSIFICATIONS
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_object_point_clouds(self, vision: MockVision):
         extra = {"foo": "get_object_point_clouds"}
         response = await vision.get_object_point_clouds("camera", extra=extra)
         assert response == POINT_CLOUDS
         assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, vision: MockVision):
         command = {"command": "args"}
         response = await vision.do_command(command)
@@ -205,7 +197,6 @@ class TestVision:
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_capture_all_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -221,7 +212,6 @@ class TestService:
             assert response.objects == []
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -233,7 +223,6 @@ class TestService:
             assert response.object_point_clouds_supported == PROPERTIES.object_point_clouds_supported
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -243,7 +232,6 @@ class TestService:
             assert response.detections == DETECTIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -260,7 +248,6 @@ class TestService:
             assert response.detections == DETECTIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -270,7 +257,6 @@ class TestService:
             assert response.classifications == CLASSIFICATIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -288,7 +274,6 @@ class TestService:
             assert response.classifications == CLASSIFICATIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_object_point_clouds(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -303,7 +288,6 @@ class TestService:
             assert response.objects == POINT_CLOUDS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
@@ -314,7 +298,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_properties(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -323,7 +306,6 @@ class TestClient:
             assert response == PROPERTIES
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_capture_all_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -342,7 +324,6 @@ class TestClient:
             assert response.objects == POINT_CLOUDS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -351,7 +332,6 @@ class TestClient:
             assert response == DETECTIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_detections(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -360,7 +340,6 @@ class TestClient:
             assert response == DETECTIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications_from_camera(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -369,7 +348,6 @@ class TestClient:
             assert response == CLASSIFICATIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -378,7 +356,6 @@ class TestClient:
             assert response == CLASSIFICATIONS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_object_point_clouds(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
@@ -387,7 +364,6 @@ class TestClient:
             assert response == POINT_CLOUDS
             assert vision.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)

@@ -44,7 +44,7 @@ def motion():
             constraints: Optional[Constraints] = None,
             *,
             extra: Optional[Mapping[str, Any]] = None,
-            timeout: Optional[float] = None
+            timeout: Optional[float] = None,
         ) -> bool:
             raise NotImplementedError
 
@@ -59,7 +59,7 @@ def motion():
             *,
             bounding_regions: Optional[Sequence[GeoGeometry]] = None,
             extra: Optional[Mapping[str, ValueTypes]] = None,
-            timeout: Optional[float] = None
+            timeout: Optional[float] = None,
         ) -> str:
             raise NotImplementedError
 
@@ -72,7 +72,7 @@ def motion():
             obstacles: Optional[Sequence[Geometry]] = None,
             *,
             extra: Optional[Mapping[str, ValueTypes]] = None,
-            timeout: Optional[float] = None
+            timeout: Optional[float] = None,
         ) -> str:
             raise NotImplementedError
 
@@ -88,7 +88,7 @@ def motion():
             execution_id: Optional[str] = None,
             *,
             extra: Optional[Mapping[str, ValueTypes]] = None,
-            timeout: Optional[float] = None
+            timeout: Optional[float] = None,
         ) -> GetPlanResponse:
             raise NotImplementedError
 
@@ -104,7 +104,7 @@ def motion():
             supplemental_transforms: Optional[Sequence[Transform]] = None,
             *,
             extra: Optional[Mapping[str, Any]] = None,
-            timeout: Optional[float] = None
+            timeout: Optional[float] = None,
         ) -> PoseInFrame:
             raise NotImplementedError
 
@@ -117,7 +117,6 @@ def service(motion: Motion) -> MotionRPCService:
 
 
 class TestMotionService:
-    @pytest.mark.asyncio
     async def test_move(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move") as patched_method:
             patched_method.return_value = True
@@ -146,7 +145,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_get_pose(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "get_pose") as patched_method:
             response = PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
@@ -167,7 +165,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_move_on_map(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move_on_map") as patched_method:
             resopnse = "Move On Map Response"
@@ -200,7 +197,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_move_on_globe(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "move_on_globe") as patched_method:
             response = "Move On Globe Response"
@@ -239,7 +235,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_stop_plan(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "stop_plan") as patched_method:
             async with ChannelFor([service]) as channel:
@@ -253,7 +248,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_get_plan(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "get_plan") as patched_method:
             response = GetPlanResponse(
@@ -305,7 +299,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_list_plan_statuses(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "list_plan_statuses") as patched_method:
             response = [PlanStatusWithID(plan_id="lpsr_pswid")]
@@ -325,7 +318,6 @@ class TestMotionService:
                 assert patched_method.call_args.kwargs["extra"] == extra
                 assert patched_method.call_args.kwargs["timeout"] == loose_approx(timeout)
 
-    @pytest.mark.asyncio
     async def test_do(self, motion: Motion, service: MotionRPCService):
         with patch.object(motion, "do_command") as patched_method:
             response = {"do": "command"}

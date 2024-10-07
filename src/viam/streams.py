@@ -11,8 +11,7 @@ StreamType = TypeVar("StreamType", covariant=True)
 
 
 class Stream(Protocol[StreamType]):
-    async def next(self) -> StreamType:
-        ...
+    async def next(self) -> StreamType: ...
 
     def __aiter__(self) -> AsyncIterator:
         return self
@@ -22,13 +21,11 @@ class Stream(Protocol[StreamType]):
 
 
 class StreamReader(Protocol[StreamType]):
-    async def read(self) -> StreamType:
-        ...
+    async def read(self) -> StreamType: ...
 
 
 class StreamSource(Protocol[StreamType]):
-    async def stream(self) -> Stream[StreamType]:
-        ...
+    async def stream(self) -> Stream[StreamType]: ...
 
 
 class StreamWithIterator(Stream[StreamType]):
