@@ -9,7 +9,7 @@ from .board import Board, Tick, TickStream
 from .client import BoardClient
 from .service import BoardRPCService
 
-__all__ = ["Board"]
+__all__ = ["Board", "Tick", "TickStream"]
 
 
 async def create_status(component: Board) -> Status:
