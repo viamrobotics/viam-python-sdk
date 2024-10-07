@@ -1,6 +1,10 @@
 [project]
 name = "viam-sdk"
-description = "Add your description here"
+description = "Viam Robotics Python SDK"
+authors = [
+	{name = "Naveed Jooma", email = "naveed@viam.com" }
+]
+license = "Apache-2.0"
 readme = "README.md"
 requires-python = ">=3.8.1"
 dynamic = [
@@ -12,6 +16,12 @@ dependencies = [
     "protobuf==5.28.2",
     "typing-extensions>=4.12.2",
 ]
+
+[project.urls]
+Homepage = "https://www.viam.com"
+Documentation = "https://python.viam.dev"
+Repository = "https://github.com/viamrobotics/viam-python-sdk"
+
 [project.optional-dependencies]
 mlmodel = [
 	"numpy"
@@ -26,6 +36,7 @@ path = "src/viam/version_metadata.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/viam"]
+artifacts = ["src/viam/rpc/libviam_rust_utils.*"]
 
 [tool.uv]
 dev-dependencies = [

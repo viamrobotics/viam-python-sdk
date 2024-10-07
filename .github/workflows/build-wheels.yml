@@ -71,7 +71,7 @@ jobs:
         run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
 
       - name: Build
-        run: uv build
+        run: uv build --wheel
 
       - name: Rename
         run: |
