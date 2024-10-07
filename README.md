@@ -45,7 +45,7 @@ The Viam Python SDK uses native libraries to support communication over WebRTC, 
    - If you provided the `--release` flag, the enclosing directory will be `release`: `rust-utils/target/release/libviam_rust_utils.*`
    - The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam_rust_utils.dylib`, whereas on Linux it will be `libviam_rust_utils.so`
 1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
-1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
+1. From the `viam-python-sdk` directory, run `uv build --wheel` to create an installable package
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, for example: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 
 If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the [releases](https://github.com/viamrobotics/rust-utils/releases/latest) page of the rust-utils library.
@@ -53,7 +53,7 @@ If you have a macOS or Linux based operating system and do not want to build rus
 If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
 
 1. Download/clone this repository
-1. Run `poetry build` from the `viam-python-sdk` directory
+1. Run `uv build --wheel` from the `viam-python-sdk` directory
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, for example: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 1. Ensure that every connection has the option `disable_webrtc` set to `True`: `viam.rpc.dial.DialOptions(disable_webrtc=True)`
    - For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)

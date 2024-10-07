@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "The type of version bump. Use `-s` for no change. See docs for details: https://python-poetry.org/docs/cli/#version"
+        description: "The type of version bump. Use `-s` for no change. See docs for details: https://hatch.pypa.io/latest/version/#supported-segments"
         type: choice
         required: true
         default: "-s"
@@ -12,12 +12,15 @@ on:
           - major
           - minor
           - patch
-          - premajor
-          - preminor
-          - prepatch
-          - prerelease
-          - prerelease --next-phase
           - "-s"
+      prerelease:
+        description: "If this is a prerelease and which type. See docs for details: https://hatch.pypa.io/latest/version/#supported-segments"
+        type: choice
+        required: false
+        options:
+          - "alpha"
+          - "beta"
+          - "rc"
 
 jobs:
   prepare:
@@ -39,13 +42,19 @@ jobs:
         run: uv sync --all-extras
 
       - name: Clean Format Test
-        run: make clean format typecheck test
+        run: uv run make clean format typecheck test
 
       - name: Bump Version
         id: bump_version
         shell: bash
-        if: inputs.version != '-s'
-        run: uvx hatch version ${{ inputs.version }}
+        if: inputs.version != '-s' && inputs.prerelease
+        run: echo "ABC" && uvx hatch version ${{ inputs.version }},${{ inputs.prerelease }}
+
+      - name: Bump Version
+        id: bump_version
+        shell: bash
+        if: inputs.version != '-s' && !inputs.prerelease
+        run: echo "DEF" && uvx hatch version ${{ inputs.version }}
 
       - name: Set Version
         id: set_version

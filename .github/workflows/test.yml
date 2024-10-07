@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout Push/Workflow Dispatch
         if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout PR
         if: github.event_name == 'pull_request_target'
         uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         run: make install
 
       - name: Install minimum package versions
-        run: poetry run pip install -r requirements-test.txt
+        run: uv pip install -r requirements-test.txt
         if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Type Check
