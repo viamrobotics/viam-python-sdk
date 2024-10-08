@@ -85,17 +85,21 @@ class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._Enu
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     VISIBILITY_UNSPECIFIED: _Visibility.ValueType
     VISIBILITY_PRIVATE: _Visibility.ValueType
-    'Private modules are visible only within your org'
+    'Private registry items are visible only within the owning org'
     VISIBILITY_PUBLIC: _Visibility.ValueType
-    'Public modules are visible to everyone'
+    'Public registry items are visible to everyone'
+    VISIBILITY_PUBLIC_UNLISTED: _Visibility.ValueType
+    "Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 
 class Visibility(_Visibility, metaclass=_VisibilityEnumTypeWrapper):
     ...
 VISIBILITY_UNSPECIFIED: Visibility.ValueType
 VISIBILITY_PRIVATE: Visibility.ValueType
-'Private modules are visible only within your org'
+'Private registry items are visible only within the owning org'
 VISIBILITY_PUBLIC: Visibility.ValueType
-'Public modules are visible to everyone'
+'Public registry items are visible to everyone'
+VISIBILITY_PUBLIC_UNLISTED: Visibility.ValueType
+"Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 global___Visibility = Visibility
 
 @typing.final
@@ -2474,10 +2478,13 @@ class ModuleVersion(google.protobuf.message.Message):
     FILES_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
     'The entrypoint for this version of the module'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -2487,10 +2494,16 @@ class ModuleVersion(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'models', b'models', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___ModuleVersion = ModuleVersion
 
@@ -2500,8 +2513,11 @@ class ModuleMetadata(google.protobuf.message.Message):
     MODELS_FIELD_NUMBER: builtins.int
     VERSIONS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
@@ -2513,10 +2529,16 @@ class ModuleMetadata(google.protobuf.message.Message):
         When this is returned from the backend, the versions are sorted in ascending order by the semver version
         """
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'models', b'models', 'versions', b'versions']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'versions', b'versions']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___ModuleMetadata = ModuleMetadata
 
@@ -2919,6 +2941,7 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     DESCRIPTION_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     visibility: global___Visibility.ValueType
@@ -2929,15 +2952,23 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     'A short description of the module that explains its purpose'
     entrypoint: builtins.str
     'The executable to run to start the module program'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
 
@@ -3079,6 +3110,7 @@ class Module(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     name: builtins.str
@@ -3099,6 +3131,8 @@ class Module(google.protobuf.message.Message):
     'The executable to run to start the module program'
     public_namespace: builtins.str
     'The public namespace of the organization that owns the module\n    This is empty if no public namespace is set\n    '
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]:
@@ -3110,10 +3144,16 @@ class Module(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___Module = Module
 
@@ -3124,10 +3164,13 @@ class VersionHistory(google.protobuf.message.Message):
     FILES_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
     'The entrypoint for this version of the module'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -3137,10 +3180,16 @@ class VersionHistory(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'models', b'models', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___VersionHistory = VersionHistory
 

@@ -300,6 +300,15 @@ class AnswerRequestErrorStage(google.protobuf.message.Message):
 global___AnswerRequestErrorStage = AnswerRequestErrorStage
 
 @typing.final
+class AnswerRequestHeartbeatStage(google.protobuf.message.Message):
+    """AnswerRequestHeartbeatStage is sent periodically to verify liveness of answerer."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___AnswerRequestHeartbeatStage = AnswerRequestHeartbeatStage
+
+@typing.final
 class AnswerRequest(google.protobuf.message.Message):
     """AnswerRequest is the SDP offer that the controlling side is making via the answering
     stream.
@@ -310,6 +319,7 @@ class AnswerRequest(google.protobuf.message.Message):
     UPDATE_FIELD_NUMBER: builtins.int
     DONE_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
+    HEARTBEAT_FIELD_NUMBER: builtins.int
     uuid: builtins.str
 
     @property
@@ -328,16 +338,20 @@ class AnswerRequest(google.protobuf.message.Message):
     def error(self) -> global___AnswerRequestErrorStage:
         """error is sent any time before done"""
 
-    def __init__(self, *, uuid: builtins.str=..., init: global___AnswerRequestInitStage | None=..., update: global___AnswerRequestUpdateStage | None=..., done: global___AnswerRequestDoneStage | None=..., error: global___AnswerRequestErrorStage | None=...) -> None:
+    @property
+    def heartbeat(self) -> global___AnswerRequestHeartbeatStage:
+        """heartbeat is sent periodically to verify liveness of answerer"""
+
+    def __init__(self, *, uuid: builtins.str=..., init: global___AnswerRequestInitStage | None=..., update: global___AnswerRequestUpdateStage | None=..., done: global___AnswerRequestDoneStage | None=..., error: global___AnswerRequestErrorStage | None=..., heartbeat: global___AnswerRequestHeartbeatStage | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['done', b'done', 'error', b'error', 'heartbeat', b'heartbeat', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update', 'uuid', b'uuid']) -> None:
+    def ClearField(self, field_name: typing.Literal['done', b'done', 'error', b'error', 'heartbeat', b'heartbeat', 'init', b'init', 'stage', b'stage', 'update', b'update', 'uuid', b'uuid']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing.Literal['stage', b'stage']) -> typing.Literal['init', 'update', 'done', 'error'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['stage', b'stage']) -> typing.Literal['init', 'update', 'done', 'error', 'heartbeat'] | None:
         ...
 global___AnswerRequest = AnswerRequest
 
