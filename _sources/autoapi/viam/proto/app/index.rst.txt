@@ -21,6 +21,7 @@ Subpackages
    /autoapi/viam/proto/app/data/index
    /autoapi/viam/proto/app/dataset/index
    /autoapi/viam/proto/app/datasync/index
+   /autoapi/viam/proto/app/mlinference/index
    /autoapi/viam/proto/app/mltraining/index
    /autoapi/viam/proto/app/packages/index
 
@@ -4451,7 +4452,7 @@ Package Contents
       The colon-delimited-triplet of the model
 
 
-.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ...)
+.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4526,6 +4527,12 @@ Package Contents
       This is empty if no public namespace is set
 
 
+   .. py:attribute:: first_run
+      :type:  str
+
+      The path to a setup script that is run before a newly downloaded module starts.
+
+
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]
 
@@ -4537,6 +4544,40 @@ Package Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
+
+
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: ModuleFileInfo(*, module_id: str = ..., version: str = ..., platform: str = ...)
@@ -4571,7 +4612,7 @@ Package Contents
       The platform that the file is built to run on
 
 
-.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ...)
+.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4589,6 +4630,12 @@ Package Contents
       The executable to run to start the module program
 
 
+   .. py:attribute:: first_run
+      :type:  str
+
+      The path to a setup script that is run before a newly downloaded module starts.
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
@@ -4602,7 +4649,41 @@ Package Contents
       When this is returned from the backend, the versions are sorted in ascending order by the semver version
 
 
-.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4626,6 +4707,12 @@ Package Contents
       The entrypoint for this version of the module
 
 
+   .. py:attribute:: first_run
+      :type:  str
+
+      The path to a setup script that is run before a newly downloaded module starts.
+
+
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]
 
@@ -4636,6 +4723,40 @@ Package Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       The models that this verion of the module provides
+
+
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: NewRobotPartRequest(*, robot_id: str = ..., part_name: str = ...)
@@ -5986,7 +6107,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+.. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6030,10 +6151,50 @@ Package Contents
       The executable to run to start the module program
 
 
+   .. py:attribute:: first_run
+      :type:  str
+
+      The path to a setup script that is run before a newly downloaded module starts.
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
+
+
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: UpdateModuleResponse(*, url: str = ...)
@@ -6558,7 +6719,7 @@ Package Contents
 
 
 
-.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6582,6 +6743,12 @@ Package Contents
       The entrypoint for this version of the module
 
 
+   .. py:attribute:: first_run
+      :type:  str
+
+      The path to a setup script that is run before a newly downloaded module starts.
+
+
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]
 
@@ -6592,6 +6759,40 @@ Package Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       The models that this verion of the module provides
+
+
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: Visibility

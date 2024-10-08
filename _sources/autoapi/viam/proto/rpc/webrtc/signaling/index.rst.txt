@@ -21,6 +21,7 @@ Classes
    viam.proto.rpc.webrtc.signaling.AnswerRequest
    viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage
    viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage
+   viam.proto.rpc.webrtc.signaling.AnswerRequestHeartbeatStage
    viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage
    viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage
    viam.proto.rpc.webrtc.signaling.AnswerResponse
@@ -127,7 +128,7 @@ Module Contents
 
 
 
-.. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ...)
+.. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ..., heartbeat: global___AnswerRequestHeartbeatStage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -162,7 +163,13 @@ Module Contents
       error is sent any time before done
 
 
-   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
+   .. py:property:: heartbeat
+      :type: global___AnswerRequestHeartbeatStage
+
+      heartbeat is sent periodically to verify liveness of answerer
+
+
+   .. py:method:: HasField(field_name: Literal['done', b'done', 'error', b'error', 'heartbeat', b'heartbeat', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -180,7 +187,7 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['stage', b'stage']) -> Literal['init', 'update', 'done', 'error', 'heartbeat'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -233,6 +240,14 @@ Module Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: AnswerRequestHeartbeatStage
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   AnswerRequestHeartbeatStage is sent periodically to verify liveness of answerer.
 
 
 .. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)

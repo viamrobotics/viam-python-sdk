@@ -1,0 +1,57 @@
+viam.gen.app.mlinference.v1.ml_inference_grpc
+=============================================
+
+.. py:module:: viam.gen.app.mlinference.v1.ml_inference_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.app.mlinference.v1.ml_inference_grpc.MLInferenceServiceBase
+   viam.gen.app.mlinference.v1.ml_inference_grpc.UnimplementedMLInferenceServiceBase
+   viam.gen.app.mlinference.v1.ml_inference_grpc.MLInferenceServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: MLInferenceServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetInference(stream: grpclib.server.Stream[app.mlinference.v1.ml_inference_pb2.GetInferenceRequest, app.mlinference.v1.ml_inference_pb2.GetInferenceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedMLInferenceServiceBase
+
+   Bases: :py:obj:`MLInferenceServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetInference(stream: grpclib.server.Stream[app.mlinference.v1.ml_inference_pb2.GetInferenceRequest, app.mlinference.v1.ml_inference_pb2.GetInferenceResponse]) -> None
+      :async:
+
+
+
+.. py:class:: MLInferenceServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: GetInference
+
+

@@ -866,7 +866,7 @@ Module Contents
 
 
 
-.. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ..., type: str = ..., module_id: str = ..., env: collections.abc.Mapping[str, str] | None = ..., status: global___AppValidationStatus | None = ...)
+.. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ..., type: str = ..., module_id: str = ..., env: collections.abc.Mapping[str, str] | None = ..., status: global___AppValidationStatus | None = ..., first_run_timeout: google.protobuf.duration_pb2.Duration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -935,7 +935,13 @@ Module Contents
       info about the validity of the module
 
 
-   .. py:method:: HasField(field_name: Literal['status', b'status']) -> bool
+   .. py:property:: first_run_timeout
+      :type: google.protobuf.duration_pb2.Duration
+
+      timeout for first_run script
+
+
+   .. py:method:: HasField(field_name: Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
