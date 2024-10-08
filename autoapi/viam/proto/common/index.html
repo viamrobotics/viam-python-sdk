@@ -94,11 +94,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoGeometry.HasField"><code class="docutils literal notranslate"><span class="pre">GeoGeometry.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GeoPoint"><code class="docutils literal notranslate"><span class="pre">GeoPoint</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.latitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.latitude</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.reference_frame</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.geometries</span></code></a></li>
@@ -112,6 +107,11 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry.capsule"><code class="docutils literal notranslate"><span class="pre">Geometry.capsule</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GeoPoint"><code class="docutils literal notranslate"><span class="pre">GeoPoint</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.latitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.latitude</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest"><code class="docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a><ul>
@@ -300,14 +300,14 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a></p></td>
 <td><p>GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
 <td><p>GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -521,26 +521,6 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.common.GeoPoint">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeoPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeoPoint" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.common.GeoPoint.latitude">
-<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.latitude" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.common.GeoPoint.longitude">
-<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeometriesInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeometriesInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -635,6 +615,26 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeoPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeoPoint" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPoint.latitude">
+<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.latitude" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GeoPoint.longitude">
+<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
