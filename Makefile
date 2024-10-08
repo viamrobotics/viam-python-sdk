@@ -23,7 +23,7 @@ buf: clean
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
-	python3 -m etc.generate_proto_import -v
+	uv run python3 -m etc.generate_proto_import -v
 
 .PHONY: test
 test:

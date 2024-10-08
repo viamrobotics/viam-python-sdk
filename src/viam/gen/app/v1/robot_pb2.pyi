@@ -1077,6 +1077,7 @@ class ModuleConfig(google.protobuf.message.Message):
     MODULE_ID_FIELD_NUMBER: builtins.int
     ENV_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
+    FIRST_RUN_TIMEOUT_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
@@ -1095,13 +1096,17 @@ class ModuleConfig(google.protobuf.message.Message):
     def status(self) -> global___AppValidationStatus:
         """info about the validity of the module"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=...) -> None:
+    @property
+    def first_run_timeout(self) -> google.protobuf.duration_pb2.Duration:
+        """timeout for first_run script"""
+
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
