@@ -45,7 +45,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -221,7 +220,9 @@
         <span class="c1"># note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()</span>
         <span class="c1"># walk in ResourceManager.register.</span>
         <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span>
+            <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">),</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="EasyResource.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>

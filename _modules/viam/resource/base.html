@@ -45,7 +45,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -166,7 +165,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            command = {&quot;cmd&quot;: &quot;test&quot;, &quot;data1&quot;: 500}</span>
-<span class="sd">            result = await component.do_command(command)</span>
+<span class="sd">            result = component.do(command)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            command (Mapping[str, ValueTypes]): The command to execute</span>

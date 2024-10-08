@@ -45,7 +45,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -101,8 +100,7 @@
 
 
 <div class="viewcode-block" id="Stream"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.Stream">[docs]</a><span class="k">class</span> <span class="nc">Stream</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]):</span>
-<div class="viewcode-block" id="Stream.next"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.Stream.next">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamType</span><span class="p">:</span>
-        <span class="o">...</span></div>
+<div class="viewcode-block" id="Stream.next"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.Stream.next">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamType</span><span class="p">:</span> <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Stream.__aiter__"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.Stream.__aiter__">[docs]</a>    <span class="k">def</span> <span class="fm">__aiter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -112,13 +110,11 @@
 
 
 <div class="viewcode-block" id="StreamReader"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamReader">[docs]</a><span class="k">class</span> <span class="nc">StreamReader</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]):</span>
-<div class="viewcode-block" id="StreamReader.read"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamReader.read">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamType</span><span class="p">:</span>
-        <span class="o">...</span></div></div>
+<div class="viewcode-block" id="StreamReader.read"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamReader.read">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StreamType</span><span class="p">:</span> <span class="o">...</span></div></div>
 
 
 <div class="viewcode-block" id="StreamSource"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamSource">[docs]</a><span class="k">class</span> <span class="nc">StreamSource</span><span class="p">(</span><span class="n">Protocol</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]):</span>
-<div class="viewcode-block" id="StreamSource.stream"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamSource.stream">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]:</span>
-        <span class="o">...</span></div></div>
+<div class="viewcode-block" id="StreamSource.stream"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamSource.stream">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]:</span> <span class="o">...</span></div></div>
 
 
 <div class="viewcode-block" id="StreamWithIterator"><a class="viewcode-back" href="../../autoapi/viam/streams/index.html#viam.streams.StreamWithIterator">[docs]</a><span class="k">class</span> <span class="nc">StreamWithIterator</span><span class="p">(</span><span class="n">Stream</span><span class="p">[</span><span class="n">StreamType</span><span class="p">]):</span>

@@ -45,7 +45,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -91,7 +90,7 @@
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
@@ -138,11 +137,6 @@
     <span class="n">DeleteRobotPartRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentHistoryEntry</span> <span class="k">as</span> <span class="n">FragmentHistoryEntryPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentVisibility</span> <span class="k">as</span> <span class="n">FragmentVisibilityPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetFragmentHistoryRequest</span><span class="p">,</span>
     <span class="n">GetFragmentHistoryResponse</span><span class="p">,</span>
     <span class="n">GetFragmentRequest</span><span class="p">,</span>
@@ -219,10 +213,6 @@
     <span class="n">ResendOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">ResendOrganizationInviteResponse</span><span class="p">,</span>
     <span class="n">Robot</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPart</span> <span class="k">as</span> <span class="n">RobotPartPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPartHistoryEntry</span> <span class="k">as</span> <span class="n">RobotPartHistoryEntryPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">RotateKeyRequest</span><span class="p">,</span>
     <span class="n">RotateKeyResponse</span><span class="p">,</span>
     <span class="n">RoverRentalRobot</span><span class="p">,</span>
@@ -249,6 +239,11 @@
     <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
     <span class="n">Visibility</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentHistoryEntry</span> <span class="k">as</span> <span class="n">FragmentHistoryEntryPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentVisibility</span> <span class="k">as</span> <span class="n">FragmentVisibilityPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPart</span> <span class="k">as</span> <span class="n">RobotPartPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPartHistoryEntry</span> <span class="k">as</span> <span class="n">RobotPartHistoryEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.packages</span> <span class="kn">import</span> <span class="n">PackageType</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">LogEntry</span> <span class="k">as</span> <span class="n">LogEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
@@ -295,9 +290,9 @@
     <span class="n">secret</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">robot</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
     <span class="n">last_access</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
-    <span class="n">user_supplied_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="n">user_supplied_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
     <span class="n">main_part</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">fqdn</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">local_fqdn</span><span class="p">:</span> <span class="nb">str</span>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Viam Python SDK &mdash; Viam Python SDK  documentation</title>
@@ -47,7 +47,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -136,14 +135,14 @@ See the <a class="reference external" href="https://docs.viam.com/ml/">ML (machi
 </ul>
 </li>
 <li><p>Copy the compiled library to the directory <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/src/viam/rpc/</span></code></p></li>
-<li><p>From the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">build</span></code> to create an installable package</p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">build</span> <span class="pre">--wheel</span></code> to create an installable package</p></li>
 <li><p>Find the newly created installable package located in <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/dist/</span></code> and pip install it directly, for example: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl</span></code></p></li>
 </ol>
 <p>If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the <a class="reference external" href="https://github.com/viamrobotics/rust-utils/releases/latest">releases</a> page of the rust-utils library.</p>
 <p>If you do <strong>NOT</strong> need communication over WebRTC (and thus, do not need the native library), the steps are:</p>
 <ol class="arabic simple">
 <li><p>Download/clone this repository</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">build</span></code> from the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">build</span> <span class="pre">--wheel</span></code> from the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory</p></li>
 <li><p>Find the newly created installable package located in <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/dist/</span></code> and pip install it directly, for example: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl</span></code></p></li>
 <li><p>Ensure that every connection has the option <code class="docutils literal notranslate"><span class="pre">disable_webrtc</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code>: <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial.DialOptions(disable_webrtc=True)</span></code></p>
 <ul class="simple">
@@ -221,7 +220,7 @@ custom components as a remote to existing robots.</p>
 </section>
 <section id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h2>
-<p>Copyright 2021-2023 Viam Inc.</p>
+<p>Copyright 2021-2024 Viam Inc.</p>
 <p>Apache 2.0 - See <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE">LICENSE</a> file</p>
 </section>
 </section>

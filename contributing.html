@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributing &mdash; Viam Python SDK  documentation</title>
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Code of Conduct" href="conduct.html" />
-    <link rel="prev" title="Changelog" href="changelog.html" /> 
+    <link rel="prev" title="&lt;no title&gt;" href="changelog.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,7 +48,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#types-of-contributions">Types of Contributions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#report-bugs">Report Bugs</a></li>
@@ -58,7 +57,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#submit-feedback">Submit Feedback</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-started">Get Started!</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
@@ -148,8 +150,11 @@ are welcome :)</p></li>
 <section id="get-started">
 <h2>Get Started!<a class="headerlink" href="#get-started" title="Permalink to this heading"></a></h2>
 <p>Ready to contribute? Here’s how to set up <code class="docutils literal notranslate"><span class="pre">viam</span></code> for local development.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>We use <a class="reference external" href="https://docs.astral.sh/uv/"><code class="docutils literal notranslate"><span class="pre">uv</span></code></a> to manage our environments and dependencies. Make sure you have <code class="docutils literal notranslate"><span class="pre">uv</span></code> installed.</p>
 <ol class="arabic">
-<li><p>Download a copy of <code class="docutils literal notranslate"><span class="pre">viam</span></code> locally.</p></li>
+<li><p>Download/clone a copy of <code class="docutils literal notranslate"><span class="pre">viam</span></code> locally.</p></li>
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">viam</span></code> using <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make<span class="w"> </span>install
 </pre></div>
@@ -161,8 +166,14 @@ are welcome :)</p></li>
 </div>
 </li>
 <li><p>When you’re done making changes, check that your changes conform to any code formatting requirements and pass any tests.</p></li>
+</ol>
+<ul class="simple">
+<li><p>When testing, make sure you use the correct virtual environment by running either <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">make</span> <span class="pre">test</span></code> or <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">.venv/bin/activate;</span> <span class="pre">make</span> <span class="pre">test</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="5">
 <li><p>Commit your changes and open a pull request.</p></li>
 </ol>
+</section>
 </section>
 <section id="pull-request-guidelines">
 <h2>Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Permalink to this heading"></a></h2>
@@ -184,7 +195,7 @@ Code of Conduct. By contributing to this project you agree to abide by its terms
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="conduct.html" class="btn btn-neutral float-right" title="Code of Conduct" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

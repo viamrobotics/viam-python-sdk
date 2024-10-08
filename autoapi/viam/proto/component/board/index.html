@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.proto.component.board &mdash; Viam Python SDK  documentation</title>
@@ -48,7 +48,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
@@ -146,7 +145,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.GetGPIOResponse.high"><code class="docutils literal notranslate"><span class="pre">GetGPIOResponse.high</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.PowerMode"><code class="docutils literal notranslate"><span class="pre">PowerMode</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.name"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.pin"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.pin</span></code></a></li>
@@ -169,6 +167,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMResponse.duty_cycle_pct"><code class="docutils literal notranslate"><span class="pre">PWMResponse.duty_cycle_pct</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.PowerMode"><code class="docutils literal notranslate"><span class="pre">PowerMode</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.board_name"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.board_name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.analog_reader_name"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.analog_reader_name</span></code></a></li>
@@ -192,16 +191,6 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetGPIOResponse"><code class="docutils literal notranslate"><span class="pre">SetGPIOResponse</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.name</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.power_mode"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.power_mode</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.duration"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.duration</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.extra</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.HasField()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.WhichOneof()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerModeResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.pin"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.pin</span></code></a></li>
@@ -220,6 +209,16 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPWMResponse"><code class="docutils literal notranslate"><span class="pre">SetPWMResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.power_mode"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.power_mode</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.duration"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.duration</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">SetPowerModeRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.SetPowerModeResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerModeResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.board.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry.key"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry.key</span></code></a></li>
@@ -346,20 +345,20 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.GetGPIOResponse" title="viam.proto.component.board.GetGPIOResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGPIOResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest" title="viam.proto.component.board.PWMFrequencyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMFrequencyRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyResponse" title="viam.proto.component.board.PWMFrequencyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMFrequencyResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMRequest" title="viam.proto.component.board.PWMRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMResponse" title="viam.proto.component.board.PWMResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.PowerMode" title="viam.proto.component.board.PowerMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerMode</span></code></a></p></td>
 <td><p>Power Management API</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest" title="viam.proto.component.board.PWMFrequencyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMFrequencyRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyResponse" title="viam.proto.component.board.PWMFrequencyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMFrequencyResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMRequest" title="viam.proto.component.board.PWMRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.PWMResponse" title="viam.proto.component.board.PWMResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PWMResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest" title="viam.proto.component.board.ReadAnalogReaderRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest</span></code></a></p></td>
 <td><p>Analog Reader</p></td>
@@ -373,12 +372,6 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.SetGPIOResponse" title="viam.proto.component.board.SetGPIOResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetGPIOResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest" title="viam.proto.component.board.SetPowerModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerModeRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPowerModeResponse" title="viam.proto.component.board.SetPowerModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerModeResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest" title="viam.proto.component.board.SetPWMFrequencyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -389,6 +382,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPWMResponse" title="viam.proto.component.board.SetPWMResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPWMResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPowerModeRequest" title="viam.proto.component.board.SetPowerModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerModeRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPowerModeResponse" title="viam.proto.component.board.SetPowerModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerModeResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.Status" title="viam.proto.component.board.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
@@ -810,13 +809,6 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.component.board.PowerMode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">PowerMode</span></span><a class="headerlink" href="#viam.proto.component.board.PowerMode" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_PowerMode</span></code></p>
-<p>Power Management API</p>
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.board.PWMFrequencyRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">PWMFrequencyRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.PWMFrequencyRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -943,6 +935,13 @@ shown below.</p>
 <dd><p>0-1</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.PowerMode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">PowerMode</span></span><a class="headerlink" href="#viam.proto.component.board.PowerMode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_PowerMode</span></code></p>
+<p>Power Management API</p>
 </dd></dl>
 
 <dl class="py class">
@@ -1086,94 +1085,6 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPowerModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PowerMode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.duration_pb2.Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.name" title="Permalink to this definition"></a></dt>
-<dd><p>name of board</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.power_mode">
-<span class="sig-name descname"><span class="pre">power_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PowerMode</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.power_mode" title="Permalink to this definition"></a></dt>
-<dd><p>Requested power mode</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.duration">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">duration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.duration_pb2.Duration</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.duration" title="Permalink to this definition"></a></dt>
-<dd><p>Requested duration to stay in <cite>power_mode</cite></p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_duration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'duration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_duration'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'duration'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.WhichOneof" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the name of the field that is set inside a oneof group.</p>
-<p>If no field is set, returns None.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The name of the group that is set, or None.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str or None</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPowerModeResponse</span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeResponse" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.board.SetPWMFrequencyRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPWMFrequencyRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.SetPWMFrequencyRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1295,6 +1206,94 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.board.SetPWMResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPWMResponse</span></span><a class="headerlink" href="#viam.proto.component.board.SetPWMResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPowerModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PowerMode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.duration_pb2.Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of board</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.power_mode">
+<span class="sig-name descname"><span class="pre">power_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PowerMode</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.power_mode" title="Permalink to this definition"></a></dt>
+<dd><p>Requested power mode</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.duration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">duration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.duration_pb2.Duration</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.duration" title="Permalink to this definition"></a></dt>
+<dd><p>Requested duration to stay in <cite>power_mode</cite></p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_duration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'duration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_duration'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_duration'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'duration'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.SetPowerModeResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">SetPowerModeResponse</span></span><a class="headerlink" href="#viam.proto.component.board.SetPowerModeResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
