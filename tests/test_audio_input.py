@@ -53,7 +53,6 @@ def generic_service(audio_input: MockAudioInput) -> GenericRPCService:
 
 
 class TestAudioInput:
-    @pytest.mark.asyncio
     async def test_stream(self, audio_input: AudioInput):
         idx = 0
         async for audio in await audio_input.stream():
@@ -66,24 +65,20 @@ class TestAudioInput:
 
             idx += 1
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, audio_input: AudioInput):
         assert await audio_input.get_properties() == PROPERTIES
 
-    @pytest.mark.asyncio
     async def test_do(self, audio_input: AudioInput):
         command = {"command": "args"}
         resp = await audio_input.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, audio_input: AudioInput):
         geometries = await audio_input.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_chunks(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
@@ -107,7 +102,6 @@ class TestService:
                     assert response.chunk.length == 182
                     idx += 1
 
-    @pytest.mark.asyncio
     async def test_properties(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
@@ -116,14 +110,12 @@ class TestService:
             assert AudioInput.Properties.from_proto(response) == PROPERTIES
             assert audio_input.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_record(self, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
             with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
                 await client.Record(RecordRequest())
 
-    @pytest.mark.asyncio
     async def test_do(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
@@ -133,7 +125,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
@@ -143,7 +134,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_stream(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
@@ -159,7 +149,6 @@ class TestClient:
 
                 idx += 1
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
@@ -167,7 +156,6 @@ class TestClient:
             assert await client.get_properties(timeout=4.4) == PROPERTIES
             assert audio_input.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_do(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
@@ -175,7 +163,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)

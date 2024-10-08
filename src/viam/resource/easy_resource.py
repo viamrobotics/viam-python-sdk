@@ -131,7 +131,9 @@ class EasyResource:
         # note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()
         # walk in ResourceManager.register.
         Registry.register_resource_creator(
-            cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new)  # pyright: ignore [reportArgumentType]
+            cls.SUBTYPE,
+            cls.MODEL,
+            ResourceCreatorRegistration(cls.new),  # pyright: ignore [reportArgumentType]
         )
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):

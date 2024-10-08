@@ -35,7 +35,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = ResetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.ResetPosition(request, timeout=timeout, metadata=md)
 
@@ -47,7 +47,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[float, PositionType.ValueType]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPositionRequest(name=self.name, position_type=position_type, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.value, response.position_type
@@ -59,7 +59,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Encoder.Properties:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
         return Encoder.Properties(
@@ -73,11 +73,11 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

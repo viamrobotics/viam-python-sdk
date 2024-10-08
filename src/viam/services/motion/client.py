@@ -63,7 +63,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> bool:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveRequest(
             name=self.name,
             destination=destination,
@@ -89,7 +89,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> str:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveOnGlobeRequest(
             name=self.name,
             component_name=component_name,
@@ -116,7 +116,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> str:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveOnMapRequest(
             name=self.name,
             destination=destination,
@@ -137,7 +137,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = StopPlanRequest(
             name=self.name,
@@ -157,7 +157,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> GetPlanResponse:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = GetPlanRequest(
             name=self.name,
@@ -177,7 +177,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Sequence[PlanStatusWithID]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = ListPlanStatusesRequest(
             name=self.name,
@@ -197,7 +197,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> PoseInFrame:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPoseRequest(
             name=self.name,
             component_name=component_name,
@@ -209,7 +209,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         return response.pose
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

@@ -18,8 +18,7 @@ class SummationService(ServiceBase):
     SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_SERVICE, "summation")
 
     @abc.abstractmethod
-    async def sum(self, nums: Sequence[float]) -> float:
-        ...
+    async def sum(self, nums: Sequence[float]) -> float: ...
 
 
 class SummationRPCService(SummationServiceBase, ResourceRPCServiceBase):

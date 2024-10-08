@@ -39,9 +39,12 @@ from viam.proto.robot import (
     ResourceNamesResponse,
     RobotServiceStub,
     ShutdownRequest,
+    StopAllRequest,
+    StopExtraParameters,
+    TransformPoseRequest,
+    TransformPoseResponse,
 )
 from viam.proto.robot import Status as PBStatus
-from viam.proto.robot import StopAllRequest, StopExtraParameters, TransformPoseRequest, TransformPoseResponse
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry

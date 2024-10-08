@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.pose_tracker import PoseTrackerClient
@@ -20,7 +19,6 @@ POSES = [
 class TestPoseTracker:
     mock_pose_tracker = MockPoseTracker(name="pt", poses=POSES)
 
-    @pytest.mark.asyncio
     async def test_get_poses(self):
         assert self.mock_pose_tracker.extra is None
         received_poses = await self.mock_pose_tracker.get_poses([], extra={"foo": "get_poses"}, timeout=1.23)
@@ -29,13 +27,11 @@ class TestPoseTracker:
         assert self.mock_pose_tracker.timeout == loose_approx(1.23)
         assert self.mock_pose_tracker.extra == {"foo": "get_poses"}
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.mock_pose_tracker.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         geometries = await self.mock_pose_tracker.get_geometries()
         assert geometries == GEOMETRIES
@@ -49,7 +45,6 @@ class TestService:
         cls.manager = ResourceManager([cls.pose_tracker])
         cls.service = PoseTrackerRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_poses(self):
         assert self.pose_tracker.extra is None
         async with ChannelFor([self.service]) as channel:
@@ -62,7 +57,6 @@ class TestService:
             assert self.pose_tracker.timeout == loose_approx(2.34)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerServiceStub(channel)
@@ -72,7 +66,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerServiceStub(channel)
@@ -89,7 +82,6 @@ class TestClient:
         cls.manager = ResourceManager([cls.pose_tracker])
         cls.service = PoseTrackerRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_poses(self):
         assert self.pose_tracker.extra is None
         async with ChannelFor([self.service]) as channel:
@@ -100,7 +92,6 @@ class TestClient:
             assert self.pose_tracker.timeout == loose_approx(3.45)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerClient(self.name, channel)
@@ -108,7 +99,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerClient(self.name, channel)

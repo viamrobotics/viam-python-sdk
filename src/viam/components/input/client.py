@@ -50,7 +50,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> List[Control]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetControlsRequest(controller=self.name, extra=dict_to_struct(extra))
         response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout, metadata=md)
         return [Control(control) for control in response.controls]
@@ -62,7 +62,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Dict[Control, Event]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetEventsRequest(controller=self.name, extra=dict_to_struct(extra))
         response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout, metadata=md)
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
@@ -75,7 +75,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         self._callback_extra = dict_to_struct(extra)
         with self._lock:
             callbacks = self.callbacks.get(control, {})
@@ -114,7 +114,7 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = TriggerEventRequest(controller=self.name, event=event.proto, extra=dict_to_struct(extra))
         try:
             await self.client.TriggerEvent(request, timeout=timeout, metadata=md)
@@ -184,11 +184,11 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

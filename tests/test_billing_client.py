@@ -79,7 +79,6 @@ def service() -> MockBilling:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_current_month_usage(self, service: MockBilling):
         async with ChannelFor([service]) as channel:
             org_id = "foo"
@@ -88,11 +87,9 @@ class TestClient:
             assert curr_month_usage == CURR_MONTH_USAGE
             assert service.org_id == org_id
 
-    @pytest.mark.asyncio
     async def test_get_invoice_pdf(self, service: MockBilling):
         assert True
 
-    @pytest.mark.asyncio
     async def test_get_invoices_summary(self, service: MockBilling):
         async with ChannelFor([service]) as channel:
             org_id = "bar"
@@ -101,7 +98,6 @@ class TestClient:
             assert invoices_summary == INVOICES_SUMMARY
             assert service.org_id == org_id
 
-    @pytest.mark.asyncio
     async def test_get_org_billing_information(self, service: MockBilling):
         async with ChannelFor([service]) as channel:
             org_id = "baz"

@@ -59,7 +59,6 @@ def service() -> MockSensors:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_sensors(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
             client = SensorsClient(SENSOR_SERVICE_NAME, channel)
@@ -76,7 +75,6 @@ class TestClient:
             assert service.extra == {}
             assert service.timeout is None
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
             client = SensorsClient(SENSOR_SERVICE_NAME, channel)
@@ -95,7 +93,6 @@ class TestClient:
             assert service.sensors_for_readings == sensors
             assert service.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
             client = SensorsClient(SENSOR_SERVICE_NAME, channel)

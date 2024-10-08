@@ -9,9 +9,9 @@ helps, and credit will always be given.
 
 If you are reporting a bug, please include:
 
-* Your operating system name and version.
-* Any details about your local setup that might be helpful in troubleshooting.
-* Detailed steps to reproduce the bug.
+- Your operating system name and version.
+- Any details about your local setup that might be helpful in troubleshooting.
+- Detailed steps to reproduce the bug.
 
 ### Fix Bugs
 
@@ -33,29 +33,35 @@ on the web in blog posts, articles, and such.
 
 If you are proposing a feature:
 
-* Explain in detail how it would work.
-* Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
+- Explain in detail how it would work.
+- Keep the scope as narrow as possible, to make it easier to implement.
+- Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
 ## Get Started!
 
 Ready to contribute? Here's how to set up `viam` for local development.
 
-1. Download a copy of `viam` locally.
+### Prerequisites
+
+We use [`uv`](https://docs.astral.sh/uv/) to manage our environments and dependencies. Make sure you have `uv` installed.
+
+1. Download/clone a copy of `viam` locally.
 2. Install `viam` using `make`:
 
-    ```console
-    $ make install
-    ```
+   ```console
+   $ make install
+   ```
 
 3. Use `git` (or similar) to create a branch for local development and make your changes:
 
-    ```console
-    $ git checkout -b name-of-your-bugfix-or-feature
-    ```
+   ```console
+   $ git checkout -b name-of-your-bugfix-or-feature
+   ```
 
 4. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
+
+- When testing, make sure you use the correct virtual environment by running either `uv make test` or `source .venv/bin/activate; make test`
 
 5. Commit your changes and open a pull request.
 
