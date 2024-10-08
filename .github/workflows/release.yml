@@ -46,16 +46,14 @@ jobs:
         run: uv run make clean format typecheck test
 
       - name: Bump Version
-        id: bump_version
         shell: bash
-        if: inputs.version != '-s' && inputs.prerelease
-        run: echo "ABC" && uvx hatch version ${{ inputs.version }},${{ inputs.prerelease }}
+        if: inputs.version != '-s' && inputs.prerelease != ''
+        run: uvx hatch version ${{ inputs.version }},${{ inputs.prerelease }}
 
       - name: Bump Version
-        id: bump_version
         shell: bash
-        if: inputs.version != '-s' && !inputs.prerelease
-        run: echo "DEF" && uvx hatch version ${{ inputs.version }}
+        if: inputs.version != '-s' && inputs.prerelease == ''
+        run: uvx hatch version ${{ inputs.version }}
 
       - name: Set Version
         id: set_version
