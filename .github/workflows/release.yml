@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "The type of version bump. Use `-s` for no change. See docs for details: https://hatch.pypa.io/latest/version/#supported-segments"
+        description: 'The type of version bump. Use the blank option for no change. Use the "release" option to promote prerelease. See docs for details: https://hatch.pypa.io/latest/version/#supported-segments'
         type: choice
         required: true
         default: "-s"
@@ -12,7 +12,8 @@ on:
           - major
           - minor
           - patch
-          - "-s"
+          - release
+          - ""
       prerelease:
         description: "If this is a prerelease and which type. See docs for details: https://hatch.pypa.io/latest/version/#supported-segments"
         type: choice
