@@ -95,22 +95,12 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.SendPaymentRequiredEmail"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.SendPaymentRequiredEmail()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.id"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.id</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.type"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.type</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.usage_quantity"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.usage_quantity</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.usage_quantity_unit"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.usage_quantity_unit</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.usage_cost"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.usage_cost</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.user_name"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.user_name</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.occurred_at"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.occurred_at</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.HasField"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.HasField()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest.org_id"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest.org_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.subtotal"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.subtotal</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.cloud_storage_usage_cost"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.cloud_storage_usage_cost</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.data_upload_usage_cost"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.data_upload_usage_cost</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.data_egres_usage_cost"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.data_egres_usage_cost</span></code></a></li>
@@ -124,6 +114,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.other_cloud_storage_usage_cost"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.other_cloud_storage_usage_cost</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.start_date"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.start_date</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.end_date"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.end_date</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.resource_usage_costs_by_source"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.resource_usage_costs_by_source</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -158,17 +149,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.WhichOneof()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.Invoice"><code class="docutils literal notranslate"><span class="pre">Invoice</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.id"><code class="docutils literal notranslate"><span class="pre">Invoice.id</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.invoice_amount"><code class="docutils literal notranslate"><span class="pre">Invoice.invoice_amount</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.status"><code class="docutils literal notranslate"><span class="pre">Invoice.status</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.emailed_to"><code class="docutils literal notranslate"><span class="pre">Invoice.emailed_to</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.invoice_date"><code class="docutils literal notranslate"><span class="pre">Invoice.invoice_date</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.due_date"><code class="docutils literal notranslate"><span class="pre">Invoice.due_date</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.items"><code class="docutils literal notranslate"><span class="pre">Invoice.items</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.Invoice.HasField"><code class="docutils literal notranslate"><span class="pre">Invoice.HasField()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary"><code class="docutils literal notranslate"><span class="pre">InvoiceSummary</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary.id"><code class="docutils literal notranslate"><span class="pre">InvoiceSummary.id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary.invoice_amount"><code class="docutils literal notranslate"><span class="pre">InvoiceSummary.invoice_amount</span></code></a></li>
@@ -185,12 +165,33 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType"><code class="docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.discount"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.discount</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.total_with_discount"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.total_with_discount</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.total_without_discount"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.total_without_discount</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.usage_costs"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.usage_costs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource.source_type"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource.source_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource.tier_name"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource.tier_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource.resource_usage_costs"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource.resource_usage_costs</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource.HasField"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest"><code class="docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest.customer_org_id"><code class="docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest.customer_org_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest.billing_owner_org_id"><code class="docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest.billing_owner_org_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailResponse"><code class="docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.SourceType"><code class="docutils literal notranslate"><span class="pre">SourceType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UsageCost"><code class="docutils literal notranslate"><span class="pre">UsageCost</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UsageCost.resource_type"><code class="docutils literal notranslate"><span class="pre">UsageCost.resource_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UsageCost.cost"><code class="docutils literal notranslate"><span class="pre">UsageCost.cost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UsageCostType"><code class="docutils literal notranslate"><span class="pre">UsageCostType</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -261,34 +262,28 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase" title="viam.proto.app.billing.UnimplementedBillingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase</span></code></a></p></td>
 <td><p>Helper class that provides a standard way to create an ABC using</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent" title="viam.proto.app.billing.BillableResourceEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillableResourceEvent</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest" title="viam.proto.app.billing.GetCurrentMonthUsageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest" title="viam.proto.app.billing.GetCurrentMonthUsageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="viam.proto.app.billing.GetCurrentMonthUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="viam.proto.app.billing.GetCurrentMonthUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfRequest" title="viam.proto.app.billing.GetInvoicePdfRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfRequest" title="viam.proto.app.billing.GetInvoicePdfRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfResponse" title="viam.proto.app.billing.GetInvoicePdfResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfResponse" title="viam.proto.app.billing.GetInvoicePdfResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryRequest" title="viam.proto.app.billing.GetInvoicesSummaryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryRequest" title="viam.proto.app.billing.GetInvoicesSummaryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest" title="viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest" title="viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.Invoice" title="viam.proto.app.billing.Invoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Invoice</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary" title="viam.proto.app.billing.InvoiceSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvoiceSummary</span></code></a></p></td>
@@ -300,11 +295,26 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType" title="viam.proto.app.billing.PaymentMethodType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts" title="viam.proto.app.billing.ResourceUsageCosts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCosts</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource" title="viam.proto.app.billing.ResourceUsageCostsBySource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest" title="viam.proto.app.billing.SendPaymentRequiredEmailRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailResponse" title="viam.proto.app.billing.SendPaymentRequiredEmailResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.SourceType" title="viam.proto.app.billing.SourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SourceType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCost" title="viam.proto.app.billing.UsageCost"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCost</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCostType" title="viam.proto.app.billing.UsageCostType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCostType</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -433,74 +443,6 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">BillableResourceEvent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage_quantity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage_quantity_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">occurred_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.type">
-<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.usage_quantity">
-<span class="sig-name descname"><span class="pre">usage_quantity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.usage_quantity" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.usage_quantity_unit">
-<span class="sig-name descname"><span class="pre">usage_quantity_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.usage_quantity_unit" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.usage_cost">
-<span class="sig-name descname"><span class="pre">usage_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.usage_cost" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.user_name">
-<span class="sig-name descname"><span class="pre">user_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.user_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.occurred_at">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">occurred_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.occurred_at" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'occurred_at'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'occurred_at'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.BillableResourceEvent.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetCurrentMonthUsageRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -517,16 +459,22 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetCurrentMonthUsageResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_upload_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_egres_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_control_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_compute_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_usage_with_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_usage_without_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_machine_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data_cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetCurrentMonthUsageResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_usage_costs_by_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceUsageCostsBySource</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtotal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_upload_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_egres_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_control_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_compute_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_usage_with_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_usage_without_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_machine_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data_cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_cloud_storage_usage_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse.subtotal">
+<span class="sig-name descname"><span class="pre">subtotal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.subtotal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse.cloud_storage_usage_cost">
 <span class="sig-name descname"><span class="pre">cloud_storage_usage_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.cloud_storage_usage_cost" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>all fields below are deprecated</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse.data_upload_usage_cost">
@@ -586,6 +534,11 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse.end_date">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.end_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetCurrentMonthUsageResponse.resource_usage_costs_by_source">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_usage_costs_by_source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceUsageCostsBySource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse.resource_usage_costs_by_source" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -779,74 +732,6 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">Invoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BillableResourceEvent</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emailed_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.Invoice" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.invoice_amount">
-<span class="sig-name descname"><span class="pre">invoice_amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.invoice_amount" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.status">
-<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.status" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.emailed_to">
-<span class="sig-name descname"><span class="pre">emailed_to</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.emailed_to" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.invoice_date">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invoice_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.invoice_date" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.due_date">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">due_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.due_date" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.items">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">items</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BillableResourceEvent</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.billing.Invoice.items" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.billing.Invoice.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'due_date'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'due_date'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'invoice_date'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'invoice_date'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.Invoice.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.InvoiceSummary">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">InvoiceSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">due_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paid_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.InvoiceSummary" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -936,6 +821,84 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCosts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">ResourceUsageCosts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage_costs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___UsageCost</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_with_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_without_discount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCosts" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCosts.discount">
+<span class="sig-name descname"><span class="pre">discount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCosts.discount" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCosts.total_with_discount">
+<span class="sig-name descname"><span class="pre">total_with_discount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCosts.total_with_discount" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCosts.total_without_discount">
+<span class="sig-name descname"><span class="pre">total_without_discount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCosts.total_without_discount" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCosts.usage_costs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usage_costs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___UsageCost</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCosts.usage_costs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCostsBySource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">ResourceUsageCostsBySource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___SourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_usage_costs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ResourceUsageCosts</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tier_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCostsBySource" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCostsBySource.source_type">
+<span class="sig-name descname"><span class="pre">source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___SourceType</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCostsBySource.source_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCostsBySource.tier_name">
+<span class="sig-name descname"><span class="pre">tier_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCostsBySource.tier_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCostsBySource.resource_usage_costs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_usage_costs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ResourceUsageCosts</span></em><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCostsBySource.resource_usage_costs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ResourceUsageCostsBySource.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'resource_usage_costs'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'resource_usage_costs'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.ResourceUsageCostsBySource.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.SendPaymentRequiredEmailRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">SendPaymentRequiredEmailRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">customer_org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_owner_org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -963,6 +926,38 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.SourceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">SourceType</span></span><a class="headerlink" href="#viam.proto.app.billing.SourceType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_SourceType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UsageCost">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UsageCost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___UsageCostType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.UsageCost" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UsageCost.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___UsageCostType</span></em><a class="headerlink" href="#viam.proto.app.billing.UsageCost.resource_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UsageCost.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.UsageCost.cost" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UsageCostType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UsageCostType</span></span><a class="headerlink" href="#viam.proto.app.billing.UsageCostType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_UsageCostType</span></code></p>
 </dd></dl>
 
 </section>
