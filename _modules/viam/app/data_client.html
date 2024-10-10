@@ -694,7 +694,7 @@
 
 <span class="sd">            my_filter = create_filter(component_name=&quot;my_camera&quot;)</span>
 <span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
-<span class="sd">            res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)</span>
+<span class="sd">            await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
