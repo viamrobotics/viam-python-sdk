@@ -605,7 +605,7 @@ class DataClient:
 
             my_filter = create_filter(component_name="my_camera")
             tags = ["tag1", "tag2"]
-            res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)
+            await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
