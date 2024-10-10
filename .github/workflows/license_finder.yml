@@ -20,7 +20,9 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Setup Python
-        run: uv python install
+        run: |
+          uv python install
+          uv sync
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -31,8 +33,8 @@ jobs:
       - name: Generate requirements.txt (exclude dev dependencies)
         run: |
           uv pip compile pyproject.toml -o requirements.txt
-          pip install -r requirements.txt
+          uv pip install -r requirements.txt
 
       - name: Run license finder
         run: |
-          license_finder
+          uv run license_finder
