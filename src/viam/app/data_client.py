@@ -247,7 +247,7 @@ class DataClient:
         ::
 
             data = await data_client.tabular_data_by_sql(
-                org_id="<YOUR-ORG-ID>",
+                organization_id="<YOUR-ORG-ID>",
                 sql_query="SELECT * FROM readings LIMIT 5"
             )
 
