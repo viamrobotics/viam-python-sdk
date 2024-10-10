@@ -5,7 +5,6 @@ Do not edit manually!
 
 from ...gen.app.v1.billing_grpc import BillingServiceBase, BillingServiceStub, UnimplementedBillingServiceBase
 from ...gen.app.v1.billing_pb2 import (
-    BillableResourceEvent,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -14,19 +13,22 @@ from ...gen.app.v1.billing_pb2 import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
-    Invoice,
     InvoiceSummary,
     PaymentMethodCard,
     PaymentMethodType,
+    ResourceUsageCosts,
+    ResourceUsageCostsBySource,
     SendPaymentRequiredEmailRequest,
     SendPaymentRequiredEmailResponse,
+    SourceType,
+    UsageCost,
+    UsageCostType,
 )
 
 __all__ = [
     "BillingServiceBase",
     "BillingServiceStub",
     "UnimplementedBillingServiceBase",
-    "BillableResourceEvent",
     "GetCurrentMonthUsageRequest",
     "GetCurrentMonthUsageResponse",
     "GetInvoicePdfRequest",
@@ -35,10 +37,14 @@ __all__ = [
     "GetInvoicesSummaryResponse",
     "GetOrgBillingInformationRequest",
     "GetOrgBillingInformationResponse",
-    "Invoice",
     "InvoiceSummary",
     "PaymentMethodCard",
     "PaymentMethodType",
+    "ResourceUsageCosts",
+    "ResourceUsageCostsBySource",
     "SendPaymentRequiredEmailRequest",
     "SendPaymentRequiredEmailResponse",
+    "SourceType",
+    "UsageCost",
+    "UsageCostType",
 ]

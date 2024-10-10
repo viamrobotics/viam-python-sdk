@@ -32,6 +32,52 @@ PAYMENT_METHOD_TYPE_UNSPECIFIED: PaymentMethodType.ValueType
 PAYMENT_METHOD_TYPE_CARD: PaymentMethodType.ValueType
 global___PaymentMethodType = PaymentMethodType
 
+class _UsageCostType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _UsageCostTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_UsageCostType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    USAGE_COST_TYPE_UNSPECIFIED: _UsageCostType.ValueType
+    USAGE_COST_TYPE_DATA_UPLOAD: _UsageCostType.ValueType
+    USAGE_COST_TYPE_DATA_EGRESS: _UsageCostType.ValueType
+    USAGE_COST_TYPE_REMOTE_CONTROL: _UsageCostType.ValueType
+    USAGE_COST_TYPE_STANDARD_COMPUTE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_CLOUD_STORAGE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_OTHER_CLOUD_STORAGE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_PER_MACHINE: _UsageCostType.ValueType
+
+class UsageCostType(_UsageCostType, metaclass=_UsageCostTypeEnumTypeWrapper):
+    ...
+USAGE_COST_TYPE_UNSPECIFIED: UsageCostType.ValueType
+USAGE_COST_TYPE_DATA_UPLOAD: UsageCostType.ValueType
+USAGE_COST_TYPE_DATA_EGRESS: UsageCostType.ValueType
+USAGE_COST_TYPE_REMOTE_CONTROL: UsageCostType.ValueType
+USAGE_COST_TYPE_STANDARD_COMPUTE: UsageCostType.ValueType
+USAGE_COST_TYPE_CLOUD_STORAGE: UsageCostType.ValueType
+USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE: UsageCostType.ValueType
+USAGE_COST_TYPE_OTHER_CLOUD_STORAGE: UsageCostType.ValueType
+USAGE_COST_TYPE_PER_MACHINE: UsageCostType.ValueType
+global___UsageCostType = UsageCostType
+
+class _SourceType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _SourceTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_SourceType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    SOURCE_TYPE_UNSPECIFIED: _SourceType.ValueType
+    SOURCE_TYPE_ORG: _SourceType.ValueType
+    SOURCE_TYPE_FRAGMENT: _SourceType.ValueType
+
+class SourceType(_SourceType, metaclass=_SourceTypeEnumTypeWrapper):
+    ...
+SOURCE_TYPE_UNSPECIFIED: SourceType.ValueType
+SOURCE_TYPE_ORG: SourceType.ValueType
+SOURCE_TYPE_FRAGMENT: SourceType.ValueType
+global___SourceType = SourceType
+
 @typing.final
 class InvoiceSummary(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -68,74 +114,6 @@ class InvoiceSummary(google.protobuf.message.Message):
 global___InvoiceSummary = InvoiceSummary
 
 @typing.final
-class BillableResourceEvent(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ID_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
-    USAGE_QUANTITY_FIELD_NUMBER: builtins.int
-    USAGE_QUANTITY_UNIT_FIELD_NUMBER: builtins.int
-    USAGE_COST_FIELD_NUMBER: builtins.int
-    OCCURRED_AT_FIELD_NUMBER: builtins.int
-    USER_NAME_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    type: builtins.str
-    usage_quantity: builtins.float
-    usage_quantity_unit: builtins.str
-    usage_cost: builtins.str
-    user_name: builtins.str
-
-    @property
-    def occurred_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
-    def __init__(self, *, id: builtins.str=..., type: builtins.str=..., usage_quantity: builtins.float=..., usage_quantity_unit: builtins.str=..., usage_cost: builtins.str=..., occurred_at: google.protobuf.timestamp_pb2.Timestamp | None=..., user_name: builtins.str=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['occurred_at', b'occurred_at']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['id', b'id', 'occurred_at', b'occurred_at', 'type', b'type', 'usage_cost', b'usage_cost', 'usage_quantity', b'usage_quantity', 'usage_quantity_unit', b'usage_quantity_unit', 'user_name', b'user_name']) -> None:
-        ...
-global___BillableResourceEvent = BillableResourceEvent
-
-@typing.final
-class Invoice(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ID_FIELD_NUMBER: builtins.int
-    INVOICE_DATE_FIELD_NUMBER: builtins.int
-    INVOICE_AMOUNT_FIELD_NUMBER: builtins.int
-    STATUS_FIELD_NUMBER: builtins.int
-    DUE_DATE_FIELD_NUMBER: builtins.int
-    ITEMS_FIELD_NUMBER: builtins.int
-    EMAILED_TO_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    invoice_amount: builtins.float
-    status: builtins.str
-    emailed_to: builtins.str
-
-    @property
-    def invoice_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
-    @property
-    def due_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
-    @property
-    def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BillableResourceEvent]:
-        ...
-
-    def __init__(self, *, id: builtins.str=..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None=..., invoice_amount: builtins.float=..., status: builtins.str=..., due_date: google.protobuf.timestamp_pb2.Timestamp | None=..., items: collections.abc.Iterable[global___BillableResourceEvent] | None=..., emailed_to: builtins.str=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['due_date', b'due_date', 'invoice_date', b'invoice_date']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['due_date', b'due_date', 'emailed_to', b'emailed_to', 'id', b'id', 'invoice_amount', b'invoice_amount', 'invoice_date', b'invoice_date', 'items', b'items', 'status', b'status']) -> None:
-        ...
-global___Invoice = Invoice
-
-@typing.final
 class PaymentMethodCard(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BRAND_FIELD_NUMBER: builtins.int
@@ -164,10 +142,72 @@ class GetCurrentMonthUsageRequest(google.protobuf.message.Message):
 global___GetCurrentMonthUsageRequest = GetCurrentMonthUsageRequest
 
 @typing.final
+class UsageCost(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_TYPE_FIELD_NUMBER: builtins.int
+    COST_FIELD_NUMBER: builtins.int
+    resource_type: global___UsageCostType.ValueType
+    cost: builtins.float
+
+    def __init__(self, *, resource_type: global___UsageCostType.ValueType=..., cost: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['cost', b'cost', 'resource_type', b'resource_type']) -> None:
+        ...
+global___UsageCost = UsageCost
+
+@typing.final
+class ResourceUsageCostsBySource(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SOURCE_TYPE_FIELD_NUMBER: builtins.int
+    RESOURCE_USAGE_COSTS_FIELD_NUMBER: builtins.int
+    TIER_NAME_FIELD_NUMBER: builtins.int
+    source_type: global___SourceType.ValueType
+    tier_name: builtins.str
+
+    @property
+    def resource_usage_costs(self) -> global___ResourceUsageCosts:
+        ...
+
+    def __init__(self, *, source_type: global___SourceType.ValueType=..., resource_usage_costs: global___ResourceUsageCosts | None=..., tier_name: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['resource_usage_costs', b'resource_usage_costs']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['resource_usage_costs', b'resource_usage_costs', 'source_type', b'source_type', 'tier_name', b'tier_name']) -> None:
+        ...
+global___ResourceUsageCostsBySource = ResourceUsageCostsBySource
+
+@typing.final
+class ResourceUsageCosts(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    USAGE_COSTS_FIELD_NUMBER: builtins.int
+    DISCOUNT_FIELD_NUMBER: builtins.int
+    TOTAL_WITH_DISCOUNT_FIELD_NUMBER: builtins.int
+    TOTAL_WITHOUT_DISCOUNT_FIELD_NUMBER: builtins.int
+    discount: builtins.float
+    total_with_discount: builtins.float
+    total_without_discount: builtins.float
+
+    @property
+    def usage_costs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___UsageCost]:
+        ...
+
+    def __init__(self, *, usage_costs: collections.abc.Iterable[global___UsageCost] | None=..., discount: builtins.float=..., total_with_discount: builtins.float=..., total_without_discount: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['discount', b'discount', 'total_with_discount', b'total_with_discount', 'total_without_discount', b'total_without_discount', 'usage_costs', b'usage_costs']) -> None:
+        ...
+global___ResourceUsageCosts = ResourceUsageCosts
+
+@typing.final
 class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     START_DATE_FIELD_NUMBER: builtins.int
     END_DATE_FIELD_NUMBER: builtins.int
+    RESOURCE_USAGE_COSTS_BY_SOURCE_FIELD_NUMBER: builtins.int
+    SUBTOTAL_FIELD_NUMBER: builtins.int
     CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
     DATA_UPLOAD_USAGE_COST_FIELD_NUMBER: builtins.int
     DATA_EGRES_USAGE_COST_FIELD_NUMBER: builtins.int
@@ -179,7 +219,9 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     PER_MACHINE_USAGE_COST_FIELD_NUMBER: builtins.int
     BINARY_DATA_CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
     OTHER_CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
+    subtotal: builtins.float
     cloud_storage_usage_cost: builtins.float
+    'all fields below are deprecated'
     data_upload_usage_cost: builtins.float
     data_egres_usage_cost: builtins.float
     remote_control_usage_cost: builtins.float
@@ -199,13 +241,17 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     def end_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=..., per_machine_usage_cost: builtins.float=..., binary_data_cloud_storage_usage_cost: builtins.float=..., other_cloud_storage_usage_cost: builtins.float=...) -> None:
+    @property
+    def resource_usage_costs_by_source(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceUsageCostsBySource]:
+        ...
+
+    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., resource_usage_costs_by_source: collections.abc.Iterable[global___ResourceUsageCostsBySource] | None=..., subtotal: builtins.float=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=..., per_machine_usage_cost: builtins.float=..., binary_data_cloud_storage_usage_cost: builtins.float=..., other_cloud_storage_usage_cost: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['end_date', b'end_date', 'start_date', b'start_date']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_data_cloud_storage_usage_cost', b'binary_data_cloud_storage_usage_cost', 'cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'other_cloud_storage_usage_cost', b'other_cloud_storage_usage_cost', 'per_machine_usage_cost', b'per_machine_usage_cost', 'remote_control_usage_cost', b'remote_control_usage_cost', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_cloud_storage_usage_cost', b'binary_data_cloud_storage_usage_cost', 'cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'other_cloud_storage_usage_cost', b'other_cloud_storage_usage_cost', 'per_machine_usage_cost', b'per_machine_usage_cost', 'remote_control_usage_cost', b'remote_control_usage_cost', 'resource_usage_costs_by_source', b'resource_usage_costs_by_source', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'subtotal', b'subtotal', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
         ...
 global___GetCurrentMonthUsageResponse = GetCurrentMonthUsageResponse
 
