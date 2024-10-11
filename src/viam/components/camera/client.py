@@ -36,22 +36,22 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> ViamImage:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
-        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout)
+        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout, metadata=md)
         return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
 
     async def get_images(
         self,
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetImagesRequest(name=self.name)
-        response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout)
+        response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
             mime_type = CameraMimeType.from_proto(img_data.format)
@@ -65,32 +65,34 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Tuple[bytes, str]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD, extra=dict_to_struct(extra))
-        response: GetPointCloudResponse = await self.client.GetPointCloud(request, timeout=timeout)
+        response: GetPointCloudResponse = await self.client.GetPointCloud(request, timeout=timeout, metadata=md)
         return (response.point_cloud, response.mime_type)
 
     async def get_properties(
         self,
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Camera.Properties:
-        return await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
+        md = kwargs.get("metadata", self.Metadata()).proto
+        return await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout, metadata=md)
 
     async def do_command(
         self,
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        md = kwargs.get("metadata", self.Metadata())
+        return await get_geometries(self.client, self.name, extra, timeout, md)

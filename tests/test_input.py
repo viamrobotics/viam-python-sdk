@@ -45,7 +45,6 @@ def generic_service(controller: MockInputController) -> GenericRPCService:
 
 
 class TestInputController:
-    @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController):
         extra = {"foo": "get_detectors"}
         controls = await controller.get_controls(extra=extra, timeout=4.4)
@@ -75,7 +74,6 @@ class TestInputController:
         assert controller.extra == extra
         assert controller.timeout == loose_approx(4.4)
 
-    @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController):
         extra = {"foo": "get_events"}
         events = await controller.get_events(extra=extra, timeout=1.82)
@@ -83,7 +81,6 @@ class TestInputController:
         assert controller.extra == extra
         assert controller.timeout == loose_approx(1.82)
 
-    @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController):
         assert len(controller.events) == 0
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
@@ -104,20 +101,17 @@ class TestInputController:
         assert len(controller.callbacks[Control.ABSOLUTE_X]) == 2
         assert controller.reg_extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
         command = {"command": "args"}
         resp = await controller.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, controller: MockInputController):
         geometries = await controller.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
@@ -151,7 +145,6 @@ class TestService:
             assert controller.extra == extra
             assert controller.timeout == loose_approx(2.23)
 
-    @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
@@ -163,7 +156,6 @@ class TestService:
             assert controller.extra == extra
             assert controller.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerRPCService):
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
         async with ChannelFor([service]) as channel:
@@ -178,7 +170,6 @@ class TestService:
             assert controller.extra == {}
             assert controller.timeout == loose_approx(3.45)
 
-    @pytest.mark.asyncio
     async def test_stream_events(selc, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
 
@@ -211,7 +202,6 @@ class TestService:
             assert controller.callbacks[Control.BUTTON_START][EventType.BUTTON_RELEASE] is None
             assert controller.reg_extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
@@ -221,7 +211,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
@@ -231,7 +220,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
@@ -263,7 +251,6 @@ class TestClient:
             assert controller.extra == extra
             assert controller.timeout == loose_approx(4.56)
 
-    @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
@@ -273,7 +260,6 @@ class TestClient:
             assert controller.extra == extra
             assert controller.timeout == loose_approx(5.67)
 
-    @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerRPCService):
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
         async with ChannelFor([service]) as channel:
@@ -287,7 +273,6 @@ class TestClient:
             assert controller.timeout == loose_approx(6.78)
             assert controller.extra == {}
 
-    @pytest.mark.asyncio
     async def test_register_control_callback(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
@@ -317,7 +302,6 @@ class TestClient:
             assert controller.extra is None
             assert controller.reg_extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
@@ -325,7 +309,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_channel_rest(self, controller: MockInputController, service: InputControllerRPCService):
         channel = await ChannelFor([service]).__aenter__()
         client = ControllerClient(controller.name, channel)
@@ -344,7 +327,6 @@ class TestClient:
             await asyncio.sleep(0.1)
             assert client._is_streaming is True  # reset the channel should restart the callback stream
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)

@@ -1,83 +1,54 @@
+.PHONY: clean
 clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
-_lint:
-	flake8 --exclude=**/gen/**,*_grpc.py,*_pb2.py,*_pb2.pyi,.tox,**/venv/**,.direnv
-
+.PHONY: lint
 lint:
-	poetry run $(MAKE) _lint
+	ruff check ./src ./tests
 
-_format:
-	black --exclude ".*/gen/.*" ./src ./tests ./docs/examples
-	isort ./src ./tests ./docs/examples
-
+.PHONY: format
 format:
-	poetry run $(MAKE) _format
+	ruff format ./src ./tests
+	ruff check --select I --fix ./src ./tests
 
-_typecheck:
-	pyright
-
-typecheck:
-	poetry run $(MAKE) _typecheck
-
-_buf: clean
+.PHONY: buf
+buf: clean
 	rm -rf src/viam/gen
 	chmod +x plugin/main.py
+	uv pip install protoletariat
+	uv pip install protobuf --upgrade
 	$(eval API_VERSION := $(shell grep 'API_VERSION' src/viam/version_metadata.py | awk -F '"' '{print $$2}'))
-	buf generate buf.build/viamrobotics/api:v${API_VERSION}
+	buf generate buf.build/viamrobotics/api:${API_VERSION}
 	buf generate buf.build/viamrobotics/goutils
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
+	uv run python3 -m etc.generate_proto_import -v
 
-buf:
-	poetry run $(MAKE) _buf
-	$(MAKE) better_imports
-
-_better_imports:
-	python3 -m etc.generate_proto_import -v
-	@echo Add init files for specific documented protos
-
-better_imports:
-	poetry run $(MAKE) _better_imports
-
-_test_watch:
-	ptw .
-
-test_watch:
-	poetry run $(MAKE) _test_watch
-
-_test:
+.PHONY: test
+test:
 	coverage run -m pytest && coverage html
 
-test:
-	poetry run $(MAKE) _test
-
-_test_docs:
-	pytest --nbmake "./docs"
-
+.PHONY: test_docs
 test_docs:
 	kill -9 `ps aux | grep "[d]ocs.examples._server" | awk '{print $$2}'` || true
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'` || true
-	poetry run python3 -m docs.examples._server &
-	poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 quiet &
+	python3 -m docs.examples._server &
+	python3 -m examples.server.v1.server 0.0.0.0 9091 quiet &
 	sleep 3
-	poetry run $(MAKE) _test_docs
+	pytest --nbmake "./docs"
 	kill -9 `ps aux | grep "[d]ocs.examples._server" | awk '{print $$2}'`
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'`
 
-tox:
-	poetry run tox
+.PHONY: typecheck
+typecheck:
+	pyright
 
-_documentation:
-	cd docs && $(MAKE) clean html
-
+.PHONY: documentation
 documentation:
-	poetry run $(MAKE) _documentation
+	$(MAKE) -C docs clean html
 
-package: clean buf better_imports format test
-	@echo "TODO: Create pip-installable package"
-
+.PHONY: install
 install:
-	poetry install --all-extras
+	uv sync --all-extras
 	bash etc/postinstall.sh

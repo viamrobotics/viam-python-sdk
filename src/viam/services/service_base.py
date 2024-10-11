@@ -49,7 +49,7 @@ class ServiceBase(abc.ABC, ResourceBase):
             Self: The service, if it exists on the robot
         """
         service = robot.get_service(cls.get_resource_name(name))
-        return cast(cls, service)
+        return cast(cls, service)  # type: ignore
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands.

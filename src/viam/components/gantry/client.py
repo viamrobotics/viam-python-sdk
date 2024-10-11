@@ -37,12 +37,11 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> List[float]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return list(response.positions_mm)
 
     async def move_to_position(
@@ -52,24 +51,22 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveToPositionRequest(name=self.name, positions_mm=positions, speeds_mm_per_sec=speeds, extra=dict_to_struct(extra))
-        await self.client.MoveToPosition(request, timeout=timeout)
+        await self.client.MoveToPosition(request, timeout=timeout, metadata=md)
 
     async def home(
         self,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> bool:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = HomeRequest(name=self.name, extra=dict_to_struct(extra))
-        response: HomeResponse = await self.client.Home(request, timeout=timeout)
+        response: HomeResponse = await self.client.Home(request, timeout=timeout, metadata=md)
         return response.homed
 
     async def get_lengths(
@@ -77,12 +74,11 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> List[float]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetLengthsResponse = await self.client.GetLengths(request, timeout=timeout)
+        response: GetLengthsResponse = await self.client.GetLengths(request, timeout=timeout, metadata=md)
         return list(response.lengths_mm)
 
     async def stop(
@@ -90,16 +86,16 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
-        await self.client.Stop(request, timeout=timeout)
+        await self.client.Stop(request, timeout=timeout, metadata=md)
 
-    async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
+    async def is_moving(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = IsMovingRequest(name=self.name)
-        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout, metadata=md)
         return response.is_moving
 
     async def do_command(
@@ -107,11 +103,13 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-        **__,
+        **kwargs,
     ) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        md = kwargs.get("metadata", self.Metadata())
+        return await get_geometries(self.client, self.name, extra, timeout, md)

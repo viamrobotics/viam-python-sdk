@@ -28,7 +28,6 @@ def sensor() -> MockSensor:
 
 
 class TestSensor:
-    @pytest.mark.asyncio
     async def test_get_readings(self, sensor):
         assert sensor.extra is None
         readings = await sensor.get_readings(extra=EXTRA_PARAMS, timeout=1.23)
@@ -36,13 +35,11 @@ class TestSensor:
         assert sensor.extra == EXTRA_PARAMS
         assert sensor.timeout == loose_approx(1.23)
 
-    @pytest.mark.asyncio
     async def test_do(self, sensor):
         command = {"command": "args"}
         resp = await sensor.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, sensor):
         geometries = await sensor.get_geometries()
         assert geometries == GEOMETRIES
@@ -59,7 +56,6 @@ def service(manager) -> SensorRPCService:
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_get_readings(self, sensor, service):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
@@ -70,7 +66,6 @@ class TestService:
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_do(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
@@ -80,7 +75,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
@@ -90,7 +84,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_readings(self, sensor, service):
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
@@ -100,7 +93,6 @@ class TestClient:
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(3.45)
 
-    @pytest.mark.asyncio
     async def test_do(self, sensor, manager, service):
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
@@ -108,7 +100,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, sensor, service):
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)

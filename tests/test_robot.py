@@ -263,7 +263,6 @@ def service() -> RobotService:
 
 
 class TestRobotService:
-    @pytest.mark.asyncio
     async def test_resource_names(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
@@ -271,7 +270,6 @@ class TestRobotService:
             assert len(response.resources) == len(RESOURCE_NAMES)
             assert set(response.resources) == set(RESOURCE_NAMES)
 
-    @pytest.mark.asyncio
     async def test_get_status(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
@@ -282,7 +280,6 @@ class TestRobotService:
             response: GetStatusResponse = await client.GetStatus(request)
             assert list(response.status) == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
 
-    @pytest.mark.asyncio
     async def test_stop_all(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
@@ -342,7 +339,6 @@ class TestRobotService:
 
 
 class TestRobotClient:
-    @pytest.mark.asyncio
     async def test_refresh(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -354,7 +350,6 @@ class TestRobotClient:
             assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_refresh_task(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -365,7 +360,6 @@ class TestRobotClient:
             assert client._refresh_task is not None
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_close(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100))
@@ -377,7 +371,6 @@ class TestRobotClient:
             with pytest.raises(asyncio.CancelledError):
                 await client._refresh_task
 
-    @pytest.mark.asyncio
     async def test_resource_names(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -389,7 +382,6 @@ class TestRobotClient:
             assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_component(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -417,7 +409,6 @@ class TestRobotClient:
 
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_status(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -431,7 +422,6 @@ class TestRobotClient:
             assert struct_to_message(arm_status, ArmStatus) == ARM_STATUS
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -440,7 +430,6 @@ class TestRobotClient:
             MLModelClient.from_robot(client, "mlmodel1")
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_frame_system_config(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -448,7 +437,6 @@ class TestRobotClient:
             assert configs == CONFIG_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_transform_pose(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -456,7 +444,6 @@ class TestRobotClient:
             assert pose == TRANSFORM_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_discover_components(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -464,7 +451,6 @@ class TestRobotClient:
             assert discoveries == DISCOVERY_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_cloud_metadata(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -472,7 +458,6 @@ class TestRobotClient:
             assert md == GET_CLOUD_METADATA_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_version(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -480,7 +465,6 @@ class TestRobotClient:
             assert md == GET_VERVSION_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_machine_status(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -488,7 +472,6 @@ class TestRobotClient:
             assert statuses == GET_MACHINE_STATUS_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_get_operations(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -496,7 +479,6 @@ class TestRobotClient:
             assert ops == OPERATIONS_RESPONSE
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_cancel_operation(self, service: RobotService):
         cancelled = None
 
@@ -514,7 +496,6 @@ class TestRobotClient:
             assert cancelled == OPERATION_ID
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_block_for_operation(self, service: RobotService):
         blocked = None
 
@@ -532,7 +513,6 @@ class TestRobotClient:
             assert blocked == OPERATION_ID
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_stop_all(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -556,7 +536,6 @@ class TestRobotClient:
             assert await motor.is_moving() is False
             await client.close()
 
-    @pytest.mark.asyncio
     async def test_create_or_reset_client(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
@@ -657,7 +636,6 @@ class TestRobotClient:
             await client.close()
             Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = old_create_client
 
-    @pytest.mark.asyncio
     async def test_shutdown(self, service: RobotService):
         async with ChannelFor([service]) as channel:
 

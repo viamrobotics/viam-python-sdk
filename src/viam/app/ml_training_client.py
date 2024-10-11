@@ -83,8 +83,8 @@ class MLTrainingClient:
         """Submit a training job.
 
         ::
-            from viam.proto.app.mltraining import ModelType
 
+            from viam.proto.app.mltraining import ModelType
 
             job_id = await ml_training_client.submit_training_job(
                 org_id="<organization-id>",

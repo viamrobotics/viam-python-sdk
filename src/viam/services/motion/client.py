@@ -61,9 +61,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> bool:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveRequest(
             name=self.name,
             destination=destination,
@@ -72,7 +72,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             constraints=constraints,
             extra=dict_to_struct(extra),
         )
-        response: MoveResponse = await self.client.Move(request, timeout=timeout)
+        response: MoveResponse = await self.client.Move(request, timeout=timeout, metadata=md)
         return response.success
 
     async def move_on_globe(
@@ -87,9 +87,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         bounding_regions: Optional[Sequence[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> str:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveOnGlobeRequest(
             name=self.name,
             component_name=component_name,
@@ -101,7 +101,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             bounding_regions=bounding_regions,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
+        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout, metadata=md)
         return response.execution_id
 
     async def move_on_map(
@@ -114,9 +114,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> str:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveOnMapRequest(
             name=self.name,
             destination=destination,
@@ -126,7 +126,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             obstacles=obstacles,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
+        response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout, metadata=md)
         return response.execution_id
 
     async def stop_plan(
@@ -135,16 +135,16 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ):
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = StopPlanRequest(
             name=self.name,
             component_name=component_name,
             extra=dict_to_struct(extra),
         )
-        _: StopPlanResponse = await self.client.StopPlan(request, timeout=timeout)
+        _: StopPlanResponse = await self.client.StopPlan(request, timeout=timeout, metadata=md)
         return
 
     async def get_plan(
@@ -155,9 +155,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> GetPlanResponse:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = GetPlanRequest(
             name=self.name,
@@ -166,7 +166,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             execution_id=execution_id,
             extra=dict_to_struct(extra),
         )
-        response: GetPlanResponse = await self.client.GetPlan(request, timeout=timeout)
+        response: GetPlanResponse = await self.client.GetPlan(request, timeout=timeout, metadata=md)
         return response
 
     async def list_plan_statuses(
@@ -175,16 +175,16 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> Sequence[PlanStatusWithID]:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
 
         request = ListPlanStatusesRequest(
             name=self.name,
             only_active_plans=only_active_plans,
             extra=dict_to_struct(extra),
         )
-        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout)
+        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout, metadata=md)
         return response.plan_statuses_with_ids
 
     async def get_pose(
@@ -195,9 +195,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **kwargs,
     ) -> PoseInFrame:
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPoseRequest(
             name=self.name,
             component_name=component_name,
@@ -205,10 +205,11 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
             supplemental_transforms=supplemental_transforms,
             extra=dict_to_struct(extra),
         )
-        response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
+        response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout, metadata=md)
         return response.pose
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

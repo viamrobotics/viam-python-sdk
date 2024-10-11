@@ -1,26 +1,19 @@
 {
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.wordBasedSuggestions": "off",
+    "editor.rulers": [
+      {
+        "color": "#777777",
+        "column": 140
+      }
+    ]
   },
-  "python.linting.flake8Enabled": true,
-  "editor.formatOnSave": true,
-  "python.analysis.typeCheckingMode": "basic",
-  "python.linting.ignorePatterns": [
-    "**/site-packages/**/*.py",
-    ".vscode/*.py",
-    "gen/**/*",
-    "viam/proto/**/*"
-  ],
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "editor.rulers": [
-    {
-      "column": 140,
-      "color": "#777777"
-    }
-  ],
-  "python.formatting.provider": "black",
   "cSpell.words": [
     "frombytes",
     "grpclib",
@@ -30,7 +23,7 @@
     "segmenters",
     "TFLITE",
     "tobytes",
-    "viam"
-  ],
-  "isort.args": ["-l 140 --profile black"]
+    "viam",
+    "viamrobotics"
+  ]
 }

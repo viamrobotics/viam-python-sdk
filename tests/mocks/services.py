@@ -165,7 +165,6 @@ from viam.proto.app import (
     UploadModuleFileResponse,
 )
 from viam.proto.app.billing import (
-    BillingServiceBase,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -174,6 +173,7 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
+    UnimplementedBillingServiceBase,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -193,7 +193,6 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterResponse,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
-    DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
@@ -219,6 +218,7 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    UnimplementedDataServiceBase,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
@@ -792,7 +792,7 @@ class MockProvisioning(ProvisioningServiceBase):
         await stream.send_message(SetSmartMachineCredentialsResponse())
 
 
-class MockData(DataServiceBase):
+class MockData(UnimplementedDataServiceBase):
     def __init__(
         self,
         tabular_response: List[DataClient.TabularData],
@@ -1120,7 +1120,7 @@ class MockMLTraining(UnimplementedMLTrainingServiceBase):
         await stream.send_message(DeleteCompletedTrainingJobResponse())
 
 
-class MockBilling(BillingServiceBase):
+class MockBilling(UnimplementedBillingServiceBase):
     def __init__(
         self,
         pdf: bytes,

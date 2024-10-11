@@ -54,17 +54,14 @@ jobs:
         uses: actions/checkout@v4
         if: ${{ !inputs.branch }}
 
-      - name: Install Poetry
-        run: pipx install poetry
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
 
       - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: poetry
+        run: uv python install 3.12
 
       - name: Install package
-        run: poetry install --all-extras
+        run: uv sync
 
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
@@ -74,12 +71,12 @@ jobs:
         run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
 
       - name: Build
-        run: poetry build -f wheel
+        run: uv build --wheel
 
       - name: Rename
         run: |
-          echo "WHL_NAME=viam_sdk-$(poetry run python -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl" >> $GITHUB_ENV
-          mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl
+          echo "WHL_NAME=viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl" >> $GITHUB_ENV
+          mv dist/viam_sdk-$(uv run python3 -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(uv run python3 -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

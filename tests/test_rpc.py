@@ -10,7 +10,6 @@ from viam.rpc.dial import ViamChannel
 from .mocks import components  # noqa: F401
 
 
-@pytest.mark.asyncio
 async def test_reset_channel():
     class TestStub:
         def __init__(self, channel: Channel) -> None:
@@ -30,7 +29,6 @@ async def test_reset_channel():
             assert channel != channel2
 
 
-@pytest.mark.asyncio
 async def test_builtin_clients_are_reconfigurable():
     async with ChannelFor([]) as channel:
         for subtype, registration in Registry.REGISTERED_SUBTYPES().items():
@@ -39,7 +37,6 @@ async def test_builtin_clients_are_reconfigurable():
                 assert isinstance(client, ReconfigurableResourceRPCClientBase)
 
 
-@pytest.mark.asyncio
 async def test_viam_channel_closing():
     def release():
         nonlocal did_release

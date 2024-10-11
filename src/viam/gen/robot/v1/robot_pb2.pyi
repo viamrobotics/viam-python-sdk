@@ -848,9 +848,11 @@ class ResourceStatus(google.protobuf.message.Message):
         STATE_CONFIGURING: ResourceStatus._State.ValueType
         'a resource that is being configured.'
         STATE_READY: ResourceStatus._State.ValueType
-        'a resource that has been successfully configured once and is not being\n        re-configured or removed.\n        '
+        'a resource that has been successfully configured once, and is not re-configuring,\n        being removed, or unhealthy.\n        '
         STATE_REMOVING: ResourceStatus._State.ValueType
         'a resource that is being removed from the robot.'
+        STATE_UNHEALTHY: ResourceStatus._State.ValueType
+        'a resource that is in an unhealthy state.'
 
     class State(_State, metaclass=_StateEnumTypeWrapper):
         ...
@@ -860,17 +862,22 @@ class ResourceStatus(google.protobuf.message.Message):
     STATE_CONFIGURING: ResourceStatus.State.ValueType
     'a resource that is being configured.'
     STATE_READY: ResourceStatus.State.ValueType
-    'a resource that has been successfully configured once and is not being\n    re-configured or removed.\n    '
+    'a resource that has been successfully configured once, and is not re-configuring,\n    being removed, or unhealthy.\n    '
     STATE_REMOVING: ResourceStatus.State.ValueType
     'a resource that is being removed from the robot.'
+    STATE_UNHEALTHY: ResourceStatus.State.ValueType
+    'a resource that is in an unhealthy state.'
     NAME_FIELD_NUMBER: builtins.int
     STATE_FIELD_NUMBER: builtins.int
     LAST_UPDATED_FIELD_NUMBER: builtins.int
     REVISION_FIELD_NUMBER: builtins.int
+    ERROR_FIELD_NUMBER: builtins.int
     state: global___ResourceStatus.State.ValueType
     'current state.'
     revision: builtins.str
     'revision of the last config that successfully updated this resource.'
+    error: builtins.str
+    'error details for a resource. This is guaranteed to be null if the\n    resource is ready and non-null if the resource unhealthy.\n    '
 
     @property
     def name(self) -> common.v1.common_pb2.ResourceName:
@@ -880,13 +887,13 @@ class ResourceStatus(google.protobuf.message.Message):
     def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """state transition timestamp."""
 
-    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=...) -> None:
+    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=..., error: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
+    def ClearField(self, field_name: typing.Literal['error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
         ...
 global___ResourceStatus = ResourceStatus
 

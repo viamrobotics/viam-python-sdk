@@ -58,6 +58,7 @@ class RobotConfig(google.protobuf.message.Message):
     ENABLE_WEB_PROFILE_FIELD_NUMBER: builtins.int
     LOG_FIELD_NUMBER: builtins.int
     REVISION_FIELD_NUMBER: builtins.int
+    MAINTENANCE_FIELD_NUMBER: builtins.int
     debug: builtins.bool
     'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
     disable_partial_start: builtins.bool
@@ -110,13 +111,17 @@ class RobotConfig(google.protobuf.message.Message):
     def log(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogPatternConfig]:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=...) -> None:
+    @property
+    def maintenance(self) -> global___MaintenanceConfig:
         ...
 
-    def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> builtins.bool:
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
+    def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
         ...
 
     @typing.overload
@@ -129,6 +134,10 @@ class RobotConfig(google.protobuf.message.Message):
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_disable_partial_start', b'_disable_partial_start']) -> typing.Literal['disable_partial_start'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_maintenance', b'_maintenance']) -> typing.Literal['maintenance'] | None:
         ...
 
     @typing.overload
@@ -1068,6 +1077,7 @@ class ModuleConfig(google.protobuf.message.Message):
     MODULE_ID_FIELD_NUMBER: builtins.int
     ENV_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
+    FIRST_RUN_TIMEOUT_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
@@ -1086,13 +1096,17 @@ class ModuleConfig(google.protobuf.message.Message):
     def status(self) -> global___AppValidationStatus:
         """info about the validity of the module"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=...) -> None:
+    @property
+    def first_run_timeout(self) -> google.protobuf.duration_pb2.Duration:
+        """timeout for first_run script"""
+
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
@@ -1127,3 +1141,24 @@ class PackageConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['name', b'name', 'package', b'package', 'status', b'status', 'type', b'type', 'version', b'version']) -> None:
         ...
 global___PackageConfig = PackageConfig
+
+@typing.final
+class MaintenanceConfig(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SENSOR_NAME_FIELD_NUMBER: builtins.int
+    MAINTENANCE_ALLOWED_KEY_FIELD_NUMBER: builtins.int
+    maintenance_allowed_key: builtins.str
+
+    @property
+    def sensor_name(self) -> common.v1.common_pb2.ResourceName:
+        ...
+
+    def __init__(self, *, sensor_name: common.v1.common_pb2.ResourceName | None=..., maintenance_allowed_key: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['sensor_name', b'sensor_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['maintenance_allowed_key', b'maintenance_allowed_key', 'sensor_name', b'sensor_name']) -> None:
+        ...
+global___MaintenanceConfig = MaintenanceConfig

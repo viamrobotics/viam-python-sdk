@@ -22,20 +22,25 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         super().__init__(name, channel)
         self.client = SensorsServiceStub(channel)
 
-    async def get_sensors(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[ResourceName]:
+    async def get_sensors(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[ResourceName]:
         """Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
         Returns:
             List[viam.proto.common.ResourceName]: The list of all Sensors
         """
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetSensorsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetSensorsResponse = await self.client.GetSensors(request, timeout=timeout)
+        response: GetSensorsResponse = await self.client.GetSensors(request, timeout=timeout, metadata=md)
         return list(response.sensor_names)
 
     async def get_readings(
-        self, sensors: List[ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, sensors: List[ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Mapping[ResourceName, Mapping[str, SensorReading]]:
         """Get the readings from the specific sensors provided
 
@@ -45,13 +50,12 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Returns:
             Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by ``ResourceName``
         """
-        if extra is None:
-            extra = {}
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetReadingsRequest(name=self.name, sensor_names=sensors, extra=dict_to_struct(extra))
-        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
+        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout, metadata=md)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:
@@ -60,6 +64,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Returns:
             Dict[str, ValueTypes]: Result of the executed command
         """
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

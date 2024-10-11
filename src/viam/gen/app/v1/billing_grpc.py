@@ -26,8 +26,12 @@ class BillingServiceBase(abc.ABC):
     async def GetInvoicePdf(self, stream: 'grpclib.server.Stream[app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def SendPaymentRequiredEmail(self, stream: 'grpclib.server.Stream[app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.app.v1.BillingService/GetCurrentMonthUsage': grpclib.const.Handler(self.GetCurrentMonthUsage, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetCurrentMonthUsageRequest, app.v1.billing_pb2.GetCurrentMonthUsageResponse), '/viam.app.v1.BillingService/GetOrgBillingInformation': grpclib.const.Handler(self.GetOrgBillingInformation, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetOrgBillingInformationRequest, app.v1.billing_pb2.GetOrgBillingInformationResponse), '/viam.app.v1.BillingService/GetInvoicesSummary': grpclib.const.Handler(self.GetInvoicesSummary, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetInvoicesSummaryRequest, app.v1.billing_pb2.GetInvoicesSummaryResponse), '/viam.app.v1.BillingService/GetInvoicePdf': grpclib.const.Handler(self.GetInvoicePdf, grpclib.const.Cardinality.UNARY_STREAM, app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse)}
+        return {'/viam.app.v1.BillingService/GetCurrentMonthUsage': grpclib.const.Handler(self.GetCurrentMonthUsage, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetCurrentMonthUsageRequest, app.v1.billing_pb2.GetCurrentMonthUsageResponse), '/viam.app.v1.BillingService/GetOrgBillingInformation': grpclib.const.Handler(self.GetOrgBillingInformation, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetOrgBillingInformationRequest, app.v1.billing_pb2.GetOrgBillingInformationResponse), '/viam.app.v1.BillingService/GetInvoicesSummary': grpclib.const.Handler(self.GetInvoicesSummary, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.GetInvoicesSummaryRequest, app.v1.billing_pb2.GetInvoicesSummaryResponse), '/viam.app.v1.BillingService/GetInvoicePdf': grpclib.const.Handler(self.GetInvoicePdf, grpclib.const.Cardinality.UNARY_STREAM, app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse), '/viam.app.v1.BillingService/SendPaymentRequiredEmail': grpclib.const.Handler(self.SendPaymentRequiredEmail, grpclib.const.Cardinality.UNARY_UNARY, app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse)}
 
 class UnimplementedBillingServiceBase(BillingServiceBase):
 
@@ -43,6 +47,9 @@ class UnimplementedBillingServiceBase(BillingServiceBase):
     async def GetInvoicePdf(self, stream: 'grpclib.server.Stream[app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def SendPaymentRequiredEmail(self, stream: 'grpclib.server.Stream[app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class BillingServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -50,3 +57,4 @@ class BillingServiceStub:
         self.GetOrgBillingInformation = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.v1.BillingService/GetOrgBillingInformation', app.v1.billing_pb2.GetOrgBillingInformationRequest, app.v1.billing_pb2.GetOrgBillingInformationResponse)
         self.GetInvoicesSummary = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.v1.BillingService/GetInvoicesSummary', app.v1.billing_pb2.GetInvoicesSummaryRequest, app.v1.billing_pb2.GetInvoicesSummaryResponse)
         self.GetInvoicePdf = grpclib.client.UnaryStreamMethod(channel, '/viam.app.v1.BillingService/GetInvoicePdf', app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse)
+        self.SendPaymentRequiredEmail = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.v1.BillingService/SendPaymentRequiredEmail', app.v1.billing_pb2.SendPaymentRequiredEmailRequest, app.v1.billing_pb2.SendPaymentRequiredEmailResponse)

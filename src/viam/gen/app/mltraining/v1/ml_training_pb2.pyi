@@ -125,12 +125,27 @@ global___SubmitTrainingJobResponse = SubmitTrainingJobResponse
 @typing.final
 class SubmitCustomTrainingJobRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class ArgumentsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+
+        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
     DATASET_ID_FIELD_NUMBER: builtins.int
     REGISTRY_ITEM_ID_FIELD_NUMBER: builtins.int
     REGISTRY_ITEM_VERSION_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MODEL_NAME_FIELD_NUMBER: builtins.int
     MODEL_VERSION_FIELD_NUMBER: builtins.int
+    ARGUMENTS_FIELD_NUMBER: builtins.int
     dataset_id: builtins.str
     registry_item_id: builtins.str
     registry_item_version: builtins.str
@@ -138,10 +153,14 @@ class SubmitCustomTrainingJobRequest(google.protobuf.message.Message):
     model_name: builtins.str
     model_version: builtins.str
 
-    def __init__(self, *, dataset_id: builtins.str=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=...) -> None:
+    @property
+    def arguments(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
+    def __init__(self, *, dataset_id: builtins.str=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., arguments: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['arguments', b'arguments', 'dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
         ...
 global___SubmitCustomTrainingJobRequest = SubmitCustomTrainingJobRequest
 

@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint
@@ -31,54 +30,45 @@ class TestNavigationService:
     name = "navigation"
     navigation = MockNavigation(name="navigation")
 
-    @pytest.mark.asyncio
     async def test_get_location(self):
         result = await self.navigation.get_location()
         assert result == MockNavigation.LOCATION
 
-    @pytest.mark.asyncio
     async def test_get_obstacles(self):
         result = await self.navigation.get_obstacles()
         assert result == MockNavigation.OBSTACLES
 
-    @pytest.mark.asyncio
     async def test_get_waypoints(self):
         result = await self.navigation.get_waypoints()
         assert result == self.navigation.WAYPOINTS
 
-    @pytest.mark.asyncio
     async def test_add_waypoint(self):
         assert self.navigation.add_waypoints == []
         point = GeoPoint(latitude=100.0, longitude=200.0)
         await self.navigation.add_waypoint(point)
         assert self.navigation.add_waypoints == [point]
 
-    @pytest.mark.asyncio
     async def test_remove_waypoint(self):
         assert self.navigation.remove_waypoints == []
         id = "xyz"
         await self.navigation.remove_waypoint(id)
         assert self.navigation.remove_waypoints == [id]
 
-    @pytest.mark.asyncio
     async def test_get_mode(self):
         result = await self.navigation.get_mode()
         assert result == Mode.MODE_UNSPECIFIED
 
-    @pytest.mark.asyncio
     async def test_set_mode(self):
         assert self.navigation.mode == Mode.MODE_UNSPECIFIED
         mode = Mode.MODE_MANUAL
         await self.navigation.set_mode(mode)
         assert self.navigation.mode == mode
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         assert self.navigation.map_type == MapType.MAP_TYPE_UNSPECIFIED
         result = await self.navigation.get_properties()
         assert self.navigation.map_type == result
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         result = await self.navigation.do_command(command)
@@ -93,7 +83,6 @@ class TestService:
         cls.manager = ResourceManager([cls.navigation])
         cls.service = NavigationRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_location(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -102,7 +91,6 @@ class TestService:
             result = response.location
             assert result == self.navigation.LOCATION
 
-    @pytest.mark.asyncio
     async def test_get_obstacles(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -111,7 +99,6 @@ class TestService:
             result = response.obstacles
             assert result == self.navigation.OBSTACLES
 
-    @pytest.mark.asyncio
     async def test_get_waypoints(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -120,7 +107,6 @@ class TestService:
             result = response.waypoints
             assert result == self.navigation.WAYPOINTS
 
-    @pytest.mark.asyncio
     async def test_add_waypoint(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.add_waypoints == []
@@ -130,7 +116,6 @@ class TestService:
             await client.AddWaypoint(request)
             assert self.navigation.add_waypoints == [point]
 
-    @pytest.mark.asyncio
     async def test_remove_waypoint(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.remove_waypoints == []
@@ -140,7 +125,6 @@ class TestService:
             await client.RemoveWaypoint(request)
             assert self.navigation.remove_waypoints == [id]
 
-    @pytest.mark.asyncio
     async def test_get_mode(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -149,7 +133,6 @@ class TestService:
             result = response.mode
             assert result == Mode.MODE_UNSPECIFIED
 
-    @pytest.mark.asyncio
     async def test_set_mode(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.mode == Mode.MODE_UNSPECIFIED
@@ -159,7 +142,6 @@ class TestService:
             await client.SetMode(request)
             assert self.navigation.mode == Mode.MODE_MANUAL
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -168,7 +150,6 @@ class TestService:
             result = response.map_type
             assert result == MapType.MAP_TYPE_UNSPECIFIED
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -187,28 +168,24 @@ class TestClient:
         cls.manager = ResourceManager([cls.navigation])
         cls.service = NavigationRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_location(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationClient(self.name, channel)
             result = await client.get_location()
             assert result == self.navigation.LOCATION
 
-    @pytest.mark.asyncio
     async def test_get_obstacles(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationClient(self.name, channel)
             result = await client.get_obstacles()
             assert result == self.navigation.OBSTACLES
 
-    @pytest.mark.asyncio
     async def test_get_waypoints(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationClient(self.name, channel)
             result = await client.get_waypoints()
             assert result == self.navigation.WAYPOINTS
 
-    @pytest.mark.asyncio
     async def test_add_waypoint(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.add_waypoints == []
@@ -217,7 +194,6 @@ class TestClient:
             await client.add_waypoint(point)
             assert self.navigation.add_waypoints == [point]
 
-    @pytest.mark.asyncio
     async def test_remove_waypoint(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.remove_waypoints == []
@@ -226,14 +202,12 @@ class TestClient:
             await client.remove_waypoint(id)
             assert self.navigation.remove_waypoints == [id]
 
-    @pytest.mark.asyncio
     async def test_get_mode(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationClient(self.name, channel)
             result = await client.get_mode()
             assert result == Mode.MODE_UNSPECIFIED
 
-    @pytest.mark.asyncio
     async def test_set_mode(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.mode == Mode.MODE_UNSPECIFIED
@@ -242,7 +216,6 @@ class TestClient:
             await client.set_mode(mode)
             assert self.navigation.mode == Mode.MODE_MANUAL
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             assert self.navigation.map_type == MapType.MAP_TYPE_UNSPECIFIED
@@ -250,7 +223,6 @@ class TestClient:
             result = await client.get_properties()
             assert self.navigation.map_type == result
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationClient(self.name, channel)

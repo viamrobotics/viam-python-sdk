@@ -1,6 +1,5 @@
 from typing import List
 
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
@@ -26,12 +25,10 @@ class TestSLAMService:
     name = "slam"
     slam = MockSLAM(name="slam")
 
-    @pytest.mark.asyncio
     async def test_get_internal_state_chunks(self):
         chunks = await self.slam.get_internal_state()
         assert chunks == MockSLAM.INTERNAL_STATE_CHUNKS
 
-    @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         chunks = await self.slam.get_point_cloud_map()
         assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS
@@ -40,18 +37,15 @@ class TestSLAMService:
         chunks = await self.slam.get_point_cloud_map(return_edited_map=True)
         assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS_EDITED
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         pos = await self.slam.get_position()
         assert pos == MockSLAM.POSITION
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.slam.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         properties = await self.slam.get_properties()
         assert properties.cloud_slam == MockSLAM.CLOUD_SLAM
@@ -68,7 +62,6 @@ class TestService:
         cls.manager = ResourceManager([cls.slam])
         cls.service = SLAMRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_internal_state(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -77,7 +70,6 @@ class TestService:
             for i, chunk in enumerate(response):
                 assert chunk.internal_state_chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
 
-    @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -86,7 +78,6 @@ class TestService:
             for i, chunk in enumerate(response):
                 assert chunk.point_cloud_pcd_chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -94,7 +85,6 @@ class TestService:
             response: GetPositionResponse = await client.GetPosition(request)
             assert response.pose == MockSLAM.POSITION
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -105,7 +95,6 @@ class TestService:
             assert response.internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
             assert response.sensor_info == MockSLAM.SENSOR_INFO
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -124,7 +113,6 @@ class TestClient:
         cls.manager = ResourceManager([cls.slam])
         cls.service = SLAMRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_get_internal_state(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
@@ -133,7 +121,6 @@ class TestClient:
             for i, chunk in enumerate(response):
                 assert chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
 
-    @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
@@ -142,14 +129,12 @@ class TestClient:
             for i, chunk in enumerate(response):
                 assert chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
             response = await client.get_position()
             assert response == MockSLAM.POSITION
 
-    @pytest.mark.asyncio
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
@@ -159,7 +144,6 @@ class TestClient:
             assert properties.internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
             assert properties.sensor_info == MockSLAM.SENSOR_INFO
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)

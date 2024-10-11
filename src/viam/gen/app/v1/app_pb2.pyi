@@ -85,17 +85,21 @@ class _VisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._Enu
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     VISIBILITY_UNSPECIFIED: _Visibility.ValueType
     VISIBILITY_PRIVATE: _Visibility.ValueType
-    'Private modules are visible only within your org'
+    'Private registry items are visible only within the owning org'
     VISIBILITY_PUBLIC: _Visibility.ValueType
-    'Public modules are visible to everyone'
+    'Public registry items are visible to everyone'
+    VISIBILITY_PUBLIC_UNLISTED: _Visibility.ValueType
+    "Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 
 class Visibility(_Visibility, metaclass=_VisibilityEnumTypeWrapper):
     ...
 VISIBILITY_UNSPECIFIED: Visibility.ValueType
 VISIBILITY_PRIVATE: Visibility.ValueType
-'Private modules are visible only within your org'
+'Private registry items are visible only within the owning org'
 VISIBILITY_PUBLIC: Visibility.ValueType
-'Public modules are visible to everyone'
+'Public registry items are visible to everyone'
+VISIBILITY_PUBLIC_UNLISTED: Visibility.ValueType
+"Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 global___Visibility = Visibility
 
 @typing.final
@@ -145,6 +149,7 @@ class RobotPart(google.protobuf.message.Message):
     LOCAL_FQDN_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
     SECRETS_FIELD_NUMBER: builtins.int
+    LAST_UPDATED_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     dns_name: builtins.str
@@ -177,13 +182,17 @@ class RobotPart(google.protobuf.message.Message):
     def secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SharedSecret]:
         """List of secrets allowed for authentication."""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=...) -> None:
+    @property
+    def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """latest timestamp when a robot part was updated"""
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access', 'last_updated', b'last_updated', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'last_updated', b'last_updated', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
         ...
 global___RobotPart = RobotPart
 
@@ -1409,23 +1418,41 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     FILTER_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     LEVELS_FIELD_NUMBER: builtins.int
+    START_FIELD_NUMBER: builtins.int
+    END_FIELD_NUMBER: builtins.int
+    LIMIT_FIELD_NUMBER: builtins.int
+    SOURCE_FIELD_NUMBER: builtins.int
     id: builtins.str
     errors_only: builtins.bool
     'TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field'
     filter: builtins.str
     page_token: builtins.str
+    limit: builtins.int
+    source: builtins.str
 
     @property
     def levels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """logs of all levels are returned when the levels field is empty"""
 
-    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    @property
+    def start(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> builtins.bool:
+    @property
+    def end(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'page_token', b'page_token']) -> None:
+    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=..., start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=..., limit: builtins.int | None=..., source: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_end', b'_end']) -> typing.Literal['end'] | None:
         ...
 
     @typing.overload
@@ -1433,7 +1460,19 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
         ...
 
     @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_limit', b'_limit']) -> typing.Literal['limit'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_source', b'_source']) -> typing.Literal['source'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_start', b'_start']) -> typing.Literal['start'] | None:
         ...
 global___GetRobotPartLogsRequest = GetRobotPartLogsRequest
 
@@ -1682,6 +1721,7 @@ class Fragment(google.protobuf.message.Message):
     ORGANIZATION_COUNT_FIELD_NUMBER: builtins.int
     ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
+    LAST_UPDATED_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     organization_owner: builtins.str
@@ -1704,13 +1744,17 @@ class Fragment(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=..., visibility: global___FragmentVisibility.ValueType=...) -> None:
+    @property
+    def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """latest timestamp when fragment was updated"""
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=..., visibility: global___FragmentVisibility.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']) -> None:
         ...
 global___Fragment = Fragment
 
@@ -1819,20 +1863,25 @@ class CreateFragmentRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    VISIBILITY_FIELD_NUMBER: builtins.int
     name: builtins.str
     organization_id: builtins.str
+    visibility: global___FragmentVisibility.ValueType
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., organization_id: builtins.str=..., visibility: global___FragmentVisibility.ValueType | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_visibility', b'_visibility', 'config', b'config', 'visibility', b'visibility']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['config', b'config', 'name', b'name', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_visibility', b'_visibility', 'config', b'config', 'name', b'name', 'organization_id', b'organization_id', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_visibility', b'_visibility']) -> typing.Literal['visibility'] | None:
         ...
 global___CreateFragmentRequest = CreateFragmentRequest
 
@@ -2429,10 +2478,13 @@ class ModuleVersion(google.protobuf.message.Message):
     FILES_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
     'The entrypoint for this version of the module'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -2442,10 +2494,16 @@ class ModuleVersion(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'models', b'models', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___ModuleVersion = ModuleVersion
 
@@ -2455,8 +2513,11 @@ class ModuleMetadata(google.protobuf.message.Message):
     MODELS_FIELD_NUMBER: builtins.int
     VERSIONS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
@@ -2468,10 +2529,16 @@ class ModuleMetadata(google.protobuf.message.Message):
         When this is returned from the backend, the versions are sorted in ascending order by the semver version
         """
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'models', b'models', 'versions', b'versions']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'versions', b'versions']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___ModuleMetadata = ModuleMetadata
 
@@ -2874,6 +2941,7 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     DESCRIPTION_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     visibility: global___Visibility.ValueType
@@ -2884,15 +2952,23 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     'A short description of the module that explains its purpose'
     entrypoint: builtins.str
     'The executable to run to start the module program'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
 
@@ -3034,6 +3110,7 @@ class Module(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     name: builtins.str
@@ -3054,6 +3131,8 @@ class Module(google.protobuf.message.Message):
     'The executable to run to start the module program'
     public_namespace: builtins.str
     'The public namespace of the organization that owns the module\n    This is empty if no public namespace is set\n    '
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]:
@@ -3065,10 +3144,16 @@ class Module(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___Module = Module
 
@@ -3079,10 +3164,13 @@ class VersionHistory(google.protobuf.message.Message):
     FILES_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FIRST_RUN_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
     'The entrypoint for this version of the module'
+    first_run: builtins.str
+    'The path to a setup script that is run before a newly downloaded module starts.'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -3092,10 +3180,16 @@ class VersionHistory(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'models', b'models', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___VersionHistory = VersionHistory
 

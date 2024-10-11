@@ -16,23 +16,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Setup Python
+        run: uv python install 3.12
 
       - name: Install package
         run: make install
 
       - name: Generate docs
         run: |
-          poetry run python3 -m docs.examples._server &
-          poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 &
+          uv run python3 -m docs.examples._server &
+          uv run python3 -m examples.server.v1.server 0.0.0.0 9091 &
           sleep 2
-          make documentation
+          uv run make documentation
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

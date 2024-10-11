@@ -13,12 +13,10 @@ class TestMLModel:
     name = "mlmodel"
     mlmodel = MockMLModel(name=name)
 
-    @pytest.mark.asyncio
     async def test_infer(self):
         resp = await self.mlmodel.infer(input_tensors=MockMLModel.EMPTY_NDARRAYS)
         assert resp == MockMLModel.EMPTY_NDARRAYS
 
-    @pytest.mark.asyncio
     async def test_metadata(self):
         resp = await self.mlmodel.metadata()
         assert resp == MockMLModel.META
@@ -32,7 +30,6 @@ class TestService:
         cls.manager = ResourceManager([cls.mlmodel])
         cls.service = MLModelRPCService(cls.manager)
 
-    @pytest.mark.asyncio
     async def test_infer(self):
         async with ChannelFor([self.service]) as channel:
             client = MLModelServiceStub(channel)
@@ -40,7 +37,6 @@ class TestService:
             response: InferResponse = await client.Infer(request)
             assert response.output_tensors == MockMLModel.EMPTY_TENSORS
 
-    @pytest.mark.asyncio
     async def test_metadata(self):
         async with ChannelFor([self.service]) as channel:
             client = MLModelServiceStub(channel)
@@ -60,7 +56,6 @@ class TestClient:
     #  ignore warning about our out-of-bound int casting (i.e. uint32 -> int16) because we don't store uint32s for int16 & uint16 tensor
     #  data > 2^16-1 in the first place (inherently they are int16, we just cast them to uint32 for the grpc message)
     @pytest.mark.filterwarnings("ignore::DeprecationWarning")
-    @pytest.mark.asyncio
     async def test_infer(self):
         async with ChannelFor([self.service]) as channel:
             client = MLModelClient(self.name, channel)
@@ -112,7 +107,6 @@ class TestClient:
             assert np.array_equal(response["1"], MockMLModel.UINT64_NDARRAY)
             assert response["1"].dtype == np.uint64
 
-    @pytest.mark.asyncio
     async def test_metadata(self):
         async with ChannelFor([self.service]) as channel:
             META = MockMLModel.META

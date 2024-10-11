@@ -48,11 +48,6 @@ from viam.proto.app import (
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
-)
-from viam.proto.app import Fragment as FragmentPB
-from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
-from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
-from viam.proto.app import (
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
     GetFragmentRequest,
@@ -129,10 +124,6 @@ from viam.proto.app import (
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
     Robot,
-)
-from viam.proto.app import RobotPart as RobotPartPB
-from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
-from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
@@ -159,6 +150,11 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
+from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
@@ -1274,10 +1270,10 @@ class AppClient:
             indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
-            GRPCError: If an invalid robot part ID is passed.
+            GRPCError: If an invalid machine part ID is passed.
 
         Returns:
-            viam.app.app_client.RobotPart: The robot part.
+            viam.app.app_client.RobotPart: The machine part.
 
         For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
         """
@@ -2416,7 +2412,7 @@ class AppClient:
             auth = APIKeyAuthorization(
                 role="owner",
                 resource_type="robot",
-                resource_id="your-robot-id123"
+                resource_id="your-machine-id123"
             )
 
             api_key, api_key_id = cloud.create_key(

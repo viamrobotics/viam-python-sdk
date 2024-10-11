@@ -12,31 +12,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1.28.1
+      - uses: bufbuild/buf-setup-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: arduino/setup-protoc@v1
+      - uses: arduino/setup-protoc@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          version: "28.2"
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
 
-      - name: Install package
-        run: poetry install --all-extras
+      - name: Setup Python
+        run: uv python install
 
       - name: Store API version
         run: |
-          python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
           echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
 
       - name: Generate buf
-        run: make buf
+        run: uv run make buf
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
       - name: Format
-        run: make format
+        run: uv run make format
 
       - name: Add + Commit + Open PR
         shell: bash

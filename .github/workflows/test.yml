@@ -22,38 +22,35 @@ jobs:
     steps:
       - name: Checkout Push/Workflow Dispatch
         if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Checkout PR
         if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Install Poetry
-        run: pipx install poetry
-      - name: Setup python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: poetry
+          enable-cache: true
 
-      - name: Fix Poetry
-        run: poetry config installer.modern-installation false
+      - name: Setup Python
+        run: uv python install ${{ matrix.python-version }}
 
       - name: Install package
         run: make install
 
       - name: Install minimum package versions
-        run: poetry run pip install -r requirements-test.txt
+        run: uv pip install -r requirements-test.txt
         if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Type Check
-        run: make typecheck
+        run: uv run make typecheck
 
       - name: Lint
-        run: make lint
+        run: uv run make lint
 
       - name: Test
-        run: make test
+        run: uv run make test
 
       - name: Test Documentation
-        run: make test_docs
+        run: uv run make test_docs

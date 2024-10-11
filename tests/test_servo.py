@@ -1,4 +1,3 @@
-import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.servo import ServoClient, ServoStatus, create_status
@@ -24,21 +23,18 @@ class TestServo:
     servo = MockServo(name="servo")
     pos = 42
 
-    @pytest.mark.asyncio
     async def test_move(self):
         await self.servo.move(self.pos, timeout=1.23, extra={"foo": "move"})
         assert self.servo.angle == self.pos
         assert self.servo.timeout == loose_approx(1.23)
         assert self.servo.extra == {"foo": "move"}
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         new_pos = await self.servo.get_position(timeout=2.34, extra={"foo": "get_position"})
         assert new_pos == self.pos
         assert self.servo.timeout == loose_approx(2.34)
         assert self.servo.extra == {"foo": "get_position"}
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         assert self.servo.is_stopped is False
         await self.servo.stop(timeout=3.45, extra={"foo": "stop"})
@@ -46,27 +42,23 @@ class TestServo:
         assert self.servo.timeout == loose_approx(3.45)
         assert self.servo.extra == {"foo": "stop"}
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         await self.servo.move(self.pos)
         assert await self.servo.is_moving()
         await self.servo.stop()
         assert not await self.servo.is_moving()
 
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.servo.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_status(self):
         await self.servo.move(self.pos)
         status = await create_status(self.servo)
         assert status.name == self.servo.get_resource_name(self.servo.name)
         assert status.status == message_to_struct(ServoStatus(position_deg=self.pos, is_moving=True))
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         geometries = await self.servo.get_geometries()
         assert geometries == GEOMETRIES
@@ -81,7 +73,6 @@ class TestService:
         cls.service = ServoRPCService(cls.manager)
         cls.pos = 42
 
-    @pytest.mark.asyncio
     async def test_move(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
@@ -91,7 +82,6 @@ class TestService:
             assert self.servo.timeout == loose_approx(1.23)
             assert self.servo.extra == {"foo": "move"}
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
@@ -101,7 +91,6 @@ class TestService:
             assert self.servo.timeout == loose_approx(2.34)
             assert self.servo.extra == {"foo": "get_position"}
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.servo.is_stopped is False
@@ -112,7 +101,6 @@ class TestService:
             assert self.servo.timeout == loose_approx(3.45)
             assert self.servo.extra == {"foo": "stop"}
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             assert self.servo.is_stopped is True
@@ -122,7 +110,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
@@ -132,7 +119,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
@@ -150,7 +136,6 @@ class TestClient:
         cls.service = ServoRPCService(cls.manager)
         cls.pos = 42
 
-    @pytest.mark.asyncio
     async def test_move(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.servo.name, channel)
@@ -159,7 +144,6 @@ class TestClient:
             assert self.servo.timeout == loose_approx(1.23)
             assert self.servo.extra == {"foo": "move"}
 
-    @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.servo.name, channel)
@@ -168,7 +152,6 @@ class TestClient:
             assert self.servo.timeout == loose_approx(2.34)
             assert self.servo.extra == {"foo": "get_position"}
 
-    @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.servo.is_stopped is False
@@ -178,7 +161,6 @@ class TestClient:
             assert self.servo.timeout == loose_approx(3.45)
             assert self.servo.extra == {"foo": "stop"}
 
-    @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
@@ -186,7 +168,6 @@ class TestClient:
             self.servo.is_stopped = False
             assert await client.is_moving() is True
 
-    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
@@ -194,7 +175,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)

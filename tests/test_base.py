@@ -42,7 +42,6 @@ def generic_service(base: MockBase) -> GenericRPCService:
 
 
 class TestBase:
-    @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase):
         distances = [randint(-50, 50) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -51,7 +50,6 @@ class TestBase:
             await base.move_straight(d, v)
             assert base.position == sum(distances[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_spin(self, base: MockBase):
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -60,7 +58,6 @@ class TestBase:
             await base.spin(a, v)
             assert base.angle == sum(angles[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_stop(self, base: MockBase):
         assert base.stopped is True
 
@@ -79,7 +76,6 @@ class TestBase:
         await base.spin(0, 0)
         assert base.stopped is True
 
-    @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase):
         assert base.linear_pwr == Vector3(x=0, y=0, z=0)
         assert base.angular_pwr == Vector3(x=0, y=0, z=0)
@@ -89,7 +85,6 @@ class TestBase:
         assert base.linear_pwr == Vector3(x=1, y=2, z=3)
         assert base.angular_pwr == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_velocity(self, base: MockBase):
         assert base.linear_vel == Vector3(x=0, y=0, z=0)
         assert base.angular_vel == Vector3(x=0, y=0, z=0)
@@ -99,7 +94,6 @@ class TestBase:
         assert base.linear_vel == Vector3(x=1, y=2, z=3)
         assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, base: MockBase):
         await base.move_straight(1, 1)
         assert await base.is_moving()
@@ -107,41 +101,35 @@ class TestBase:
         assert base.stopped is True
         assert not await base.is_moving()
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, base: MockBase):
         properties = await base.get_properties()
         assert properties.width_meters == 1.0
         assert properties.turning_radius_meters == 2.0
         assert properties.wheel_circumference_meters == 3.0
 
-    @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
         command = {"command": "args"}
         resp = await base.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_status(self, base: MockBase):
         await base.move_straight(1, 1)
         status = await create_status(base)
         assert status.name == base.get_resource_name(base.name)
         assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
-    @pytest.mark.asyncio
     async def test_extra(self, base: MockBase):
         assert base.extra is None
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await base.move_straight(1, 1, extra=extra)
         assert base.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, base: MockBase):
         geometries = await base.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase, service: BaseRPCService):
         distances = [randint(-50, 50) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -157,7 +145,6 @@ class TestService:
                 await client.MoveStraight(request)
                 assert base.position == sum(distances[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseRPCService):
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -173,7 +160,6 @@ class TestService:
                 await client.Spin(request)
                 assert base.angle == sum(angles[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -186,7 +172,6 @@ class TestService:
             assert base.linear_pwr == Vector3(x=1, y=2, z=3)
             assert base.angular_pwr == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_set_velocity(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -199,7 +184,6 @@ class TestService:
             assert base.linear_vel == Vector3(x=1, y=2, z=3)
             assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -248,7 +232,6 @@ class TestService:
             await client.Spin(request)
             assert base.stopped is True
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             assert base.stopped is True
@@ -258,7 +241,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             assert base.extra is None
@@ -268,7 +250,6 @@ class TestService:
             await client.MoveStraight(request)
             assert base.extra == extra
 
-    @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -278,7 +259,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -288,7 +268,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase, service: BaseRPCService):
         distances = [randint(-50, 50) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -299,7 +278,6 @@ class TestClient:
                 await client.move_straight(d, v)
                 assert base.position == sum(distances[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseRPCService):
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
@@ -310,7 +288,6 @@ class TestClient:
                 await client.spin(a, v)
                 assert base.angle == sum(angles[: i + 1])
 
-    @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
@@ -322,7 +299,6 @@ class TestClient:
             assert base.linear_pwr == Vector3(x=1, y=2, z=3)
             assert base.angular_pwr == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_set_velocity(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
@@ -334,7 +310,6 @@ class TestClient:
             assert base.linear_vel == Vector3(x=1, y=2, z=3)
             assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
-    @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseRPCService):
         assert base.timeout is None
         async with ChannelFor([service]) as channel:
@@ -358,7 +333,6 @@ class TestClient:
             await client.spin(0, 0)
             assert base.stopped is True
 
-    @pytest.mark.asyncio
     async def test_is_moving(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             assert base.stopped is True
@@ -366,7 +340,6 @@ class TestClient:
             client = BaseClient(base.name, channel)
             assert await client.is_moving() is True
 
-    @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
@@ -374,7 +347,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             assert base.extra is None
@@ -383,7 +355,6 @@ class TestClient:
             await client.move_straight(1, 1, extra=extra)
             assert base.extra == extra
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)

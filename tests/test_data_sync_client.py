@@ -39,7 +39,6 @@ def service() -> MockDataSync:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_binary_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -73,7 +72,6 @@ class TestClient:
             )
             assert service.metadata.file_extension == ".txt"
 
-    @pytest.mark.asyncio
     async def test_tabular_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -91,7 +89,6 @@ class TestClient:
             self.assert_metadata(metadata=service.metadata)
             assert file_id == FILE_UPLOAD_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_file_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -112,7 +109,6 @@ class TestClient:
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
-    @pytest.mark.asyncio
     async def test_file_upload_from_path(self, service: MockDataSync, tmp_path):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -133,7 +129,6 @@ class TestClient:
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
-    @pytest.mark.asyncio
     async def test_streaming_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
