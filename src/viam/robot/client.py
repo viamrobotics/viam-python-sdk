@@ -101,7 +101,6 @@ class RobotClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
-
     For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
     """
 
