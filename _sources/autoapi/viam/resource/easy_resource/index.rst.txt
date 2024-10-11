@@ -98,6 +98,21 @@ Module Contents
 
 
 
+   .. py:method:: validate_config(config: viam.proto.app.robot.ComponentConfig) -> Sequence[str]
+      :classmethod:
+
+
+      This method allows you to validate the configuration object received from the machine,
+      as well as to return any implicit dependencies based on that `config`.
+
+      :param config: The configuration for this resource
+      :type config: ComponentConfig
+
+      :returns: A list of implicit dependencies
+      :rtype: Sequence[str]
+
+
+
    .. py:method:: register()
       :classmethod:
 
