@@ -81,17 +81,14 @@ class RobotClient:
         from viam.robot.client import RobotClient
 
 
-        async def connect() -> RobotClient:
-            opts = RobotClient.Options(
-                disable_sessions=True,
-                dial_options=DialOptions(timeout=10)).with_api_key(
-                    # Replace "<API-KEY>" (including brackets) with your API key
-                    api_key='<API-KEY>',
-                    # Replace "<API-KEY-ID>" (including brackets) with your API key
-                    # ID
-                    api_key_id='<API-KEY-ID>'
-                )
-            return await RobotClient.at_address(address="<ADDRESS-FROM-THE-VIAM-APP>", options=opts)
+        async def connect():
+            opts = RobotClient.Options.with_api_key(
+                # Replace "<API-KEY>" (including brackets) with your machine's API key
+                api_key='<API-KEY>',
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+                api_key_id='<API-KEY-ID>'
+            )
+            return await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
 
         async def main():
@@ -103,6 +100,7 @@ class RobotClient:
 
         if __name__ == '__main__':
             asyncio.run(main())
+
 
     For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
     """
