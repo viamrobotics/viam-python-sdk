@@ -890,7 +890,7 @@ class RobotClient:
 
         ::
 
-            result = machine.get_version()
+            result = await machine.get_version()
             print(result.platform)
             print(result.version)
             print(result.api_version)
