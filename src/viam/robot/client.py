@@ -829,7 +829,7 @@ class RobotClient:
 
         ::
 
-            metadata = machine.get_cloud_metadata()
+            metadata = await machine.get_cloud_metadata()
             print(metadata.machine_id)
             print(metadata.machine_part_id)
             print(metadata.primary_org_id)
@@ -854,7 +854,7 @@ class RobotClient:
 
         ::
 
-            machine.shutdown()
+            await machine.shutdown()
 
         Raises:
             GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
@@ -890,7 +890,7 @@ class RobotClient:
 
         ::
 
-            result = machine.get_version()
+            result = await machine.get_version()
             print(result.platform)
             print(result.version)
             print(result.api_version)
