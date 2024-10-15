@@ -541,6 +541,7 @@ returned service to the desired service. This can be done using a few methods:</
 provide a list of <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> for which you want statuses.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the status of the resources on the machine.</span>
 <span class="n">statuses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+<span class="n">resource_statuses</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">resources</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -631,7 +632,24 @@ has finished or has been cancelled.</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pose">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pose" title="Permalink to this definition"></a></dt>
 <dd><p>Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">transform_pose</span><span class="p">(</span><span class="n">PoseInFrame</span><span class="p">(),</span> <span class="s2">&quot;origin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">PoseInFrame</span>
+
+<span class="n">pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>    <span class="c1"># X coordinate in mm</span>
+    <span class="n">y</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>    <span class="c1"># Y coordinate in mm</span>
+    <span class="n">z</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>    <span class="c1"># Z coordinate in mm</span>
+    <span class="n">o_x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># X component of orientation vector</span>
+    <span class="n">o_y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># Y component of orientation vector</span>
+    <span class="n">o_z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># Z component of orientation vector</span>
+    <span class="n">theta</span><span class="o">=</span><span class="mf">0.0</span> <span class="c1"># Orientation angle in degrees</span>
+<span class="p">)</span>
+
+<span class="n">pose_in_frame</span> <span class="o">=</span> <span class="n">PoseInFrame</span><span class="p">(</span>
+    <span class="n">reference_frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">,</span>
+    <span class="n">pose</span><span class="o">=</span><span class="n">pose</span>
+<span class="p">)</span>
+
+<span class="n">transformed_pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">transform_pose</span><span class="p">(</span><span class="n">pose_in_frame</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -663,9 +681,12 @@ has finished or has been cancelled.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.discover_components">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><span class="pre">viam.proto.robot.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Discovery" title="viam.proto.robot.Discovery"><span class="pre">viam.proto.robot.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.discover_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
-<dd><p>Get the list of discovered component configurations.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new discovery query.</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="n">acme</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;some model&quot;</span><span class="p">)</span>
+<dd><p>Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.
+Returns module names for modules.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">DiscoveryQuery</span>
+
+<span class="c1"># Define a new discovery query.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;webcam&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define a list of discovery queries.</span>
 <span class="n">qs</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">]</span>
@@ -676,10 +697,10 @@ has finished or has been cancelled.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><em>viam.proto.robot.DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup configurations for.</p>
+<dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><em>viam.proto.robot.DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup potential configurations for.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of discovered component configurations.</p>
+<dd class="field-even"><p>A list of discovered potential component configurations.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Discovery" title="viam.gen.robot.v1.robot_pb2.Discovery">Discovery</a>]</p>

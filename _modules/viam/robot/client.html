@@ -702,6 +702,7 @@
 
 <span class="sd">            # Get the status of the resources on the machine.</span>
 <span class="sd">            statuses = await machine.get_status()</span>
+<span class="sd">            resource_statuses = machine_status.resources</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of</span>
@@ -802,7 +803,24 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            pose = await machine.transform_pose(PoseInFrame(), &quot;origin&quot;)</span>
+<span class="sd">            from viam.proto.common import Pose, PoseInFrame</span>
+
+<span class="sd">            pose = Pose(</span>
+<span class="sd">                x=1.0,    # X coordinate in mm</span>
+<span class="sd">                y=2.0,    # Y coordinate in mm</span>
+<span class="sd">                z=3.0,    # Z coordinate in mm</span>
+<span class="sd">                o_x=0.0,  # X component of orientation vector</span>
+<span class="sd">                o_y=0.0,  # Y component of orientation vector</span>
+<span class="sd">                o_z=0.0,  # Z component of orientation vector</span>
+<span class="sd">                theta=0.0 # Orientation angle in degrees</span>
+<span class="sd">            )</span>
+
+<span class="sd">            pose_in_frame = PoseInFrame(</span>
+<span class="sd">                reference_frame=&quot;world&quot;,</span>
+<span class="sd">                pose=pose</span>
+<span class="sd">            )</span>
+
+<span class="sd">            transformed_pose = await machine.transform_pose(pose_in_frame, &quot;world&quot;)</span>
 
 <span class="sd">        Args:</span>
 
@@ -830,12 +848,15 @@
         <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DiscoveryQuery</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Discovery</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the list of discovered component configurations.</span>
+<span class="sd">        Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.</span>
+<span class="sd">        Returns module names for modules.</span>
 
 <span class="sd">        ::</span>
 
+<span class="sd">            from viam.proto.robot import DiscoveryQuery</span>
+
 <span class="sd">            # Define a new discovery query.</span>
-<span class="sd">            q = machine.DiscoveryQuery(subtype=acme.API, model=&quot;some model&quot;)</span>
+<span class="sd">            q = DiscoveryQuery(subtype=&quot;camera&quot;, model=&quot;webcam&quot;)</span>
 
 <span class="sd">            # Define a list of discovery queries.</span>
 <span class="sd">            qs = [q]</span>
@@ -845,10 +866,10 @@
 
 <span class="sd">        Args:</span>
 
-<span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.</span>
+<span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup potential configurations for.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Discovery]: A list of discovered component configurations.</span>
+<span class="sd">            List[Discovery]: A list of discovered potential component configurations.</span>
 
 <span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

@@ -383,6 +383,7 @@ Module Contents
 
           # Get the status of the resources on the machine.
           statuses = await machine.get_status()
+          resource_statuses = machine_status.resources
 
       :param components: Optional list of
                          ``ResourceName`` for components you want statuses.
@@ -474,7 +475,24 @@ Module Contents
 
       ::
 
-          pose = await machine.transform_pose(PoseInFrame(), "origin")
+          from viam.proto.common import Pose, PoseInFrame
+
+          pose = Pose(
+              x=1.0,    # X coordinate in mm
+              y=2.0,    # Y coordinate in mm
+              z=3.0,    # Z coordinate in mm
+              o_x=0.0,  # X component of orientation vector
+              o_y=0.0,  # Y component of orientation vector
+              o_z=0.0,  # Z component of orientation vector
+              theta=0.0 # Orientation angle in degrees
+          )
+
+          pose_in_frame = PoseInFrame(
+              reference_frame="world",
+              pose=pose
+          )
+
+          transformed_pose = await machine.transform_pose(pose_in_frame, "world")
 
       :param query: The pose that should be transformed.
       :type query: viam.proto.common.PoseInFrame
@@ -499,12 +517,15 @@ Module Contents
       :async:
 
 
-      Get the list of discovered component configurations.
+      Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.
+      Returns module names for modules.
 
       ::
 
+          from viam.proto.robot import DiscoveryQuery
+
           # Define a new discovery query.
-          q = machine.DiscoveryQuery(subtype=acme.API, model="some model")
+          q = DiscoveryQuery(subtype="camera", model="webcam")
 
           # Define a list of discovery queries.
           qs = [q]
@@ -512,10 +533,10 @@ Module Contents
           # Get component configurations with these queries.
           component_configs = await machine.discover_components(qs)
 
-      :param queries: The list of component models to lookup configurations for.
+      :param queries: The list of component models to lookup potential configurations for.
       :type queries: List[viam.proto.robot.DiscoveryQuery]
 
-      :returns: A list of discovered component configurations.
+      :returns: A list of discovered potential component configurations.
       :rtype: List[Discovery]
 
       For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
