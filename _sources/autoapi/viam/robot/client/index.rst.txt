@@ -576,7 +576,7 @@ Module Contents
 
       ::
 
-          metadata = machine.get_cloud_metadata()
+          metadata = await machine.get_cloud_metadata()
           print(metadata.machine_id)
           print(metadata.machine_part_id)
           print(metadata.primary_org_id)
@@ -597,7 +597,7 @@ Module Contents
 
       ::
 
-          machine.shutdown()
+          await machine.shutdown()
 
       :raises GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
           the machine server shuts down before having a chance to send a response. Raised with
@@ -616,7 +616,7 @@ Module Contents
 
       ::
 
-          result = machine.get_version()
+          result = await machine.get_version()
           print(result.platform)
           print(result.version)
           print(result.api_version)
