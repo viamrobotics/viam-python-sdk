@@ -854,7 +854,7 @@ class RobotClient:
 
         ::
 
-            machine.shutdown()
+            await machine.shutdown()
 
         Raises:
             GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
