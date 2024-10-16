@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 from enum import Enum
-from typing import Any, AsyncIterator, Dict, List, Literal, Mapping, Optional, Tuple, Union
+from typing import Any, AsyncIterator, List, Literal, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -48,11 +48,6 @@ from viam.proto.app import (
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
-)
-from viam.proto.app import Fragment as FragmentPB
-from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
-from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
-from viam.proto.app import (
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
     GetFragmentRequest,
@@ -129,10 +124,6 @@ from viam.proto.app import (
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
     Robot,
-)
-from viam.proto.app import RobotPart as RobotPartPB
-from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
-from viam.proto.app import (
     RotateKeyRequest,
     RotateKeyResponse,
     RoverRentalRobot,
@@ -159,6 +150,11 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
+from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
@@ -205,9 +201,9 @@ class RobotPart:
     secret: str
     robot: str
     location_id: str
-    robot_config: Optional[Dict[str, Any]]
+    robot_config: Optional[Mapping[str, Any]]
     last_access: Optional[datetime]
-    user_supplied_info: Optional[Dict[str, Any]]
+    user_supplied_info: Optional[Mapping[str, Any]]
     main_part: bool
     fqdn: str
     local_fqdn: str

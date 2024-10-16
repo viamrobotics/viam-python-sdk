@@ -40,7 +40,6 @@ def service_without_heartbeat(service: MockRobot) -> MockRobot:
     return service
 
 
-@pytest.mark.asyncio
 async def test_init_client():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
@@ -48,7 +47,6 @@ async def test_init_client():
         assert client._supported == _SupportedState.UNKNOWN
 
 
-@pytest.mark.asyncio
 async def test_sessions_error():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
@@ -59,7 +57,6 @@ async def test_sessions_error():
         assert e_info.value.status == Status.UNKNOWN
 
 
-@pytest.mark.asyncio
 async def test_sessions_not_supported():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
@@ -68,7 +65,6 @@ async def test_sessions_not_supported():
         assert client._supported == _SupportedState.FALSE
 
 
-@pytest.mark.asyncio
 async def test_sessions_not_implemented(service_without_session: MockRobot):
     async with ChannelFor([service_without_session]) as channel:
         client = SessionsClient(channel, "", None)
@@ -76,7 +72,6 @@ async def test_sessions_not_implemented(service_without_session: MockRobot):
         assert client._supported == _SupportedState.FALSE
 
 
-@pytest.mark.asyncio
 async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobot):
     async with ChannelFor([service_without_heartbeat]) as channel:
         client = SessionsClient(channel, "", None)
@@ -94,7 +89,6 @@ async def _run_server(sock: socket.socket, handlers: List[IServable], shutdown_s
     server.close()
 
 
-@pytest.mark.asyncio
 async def test_sessions_heartbeat_thread_blocked():
     sock = socket.socket()
     sock.bind(("", 0))
@@ -123,7 +117,6 @@ async def test_sessions_heartbeat_thread_blocked():
     assert m.heartbeat_count >= 5
 
 
-@pytest.mark.asyncio
 async def test_sessions_disabled(service: MockRobot):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel, "", None, disabled=True)

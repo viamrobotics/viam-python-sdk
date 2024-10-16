@@ -14,11 +14,9 @@ class RPCServiceBase(IServable):
     """
 
     @abstractmethod
-    def __mapping__(self) -> Mapping[str, grpclib.const.Handler]:
-        ...
+    def __mapping__(self) -> Mapping[str, grpclib.const.Handler]: ...
 
 
 @runtime_checkable
 class RPCServiceStubBase(Protocol):
-    def __init__(self, channel: Channel) -> None:
-        ...
+    def __init__(self, channel: Channel) -> None: ...

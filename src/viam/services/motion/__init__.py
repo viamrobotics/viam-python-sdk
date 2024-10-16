@@ -5,7 +5,7 @@ from .client import MotionClient
 from .motion import Motion
 from .service import MotionRPCService
 
-__all__ = ["MotionClient", "MotionConfiguration", "Constraints"]
+__all__ = ["Motion", "MotionClient", "MotionConfiguration", "Constraints"]
 
 
 Registry.register_subtype(

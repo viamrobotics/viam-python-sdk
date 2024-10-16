@@ -210,5 +210,4 @@ Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
 class SupportsGetGeometries(Protocol):
     """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
 
-    async def GetGeometries(self, request: GetGeometriesRequest, *, timeout: Optional[float] = None, **kwargs) -> GetGeometriesResponse:
-        ...
+    async def GetGeometries(self, request: GetGeometriesRequest, *, timeout: Optional[float] = None, **kwargs) -> GetGeometriesResponse: ...

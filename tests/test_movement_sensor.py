@@ -95,7 +95,6 @@ def generic_service(movement_sensor: MovementSensor) -> GenericRPCService:
 
 
 class TestMovementSensor:
-    @pytest.mark.asyncio
     async def test_get_position(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         (coord, alt) = await movement_sensor.get_position(extra=EXTRA_PARAMS)
@@ -103,49 +102,42 @@ class TestMovementSensor:
         assert alt == ALTITUDE
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_linear_velocity(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_linear_velocity(extra=EXTRA_PARAMS)
         assert value == LINEAR_VELOCITY
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_linear_acceleration(extra=EXTRA_PARAMS)
         assert value == LINEAR_ACCELERATION
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_angular_velocity(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_angular_velocity(extra=EXTRA_PARAMS)
         assert value == ANGULAR_VELOCITY
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_compass_heading(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_compass_heading(extra=EXTRA_PARAMS)
         assert value == HEADING
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_orientation(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_orientation(extra=EXTRA_PARAMS)
         assert value == ORIENTATION
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_properties(extra=EXTRA_PARAMS)
         assert value == PROPERTIES
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_accuracy(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_accuracy(extra=EXTRA_PARAMS)
@@ -156,14 +148,12 @@ class TestMovementSensor:
         assert value.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         readings = await movement_sensor.get_readings(extra=EXTRA_PARAMS)
         assert readings == READINGS
         assert movement_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_timeout(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.timeout is None
 
@@ -194,20 +184,17 @@ class TestMovementSensor:
         await movement_sensor.get_readings(timeout=8.90)
         assert movement_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor):
         command = {"command": "args"}
         resp = await movement_sensor.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, movement_sensor: MockMovementSensor):
         geometries = await movement_sensor.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_get_position(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -219,7 +206,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(1.23)
 
-    @pytest.mark.asyncio
     async def test_get_linear_velocity(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -230,7 +216,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_get_angular_velocity(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -241,7 +226,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(3.45)
 
-    @pytest.mark.asyncio
     async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -252,7 +236,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_get_compass_heading(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -262,7 +245,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(4.56)
 
-    @pytest.mark.asyncio
     async def test_get_orientation(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -273,7 +255,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(5.67)
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -283,7 +264,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(6.78)
 
-    @pytest.mark.asyncio
     async def test_get_accuracy(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -297,7 +277,6 @@ class TestService:
             assert response.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
             assert movement_sensor.timeout == loose_approx(7.89)
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -308,7 +287,6 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -318,7 +296,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -328,7 +305,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_position(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -339,7 +315,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(1.45)
 
-    @pytest.mark.asyncio
     async def test_get_linear_velocity(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -349,7 +324,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_get_angular_velocity(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -359,7 +333,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(3.45)
 
-    @pytest.mark.asyncio
     async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -369,7 +342,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_get_compass_heading(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -379,7 +351,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(4.56)
 
-    @pytest.mark.asyncio
     async def test_get_orientation(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -389,7 +360,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(5.67)
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -399,7 +369,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(6.78)
 
-    @pytest.mark.asyncio
     async def test_get_accuracy(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -412,7 +381,6 @@ class TestClient:
             assert value.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
             assert movement_sensor.timeout == loose_approx(7.89)
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -422,7 +390,6 @@ class TestClient:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -430,7 +397,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)

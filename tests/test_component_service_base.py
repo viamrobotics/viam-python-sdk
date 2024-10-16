@@ -16,7 +16,6 @@ from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.resource.types import Subtype
 
 
-@pytest.mark.asyncio
 async def test_cancellation_propagation():
     class TestComponent(ComponentBase):
         SUBTYPE = Subtype("test", "test", "test")
@@ -35,8 +34,7 @@ async def test_cancellation_propagation():
             return self.long_running_task_cancelled
 
     class TestClient(TestComponent, ReconfigurableResourceRPCClientBase):
-        def __init__(self, name: str, channel: Channel):
-            ...
+        def __init__(self, name: str, channel: Channel): ...
 
     class TestService(ResourceRPCServiceBase):
         RESOURCE_TYPE = TestComponent

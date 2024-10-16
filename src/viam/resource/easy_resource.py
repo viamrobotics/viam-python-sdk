@@ -1,7 +1,7 @@
 import inspect
 import re
 from abc import ABCMeta
-from typing import Callable, ClassVar, Mapping, Union
+from typing import Callable, ClassVar, Mapping, Sequence, Union
 
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -122,6 +122,19 @@ class EasyResource:
         return self
 
     @classmethod
+    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+        """This method allows you to validate the configuration object received from the machine,
+        as well as to return any implicit dependencies based on that `config`.
+
+        Args:
+            config (ComponentConfig): The configuration for this resource
+
+        Returns:
+            Sequence[str]: A list of implicit dependencies
+        """
+        return []
+
+    @classmethod
     def register(cls):
         """
         This adds the model to the global registry. It is called by __init_subclass__ and you typically
@@ -131,7 +144,9 @@ class EasyResource:
         # note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()
         # walk in ResourceManager.register.
         Registry.register_resource_creator(
-            cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new)  # pyright: ignore [reportArgumentType]
+            cls.SUBTYPE,
+            cls.MODEL,
+            ResourceCreatorRegistration(cls.new, cls.validate_config),  # pyright: ignore [reportArgumentType]
         )
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):

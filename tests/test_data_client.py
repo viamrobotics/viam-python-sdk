@@ -126,7 +126,6 @@ def service() -> MockData:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_tabular_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -150,21 +149,18 @@ class TestClient:
             assert last_response != ""
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_tabular_data_by_sql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_sql(ORG_ID, SQL_QUERY)
             assert response == TABULAR_QUERY_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_tabular_data_by_mql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
             assert response == TABULAR_QUERY_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -192,7 +188,6 @@ class TestClient:
             assert last_response != ""
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_binary_data_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -200,14 +195,12 @@ class TestClient:
             assert binary_data == BINARY_RESPONSE
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
 
-    @pytest.mark.asyncio
     async def test_delete_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
             assert deleted_count == DELETE_REMOVE_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_delete_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -215,7 +208,6 @@ class TestClient:
             assert deleted_count == DELETE_REMOVE_RESPONSE
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_delete_binary_data_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -223,7 +215,6 @@ class TestClient:
             assert deleted_count == DELETE_REMOVE_RESPONSE
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
 
-    @pytest.mark.asyncio
     async def test_add_tags_to_binary_data_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -231,7 +222,6 @@ class TestClient:
             assert service.tags == TAGS
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
 
-    @pytest.mark.asyncio
     async def test_add_tags_to_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -239,7 +229,6 @@ class TestClient:
             assert service.tags == TAGS
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_remove_tags_from_binary_data_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -248,7 +237,6 @@ class TestClient:
             assert service.tags == TAGS
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
 
-    @pytest.mark.asyncio
     async def test_remove_tags_from_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -257,7 +245,6 @@ class TestClient:
             assert service.tags == TAGS
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_tags_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -265,7 +252,6 @@ class TestClient:
             assert tags == TAGS_RESPONSE
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_add_bounding_box_to_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -279,7 +265,6 @@ class TestClient:
             )
             assert bbox_label == BBOX_LABEL
 
-    @pytest.mark.asyncio
     async def test_remove_bounding_box_from_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -287,7 +272,6 @@ class TestClient:
             assert service.removed_label == BBOX_LABEL
             assert service.removed_id == BINARY_ID
 
-    @pytest.mark.asyncio
     async def test_bounding_box_labels_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -295,14 +279,12 @@ class TestClient:
             assert bbox_labels == BBOX_LABELS
             self.assert_filter(filter=service.filter)
 
-    @pytest.mark.asyncio
     async def test_get_database_connection(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             hostname = await client.get_database_connection(organization_id=ORG_ID)
             assert hostname == HOSTNAME_RESPONSE
 
-    @pytest.mark.asyncio
     async def test_configure_database_user(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -310,7 +292,6 @@ class TestClient:
             assert service.organization_id == ORG_ID
             assert service.password == PASSWORD
 
-    @pytest.mark.asyncio
     async def test_add_binary_data_to_dataset_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
@@ -318,7 +299,6 @@ class TestClient:
             assert service.added_data_ids == BINARY_IDS
             assert service.dataset_id == DATASET_ID
 
-    @pytest.mark.asyncio
     async def test_remove_binary_data_to_dataset_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)

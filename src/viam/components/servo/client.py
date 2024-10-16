@@ -35,7 +35,7 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> int:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout, metadata=md)
         return response.position_deg
@@ -48,7 +48,7 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveRequest(name=self.name, angle_deg=angle, extra=dict_to_struct(extra))
         await self.client.Move(request, timeout=timeout, metadata=md)
 
@@ -59,12 +59,12 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout, metadata=md)
 
     async def is_moving(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout, metadata=md)
         return response.is_moving
@@ -76,11 +76,11 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

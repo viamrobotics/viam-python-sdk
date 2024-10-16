@@ -32,7 +32,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[float, bool]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetVoltageRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetVoltageResponse = await self.client.GetVoltage(request, timeout=timeout, metadata=md)
         return response.volts, response.is_ac
@@ -44,7 +44,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[float, bool]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetCurrentRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetCurrentResponse = await self.client.GetCurrent(request, timeout=timeout, metadata=md)
         return response.amperes, response.is_ac
@@ -56,7 +56,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> float:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPowerRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPowerResponse = await self.client.GetPower(request, timeout=timeout, metadata=md)
         return response.watts
@@ -68,7 +68,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, SensorReading]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout, metadata=md)
         return sensor_readings_value_to_native(response.readings)
@@ -80,7 +80,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)

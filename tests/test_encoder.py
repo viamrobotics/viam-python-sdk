@@ -39,40 +39,34 @@ def generic_service(encoder: MockEncoder) -> GenericRPCService:
 
 
 class TestEncoder:
-    @pytest.mark.asyncio
     async def test_get_position(self, encoder: MockEncoder):
         pos, pos_type = await encoder.get_position(timeout=2.34)
         assert pos == 0
         assert pos_type == PositionType.POSITION_TYPE_TICKS_COUNT
         assert encoder.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_reset_position(self, encoder: MockEncoder):
         await encoder.reset_position(timeout=5.67)
         assert encoder.position == 0
         assert encoder.timeout == loose_approx(5.67)
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, encoder: MockEncoder):
         properties = await encoder.get_properties(timeout=6.78)
         assert properties.ticks_count_supported is True
         assert properties.angle_degrees_supported is False
         assert encoder.timeout == loose_approx(6.78)
 
-    @pytest.mark.asyncio
     async def test_do(self, encoder: MockEncoder):
         command = {"command": "args"}
         resp = await encoder.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, encoder: MockEncoder):
         geometries = await encoder.get_geometries()
         assert geometries == GEOMETRIES
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_get_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -82,7 +76,6 @@ class TestService:
             assert response.position_type == PositionType.POSITION_TYPE_TICKS_COUNT
             assert encoder.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -91,7 +84,6 @@ class TestService:
             assert encoder.position == 0
             assert encoder.timeout == loose_approx(5.67)
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -101,7 +93,6 @@ class TestService:
             assert response.angle_degrees_supported is False
             assert encoder.timeout == loose_approx(6.78)
 
-    @pytest.mark.asyncio
     async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -111,7 +102,6 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
@@ -121,7 +111,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
@@ -130,7 +119,6 @@ class TestClient:
             assert pos_type == PositionType.POSITION_TYPE_TICKS_COUNT
             assert encoder.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
@@ -138,7 +126,6 @@ class TestClient:
             assert encoder.timeout == loose_approx(5.67)
             assert encoder.position == 0
 
-    @pytest.mark.asyncio
     async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
@@ -147,7 +134,6 @@ class TestClient:
             assert properties.angle_degrees_supported is False
             assert encoder.timeout == loose_approx(6.78)
 
-    @pytest.mark.asyncio
     async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
@@ -155,7 +141,6 @@ class TestClient:
             resp = await client.do_command(command)
             assert resp == {"command": command}
 
-    @pytest.mark.asyncio
     async def test_get_geometries(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)

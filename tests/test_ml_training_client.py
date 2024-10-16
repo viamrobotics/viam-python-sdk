@@ -60,14 +60,12 @@ def service() -> MockMLTraining:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_cancel_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
             await client.cancel_training_job(CANCEL_ID)
             assert service.cancel_job_id == CANCEL_ID
 
-    @pytest.mark.asyncio
     async def test_submit_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
@@ -76,7 +74,6 @@ class TestClient:
             )
             assert id == JOB_ID
 
-    @pytest.mark.asyncio
     async def test_custom_submit_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
@@ -90,7 +87,6 @@ class TestClient:
             )
             assert id == JOB_ID
 
-    @pytest.mark.asyncio
     async def test_get_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
@@ -98,7 +94,6 @@ class TestClient:
             assert training_metadata == TRAINING_METADATA
             assert service.training_job_id == TRAINING_JOB_ID
 
-    @pytest.mark.asyncio
     async def test_list_training_jobs(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
@@ -108,7 +103,6 @@ class TestClient:
             assert service.training_status == TRAINING_STATUS
             assert service.org_id == ORG_ID
 
-    @pytest.mark.asyncio
     async def test_delete_completed_training_job(self, service: MockMLTraining):
         async with ChannelFor([service]) as channel:
             client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)

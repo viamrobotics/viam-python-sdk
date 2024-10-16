@@ -231,7 +231,6 @@ def test_sensor_readings():
     assert response == expected
 
 
-@pytest.mark.asyncio
 async def test_pointer_counter():
     counter = PointerCounter()
 

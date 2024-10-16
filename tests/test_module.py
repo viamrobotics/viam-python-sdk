@@ -45,7 +45,6 @@ def service(module: Module) -> ModuleRPCService:
 
 
 class TestModule:
-    @pytest.mark.asyncio
     async def test_add_resource(self, module: Module):
         req = AddResourceRequest(
             config=ComponentConfig(
@@ -75,7 +74,6 @@ class TestModule:
         await module.add_resource(req)
         assert SummationService.get_resource_name("mysum1") in module.server.resources
 
-    @pytest.mark.asyncio
     async def test_reconfigure_resource(self, module: Module):
         await self.test_add_resource(module)
 
@@ -109,7 +107,6 @@ class TestModule:
         await module.reconfigure_resource(req)
         assert summer.subtract is True
 
-    @pytest.mark.asyncio
     async def test_add_resource_with_deps(self, robot_service: RobotService, module: Module):  # noqa: F811
         async with ChannelFor([robot_service]) as channel:
             _ = mock.patch("viam.module.module.Module._connect_to_parent")
@@ -132,7 +129,6 @@ class TestModule:
             await module.remove_resource(req)
             assert Gizmo.get_resource_name("gizmo2") not in module.server.resources
 
-    @pytest.mark.asyncio
     async def test_remove_resource(self, module: Module):
         await self.test_add_resource(module)
 
@@ -154,7 +150,6 @@ class TestModule:
             # test default close
             mocked.assert_called_once()
 
-    @pytest.mark.asyncio
     async def test_ready(self, module: Module):
         with mock.patch("viam.module.Module._connect_to_parent"):
             p_addr = "SOME_FAKE_ADDRESS"
@@ -185,7 +180,6 @@ class TestModule:
         with pytest.raises(ValueError):
             mod.add_model_from_registry(Subtype.from_string("fake:fake:fake"), Model.from_string("faker:faker:faker"))
 
-    @pytest.mark.asyncio
     async def test_multiple_resources_same_model(self, module: Module):
         req = AddResourceRequest(
             config=ComponentConfig(
@@ -218,7 +212,6 @@ class TestModule:
         assert await g1.do_one("arg2") is False
         assert await g2.do_one("arg2") is True
 
-    @pytest.mark.asyncio
     async def test_validate_config(self, module: Module):
         await self.test_add_resource(module)
 
@@ -297,7 +290,6 @@ class TestModule:
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_add_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
@@ -305,7 +297,6 @@ class TestService:
                 await client.AddResource(AddResourceRequest())
                 mocked.assert_called_once()
 
-    @pytest.mark.asyncio
     async def test_reconfigure_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
@@ -313,7 +304,6 @@ class TestService:
                 await client.ReconfigureResource(ReconfigureResourceRequest())
                 mocked.assert_called_once()
 
-    @pytest.mark.asyncio
     async def test_remove_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
@@ -321,7 +311,6 @@ class TestService:
                 await client.RemoveResource(RemoveResourceRequest())
                 mocked.assert_called_once()
 
-    @pytest.mark.asyncio
     async def test_ready(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
@@ -329,7 +318,6 @@ class TestService:
                 await client.Ready(ReadyRequest())
                 mocked.assert_called_once()
 
-    @pytest.mark.asyncio
     async def test_validate_config(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)

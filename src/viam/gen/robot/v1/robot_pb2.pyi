@@ -429,13 +429,21 @@ class DiscoveryQuery(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUBTYPE_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     subtype: builtins.str
     model: builtins.str
 
-    def __init__(self, *, subtype: builtins.str=..., model: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing.Literal['model', b'model', 'subtype', b'subtype']) -> None:
+    def __init__(self, *, subtype: builtins.str=..., model: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'model', b'model', 'subtype', b'subtype']) -> None:
         ...
 global___DiscoveryQuery = DiscoveryQuery
 

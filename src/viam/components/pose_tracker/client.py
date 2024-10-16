@@ -28,7 +28,7 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Dict[str, PoseInFrame]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPosesRequest(name=self.name, body_names=body_names, extra=dict_to_struct(extra))
         response: GetPosesResponse = await self.client.GetPoses(request, timeout=timeout, metadata=md)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
@@ -40,11 +40,11 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

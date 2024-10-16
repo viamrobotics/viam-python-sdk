@@ -40,7 +40,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = MoveStraightRequest(
             name=self.name,
             distance_mm=distance,
@@ -58,7 +58,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = SpinRequest(
             name=self.name,
             angle_deg=angle,
@@ -76,7 +76,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = SetPowerRequest(
             name=self.name,
             linear=linear,
@@ -94,7 +94,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = SetVelocityRequest(name=self.name, linear=linear, angular=angular, extra=dict_to_struct(extra))
         await self.client.SetVelocity(request, timeout=timeout, metadata=md)
 
@@ -105,7 +105,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout, metadata=md)
 
@@ -115,7 +115,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> bool:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout, metadata=md)
         return response.is_moving
@@ -127,7 +127,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Base.Properties:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout, metadata=md)
         return Base.Properties(
@@ -143,11 +143,11 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Mapping[str, ValueTypes]:
-        md = kwargs.get('metadata', self.Metadata()).proto
+        md = kwargs.get("metadata", self.Metadata()).proto
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout, metadata=md)
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        md = kwargs.get('metadata', self.Metadata())
+        md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)

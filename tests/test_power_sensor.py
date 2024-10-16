@@ -45,7 +45,6 @@ def generic_service(power_sensor: PowerSensor) -> GenericRPCService:
 
 
 class TestPowerSensor:
-    @pytest.mark.asyncio
     async def test_get_voltage(self, power_sensor: MockPowerSensor):
         assert power_sensor.extra is None
         (volts, is_ac) = await power_sensor.get_voltage(extra=EXTRA_PARAMS)
@@ -72,7 +71,6 @@ class TestPowerSensor:
         assert value == READINGS
         assert power_sensor.extra == EXTRA_PARAMS
 
-    @pytest.mark.asyncio
     async def test_timeout(self, power_sensor: MockPowerSensor):
         assert power_sensor.timeout is None
 
@@ -88,7 +86,6 @@ class TestPowerSensor:
         await power_sensor.get_readings(timeout=8.90)
         assert power_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_do(self, power_sensor: PowerSensor):
         command = {"command": "args"}
         resp = await power_sensor.do_command(command)
@@ -96,7 +93,6 @@ class TestPowerSensor:
 
 
 class TestService:
-    @pytest.mark.asyncio
     async def test_get_voltage(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -108,7 +104,6 @@ class TestService:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_get_current(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -120,7 +115,6 @@ class TestService:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_get_power(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -131,7 +125,6 @@ class TestService:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -142,7 +135,6 @@ class TestService:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
 
-    @pytest.mark.asyncio
     async def test_do(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -154,7 +146,6 @@ class TestService:
 
 
 class TestClient:
-    @pytest.mark.asyncio
     async def test_get_voltage(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
@@ -165,7 +156,6 @@ class TestClient:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(1.45)
 
-    @pytest.mark.asyncio
     async def test_get_current(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
@@ -176,7 +166,6 @@ class TestClient:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(1.45)
 
-    @pytest.mark.asyncio
     async def test_get_power(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
@@ -186,7 +175,6 @@ class TestClient:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(1.45)
 
-    @pytest.mark.asyncio
     async def test_get_readings(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
@@ -196,7 +184,6 @@ class TestClient:
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(2.34)
 
-    @pytest.mark.asyncio
     async def test_do(self, power_sensor: PowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
