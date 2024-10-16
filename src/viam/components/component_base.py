@@ -1,9 +1,11 @@
 import abc
+from logging import Logger
 from typing import TYPE_CHECKING, Any, ClassVar, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Union, cast
 
 from typing_extensions import Self
 
 from viam.errors import MethodNotImplementedError
+from viam.logging import getLogger
 from viam.proto.common import Geometry
 from viam.resource.base import ResourceBase
 
@@ -23,8 +25,9 @@ class ComponentBase(abc.ABC, ResourceBase):
 
     SUBTYPE: ClassVar["Subtype"]
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, *, logger: Optional[Logger] = None):
         self.name = name
+        self.logger = logger if logger is not None else getLogger(f'{self.SUBTYPE}.{name}')
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

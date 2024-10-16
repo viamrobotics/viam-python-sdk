@@ -83,7 +83,10 @@ class _ModuleHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
-        name = record.name.split(".")[-1]
+        # unfortunately a bit of magic here. This `name` mirrors the way RDK names resources
+        # for logging purposes internally. If we don't match that, then resource-specific log
+        # levels won't be respected.
+        name = "resource_manager." + record.name.replace('.', '/')
         message = f"{record.filename}:{record.lineno}\t{record.getMessage()}"
         stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
         time = datetime.fromtimestamp(record.created)
@@ -149,6 +152,14 @@ def getLogger(name: str) -> logging.Logger:
 
 def addHandlers(logger: logging.Logger, use_default_handlers=False):
     _addHandlers([logger], use_default_handlers)
+
+
+def update_log_level(logger: logging.Logger, level: Union[int, str]):
+    if level == '':
+        level = LOG_LEVEL
+    logger.setLevel(level)
+    for handler in logger.handlers:
+        handler.setLevel(level)
 
 
 def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):

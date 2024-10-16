@@ -1,8 +1,10 @@
 import abc
+from logging import Logger
 from typing import TYPE_CHECKING, ClassVar, Mapping, Optional, cast
 
 from typing_extensions import Self
 
+from viam.logging import getLogger
 from viam.resource.base import ResourceBase
 from viam.utils import ValueTypes
 
@@ -18,8 +20,9 @@ class ServiceBase(abc.ABC, ResourceBase):
 
     SUBTYPE: ClassVar["Subtype"]
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str, *, logger: Optional[Logger] = None) -> None:
         self.name = name
+        self.logger = logger if logger is not None else getLogger(f'{self.SUBTYPE}.{name}')
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

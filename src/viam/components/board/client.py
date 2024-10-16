@@ -33,8 +33,6 @@ from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dic
 
 from .board import Board, TickStream
 
-LOGGER = getLogger(__name__)
-
 
 class AnalogClient(Board.Analog):
     def __init__(self, name: str, board: "BoardClient"):
