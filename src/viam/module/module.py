@@ -11,6 +11,7 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.errors import ResourceNotFoundError, ValidationError
+from viam.logging import update_log_level
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
     AddResourceRequest,
@@ -183,6 +184,7 @@ class Module:
         model = Model.from_string(config.model, ignore_errors=True)
         creator = Registry.lookup_resource_creator(subtype, model)
         resource = creator(config, dependencies)
+        update_log_level(resource.logger, config.log_configuration.level.upper())
         self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):

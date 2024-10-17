@@ -1,5 +1,6 @@
 from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, ClassVar, Mapping, Optional, Protocol, runtime_checkable
+from logging import Logger
 
 from typing_extensions import Self
 
@@ -24,6 +25,9 @@ class ResourceBase(Protocol):
 
     name: str
     """The name of the Resource"""
+
+    logger: Logger
+    """A logger allowing for setting log levels on a per-resource basis"""
 
     @classmethod
     def get_resource_name(cls, name: str) -> ResourceName:
