@@ -83,7 +83,8 @@ class _ModuleHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
-        name = record.name.split(".")[-1]
+        # Fully qualified name of form "{subtype triplet}/{name}", e.g. "rdk:component:arm/myarm"
+        name = record.name.replace('.', '/')
         message = f"{record.filename}:{record.lineno}\t{record.getMessage()}"
         stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
         time = datetime.fromtimestamp(record.created)
@@ -149,6 +150,14 @@ def getLogger(name: str) -> logging.Logger:
 
 def addHandlers(logger: logging.Logger, use_default_handlers=False):
     _addHandlers([logger], use_default_handlers)
+
+
+def update_log_level(logger: logging.Logger, level: Union[int, str]):
+    if level == '':
+        level = LOG_LEVEL
+    logger.setLevel(level)
+    for handler in logger.handlers:
+        handler.setLevel(level)
 
 
 def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
