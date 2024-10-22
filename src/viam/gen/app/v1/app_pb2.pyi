@@ -3009,6 +3009,7 @@ class ModuleFileInfo(google.protobuf.message.Message):
     MODULE_ID_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     PLATFORM_FIELD_NUMBER: builtins.int
+    PLATFORM_TAGS_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     version: builtins.str
@@ -3016,10 +3017,17 @@ class ModuleFileInfo(google.protobuf.message.Message):
     platform: builtins.str
     'The platform that the file is built to run on'
 
-    def __init__(self, *, module_id: builtins.str=..., version: builtins.str=..., platform: builtins.str=...) -> None:
+    @property
+    def platform_tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
+        platform tags. The platform is checked against `platform` above, and the tags are checked against
+        this list.
+        """
+
+    def __init__(self, *, module_id: builtins.str=..., version: builtins.str=..., platform: builtins.str=..., platform_tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['module_id', b'module_id', 'platform', b'platform', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['module_id', b'module_id', 'platform', b'platform', 'platform_tags', b'platform_tags', 'version', b'version']) -> None:
         ...
 global___ModuleFileInfo = ModuleFileInfo
 
