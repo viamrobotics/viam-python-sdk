@@ -885,6 +885,7 @@ class AgentInfo(google.protobuf.message.Message):
     VERSION_FIELD_NUMBER: builtins.int
     GIT_REVISION_FIELD_NUMBER: builtins.int
     PLATFORM_FIELD_NUMBER: builtins.int
+    PLATFORM_TAGS_FIELD_NUMBER: builtins.int
     host: builtins.str
     os: builtins.str
     'Will soon be deprecated, use platform instead'
@@ -898,13 +899,17 @@ class AgentInfo(google.protobuf.message.Message):
     def ips(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """list of all ipv4 ips."""
 
-    def __init__(self, *, host: builtins.str=..., os: builtins.str=..., ips: collections.abc.Iterable[builtins.str] | None=..., version: builtins.str=..., git_revision: builtins.str=..., platform: builtins.str | None=...) -> None:
+    @property
+    def platform_tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional tags to further constrain which artifact is returned for modules."""
+
+    def __init__(self, *, host: builtins.str=..., os: builtins.str=..., ips: collections.abc.Iterable[builtins.str] | None=..., version: builtins.str=..., git_revision: builtins.str=..., platform: builtins.str | None=..., platform_tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_platform', b'_platform', 'platform', b'platform']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'platform', b'platform', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'platform', b'platform', 'platform_tags', b'platform_tags', 'version', b'version']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_platform', b'_platform']) -> typing.Literal['platform'] | None:

@@ -371,15 +371,20 @@ class TabularDataBySQLResponse(google.protobuf.message.Message):
     """TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
+    RAW_DATA_FIELD_NUMBER: builtins.int
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
         ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
+    @property
+    def raw_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=..., raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'raw_data', b'raw_data']) -> None:
         ...
 global___TabularDataBySQLResponse = TabularDataBySQLResponse
 
@@ -410,15 +415,20 @@ class TabularDataByMQLResponse(google.protobuf.message.Message):
     """TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
+    RAW_DATA_FIELD_NUMBER: builtins.int
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
         ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
+    @property
+    def raw_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=..., raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'raw_data', b'raw_data']) -> None:
         ...
 global___TabularDataByMQLResponse = TabularDataByMQLResponse
 
