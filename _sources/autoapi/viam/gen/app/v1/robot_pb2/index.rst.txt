@@ -1398,7 +1398,7 @@ Module Contents
 
 .. py:data:: global___RemoteAuth
 
-.. py:class:: AgentInfo(*, host: str = ..., os: str = ..., ips: collections.abc.Iterable[str] | None = ..., version: str = ..., git_revision: str = ..., platform: str | None = ...)
+.. py:class:: AgentInfo(*, host: str = ..., os: str = ..., ips: collections.abc.Iterable[str] | None = ..., version: str = ..., git_revision: str = ..., platform: str | None = ..., platform_tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1440,6 +1440,12 @@ Module Contents
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       list of all ipv4 ips.
+
+
+   .. py:property:: platform_tags
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Optional tags to further constrain which artifact is returned for modules.
 
 
    .. py:method:: HasField(field_name: Literal['_platform', b'_platform', 'platform', b'platform']) -> bool

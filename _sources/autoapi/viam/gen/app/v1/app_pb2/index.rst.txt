@@ -5373,7 +5373,7 @@ Module Contents
 
 .. py:data:: global___Model
 
-.. py:class:: ModuleFileInfo(*, module_id: str = ..., version: str = ..., platform: str = ...)
+.. py:class:: ModuleFileInfo(*, module_id: str = ..., version: str = ..., platform: str = ..., platform_tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5403,6 +5403,14 @@ Module Contents
       :type:  str
 
       The platform that the file is built to run on
+
+
+   .. py:property:: platform_tags
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Platform tag constraints. When a robot requests its config, it uploads a platform and a list of
+      platform tags. The platform is checked against `platform` above, and the tags are checked against
+      this list.
 
 
 .. py:data:: global___ModuleFileInfo
