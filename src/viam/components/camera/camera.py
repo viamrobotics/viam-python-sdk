@@ -107,6 +107,8 @@ class Camera(ComponentBase):
             import numpy as np
             import open3d as o3d
 
+            my_camera = Camera.from_robot(robot=machine, name="my_camera")
+
             data, _ = await my_camera.get_point_cloud()
 
             # write the point cloud into a temporary file

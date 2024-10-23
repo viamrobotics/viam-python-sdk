@@ -274,6 +274,8 @@ class Controller(ComponentBase):
         """Directly send an Event (such as a button press) from external code
 
         ::
+            my_controller = Controller.from_robot(
+                robot=myRobotWithController, name="my_controller")
 
             # Define a "Button is Pressed" event for the control BUTTON_START.
             button_is_pressed_event = Event(

@@ -238,6 +238,8 @@ class Motion(ServiceBase):
 
         ::
 
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
             # Assuming a `move_on_globe()` started the execution
             # Stop the base component which was instructed to move by `move_on_globe()`
             # or `move_on_map()`
