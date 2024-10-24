@@ -63,8 +63,7 @@ class JointPositions(google.protobuf.message.Message):
     @property
     def values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         """A list of joint positions. Rotations values are in degrees, translational values in mm.
-        The numbers are ordered spatially from the base toward the end effector
-        This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
+        There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm
         """
 
     def __init__(self, *, values: collections.abc.Iterable[builtins.float] | None=...) -> None:
@@ -192,6 +191,49 @@ class MoveToJointPositionsResponse(google.protobuf.message.Message):
 global___MoveToJointPositionsResponse = MoveToJointPositionsResponse
 
 @typing.final
+class MoveThroughJointPositionsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    POSITIONS_FIELD_NUMBER: builtins.int
+    OPTIONS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of an arm'
+
+    @property
+    def positions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JointPositions]:
+        """A list of joint positions which will be moved to in the order they are specified"""
+
+    @property
+    def options(self) -> global___MoveOptions:
+        """optional specifications to be obeyed during the motion"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., positions: collections.abc.Iterable[global___JointPositions] | None=..., options: global___MoveOptions | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_options', b'_options', 'extra', b'extra', 'options', b'options']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_options', b'_options', 'extra', b'extra', 'name', b'name', 'options', b'options', 'positions', b'positions']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_options', b'_options']) -> typing.Literal['options'] | None:
+        ...
+global___MoveThroughJointPositionsRequest = MoveThroughJointPositionsRequest
+
+@typing.final
+class MoveThroughJointPositionsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___MoveThroughJointPositionsResponse = MoveThroughJointPositionsResponse
+
+@typing.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -272,3 +314,31 @@ class IsMovingResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___IsMovingResponse = IsMovingResponse
+
+@typing.final
+class MoveOptions(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MAX_VEL_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
+    MAX_ACC_DEGS_PER_SEC2_FIELD_NUMBER: builtins.int
+    max_vel_degs_per_sec: builtins.float
+    'Maximum allowable velocity of an arm joint, in degrees per second'
+    max_acc_degs_per_sec2: builtins.float
+    'Maximum allowable acceleration of an arm joint, in degrees per second squared'
+
+    def __init__(self, *, max_vel_degs_per_sec: builtins.float | None=..., max_acc_degs_per_sec2: builtins.float | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2', '_max_vel_degs_per_sec', b'_max_vel_degs_per_sec', 'max_acc_degs_per_sec2', b'max_acc_degs_per_sec2', 'max_vel_degs_per_sec', b'max_vel_degs_per_sec']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_max_acc_degs_per_sec2', b'_max_acc_degs_per_sec2']) -> typing.Literal['max_acc_degs_per_sec2'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_max_vel_degs_per_sec', b'_max_vel_degs_per_sec']) -> typing.Literal['max_vel_degs_per_sec'] | None:
+        ...
+global___MoveOptions = MoveOptions
