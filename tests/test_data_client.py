@@ -4,7 +4,7 @@ import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
-
+from datetime import datetime
 from viam.app.data_client import DataClient
 from viam.proto.app.data import Annotations, BinaryData, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
 from viam.utils import create_filter
@@ -101,9 +101,6 @@ BINARY_METADATA = BinaryMetadata(
 )
 
 TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
-# TABULAR_QUERY_RESPONSE = [
-#     {"key1": 1, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": 1}},
-# ]
 TABULAR_QUERY_RESPONSE = [
     {"key1": START_DATETIME, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": END_DATETIME}},
 ]
@@ -157,13 +154,14 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_sql(ORG_ID, SQL_QUERY)
-            # assert isinstance(response[0]["key1"], datetime)
+            assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
 
     async def test_tabular_data_by_mql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
+            assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
 
     async def test_binary_data_by_filter(self, service: MockData):
