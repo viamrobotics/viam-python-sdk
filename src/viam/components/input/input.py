@@ -247,7 +247,7 @@ class Controller(ComponentBase):
 
                 # Get your controller from the machine.
                 my_controller = Controller.from_robot(
-                    robot=myRobotWithController, name="my_controller")
+                    myRobotWithController, "my_controller")
 
                 # Run the handleController function.
                 await handle_controller(my_controller)
