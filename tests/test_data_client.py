@@ -3,7 +3,6 @@ from typing import List
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
-from datetime import datetime
 
 
 from viam.app.data_client import DataClient
@@ -161,11 +160,11 @@ class TestClient:
             # assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
 
-    # async def test_tabular_data_by_mql(self, service: MockData):
-    #     async with ChannelFor([service]) as channel:
-    #         client = DataClient(channel, DATA_SERVICE_METADATA)
-    #         response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
-    #         assert response == TABULAR_QUERY_RESPONSE
+    async def test_tabular_data_by_mql(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
+            assert response == TABULAR_QUERY_RESPONSE
 
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:

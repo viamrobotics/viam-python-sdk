@@ -989,10 +989,10 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         await stream.send_message(TabularDataBySQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
-    # async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
-    #     request = await stream.recv_message()
-    #     assert request is not None
-    #     await stream.send_message(TabularDataByMQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
+    async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(TabularDataByMQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
 
 
 class MockDataset(DatasetServiceBase):
