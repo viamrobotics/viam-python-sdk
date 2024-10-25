@@ -146,7 +146,7 @@ class Gantry(ComponentBase):
             await my_gantry.stop()
 
             # Print if the gantry is currently moving.
-            print(my_gantry.is_moving())
+            print(await my_gantry.is_moving())
 
         Returns:
             bool: Whether the gantry is moving.
