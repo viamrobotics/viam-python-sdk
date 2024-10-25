@@ -2,7 +2,8 @@ import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+import bson
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
@@ -241,7 +242,7 @@ class DataClient:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
         return data, response.count, response.last
 
-    async def tabular_data_by_sql(self, organization_id: str, sql_query: str) -> List[Dict[str, ValueTypes]]:
+    async def tabular_data_by_sql(self, organization_id: str, sql_query: str) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with SQL.
 
         ::
@@ -264,7 +265,7 @@ class DataClient:
         """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
-        return [struct_to_dict(struct) for struct in response.data]
+        return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
         """Obtain unified tabular data and metadata, queried with MQL.
