@@ -266,16 +266,6 @@ class DataClient:
         """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
-        # data = []
-        # for bson_bytes in response.raw_data:
-        #     decoded_data = bson.decode(bson_bytes)
-        #     for key, value in decoded_data.items():
-        #         if isinstance(value, Timestamp):
-        #             decoded_data[key] = value.ToDatetime()
-        #     data.append(decoded_data)
-        # # return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
-        # return data
-        #this is incredibly hard to read but it follows the previous pattern
         return [{key: (value.ToDatetime() if isinstance(value, Timestamp) else value) for key, value in bson.decode(bson_bytes).items()} for bson_bytes in response.raw_data]
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, Union[ValueTypes, datetime]]]:
@@ -315,17 +305,7 @@ class DataClient:
         """
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
-        # data = []
-        # for bson_bytes in response.raw_data:
-        #     decoded_data = bson.decode(bson_bytes)
-        #     for key, value in decoded_data.items():
-        #         if isinstance(value, Timestamp):
-        #             decoded_data[key] = value.ToDatetime()
-        #     data.append(decoded_data)
-        # return data
         return [{key: (value.ToDatetime() if isinstance(value, Timestamp) else value) for key, value in bson.decode(bson_bytes).items()} for bson_bytes in response.raw_data]
-
-        # return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def binary_data_by_filter(
         self,

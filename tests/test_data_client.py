@@ -150,41 +150,13 @@ class TestClient:
             assert last_response != ""
             self.assert_filter(filter=service.filter)
 
-    # def custom_compare(self, lhs: dict, rhs: dict):
-    #     for key in lhs:
-    #         if lhs[key] == rhs[key]:
-    #             continue
-    #         if isinstance(lhs[key], Timestamp) and lhs[key].ToDatetime() == rhs[key]:
-    #             continue
-    #         return False
-    #     return True
-
-
-    def custom_compare(self, lhs, rhs):
-        for key in lhs:
-            # Check if the values are equal as is
-            if lhs[key] == rhs[key]:
-                continue
-            # Handle case where lhs is Timestamp and rhs is datetime
-            if isinstance(lhs[key], Timestamp) and lhs[key].ToDatetime() == rhs[key]:
-                continue
-            # Handle case where rhs is Timestamp and lhs is datetime
-            if isinstance(rhs[key], Timestamp) and rhs[key].ToDatetime() == lhs[key]:
-                continue
-            return False
-        return True
-
     async def test_tabular_data_by_sql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_sql(ORG_ID, SQL_QUERY)
             assert isinstance(response[0]["key1"], datetime)
-            # Compare each item in the response with the expected response
-            # for item, expected_item in zip(response, TABULAR_QUERY_RESPONSE):
-            #     assert self.custom_compare(item, expected_item), "The response does not match the expected format."
             for item, expected_item in zip(response, TABULAR_QUERY_RESPONSE):
-                assert self.custom_compare(item, expected_item), "Mismatch in response data."
-            # assert response == TABULAR_QUERY_RESPONSE
+                assert self.custom_compare(item, expected_item)
 
     async def test_tabular_data_by_mql(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -192,8 +164,18 @@ class TestClient:
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
             assert isinstance(response[0]["key1"], datetime)
             for item, expected_item in zip(response, TABULAR_QUERY_RESPONSE):
-                assert self.custom_compare(item, expected_item), "Mismatch in response data."
-            # assert response == TABULAR_QUERY_RESPONSE
+                assert self.custom_compare(item, expected_item)
+
+    def custom_compare(self, lhs, rhs):
+        for key in lhs:
+            if lhs[key] == rhs[key]:
+                continue
+            if isinstance(lhs[key], Timestamp) and lhs[key].ToDatetime() == rhs[key]:
+                continue
+            if isinstance(rhs[key], Timestamp) and rhs[key].ToDatetime() == lhs[key]:
+                continue
+            return False
+        return True
 
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
