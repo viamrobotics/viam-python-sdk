@@ -7,10 +7,15 @@ from ...gen.stream.v1.stream_grpc import StreamServiceBase, StreamServiceStub, U
 from ...gen.stream.v1.stream_pb2 import (
     AddStreamRequest,
     AddStreamResponse,
+    GetStreamOptionsRequest,
+    GetStreamOptionsResponse,
     ListStreamsRequest,
     ListStreamsResponse,
     RemoveStreamRequest,
     RemoveStreamResponse,
+    Resolution,
+    SetStreamOptionsRequest,
+    SetStreamOptionsResponse,
 )
 
 __all__ = [
@@ -19,8 +24,13 @@ __all__ = [
     "UnimplementedStreamServiceBase",
     "AddStreamRequest",
     "AddStreamResponse",
+    "GetStreamOptionsRequest",
+    "GetStreamOptionsResponse",
     "ListStreamsRequest",
     "ListStreamsResponse",
     "RemoveStreamRequest",
     "RemoveStreamResponse",
+    "Resolution",
+    "SetStreamOptionsRequest",
+    "SetStreamOptionsResponse",
 ]

@@ -81,3 +81,81 @@ class RemoveStreamResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___RemoveStreamResponse = RemoveStreamResponse
+
+@typing.final
+class Resolution(google.protobuf.message.Message):
+    """Resolution details the width and height of a stream."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WIDTH_FIELD_NUMBER: builtins.int
+    HEIGHT_FIELD_NUMBER: builtins.int
+    width: builtins.int
+    height: builtins.int
+
+    def __init__(self, *, width: builtins.int=..., height: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['height', b'height', 'width', b'width']) -> None:
+        ...
+global___Resolution = Resolution
+
+@typing.final
+class GetStreamOptionsRequest(google.protobuf.message.Message):
+    """GetStreamOptionsRequest requests the options for a particular stream."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
+        ...
+global___GetStreamOptionsRequest = GetStreamOptionsRequest
+
+@typing.final
+class GetStreamOptionsResponse(google.protobuf.message.Message):
+    """GetStreamOptionsResponse details the options for a particular stream."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOLUTIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def resolutions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Resolution]:
+        ...
+
+    def __init__(self, *, resolutions: collections.abc.Iterable[global___Resolution] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['resolutions', b'resolutions']) -> None:
+        ...
+global___GetStreamOptionsResponse = GetStreamOptionsResponse
+
+@typing.final
+class SetStreamOptionsRequest(google.protobuf.message.Message):
+    """SetStreamOptionsRequest sets the options for a particular stream."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    RESOLUTION_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def resolution(self) -> global___Resolution:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., resolution: global___Resolution | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['resolution', b'resolution']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'resolution', b'resolution']) -> None:
+        ...
+global___SetStreamOptionsRequest = SetStreamOptionsRequest
+
+@typing.final
+class SetStreamOptionsResponse(google.protobuf.message.Message):
+    """SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SetStreamOptionsResponse = SetStreamOptionsResponse
