@@ -5,7 +5,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 import bson
 
-from google.protobuf.timestamp_pb2 import Timestamp
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 
@@ -266,7 +265,7 @@ class DataClient:
         """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
-        return [{key: (value.ToDatetime() if isinstance(value, Timestamp) else value) for key, value in bson.decode(bson_bytes).items()} for bson_bytes in response.raw_data]
+        return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
@@ -305,7 +304,7 @@ class DataClient:
         """
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
-        return [{key: (value.ToDatetime() if isinstance(value, Timestamp) else value) for key, value in bson.decode(bson_bytes).items()} for bson_bytes in response.raw_data]
+        return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def binary_data_by_filter(
         self,

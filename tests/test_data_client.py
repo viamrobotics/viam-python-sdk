@@ -102,7 +102,7 @@ BINARY_METADATA = BinaryMetadata(
 
 TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
 TABULAR_QUERY_RESPONSE = [
-    {"key1": START_TS, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": END_DATETIME}},
+    {"key1": START_DATETIME, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": END_DATETIME}},
 ]
 BINARY_RESPONSE = [BinaryData(binary=BINARY_DATA, metadata=BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
@@ -155,27 +155,14 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_sql(ORG_ID, SQL_QUERY)
             assert isinstance(response[0]["key1"], datetime)
-            for item, expected_item in zip(response, TABULAR_QUERY_RESPONSE):
-                assert self.custom_compare(item, expected_item)
+            assert response == TABULAR_QUERY_RESPONSE
 
     async def test_tabular_data_by_mql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
             assert isinstance(response[0]["key1"], datetime)
-            for item, expected_item in zip(response, TABULAR_QUERY_RESPONSE):
-                assert self.custom_compare(item, expected_item)
-
-    def custom_compare(self, lhs, rhs):
-        for key in lhs:
-            if lhs[key] == rhs[key]:
-                continue
-            if isinstance(lhs[key], Timestamp) and lhs[key].ToDatetime() == rhs[key]:
-                continue
-            if isinstance(rhs[key], Timestamp) and rhs[key].ToDatetime() == lhs[key]:
-                continue
-            return False
-        return True
+            assert response == TABULAR_QUERY_RESPONSE
 
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:

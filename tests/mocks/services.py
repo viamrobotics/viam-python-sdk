@@ -6,7 +6,6 @@ from numpy.typing import NDArray
 from datetime import datetime
 import bson
 
-from google.protobuf.timestamp_pb2 import Timestamp
 from viam.app.data_client import DataClient
 from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
 from viam.media.video import ViamImage
@@ -988,20 +987,12 @@ class MockData(UnimplementedDataServiceBase):
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(TabularDataBySQLResponse(
-        raw_data=[bson.encode({key: (value.ToDatetime() if isinstance(value, Timestamp) else value)
-                               for key, value in dict.items()})
-                               for dict in self.tabular_query_response]))
+        await stream.send_message(TabularDataBySQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(TabularDataByMQLResponse(
-        raw_data=[bson.encode({key: (value.ToDatetime() if isinstance(value, Timestamp) else value)
-                               for key, value in dict.items()})
-                               for dict in self.tabular_query_response]))
-
-
+        await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
 class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
