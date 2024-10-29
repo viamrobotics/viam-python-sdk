@@ -76,6 +76,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.MoveToPosition()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.GetJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.GetJointPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveToJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.MoveToJointPositions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveThroughJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.MoveThroughJointPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.DoCommand()</span></code></a></li>
@@ -89,6 +90,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.MoveToPosition</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.GetJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.GetJointPositions</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.MoveToJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.MoveToJointPositions</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.MoveThroughJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.MoveThroughJointPositions</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.Stop"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.Stop</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.IsMoving"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.IsMoving</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub.DoCommand</span></code></a></li>
@@ -101,6 +103,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.MoveToPosition()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.GetJointPositions"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.GetJointPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.MoveToJointPositions"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.MoveToJointPositions()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.MoveThroughJointPositions"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.MoveThroughJointPositions()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.UnimplementedArmServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedArmServiceBase.DoCommand()</span></code></a></li>
@@ -142,6 +145,23 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.JointPositions.values"><code class="docutils literal notranslate"><span class="pre">JointPositions.values</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.arm.MoveOptions"><code class="docutils literal notranslate"><span class="pre">MoveOptions</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveOptions.max_vel_degs_per_sec"><code class="docutils literal notranslate"><span class="pre">MoveOptions.max_vel_degs_per_sec</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveOptions.max_acc_degs_per_sec2"><code class="docutils literal notranslate"><span class="pre">MoveOptions.max_acc_degs_per_sec2</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveOptions.HasField"><code class="docutils literal notranslate"><span class="pre">MoveOptions.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveOptions.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveOptions.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.positions"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.positions</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.options"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.options</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsResponse"><code class="docutils literal notranslate"><span class="pre">MoveThroughJointPositionsResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.positions"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.positions</span></code></a></li>
@@ -273,25 +293,34 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.JointPositions" title="viam.proto.component.arm.JointPositions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointPositions</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest" title="viam.proto.component.arm.MoveToJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveOptions" title="viam.proto.component.arm.MoveOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOptions</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsResponse" title="viam.proto.component.arm.MoveToJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToJointPositionsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest" title="viam.proto.component.arm.MoveThroughJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveThroughJointPositionsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest" title="viam.proto.component.arm.MoveToPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveThroughJointPositionsResponse" title="viam.proto.component.arm.MoveThroughJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveThroughJointPositionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest" title="viam.proto.component.arm.MoveToJointPositionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsResponse" title="viam.proto.component.arm.MoveToJointPositionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToJointPositionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest" title="viam.proto.component.arm.MoveToPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a></p></td>
 <td><p>Moves an arm to the specified pose that is within the reference frame of the arm.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionResponse" title="viam.proto.component.arm.MoveToPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToPositionResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionResponse" title="viam.proto.component.arm.MoveToPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveToPositionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.Status" title="viam.proto.component.arm.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.Status" title="viam.proto.component.arm.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.StopRequest" title="viam.proto.component.arm.StopRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.StopRequest" title="viam.proto.component.arm.StopRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.arm.StopResponse" title="viam.proto.component.arm.StopResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.arm.StopResponse" title="viam.proto.component.arm.StopResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -335,6 +364,15 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.arm.ArmServiceBase.MoveToJointPositions">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveToJointPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsRequest" title="viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsRequest"><span class="pre">component.arm.v1.arm_pb2.MoveToJointPositionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsResponse" title="viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsResponse"><span class="pre">component.arm.v1.arm_pb2.MoveToJointPositionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/arm/v1/arm_grpc.html#ArmServiceBase.MoveToJointPositions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.arm.ArmServiceBase.MoveToJointPositions" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.ArmServiceBase.MoveThroughJointPositions">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveThroughJointPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest" title="viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest"><span class="pre">component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse" title="viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse"><span class="pre">component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/arm/v1/arm_grpc.html#ArmServiceBase.MoveThroughJointPositions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.arm.ArmServiceBase.MoveThroughJointPositions" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -417,6 +455,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.arm.ArmServiceStub.MoveThroughJointPositions">
+<span class="sig-name descname"><span class="pre">MoveThroughJointPositions</span></span><a class="headerlink" href="#viam.proto.component.arm.ArmServiceStub.MoveThroughJointPositions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.arm.ArmServiceStub.Stop">
 <span class="sig-name descname"><span class="pre">Stop</span></span><a class="headerlink" href="#viam.proto.component.arm.ArmServiceStub.Stop" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -467,6 +510,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.arm.UnimplementedArmServiceBase.MoveToJointPositions">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveToJointPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsRequest" title="viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsRequest"><span class="pre">component.arm.v1.arm_pb2.MoveToJointPositionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsResponse" title="viam.gen.component.arm.v1.arm_pb2.MoveToJointPositionsResponse"><span class="pre">component.arm.v1.arm_pb2.MoveToJointPositionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/arm/v1/arm_grpc.html#UnimplementedArmServiceBase.MoveToJointPositions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.arm.UnimplementedArmServiceBase.MoveToJointPositions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.UnimplementedArmServiceBase.MoveThroughJointPositions">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveThroughJointPositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest" title="viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest"><span class="pre">component.arm.v1.arm_pb2.MoveThroughJointPositionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/arm/v1/arm_pb2/index.html#viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse" title="viam.gen.component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse"><span class="pre">component.arm.v1.arm_pb2.MoveThroughJointPositionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/arm/v1/arm_grpc.html#UnimplementedArmServiceBase.MoveThroughJointPositions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.arm.UnimplementedArmServiceBase.MoveThroughJointPositions" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -707,10 +755,165 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.arm.JointPositions.values">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.arm.JointPositions.values" title="Permalink to this definition"></a></dt>
 <dd><p>A list of joint positions. Rotations values are in degrees, translational values in mm.
-The numbers are ordered spatially from the base toward the end effector
-This is used in GetJointPositionsResponse and MoveToJointPositionsRequest</p>
+There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.arm.</span></span><span class="sig-name descname"><span class="pre">MoveOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vel_degs_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_acc_degs_per_sec2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.arm.MoveOptions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveOptions.max_vel_degs_per_sec">
+<span class="sig-name descname"><span class="pre">max_vel_degs_per_sec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.arm.MoveOptions.max_vel_degs_per_sec" title="Permalink to this definition"></a></dt>
+<dd><p>Maximum allowable velocity of an arm joint, in degrees per second</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveOptions.max_acc_degs_per_sec2">
+<span class="sig-name descname"><span class="pre">max_acc_degs_per_sec2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.arm.MoveOptions.max_acc_degs_per_sec2" title="Permalink to this definition"></a></dt>
+<dd><p>Maximum allowable acceleration of an arm joint, in degrees per second squared</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveOptions.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_max_acc_degs_per_sec2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_max_acc_degs_per_sec2'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_max_vel_degs_per_sec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_max_vel_degs_per_sec'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'max_acc_degs_per_sec2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'max_acc_degs_per_sec2'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'max_vel_degs_per_sec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'max_vel_degs_per_sec'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.arm.MoveOptions.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveOptions.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_max_acc_degs_per_sec2'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_max_acc_degs_per_sec2'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'max_acc_degs_per_sec2'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.arm.MoveOptions.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_max_vel_degs_per_sec'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_max_vel_degs_per_sec'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'max_vel_degs_per_sec'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.arm.</span></span><span class="sig-name descname"><span class="pre">MoveThroughJointPositionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___JointPositions</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___MoveOptions</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of an arm</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.positions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___JointPositions</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.positions" title="Permalink to this definition"></a></dt>
+<dd><p>A list of joint positions which will be moved to in the order they are specified</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.options">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">options</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___MoveOptions</span></em><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.options" title="Permalink to this definition"></a></dt>
+<dd><p>optional specifications to be obeyed during the motion</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_options'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_options'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'options'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'options'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_options'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_options'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'options'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.arm.MoveThroughJointPositionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.arm.</span></span><span class="sig-name descname"><span class="pre">MoveThroughJointPositionsResponse</span></span><a class="headerlink" href="#viam.proto.component.arm.MoveThroughJointPositionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 <dl class="py class">

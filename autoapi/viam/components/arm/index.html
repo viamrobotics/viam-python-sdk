@@ -243,8 +243,7 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.components.arm.JointPositions.values">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.arm.JointPositions.values" title="Permalink to this definition"></a></dt>
 <dd><p>A list of joint positions. Rotations values are in degrees, translational values in mm.
-The numbers are ordered spatially from the base toward the end effector
-This is used in GetJointPositionsResponse and MoveToJointPositionsRequest</p>
+There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm</p>
 </dd></dl>
 
 </dd></dl>

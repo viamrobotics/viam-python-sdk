@@ -22,6 +22,11 @@ Attributes
    viam.gen.stream.v1.stream_pb2.global___AddStreamResponse
    viam.gen.stream.v1.stream_pb2.global___RemoveStreamRequest
    viam.gen.stream.v1.stream_pb2.global___RemoveStreamResponse
+   viam.gen.stream.v1.stream_pb2.global___Resolution
+   viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsRequest
+   viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsResponse
+   viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsRequest
+   viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsResponse
 
 
 Classes
@@ -35,6 +40,11 @@ Classes
    viam.gen.stream.v1.stream_pb2.AddStreamResponse
    viam.gen.stream.v1.stream_pb2.RemoveStreamRequest
    viam.gen.stream.v1.stream_pb2.RemoveStreamResponse
+   viam.gen.stream.v1.stream_pb2.Resolution
+   viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest
+   viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse
+   viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest
+   viam.gen.stream.v1.stream_pb2.SetStreamOptionsResponse
 
 
 Module Contents
@@ -115,4 +125,98 @@ Module Contents
 
 
 .. py:data:: global___RemoveStreamResponse
+
+.. py:class:: Resolution(*, width: int = ..., height: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Resolution details the width and height of a stream.
+
+
+   .. py:attribute:: width
+      :type:  int
+
+
+   .. py:attribute:: height
+      :type:  int
+
+
+.. py:data:: global___Resolution
+
+.. py:class:: GetStreamOptionsRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetStreamOptionsRequest requests the options for a particular stream.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:data:: global___GetStreamOptionsRequest
+
+.. py:class:: GetStreamOptionsResponse(*, resolutions: collections.abc.Iterable[global___Resolution] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetStreamOptionsResponse details the options for a particular stream.
+
+
+   .. py:property:: resolutions
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Resolution]
+
+
+
+.. py:data:: global___GetStreamOptionsResponse
+
+.. py:class:: SetStreamOptionsRequest(*, name: str = ..., resolution: global___Resolution | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   SetStreamOptionsRequest sets the options for a particular stream.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: resolution
+      :type: global___Resolution
+
+
+
+   .. py:method:: HasField(field_name: Literal['resolution', b'resolution']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___SetStreamOptionsRequest
+
+.. py:class:: SetStreamOptionsResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest.
+
+
+.. py:data:: global___SetStreamOptionsResponse
 

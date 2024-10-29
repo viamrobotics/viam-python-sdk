@@ -106,7 +106,6 @@ Package Contents
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
-      The numbers are ordered spatially from the base toward the end effector
-      This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
+      There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector of the arm
 
 

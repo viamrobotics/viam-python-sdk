@@ -98,7 +98,7 @@
     <span class="n">GetKinematicsResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.arm</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">ArmServiceBase</span><span class="p">,</span>
+    <span class="n">UnimplementedArmServiceBase</span><span class="p">,</span>
     <span class="n">GetEndPositionRequest</span><span class="p">,</span>
     <span class="n">GetEndPositionResponse</span><span class="p">,</span>
     <span class="n">GetJointPositionsRequest</span><span class="p">,</span>
@@ -118,7 +118,7 @@
 <span class="kn">from</span> <span class="nn">.arm</span> <span class="kn">import</span> <span class="n">Arm</span>
 
 
-<div class="viewcode-block" id="ArmRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService">[docs]</a><span class="k">class</span> <span class="nc">ArmRPCService</span><span class="p">(</span><span class="n">ArmServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">Arm</span><span class="p">]):</span>
+<div class="viewcode-block" id="ArmRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService">[docs]</a><span class="k">class</span> <span class="nc">ArmRPCService</span><span class="p">(</span><span class="n">UnimplementedArmServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">Arm</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gRPC Service for an Arm</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -116,6 +116,21 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___RemoveStreamResponse" title="viam.gen.stream.v1.stream_pb2.global___RemoveStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___RemoveStreamResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___Resolution" title="viam.gen.stream.v1.stream_pb2.global___Resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Resolution</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsRequest" title="viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetStreamOptionsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsResponse" title="viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetStreamOptionsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsRequest" title="viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetStreamOptionsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsResponse" title="viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetStreamOptionsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -140,6 +155,21 @@ isort:skip_file</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.RemoveStreamResponse" title="viam.gen.stream.v1.stream_pb2.RemoveStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveStreamResponse</span></code></a></p></td>
 <td><p>RemoveStreamResponse is returned after a successful RemoveStreamRequest.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.Resolution" title="viam.gen.stream.v1.stream_pb2.Resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resolution</span></code></a></p></td>
+<td><p>Resolution details the width and height of a stream.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest" title="viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStreamOptionsRequest</span></code></a></p></td>
+<td><p>GetStreamOptionsRequest requests the options for a particular stream.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse" title="viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStreamOptionsResponse</span></code></a></p></td>
+<td><p>GetStreamOptionsResponse details the options for a particular stream.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest" title="viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetStreamOptionsRequest</span></code></a></p></td>
+<td><p>SetStreamOptionsRequest sets the options for a particular stream.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsResponse" title="viam.gen.stream.v1.stream_pb2.SetStreamOptionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetStreamOptionsResponse</span></code></a></p></td>
+<td><p>SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest.</p></td>
 </tr>
 </tbody>
 </table>
@@ -236,6 +266,119 @@ isort:skip_file</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___RemoveStreamResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___RemoveStreamResponse</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___RemoveStreamResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.Resolution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">Resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.Resolution" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Resolution details the width and height of a stream.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.Resolution.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.Resolution.width" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.Resolution.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.Resolution.height" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___Resolution">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Resolution</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___Resolution" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">GetStreamOptionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetStreamOptionsRequest requests the options for a particular stream.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetStreamOptionsRequest</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">GetStreamOptionsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolutions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Resolution</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetStreamOptionsResponse details the options for a particular stream.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse.resolutions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolutions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Resolution</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.GetStreamOptionsResponse.resolutions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetStreamOptionsResponse</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___GetStreamOptionsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">SetStreamOptionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Resolution</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>SetStreamOptionsRequest sets the options for a particular stream.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.resolution">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolution</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Resolution</span></em><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.resolution" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'resolution'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'resolution'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetStreamOptionsRequest</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.SetStreamOptionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">SetStreamOptionsResponse</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.SetStreamOptionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.stream.v1.stream_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetStreamOptionsResponse</span></span><a class="headerlink" href="#viam.gen.stream.v1.stream_pb2.global___SetStreamOptionsResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

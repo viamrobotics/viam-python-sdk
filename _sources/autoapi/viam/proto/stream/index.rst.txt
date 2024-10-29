@@ -20,10 +20,15 @@ Classes
    viam.proto.stream.UnimplementedStreamServiceBase
    viam.proto.stream.AddStreamRequest
    viam.proto.stream.AddStreamResponse
+   viam.proto.stream.GetStreamOptionsRequest
+   viam.proto.stream.GetStreamOptionsResponse
    viam.proto.stream.ListStreamsRequest
    viam.proto.stream.ListStreamsResponse
    viam.proto.stream.RemoveStreamRequest
    viam.proto.stream.RemoveStreamResponse
+   viam.proto.stream.Resolution
+   viam.proto.stream.SetStreamOptionsRequest
+   viam.proto.stream.SetStreamOptionsResponse
 
 
 Package Contents
@@ -52,6 +57,20 @@ Package Contents
 
 
 
+   .. py:method:: GetStreamOptions(stream: grpclib.server.Stream[stream.v1.stream_pb2.GetStreamOptionsRequest, stream.v1.stream_pb2.GetStreamOptionsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: SetStreamOptions(stream: grpclib.server.Stream[stream.v1.stream_pb2.SetStreamOptionsRequest, stream.v1.stream_pb2.SetStreamOptionsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: RemoveStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.RemoveStreamRequest, stream.v1.stream_pb2.RemoveStreamResponse]) -> None
       :abstractmethod:
 
@@ -68,6 +87,12 @@ Package Contents
 
 
    .. py:attribute:: AddStream
+
+
+   .. py:attribute:: GetStreamOptions
+
+
+   .. py:attribute:: SetStreamOptions
 
 
    .. py:attribute:: RemoveStream
@@ -88,6 +113,16 @@ Package Contents
 
 
    .. py:method:: AddStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.AddStreamRequest, stream.v1.stream_pb2.AddStreamResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetStreamOptions(stream: grpclib.server.Stream[stream.v1.stream_pb2.GetStreamOptionsRequest, stream.v1.stream_pb2.GetStreamOptionsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: SetStreamOptions(stream: grpclib.server.Stream[stream.v1.stream_pb2.SetStreamOptionsRequest, stream.v1.stream_pb2.SetStreamOptionsResponse]) -> None
       :async:
 
 
@@ -115,6 +150,31 @@ Package Contents
 
 
    AddStreamResponse is returned after a successful AddStreamRequest.
+
+
+.. py:class:: GetStreamOptionsRequest(*, name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetStreamOptionsRequest requests the options for a particular stream.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:class:: GetStreamOptionsResponse(*, resolutions: collections.abc.Iterable[global___Resolution] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetStreamOptionsResponse details the options for a particular stream.
+
+
+   .. py:property:: resolutions
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Resolution]
+
 
 
 .. py:class:: ListStreamsRequest
@@ -156,5 +216,64 @@ Package Contents
 
 
    RemoveStreamResponse is returned after a successful RemoveStreamRequest.
+
+
+.. py:class:: Resolution(*, width: int = ..., height: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Resolution details the width and height of a stream.
+
+
+   .. py:attribute:: width
+      :type:  int
+
+
+   .. py:attribute:: height
+      :type:  int
+
+
+.. py:class:: SetStreamOptionsRequest(*, name: str = ..., resolution: global___Resolution | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   SetStreamOptionsRequest sets the options for a particular stream.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: resolution
+      :type: global___Resolution
+
+
+
+   .. py:method:: HasField(field_name: Literal['resolution', b'resolution']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: SetStreamOptionsResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   SetStreamOptionsResponse is returned after a successful SetStreamOptionsRequest.
 
 
