@@ -9,7 +9,7 @@ from viam.proto.common import (
     GetKinematicsResponse,
 )
 from viam.proto.component.arm import (
-    ArmServiceBase,
+    UnimplementedArmServiceBase,
     GetEndPositionRequest,
     GetEndPositionResponse,
     GetJointPositionsRequest,
@@ -29,7 +29,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .arm import Arm
 
 
-class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
+class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
     """
     gRPC Service for an Arm
     """
