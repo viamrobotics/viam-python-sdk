@@ -994,6 +994,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
+
 class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
         self.create_response = create_response
