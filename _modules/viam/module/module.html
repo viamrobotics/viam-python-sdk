@@ -100,6 +100,7 @@
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ValidationError</span>
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">update_log_level</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.module</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddResourceRequest</span><span class="p">,</span>
@@ -272,6 +273,7 @@
         <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">creator</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_resource_creator</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
         <span class="n">resource</span> <span class="o">=</span> <span class="n">creator</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
+        <span class="n">update_log_level</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">logger</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">log_configuration</span><span class="o">.</span><span class="n">level</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Module.reconfigure_resource"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.reconfigure_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">reconfigure_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReconfigureResourceRequest</span><span class="p">):</span>

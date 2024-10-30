@@ -94,7 +94,6 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Stream</span> <span class="k">as</span> <span class="n">ClientStream</span>
 
-<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">Geometry</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.board</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BoardServiceStub</span><span class="p">,</span>
@@ -121,8 +120,6 @@
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">get_geometries</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">Board</span><span class="p">,</span> <span class="n">TickStream</span>
-
-<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="AnalogClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogClient">[docs]</a><span class="k">class</span> <span class="nc">AnalogClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">Analog</span><span class="p">):</span>

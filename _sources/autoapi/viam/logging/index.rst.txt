@@ -20,6 +20,7 @@ Functions
 
    viam.logging.getLogger
    viam.logging.addHandlers
+   viam.logging.update_log_level
    viam.logging.setParent
    viam.logging.setLevel
    viam.logging.silence
@@ -37,6 +38,8 @@ Module Contents
 .. py:function:: getLogger(name: str) -> logging.Logger
 
 .. py:function:: addHandlers(logger: logging.Logger, use_default_handlers=False)
+
+.. py:function:: update_log_level(logger: logging.Logger, level: Union[int, str])
 
 .. py:function:: setParent(parent: viam.robot.client.RobotClient)
 

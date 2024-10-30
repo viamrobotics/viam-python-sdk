@@ -25,7 +25,7 @@ Module Contents
 
 .. py:data:: ValueTypes
 
-.. py:class:: ComponentBase(name: str)
+.. py:class:: ComponentBase(name: str, *, logger: Optional[logging.Logger] = None)
 
    Bases: :py:obj:`abc.ABC`, :py:obj:`viam.resource.base.ResourceBase`
 
@@ -43,6 +43,11 @@ Module Contents
    .. py:attribute:: name
 
       The name of the Resource
+
+
+   .. py:attribute:: logger
+
+      A logger allowing for setting log levels on a per-resource basis
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

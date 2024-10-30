@@ -64,6 +64,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.services.service_base.ServiceBase"><code class="docutils literal notranslate"><span class="pre">ServiceBase</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ServiceBase.SUBTYPE</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.name"><code class="docutils literal notranslate"><span class="pre">ServiceBase.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.logger"><code class="docutils literal notranslate"><span class="pre">ServiceBase.logger</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ServiceBase.from_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.do_command"><code class="docutils literal notranslate"><span class="pre">ServiceBase.do_command()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_base.ServiceBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ServiceBase.get_resource_name()</span></code></a></li>
@@ -130,7 +131,7 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.service_base.ServiceBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.service_base.</span></span><span class="sig-name descname"><span class="pre">ServiceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/service_base.html#ServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.service_base.ServiceBase" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.service_base.</span></span><span class="sig-name descname"><span class="pre">ServiceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">logging.Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/service_base.html#ServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.service_base.ServiceBase" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.base.ResourceBase</span></code></a></p>
 <p>This class describes the base functionality required for a Viam Service.
 All services must inherit from this class.</p>
@@ -144,6 +145,12 @@ All services must inherit from this class.</p>
 <dt class="sig sig-object py" id="viam.services.service_base.ServiceBase.name">
 <span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.services.service_base.ServiceBase.name" title="Permalink to this definition"></a></dt>
 <dd><p>The name of the Resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.service_base.ServiceBase.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#viam.services.service_base.ServiceBase.logger" title="Permalink to this definition"></a></dt>
+<dd><p>A logger allowing for setting log levels on a per-resource basis</p>
 </dd></dl>
 
 <dl class="py method">
