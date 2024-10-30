@@ -302,7 +302,6 @@ class Vision(ServiceBase):
 
         ::
 
-            # Grab the detector you configured on your machine
             my_detector = VisionClient.from_robot(robot, "my_detector")
             properties = await my_detector.get_properties()
             detections_supported = properties.detections_supported
