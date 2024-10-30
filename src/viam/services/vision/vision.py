@@ -93,17 +93,16 @@ class Vision(ServiceBase):
 
         ::
 
-            camera_name = "cam1"
+            my_detector = VisionClient.from_robot(machine, "my_detector")
 
-            # Grab the detector you configured on your machine
-            my_detector = VisionClient.from_robot(robot, "my_detector")
-
-            # capture all from the next image from the camera
+            # // Get the captured data for a camera
             result = await my_detector.capture_all_from_camera(
-                camera_name,
+                "my_camera",
                 return_image=True,
                 return_detections=True,
             )
+            image = result.image
+            detections = result.detections
 
         Args:
             camera_name (str): The name of the camera to use for detection
@@ -133,13 +132,10 @@ class Vision(ServiceBase):
 
         ::
 
-            camera_name = "cam1"
-
-            # Grab the detector you configured on your machine
             my_detector = VisionClient.from_robot(robot, "my_detector")
 
-            # Get detections from the next image from the camera
-            detections = await my_detector.get_detections_from_camera(camera_name)
+            # Get detections for the next image from the specified camera
+            detections = await my_detector.get_detections_from_camera("my_camera")
 
         Args:
             camera_name (str): The name of the camera to use for detection
@@ -168,20 +164,17 @@ class Vision(ServiceBase):
 
         ::
 
-            # Grab camera from the machine
-            cam1 = Camera.from_robot(robot, "cam1")
-
-            # Get the detector you configured on your machine
+            my_camera = Camera.from_robot(robot, "my_camera")
             my_detector = VisionClient.from_robot(robot, "my_detector")
 
             # Get an image from the camera
-            img = await cam1.get_image()
+            img = await my_camera.get_image()
 
-            # Get detections from that image
+            # Get detections for that image
             detections = await my_detector.get_detections(img)
 
         Args:
-            image (ViamImage): The image to get detections from
+            image (ViamImage): The image to get detections for
 
         Raises:
             ViamError: Raised if given an image without a specified width and height
@@ -208,14 +201,11 @@ class Vision(ServiceBase):
 
         ::
 
-            camera_name = "cam1"
-
-            # Grab the classifier you configured on your machine
             my_classifier = VisionClient.from_robot(robot, "my_classifier")
 
-            # Get the 2 classifications with the highest confidence scores from the next image from the camera
+            # Get the 2 classifications with the highest confidence scores for the next image from the camera
             classifications = await my_classifier.get_classifications_from_camera(
-                camera_name, 2)
+                "my_camera", 2)
 
         Args:
             camera_name (str): The name of the camera to use for detection
@@ -241,20 +231,17 @@ class Vision(ServiceBase):
 
         ::
 
-            # Grab camera from the machine
-            cam1 = Camera.from_robot(robot, "cam1")
-
-            # Get the classifier you configured on your machine
+            my_camera = Camera.from_robot(robot, "my_camera")
             my_classifier = VisionClient.from_robot(robot, "my_classifier")
 
             # Get an image from the camera
-            img = await cam1.get_image()
+            img = await my_camera.get_image()
 
-            # Get the 2 classifications with the highest confidence scores
+            # Get the 2 classifications with the highest confidence scores for the image
             classifications = await my_classifier.get_classifications(img, 2)
 
         Args:
-            image (ViamImage): The image to get detections from
+            image (ViamImage): The image to get detections for
             count (int): The number of classifications desired
 
         Returns:
@@ -283,12 +270,9 @@ class Vision(ServiceBase):
             import numpy as np
             import open3d as o3d
 
-            # Grab the 3D camera from the machine
-            cam1 = Camera.from_robot(robot, "cam1")
-            # Grab the object segmenter you configured on your machine
             my_segmenter = VisionClient.from_robot(robot, "my_segmenter")
             # Get the objects from the camera output
-            objects = await my_segmenter.get_object_point_clouds(cam1)
+            objects = await my_segmenter.get_object_point_clouds("my_camera")
             # write the first object point cloud into a temporary file
             with open("/tmp/pointcloud_data.pcd", "wb") as f:
                 f.write(objects[0].point_cloud)
@@ -321,8 +305,8 @@ class Vision(ServiceBase):
             # Grab the detector you configured on your machine
             my_detector = VisionClient.from_robot(robot, "my_detector")
             properties = await my_detector.get_properties()
-            properties.detections_supported      # returns True
-            properties.classifications_supported # returns False
+            detections_supported = properties.detections_supported
+            classifications_supported = properties.classifications_supported
 
         Returns:
             Properties: The properties of the vision service
