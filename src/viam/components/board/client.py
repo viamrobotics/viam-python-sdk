@@ -5,7 +5,6 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
 from grpclib.client import Stream as ClientStream
 
-from viam.logging import getLogger
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
@@ -32,8 +31,6 @@ from viam.streams import StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .board import Board, TickStream
-
-LOGGER = getLogger(__name__)
 
 
 class AnalogClient(Board.Analog):
