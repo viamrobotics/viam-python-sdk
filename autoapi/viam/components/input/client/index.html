@@ -204,7 +204,7 @@
 <dd><p>Returns a list of Controls provided by the Controller</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the controller from the machine.</span>
 <span class="n">my_controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span>
-    <span class="n">robot</span><span class="o">=</span><span class="n">myRobotWithController</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
+    <span class="n">myRobotWithController</span><span class="p">,</span> <span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the list of Controls provided by the controller.</span>
 <span class="n">controls</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_controller</span><span class="o">.</span><span class="n">get_controls</span><span class="p">()</span>
@@ -231,7 +231,7 @@
 (which should be the current state)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the controller from the machine.</span>
 <span class="n">my_controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span>
-    <span class="n">robot</span><span class="o">=</span><span class="n">myRobotWithController</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
+    <span class="n">myRobotWithController</span><span class="p">,</span> <span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the most recent Event for each Control.</span>
 <span class="n">recent_events</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_controller</span><span class="o">.</span><span class="n">get_events</span><span class="p">()</span>
@@ -256,7 +256,9 @@
 <span class="sig-name descname"><span class="pre">register_control_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">control</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../input/index.html#viam.components.input.input.Control" title="viam.components.input.input.Control"><span class="pre">viam.components.input.input.Control</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../input/index.html#viam.components.input.input.EventType" title="viam.components.input.input.EventType"><span class="pre">viam.components.input.input.EventType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.components.input.input.ControlFunction</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/input/client.html#ControllerClient.register_control_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.client.ControllerClient.register_control_callback" title="Permalink to this definition"></a></dt>
 <dd><p>Register a function that will fire on given EventTypes for a given
 Control</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to handle pressing the Start Menu Button &quot;BUTTON_START&quot; on</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.input</span> <span class="kn">import</span> <span class="n">Control</span><span class="p">,</span> <span class="n">EventType</span>
+
+<span class="c1"># Define a function to handle pressing the Start Menu Button &quot;BUTTON_START&quot; on</span>
 <span class="c1"># your controller, printing out the start time.</span>
 <span class="k">def</span> <span class="nf">print_start_time</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Start Menu Button was pressed at this time: </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -287,10 +289,10 @@ Control</p>
 
     <span class="c1"># Get your controller from the machine.</span>
     <span class="n">my_controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span>
-        <span class="n">robot</span><span class="o">=</span><span class="n">myRobotWithController</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
+        <span class="n">myRobotWithController</span><span class="p">,</span> <span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
 
     <span class="c1"># Run the handleController function.</span>
-    <span class="k">await</span> <span class="n">handleController</span><span class="p">(</span><span class="n">my_controller</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">handle_controller</span><span class="p">(</span><span class="n">my_controller</span><span class="p">)</span>
 
     <span class="c1"># ... &lt; INSERT ANY OTHER CODE FOR MAIN FUNCTION &gt;</span>
 </pre></div>
@@ -324,13 +326,17 @@ specific triggers</p></li>
 <dt class="sig sig-object py" id="viam.components.input.client.ControllerClient.trigger_event">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trigger_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../input/index.html#viam.components.input.input.Event" title="viam.components.input.input.Event"><span class="pre">viam.components.input.input.Event</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/input/client.html#ControllerClient.trigger_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.client.ControllerClient.trigger_event" title="Permalink to this definition"></a></dt>
 <dd><p>Directly send an Event (such as a button press) from external code</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get your controller from the machine.</span>
+<span class="n">my_controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span>
+    <span class="n">myRobotWithController</span><span class="p">,</span> <span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
 <span class="n">button_is_pressed_event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span>
     <span class="n">time</span><span class="p">(),</span> <span class="n">EventType</span><span class="o">.</span><span class="n">BUTTON_PRESS</span><span class="p">,</span> <span class="n">Control</span><span class="o">.</span><span class="n">BUTTON_START</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
 <span class="c1"># Trigger the event on your controller. Set this trigger to timeout if it has</span>
 <span class="c1"># not completed in 7 seconds.</span>
-<span class="k">await</span> <span class="n">myController</span><span class="o">.</span><span class="n">trigger_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">my_event</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">my_controller</span><span class="o">.</span><span class="n">trigger_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">button_is_pressed_event</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

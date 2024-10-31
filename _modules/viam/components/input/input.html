@@ -245,7 +245,7 @@
 
 <span class="sd">            # Get the controller from the machine.</span>
 <span class="sd">            my_controller = Controller.from_robot(</span>
-<span class="sd">                robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
 
 <span class="sd">            # Get the list of Controls provided by the controller.</span>
 <span class="sd">            controls = await my_controller.get_controls()</span>
@@ -272,7 +272,7 @@
 
 <span class="sd">            # Get the controller from the machine.</span>
 <span class="sd">            my_controller = Controller.from_robot(</span>
-<span class="sd">                robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
 
 <span class="sd">            # Get the most recent Event for each Control.</span>
 <span class="sd">            recent_events = await my_controller.get_events()</span>
@@ -302,6 +302,8 @@
 <span class="sd">        Control</span>
 
 <span class="sd">        ::</span>
+
+<span class="sd">            from viam.components.input import Control, EventType</span>
 
 <span class="sd">            # Define a function to handle pressing the Start Menu Button &quot;BUTTON_START&quot; on</span>
 <span class="sd">            # your controller, printing out the start time.</span>
@@ -334,10 +336,10 @@
 
 <span class="sd">                # Get your controller from the machine.</span>
 <span class="sd">                my_controller = Controller.from_robot(</span>
-<span class="sd">                    robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+<span class="sd">                    myRobotWithController, &quot;my_controller&quot;)</span>
 
 <span class="sd">                # Run the handleController function.</span>
-<span class="sd">                await handleController(my_controller)</span>
+<span class="sd">                await handle_controller(my_controller)</span>
 
 <span class="sd">                # ... &lt; INSERT ANY OTHER CODE FOR MAIN FUNCTION &gt;</span>
 
@@ -364,13 +366,17 @@
 
 <span class="sd">        ::</span>
 
+<span class="sd">            # Get your controller from the machine.</span>
+<span class="sd">            my_controller = Controller.from_robot(</span>
+<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
+
 <span class="sd">            # Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
 <span class="sd">            button_is_pressed_event = Event(</span>
 <span class="sd">                time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)</span>
 
 <span class="sd">            # Trigger the event on your controller. Set this trigger to timeout if it has</span>
 <span class="sd">            # not completed in 7 seconds.</span>
-<span class="sd">            await myController.trigger_event(event=my_event, timeout=7.0)</span>
+<span class="sd">            await my_controller.trigger_event(event=button_is_pressed_event, timeout=7.0)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            event (Event): The event to trigger</span>
