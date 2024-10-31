@@ -232,17 +232,16 @@ Currently, these are the following properties:
 </dl>
 <p>Get the next image, detections, classifications, and objects all together,
 given a camera name. Used for visualization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">camera_name</span> <span class="o">=</span> <span class="s2">&quot;cam1&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
-<span class="c1"># Grab the detector you configured on your machine</span>
-<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
-
-<span class="c1"># capture all from the next image from the camera</span>
+<span class="c1"># Get the captured data for a camera</span>
 <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">capture_all_from_camera</span><span class="p">(</span>
-    <span class="n">camera_name</span><span class="p">,</span>
+    <span class="s2">&quot;my_camera&quot;</span><span class="p">,</span>
     <span class="n">return_image</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">return_detections</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">detections</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -275,13 +274,10 @@ and objects, as well as any extra info the model may provide.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of detections in the next image given a camera and a detector</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">camera_name</span> <span class="o">=</span> <span class="s2">&quot;cam1&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
-<span class="c1"># Grab the detector you configured on your machine</span>
-<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get detections from the next image from the camera</span>
-<span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="n">camera_name</span><span class="p">)</span>
+<span class="c1"># Get detections for the next image from the specified camera</span>
+<span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -311,22 +307,19 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of detections in the given image using the specified detector</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab camera from the machine</span>
-<span class="n">cam1</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the detector you configured on your machine</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 <span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
-<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cam1</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
 
-<span class="c1"># Get detections from that image</span>
+<span class="c1"># Get detections for that image</span>
 <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../../components/camera/index.html#viam.components.camera.ViamImage" title="viam.components.camera.ViamImage"><em>ViamImage</em></a>) – The image to get detections from</p>
+<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../../components/camera/index.html#viam.components.camera.ViamImage" title="viam.components.camera.ViamImage"><em>ViamImage</em></a>) – The image to get detections for</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../../errors/index.html#viam.errors.ViamError" title="viam.errors.ViamError"><strong>ViamError</strong></a> – Raised if given an image without a specified width and height</p>
@@ -351,14 +344,11 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of classifications in the next image given a camera and a classifier</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">camera_name</span> <span class="o">=</span> <span class="s2">&quot;cam1&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
 
-<span class="c1"># Grab the classifier you configured on your machine</span>
-<span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the 2 classifications with the highest confidence scores from the next image from the camera</span>
+<span class="c1"># Get the 2 classifications with the highest confidence scores for the next image from the camera</span>
 <span class="n">classifications</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_classifier</span><span class="o">.</span><span class="n">get_classifications_from_camera</span><span class="p">(</span>
-    <span class="n">camera_name</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="s2">&quot;my_camera&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -386,23 +376,20 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of classifications in the given image using the specified classifier</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab camera from the machine</span>
-<span class="n">cam1</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the classifier you configured on your machine</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 <span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
-<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cam1</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
 
-<span class="c1"># Get the 2 classifications with the highest confidence scores</span>
+<span class="c1"># Get the 2 classifications with the highest confidence scores for the image</span>
 <span class="n">classifications</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_classifier</span><span class="o">.</span><span class="n">get_classifications</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>image</strong> (<a class="reference internal" href="../../../components/camera/index.html#viam.components.camera.ViamImage" title="viam.components.camera.ViamImage"><em>ViamImage</em></a>) – The image to get detections from</p></li>
+<li><p><strong>image</strong> (<a class="reference internal" href="../../../components/camera/index.html#viam.components.camera.ViamImage" title="viam.components.camera.ViamImage"><em>ViamImage</em></a>) – The image to get detections for</p></li>
 <li><p><strong>count</strong> (<em>int</em>) – The number of classifications desired</p></li>
 </ul>
 </dd>
@@ -429,12 +416,9 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
 
-<span class="c1"># Grab the 3D camera from the machine</span>
-<span class="n">cam1</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;cam1&quot;</span><span class="p">)</span>
-<span class="c1"># Grab the object segmenter you configured on your machine</span>
 <span class="n">my_segmenter</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_segmenter&quot;</span><span class="p">)</span>
 <span class="c1"># Get the objects from the camera output</span>
-<span class="n">objects</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_segmenter</span><span class="o">.</span><span class="n">get_object_point_clouds</span><span class="p">(</span><span class="n">cam1</span><span class="p">)</span>
+<span class="n">objects</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_segmenter</span><span class="o">.</span><span class="n">get_object_point_clouds</span><span class="p">(</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 <span class="c1"># write the first object point cloud into a temporary file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/pointcloud_data.pcd&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span class="p">)</span>
@@ -465,11 +449,10 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 </dl>
 <p>Get info about what vision methods the vision service provides. Currently returns boolean values that
 state whether the service implements the classification, detection, and/or 3D object segmentation methods.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grab the detector you configured on your machine</span>
-<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
-<span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span>      <span class="c1"># returns True</span>
-<span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span> <span class="c1"># returns False</span>
+<span class="n">detections_supported</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span>
+<span class="n">classifications_supported</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

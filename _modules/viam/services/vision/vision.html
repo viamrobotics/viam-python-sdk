@@ -182,17 +182,16 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            camera_name = &quot;cam1&quot;</span>
+<span class="sd">            my_detector = VisionClient.from_robot(machine, &quot;my_detector&quot;)</span>
 
-<span class="sd">            # Grab the detector you configured on your machine</span>
-<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
-
-<span class="sd">            # capture all from the next image from the camera</span>
+<span class="sd">            # Get the captured data for a camera</span>
 <span class="sd">            result = await my_detector.capture_all_from_camera(</span>
-<span class="sd">                camera_name,</span>
+<span class="sd">                &quot;my_camera&quot;,</span>
 <span class="sd">                return_image=True,</span>
 <span class="sd">                return_detections=True,</span>
 <span class="sd">            )</span>
+<span class="sd">            image = result.image</span>
+<span class="sd">            detections = result.detections</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
@@ -222,13 +221,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            camera_name = &quot;cam1&quot;</span>
-
-<span class="sd">            # Grab the detector you configured on your machine</span>
 <span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
 
-<span class="sd">            # Get detections from the next image from the camera</span>
-<span class="sd">            detections = await my_detector.get_detections_from_camera(camera_name)</span>
+<span class="sd">            # Get detections for the next image from the specified camera</span>
+<span class="sd">            detections = await my_detector.get_detections_from_camera(&quot;my_camera&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
@@ -257,20 +253,17 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Grab camera from the machine</span>
-<span class="sd">            cam1 = Camera.from_robot(robot, &quot;cam1&quot;)</span>
-
-<span class="sd">            # Get the detector you configured on your machine</span>
+<span class="sd">            my_camera = Camera.from_robot(robot, &quot;my_camera&quot;)</span>
 <span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
-<span class="sd">            img = await cam1.get_image()</span>
+<span class="sd">            img = await my_camera.get_image()</span>
 
-<span class="sd">            # Get detections from that image</span>
+<span class="sd">            # Get detections for that image</span>
 <span class="sd">            detections = await my_detector.get_detections(img)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            image (ViamImage): The image to get detections from</span>
+<span class="sd">            image (ViamImage): The image to get detections for</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ViamError: Raised if given an image without a specified width and height</span>
@@ -297,14 +290,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            camera_name = &quot;cam1&quot;</span>
-
-<span class="sd">            # Grab the classifier you configured on your machine</span>
 <span class="sd">            my_classifier = VisionClient.from_robot(robot, &quot;my_classifier&quot;)</span>
 
-<span class="sd">            # Get the 2 classifications with the highest confidence scores from the next image from the camera</span>
+<span class="sd">            # Get the 2 classifications with the highest confidence scores for the next image from the camera</span>
 <span class="sd">            classifications = await my_classifier.get_classifications_from_camera(</span>
-<span class="sd">                camera_name, 2)</span>
+<span class="sd">                &quot;my_camera&quot;, 2)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
@@ -330,20 +320,17 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Grab camera from the machine</span>
-<span class="sd">            cam1 = Camera.from_robot(robot, &quot;cam1&quot;)</span>
-
-<span class="sd">            # Get the classifier you configured on your machine</span>
+<span class="sd">            my_camera = Camera.from_robot(robot, &quot;my_camera&quot;)</span>
 <span class="sd">            my_classifier = VisionClient.from_robot(robot, &quot;my_classifier&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
-<span class="sd">            img = await cam1.get_image()</span>
+<span class="sd">            img = await my_camera.get_image()</span>
 
-<span class="sd">            # Get the 2 classifications with the highest confidence scores</span>
+<span class="sd">            # Get the 2 classifications with the highest confidence scores for the image</span>
 <span class="sd">            classifications = await my_classifier.get_classifications(img, 2)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            image (ViamImage): The image to get detections from</span>
+<span class="sd">            image (ViamImage): The image to get detections for</span>
 <span class="sd">            count (int): The number of classifications desired</span>
 
 <span class="sd">        Returns:</span>
@@ -372,12 +359,9 @@
 <span class="sd">            import numpy as np</span>
 <span class="sd">            import open3d as o3d</span>
 
-<span class="sd">            # Grab the 3D camera from the machine</span>
-<span class="sd">            cam1 = Camera.from_robot(robot, &quot;cam1&quot;)</span>
-<span class="sd">            # Grab the object segmenter you configured on your machine</span>
 <span class="sd">            my_segmenter = VisionClient.from_robot(robot, &quot;my_segmenter&quot;)</span>
 <span class="sd">            # Get the objects from the camera output</span>
-<span class="sd">            objects = await my_segmenter.get_object_point_clouds(cam1)</span>
+<span class="sd">            objects = await my_segmenter.get_object_point_clouds(&quot;my_camera&quot;)</span>
 <span class="sd">            # write the first object point cloud into a temporary file</span>
 <span class="sd">            with open(&quot;/tmp/pointcloud_data.pcd&quot;, &quot;wb&quot;) as f:</span>
 <span class="sd">                f.write(objects[0].point_cloud)</span>
@@ -407,11 +391,10 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Grab the detector you configured on your machine</span>
 <span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
 <span class="sd">            properties = await my_detector.get_properties()</span>
-<span class="sd">            properties.detections_supported      # returns True</span>
-<span class="sd">            properties.classifications_supported # returns False</span>
+<span class="sd">            detections_supported = properties.detections_supported</span>
+<span class="sd">            classifications_supported = properties.classifications_supported</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: The properties of the vision service</span>
