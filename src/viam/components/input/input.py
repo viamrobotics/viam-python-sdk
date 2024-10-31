@@ -156,7 +156,7 @@ class Controller(ComponentBase):
 
             # Get the controller from the machine.
             my_controller = Controller.from_robot(
-                robot=myRobotWithController, name="my_controller")
+                myRobotWithController, "my_controller")
 
             # Get the list of Controls provided by the controller.
             controls = await my_controller.get_controls()
@@ -183,7 +183,7 @@ class Controller(ComponentBase):
 
             # Get the controller from the machine.
             my_controller = Controller.from_robot(
-                robot=myRobotWithController, name="my_controller")
+                myRobotWithController, "my_controller")
 
             # Get the most recent Event for each Control.
             recent_events = await my_controller.get_events()
@@ -213,6 +213,8 @@ class Controller(ComponentBase):
         Control
 
         ::
+
+            from viam.components.input import Control, EventType
 
             # Define a function to handle pressing the Start Menu Button "BUTTON_START" on
             # your controller, printing out the start time.
@@ -245,10 +247,10 @@ class Controller(ComponentBase):
 
                 # Get your controller from the machine.
                 my_controller = Controller.from_robot(
-                    robot=myRobotWithController, name="my_controller")
+                    myRobotWithController, "my_controller")
 
                 # Run the handleController function.
-                await handleController(my_controller)
+                await handle_controller(my_controller)
 
                 # ... < INSERT ANY OTHER CODE FOR MAIN FUNCTION >
 
@@ -275,13 +277,17 @@ class Controller(ComponentBase):
 
         ::
 
+            # Get your controller from the machine.
+            my_controller = Controller.from_robot(
+                myRobotWithController, "my_controller")
+
             # Define a "Button is Pressed" event for the control BUTTON_START.
             button_is_pressed_event = Event(
                 time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)
 
             # Trigger the event on your controller. Set this trigger to timeout if it has
             # not completed in 7 seconds.
-            await myController.trigger_event(event=my_event, timeout=7.0)
+            await my_controller.trigger_event(event=button_is_pressed_event, timeout=7.0)
 
         Args:
             event (Event): The event to trigger
