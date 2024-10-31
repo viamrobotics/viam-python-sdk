@@ -95,7 +95,7 @@ class Vision(ServiceBase):
 
             my_detector = VisionClient.from_robot(machine, "my_detector")
 
-            # // Get the captured data for a camera
+            # Get the captured data for a camera
             result = await my_detector.capture_all_from_camera(
                 "my_camera",
                 return_image=True,
