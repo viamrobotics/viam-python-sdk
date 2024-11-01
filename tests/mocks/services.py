@@ -1,8 +1,10 @@
-from typing import Any, Dict, List, Mapping, Optional, Sequence
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 import numpy as np
 from grpclib.server import Stream
 from numpy.typing import NDArray
+from datetime import datetime
+import bson
 
 from viam.app.data_client import DataClient
 from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
@@ -791,12 +793,11 @@ class MockProvisioning(ProvisioningServiceBase):
         self.cloud_config = request.cloud
         await stream.send_message(SetSmartMachineCredentialsResponse())
 
-
 class MockData(UnimplementedDataServiceBase):
     def __init__(
         self,
         tabular_response: List[DataClient.TabularData],
-        tabular_query_response: List[Dict[str, ValueTypes]],
+        tabular_query_response: List[Dict[str, Union[ValueTypes, datetime]]],
         binary_response: List[BinaryData],
         delete_remove_response: int,
         tags_response: List[str],
@@ -986,12 +987,12 @@ class MockData(UnimplementedDataServiceBase):
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(TabularDataBySQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
+        await stream.send_message(TabularDataBySQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(TabularDataByMQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
+        await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
 
 class MockDataset(DatasetServiceBase):
