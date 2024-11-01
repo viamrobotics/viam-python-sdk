@@ -276,6 +276,8 @@ class Controller(ComponentBase):
         """Directly send an Event (such as a button press) from external code
 
         ::
+            my_controller = Controller.from_robot(
+                robot=machine, name="my_controller")
 
             # Get your controller from the machine.
             my_controller = Controller.from_robot(
