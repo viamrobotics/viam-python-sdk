@@ -60,6 +60,27 @@ FRAGMENT_VISIBILITY_PUBLIC: FragmentVisibility.ValueType
 FRAGMENT_VISIBILITY_PUBLIC_UNLISTED: FragmentVisibility.ValueType
 global___FragmentVisibility = FragmentVisibility
 
+class _FragmentErrorType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _FragmentErrorTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_FragmentErrorType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    FRAGMENT_ERROR_TYPE_UNSPECIFIED: _FragmentErrorType.ValueType
+    FRAGMENT_ERROR_TYPE_NO_ACCESS: _FragmentErrorType.ValueType
+    FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED: _FragmentErrorType.ValueType
+    FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: _FragmentErrorType.ValueType
+    FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: _FragmentErrorType.ValueType
+
+class FragmentErrorType(_FragmentErrorType, metaclass=_FragmentErrorTypeEnumTypeWrapper):
+    ...
+FRAGMENT_ERROR_TYPE_UNSPECIFIED: FragmentErrorType.ValueType
+FRAGMENT_ERROR_TYPE_NO_ACCESS: FragmentErrorType.ValueType
+FRAGMENT_ERROR_TYPE_NESTING_LIMIT_EXCEEDED: FragmentErrorType.ValueType
+FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: FragmentErrorType.ValueType
+FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: FragmentErrorType.ValueType
+global___FragmentErrorType = FragmentErrorType
+
 class _RegistryItemStatus:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -743,6 +764,164 @@ class DeleteOrganizationMemberResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteOrganizationMemberResponse = DeleteOrganizationMemberResponse
+
+@typing.final
+class BillingAddress(google.protobuf.message.Message):
+    """Third Party Org Services"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ADDRESS_LINE_1_FIELD_NUMBER: builtins.int
+    ADDRESS_LINE_2_FIELD_NUMBER: builtins.int
+    CITY_FIELD_NUMBER: builtins.int
+    STATE_FIELD_NUMBER: builtins.int
+    ZIPCODE_FIELD_NUMBER: builtins.int
+    address_line_1: builtins.str
+    address_line_2: builtins.str
+    city: builtins.str
+    state: builtins.str
+    zipcode: builtins.str
+
+    def __init__(self, *, address_line_1: builtins.str=..., address_line_2: builtins.str | None=..., city: builtins.str=..., state: builtins.str=..., zipcode: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_address_line_2', b'_address_line_2', 'address_line_2', b'address_line_2']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_address_line_2', b'_address_line_2', 'address_line_1', b'address_line_1', 'address_line_2', b'address_line_2', 'city', b'city', 'state', b'state', 'zipcode', b'zipcode']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_address_line_2', b'_address_line_2']) -> typing.Literal['address_line_2'] | None:
+        ...
+global___BillingAddress = BillingAddress
+
+@typing.final
+class EnableBillingServiceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    BILLING_ADDRESS_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    @property
+    def billing_address(self) -> global___BillingAddress:
+        ...
+
+    def __init__(self, *, org_id: builtins.str=..., billing_address: global___BillingAddress | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['billing_address', b'billing_address']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_address', b'billing_address', 'org_id', b'org_id']) -> None:
+        ...
+global___EnableBillingServiceRequest = EnableBillingServiceRequest
+
+@typing.final
+class EnableBillingServiceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___EnableBillingServiceResponse = EnableBillingServiceResponse
+
+@typing.final
+class UpdateBillingServiceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    BILLING_ADDRESS_FIELD_NUMBER: builtins.int
+    BILLING_SUPPORT_EMAIL_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    billing_support_email: builtins.str
+
+    @property
+    def billing_address(self) -> global___BillingAddress:
+        ...
+
+    def __init__(self, *, org_id: builtins.str=..., billing_address: global___BillingAddress | None=..., billing_support_email: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['billing_address', b'billing_address']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_address', b'billing_address', 'billing_support_email', b'billing_support_email', 'org_id', b'org_id']) -> None:
+        ...
+global___UpdateBillingServiceRequest = UpdateBillingServiceRequest
+
+@typing.final
+class UpdateBillingServiceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateBillingServiceResponse = UpdateBillingServiceResponse
+
+@typing.final
+class DisableBillingServiceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___DisableBillingServiceRequest = DisableBillingServiceRequest
+
+@typing.final
+class DisableBillingServiceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DisableBillingServiceResponse = DisableBillingServiceResponse
+
+@typing.final
+class OrganizationSetSupportEmailRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    EMAIL_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    email: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=..., email: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['email', b'email', 'org_id', b'org_id']) -> None:
+        ...
+global___OrganizationSetSupportEmailRequest = OrganizationSetSupportEmailRequest
+
+@typing.final
+class OrganizationSetSupportEmailResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___OrganizationSetSupportEmailResponse = OrganizationSetSupportEmailResponse
+
+@typing.final
+class OrganizationGetSupportEmailRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___OrganizationGetSupportEmailRequest = OrganizationGetSupportEmailRequest
+
+@typing.final
+class OrganizationGetSupportEmailResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    EMAIL_FIELD_NUMBER: builtins.int
+    email: builtins.str
+
+    def __init__(self, *, email: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['email', b'email']) -> None:
+        ...
+global___OrganizationGetSupportEmailResponse = OrganizationGetSupportEmailResponse
 
 @typing.final
 class OrganizationIdentity(google.protobuf.message.Message):
@@ -1790,6 +1969,49 @@ class FragmentHistoryEntry(google.protobuf.message.Message):
 global___FragmentHistoryEntry = FragmentHistoryEntry
 
 @typing.final
+class FragmentError(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ERROR_TYPE_FIELD_NUMBER: builtins.int
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    DETAIL_FIELD_NUMBER: builtins.int
+    error_type: global___FragmentErrorType.ValueType
+    fragment_id: builtins.str
+    detail: builtins.str
+
+    def __init__(self, *, error_type: global___FragmentErrorType.ValueType=..., fragment_id: builtins.str=..., detail: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['detail', b'detail', 'error_type', b'error_type', 'fragment_id', b'fragment_id']) -> None:
+        ...
+global___FragmentError = FragmentError
+
+@typing.final
+class FragmentTree(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROOT_FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    FRAGMENT_MERGE_ORDER_FIELD_NUMBER: builtins.int
+    ERROR_FIELD_NUMBER: builtins.int
+    root_fragment_id: builtins.str
+
+    @property
+    def fragment_merge_order(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def error(self) -> global___FragmentError:
+        ...
+
+    def __init__(self, *, root_fragment_id: builtins.str=..., fragment_merge_order: collections.abc.Iterable[builtins.str] | None=..., error: global___FragmentError | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['error', b'error']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['error', b'error', 'fragment_merge_order', b'fragment_merge_order', 'root_fragment_id', b'root_fragment_id']) -> None:
+        ...
+global___FragmentTree = FragmentTree
+
+@typing.final
 class ListFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2063,15 +2285,20 @@ global___ListMachineFragmentsRequest = ListMachineFragmentsRequest
 class ListMachineFragmentsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENTS_FIELD_NUMBER: builtins.int
+    FRAGMENT_TREES_FIELD_NUMBER: builtins.int
 
     @property
     def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
         ...
 
-    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=...) -> None:
+    @property
+    def fragment_trees(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTree]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=..., fragment_trees: collections.abc.Iterable[global___FragmentTree] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_trees', b'fragment_trees', 'fragments', b'fragments']) -> None:
         ...
 global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
 

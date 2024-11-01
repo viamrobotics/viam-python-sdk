@@ -9,7 +9,6 @@ from viam.proto.common import (
     GetKinematicsResponse,
 )
 from viam.proto.component.arm import (
-    UnimplementedArmServiceBase,
     GetEndPositionRequest,
     GetEndPositionResponse,
     GetJointPositionsRequest,
@@ -22,6 +21,7 @@ from viam.proto.component.arm import (
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
+    UnimplementedArmServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
