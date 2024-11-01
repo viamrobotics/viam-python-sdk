@@ -406,6 +406,8 @@ by the mimetype.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
 
+<span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+
 <span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_point_cloud</span><span class="p">()</span>
 
 <span class="c1"># write the point cloud into a temporary file</span>

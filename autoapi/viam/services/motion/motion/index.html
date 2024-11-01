@@ -368,7 +368,9 @@ RPC call.</p></li>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Stop a component being moved by an in progress <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming a `move_on_globe()` started the execution</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Assuming a `move_on_globe()` started the execution</span>
 <span class="c1"># Stop the base component which was instructed to move by `move_on_globe()`</span>
 <span class="c1"># or `move_on_map()`</span>
 <span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>

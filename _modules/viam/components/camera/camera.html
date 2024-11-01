@@ -196,6 +196,8 @@
 <span class="sd">            import numpy as np</span>
 <span class="sd">            import open3d as o3d</span>
 
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
+
 <span class="sd">            data, _ = await my_camera.get_point_cloud()</span>
 
 <span class="sd">            # write the point cloud into a temporary file</span>

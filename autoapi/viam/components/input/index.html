@@ -517,19 +517,26 @@ specific triggers</p></li>
 <dt class="sig sig-object py" id="viam.components.input.Controller.trigger_event">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trigger_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.trigger_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.trigger_event" title="Permalink to this definition"></a></dt>
 <dd><p>Directly send an Event (such as a button press) from external code</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get your controller from the machine.</span>
-<span class="n">my_controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span>
-    <span class="n">myRobotWithController</span><span class="p">,</span> <span class="s2">&quot;my_controller&quot;</span><span class="p">)</span>
-
-<span class="c1"># Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
-<span class="n">button_is_pressed_event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span>
-    <span class="n">time</span><span class="p">(),</span> <span class="n">EventType</span><span class="o">.</span><span class="n">BUTTON_PRESS</span><span class="p">,</span> <span class="n">Control</span><span class="o">.</span><span class="n">BUTTON_START</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-
-<span class="c1"># Trigger the event on your controller. Set this trigger to timeout if it has</span>
-<span class="c1"># not completed in 7 seconds.</span>
-<span class="k">await</span> <span class="n">my_controller</span><span class="o">.</span><span class="n">trigger_event</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">button_is_pressed_event</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">7.0</span><span class="p">)</span>
-</pre></div>
-</div>
+<dl>
+<dt>::</dt><dd><dl class="simple">
+<dt>my_controller = Controller.from_robot(</dt><dd><p>robot=machine, name=”my_controller”)</p>
+</dd>
+</dl>
+<p># Get your controller from the machine.
+my_controller = Controller.from_robot(</p>
+<blockquote>
+<div><p>myRobotWithController, “my_controller”)</p>
+</div></blockquote>
+<p># Define a “Button is Pressed” event for the control BUTTON_START.
+button_is_pressed_event = Event(</p>
+<blockquote>
+<div><p>time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)</p>
+</div></blockquote>
+<p># Trigger the event on your controller. Set this trigger to timeout if it has
+# not completed in 7 seconds.
+await my_controller.trigger_event(event=button_is_pressed_event, timeout=7.0)</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>event</strong> (<a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><em>Event</em></a>) – The event to trigger</p>
