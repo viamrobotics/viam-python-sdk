@@ -54,6 +54,7 @@ Classes
    viam.proto.app.Authorization
    viam.proto.app.AuthorizationDetails
    viam.proto.app.AuthorizedPermissions
+   viam.proto.app.BillingAddress
    viam.proto.app.ChangeRoleRequest
    viam.proto.app.ChangeRoleResponse
    viam.proto.app.CheckPermissionsRequest
@@ -100,8 +101,15 @@ Classes
    viam.proto.app.DeleteRobotPartSecretResponse
    viam.proto.app.DeleteRobotRequest
    viam.proto.app.DeleteRobotResponse
+   viam.proto.app.DisableBillingServiceRequest
+   viam.proto.app.DisableBillingServiceResponse
+   viam.proto.app.EnableBillingServiceRequest
+   viam.proto.app.EnableBillingServiceResponse
    viam.proto.app.Fragment
+   viam.proto.app.FragmentError
+   viam.proto.app.FragmentErrorType
    viam.proto.app.FragmentHistoryEntry
+   viam.proto.app.FragmentTree
    viam.proto.app.FragmentVisibility
    viam.proto.app.GetFragmentHistoryRequest
    viam.proto.app.GetFragmentHistoryResponse
@@ -179,9 +187,13 @@ Classes
    viam.proto.app.NewRobotRequest
    viam.proto.app.NewRobotResponse
    viam.proto.app.Organization
+   viam.proto.app.OrganizationGetSupportEmailRequest
+   viam.proto.app.OrganizationGetSupportEmailResponse
    viam.proto.app.OrganizationIdentity
    viam.proto.app.OrganizationInvite
    viam.proto.app.OrganizationMember
+   viam.proto.app.OrganizationSetSupportEmailRequest
+   viam.proto.app.OrganizationSetSupportEmailResponse
    viam.proto.app.OrgDetails
    viam.proto.app.RegistryItem
    viam.proto.app.RegistryItemStatus
@@ -207,6 +219,8 @@ Classes
    viam.proto.app.TransferRegistryItemResponse
    viam.proto.app.UnshareLocationRequest
    viam.proto.app.UnshareLocationResponse
+   viam.proto.app.UpdateBillingServiceRequest
+   viam.proto.app.UpdateBillingServiceResponse
    viam.proto.app.UpdateFragmentRequest
    viam.proto.app.UpdateFragmentResponse
    viam.proto.app.UpdateLocationRequest
@@ -341,6 +355,41 @@ Package Contents
 
 
    .. py:method:: ResendOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.ResendOrganizationInviteRequest, app.v1.app_pb2.ResendOrganizationInviteResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: EnableBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.EnableBillingServiceRequest, app.v1.app_pb2.EnableBillingServiceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DisableBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.DisableBillingServiceRequest, app.v1.app_pb2.DisableBillingServiceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateBillingServiceRequest, app.v1.app_pb2.UpdateBillingServiceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: OrganizationSetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationSetSupportEmailRequest, app.v1.app_pb2.OrganizationSetSupportEmailResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: OrganizationGetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetSupportEmailRequest, app.v1.app_pb2.OrganizationGetSupportEmailResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -803,6 +852,21 @@ Package Contents
    .. py:attribute:: ResendOrganizationInvite
 
 
+   .. py:attribute:: EnableBillingService
+
+
+   .. py:attribute:: DisableBillingService
+
+
+   .. py:attribute:: UpdateBillingService
+
+
+   .. py:attribute:: OrganizationSetSupportEmail
+
+
+   .. py:attribute:: OrganizationGetSupportEmail
+
+
    .. py:attribute:: CreateLocation
 
 
@@ -1057,6 +1121,31 @@ Package Contents
 
 
    .. py:method:: ResendOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.ResendOrganizationInviteRequest, app.v1.app_pb2.ResendOrganizationInviteResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: EnableBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.EnableBillingServiceRequest, app.v1.app_pb2.EnableBillingServiceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DisableBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.DisableBillingServiceRequest, app.v1.app_pb2.DisableBillingServiceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateBillingService(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateBillingServiceRequest, app.v1.app_pb2.UpdateBillingServiceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: OrganizationSetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationSetSupportEmailRequest, app.v1.app_pb2.OrganizationSetSupportEmailResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: OrganizationGetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetSupportEmailRequest, app.v1.app_pb2.OrganizationGetSupportEmailResponse]) -> None
       :async:
 
 
@@ -1608,6 +1697,68 @@ Package Contents
 
    .. py:property:: permissions
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+.. py:class:: BillingAddress(*, address_line_1: str = ..., address_line_2: str | None = ..., city: str = ..., state: str = ..., zipcode: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Third Party Org Services
+
+
+   .. py:attribute:: address_line_1
+      :type:  str
+
+
+   .. py:attribute:: address_line_2
+      :type:  str
+
+
+   .. py:attribute:: city
+      :type:  str
+
+
+   .. py:attribute:: state
+      :type:  str
+
+
+   .. py:attribute:: zipcode
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_address_line_2', b'_address_line_2', 'address_line_2', b'address_line_2']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_address_line_2', b'_address_line_2']) -> Literal['address_line_2'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -2650,6 +2801,85 @@ Package Contents
    shown below.
 
 
+.. py:class:: DisableBillingServiceRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: DisableBillingServiceResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: EnableBillingServiceRequest(*, org_id: str = ..., billing_address: global___BillingAddress | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:property:: billing_address
+      :type: global___BillingAddress
+
+
+
+   .. py:method:: HasField(field_name: Literal['billing_address', b'billing_address']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: EnableBillingServiceResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2740,6 +2970,35 @@ Package Contents
 
 
 
+.. py:class:: FragmentError(*, error_type: global___FragmentErrorType = ..., fragment_id: str = ..., detail: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: error_type
+      :type:  global___FragmentErrorType
+
+
+   .. py:attribute:: fragment_id
+      :type:  str
+
+
+   .. py:attribute:: detail
+      :type:  str
+
+
+.. py:class:: FragmentErrorType
+
+   Bases: :py:obj:`_FragmentErrorType`
+
+
 .. py:class:: FragmentHistoryEntry(*, fragment: str = ..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___Fragment | None = ..., edited_by: global___AuthenticatorInfo | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2772,6 +3031,50 @@ Package Contents
 
 
    .. py:method:: HasField(field_name: Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: FragmentTree(*, root_fragment_id: str = ..., fragment_merge_order: collections.abc.Iterable[str] | None = ..., error: global___FragmentError | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: root_fragment_id
+      :type:  str
+
+
+   .. py:property:: fragment_merge_order
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: error
+      :type: global___FragmentError
+
+
+
+   .. py:method:: HasField(field_name: Literal['error', b'error']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3765,7 +4068,7 @@ Package Contents
       provisionally added to the machine alongside existing fragments.
 
 
-.. py:class:: ListMachineFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ...)
+.. py:class:: ListMachineFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ..., fragment_trees: collections.abc.Iterable[global___FragmentTree] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3779,6 +4082,11 @@ Package Contents
 
    .. py:property:: fragments
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]
+
+
+
+   .. py:property:: fragment_trees
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTree]
 
 
 
@@ -4913,6 +5221,38 @@ Package Contents
 
 
 
+.. py:class:: OrganizationGetSupportEmailRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: OrganizationGetSupportEmailResponse(*, email: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: email
+      :type:  str
+
+
 .. py:class:: OrganizationIdentity(*, id: str = ..., name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -5047,6 +5387,38 @@ Package Contents
 
       :raises ValueError: no group with the given name exists
 
+
+
+.. py:class:: OrganizationSetSupportEmailRequest(*, org_id: str = ..., email: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: email
+      :type:  str
+
+
+.. py:class:: OrganizationSetSupportEmailResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
 
 
 .. py:class:: OrgDetails(*, org_id: str = ..., org_name: str = ...)
@@ -5893,6 +6265,61 @@ Package Contents
 
 
 .. py:class:: UnshareLocationResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UpdateBillingServiceRequest(*, org_id: str = ..., billing_address: global___BillingAddress | None = ..., billing_support_email: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: billing_support_email
+      :type:  str
+
+
+   .. py:property:: billing_address
+      :type: global___BillingAddress
+
+
+
+   .. py:method:: HasField(field_name: Literal['billing_address', b'billing_address']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateBillingServiceResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
