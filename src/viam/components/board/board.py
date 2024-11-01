@@ -236,7 +236,7 @@ class Board(ComponentBase):
 
                 # Set the duty cycle to .6, meaning that this pin will be in the high state for
                 # 60% of the duration of the PWM interval period.
-                await pin.set_pwm(cycle=.6)
+                await pin.set_pwm(duty_cycle=.6)
 
             Args:
                 duty_cycle (float): The duty cycle.
