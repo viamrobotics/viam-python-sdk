@@ -149,7 +149,7 @@ Module Contents
 
 
 
-   .. py:method:: tabular_data_by_sql(organization_id: str, sql_query: str) -> List[Dict[str, viam.utils.ValueTypes]]
+   .. py:method:: tabular_data_by_sql(organization_id: str, sql_query: str) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
       :async:
 
 
@@ -176,7 +176,7 @@ Module Contents
 
 
 
-   .. py:method:: tabular_data_by_mql(organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, viam.utils.ValueTypes]]
+   .. py:method:: tabular_data_by_mql(organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
       :async:
 
 
