@@ -275,7 +275,7 @@ class Controller(ComponentBase):
 
         ::
             my_controller = Controller.from_robot(
-                robot=myRobotWithController, name="my_controller")
+                robot=machine, name="my_controller")
 
             # Define a "Button is Pressed" event for the control BUTTON_START.
             button_is_pressed_event = Event(
