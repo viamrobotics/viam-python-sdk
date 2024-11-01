@@ -1,6 +1,6 @@
 from abc import abstractmethod
-from typing import TYPE_CHECKING, Any, ClassVar, Mapping, Optional, Protocol, runtime_checkable
 from logging import Logger
+from typing import TYPE_CHECKING, Any, ClassVar, Mapping, Optional, Protocol, runtime_checkable
 
 from typing_extensions import Self
 
