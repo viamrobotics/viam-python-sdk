@@ -433,8 +433,8 @@ class Board(ComponentBase):
 
 
             my_board = Board.from_robot(robot=machine, name="my_board")
-            di8 = await my_board.digital_interrupt_by_name(name="8"))
-            di11 = await my_board.digital_interrupt_by_name(name="11"))
+            di8 = await my_board.digital_interrupt_by_name(name="8")
+            di11 = await my_board.digital_interrupt_by_name(name="11")
 
             # Iterate over stream of ticks from pins 8 and 11.
             async for tick in await my_board.stream_ticks([di8, di11]):
