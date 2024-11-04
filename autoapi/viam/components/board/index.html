@@ -249,7 +249,7 @@ change between values it can read).</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Read the current value from the reader.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the Analog &quot;my_example_analog_reader&quot;.</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_reader_by_name</span><span class="p">(</span>
@@ -279,7 +279,7 @@ change between values it can read).</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Write a value to the Analog writer.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the Analog &quot;my_example_analog_writer&quot;.</span>
 <span class="n">writer</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_by_name</span><span class="p">(</span>
@@ -320,7 +320,7 @@ be added to modify what Value it ultimately returns.</p>
 </dl>
 <p>Get the current value of the interrupt,
 which is based on the type of interrupt.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the DigitalInterrupt &quot;my_example_digital_interrupt&quot;.</span>
 <span class="n">interrupt</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span>
@@ -363,13 +363,13 @@ which is based on the type of interrupt.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Set the pin to either low or high.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the pin to high.</span>
-<span class="k">await</span> <span class="n">pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">high</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">high</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -388,7 +388,7 @@ which is based on the type of interrupt.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the high/low state of the pin.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
@@ -416,7 +416,7 @@ which is based on the type of interrupt.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the pin’s given duty cycle.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
@@ -444,14 +444,14 @@ which is based on the type of interrupt.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Set the pin to the given <code class="docutils literal notranslate"><span class="pre">duty_cycle</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the duty cycle to .6, meaning that this pin will be in the high state for</span>
 <span class="c1"># 60% of the duration of the PWM interval period.</span>
-<span class="k">await</span> <span class="n">pin</span><span class="o">.</span><span class="n">set_pwm</span><span class="p">(</span><span class="n">cycle</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">pin</span><span class="o">.</span><span class="n">set_pwm</span><span class="p">(</span><span class="n">duty_cycle</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -470,7 +470,7 @@ which is based on the type of interrupt.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the PWM frequency of the pin.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
@@ -499,7 +499,7 @@ which is based on the type of interrupt.</p>
 </dl>
 <p>Set the pin to the given PWM <code class="docutils literal notranslate"><span class="pre">frequency</span></code> (in Hz).
 When <code class="docutils literal notranslate"><span class="pre">frequency</span></code> is 0, it will use the board’s default PWM frequency.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
@@ -526,7 +526,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get an Analog (reader or writer) by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the Analog &quot;my_example_analog_reader&quot;.</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_example_analog_reader&quot;</span><span class="p">)</span>
@@ -554,7 +554,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a DigitalInterrupt by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the DigitalInterrupt &quot;my_example_digital_interrupt&quot;.</span>
 <span class="n">interrupt</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span>
@@ -583,7 +583,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a GPIO Pin by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the GPIOPin with pin number 15.</span>
 <span class="n">pin</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">gpio_pin_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;15&quot;</span><span class="p">)</span>
@@ -611,7 +611,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the names of all known analog readers and/or writers.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the name of every Analog configured on the board.</span>
 <span class="n">names</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_names</span><span class="p">()</span>
@@ -636,7 +636,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the names of all known digital interrupts.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the name of every DigitalInterrupt configured on the board.</span>
 <span class="n">names</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_names</span><span class="p">()</span>
@@ -661,7 +661,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Set the board to the indicated power mode.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the power mode of the board to OFFLINE_DEEP.</span>
 <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">set_power_mode</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">PowerMode</span><span class="o">.</span><span class="n">POWER_MODE_OFFLINE_DEEP</span><span class="p">)</span>
@@ -686,9 +686,9 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Stream digital interrupt ticks.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
-<span class="n">di8</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;8&quot;</span><span class="p">))</span>
-<span class="n">di11</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;11&quot;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+<span class="n">di8</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;8&quot;</span><span class="p">)</span>
+<span class="n">di11</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;11&quot;</span><span class="p">)</span>
 
 <span class="c1"># Iterate over stream of ticks from pins 8 and 11.</span>
 <span class="k">async</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">stream_ticks</span><span class="p">([</span><span class="n">di8</span><span class="p">,</span> <span class="n">di11</span><span class="p">]):</span>

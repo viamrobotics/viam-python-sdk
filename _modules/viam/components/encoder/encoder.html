@@ -134,7 +134,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+<span class="sd">            my_encoder = Encoder.from_robot(robot=machine, name=&#39;my_encoder&#39;)</span>
 
 <span class="sd">            # Reset the zero position of the encoder.</span>
 <span class="sd">            await my_encoder.reset_position()</span>
@@ -162,7 +162,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+<span class="sd">            my_encoder = Encoder.from_robot(robot=machine, name=&#39;my_encoder&#39;)</span>
 
 <span class="sd">            # Get the position of the encoder in ticks</span>
 <span class="sd">            position = await my_encoder.get_position(PositionType.POSITION_TYPE_TICKS_COUNT)</span>
@@ -194,7 +194,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+<span class="sd">            my_encoder = Encoder.from_robot(robot=machine, name=&#39;my_encoder&#39;)</span>
 
 <span class="sd">            # Get whether the encoder returns position in ticks or degrees.</span>
 <span class="sd">            properties = await my_encoder.get_properties()</span>

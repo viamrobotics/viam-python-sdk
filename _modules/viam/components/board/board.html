@@ -154,7 +154,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the Analog &quot;my_example_analog_reader&quot;.</span>
 <span class="sd">                reader = await my_board.analog_reader_by_name(</span>
@@ -178,7 +178,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the Analog &quot;my_example_analog_writer&quot;.</span>
 <span class="sd">                writer = await my_board.analog_by_name(</span>
@@ -216,7 +216,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the DigitalInterrupt &quot;my_example_digital_interrupt&quot;.</span>
 <span class="sd">                interrupt = await my_board.digital_interrupt_by_name(</span>
@@ -252,13 +252,13 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
 
 <span class="sd">                # Set the pin to high.</span>
-<span class="sd">                await pin.set(high=&quot;true&quot;)</span>
+<span class="sd">                await pin.set(high=True)</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
@@ -274,7 +274,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
@@ -296,7 +296,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
@@ -318,14 +318,14 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
 
 <span class="sd">                # Set the duty cycle to .6, meaning that this pin will be in the high state for</span>
 <span class="sd">                # 60% of the duration of the PWM interval period.</span>
-<span class="sd">                await pin.set_pwm(cycle=.6)</span>
+<span class="sd">                await pin.set_pwm(duty_cycle=.6)</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                duty_cycle (float): The duty cycle.</span>
@@ -341,7 +341,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
@@ -371,7 +371,7 @@
 
 <span class="sd">            ::</span>
 
-<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">                my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">                # Get the GPIOPin with pin number 15.</span>
 <span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
@@ -393,7 +393,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Get the Analog &quot;my_example_analog_reader&quot;.</span>
 <span class="sd">            reader = await my_board.analog_by_name(name=&quot;my_example_analog_reader&quot;)</span>
@@ -415,7 +415,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Get the DigitalInterrupt &quot;my_example_digital_interrupt&quot;.</span>
 <span class="sd">            interrupt = await my_board.digital_interrupt_by_name(</span>
@@ -438,7 +438,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Get the GPIOPin with pin number 15.</span>
 <span class="sd">            pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
@@ -460,7 +460,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Get the name of every Analog configured on the board.</span>
 <span class="sd">            names = await my_board.analog_names()</span>
@@ -479,7 +479,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Get the name of every DigitalInterrupt configured on the board.</span>
 <span class="sd">            names = await my_board.digital_interrupt_names()</span>
@@ -500,7 +500,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
 
 <span class="sd">            # Set the power mode of the board to OFFLINE_DEEP.</span>
 <span class="sd">            status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)</span>
@@ -521,9 +521,9 @@
 <span class="sd">        ::</span>
 
 
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
-<span class="sd">            di8 = await my_board.digital_interrupt_by_name(name=&quot;8&quot;))</span>
-<span class="sd">            di11 = await my_board.digital_interrupt_by_name(name=&quot;11&quot;))</span>
+<span class="sd">            my_board = Board.from_robot(robot=machine, name=&quot;my_board&quot;)</span>
+<span class="sd">            di8 = await my_board.digital_interrupt_by_name(name=&quot;8&quot;)</span>
+<span class="sd">            di11 = await my_board.digital_interrupt_by_name(name=&quot;11&quot;)</span>
 
 <span class="sd">            # Iterate over stream of ticks from pins 8 and 11.</span>
 <span class="sd">            async for tick in await my_board.stream_ticks([di8, di11]):</span>
