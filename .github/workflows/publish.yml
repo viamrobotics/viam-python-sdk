@@ -30,7 +30,9 @@ jobs:
         with:
           payload: |
             {
-              "text": "${{ github.event.release.tag_name }} was released.\n${{ github.event.release.html_url }}"
+              "text": "${{ github.event.release.tag_name }} was released.\n${{ github.event.release.html_url }}",
+              "username": "Python SDK",
+              "icon_url": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
