@@ -3,8 +3,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
-import bson
 
+import bson
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 

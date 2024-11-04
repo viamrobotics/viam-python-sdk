@@ -1,10 +1,10 @@
+from datetime import datetime
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
+import bson
 import numpy as np
 from grpclib.server import Stream
 from numpy.typing import NDArray
-from datetime import datetime
-import bson
 
 from viam.app.data_client import DataClient
 from viam.gen.app.v1.app_pb2 import FragmentHistoryEntry, GetFragmentHistoryRequest, GetFragmentHistoryResponse
@@ -792,6 +792,7 @@ class MockProvisioning(ProvisioningServiceBase):
         assert request is not None
         self.cloud_config = request.cloud
         await stream.send_message(SetSmartMachineCredentialsResponse())
+
 
 class MockData(UnimplementedDataServiceBase):
     def __init__(
