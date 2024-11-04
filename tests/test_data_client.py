@@ -1,10 +1,10 @@
+from datetime import datetime
 from typing import List
 
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
-from datetime import datetime
 from viam.app.data_client import DataClient
 from viam.proto.app.data import Annotations, BinaryData, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
 from viam.utils import create_filter
