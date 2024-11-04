@@ -45,7 +45,7 @@ class Encoder(ComponentBase):
 
         ::
 
-            my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+            my_encoder = Encoder.from_robot(robot=machine, name='my_encoder')
 
             # Reset the zero position of the encoder.
             await my_encoder.reset_position()
@@ -73,7 +73,7 @@ class Encoder(ComponentBase):
 
         ::
 
-            my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+            my_encoder = Encoder.from_robot(robot=machine, name='my_encoder')
 
             # Get the position of the encoder in ticks
             position = await my_encoder.get_position(PositionType.POSITION_TYPE_TICKS_COUNT)
@@ -105,7 +105,7 @@ class Encoder(ComponentBase):
 
         ::
 
-            my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+            my_encoder = Encoder.from_robot(robot=machine, name='my_encoder')
 
             # Get whether the encoder returns position in ticks or degrees.
             properties = await my_encoder.get_properties()
