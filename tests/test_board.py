@@ -6,7 +6,7 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import BoardClient, BoardStatus, create_status
+from viam.components.board import Board, BoardClient, BoardStatus, create_status
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -41,17 +41,27 @@ from .mocks.components import GEOMETRIES, MockAnalog, MockBoard, MockDigitalInte
 
 
 @pytest.fixture(scope="function")
-def board() -> MockBoard:
+def analog() -> MockAnalog:
+    return MockAnalog("analog1", 3, 0.0, 1.0, 0.1)
+
+
+@pytest.fixture(scope="function")
+def interrupt() -> MockDigitalInterrupt:
+    return MockDigitalInterrupt("interrupt1")
+
+
+@pytest.fixture(scope="function")
+def gpio_pin() -> MockGPIOPin:
+    return MockGPIOPin("pin1")
+
+
+@pytest.fixture(scope="function")
+def board(analog: Board.Analog, interrupt: Board.DigitalInterrupt, gpio_pin: Board.GPIOPin) -> MockBoard:
     return MockBoard(
         name="board",
-        analogs={
-            "reader1": MockAnalog("reader1", 3, 0.0, 1.0, 0.1),
-            "writer1": MockAnalog("writer1", 5, 0.0, 1.0, 0.1),
-        },
-        digital_interrupts={
-            "interrupt1": MockDigitalInterrupt("interrupt1"),
-        },
-        gpio_pins={"pin1": MockGPIOPin("pin1")},
+        analogs={analog.name: analog},
+        digital_interrupts={interrupt.name: interrupt},
+        gpio_pins={gpio_pin.name: gpio_pin},
     )
 
 
@@ -68,12 +78,26 @@ def generic_service(board: MockBoard) -> GenericRPCService:
 
 
 class TestBoard:
+    class TestAnalog:
+        async def test_read(self, analog: MockAnalog):
+            value = await analog.read()
+            assert value == analog.value
+
+        async def test_write(self, analog: MockAnalog):
+            await analog.write(8)
+            assert analog.value.value == 8
+
+    class TestDigitalInterrupt:
+        async def test_value(self, interrupt: MockDigitalInterrupt):
+            value = await interrupt.value()
+            assert value == interrupt.val
+
     async def test_analog_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
             await board.analog_by_name("does not exist")
 
-        reader = await board.analog_by_name("reader1")
-        assert reader.name == "reader1"
+        reader = await board.analog_by_name("analog1")
+        assert reader.name == "analog1"
 
     async def test_digital_interrupt_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
@@ -91,7 +115,7 @@ class TestBoard:
 
     async def test_analog_names(self, board: MockBoard):
         names = await board.analog_names()
-        assert names == ["reader1", "writer1"]
+        assert names == ["analog1"]
 
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
@@ -104,15 +128,12 @@ class TestBoard:
 
     async def test_status(self, board: MockBoard):
         status = await create_status(board)
-        read1 = await board.analogs["reader1"].read()
-        # Analog writers typically don't have read statuses, but the mock board
-        # doesn't make that distinction.
-        read2 = await board.analogs["writer1"].read()
+        analog = await board.analogs["analog1"].read()
         val = await board.digital_interrupts["interrupt1"].value()
         assert status.name == MockBoard.get_resource_name(board.name)
         assert status.status == message_to_struct(
             BoardStatus(
-                analogs={"reader1": int(read1.value), "writer1": int(read2.value)},
+                analogs={"analog1": int(analog.value)},
                 digital_interrupts={"interrupt1": val},
             )
         )
@@ -128,15 +149,6 @@ class TestBoard:
     async def test_get_geometries(self, board: MockBoard):
         geometries = await board.get_geometries()
         assert geometries == GEOMETRIES
-
-    async def test_write_analog(self, board: MockBoard):
-        value = 10
-        pin = "writer1"
-        writer = await board.analog_by_name(name=pin)
-        await writer.write(value=value, timeout=1.11)
-        assert writer.timeout == loose_approx(1.11)
-        assert writer.value == value
-        assert writer.name == pin
 
     async def test_stream_ticks(self, board: MockBoard):
         int1 = board.digital_interrupts["interrupt1"]
@@ -156,18 +168,18 @@ class TestService:
                 await client.ReadAnalogReader(request)
 
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            request = ReadAnalogReaderRequest(board_name=board.name, analog_reader_name="reader1", extra=dict_to_struct(extra))
+            request = ReadAnalogReaderRequest(board_name=board.name, analog_reader_name="analog1", extra=dict_to_struct(extra))
             response: ReadAnalogReaderResponse = await client.ReadAnalogReader(request, timeout=4.4)
             assert response.value == 3
             assert response.min_range == 0.0
             assert response.max_range == 1.0
             assert response.step_size == pytest.approx(0.1)
 
-            reader = cast(MockAnalog, board.analogs["reader1"])
+            reader = cast(MockAnalog, board.analogs["analog1"])
             assert reader.extra == extra
             assert reader.timeout == loose_approx(4.4)
 
-    async def test_get_digital_interrupt_value(self, board: MockBoard, service: BoardRPCService):
+    async def test_get_digital_interrupt_value(self, board: MockBoard, service: BoardRPCService, interrupt: MockDigitalInterrupt):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
 
@@ -177,7 +189,7 @@ class TestService:
 
             request = GetDigitalInterruptValueRequest(board_name=board.name, digital_interrupt_name="interrupt1")
             response: GetDigitalInterruptValueResponse = await client.GetDigitalInterruptValue(request)
-            assert response.value == 0
+            assert response.value == interrupt.val
 
     async def test_set_gpio(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -293,14 +305,14 @@ class TestService:
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
-            pin = "writer1"
+            pin = "analog1"
             value = 10
             request = WriteAnalogRequest(name=board.name, pin=pin, value=value)
             response: WriteAnalogResponse = await client.WriteAnalog(request, timeout=6.66)
             assert response == WriteAnalogResponse()
-            mock_analog = cast(MockAnalog, board.analogs["writer1"])
+            mock_analog = cast(MockAnalog, board.analogs["analog1"])
             assert mock_analog.timeout == loose_approx(6.66)
-            assert mock_analog.value == value
+            assert mock_analog.value.value == value
             assert mock_analog.name == pin
 
     #
@@ -330,8 +342,8 @@ class TestClient:
             with pytest.raises(GRPCError, match=r".*Status.NOT_FOUND.*"):
                 await reader.read()
 
-            reader = await client.analog_by_name("reader1")
-            assert reader.name == "reader1"
+            reader = await client.analog_by_name("analog1")
+            assert reader.name == "analog1"
 
     async def test_digital_interrupt_by_name(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -361,11 +373,11 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
 
-            reader = await client.analog_by_name("reader1")
-            assert reader.name == "reader1"
+            reader = await client.analog_by_name("analog1")
+            assert reader.name == "analog1"
 
             names = await client.analog_names()
-            assert names == ["reader1"]
+            assert names == ["analog1"]
 
     async def test_digital_interrupt_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
@@ -396,11 +408,48 @@ class TestClient:
             pm_duration.FromTimedelta(pm_timedelta)
             assert board.power_mode_duration == pm_duration.ToTimedelta()
 
+    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(name=board.name, channel=channel)
+            di = await client.digital_interrupt_by_name("interrupt1")
+
+            tick_stream = await client.stream_ticks(interrupts=[di])
+            async for tick in tick_stream:
+                assert tick.pin_name == "interrupt1"
+                assert tick.high is True
+                assert tick.time == 1000
+                break
+
     async def test_extra(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(board.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+
+class TestAnalogClient:
+    async def test_read(self, analog: MockAnalog, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            board_client = BoardClient(name=board.name, channel=channel)
+            analog_client = await board_client.analog_by_name("analog1")
+            value = await analog_client.read()
+            assert value == analog.value
+
+    async def test_write(self, analog: MockAnalog, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            board_client = BoardClient(name=board.name, channel=channel)
+            analog_client = await board_client.analog_by_name("analog1")
+            await analog_client.write(45)
+            assert analog.value.value == 45
+
+
+class TestDigitalInterrupt:
+    async def test_value(self, interrupt: MockDigitalInterrupt, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            board_client = BoardClient(name=board.name, channel=channel)
+            interrupt_client = await board_client.digital_interrupt_by_name("interrupt1")
+            value = await interrupt_client.value()
+            assert value == interrupt.val
 
 
 class TestGPIOPinClient:
@@ -470,27 +519,3 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
             assert mock_pin.timeout is None
-
-    async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-            writer = await client.analog_by_name("writer1")
-            value = 42
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await writer.write(value, extra=extra)
-            mock_analog = cast(MockAnalog, board.analogs["writer1"])
-            assert mock_analog.name == "writer1"
-            assert mock_analog.value == 42
-            assert mock_analog.extra == extra
-
-    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-            di = await client.digital_interrupt_by_name("interrupt1")
-
-            tick_stream = await client.stream_ticks(interrupts=[di])
-            async for tick in tick_stream:
-                assert tick.pin_name == "interrupt1"
-                assert tick.high is True
-                assert tick.time == 1000
-                break
