@@ -242,23 +242,17 @@ class MockAnalog(Board.Analog):
     async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
         self.timeout = timeout
-        self.value = value
+        self.value.value = value
 
 
 class MockDigitalInterrupt(Board.DigitalInterrupt):
     def __init__(self, name: str):
         self.high = False
-        self.last_tick = 0
-        self.num_ticks = 0
+        self.val = 182
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
-        return self.num_ticks
-
-    async def tick(self, high: bool, nanos: int):  # Call this to get the mock interrupt to change
-        self.high = high
-        self.last_tick = nanos
-        self.num_ticks += 1
+        return self.val
 
 
 class MockGPIOPin(Board.GPIOPin):
