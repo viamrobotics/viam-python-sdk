@@ -29,7 +29,7 @@ class PowerSensor(ComponentBase):
 
         ::
 
-            my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
 
             # Get the voltage reading from the power sensor
             voltage, is_ac = await my_power_sensor.get_voltage()
@@ -49,7 +49,7 @@ class PowerSensor(ComponentBase):
 
         ::
 
-            my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
 
             # Get the current reading from the power sensor
             current, is_ac = await my_power_sensor.get_current()
@@ -69,7 +69,7 @@ class PowerSensor(ComponentBase):
 
         ::
 
-            my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
 
             # Get the power reading from the power sensor
             power = await my_power_sensor.get_power()
@@ -90,7 +90,7 @@ class PowerSensor(ComponentBase):
 
         ::
 
-            my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+            my_power_sensor = PowerSensor.from_robot(robot=machine, name='my_power_sensor')
 
             # Get the readings provided by the sensor.
             readings = await my_power_sensor.get_readings()

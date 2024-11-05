@@ -37,7 +37,7 @@ class Gripper(ComponentBase):
 
         ::
 
-            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
 
             # Open the gripper.
             await my_gripper.open()
@@ -59,7 +59,7 @@ class Gripper(ComponentBase):
 
         ::
 
-            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
 
             # Grab with the gripper.
             grabbed = await my_gripper.grab()
@@ -84,7 +84,7 @@ class Gripper(ComponentBase):
 
         ::
 
-            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
 
             # Stop the gripper.
             await my_gripper.stop()
@@ -100,7 +100,7 @@ class Gripper(ComponentBase):
 
         ::
 
-            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
 
             # Check whether the gripper is currently moving.
             moving = await my_gripper.is_moving()

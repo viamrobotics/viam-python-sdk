@@ -32,7 +32,7 @@ class MLModel(ServiceBase):
 
             import numpy as np
 
-            my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+            my_mlmodel = MLModelClient.from_robot(robot=machine, name="my_mlmodel_service")
 
             nd_array = np.array([1, 2, 3], dtype=np.float64)
             input_tensors = {"0": nd_array}
@@ -55,7 +55,7 @@ class MLModel(ServiceBase):
 
         ::
 
-            my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+            my_mlmodel = MLModelClient.from_robot(robot=machine, name="my_mlmodel_service")
 
             metadata = await my_mlmodel.metadata()
 
