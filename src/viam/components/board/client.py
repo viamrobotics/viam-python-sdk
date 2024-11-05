@@ -225,19 +225,6 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)
 
-    async def write_analog(
-        self,
-        pin: str,
-        value: int,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ):
-        md = kwargs.get("metadata", self.Metadata()).proto
-        request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
-        await self.client.WriteAnalog(request, timeout=timeout, metadata=md)
-
     async def stream_ticks(
         self,
         interrupts: List[Board.DigitalInterrupt],
