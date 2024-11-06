@@ -1,10 +1,11 @@
 import abc
-from typing import Dict, Final, Optional
+from typing import Dict, Final, Optional, Mapping
 
 from numpy.typing import NDArray
 
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
 
@@ -25,7 +26,13 @@ class MLModel(ServiceBase):
     )
 
     @abc.abstractmethod
-    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]) -> Dict[str, NDArray]:
+    async def infer(
+        self,
+        input_tensors: Dict[str, NDArray],
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> Dict[str, NDArray]:
         """Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
         ::
@@ -50,7 +57,7 @@ class MLModel(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def metadata(self, *, timeout: Optional[float]) -> Metadata:
+    async def metadata(self, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None) -> Metadata:
         """Get the metadata (such as name, type, expected tensor/array shape, inputs, and outputs) associated with the ML model.
 
         ::

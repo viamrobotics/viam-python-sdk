@@ -515,13 +515,19 @@ class MockMLModel(MLModel):
 
         super().__init__(name)
 
-    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float] = None) -> Dict[str, NDArray]:
+    async def infer(
+        self,
+        input_tensors: Dict[str, NDArray],
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> Dict[str, NDArray]:
         self.timeout = timeout
         request_data = ndarrays_to_flat_tensors(input_tensors)
         response_data = flat_tensors_to_ndarrays(request_data)
         return response_data
 
-    async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
+    async def metadata(self, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None) -> Metadata:
         self.timeout = timeout
         return self.META
 
