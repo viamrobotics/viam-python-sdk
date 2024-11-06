@@ -35,7 +35,7 @@ Module Contents
       The Subtype of the Resource
 
 
-   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float]) -> Dict[str, numpy.typing.NDArray]
+   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Dict[str, numpy.typing.NDArray]
       :abstractmethod:
 
       :async:
@@ -64,7 +64,7 @@ Module Contents
 
 
 
-   .. py:method:: metadata(*, timeout: Optional[float]) -> viam.proto.service.mlmodel.Metadata
+   .. py:method:: metadata(*, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.mlmodel.Metadata
       :abstractmethod:
 
       :async:

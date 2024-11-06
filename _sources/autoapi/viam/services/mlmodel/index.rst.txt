@@ -195,7 +195,7 @@ Package Contents
    .. py:attribute:: client
 
 
-   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, numpy.typing.NDArray]
+   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[str, numpy.typing.NDArray]
       :async:
 
 
@@ -222,7 +222,7 @@ Package Contents
 
 
 
-   .. py:method:: metadata(*, timeout: Optional[float] = None, **kwargs) -> viam.services.mlmodel.mlmodel.Metadata
+   .. py:method:: metadata(*, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None, **kwargs) -> viam.services.mlmodel.mlmodel.Metadata
       :async:
 
 
@@ -373,7 +373,7 @@ Package Contents
       The Subtype of the Resource
 
 
-   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float]) -> Dict[str, numpy.typing.NDArray]
+   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Dict[str, numpy.typing.NDArray]
       :abstractmethod:
 
       :async:
@@ -402,7 +402,7 @@ Package Contents
 
 
 
-   .. py:method:: metadata(*, timeout: Optional[float]) -> viam.proto.service.mlmodel.Metadata
+   .. py:method:: metadata(*, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.mlmodel.Metadata
       :abstractmethod:
 
       :async:
