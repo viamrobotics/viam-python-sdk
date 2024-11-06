@@ -1986,30 +1986,30 @@ class FragmentError(google.protobuf.message.Message):
 global___FragmentError = FragmentError
 
 @typing.final
-class FragmentTree(google.protobuf.message.Message):
+class ResolvedFragment(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ROOT_FRAGMENT_ID_FIELD_NUMBER: builtins.int
-    FRAGMENT_MERGE_ORDER_FIELD_NUMBER: builtins.int
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    RESOLVED_CONFIG_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
-    root_fragment_id: builtins.str
+    fragment_id: builtins.str
 
     @property
-    def fragment_merge_order(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def resolved_config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
     @property
     def error(self) -> global___FragmentError:
         ...
 
-    def __init__(self, *, root_fragment_id: builtins.str=..., fragment_merge_order: collections.abc.Iterable[builtins.str] | None=..., error: global___FragmentError | None=...) -> None:
+    def __init__(self, *, fragment_id: builtins.str=..., resolved_config: google.protobuf.struct_pb2.Struct | None=..., error: global___FragmentError | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['error', b'error']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['error', b'error', 'resolved_config', b'resolved_config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['error', b'error', 'fragment_merge_order', b'fragment_merge_order', 'root_fragment_id', b'root_fragment_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['error', b'error', 'fragment_id', b'fragment_id', 'resolved_config', b'resolved_config']) -> None:
         ...
-global___FragmentTree = FragmentTree
+global___ResolvedFragment = ResolvedFragment
 
 @typing.final
 class ListFragmentsRequest(google.protobuf.message.Message):
@@ -2285,20 +2285,20 @@ global___ListMachineFragmentsRequest = ListMachineFragmentsRequest
 class ListMachineFragmentsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENTS_FIELD_NUMBER: builtins.int
-    FRAGMENT_TREES_FIELD_NUMBER: builtins.int
+    RESOLVED_FRAGMENTS_FIELD_NUMBER: builtins.int
 
     @property
     def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
         ...
 
     @property
-    def fragment_trees(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTree]:
+    def resolved_fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResolvedFragment]:
         ...
 
-    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=..., fragment_trees: collections.abc.Iterable[global___FragmentTree] | None=...) -> None:
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=..., resolved_fragments: collections.abc.Iterable[global___ResolvedFragment] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragment_trees', b'fragment_trees', 'fragments', b'fragments']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments', 'resolved_fragments', b'resolved_fragments']) -> None:
         ...
 global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
 

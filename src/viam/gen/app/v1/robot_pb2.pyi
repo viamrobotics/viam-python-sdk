@@ -334,12 +334,14 @@ class ProcessConfig(google.protobuf.message.Message):
     STOP_SIGNAL_FIELD_NUMBER: builtins.int
     STOP_TIMEOUT_FIELD_NUMBER: builtins.int
     ENV_FIELD_NUMBER: builtins.int
+    USERNAME_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     cwd: builtins.str
     one_shot: builtins.bool
     log: builtins.bool
     stop_signal: builtins.int
+    username: builtins.str
 
     @property
     def args(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -353,13 +355,13 @@ class ProcessConfig(google.protobuf.message.Message):
     def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """additional environment variables passed to the process"""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., args: collections.abc.Iterable[builtins.str] | None=..., cwd: builtins.str=..., one_shot: builtins.bool=..., log: builtins.bool=..., stop_signal: builtins.int=..., stop_timeout: google.protobuf.duration_pb2.Duration | None=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., args: collections.abc.Iterable[builtins.str] | None=..., cwd: builtins.str=..., one_shot: builtins.bool=..., log: builtins.bool=..., stop_signal: builtins.int=..., stop_timeout: google.protobuf.duration_pb2.Duration | None=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., username: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['stop_timeout', b'stop_timeout']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['args', b'args', 'cwd', b'cwd', 'env', b'env', 'id', b'id', 'log', b'log', 'name', b'name', 'one_shot', b'one_shot', 'stop_signal', b'stop_signal', 'stop_timeout', b'stop_timeout']) -> None:
+    def ClearField(self, field_name: typing.Literal['args', b'args', 'cwd', b'cwd', 'env', b'env', 'id', b'id', 'log', b'log', 'name', b'name', 'one_shot', b'one_shot', 'stop_signal', b'stop_signal', 'stop_timeout', b'stop_timeout', 'username', b'username']) -> None:
         ...
 global___ProcessConfig = ProcessConfig
 
