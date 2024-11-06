@@ -139,7 +139,7 @@ Attributes
    viam.gen.app.v1.app_pb2.global___Fragment
    viam.gen.app.v1.app_pb2.global___FragmentHistoryEntry
    viam.gen.app.v1.app_pb2.global___FragmentError
-   viam.gen.app.v1.app_pb2.global___FragmentTree
+   viam.gen.app.v1.app_pb2.global___ResolvedFragment
    viam.gen.app.v1.app_pb2.global___ListFragmentsRequest
    viam.gen.app.v1.app_pb2.global___ListFragmentsResponse
    viam.gen.app.v1.app_pb2.global___GetFragmentRequest
@@ -343,7 +343,7 @@ Classes
    viam.gen.app.v1.app_pb2.Fragment
    viam.gen.app.v1.app_pb2.FragmentHistoryEntry
    viam.gen.app.v1.app_pb2.FragmentError
-   viam.gen.app.v1.app_pb2.FragmentTree
+   viam.gen.app.v1.app_pb2.ResolvedFragment
    viam.gen.app.v1.app_pb2.ListFragmentsRequest
    viam.gen.app.v1.app_pb2.ListFragmentsResponse
    viam.gen.app.v1.app_pb2.GetFragmentRequest
@@ -3671,7 +3671,7 @@ Module Contents
 
 .. py:data:: global___FragmentError
 
-.. py:class:: FragmentTree(*, root_fragment_id: str = ..., fragment_merge_order: collections.abc.Iterable[str] | None = ..., error: global___FragmentError | None = ...)
+.. py:class:: ResolvedFragment(*, fragment_id: str = ..., resolved_config: google.protobuf.struct_pb2.Struct | None = ..., error: global___FragmentError | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3683,12 +3683,12 @@ Module Contents
    shown below.
 
 
-   .. py:attribute:: root_fragment_id
+   .. py:attribute:: fragment_id
       :type:  str
 
 
-   .. py:property:: fragment_merge_order
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:property:: resolved_config
+      :type: google.protobuf.struct_pb2.Struct
 
 
 
@@ -3697,7 +3697,7 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['error', b'error']) -> bool
+   .. py:method:: HasField(field_name: Literal['error', b'error', 'resolved_config', b'resolved_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3715,7 +3715,7 @@ Module Contents
 
 
 
-.. py:data:: global___FragmentTree
+.. py:data:: global___ResolvedFragment
 
 .. py:class:: ListFragmentsRequest(*, organization_id: str = ..., show_public: bool = ..., fragment_visibility: collections.abc.Iterable[global___FragmentVisibility] | None = ...)
 
@@ -4189,7 +4189,7 @@ Module Contents
 
 .. py:data:: global___ListMachineFragmentsRequest
 
-.. py:class:: ListMachineFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ..., fragment_trees: collections.abc.Iterable[global___FragmentTree] | None = ...)
+.. py:class:: ListMachineFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ..., resolved_fragments: collections.abc.Iterable[global___ResolvedFragment] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4206,8 +4206,8 @@ Module Contents
 
 
 
-   .. py:property:: fragment_trees
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTree]
+   .. py:property:: resolved_fragments
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResolvedFragment]
 
 
 

@@ -1361,7 +1361,7 @@ Module Contents
 
 
 
-.. py:class:: ProcessConfig(*, id: str = ..., name: str = ..., args: collections.abc.Iterable[str] | None = ..., cwd: str = ..., one_shot: bool = ..., log: bool = ..., stop_signal: int = ..., stop_timeout: google.protobuf.duration_pb2.Duration | None = ..., env: collections.abc.Mapping[str, str] | None = ...)
+.. py:class:: ProcessConfig(*, id: str = ..., name: str = ..., args: collections.abc.Iterable[str] | None = ..., cwd: str = ..., one_shot: bool = ..., log: bool = ..., stop_signal: int = ..., stop_timeout: google.protobuf.duration_pb2.Duration | None = ..., env: collections.abc.Mapping[str, str] | None = ..., username: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1412,6 +1412,10 @@ Module Contents
 
    .. py:attribute:: stop_signal
       :type:  int
+
+
+   .. py:attribute:: username
+      :type:  str
 
 
    .. py:property:: args
