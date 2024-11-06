@@ -221,7 +221,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+<span class="sd">            my_detector = VisionClient.from_robot(robot=machine, &quot;my_detector&quot;)</span>
 
 <span class="sd">            # Get detections for the next image from the specified camera</span>
 <span class="sd">            detections = await my_detector.get_detections_from_camera(&quot;my_camera&quot;)</span>
@@ -253,8 +253,8 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_camera = Camera.from_robot(robot, &quot;my_camera&quot;)</span>
-<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, &quot;my_camera&quot;)</span>
+<span class="sd">            my_detector = VisionClient.from_robot(robot=machine, &quot;my_detector&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
 <span class="sd">            img = await my_camera.get_image()</span>
@@ -290,7 +290,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_classifier = VisionClient.from_robot(robot, &quot;my_classifier&quot;)</span>
+<span class="sd">            my_classifier = VisionClient.from_robot(robot=machine, &quot;my_classifier&quot;)</span>
 
 <span class="sd">            # Get the 2 classifications with the highest confidence scores for the next image from the camera</span>
 <span class="sd">            classifications = await my_classifier.get_classifications_from_camera(</span>
@@ -320,8 +320,8 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_camera = Camera.from_robot(robot, &quot;my_camera&quot;)</span>
-<span class="sd">            my_classifier = VisionClient.from_robot(robot, &quot;my_classifier&quot;)</span>
+<span class="sd">            my_camera = Camera.from_robot(robot=machine, &quot;my_camera&quot;)</span>
+<span class="sd">            my_classifier = VisionClient.from_robot(robot=machine, &quot;my_classifier&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
 <span class="sd">            img = await my_camera.get_image()</span>
@@ -359,7 +359,7 @@
 <span class="sd">            import numpy as np</span>
 <span class="sd">            import open3d as o3d</span>
 
-<span class="sd">            my_segmenter = VisionClient.from_robot(robot, &quot;my_segmenter&quot;)</span>
+<span class="sd">            my_segmenter = VisionClient.from_robot(robot=machine, &quot;my_segmenter&quot;)</span>
 <span class="sd">            # Get the objects from the camera output</span>
 <span class="sd">            objects = await my_segmenter.get_object_point_clouds(&quot;my_camera&quot;)</span>
 <span class="sd">            # write the first object point cloud into a temporary file</span>
@@ -391,7 +391,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+<span class="sd">            my_detector = VisionClient.from_robot(robot=machine, &quot;my_detector&quot;)</span>
 <span class="sd">            properties = await my_detector.get_properties()</span>
 <span class="sd">            detections_supported = properties.detections_supported</span>
 <span class="sd">            classifications_supported = properties.classifications_supported</span>

@@ -185,7 +185,7 @@ originating ReferenceFrame’s name. Then pass in the resource name into <code c
 <span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MotionServiceClient</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">resource_name</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
 <span class="c1"># Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
 <span class="n">gripper_name</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
@@ -237,7 +237,7 @@ GPS point after <code class="docutils literal notranslate"><span class="pre">mov
 <p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call returns a unique ExecutionID which you can use to identify all plans
 generated during the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the ResourceNames of the base and movement sensor</span>
 <span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
@@ -308,7 +308,7 @@ Pose point after <code class="docutils literal notranslate"><span class="pre">mo
 <p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call returns a unique ExecutionID which you can use to identify all plans
 generated during the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the ResourceNames of the base component and SLAM service</span>
 <span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
@@ -403,7 +403,7 @@ RPC call.</p></li>
 <p>Replans always create new plans.</p>
 <p>Replans share the ExecutionID of the previously executing plan.</p>
 <p>All repeated fields are in time ascending order.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 <span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
 <span class="c1"># Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
 <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_plan</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">)</span>
@@ -441,7 +441,7 @@ conditions since the motion service initialized:</p>
 <li><p>the plan’s status changed state within the last 24 hours</p></li>
 </ul>
 <p>All repeated fields are in chronological order.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 <span class="c1"># List the plan statuses of the motion service within the TTL</span>
 <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">list_plan_statuses</span><span class="p">()</span>
 </pre></div>
@@ -481,7 +481,7 @@ associated IDs of all plans within the TTL ordered by timestamp in ascending ord
 <span class="c1"># Assume that the connect function is written and will return a valid machine.</span>
 <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 
-<span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 <span class="n">gripperName</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 <span class="n">gripperPoseInWorld</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripperName</span><span class="p">,</span>
                                         <span class="n">destination_frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
@@ -520,7 +520,7 @@ calculating pose.</p></li>
     <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 
     <span class="c1"># Can be used with any resource, using the motion service as an example</span>
-    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
     <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -549,7 +549,7 @@ calculating pose.</p></li>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Send/receive arbitrary commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
 
 <span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>

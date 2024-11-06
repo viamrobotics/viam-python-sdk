@@ -126,7 +126,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+<span class="sd">            my_gripper = Gripper.from_robot(robot=machine, name=&quot;my_gripper&quot;)</span>
 
 <span class="sd">            # Open the gripper.</span>
 <span class="sd">            await my_gripper.open()</span>
@@ -148,7 +148,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+<span class="sd">            my_gripper = Gripper.from_robot(robot=machine, name=&quot;my_gripper&quot;)</span>
 
 <span class="sd">            # Grab with the gripper.</span>
 <span class="sd">            grabbed = await my_gripper.grab()</span>
@@ -173,7 +173,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+<span class="sd">            my_gripper = Gripper.from_robot(robot=machine, name=&quot;my_gripper&quot;)</span>
 
 <span class="sd">            # Stop the gripper.</span>
 <span class="sd">            await my_gripper.stop()</span>
@@ -189,7 +189,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+<span class="sd">            my_gripper = Gripper.from_robot(robot=machine, name=&quot;my_gripper&quot;)</span>
 
 <span class="sd">            # Check whether the gripper is currently moving.</span>
 <span class="sd">            moving = await my_gripper.is_moving()</span>

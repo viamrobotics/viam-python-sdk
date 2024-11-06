@@ -45,7 +45,7 @@ Module Contents
 
           import numpy as np
 
-          my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+          my_mlmodel = MLModelClient.from_robot(robot=machine, name="my_mlmodel_service")
 
           nd_array = np.array([1, 2, 3], dtype=np.float64)
           input_tensors = {"0": nd_array}
@@ -70,7 +70,7 @@ Module Contents
 
       ::
 
-          my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+          my_mlmodel = MLModelClient.from_robot(robot=machine, name="my_mlmodel_service")
 
           metadata = await my_mlmodel.metadata()
 
@@ -99,7 +99,7 @@ Module Contents
               robot = await connect()
 
               # Can be used with any resource, using the motion service as an example
-              motion = MotionClient.from_robot(robot=robot, name="builtin")
+              motion = MotionClient.from_robot(robot=machine, name="builtin")
 
               robot.close()
 
@@ -123,7 +123,7 @@ Module Contents
 
       ::
 
-          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",

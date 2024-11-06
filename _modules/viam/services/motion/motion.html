@@ -141,7 +141,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
 <span class="sd">            # Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
 <span class="sd">            gripper_name = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
@@ -199,7 +199,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
 <span class="sd">            # Get the ResourceNames of the base and movement sensor</span>
 <span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
@@ -273,7 +273,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
 <span class="sd">            # Get the ResourceNames of the base component and SLAM service</span>
 <span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
@@ -371,7 +371,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 <span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
 <span class="sd">            # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
 <span class="sd">            resp = await motion.get_plan(component_name=my_base_resource_name)</span>
@@ -406,7 +406,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 <span class="sd">            # List the plan statuses of the motion service within the TTL</span>
 <span class="sd">            resp = await motion.list_plan_statuses()</span>
 
@@ -448,7 +448,7 @@
 <span class="sd">            # Assume that the connect function is written and will return a valid machine.</span>
 <span class="sd">            robot = await connect()</span>
 
-<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 <span class="sd">            gripperName = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
 <span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,</span>
 <span class="sd">                                                    destination_frame=&quot;world&quot;)</span>

@@ -170,7 +170,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Assumes a gripper configured with name "my_gripper" on the machine
           gripper_name = Gripper.get_resource_name("my_gripper")
@@ -221,7 +221,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Get the ResourceNames of the base and movement sensor
           my_base_resource_name = Base.get_resource_name("my_base")
@@ -293,7 +293,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Get the ResourceNames of the base component and SLAM service
           my_base_resource_name = Base.get_resource_name("my_base")
@@ -387,7 +387,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           my_base_resource_name = Base.get_resource_name("my_base")
           # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
           resp = await motion.get_plan(component_name=my_base_resource_name)
@@ -420,7 +420,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           # List the plan statuses of the motion service within the TTL
           resp = await motion.list_plan_statuses()
 
@@ -455,7 +455,7 @@ Package Contents
           # Assume that the connect function is written and will return a valid machine.
           robot = await connect()
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           gripperName = Gripper.get_resource_name("my_gripper")
           gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
                                                   destination_frame="world")
@@ -483,7 +483,7 @@ Package Contents
 
       ::
 
-          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",
@@ -519,7 +519,7 @@ Package Contents
               robot = await connect()
 
               # Can be used with any resource, using the motion service as an example
-              motion = MotionClient.from_robot(robot=robot, name="builtin")
+              motion = MotionClient.from_robot(robot=machine, name="builtin")
 
               robot.close()
 
@@ -627,7 +627,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Assumes a gripper configured with name "my_gripper" on the machine
           gripper_name = Gripper.get_resource_name("my_gripper")
@@ -680,7 +680,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Get the ResourceNames of the base and movement sensor
           my_base_resource_name = Base.get_resource_name("my_base")
@@ -754,7 +754,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
 
           # Get the ResourceNames of the base component and SLAM service
           my_base_resource_name = Base.get_resource_name("my_base")
@@ -852,7 +852,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           my_base_resource_name = Base.get_resource_name("my_base")
           # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
           resp = await motion.get_plan(component_name=my_base_resource_name)
@@ -887,7 +887,7 @@ Package Contents
 
       ::
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           # List the plan statuses of the motion service within the TTL
           resp = await motion.list_plan_statuses()
 
@@ -924,7 +924,7 @@ Package Contents
           # Assume that the connect function is written and will return a valid machine.
           robot = await connect()
 
-          motion = MotionClient.from_robot(robot=robot, name="builtin")
+          motion = MotionClient.from_robot(robot=machine, name="builtin")
           gripperName = Gripper.get_resource_name("my_gripper")
           gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
                                                   destination_frame="world")
@@ -962,7 +962,7 @@ Package Contents
               robot = await connect()
 
               # Can be used with any resource, using the motion service as an example
-              motion = MotionClient.from_robot(robot=robot, name="builtin")
+              motion = MotionClient.from_robot(robot=machine, name="builtin")
 
               robot.close()
 
@@ -986,7 +986,7 @@ Package Contents
 
       ::
 
-          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",

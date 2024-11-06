@@ -125,7 +125,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            slam = SLAMClient.from_robot(robot=robot, name=&quot;my_slam_service&quot;)</span>
+<span class="sd">            slam = SLAMClient.from_robot(robot=machine, name=&quot;my_slam_service&quot;)</span>
 
 <span class="sd">            # Get the internal state of the SLAM algorithm required to continue mapping/localization.</span>
 <span class="sd">            internal_state = await slam.get_internal_state()</span>
@@ -144,7 +144,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            slam_svc = SLAMClient.from_robot(robot=robot, name=&quot;my_slam_service&quot;)</span>
+<span class="sd">            slam_svc = SLAMClient.from_robot(robot=machine, name=&quot;my_slam_service&quot;)</span>
 
 <span class="sd">            # Get the point cloud map in standard PCD format.</span>
 <span class="sd">            pcd_map = await slam_svc.get_point_cloud_map()</span>
@@ -168,7 +168,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            slam_svc = SLAMClient.from_robot(robot=robot, name=&quot;my_slam_service&quot;)</span>
+<span class="sd">            slam_svc = SLAMClient.from_robot(robot=machine, name=&quot;my_slam_service&quot;)</span>
 
 <span class="sd">            # Get the current position of the specified source component in the SLAM map as a Pose.</span>
 <span class="sd">            pose = await slam.get_position()</span>
@@ -187,7 +187,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            slam_svc = SLAMClient.from_robot(robot=robot, name=&quot;my_slam_service&quot;)</span>
+<span class="sd">            slam_svc = SLAMClient.from_robot(robot=machine, name=&quot;my_slam_service&quot;)</span>
 
 <span class="sd">            # Get the properties of your current SLAM session.</span>
 <span class="sd">            slam_properties = await slam_svc.get_properties()</span>

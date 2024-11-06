@@ -176,7 +176,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </dl>
 <p>Get each path, the series of geo points the robot plans to travel through
 to get to a destination waypoint, in the machine’s motion planning.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get a list containing each path stored by the navigation service</span>
 <span class="n">paths</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_paths</span><span class="p">()</span>
@@ -207,7 +207,7 @@ reach the specified destination or Waypoint.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the current location of the robot in the navigation service.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the current location of the robot in the navigation service</span>
 <span class="n">location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_location</span><span class="p">()</span>
@@ -240,7 +240,7 @@ represented in a GeoPoint with latitude and longitude values.</p>
 These are objects designated for the robot to avoid when navigating.
 These include all transient obstacles which are discovered by the vision services configured for the navigation service,
 in addition to the obstacles that are configured as a part of the service.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get a list containing each obstacle stored by the navigation service</span>
 <span class="n">obstacles</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_obstacles</span><span class="p">()</span>
@@ -271,7 +271,7 @@ These are objects designated for the robot to avoid when navigating.</p>
 </dl>
 <p>Get an array of waypoints currently in the service’s data storage.
 These are locations designated within a path for the robot to navigate to.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get a list containing each waypoint stored by the navigation service</span>
 <span class="n">waypoints</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_waypoints</span><span class="p">()</span>
@@ -301,7 +301,7 @@ These are locations designated within a path for the robot to navigate to.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Add a waypoint to the service’s data storage.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
  <span class="c1"># Create a new waypoint with latitude and longitude values of 0 degrees</span>
  <span class="n">location</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -333,7 +333,7 @@ before calling a time-out and closing the underlying RPC call.</p></li>
 </dl>
 <p>Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
 the motion will be canceled, and the robot will proceed to the next waypoint.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Remove the waypoint matching that ObjectID from the service&#39;s data storage</span>
 <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">remove_waypoint</span><span class="p">(</span><span class="n">waypoint_id</span><span class="p">)</span>
@@ -364,7 +364,7 @@ before calling a time-out and closing the underlying RPC call.</p></li>
 <div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
 MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
 </div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the Mode the service is operating in</span>
 <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
@@ -398,7 +398,7 @@ before calling a time-out and closing the underlying RPC call.</p>
 <div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
 MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
 </div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation</span>
 <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="o">.</span><span class="n">MODE_WAYPOINT</span><span class="p">)</span>
@@ -424,7 +424,7 @@ before calling a time-out and closing the underlying RPC call.</p></li>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get information about the navigation service.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the properties of the current navigation service.</span>
 <span class="n">nav_properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
@@ -459,7 +459,7 @@ before calling a time-out and closing the underlying RPC call.</p>
     <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 
     <span class="c1"># Can be used with any resource, using the motion service as an example</span>
-    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
     <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -488,7 +488,7 @@ before calling a time-out and closing the underlying RPC call.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Send/receive arbitrary commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
 
 <span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>

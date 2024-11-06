@@ -180,7 +180,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Obtain the measurements/data specific to this sensor.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_sensor&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_sensor</span> <span class="o">=</span> <span class="n">Sensor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_sensor&#39;</span><span class="p">)</span>
 
 <span class="c1"># Get the readings provided by the sensor.</span>
 <span class="n">readings</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_sensor</span><span class="o">.</span><span class="n">get_readings</span><span class="p">()</span>

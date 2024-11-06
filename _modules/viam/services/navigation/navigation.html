@@ -119,7 +119,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get a list containing each path stored by the navigation service</span>
 <span class="sd">            paths = await my_nav.get_paths()</span>
@@ -144,7 +144,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get the current location of the robot in the navigation service</span>
 <span class="sd">            location = await my_nav.get_location()</span>
@@ -171,7 +171,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get a list containing each obstacle stored by the navigation service</span>
 <span class="sd">            obstacles = await my_nav.get_obstacles()</span>
@@ -196,7 +196,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get a list containing each waypoint stored by the navigation service</span>
 <span class="sd">            waypoints = await my_nav.get_waypoints()</span>
@@ -220,7 +220,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">           my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">           my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Create a new waypoint with latitude and longitude values of 0 degrees</span>
 <span class="sd">            location = GeoPoint(latitude=0, longitude=0)</span>
@@ -247,7 +247,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Remove the waypoint matching that ObjectID from the service&#39;s data storage</span>
 <span class="sd">            await my_nav.remove_waypoint(waypoint_id)</span>
@@ -273,7 +273,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get the Mode the service is operating in</span>
 <span class="sd">            await my_nav.get_mode()</span>
@@ -301,7 +301,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation</span>
 <span class="sd">            await my_nav.set_mode(Mode.ValueType.MODE_WAYPOINT)</span>
@@ -322,7 +322,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_nav = NavigationClient.from_robot(robot=robot, name=&quot;my_nav_service&quot;)</span>
+<span class="sd">            my_nav = NavigationClient.from_robot(robot=machine, name=&quot;my_nav_service&quot;)</span>
 
 <span class="sd">            # Get the properties of the current navigation service.</span>
 <span class="sd">            nav_properties = await my_nav.get_properties()</span>

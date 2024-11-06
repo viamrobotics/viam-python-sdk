@@ -274,7 +274,7 @@ and objects, as well as any extra info the model may provide.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of detections in the next image given a camera and a detector</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get detections for the next image from the specified camera</span>
 <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
@@ -307,8 +307,8 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of detections in the given image using the specified detector</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
-<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
 <span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
@@ -344,7 +344,7 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of classifications in the next image given a camera and a classifier</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the 2 classifications with the highest confidence scores for the next image from the camera</span>
 <span class="n">classifications</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_classifier</span><span class="o">.</span><span class="n">get_classifications_from_camera</span><span class="p">(</span>
@@ -376,8 +376,8 @@ from the given camera, with the given detector applied to it.</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a list of classifications in the given image using the specified classifier</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
-<span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
 <span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
@@ -416,7 +416,7 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
 
-<span class="n">my_segmenter</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_segmenter&quot;</span><span class="p">)</span>
+<span class="n">my_segmenter</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_segmenter&quot;</span><span class="p">)</span>
 <span class="c1"># Get the objects from the camera output</span>
 <span class="n">objects</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_segmenter</span><span class="o">.</span><span class="n">get_object_point_clouds</span><span class="p">(</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
 <span class="c1"># write the first object point cloud into a temporary file</span>
@@ -449,7 +449,7 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 </dl>
 <p>Get info about what vision methods the vision service provides. Currently returns boolean values that
 state whether the service implements the classification, detection, and/or 3D object segmentation methods.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
 <span class="n">detections_supported</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span>
 <span class="n">classifications_supported</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span>
@@ -480,7 +480,7 @@ state whether the service implements the classification, detection, and/or 3D ob
     <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 
     <span class="c1"># Can be used with any resource, using the motion service as an example</span>
-    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
     <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -509,7 +509,7 @@ state whether the service implements the classification, detection, and/or 3D ob
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Send/receive arbitrary commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
 
 <span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>

@@ -190,7 +190,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the positions of the axes of the gantry in millimeters.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the current positions of the axes of the gantry in millimeters.</span>
 <span class="n">positions</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gantry</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
@@ -215,7 +215,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Move the axes of the gantry to the desired positions (mm) at the requested speeds (mm/sec).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a list of positions for the axes of the gantry to move to. Assume in</span>
 <span class="c1"># this example that the gantry is multi-axis, with 3 axes.</span>
@@ -247,7 +247,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Run the homing sequence of the gantry to re-calibrate the axes with respect to the limit switches.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="k">await</span> <span class="n">my_gantry</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
 </pre></div>
@@ -271,7 +271,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the lengths of the axes of the gantry in millimeters.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the lengths of the axes of the gantry in millimeters.</span>
 <span class="n">lengths_mm</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gantry</span><span class="o">.</span><span class="n">get_lengths</span><span class="p">()</span>
@@ -296,7 +296,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Stop all motion of the gantry. It is assumed that the gantry stops immediately.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="c1"># Stop all motion of the gantry. It is assumed that the gantry stops</span>
 <span class="c1"># immediately.</span>
@@ -314,7 +314,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get if the gantry is currently moving.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
 
 <span class="c1"># Stop all motion of the gantry. It is assumed that the</span>
 <span class="c1"># gantry stops immediately.</span>

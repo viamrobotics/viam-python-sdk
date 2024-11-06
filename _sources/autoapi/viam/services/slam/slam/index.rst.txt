@@ -51,7 +51,7 @@ Module Contents
 
       ::
 
-          slam = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+          slam = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
           # Get the internal state of the SLAM algorithm required to continue mapping/localization.
           internal_state = await slam.get_internal_state()
@@ -73,7 +73,7 @@ Module Contents
 
       ::
 
-          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+          slam_svc = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
           # Get the point cloud map in standard PCD format.
           pcd_map = await slam_svc.get_point_cloud_map()
@@ -100,7 +100,7 @@ Module Contents
 
       ::
 
-          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+          slam_svc = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
           # Get the current position of the specified source component in the SLAM map as a Pose.
           pose = await slam.get_position()
@@ -122,7 +122,7 @@ Module Contents
 
       ::
 
-          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+          slam_svc = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
           # Get the properties of your current SLAM session.
           slam_properties = await slam_svc.get_properties()
@@ -152,7 +152,7 @@ Module Contents
               robot = await connect()
 
               # Can be used with any resource, using the motion service as an example
-              motion = MotionClient.from_robot(robot=robot, name="builtin")
+              motion = MotionClient.from_robot(robot=machine, name="builtin")
 
               robot.close()
 
@@ -176,7 +176,7 @@ Module Contents
 
       ::
 
-          service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
 
           my_command = {
             "cmnd": "dosomething",

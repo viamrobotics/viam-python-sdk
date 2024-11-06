@@ -183,7 +183,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Open the gripper.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 
 <span class="c1"># Open the gripper.</span>
 <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
@@ -200,7 +200,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Instruct the gripper to grab.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 
 <span class="c1"># Grab with the gripper.</span>
 <span class="n">grabbed</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">grab</span><span class="p">()</span>
@@ -225,7 +225,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Stop the gripper. It is assumed the gripper stops immediately.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 
 <span class="c1"># Stop the gripper.</span>
 <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
@@ -242,7 +242,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get if the gripper is currently moving.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 
 <span class="c1"># Check whether the gripper is currently moving.</span>
 <span class="n">moving</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">is_moving</span><span class="p">()</span>

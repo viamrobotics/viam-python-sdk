@@ -188,7 +188,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Move the servo to the provided angle.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
 
 <span class="c1"># Move the servo from its origin to the desired angle of 10 degrees.</span>
 <span class="k">await</span> <span class="n">my_servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -213,7 +213,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the current angle (degrees) of the servo.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
 
 <span class="c1"># Move the servo from its origin to the desired angle of 10 degrees.</span>
 <span class="k">await</span> <span class="n">my_servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -247,7 +247,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Stop the servo. It is assumed that the servo stops immediately.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
 
 <span class="c1"># Move the servo from its origin to the desired angle of 10 degrees.</span>
 <span class="k">await</span> <span class="n">my_servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -267,7 +267,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get if the servo is currently moving.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_servo&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">my_servo</span><span class="o">.</span><span class="n">is_moving</span><span class="p">())</span>
 </pre></div>
