@@ -32,7 +32,7 @@ class Servo(ComponentBase):
 
         ::
 
-            my_servo = Servo.from_robot(robot=robot, name="my_servo")
+            my_servo = Servo.from_robot(robot=machine, name="my_servo")
 
             # Move the servo from its origin to the desired angle of 10 degrees.
             await my_servo.move(10)
@@ -54,7 +54,7 @@ class Servo(ComponentBase):
 
         ::
 
-            my_servo = Servo.from_robot(robot=robot, name="my_servo")
+            my_servo = Servo.from_robot(robot=machine, name="my_servo")
 
             # Move the servo from its origin to the desired angle of 10 degrees.
             await my_servo.move(10)
@@ -82,7 +82,7 @@ class Servo(ComponentBase):
 
         ::
 
-            my_servo = Servo.from_robot(robot=robot, name="my_servo")
+            my_servo = Servo.from_robot(robot=machine, name="my_servo")
 
             # Move the servo from its origin to the desired angle of 10 degrees.
             await my_servo.move(10)
@@ -101,7 +101,7 @@ class Servo(ComponentBase):
 
         ::
 
-            my_servo = Servo.from_robot(robot=robot, name="my_servo")
+            my_servo = Servo.from_robot(robot=machine, name="my_servo")
 
             print(await my_servo.is_moving())
 

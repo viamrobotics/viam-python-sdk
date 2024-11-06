@@ -52,7 +52,7 @@ class Motion(ServiceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
 
             # Assumes a gripper configured with name "my_gripper" on the machine
             gripper_name = Gripper.get_resource_name("my_gripper")
@@ -110,7 +110,7 @@ class Motion(ServiceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
 
             # Get the ResourceNames of the base and movement sensor
             my_base_resource_name = Base.get_resource_name("my_base")
@@ -184,7 +184,7 @@ class Motion(ServiceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
 
             # Get the ResourceNames of the base component and SLAM service
             my_base_resource_name = Base.get_resource_name("my_base")
@@ -282,7 +282,7 @@ class Motion(ServiceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
             my_base_resource_name = Base.get_resource_name("my_base")
             # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
             resp = await motion.get_plan(component_name=my_base_resource_name)
@@ -317,7 +317,7 @@ class Motion(ServiceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
             # List the plan statuses of the motion service within the TTL
             resp = await motion.list_plan_statuses()
 
@@ -359,7 +359,7 @@ class Motion(ServiceBase):
             # Assume that the connect function is written and will return a valid machine.
             robot = await connect()
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot=machine, name="builtin")
             gripperName = Gripper.get_resource_name("my_gripper")
             gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
                                                     destination_frame="world")

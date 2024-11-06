@@ -40,7 +40,7 @@ class ServiceBase(abc.ABC, ResourceBase):
                 robot = await connect()
 
                 # Can be used with any resource, using the motion service as an example
-                motion = MotionClient.from_robot(robot=robot, name="builtin")
+                motion = MotionClient.from_robot(robot=machine, name="builtin")
 
                 robot.close()
 
@@ -59,7 +59,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            service = SERVICE.from_robot(robot, "builtin")  # replace SERVICE with the appropriate class
+            service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
 
             my_command = {
               "cmnd": "dosomething",

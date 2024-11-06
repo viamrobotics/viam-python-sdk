@@ -132,7 +132,7 @@ class Vision(ServiceBase):
 
         ::
 
-            my_detector = VisionClient.from_robot(robot, "my_detector")
+            my_detector = VisionClient.from_robot(robot=machine, "my_detector")
 
             # Get detections for the next image from the specified camera
             detections = await my_detector.get_detections_from_camera("my_camera")
@@ -164,8 +164,8 @@ class Vision(ServiceBase):
 
         ::
 
-            my_camera = Camera.from_robot(robot, "my_camera")
-            my_detector = VisionClient.from_robot(robot, "my_detector")
+            my_camera = Camera.from_robot(robot=machine, "my_camera")
+            my_detector = VisionClient.from_robot(robot=machine, "my_detector")
 
             # Get an image from the camera
             img = await my_camera.get_image()
@@ -201,7 +201,7 @@ class Vision(ServiceBase):
 
         ::
 
-            my_classifier = VisionClient.from_robot(robot, "my_classifier")
+            my_classifier = VisionClient.from_robot(robot=machine, "my_classifier")
 
             # Get the 2 classifications with the highest confidence scores for the next image from the camera
             classifications = await my_classifier.get_classifications_from_camera(
@@ -231,8 +231,8 @@ class Vision(ServiceBase):
 
         ::
 
-            my_camera = Camera.from_robot(robot, "my_camera")
-            my_classifier = VisionClient.from_robot(robot, "my_classifier")
+            my_camera = Camera.from_robot(robot=machine, "my_camera")
+            my_classifier = VisionClient.from_robot(robot=machine, "my_classifier")
 
             # Get an image from the camera
             img = await my_camera.get_image()
@@ -270,7 +270,7 @@ class Vision(ServiceBase):
             import numpy as np
             import open3d as o3d
 
-            my_segmenter = VisionClient.from_robot(robot, "my_segmenter")
+            my_segmenter = VisionClient.from_robot(robot=machine, "my_segmenter")
             # Get the objects from the camera output
             objects = await my_segmenter.get_object_point_clouds("my_camera")
             # write the first object point cloud into a temporary file
@@ -302,7 +302,7 @@ class Vision(ServiceBase):
 
         ::
 
-            my_detector = VisionClient.from_robot(robot, "my_detector")
+            my_detector = VisionClient.from_robot(robot=machine, "my_detector")
             properties = await my_detector.get_properties()
             detections_supported = properties.detections_supported
             classifications_supported = properties.classifications_supported

@@ -32,7 +32,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             # Get the current positions of the axes of the gantry in millimeters.
             positions = await my_gantry.get_position()
@@ -59,7 +59,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             # Create a list of positions for the axes of the gantry to move to. Assume in
             # this example that the gantry is multi-axis, with 3 axes.
@@ -86,7 +86,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             await my_gantry.home()
 
@@ -103,7 +103,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             # Get the lengths of the axes of the gantry in millimeters.
             lengths_mm = await my_gantry.get_lengths()
@@ -122,7 +122,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             # Stop all motion of the gantry. It is assumed that the gantry stops
             # immediately.
@@ -139,7 +139,7 @@ class Gantry(ComponentBase):
 
         ::
 
-            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
             # Stop all motion of the gantry. It is assumed that the
             # gantry stops immediately.

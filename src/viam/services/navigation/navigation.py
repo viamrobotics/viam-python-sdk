@@ -30,7 +30,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get a list containing each path stored by the navigation service
             paths = await my_nav.get_paths()
@@ -55,7 +55,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get the current location of the robot in the navigation service
             location = await my_nav.get_location()
@@ -82,7 +82,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get a list containing each obstacle stored by the navigation service
             obstacles = await my_nav.get_obstacles()
@@ -107,7 +107,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get a list containing each waypoint stored by the navigation service
             waypoints = await my_nav.get_waypoints()
@@ -131,7 +131,7 @@ class Navigation(ServiceBase):
 
         ::
 
-           my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+           my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Create a new waypoint with latitude and longitude values of 0 degrees
             location = GeoPoint(latitude=0, longitude=0)
@@ -158,7 +158,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Remove the waypoint matching that ObjectID from the service's data storage
             await my_nav.remove_waypoint(waypoint_id)
@@ -184,7 +184,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get the Mode the service is operating in
             await my_nav.get_mode()
@@ -212,7 +212,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation
             await my_nav.set_mode(Mode.ValueType.MODE_WAYPOINT)
@@ -233,7 +233,7 @@ class Navigation(ServiceBase):
 
         ::
 
-            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
+            my_nav = NavigationClient.from_robot(robot=machine, name="my_nav_service")
 
             # Get the properties of the current navigation service.
             nav_properties = await my_nav.get_properties()
