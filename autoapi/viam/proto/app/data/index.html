@@ -179,6 +179,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddTagsToBinaryDataByIDsResponse"><code class="docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByIDsResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.Annotations"><code class="docutils literal notranslate"><span class="pre">Annotations</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Annotations.bboxes"><code class="docutils literal notranslate"><span class="pre">Annotations.bboxes</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Annotations.classifications"><code class="docutils literal notranslate"><span class="pre">Annotations.classifications</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.BinaryData"><code class="docutils literal notranslate"><span class="pre">BinaryData</span></code></a><ul>
@@ -238,6 +239,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.y_min_normalized"><code class="docutils literal notranslate"><span class="pre">BoundingBox.y_min_normalized</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.x_max_normalized"><code class="docutils literal notranslate"><span class="pre">BoundingBox.x_max_normalized</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.y_max_normalized"><code class="docutils literal notranslate"><span class="pre">BoundingBox.y_max_normalized</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.confidence"><code class="docutils literal notranslate"><span class="pre">BoundingBox.confidence</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.HasField"><code class="docutils literal notranslate"><span class="pre">BoundingBox.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.BoundingBox.WhichOneof"><code class="docutils literal notranslate"><span class="pre">BoundingBox.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.BoundingBoxLabelsByFilterRequest"><code class="docutils literal notranslate"><span class="pre">BoundingBoxLabelsByFilterRequest</span></code></a><ul>
@@ -274,6 +278,13 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata.mime_type"><code class="docutils literal notranslate"><span class="pre">CaptureMetadata.mime_type</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata.method_parameters"><code class="docutils literal notranslate"><span class="pre">CaptureMetadata.method_parameters</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata.tags"><code class="docutils literal notranslate"><span class="pre">CaptureMetadata.tags</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.Classification"><code class="docutils literal notranslate"><span class="pre">Classification</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Classification.label"><code class="docutils literal notranslate"><span class="pre">Classification.label</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Classification.confidence"><code class="docutils literal notranslate"><span class="pre">Classification.confidence</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Classification.HasField"><code class="docutils literal notranslate"><span class="pre">Classification.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Classification.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Classification.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest</span></code></a><ul>
@@ -586,106 +597,109 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureMetadata</span></code></a></p></td>
 <td><p>CaptureMetadata contains information on the settings used for the data capture.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest" title="viam.proto.app.data.ConfigureDatabaseUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Classification" title="viam.proto.app.data.Classification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Classification</span></code></a></p></td>
+<td><p>Classification represents a confidence score with a label.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest" title="viam.proto.app.data.ConfigureDatabaseUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest</span></code></a></p></td>
 <td><p>ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse" title="viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse" title="viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DataRequest" title="viam.proto.app.data.DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DataRequest" title="viam.proto.app.data.DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataRequest</span></code></a></p></td>
 <td><p>DataRequest encapsulates the filter for the data, a limit on the maximum results returned,</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest" title="viam.proto.app.data.DeleteBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest" title="viam.proto.app.data.DeleteBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterResponse" title="viam.proto.app.data.DeleteBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterResponse" title="viam.proto.app.data.DeleteBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsRequest" title="viam.proto.app.data.DeleteBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsRequest" title="viam.proto.app.data.DeleteBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsRequest</span></code></a></p></td>
 <td><p>DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsResponse" title="viam.proto.app.data.DeleteBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsResponse" title="viam.proto.app.data.DeleteBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest" title="viam.proto.app.data.DeleteTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest" title="viam.proto.app.data.DeleteTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a></p></td>
 <td><p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse" title="viam.proto.app.data.DeleteTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse" title="viam.proto.app.data.DeleteTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataResponse returns the number of tabular datapoints deleted.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filter</span></code></a></p></td>
 <td><p>Filter defines the fields over which we can filter data using a logic AND.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="viam.proto.app.data.GetDatabaseConnectionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="viam.proto.app.data.GetDatabaseConnectionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a></p></td>
 <td><p>GetDatabaseConnectionRequest requests the database connection hostname.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
 <td><p>GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p>Order specifies the order in which data is returned.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
 <td><p>RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
 <td><p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
 <td><p>TabularData contains data and metadata associated with tabular data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
 <td><p>TabularDataByFilterRequest requests tabular data based on filter values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
 <td><p>TabularDataByFilterResponse provides the data and metadata of tabular data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
 <td><p>TabularDataByMQLRequest requests tabular data using an MQL query.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
 <td><p>TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
 <td><p>TabularDataBySQLRequest requests tabular data using a SQL query.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
 <td><p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
 <td><p>TagsByFilterResponse returns the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
 <td><p>TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
 <td><p>TagsFilterType specifies how data can be filtered based on tags.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
 <td><p>UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -1297,12 +1311,17 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.Annotations">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Annotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bboxes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BoundingBox</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Annotations" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Annotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bboxes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BoundingBox</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Annotations" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Annotations are data annotations used for machine learning.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.data.Annotations.bboxes">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bboxes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BoundingBox</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.Annotations.bboxes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.Annotations.classifications">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifications</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.Annotations.classifications" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1557,7 +1576,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.BoundingBox">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">BoundingBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.BoundingBox" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">BoundingBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.BoundingBox" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>BoundingBox represents a labeled bounding box on an image.
 x and y values are normalized ratios between 0 and 1.</p>
@@ -1590,6 +1609,56 @@ x and y values are normalized ratios between 0 and 1.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.BoundingBox.y_max_normalized">
 <span class="sig-name descname"><span class="pre">y_max_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.BoundingBox.y_max_normalized" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.BoundingBox.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.BoundingBox.confidence" title="Permalink to this definition"></a></dt>
+<dd><p>confidence is an optional range from 0 - 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.BoundingBox.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_confidence'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'confidence'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.BoundingBox.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.BoundingBox.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_confidence'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'confidence'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.BoundingBox.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -1787,6 +1856,68 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.CaptureMetadata.tags">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.CaptureMetadata.tags" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.Classification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Classification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Classification" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Classification represents a confidence score with a label.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Classification.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.Classification.label" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Classification.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.data.Classification.confidence" title="Permalink to this definition"></a></dt>
+<dd><p>confidence is an optional range from 0 - 1</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.Classification.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_confidence'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'confidence'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.Classification.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.Classification.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_confidence'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_confidence'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'confidence'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.Classification.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

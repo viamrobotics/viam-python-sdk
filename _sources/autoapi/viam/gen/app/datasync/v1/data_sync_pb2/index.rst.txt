@@ -16,6 +16,11 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.datasync.v1.data_sync_pb2.DESCRIPTOR
+   viam.gen.app.datasync.v1.data_sync_pb2.MIME_TYPE_UNSPECIFIED
+   viam.gen.app.datasync.v1.data_sync_pb2.MIME_TYPE_IMAGE_JPEG
+   viam.gen.app.datasync.v1.data_sync_pb2.MIME_TYPE_IMAGE_PNG
+   viam.gen.app.datasync.v1.data_sync_pb2.MIME_TYPE_APPLICATION_PCD
+   viam.gen.app.datasync.v1.data_sync_pb2.global___MimeType
    viam.gen.app.datasync.v1.data_sync_pb2.DATA_TYPE_UNSPECIFIED
    viam.gen.app.datasync.v1.data_sync_pb2.DATA_TYPE_BINARY_SENSOR
    viam.gen.app.datasync.v1.data_sync_pb2.DATA_TYPE_TABULAR_SENSOR
@@ -41,6 +46,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.gen.app.datasync.v1.data_sync_pb2.MimeType
    viam.gen.app.datasync.v1.data_sync_pb2.DataType
    viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest
    viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse
@@ -62,6 +68,25 @@ Module Contents
 
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
+
+.. py:class:: MimeType
+
+   Bases: :py:obj:`_MimeType`
+
+
+.. py:data:: MIME_TYPE_UNSPECIFIED
+   :type:  MimeType
+
+.. py:data:: MIME_TYPE_IMAGE_JPEG
+   :type:  MimeType
+
+.. py:data:: MIME_TYPE_IMAGE_PNG
+   :type:  MimeType
+
+.. py:data:: MIME_TYPE_APPLICATION_PCD
+   :type:  MimeType
+
+.. py:data:: global___MimeType
 
 .. py:class:: DataType
 
@@ -274,12 +299,17 @@ Module Contents
 
 .. py:data:: global___StreamingDataCaptureUploadResponse
 
-.. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., mime_type: global___MimeType = ..., annotations: viam.gen.app.data.v1.data_pb2.Annotations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   SensorMetadata contains the time the sensor data was requested and was received.
+   SensorMetadata contains the time the sensor data was requested and was
+   received.
+
+
+   .. py:attribute:: mime_type
+      :type:  global___MimeType
 
 
    .. py:property:: time_requested
@@ -292,7 +322,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
+   .. py:property:: annotations
+      :type: viam.gen.app.data.v1.data_pb2.Annotations
+
+
+
+   .. py:method:: HasField(field_name: Literal['annotations', b'annotations', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
 
       Checks if a certain field is set for the message.
 

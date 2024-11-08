@@ -44,6 +44,7 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.global___BoundingBox
+   viam.gen.app.data.v1.data_pb2.global___Classification
    viam.gen.app.data.v1.data_pb2.global___Annotations
    viam.gen.app.data.v1.data_pb2.global___BinaryMetadata
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataRequest
@@ -106,6 +107,7 @@ Classes
    viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.BoundingBox
+   viam.gen.app.data.v1.data_pb2.Classification
    viam.gen.app.data.v1.data_pb2.Annotations
    viam.gen.app.data.v1.data_pb2.BinaryMetadata
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest
@@ -871,7 +873,7 @@ Module Contents
 
 .. py:data:: global___BinaryDataByIDsResponse
 
-.. py:class:: BoundingBox(*, id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
+.. py:class:: BoundingBox(*, id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., confidence: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -904,9 +906,103 @@ Module Contents
       :type:  float
 
 
+   .. py:attribute:: confidence
+      :type:  float
+
+      confidence is an optional range from 0 - 1
+
+
+   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
 .. py:data:: global___BoundingBox
 
-.. py:class:: Annotations(*, bboxes: collections.abc.Iterable[global___BoundingBox] | None = ...)
+.. py:class:: Classification(*, label: str = ..., confidence: float | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Classification represents a confidence score with a label.
+
+
+   .. py:attribute:: label
+      :type:  str
+
+
+   .. py:attribute:: confidence
+      :type:  float
+
+      confidence is an optional range from 0 - 1
+
+
+   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___Classification
+
+.. py:class:: Annotations(*, bboxes: collections.abc.Iterable[global___BoundingBox] | None = ..., classifications: collections.abc.Iterable[global___Classification] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -916,6 +1012,11 @@ Module Contents
 
    .. py:property:: bboxes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BoundingBox]
+
+
+
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
 
 
 

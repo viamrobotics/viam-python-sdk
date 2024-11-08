@@ -27,6 +27,7 @@ Classes
    viam.proto.app.datasync.FileData
    viam.proto.app.datasync.FileUploadRequest
    viam.proto.app.datasync.FileUploadResponse
+   viam.proto.app.datasync.MimeType
    viam.proto.app.datasync.SensorData
    viam.proto.app.datasync.SensorMetadata
    viam.proto.app.datasync.StreamingDataCaptureUploadRequest
@@ -388,6 +389,11 @@ Package Contents
       :type:  str
 
 
+.. py:class:: MimeType
+
+   Bases: :py:obj:`_MimeType`
+
+
 .. py:class:: SensorData(*, metadata: global___SensorMetadata | None = ..., struct: google.protobuf.struct_pb2.Struct | None = ..., binary: bytes = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -444,12 +450,17 @@ Package Contents
 
 
 
-.. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., mime_type: global___MimeType = ..., annotations: viam.gen.app.data.v1.data_pb2.Annotations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   SensorMetadata contains the time the sensor data was requested and was received.
+   SensorMetadata contains the time the sensor data was requested and was
+   received.
+
+
+   .. py:attribute:: mime_type
+      :type:  global___MimeType
 
 
    .. py:property:: time_requested
@@ -462,7 +473,12 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
+   .. py:property:: annotations
+      :type: viam.gen.app.data.v1.data_pb2.Annotations
+
+
+
+   .. py:method:: HasField(field_name: Literal['annotations', b'annotations', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> bool
 
       Checks if a certain field is set for the message.
 
