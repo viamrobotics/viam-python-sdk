@@ -5,11 +5,11 @@ import grpclib.client
 import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
+from .... import app
 import google.api.annotations_pb2
 import google.protobuf.any_pb2
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
-from .... import app
 
 class DataSyncServiceBase(abc.ABC):
 

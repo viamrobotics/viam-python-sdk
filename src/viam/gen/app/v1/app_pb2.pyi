@@ -827,21 +827,19 @@ class UpdateBillingServiceRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     BILLING_ADDRESS_FIELD_NUMBER: builtins.int
-    BILLING_SUPPORT_EMAIL_FIELD_NUMBER: builtins.int
     org_id: builtins.str
-    billing_support_email: builtins.str
 
     @property
     def billing_address(self) -> global___BillingAddress:
         ...
 
-    def __init__(self, *, org_id: builtins.str=..., billing_address: global___BillingAddress | None=..., billing_support_email: builtins.str=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., billing_address: global___BillingAddress | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['billing_address', b'billing_address']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['billing_address', b'billing_address', 'billing_support_email', b'billing_support_email', 'org_id', b'org_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['billing_address', b'billing_address', 'org_id', b'org_id']) -> None:
         ...
 global___UpdateBillingServiceRequest = UpdateBillingServiceRequest
 

@@ -571,34 +571,71 @@ class BoundingBox(google.protobuf.message.Message):
     Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
     id: builtins.str
     label: builtins.str
     x_min_normalized: builtins.float
     y_min_normalized: builtins.float
     x_max_normalized: builtins.float
     y_max_normalized: builtins.float
+    confidence: builtins.float
+    'confidence is an optional range from 0 - 1'
 
-    def __init__(self, *, id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
+    def __init__(self, *, id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=..., confidence: builtins.float | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['id', b'id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+    def HasField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence', 'id', b'id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_confidence', b'_confidence']) -> typing.Literal['confidence'] | None:
         ...
 global___BoundingBox = BoundingBox
+
+@typing.final
+class Classification(google.protobuf.message.Message):
+    """Classification represents a confidence score with a label."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LABEL_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
+    label: builtins.str
+    confidence: builtins.float
+    'confidence is an optional range from 0 - 1'
+
+    def __init__(self, *, label: builtins.str=..., confidence: builtins.float | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence', 'label', b'label']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_confidence', b'_confidence']) -> typing.Literal['confidence'] | None:
+        ...
+global___Classification = Classification
 
 @typing.final
 class Annotations(google.protobuf.message.Message):
     """Annotations are data annotations used for machine learning."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BBOXES_FIELD_NUMBER: builtins.int
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
 
     @property
     def bboxes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BoundingBox]:
         ...
 
-    def __init__(self, *, bboxes: collections.abc.Iterable[global___BoundingBox] | None=...) -> None:
+    @property
+    def classifications(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['bboxes', b'bboxes']) -> None:
+    def __init__(self, *, bboxes: collections.abc.Iterable[global___BoundingBox] | None=..., classifications: collections.abc.Iterable[global___Classification] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['bboxes', b'bboxes', 'classifications', b'classifications']) -> None:
         ...
 global___Annotations = Annotations
 

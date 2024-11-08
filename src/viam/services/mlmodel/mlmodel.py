@@ -1,5 +1,5 @@
 import abc
-from typing import Dict, Final, Optional, Mapping
+from typing import Dict, Final, Mapping, Optional
 
 from numpy.typing import NDArray
 
