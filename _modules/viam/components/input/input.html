@@ -245,7 +245,7 @@
 
 <span class="sd">            # Get the controller from the machine.</span>
 <span class="sd">            my_controller = Controller.from_robot(</span>
-<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
+<span class="sd">                robot=machine, &quot;my_controller&quot;)</span>
 
 <span class="sd">            # Get the list of Controls provided by the controller.</span>
 <span class="sd">            controls = await my_controller.get_controls()</span>
@@ -272,7 +272,7 @@
 
 <span class="sd">            # Get the controller from the machine.</span>
 <span class="sd">            my_controller = Controller.from_robot(</span>
-<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
+<span class="sd">                robot=machine, &quot;my_controller&quot;)</span>
 
 <span class="sd">            # Get the most recent Event for each Control.</span>
 <span class="sd">            recent_events = await my_controller.get_events()</span>
@@ -336,7 +336,7 @@
 
 <span class="sd">                # Get your controller from the machine.</span>
 <span class="sd">                my_controller = Controller.from_robot(</span>
-<span class="sd">                    myRobotWithController, &quot;my_controller&quot;)</span>
+<span class="sd">                    robot=machine, &quot;my_controller&quot;)</span>
 
 <span class="sd">                # Run the handleController function.</span>
 <span class="sd">                await handle_controller(my_controller)</span>
@@ -365,12 +365,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Directly send an Event (such as a button press) from external code</span>
 
 <span class="sd">        ::</span>
+
 <span class="sd">            my_controller = Controller.from_robot(</span>
 <span class="sd">                robot=machine, name=&quot;my_controller&quot;)</span>
 
 <span class="sd">            # Get your controller from the machine.</span>
 <span class="sd">            my_controller = Controller.from_robot(</span>
-<span class="sd">                myRobotWithController, &quot;my_controller&quot;)</span>
+<span class="sd">                robot=machine, &quot;my_controller&quot;)</span>
 
 <span class="sd">            # Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
 <span class="sd">            button_is_pressed_event = Event(</span>
