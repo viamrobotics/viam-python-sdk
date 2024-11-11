@@ -48,7 +48,7 @@ class Camera(ComponentBase):
 
         ::
 
-           from viam.media.video import CameraMimeType
+            from viam.media.video import CameraMimeType
 
             my_camera = Camera.from_robot(robot=machine, name="my_camera")
 
@@ -102,6 +102,7 @@ class Camera(ComponentBase):
         by the mimetype.
 
         To deserialize the returned information into a numpy array, use the Open3D library.
+
         ::
 
             import numpy as np
