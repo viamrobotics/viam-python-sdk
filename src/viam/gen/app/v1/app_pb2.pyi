@@ -852,6 +852,44 @@ class UpdateBillingServiceResponse(google.protobuf.message.Message):
 global___UpdateBillingServiceResponse = UpdateBillingServiceResponse
 
 @typing.final
+class GetBillingServiceConfigRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___GetBillingServiceConfigRequest = GetBillingServiceConfigRequest
+
+@typing.final
+class GetBillingServiceConfigResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BILLING_ADDRESS_FIELD_NUMBER: builtins.int
+    SUPPORT_EMAIL_FIELD_NUMBER: builtins.int
+    LOGO_URL_FIELD_NUMBER: builtins.int
+    BILLING_DASHBOARD_URL_FIELD_NUMBER: builtins.int
+    support_email: builtins.str
+    logo_url: builtins.str
+    billing_dashboard_url: builtins.str
+
+    @property
+    def billing_address(self) -> global___BillingAddress:
+        ...
+
+    def __init__(self, *, billing_address: global___BillingAddress | None=..., support_email: builtins.str=..., logo_url: builtins.str=..., billing_dashboard_url: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['billing_address', b'billing_address']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_address', b'billing_address', 'billing_dashboard_url', b'billing_dashboard_url', 'logo_url', b'logo_url', 'support_email', b'support_email']) -> None:
+        ...
+global___GetBillingServiceConfigResponse = GetBillingServiceConfigResponse
+
+@typing.final
 class DisableBillingServiceRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
