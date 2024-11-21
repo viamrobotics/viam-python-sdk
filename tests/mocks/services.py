@@ -203,6 +203,8 @@ from viam.proto.app.data import (
     DeleteTabularDataResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    GetLatestTabularDataRequest,
+    GetLatestTabularDataResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -431,9 +433,9 @@ class MockVision(Vision):
         self.timeout = timeout
         return self.point_clouds
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
-        self.timeout = timeout
-        return {"cmd": command}
+    # async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    #     self.timeout = timeout
+    #     return {"cmd": command}
 
 
 class MockMLModel(MLModel):
@@ -809,7 +811,7 @@ class MockData(UnimplementedDataServiceBase):
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
-        hostname_response: str,
+        hostname_response: str
     ):
         self.tabular_response = tabular_response
         self.tabular_query_response = tabular_query_response
@@ -1000,6 +1002,17 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
+
+    async def GetLatestTabularData(self, stream: Stream[GetLatestTabularDataRequest, GetLatestTabularDataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.part_id = request.part_id
+        self.resource_name = request.resource_name
+        self.method_name = request.method_name
+        timestamp = datetime_to_timestamp(datetime(2024, 12, 25))
+        data=dict_to_struct(self.tabular_response[0].data)
+        await stream.send_message(GetLatestTabularDataResponse(payload=data, time_captured=timestamp, time_synced=timestamp))
+
 
 
 class MockDataset(DatasetServiceBase):

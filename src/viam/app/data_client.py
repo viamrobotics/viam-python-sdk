@@ -36,6 +36,8 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    GetLatestTabularDataRequest,
+    GetLatestTabularDataResponse,
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -305,6 +307,14 @@ class DataClient:
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
+
+    async def get_latest_tabular_data(self, part_id: str, resource_name: str, method_name: str) -> Tuple[Dict[str, ValueTypes], Optional[datetime], Optional[datetime]]:
+        request = GetLatestTabularDataRequest(part_id=part_id, resource_name=resource_name, method_name=method_name)
+        response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
+        if not response.payload:
+            return {}, None, None
+        return struct_to_dict(response.payload), response.time_captured.ToDatetime(), response.time_synced.ToDatetime()
+
 
     async def binary_data_by_filter(
         self,
