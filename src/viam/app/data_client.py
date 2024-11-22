@@ -308,7 +308,7 @@ class DataClient:
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
-    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Tuple[ Optional[datetime], Optional[datetime], Dict[str, ValueTypes]]:
+    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime,datetime, Dict[str, ValueTypes]]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
         ::
@@ -316,6 +316,7 @@ class DataClient:
                 time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
                     part_id="<PART-ID>",
                     resource_name="<RESOURCE-NAME>",
+                    resource_subtype="<RESOURCE-SUBTYPE>",
                     method_name="<METHOD-NAME>"
                 )
 
@@ -327,9 +328,9 @@ class DataClient:
             method_name (str): The data capture method name.
 
         Returns:
-            Tuple[Dict[str, ValueTypes], Optional[datetime], Optional[datetime]: A tuple containing the following:
-            Optional[datetime]: The time captured,
-            Optional[datetime]: The time synced,
+            Optional[Tuple[Dict[str, ValueTypes], datetime, datetime]: A tuple which is None data hasn't been synced yet for the data source, otherwise the tuple contains the following:
+            datetime: The time captured,
+            datetime: The time synced,
             Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
@@ -337,7 +338,7 @@ class DataClient:
         request = GetLatestTabularDataRequest(part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name)
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
-            return None, None, {}
+            return None
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
 

@@ -169,6 +169,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             time = datetime(2024, 12, 25)
             response = await client.get_latest_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD)
+            assert response != None
             time_captured, time_synced, payload = response
             assert service.part_id == PART_ID
             assert service.resource_name == COMPONENT_NAME
