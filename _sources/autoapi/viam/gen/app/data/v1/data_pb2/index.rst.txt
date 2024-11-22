@@ -37,6 +37,10 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___TabularDataBySQLResponse
    viam.gen.app.data.v1.data_pb2.global___TabularDataByMQLRequest
    viam.gen.app.data.v1.data_pb2.global___TabularDataByMQLResponse
+   viam.gen.app.data.v1.data_pb2.global___ExportTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.global___ExportTabularDataResponse
+   viam.gen.app.data.v1.data_pb2.global___GetLatestTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.global___GetLatestTabularDataResponse
    viam.gen.app.data.v1.data_pb2.global___BinaryData
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse
@@ -100,6 +104,10 @@ Classes
    viam.gen.app.data.v1.data_pb2.TabularDataBySQLResponse
    viam.gen.app.data.v1.data_pb2.TabularDataByMQLRequest
    viam.gen.app.data.v1.data_pb2.TabularDataByMQLResponse
+   viam.gen.app.data.v1.data_pb2.ExportTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.ExportTabularDataResponse
+   viam.gen.app.data.v1.data_pb2.GetLatestTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.GetLatestTabularDataResponse
    viam.gen.app.data.v1.data_pb2.BinaryData
    viam.gen.app.data.v1.data_pb2.BinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse
@@ -642,17 +650,12 @@ Module Contents
 
 .. py:data:: global___TabularDataBySQLRequest
 
-.. py:class:: TabularDataBySQLResponse(*, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ..., raw_data: collections.abc.Iterable[bytes] | None = ...)
+.. py:class:: TabularDataBySQLResponse(*, raw_data: collections.abc.Iterable[bytes] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
    TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
-
-
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
-
 
 
    .. py:property:: raw_data
@@ -684,17 +687,12 @@ Module Contents
 
 .. py:data:: global___TabularDataByMQLRequest
 
-.. py:class:: TabularDataByMQLResponse(*, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ..., raw_data: collections.abc.Iterable[bytes] | None = ...)
+.. py:class:: TabularDataByMQLResponse(*, raw_data: collections.abc.Iterable[bytes] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
    TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
-
-
-   .. py:property:: data
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
-
 
 
    .. py:property:: raw_data
@@ -703,6 +701,249 @@ Module Contents
 
 
 .. py:data:: global___TabularDataByMQLResponse
+
+.. py:class:: ExportTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., resource_subtype: str = ..., method_name: str = ..., interval: global___CaptureInterval | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ExportTabularDataRequest requests tabular data from the specified data source.
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:attribute:: resource_name
+      :type:  str
+
+
+   .. py:attribute:: resource_subtype
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
+
+
+   .. py:property:: interval
+      :type: global___CaptureInterval
+
+
+
+   .. py:method:: HasField(field_name: Literal['interval', b'interval']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ExportTabularDataRequest
+
+.. py:class:: ExportTabularDataResponse(*, part_id: str = ..., component_name: str = ..., component_type: str = ..., method_name: str = ..., time_captured: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[str] | None = ..., payload: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source.
+
+
+   .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:attribute:: component_name
+      :type:  str
+
+
+   .. py:attribute:: component_type
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+   .. py:attribute:: robot_name
+      :type:  str
+
+
+   .. py:attribute:: robot_id
+      :type:  str
+
+
+   .. py:attribute:: part_name
+      :type:  str
+
+
+   .. py:property:: time_captured
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: method_parameters
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
+   .. py:property:: tags
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: payload
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['payload', b'payload', 'time_captured', b'time_captured']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ExportTabularDataResponse
+
+.. py:class:: GetLatestTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., method_name: str = ..., resource_subtype: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source.
+
+
+   .. py:attribute:: part_id
+      :type:  str
+
+
+   .. py:attribute:: resource_name
+      :type:  str
+
+
+   .. py:attribute:: method_name
+      :type:  str
+
+
+   .. py:attribute:: resource_subtype
+      :type:  str
+
+
+.. py:data:: global___GetLatestTabularDataRequest
+
+.. py:class:: GetLatestTabularDataResponse(*, time_captured: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_synced: google.protobuf.timestamp_pb2.Timestamp | None = ..., payload: google.protobuf.struct_pb2.Struct | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
+   from the requested data source, as long as it was synced within the last year.
+
+
+   .. py:property:: time_captured
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: time_synced
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: payload
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['payload', b'payload', 'time_captured', b'time_captured', 'time_synced', b'time_synced']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___GetLatestTabularDataResponse
 
 .. py:class:: BinaryData(*, binary: bytes = ..., metadata: global___BinaryMetadata | None = ...)
 

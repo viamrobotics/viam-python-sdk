@@ -1482,7 +1482,7 @@ Module Contents
 
 .. py:data:: global___GetMachineStatusResponse
 
-.. py:class:: ResourceStatus(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., state: global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., error: str = ...)
+.. py:class:: ResourceStatus(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., state: global___ResourceStatus = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., revision: str = ..., error: str = ..., cloud_metadata: global___GetCloudMetadataResponse | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1566,7 +1566,13 @@ Module Contents
       state transition timestamp.
 
 
-   .. py:method:: HasField(field_name: Literal['last_updated', b'last_updated', 'name', b'name']) -> bool
+   .. py:property:: cloud_metadata
+      :type: global___GetCloudMetadataResponse
+
+      infomation about resource orgID, locationID and partID
+
+
+   .. py:method:: HasField(field_name: Literal['_cloud_metadata', b'_cloud_metadata', 'cloud_metadata', b'cloud_metadata', 'last_updated', b'last_updated', 'name', b'name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1581,6 +1587,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_cloud_metadata', b'_cloud_metadata']) -> Literal['cloud_metadata'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

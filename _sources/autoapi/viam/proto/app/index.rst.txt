@@ -45,6 +45,7 @@ Classes
    viam.proto.app.AppServiceBase
    viam.proto.app.AppServiceStub
    viam.proto.app.UnimplementedAppServiceBase
+   viam.proto.app.PKCE
    viam.proto.app.AddRoleRequest
    viam.proto.app.AddRoleResponse
    viam.proto.app.APIKey
@@ -59,6 +60,7 @@ Classes
    viam.proto.app.ChangeRoleResponse
    viam.proto.app.CheckPermissionsRequest
    viam.proto.app.CheckPermissionsResponse
+   viam.proto.app.ClientAuthentication
    viam.proto.app.CreateFragmentRequest
    viam.proto.app.CreateFragmentResponse
    viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest
@@ -71,6 +73,8 @@ Classes
    viam.proto.app.CreateLocationSecretResponse
    viam.proto.app.CreateModuleRequest
    viam.proto.app.CreateModuleResponse
+   viam.proto.app.CreateOAuthAppRequest
+   viam.proto.app.CreateOAuthAppResponse
    viam.proto.app.CreateOrganizationInviteRequest
    viam.proto.app.CreateOrganizationInviteResponse
    viam.proto.app.CreateOrganizationRequest
@@ -87,6 +91,8 @@ Classes
    viam.proto.app.DeleteLocationResponse
    viam.proto.app.DeleteLocationSecretRequest
    viam.proto.app.DeleteLocationSecretResponse
+   viam.proto.app.DeleteOAuthAppRequest
+   viam.proto.app.DeleteOAuthAppResponse
    viam.proto.app.DeleteOrganizationInviteRequest
    viam.proto.app.DeleteOrganizationInviteResponse
    viam.proto.app.DeleteOrganizationMemberRequest
@@ -101,10 +107,15 @@ Classes
    viam.proto.app.DeleteRobotPartSecretResponse
    viam.proto.app.DeleteRobotRequest
    viam.proto.app.DeleteRobotResponse
+   viam.proto.app.DisableAuthServiceRequest
+   viam.proto.app.DisableAuthServiceResponse
    viam.proto.app.DisableBillingServiceRequest
    viam.proto.app.DisableBillingServiceResponse
+   viam.proto.app.EnableAuthServiceRequest
+   viam.proto.app.EnableAuthServiceResponse
    viam.proto.app.EnableBillingServiceRequest
    viam.proto.app.EnableBillingServiceResponse
+   viam.proto.app.EnabledGrant
    viam.proto.app.Fragment
    viam.proto.app.FragmentError
    viam.proto.app.FragmentErrorType
@@ -156,6 +167,8 @@ Classes
    viam.proto.app.ListMachineFragmentsResponse
    viam.proto.app.ListModulesRequest
    viam.proto.app.ListModulesResponse
+   viam.proto.app.ListOAuthAppsRequest
+   viam.proto.app.ListOAuthAppsResponse
    viam.proto.app.ListOrganizationMembersRequest
    viam.proto.app.ListOrganizationMembersResponse
    viam.proto.app.ListOrganizationsByUserRequest
@@ -187,15 +200,22 @@ Classes
    viam.proto.app.NewRobotPartResponse
    viam.proto.app.NewRobotRequest
    viam.proto.app.NewRobotResponse
+   viam.proto.app.OAuthConfig
    viam.proto.app.Organization
+   viam.proto.app.OrganizationGetLogoRequest
+   viam.proto.app.OrganizationGetLogoResponse
    viam.proto.app.OrganizationGetSupportEmailRequest
    viam.proto.app.OrganizationGetSupportEmailResponse
    viam.proto.app.OrganizationIdentity
    viam.proto.app.OrganizationInvite
    viam.proto.app.OrganizationMember
+   viam.proto.app.OrganizationSetLogoRequest
+   viam.proto.app.OrganizationSetLogoResponse
    viam.proto.app.OrganizationSetSupportEmailRequest
    viam.proto.app.OrganizationSetSupportEmailResponse
    viam.proto.app.OrgDetails
+   viam.proto.app.ReadOAuthAppRequest
+   viam.proto.app.ReadOAuthAppResponse
    viam.proto.app.RegistryItem
    viam.proto.app.RegistryItemStatus
    viam.proto.app.RemoveRoleRequest
@@ -229,6 +249,8 @@ Classes
    viam.proto.app.UpdateLocationResponse
    viam.proto.app.UpdateModuleRequest
    viam.proto.app.UpdateModuleResponse
+   viam.proto.app.UpdateOAuthAppRequest
+   viam.proto.app.UpdateOAuthAppResponse
    viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest
    viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse
    viam.proto.app.UpdateOrganizationRequest
@@ -242,6 +264,7 @@ Classes
    viam.proto.app.UploadModuleFileRequest
    viam.proto.app.UploadModuleFileResponse
    viam.proto.app.Uploads
+   viam.proto.app.URLValidation
    viam.proto.app.VersionHistory
    viam.proto.app.Visibility
 
@@ -399,6 +422,69 @@ Package Contents
 
 
    .. py:method:: OrganizationGetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetSupportEmailRequest, app.v1.app_pb2.OrganizationGetSupportEmailResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: OrganizationSetLogo(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationSetLogoRequest, app.v1.app_pb2.OrganizationSetLogoResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: OrganizationGetLogo(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetLogoRequest, app.v1.app_pb2.OrganizationGetLogoResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: EnableAuthService(stream: grpclib.server.Stream[app.v1.app_pb2.EnableAuthServiceRequest, app.v1.app_pb2.EnableAuthServiceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DisableAuthService(stream: grpclib.server.Stream[app.v1.app_pb2.DisableAuthServiceRequest, app.v1.app_pb2.DisableAuthServiceResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: CreateOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOAuthAppRequest, app.v1.app_pb2.CreateOAuthAppResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ReadOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.ReadOAuthAppRequest, app.v1.app_pb2.ReadOAuthAppResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOAuthAppRequest, app.v1.app_pb2.UpdateOAuthAppResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOAuthAppRequest, app.v1.app_pb2.DeleteOAuthAppResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListOAuthApps(stream: grpclib.server.Stream[app.v1.app_pb2.ListOAuthAppsRequest, app.v1.app_pb2.ListOAuthAppsResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -879,6 +965,33 @@ Package Contents
    .. py:attribute:: OrganizationGetSupportEmail
 
 
+   .. py:attribute:: OrganizationSetLogo
+
+
+   .. py:attribute:: OrganizationGetLogo
+
+
+   .. py:attribute:: EnableAuthService
+
+
+   .. py:attribute:: DisableAuthService
+
+
+   .. py:attribute:: CreateOAuthApp
+
+
+   .. py:attribute:: ReadOAuthApp
+
+
+   .. py:attribute:: UpdateOAuthApp
+
+
+   .. py:attribute:: DeleteOAuthApp
+
+
+   .. py:attribute:: ListOAuthApps
+
+
    .. py:attribute:: CreateLocation
 
 
@@ -1163,6 +1276,51 @@ Package Contents
 
 
    .. py:method:: OrganizationGetSupportEmail(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetSupportEmailRequest, app.v1.app_pb2.OrganizationGetSupportEmailResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: OrganizationSetLogo(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationSetLogoRequest, app.v1.app_pb2.OrganizationSetLogoResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: OrganizationGetLogo(stream: grpclib.server.Stream[app.v1.app_pb2.OrganizationGetLogoRequest, app.v1.app_pb2.OrganizationGetLogoResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: EnableAuthService(stream: grpclib.server.Stream[app.v1.app_pb2.EnableAuthServiceRequest, app.v1.app_pb2.EnableAuthServiceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DisableAuthService(stream: grpclib.server.Stream[app.v1.app_pb2.DisableAuthServiceRequest, app.v1.app_pb2.DisableAuthServiceResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CreateOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOAuthAppRequest, app.v1.app_pb2.CreateOAuthAppResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ReadOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.ReadOAuthAppRequest, app.v1.app_pb2.ReadOAuthAppResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOAuthAppRequest, app.v1.app_pb2.UpdateOAuthAppResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteOAuthApp(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOAuthAppRequest, app.v1.app_pb2.DeleteOAuthAppResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListOAuthApps(stream: grpclib.server.Stream[app.v1.app_pb2.ListOAuthAppsRequest, app.v1.app_pb2.ListOAuthAppsResponse]) -> None
       :async:
 
 
@@ -1455,6 +1613,11 @@ Package Contents
    .. py:method:: CreateKeyFromExistingKeyAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest, app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse]) -> None
       :async:
 
+
+
+.. py:class:: PKCE
+
+   Bases: :py:obj:`_PKCE`
 
 
 .. py:class:: AddRoleRequest(*, authorization: global___Authorization | None = ...)
@@ -1865,6 +2028,11 @@ Package Contents
 
 
 
+.. py:class:: ClientAuthentication
+
+   Bases: :py:obj:`_ClientAuthentication`
+
+
 .. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ..., visibility: global___FragmentVisibility | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2240,6 +2408,69 @@ Package Contents
       The detail page of the module
 
 
+.. py:class:: CreateOAuthAppRequest(*, org_id: str = ..., client_name: str = ..., oauth_config: global___OAuthConfig | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: client_name
+      :type:  str
+
+
+   .. py:property:: oauth_config
+      :type: global___OAuthConfig
+
+
+
+   .. py:method:: HasField(field_name: Literal['oauth_config', b'oauth_config']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: CreateOAuthAppResponse(*, client_id: str = ..., client_secret: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: client_id
+      :type:  str
+
+
+   .. py:attribute:: client_secret
+      :type:  str
+
+
 .. py:class:: CreateOrganizationInviteRequest(*, organization_id: str = ..., email: str = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ..., send_email_invite: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2606,6 +2837,38 @@ Package Contents
    shown below.
 
 
+.. py:class:: DeleteOAuthAppRequest(*, org_id: str = ..., client_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: client_id
+      :type:  str
+
+
+.. py:class:: DeleteOAuthAppResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: DeleteOrganizationInviteRequest(*, organization_id: str = ..., email: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2818,6 +3081,34 @@ Package Contents
    shown below.
 
 
+.. py:class:: DisableAuthServiceRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: DisableAuthServiceResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: DisableBillingServiceRequest(*, org_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2835,6 +3126,34 @@ Package Contents
 
 
 .. py:class:: DisableBillingServiceResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: EnableAuthServiceRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: EnableAuthServiceResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2895,6 +3214,11 @@ Package Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+
+.. py:class:: EnabledGrant
+
+   Bases: :py:obj:`_EnabledGrant`
 
 
 .. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ..., visibility: global___FragmentVisibility = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -4196,6 +4520,39 @@ Package Contents
       A listed of modules. When authenticated, this API will return modules that are private for this org. Public modules are always returned.
 
 
+.. py:class:: ListOAuthAppsRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: ListOAuthAppsResponse(*, client_ids: collections.abc.Iterable[str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: client_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
 .. py:class:: ListOrganizationMembersRequest(*, organization_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -5183,6 +5540,49 @@ Package Contents
       :type:  str
 
 
+.. py:class:: OAuthConfig(*, client_authentication: global___ClientAuthentication = ..., pkce: global___PKCE = ..., url_validation: global___URLValidation = ..., origin_uris: collections.abc.Iterable[str] | None = ..., redirect_uris: collections.abc.Iterable[str] | None = ..., logout_uri: str = ..., enabled_grants: collections.abc.Iterable[global___EnabledGrant] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: client_authentication
+      :type:  global___ClientAuthentication
+
+
+   .. py:attribute:: pkce
+      :type:  global___PKCE
+
+
+   .. py:attribute:: url_validation
+      :type:  global___URLValidation
+
+
+   .. py:attribute:: logout_uri
+      :type:  str
+
+
+   .. py:property:: origin_uris
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: redirect_uris
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: enabled_grants
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___EnabledGrant]
+
+
+
 .. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -5255,6 +5655,38 @@ Package Contents
 
       :raises ValueError: no group with the given name exists
 
+
+
+.. py:class:: OrganizationGetLogoRequest(*, org_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+.. py:class:: OrganizationGetLogoResponse(*, url: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: url
+      :type:  str
 
 
 .. py:class:: OrganizationGetSupportEmailRequest(*, org_id: str = ...)
@@ -5425,6 +5857,38 @@ Package Contents
 
 
 
+.. py:class:: OrganizationSetLogoRequest(*, org_id: str = ..., logo: bytes = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: logo
+      :type:  bytes
+
+
+.. py:class:: OrganizationSetLogoResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: OrganizationSetSupportEmailRequest(*, org_id: str = ..., email: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -5475,6 +5939,69 @@ Package Contents
 
    .. py:attribute:: org_name
       :type:  str
+
+
+.. py:class:: ReadOAuthAppRequest(*, org_id: str = ..., client_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: client_id
+      :type:  str
+
+
+.. py:class:: ReadOAuthAppResponse(*, client_name: str = ..., client_secret: str = ..., oauth_config: global___OAuthConfig | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: client_name
+      :type:  str
+
+
+   .. py:attribute:: client_secret
+      :type:  str
+
+
+   .. py:property:: oauth_config
+      :type: global___OAuthConfig
+
+
+
+   .. py:method:: HasField(field_name: Literal['oauth_config', b'oauth_config']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: global___ModuleMetadata | None = ..., ml_model_metadata: global___MLModelMetadata | None = ..., ml_training_metadata: global___MLTrainingMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -6726,6 +7253,65 @@ Package Contents
       The detail page of the module
 
 
+.. py:class:: UpdateOAuthAppRequest(*, org_id: str = ..., client_id: str = ..., client_name: str = ..., oauth_config: global___OAuthConfig | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: org_id
+      :type:  str
+
+
+   .. py:attribute:: client_id
+      :type:  str
+
+
+   .. py:attribute:: client_name
+      :type:  str
+
+
+   .. py:property:: oauth_config
+      :type: global___OAuthConfig
+
+
+
+   .. py:method:: HasField(field_name: Literal['oauth_config', b'oauth_config']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateOAuthAppResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: UpdateOrganizationInviteAuthorizationsRequest(*, organization_id: str = ..., email: str = ..., add_authorizations: collections.abc.Iterable[global___Authorization] | None = ..., remove_authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -7228,6 +7814,11 @@ Package Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: URLValidation
+
+   Bases: :py:obj:`_URLValidation`
 
 
 .. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
