@@ -370,21 +370,16 @@ global___TabularDataBySQLRequest = TabularDataBySQLRequest
 class TabularDataBySQLResponse(google.protobuf.message.Message):
     """TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DATA_FIELD_NUMBER: builtins.int
     RAW_DATA_FIELD_NUMBER: builtins.int
-
-    @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
-        ...
 
     @property
     def raw_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
         ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=..., raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+    def __init__(self, *, raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data', b'data', 'raw_data', b'raw_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['raw_data', b'raw_data']) -> None:
         ...
 global___TabularDataBySQLResponse = TabularDataBySQLResponse
 
@@ -414,23 +409,171 @@ global___TabularDataByMQLRequest = TabularDataByMQLRequest
 class TabularDataByMQLResponse(google.protobuf.message.Message):
     """TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DATA_FIELD_NUMBER: builtins.int
     RAW_DATA_FIELD_NUMBER: builtins.int
-
-    @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
-        ...
 
     @property
     def raw_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
         ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=..., raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+    def __init__(self, *, raw_data: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data', b'data', 'raw_data', b'raw_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['raw_data', b'raw_data']) -> None:
         ...
 global___TabularDataByMQLResponse = TabularDataByMQLResponse
+
+@typing.final
+class ExportTabularDataRequest(google.protobuf.message.Message):
+    """ExportTabularDataRequest requests tabular data from the specified data source."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    RESOURCE_NAME_FIELD_NUMBER: builtins.int
+    RESOURCE_SUBTYPE_FIELD_NUMBER: builtins.int
+    METHOD_NAME_FIELD_NUMBER: builtins.int
+    INTERVAL_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    resource_name: builtins.str
+    resource_subtype: builtins.str
+    method_name: builtins.str
+
+    @property
+    def interval(self) -> global___CaptureInterval:
+        ...
+
+    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., resource_subtype: builtins.str=..., method_name: builtins.str=..., interval: global___CaptureInterval | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['interval', b'interval']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['interval', b'interval', 'method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+        ...
+global___ExportTabularDataRequest = ExportTabularDataRequest
+
+@typing.final
+class ExportTabularDataResponse(google.protobuf.message.Message):
+    """ExportTabularDataResponse provides unified tabular data and metadata for a single data point from the specified data source."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class MethodParametersEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    PART_ID_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_TYPE_FIELD_NUMBER: builtins.int
+    METHOD_NAME_FIELD_NUMBER: builtins.int
+    TIME_CAPTURED_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    ROBOT_NAME_FIELD_NUMBER: builtins.int
+    ROBOT_ID_FIELD_NUMBER: builtins.int
+    PART_NAME_FIELD_NUMBER: builtins.int
+    METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
+    TAGS_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    component_name: builtins.str
+    component_type: builtins.str
+    method_name: builtins.str
+    organization_id: builtins.str
+    location_id: builtins.str
+    robot_name: builtins.str
+    robot_id: builtins.str
+    part_name: builtins.str
+
+    @property
+    def time_captured(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    @property
+    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def payload(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, part_id: builtins.str=..., component_name: builtins.str=..., component_type: builtins.str=..., method_name: builtins.str=..., time_captured: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., payload: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['payload', b'payload', 'time_captured', b'time_captured']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'organization_id', b'organization_id', 'part_id', b'part_id', 'part_name', b'part_name', 'payload', b'payload', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags', 'time_captured', b'time_captured']) -> None:
+        ...
+global___ExportTabularDataResponse = ExportTabularDataResponse
+
+@typing.final
+class GetLatestTabularDataRequest(google.protobuf.message.Message):
+    """GetLatestTabularDataRequest requests the most recent tabular data captured from the specified data source."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    RESOURCE_NAME_FIELD_NUMBER: builtins.int
+    METHOD_NAME_FIELD_NUMBER: builtins.int
+    RESOURCE_SUBTYPE_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    resource_name: builtins.str
+    method_name: builtins.str
+    resource_subtype: builtins.str
+
+    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., method_name: builtins.str=..., resource_subtype: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+        ...
+global___GetLatestTabularDataRequest = GetLatestTabularDataRequest
+
+@typing.final
+class GetLatestTabularDataResponse(google.protobuf.message.Message):
+    """GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured
+    from the requested data source, as long as it was synced within the last year.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TIME_CAPTURED_FIELD_NUMBER: builtins.int
+    TIME_SYNCED_FIELD_NUMBER: builtins.int
+    PAYLOAD_FIELD_NUMBER: builtins.int
+
+    @property
+    def time_captured(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def time_synced(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def payload(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, time_captured: google.protobuf.timestamp_pb2.Timestamp | None=..., time_synced: google.protobuf.timestamp_pb2.Timestamp | None=..., payload: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['payload', b'payload', 'time_captured', b'time_captured', 'time_synced', b'time_synced']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['payload', b'payload', 'time_captured', b'time_captured', 'time_synced', b'time_synced']) -> None:
+        ...
+global___GetLatestTabularDataResponse = GetLatestTabularDataResponse
 
 @typing.final
 class BinaryData(google.protobuf.message.Message):

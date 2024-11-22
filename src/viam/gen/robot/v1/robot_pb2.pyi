@@ -880,6 +880,7 @@ class ResourceStatus(google.protobuf.message.Message):
     LAST_UPDATED_FIELD_NUMBER: builtins.int
     REVISION_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
+    CLOUD_METADATA_FIELD_NUMBER: builtins.int
     state: global___ResourceStatus.State.ValueType
     'current state.'
     revision: builtins.str
@@ -895,13 +896,20 @@ class ResourceStatus(google.protobuf.message.Message):
     def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """state transition timestamp."""
 
-    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=..., error: builtins.str=...) -> None:
+    @property
+    def cloud_metadata(self) -> global___GetCloudMetadataResponse:
+        """infomation about resource orgID, locationID and partID"""
+
+    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., state: global___ResourceStatus.State.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=..., error: builtins.str=..., cloud_metadata: global___GetCloudMetadataResponse | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['last_updated', b'last_updated', 'name', b'name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_cloud_metadata', b'_cloud_metadata', 'cloud_metadata', b'cloud_metadata', 'last_updated', b'last_updated', 'name', b'name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
+    def ClearField(self, field_name: typing.Literal['_cloud_metadata', b'_cloud_metadata', 'cloud_metadata', b'cloud_metadata', 'error', b'error', 'last_updated', b'last_updated', 'name', b'name', 'revision', b'revision', 'state', b'state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_cloud_metadata', b'_cloud_metadata']) -> typing.Literal['cloud_metadata'] | None:
         ...
 global___ResourceStatus = ResourceStatus
 
