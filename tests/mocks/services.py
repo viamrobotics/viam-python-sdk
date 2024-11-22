@@ -433,9 +433,9 @@ class MockVision(Vision):
         self.timeout = timeout
         return self.point_clouds
 
-    # async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
-    #     self.timeout = timeout
-    #     return {"cmd": command}
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {"cmd": command}
 
 
 class MockMLModel(MLModel):
@@ -811,7 +811,7 @@ class MockData(UnimplementedDataServiceBase):
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
-        hostname_response: str
+        hostname_response: str,
     ):
         self.tabular_response = tabular_response
         self.tabular_query_response = tabular_query_response
