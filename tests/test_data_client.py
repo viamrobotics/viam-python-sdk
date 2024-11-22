@@ -168,12 +168,11 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             time = datetime(2024, 12, 25)
-            response = await client.get_latest_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD)
-            time_captured, time_synced, payload = response
+            response = await client.get_latest_tabular_data(PART_ID, COMPONENT_NAME, METHOD)
+            payload, time_captured, time_synced = response
             assert service.part_id == PART_ID
             assert service.resource_name == COMPONENT_NAME
             assert service.method_name == METHOD
-            assert service.resource_subtype == COMPONENT_TYPE
             assert payload == TABULAR_DATA
             assert time_captured == time
             assert time_synced == time
