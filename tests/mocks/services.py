@@ -1008,6 +1008,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.part_id = request.part_id
         self.resource_name = request.resource_name
+        self.resource_subtype = request.resource_subtype
         self.method_name = request.method_name
         timestamp = datetime_to_timestamp(datetime(2024, 12, 25))
         data=dict_to_struct(self.tabular_response[0].data)
