@@ -322,10 +322,10 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>An array of data objects.</p>
+<dd class="field-even"><p>An array of decoded BSON data objects.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Dict[str, ValueTypes]]</p>
+<dd class="field-odd"><p>List[Dict[str, Union[ValueTypes, datetime]]]</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/data-client/">Data Client API</a>.</p>
@@ -337,21 +337,13 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bson</span>
 
-<span class="c1"># using bson package (pip install bson)</span>
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
-    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;YOUR-LOCATION-ID&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
-    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$limit&#39;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
-<span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tabular Data 1: </span><span class="si">{</span><span class="n">tabular_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
 <span class="c1"># using pymongo package (pip install pymongo)</span>
 <span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
     <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;YOUR-LOCATION-ID&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
     <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
 <span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tabular Data 2: </span><span class="si">{</span><span class="n">tabular_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tabular Data: </span><span class="si">{</span><span class="n">tabular_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -360,14 +352,14 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 <li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>bytes</em><em>]</em>) – The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
-<cite>pymongo</cite> or <cite>bson</cite>.</p></li>
+<cite>pymongo</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>An array of data objects.</p>
+<dd class="field-even"><p>An array of decoded BSON data objects.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Dict[str, ValueTypes]]</p>
+<dd class="field-odd"><p>List[Dict[str, Union[ValueTypes, datetime]]]</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/data-client/">Data Client API</a>.</p>

@@ -348,7 +348,7 @@
 <span class="sd">            sql_query (str): The SQL query to run.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Dict[str, ValueTypes]]: An array of data objects.</span>
+<span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -363,31 +363,23 @@
 
 <span class="sd">            import bson</span>
 
-<span class="sd">            # using bson package (pip install bson)</span>
-<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_binary=[</span>
-<span class="sd">                bson.dumps({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } }),</span>
-<span class="sd">                bson.dumps({ &#39;$limit&#39;: 5 })</span>
-<span class="sd">            ])</span>
-
-<span class="sd">            print(f&quot;Tabular Data 1: {tabular_data}&quot;)</span>
-
 <span class="sd">            # using pymongo package (pip install pymongo)</span>
 <span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_binary=[</span>
 <span class="sd">                bson.encode({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } }),</span>
 <span class="sd">                bson.encode({ &quot;$limit&quot;: 5 })</span>
 <span class="sd">            ])</span>
 
-<span class="sd">            print(f&quot;Tabular Data 2: {tabular_data}&quot;)</span>
+<span class="sd">            print(f&quot;Tabular Data: {tabular_data}&quot;)</span>
 
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like</span>
-<span class="sd">                `pymongo` or `bson`.</span>
+<span class="sd">                `pymongo`.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Dict[str, ValueTypes]]: An array of data objects.</span>
+<span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
