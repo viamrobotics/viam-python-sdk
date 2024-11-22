@@ -280,7 +280,7 @@ class DataClient:
                 bson.encode({ "$limit": 5 })
             ])
 
-            print(f"Tabular Data : {tabular_data}")
+            print(f"Tabular Data: {tabular_data}")
 
 
         Args:
