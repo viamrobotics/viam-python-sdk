@@ -259,7 +259,7 @@ class DataClient:
             sql_query (str): The SQL query to run.
 
         Returns:
-            List[Dict[str, ValueTypes]]: An array of data objects.
+            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
@@ -274,31 +274,23 @@ class DataClient:
 
             import bson
 
-            # using bson package (pip install bson)
-            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
-                bson.dumps({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
-                bson.dumps({ '$limit': 5 })
-            ])
-
-            print(f"Tabular Data 1: {tabular_data}")
-
             # using pymongo package (pip install pymongo)
             tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
                 bson.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
                 bson.encode({ "$limit": 5 })
             ])
 
-            print(f"Tabular Data 2: {tabular_data}")
+            print(f"Tabular Data: {tabular_data}")
 
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
             mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
-                `pymongo` or `bson`.
+                `pymongo`.
 
         Returns:
-            List[Dict[str, ValueTypes]]: An array of data objects.
+            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
