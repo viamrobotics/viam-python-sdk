@@ -130,8 +130,12 @@
 
 <span class="sd">            my_mlmodel = MLModelClient.from_robot(robot=machine, name=&quot;my_mlmodel_service&quot;)</span>
 
-<span class="sd">            nd_array = np.array([1, 2, 3], dtype=np.float64)</span>
-<span class="sd">            input_tensors = {&quot;0&quot;: nd_array}</span>
+<span class="sd">            image_data = np.zeros((1, 384, 384, 3), dtype=np.uint8)</span>
+
+<span class="sd">            # Create the input tensors dictionary</span>
+<span class="sd">            input_tensors = {</span>
+<span class="sd">                &quot;image&quot;: image_data</span>
+<span class="sd">            }</span>
 
 <span class="sd">            output_tensors = await my_mlmodel.infer(input_tensors)</span>
 

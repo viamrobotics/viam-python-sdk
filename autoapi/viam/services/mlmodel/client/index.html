@@ -174,8 +174,12 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 <span class="n">my_mlmodel</span> <span class="o">=</span> <span class="n">MLModelClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_mlmodel_service&quot;</span><span class="p">)</span>
 
-<span class="n">nd_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-<span class="n">input_tensors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="n">nd_array</span><span class="p">}</span>
+<span class="n">image_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">384</span><span class="p">,</span> <span class="mi">384</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="c1"># Create the input tensors dictionary</span>
+<span class="n">input_tensors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">image_data</span>
+<span class="p">}</span>
 
 <span class="n">output_tensors</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_mlmodel</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">input_tensors</span><span class="p">)</span>
 </pre></div>

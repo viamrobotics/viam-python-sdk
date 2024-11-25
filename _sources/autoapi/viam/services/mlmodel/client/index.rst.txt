@@ -47,8 +47,12 @@ Module Contents
 
           my_mlmodel = MLModelClient.from_robot(robot=machine, name="my_mlmodel_service")
 
-          nd_array = np.array([1, 2, 3], dtype=np.float64)
-          input_tensors = {"0": nd_array}
+          image_data = np.zeros((1, 384, 384, 3), dtype=np.uint8)
+
+          # Create the input tensors dictionary
+          input_tensors = {
+              "image": image_data
+          }
 
           output_tensors = await my_mlmodel.infer(input_tensors)
 
