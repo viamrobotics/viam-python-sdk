@@ -320,10 +320,10 @@ class DataClient:
             method_name (str): The data capture method name.
 
         Returns:
-            Optional[Tuple[Dict[str, ValueTypes], datetime, datetime]: A tuple which is None data hasn't been synced yet for the data source, otherwise the tuple contains the following:
-            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+            Optional[datetime, datetime, Tuple[Dict[str, ValueTypes]]: A tuple which is None data hasn't been synced yet for the data source, otherwise the tuple contains the following:
+            datetime: The time captured,
             datetime: The time synced,
-            datetime: The time captured.
+            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
