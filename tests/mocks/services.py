@@ -1014,8 +1014,6 @@ class MockData(UnimplementedDataServiceBase):
         data=dict_to_struct(self.tabular_response[0].data)
         await stream.send_message(GetLatestTabularDataResponse(payload=data, time_captured=timestamp, time_synced=timestamp))
 
-
-
 class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
         self.create_response = create_response
