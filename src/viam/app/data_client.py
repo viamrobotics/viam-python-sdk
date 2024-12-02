@@ -300,7 +300,7 @@ class DataClient:
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
-    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
+    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[Dict[str, ValueTypes], datetime, datetime]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
         ::
@@ -320,10 +320,10 @@ class DataClient:
             method_name (str): The data capture method name.
 
         Returns:
-            Optional[datetime, datetime, Tuple[Dict[str, ValueTypes]]: A tuple which is None data hasn't been synced yet for the data source, otherwise the tuple contains the following:
-            datetime: The time captured,
-            datetime: The time synced,
+            Optional[Tuple[Dict[str, ValueTypes], datetime, datetime]]: A tuple which is None data hasn't been synced yet for the data source, otherwise the tuple contains the following:
             Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+            datetime: The time synced,
+            datetime: The time captured.
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
@@ -331,8 +331,7 @@ class DataClient:
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
             return None
-        return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
-
+        return struct_to_dict(response.payload) , response.time_captured.ToDatetime(), response.time_synced.ToDatetime(),
 
     async def binary_data_by_filter(
         self,
