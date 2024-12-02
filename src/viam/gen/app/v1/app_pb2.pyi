@@ -123,6 +123,84 @@ VISIBILITY_PUBLIC_UNLISTED: Visibility.ValueType
 "Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 global___Visibility = Visibility
 
+class _ClientAuthentication:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _ClientAuthenticationEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ClientAuthentication.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    CLIENT_AUTHENTICATION_UNSPECIFIED: _ClientAuthentication.ValueType
+    CLIENT_AUTHENTICATION_REQUIRED: _ClientAuthentication.ValueType
+    CLIENT_AUTHENTICATION_NOT_REQUIRED: _ClientAuthentication.ValueType
+    CLIENT_AUTHENTICATION_NOT_REQUIRED_WHEN_USING_PKCE: _ClientAuthentication.ValueType
+
+class ClientAuthentication(_ClientAuthentication, metaclass=_ClientAuthenticationEnumTypeWrapper):
+    ...
+CLIENT_AUTHENTICATION_UNSPECIFIED: ClientAuthentication.ValueType
+CLIENT_AUTHENTICATION_REQUIRED: ClientAuthentication.ValueType
+CLIENT_AUTHENTICATION_NOT_REQUIRED: ClientAuthentication.ValueType
+CLIENT_AUTHENTICATION_NOT_REQUIRED_WHEN_USING_PKCE: ClientAuthentication.ValueType
+global___ClientAuthentication = ClientAuthentication
+
+class _PKCE:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _PKCEEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PKCE.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    PKCE_UNSPECIFIED: _PKCE.ValueType
+    PKCE_REQUIRED: _PKCE.ValueType
+    PKCE_NOT_REQUIRED: _PKCE.ValueType
+    PKCE_NOT_REQUIRED_WHEN_USING_CLIENT_AUTHENTICATION: _PKCE.ValueType
+
+class PKCE(_PKCE, metaclass=_PKCEEnumTypeWrapper):
+    ...
+PKCE_UNSPECIFIED: PKCE.ValueType
+PKCE_REQUIRED: PKCE.ValueType
+PKCE_NOT_REQUIRED: PKCE.ValueType
+PKCE_NOT_REQUIRED_WHEN_USING_CLIENT_AUTHENTICATION: PKCE.ValueType
+global___PKCE = PKCE
+
+class _URLValidation:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _URLValidationEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_URLValidation.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    URL_VALIDATION_UNSPECIFIED: _URLValidation.ValueType
+    URL_VALIDATION_EXACT_MATCH: _URLValidation.ValueType
+    URL_VALIDATION_ALLOW_WILDCARDS: _URLValidation.ValueType
+
+class URLValidation(_URLValidation, metaclass=_URLValidationEnumTypeWrapper):
+    ...
+URL_VALIDATION_UNSPECIFIED: URLValidation.ValueType
+URL_VALIDATION_EXACT_MATCH: URLValidation.ValueType
+URL_VALIDATION_ALLOW_WILDCARDS: URLValidation.ValueType
+global___URLValidation = URLValidation
+
+class _EnabledGrant:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _EnabledGrantEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_EnabledGrant.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    ENABLED_GRANT_UNSPECIFIED: _EnabledGrant.ValueType
+    ENABLED_GRANT_AUTHORIZATION_CODE: _EnabledGrant.ValueType
+    ENABLED_GRANT_IMPLICIT: _EnabledGrant.ValueType
+    ENABLED_GRANT_PASSWORD: _EnabledGrant.ValueType
+    ENABLED_GRANT_REFRESH_TOKEN: _EnabledGrant.ValueType
+    ENABLED_GRANT_DEVICE_CODE: _EnabledGrant.ValueType
+
+class EnabledGrant(_EnabledGrant, metaclass=_EnabledGrantEnumTypeWrapper):
+    ...
+ENABLED_GRANT_UNSPECIFIED: EnabledGrant.ValueType
+ENABLED_GRANT_AUTHORIZATION_CODE: EnabledGrant.ValueType
+ENABLED_GRANT_IMPLICIT: EnabledGrant.ValueType
+ENABLED_GRANT_PASSWORD: EnabledGrant.ValueType
+ENABLED_GRANT_REFRESH_TOKEN: EnabledGrant.ValueType
+ENABLED_GRANT_DEVICE_CODE: EnabledGrant.ValueType
+global___EnabledGrant = EnabledGrant
+
 @typing.final
 class Robot(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -3805,3 +3883,289 @@ class CreateKeyFromExistingKeyAuthorizationsResponse(google.protobuf.message.Mes
     def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___CreateKeyFromExistingKeyAuthorizationsResponse = CreateKeyFromExistingKeyAuthorizationsResponse
+
+@typing.final
+class OrganizationSetLogoRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    LOGO_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    logo: builtins.bytes
+
+    def __init__(self, *, org_id: builtins.str=..., logo: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['logo', b'logo', 'org_id', b'org_id']) -> None:
+        ...
+global___OrganizationSetLogoRequest = OrganizationSetLogoRequest
+
+@typing.final
+class OrganizationSetLogoResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___OrganizationSetLogoResponse = OrganizationSetLogoResponse
+
+@typing.final
+class OrganizationGetLogoRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___OrganizationGetLogoRequest = OrganizationGetLogoRequest
+
+@typing.final
+class OrganizationGetLogoResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    URL_FIELD_NUMBER: builtins.int
+    url: builtins.str
+
+    def __init__(self, *, url: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['url', b'url']) -> None:
+        ...
+global___OrganizationGetLogoResponse = OrganizationGetLogoResponse
+
+@typing.final
+class EnableAuthServiceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___EnableAuthServiceRequest = EnableAuthServiceRequest
+
+@typing.final
+class EnableAuthServiceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___EnableAuthServiceResponse = EnableAuthServiceResponse
+
+@typing.final
+class DisableAuthServiceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___DisableAuthServiceRequest = DisableAuthServiceRequest
+
+@typing.final
+class DisableAuthServiceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DisableAuthServiceResponse = DisableAuthServiceResponse
+
+@typing.final
+class CreateOAuthAppRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    CLIENT_NAME_FIELD_NUMBER: builtins.int
+    OAUTH_CONFIG_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    client_name: builtins.str
+
+    @property
+    def oauth_config(self) -> global___OAuthConfig:
+        ...
+
+    def __init__(self, *, org_id: builtins.str=..., client_name: builtins.str=..., oauth_config: global___OAuthConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['oauth_config', b'oauth_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_name', b'client_name', 'oauth_config', b'oauth_config', 'org_id', b'org_id']) -> None:
+        ...
+global___CreateOAuthAppRequest = CreateOAuthAppRequest
+
+@typing.final
+class CreateOAuthAppResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLIENT_ID_FIELD_NUMBER: builtins.int
+    CLIENT_SECRET_FIELD_NUMBER: builtins.int
+    client_id: builtins.str
+    client_secret: builtins.str
+
+    def __init__(self, *, client_id: builtins.str=..., client_secret: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_id', b'client_id', 'client_secret', b'client_secret']) -> None:
+        ...
+global___CreateOAuthAppResponse = CreateOAuthAppResponse
+
+@typing.final
+class ReadOAuthAppRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    CLIENT_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    client_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=..., client_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_id', b'client_id', 'org_id', b'org_id']) -> None:
+        ...
+global___ReadOAuthAppRequest = ReadOAuthAppRequest
+
+@typing.final
+class ReadOAuthAppResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLIENT_NAME_FIELD_NUMBER: builtins.int
+    CLIENT_SECRET_FIELD_NUMBER: builtins.int
+    OAUTH_CONFIG_FIELD_NUMBER: builtins.int
+    client_name: builtins.str
+    client_secret: builtins.str
+
+    @property
+    def oauth_config(self) -> global___OAuthConfig:
+        ...
+
+    def __init__(self, *, client_name: builtins.str=..., client_secret: builtins.str=..., oauth_config: global___OAuthConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['oauth_config', b'oauth_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_name', b'client_name', 'client_secret', b'client_secret', 'oauth_config', b'oauth_config']) -> None:
+        ...
+global___ReadOAuthAppResponse = ReadOAuthAppResponse
+
+@typing.final
+class UpdateOAuthAppRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    CLIENT_ID_FIELD_NUMBER: builtins.int
+    CLIENT_NAME_FIELD_NUMBER: builtins.int
+    OAUTH_CONFIG_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    client_id: builtins.str
+    client_name: builtins.str
+
+    @property
+    def oauth_config(self) -> global___OAuthConfig:
+        ...
+
+    def __init__(self, *, org_id: builtins.str=..., client_id: builtins.str=..., client_name: builtins.str=..., oauth_config: global___OAuthConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['oauth_config', b'oauth_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_id', b'client_id', 'client_name', b'client_name', 'oauth_config', b'oauth_config', 'org_id', b'org_id']) -> None:
+        ...
+global___UpdateOAuthAppRequest = UpdateOAuthAppRequest
+
+@typing.final
+class UpdateOAuthAppResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateOAuthAppResponse = UpdateOAuthAppResponse
+
+@typing.final
+class DeleteOAuthAppRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    CLIENT_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    client_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=..., client_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_id', b'client_id', 'org_id', b'org_id']) -> None:
+        ...
+global___DeleteOAuthAppRequest = DeleteOAuthAppRequest
+
+@typing.final
+class DeleteOAuthAppResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteOAuthAppResponse = DeleteOAuthAppResponse
+
+@typing.final
+class ListOAuthAppsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___ListOAuthAppsRequest = ListOAuthAppsRequest
+
+@typing.final
+class ListOAuthAppsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLIENT_IDS_FIELD_NUMBER: builtins.int
+
+    @property
+    def client_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, client_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_ids', b'client_ids']) -> None:
+        ...
+global___ListOAuthAppsResponse = ListOAuthAppsResponse
+
+@typing.final
+class OAuthConfig(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLIENT_AUTHENTICATION_FIELD_NUMBER: builtins.int
+    PKCE_FIELD_NUMBER: builtins.int
+    URL_VALIDATION_FIELD_NUMBER: builtins.int
+    ORIGIN_URIS_FIELD_NUMBER: builtins.int
+    REDIRECT_URIS_FIELD_NUMBER: builtins.int
+    LOGOUT_URI_FIELD_NUMBER: builtins.int
+    ENABLED_GRANTS_FIELD_NUMBER: builtins.int
+    client_authentication: global___ClientAuthentication.ValueType
+    pkce: global___PKCE.ValueType
+    url_validation: global___URLValidation.ValueType
+    logout_uri: builtins.str
+
+    @property
+    def origin_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def redirect_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def enabled_grants(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___EnabledGrant.ValueType]:
+        ...
+
+    def __init__(self, *, client_authentication: global___ClientAuthentication.ValueType=..., pkce: global___PKCE.ValueType=..., url_validation: global___URLValidation.ValueType=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=..., enabled_grants: collections.abc.Iterable[global___EnabledGrant.ValueType] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']) -> None:
+        ...
+global___OAuthConfig = OAuthConfig

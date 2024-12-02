@@ -277,9 +277,6 @@ class Controller(ComponentBase):
 
         ::
 
-            my_controller = Controller.from_robot(
-                robot=machine, name="my_controller")
-
             # Get your controller from the machine.
             my_controller = Controller.from_robot(
                 robot=machine, "my_controller")
