@@ -125,6 +125,8 @@
     <span class="n">Filter</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionRequest</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
+    <span class="n">GetLatestTabularDataRequest</span><span class="p">,</span>
+    <span class="n">GetLatestTabularDataResponse</span><span class="p">,</span>
     <span class="n">Order</span><span class="p">,</span>
     <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
@@ -386,6 +388,40 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">mql_binary</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByMQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByMQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DataClient.get_latest_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_latest_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_latest_tabular_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">                time_captured, time_synced, payload = await data_client.get_latest_tabular_data(</span>
+<span class="sd">                    part_id=&quot;&lt;PART-ID&gt;&quot;,</span>
+<span class="sd">                    resource_name=&quot;&lt;RESOURCE-NAME&gt;&quot;,</span>
+<span class="sd">                    resource_subtype=&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;,</span>
+<span class="sd">                    method_name=&quot;&lt;METHOD-NAME&gt;&quot;</span>
+<span class="sd">                )</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): The ID of the part that owns the data.</span>
+<span class="sd">            resource_name (str): The name of the requested resource that captured the data.</span>
+<span class="sd">            resource_subtype (str): The subtype of the requested resource that captured the data.</span>
+<span class="sd">            method_name (str): The data capture method name.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn&#39;t been synced yet for the data source</span>
+<span class="sd">            or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:</span>
+<span class="sd">            datetime: The time captured,</span>
+<span class="sd">            datetime: The time synced,</span>
+<span class="sd">            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.</span>
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLatestTabularDataRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_subtype</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetLatestTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetLatestTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span>  <span class="n">response</span><span class="o">.</span><span class="n">time_captured</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">response</span><span class="o">.</span><span class="n">time_synced</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

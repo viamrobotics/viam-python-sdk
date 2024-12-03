@@ -79,6 +79,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_filter()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_sql"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_sql()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_mql"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_mql()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_latest_tabular_data"><code class="docutils literal notranslate"><span class="pre">DataClient.get_latest_tabular_data()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.binary_data_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.binary_data_by_filter()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.binary_data_by_ids"><code class="docutils literal notranslate"><span class="pre">DataClient.binary_data_by_ids()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_tabular_data"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_tabular_data()</span></code></a></li>
@@ -360,6 +361,41 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[Dict[str, Union[ValueTypes, datetime]]]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/data-client/">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.get_latest_tabular_data">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_latest_tabular_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.get_latest_tabular_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.get_latest_tabular_data" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_captured</span><span class="p">,</span> <span class="n">time_synced</span><span class="p">,</span> <span class="n">payload</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">get_latest_tabular_data</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;&lt;PART-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">resource_name</span><span class="o">=</span><span class="s2">&quot;&lt;RESOURCE-NAME&gt;&quot;</span><span class="p">,</span>
+    <span class="n">resource_subtype</span><span class="o">=</span><span class="s2">&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s2">&quot;&lt;METHOD-NAME&gt;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part_id</strong> (<em>str</em>) – The ID of the part that owns the data.</p></li>
+<li><p><strong>resource_name</strong> (<em>str</em>) – The name of the requested resource that captured the data.</p></li>
+<li><p><strong>resource_subtype</strong> (<em>str</em>) – The subtype of the requested resource that captured the data.</p></li>
+<li><p><strong>method_name</strong> (<em>str</em>) – The data capture method name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A return value of None means that data hasn’t been synced yet for the data source
+or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
+datetime: The time captured,
+datetime: The time synced,
+Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/data-client/">Data Client API</a>.</p>

@@ -209,6 +209,42 @@ Module Contents
 
 
 
+   .. py:method:: get_latest_tabular_data(part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime.datetime, datetime.datetime, Dict[str, viam.utils.ValueTypes]]]
+      :async:
+
+
+      Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
+
+      ::
+
+              time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
+                  part_id="<PART-ID>",
+                  resource_name="<RESOURCE-NAME>",
+                  resource_subtype="<RESOURCE-SUBTYPE>",
+                  method_name="<METHOD-NAME>"
+              )
+
+
+      :param part_id: The ID of the part that owns the data.
+      :type part_id: str
+      :param resource_name: The name of the requested resource that captured the data.
+      :type resource_name: str
+      :param resource_subtype: The subtype of the requested resource that captured the data.
+      :type resource_subtype: str
+      :param method_name: The data capture method name.
+      :type method_name: str
+
+      :returns: A return value of None means that data hasn't been synced yet for the data source
+                or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
+                datetime: The time captured,
+                datetime: The time synced,
+                Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+      :rtype: Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
+
+
    .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, include_binary_data: bool = True, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[viam.proto.app.data.BinaryData], int, str]
       :async:
 
