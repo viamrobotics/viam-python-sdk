@@ -164,6 +164,21 @@ class TestClient:
             assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
 
+    async def test_get_latest_tabular_data(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            time = datetime(2024, 12, 25)
+            response = await client.get_latest_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD)
+            assert response is not None
+            time_captured, time_synced, payload = response
+            assert service.part_id == PART_ID
+            assert service.resource_name == COMPONENT_NAME
+            assert service.resource_subtype == COMPONENT_TYPE
+            assert service.method_name == METHOD
+            assert payload == TABULAR_DATA
+            assert time_captured == time
+            assert time_synced == time
+
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)

@@ -36,6 +36,8 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    GetLatestTabularDataRequest,
+    GetLatestTabularDataResponse,
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -297,6 +299,40 @@ class DataClient:
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
+
+    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
+        """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
+
+        ::
+
+                time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
+                    part_id="<PART-ID>",
+                    resource_name="<RESOURCE-NAME>",
+                    resource_subtype="<RESOURCE-SUBTYPE>",
+                    method_name="<METHOD-NAME>"
+                )
+
+
+        Args:
+            part_id (str): The ID of the part that owns the data.
+            resource_name (str): The name of the requested resource that captured the data.
+            resource_subtype (str): The subtype of the requested resource that captured the data.
+            method_name (str): The data capture method name.
+
+        Returns:
+            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for the data source
+            or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
+            datetime: The time captured,
+            datetime: The time synced,
+            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+        """
+
+        request = GetLatestTabularDataRequest(part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name)
+        response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
+        if not response.payload:
+            return None
+        return  response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
     async def binary_data_by_filter(
         self,
