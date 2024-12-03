@@ -320,7 +320,7 @@ class DataClient:
             method_name (str): The data capture method name.
 
         Returns:
-            Optional[Tuple[Dict[str, ValueTypes], datetime, datetime]]: A return value of None means that data hasn't been synced yet for the data source
+            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for the data source
             or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
             datetime: The time captured,
             datetime: The time synced,
