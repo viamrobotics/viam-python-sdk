@@ -300,7 +300,9 @@ class DataClient:
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
-    async def get_latest_tabular_data(self, part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
+    async def get_latest_tabular_data(
+        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str
+    ) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
         ::
@@ -328,11 +330,13 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
-        request = GetLatestTabularDataRequest(part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name)
+        request = GetLatestTabularDataRequest(
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name
+        )
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
             return None
-        return  response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
+        return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
     async def binary_data_by_filter(
         self,
