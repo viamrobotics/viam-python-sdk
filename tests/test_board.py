@@ -6,7 +6,7 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import Board, BoardClient, BoardStatus, create_status
+from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -34,7 +34,7 @@ from viam.proto.component.board import (
     WriteAnalogResponse,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockAnalog, MockBoard, MockDigitalInterrupt, MockGPIOPin
@@ -125,18 +125,6 @@ class TestBoard:
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
-
-    async def test_status(self, board: MockBoard):
-        status = await create_status(board)
-        analog = await board.analogs["analog1"].read()
-        val = await board.digital_interrupts["interrupt1"].value()
-        assert status.name == MockBoard.get_resource_name(board.name)
-        assert status.status == message_to_struct(
-            BoardStatus(
-                analogs={"analog1": int(analog.value)},
-                digital_interrupts={"interrupt1": val},
-            )
-        )
 
     async def test_set_power_mode(self, board: MockBoard):
         pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
