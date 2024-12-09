@@ -23,7 +23,7 @@ Classes
    viam.services.slam.Pose
    viam.services.slam.MappingMode
    viam.services.slam.SensorInfo
-   viam.services.slam.SLAMClient
+   viam.services.slam.SLAM
 
 
 Package Contents
@@ -116,42 +116,57 @@ Package Contents
       :type:  global___SensorType
 
 
-.. py:class:: SLAMClient(name: str, channel: grpclib.client.Channel)
+.. py:class:: SLAM(name: str, *, logger: Optional[logging.Logger] = None)
 
-   Bases: :py:obj:`viam.services.slam.slam.SLAM`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
-
-
-   Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
 
 
-   .. py:attribute:: client
-      :type:  viam.proto.service.slam.SLAMServiceStub
+   SLAM represents a SLAM service.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
 
 
-   .. py:attribute:: channel
+   .. py:attribute:: SUBTYPE
+      :type:  Final
+
+      The Subtype of the Resource
 
 
-   .. py:method:: get_position(*, timeout: Optional[float] = None, **kwargs) -> viam.services.slam.Pose
+   .. py:attribute:: Properties
+      :type:  TypeAlias
+      :value: GetPropertiesResponse
+
+
+
+   .. py:method:: get_internal_state(*, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
+
       :async:
 
 
-      Get current position of the specified component in the SLAM Map.
+      Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
       ::
 
-          slam_svc = SLAMClient.from_robot(robot=machine, name="my_slam_service")
+          slam = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
-          # Get the current position of the specified source component in the SLAM map as a Pose.
-          pose = await slam.get_position()
+          # Get the internal state of the SLAM algorithm required to continue mapping/localization.
+          internal_state = await slam.get_internal_state()
 
-      :returns: The current position of the specified component
-      :rtype: Pose
+      :returns: Chunks of the internal state of the SLAM algorithm
+      :rtype: List[GetInternalStateResponse]
 
       For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
 
 
 
-   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float] = None, **kwargs) -> List[bytes]
+   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
+
       :async:
 
 
@@ -176,27 +191,31 @@ Package Contents
 
 
 
-   .. py:method:: get_internal_state(*, timeout: Optional[float] = None, **kwargs) -> List[bytes]
+   .. py:method:: get_position(*, timeout: Optional[float]) -> viam.services.slam.Pose
+      :abstractmethod:
+
       :async:
 
 
-      Get the internal state of the SLAM algorithm required to continue mapping/localization.
+      Get current position of the specified component in the SLAM Map.
 
       ::
 
-          slam = SLAMClient.from_robot(robot=machine, name="my_slam_service")
+          slam_svc = SLAMClient.from_robot(robot=machine, name="my_slam_service")
 
-          # Get the internal state of the SLAM algorithm required to continue mapping/localization.
-          internal_state = await slam.get_internal_state()
+          # Get the current position of the specified source component in the SLAM map as a Pose.
+          pose = await slam.get_position()
 
-      :returns: Chunks of the internal state of the SLAM algorithm
-      :rtype: List[GetInternalStateResponse]
+      :returns: The current position of the specified component
+      :rtype: Pose
 
       For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.services.slam.slam.SLAM.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> Properties
+      :abstractmethod:
+
       :async:
 
 
@@ -213,32 +232,6 @@ Package Contents
       :rtype: Properties
 
       For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
-
-
-
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
-      :async:
-
-
-      Send/receive arbitrary commands.
-
-      ::
-
-          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
-
-          my_command = {
-            "cmnd": "dosomething",
-            "someparameter": 52
-          }
-
-          # Can be used with any resource, using the motion service as an example
-          await service.do_command(command=my_command)
-
-      :param command: The command to execute
-      :type command: Dict[str, ValueTypes]
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, ValueTypes]
 
 
 
@@ -271,6 +264,34 @@ Package Contents
 
       :returns: The service, if it exists on the robot
       :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await service.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
 
 
 
