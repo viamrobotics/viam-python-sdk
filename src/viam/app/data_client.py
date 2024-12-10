@@ -317,9 +317,9 @@ class DataClient:
 
         Args:
             part_id (str): The ID of the part that owns the data.
-            resource_name (str): The name of the requested resource that captured the data.
-            resource_subtype (str): The subtype of the requested resource that captured the data.
-            method_name (str): The data capture method name.
+            resource_name (str): The name of the requested resource that captured the data. Ex: "my-sensor".
+            resource_subtype (str): The subtype of the requested resource that captured the data. Ex: "rdk:component:sensor".
+            method_name (str): The data capture method name. Ex: "Readings".
 
         Returns:
             Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for the data source
