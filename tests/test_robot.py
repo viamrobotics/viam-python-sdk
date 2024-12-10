@@ -16,8 +16,6 @@ from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
 from viam.proto.component.arm import JointPositions
-from viam.proto.component.arm import Status as ArmStatus
-from viam.proto.component.motor import Status as MotorStatus
 from viam.proto.robot import (
     BlockForOperationRequest,
     BlockForOperationResponse,
@@ -36,8 +34,6 @@ from viam.proto.robot import (
     GetMachineStatusResponse,
     GetOperationsRequest,
     GetOperationsResponse,
-    GetStatusRequest,
-    GetStatusResponse,
     GetVersionRequest,
     GetVersionResponse,
     Operation,
@@ -47,7 +43,6 @@ from viam.proto.robot import (
     RobotServiceStub,
     ShutdownRequest,
     ShutdownResponse,
-    Status,
     StopAllRequest,
     StopExtraParameters,
     TransformPoseRequest,
@@ -60,7 +55,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services.mlmodel.client import MLModelClient
-from viam.utils import dict_to_struct, message_to_struct, struct_to_message
+from viam.utils import dict_to_struct
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
 from .mocks.services import MockMLModel
@@ -71,48 +66,6 @@ RESOURCE_NAMES = [
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="motor", name="motor1"),
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="movement_sensor1"),
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="mlmodel", name="mlmodel1"),
-]
-
-ARM_STATUS = ArmStatus(
-    end_position=Pose(
-        x=1,
-        y=2,
-        z=3,
-        o_x=2,
-        o_y=3,
-        o_z=4,
-        theta=20,
-    ),
-    joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0]),
-    is_moving=False,
-)
-
-ARM_STATUS_MSG = Status(
-    name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="arm1"),
-    status=message_to_struct(ARM_STATUS),
-)
-
-CAMERA_STATUS_MSG = Status(
-    name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="camera", name="camera1"), status=Struct()
-)
-
-STATUSES = [
-    ARM_STATUS_MSG,
-    CAMERA_STATUS_MSG,
-    Status(
-        name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="motor", name="motor1"),
-        status=message_to_struct(MotorStatus(is_powered=False, position=0, is_moving=False)),
-    ),
-    Status(
-        name=ResourceName(
-            namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="movement_sensor1"
-        ),
-        status=Struct(),
-    ),
-    Status(
-        name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="mlmodel", name="mlmodel1"),
-        status=Struct(),
-    ),
 ]
 
 CONFIG_RESPONSE = [
@@ -270,16 +223,6 @@ class TestRobotService:
             assert len(response.resources) == len(RESOURCE_NAMES)
             assert set(response.resources) == set(RESOURCE_NAMES)
 
-    async def test_get_status(self, service: RobotService):
-        async with ChannelFor([service]) as channel:
-            client = RobotServiceStub(channel)
-            response: GetStatusResponse = await client.GetStatus(GetStatusRequest())
-            assert list(response.status) == STATUSES
-
-            request = GetStatusRequest(resource_names=[MockArm.get_resource_name("arm1"), MockCamera.get_resource_name("camera1")])
-            response: GetStatusResponse = await client.GetStatus(request)
-            assert list(response.status) == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
-
     async def test_stop_all(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
@@ -407,19 +350,6 @@ class TestRobotClient:
             with pytest.raises(ResourceNotFoundError):
                 MockArm.from_robot(client, "arm2")
 
-            await client.close()
-
-    async def test_get_status(self, service: RobotService):
-        async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            statuses = await client.get_status()
-            assert statuses == STATUSES
-
-            statuses = await client.get_status([MockArm.get_resource_name("arm1"), MockCamera.get_resource_name("camera1")])
-            assert statuses == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
-
-            arm_status = statuses[0].status
-            assert struct_to_message(arm_status, ArmStatus) == ARM_STATUS
             await client.close()
 
     async def test_get_service(self, service: RobotService):

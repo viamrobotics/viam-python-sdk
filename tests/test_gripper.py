@@ -2,9 +2,9 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
-from viam.components.gripper import Gripper, GripperClient, create_status
+from viam.components.gripper import Gripper, GripperClient
 from viam.components.gripper.service import GripperRPCService
-from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -15,7 +15,7 @@ from viam.proto.component.gripper import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockGripper
@@ -68,12 +68,6 @@ class TestGripper:
         command = {"command": "args"}
         resp = await gripper.do_command(command)
         assert resp == {"command": command}
-
-    async def test_status(self, gripper: MockGripper):
-        await gripper.open()
-        status = await create_status(gripper)
-        assert status.name == gripper.get_resource_name(gripper.name)
-        assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
     async def test_extra(self, gripper: MockGripper):
         assert gripper.extra is None

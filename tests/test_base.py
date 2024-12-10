@@ -3,10 +3,10 @@ from random import randint, random
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.base import BaseClient, Vector3, create_status
+from viam.components.base import BaseClient, Vector3
 from viam.components.base.service import BaseRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.base import (
     BaseServiceStub,
     IsMovingRequest,
@@ -18,7 +18,7 @@ from viam.proto.component.base import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockBase
@@ -111,12 +111,6 @@ class TestBase:
         command = {"command": "args"}
         resp = await base.do_command(command)
         assert resp == {"command": command}
-
-    async def test_status(self, base: MockBase):
-        await base.move_straight(1, 1)
-        status = await create_status(base)
-        assert status.name == base.get_resource_name(base.name)
-        assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
     async def test_extra(self, base: MockBase):
         assert base.extra is None

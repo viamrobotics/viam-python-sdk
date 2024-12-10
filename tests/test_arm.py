@@ -1,6 +1,6 @@
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
+from viam.components.arm import ArmClient, KinematicsFileFormat
 from viam.components.arm.service import ArmRPCService
 from viam.proto.common import (
     DoCommandRequest,
@@ -25,7 +25,7 @@ from viam.proto.component.arm import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockArm
@@ -77,12 +77,6 @@ class TestArm:
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
         assert resp == {"command": command}
-
-    async def test_status(self):
-        await self.arm.move_to_position(self.pose)
-        status = await create_status(self.arm)
-        assert status.name == MockArm.get_resource_name(self.arm.name)
-        assert status.status == message_to_struct(ArmStatus(end_position=self.pose, joint_positions=self.joint_pos, is_moving=True))
 
     async def test_extra(self):
         await self.arm.get_end_position(extra={"foo": "bar"})
