@@ -5,7 +5,6 @@ from typing import Any, ClassVar, Dict, Mapping, Optional
 from typing_extensions import Self
 
 from viam.components.sensor import Sensor
-from viam.logging import getLogger
 from viam.module.module import Module
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -13,8 +12,6 @@ from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
 from viam.utils import SensorReading
-
-LOGGER = getLogger(__name__)
 
 
 class MySensor(Sensor):
@@ -35,7 +32,7 @@ class MySensor(Sensor):
     async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
-        LOGGER.info(f"{self.name} is closed.")
+        self.logger.info(f"{self.name} is closed.")
 
 
 async def main():
