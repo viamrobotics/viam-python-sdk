@@ -14,7 +14,7 @@ def viam_to_pil_image(image: ViamImage) -> Image.Image:
     Convert a ViamImage to a PIL.Image.
 
     In order to use this function, Pillow must be installed.
-    https://python-pillow.org/
+    https://pillow.readthedocs.io/
 
     Args:
         image (ViamImage): The image to convert.
@@ -30,7 +30,7 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
     Convert a PIL.Image to a ViamImage.
 
     In order to use this function, Pillow must be installed.
-    https://python-pillow.org/
+    https://pillow.readthedocs.io/
 
     Args:
         image (Image.Image): The image to convert.
