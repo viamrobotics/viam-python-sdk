@@ -22,22 +22,10 @@ Classes
    viam.resource.registry.Registry
 
 
-Functions
----------
-
-.. autoapisummary::
-
-   viam.resource.registry.default_create_status
-
-
 Module Contents
 ---------------
 
 .. py:data:: Resource
-
-.. py:function:: default_create_status(resource: viam.resource.base.ResourceBase) -> viam.proto.robot.Status
-   :async:
-
 
 .. py:class:: ResourceCreatorRegistration
 
@@ -91,14 +79,6 @@ Module Contents
       :type:  Callable[[str, grpclib.client.Channel], Resource]
 
       A function that will create the RPC client for this resource
-
-
-   .. py:attribute:: create_status
-      :type:  Callable[[Resource], Coroutine[Any, Any, viam.proto.robot.Status]]
-
-      A function to create a Status object for this resource.
-
-      If the resource does not provide a custom status type, the default implementation can be used.
 
 
 .. py:class:: Registry

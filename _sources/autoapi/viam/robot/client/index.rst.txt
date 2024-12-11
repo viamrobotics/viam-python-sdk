@@ -372,30 +372,6 @@ Module Contents
 
 
 
-   .. py:method:: get_status(components: Optional[List[viam.proto.common.ResourceName]] = None) -> List[viam.proto.robot.Status]
-      :async:
-
-
-      Get the status of the machine's components. You can optionally
-      provide a list of ``ResourceName`` for which you want statuses.
-
-      ::
-
-          # Get the status of the resources on the machine.
-          statuses = await machine.get_status()
-          resource_statuses = machine_status.resources
-
-      :param components: Optional list of
-                         ``ResourceName`` for components you want statuses.
-      :type components: Optional[List[viam.proto.common.ResourceName]]
-
-      :returns: A list of statuses for each requested resource.
-      :rtype: List[viam.proto.robot.Status]
-
-      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
-
-
-
    .. py:method:: get_operations() -> List[viam.proto.robot.Operation]
       :async:
 

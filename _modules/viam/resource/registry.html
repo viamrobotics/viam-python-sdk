@@ -89,13 +89,11 @@
   <h1>Source code for viam.resource.registry</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
 
-<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">DuplicateResourceError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ValidationError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">Status</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 
@@ -104,11 +102,6 @@
     <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceCreator</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">Validator</span>
 
 <span class="n">Resource</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ResourceBase</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">resource</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
-
 
 <div class="viewcode-block" id="ResourceCreatorRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ResourceCreatorRegistration</span><span class="p">:</span>
@@ -150,12 +143,6 @@
 
     <span class="n">create_rpc_client</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Channel</span><span class="p">],</span> <span class="n">Resource</span><span class="p">]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this resource</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">create_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Resource</span><span class="p">],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Status</span><span class="p">]]</span> <span class="o">=</span> <span class="n">default_create_status</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function to create a Status object for this resource.</span>
-
-<span class="sd">    If the resource does not provide a custom status type, the default implementation can be used.</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 

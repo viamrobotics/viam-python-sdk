@@ -66,10 +66,8 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">viam.resource.registry</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.registry.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.resource.registry.default_create_status"><code class="docutils literal notranslate"><span class="pre">default_create_status()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.registry.ResourceCreatorRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceCreatorRegistration.creator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.creator</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceCreatorRegistration.validator"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration.validator</span></code></a></li>
@@ -79,7 +77,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.resource_type"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.resource_type</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.rpc_service"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.rpc_service</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_rpc_client"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.create_rpc_client</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_status"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.create_status</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.resource.registry.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
@@ -162,26 +159,11 @@
 </tbody>
 </table>
 </section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.default_create_status" title="viam.resource.registry.default_create_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_create_status</span></code></a>(→ viam.proto.robot.Status)</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.resource.registry.Resource">
 <span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">Resource</span></span><a class="headerlink" href="#viam.resource.registry.Resource" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="viam.resource.registry.default_create_status">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">default_create_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#default_create_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.default_create_status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -230,13 +212,6 @@ to the <code class="docutils literal notranslate"><span class="pre">Registry</sp
 <dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.create_rpc_client">
 <span class="sig-name descname"><span class="pre">create_rpc_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.create_rpc_client" title="Permalink to this definition"></a></dt>
 <dd><p>A function that will create the RPC client for this resource</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.create_status">
-<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Coroutine</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.create_status" title="Permalink to this definition"></a></dt>
-<dd><p>A function to create a Status object for this resource.</p>
-<p>If the resource does not provide a custom status type, the default implementation can be used.</p>
 </dd></dl>
 
 </dd></dl>
