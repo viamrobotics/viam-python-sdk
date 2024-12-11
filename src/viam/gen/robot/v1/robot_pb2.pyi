@@ -819,8 +819,30 @@ global___GetMachineStatusRequest = GetMachineStatusRequest
 @typing.final
 class GetMachineStatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    class _State:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+
+    class _StateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[GetMachineStatusResponse._State.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+        STATE_UNSPECIFIED: GetMachineStatusResponse._State.ValueType
+        STATE_INITIALIZING: GetMachineStatusResponse._State.ValueType
+        'the machine is reachable but still in the process of configuring initial\n        modules and resources.\n        '
+        STATE_RUNNING: GetMachineStatusResponse._State.ValueType
+        'the machine has finished initializing.'
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        ...
+    STATE_UNSPECIFIED: GetMachineStatusResponse.State.ValueType
+    STATE_INITIALIZING: GetMachineStatusResponse.State.ValueType
+    'the machine is reachable but still in the process of configuring initial\n    modules and resources.\n    '
+    STATE_RUNNING: GetMachineStatusResponse.State.ValueType
+    'the machine has finished initializing.'
     RESOURCES_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
+    STATE_FIELD_NUMBER: builtins.int
+    state: global___GetMachineStatusResponse.State.ValueType
 
     @property
     def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceStatus]:
@@ -830,13 +852,13 @@ class GetMachineStatusResponse(google.protobuf.message.Message):
     def config(self) -> global___ConfigStatus:
         ...
 
-    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=...) -> None:
+    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=..., state: global___GetMachineStatusResponse.State.ValueType=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['config', b'config', 'resources', b'resources']) -> None:
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'resources', b'resources', 'state', b'state']) -> None:
         ...
 global___GetMachineStatusResponse = GetMachineStatusResponse
 

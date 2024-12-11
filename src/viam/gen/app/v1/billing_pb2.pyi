@@ -47,6 +47,7 @@ class _UsageCostTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._
     USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE: _UsageCostType.ValueType
     USAGE_COST_TYPE_OTHER_CLOUD_STORAGE: _UsageCostType.ValueType
     USAGE_COST_TYPE_PER_MACHINE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_TRIGGER_NOTIFICATION: _UsageCostType.ValueType
 
 class UsageCostType(_UsageCostType, metaclass=_UsageCostTypeEnumTypeWrapper):
     ...
@@ -59,6 +60,7 @@ USAGE_COST_TYPE_CLOUD_STORAGE: UsageCostType.ValueType
 USAGE_COST_TYPE_BINARY_DATA_CLOUD_STORAGE: UsageCostType.ValueType
 USAGE_COST_TYPE_OTHER_CLOUD_STORAGE: UsageCostType.ValueType
 USAGE_COST_TYPE_PER_MACHINE: UsageCostType.ValueType
+USAGE_COST_TYPE_TRIGGER_NOTIFICATION: UsageCostType.ValueType
 global___UsageCostType = UsageCostType
 
 class _SourceType:

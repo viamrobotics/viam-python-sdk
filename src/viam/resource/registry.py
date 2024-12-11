@@ -14,6 +14,7 @@ if TYPE_CHECKING:
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
+
 @dataclass
 class ResourceCreatorRegistration:
     """An object representing a resource creator to be registered.
