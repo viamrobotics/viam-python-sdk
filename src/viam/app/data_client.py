@@ -23,6 +23,7 @@ from viam.proto.app.data import (
     BinaryID,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    CaptureInterval,
     CaptureMetadata,
     ConfigureDatabaseUserRequest,
     DataRequest,
@@ -33,6 +34,8 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    ExportTabularDataRequest,
+    ExportTabularDataResponse,
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
@@ -254,7 +257,6 @@ class DataClient:
                 sql_query="SELECT * FROM readings LIMIT 5"
             )
 
-
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
@@ -284,7 +286,6 @@ class DataClient:
 
             print(f"Tabular Data: {tabular_data}")
 
-
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
@@ -307,13 +308,12 @@ class DataClient:
 
         ::
 
-                time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
-                    part_id="<PART-ID>",
-                    resource_name="<RESOURCE-NAME>",
-                    resource_subtype="<RESOURCE-SUBTYPE>",
-                    method_name="<METHOD-NAME>"
-                )
-
+            time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
+                part_id="<PART-ID>",
+                resource_name="<RESOURCE-NAME>",
+                resource_subtype="<RESOURCE-SUBTYPE>",
+                method_name="<METHOD-NAME>"
+            )
 
         Args:
             part_id (str): The ID of the part that owns the data.
@@ -327,6 +327,7 @@ class DataClient:
             datetime: The time captured,
             datetime: The time synced,
             Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
@@ -337,6 +338,48 @@ class DataClient:
         if not response.payload:
             return None
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
+
+    async def export_tabular_data(
+        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, interval: Optional[CaptureInterval] = None
+    ) -> Stream[ExportTabularDataResponse]:
+        """Obtain unified tabular data and metadata from the specified data source.
+
+        ::
+
+            my_data = []
+
+            tabular_data = await data_client.export_tabular_data(
+                part_id="<PART-ID>",
+                resource_name="<RESOURCE-NAME>",
+                resource_subtype="<RESOURCE-SUBTYPE>",
+                method_name="<METHOD-NAME>",
+                interval="<INTERVAL>
+            )
+
+            async for response in tabular_data:
+                my_data.append(tabular_data)
+
+            print(f"My data: {my_data}")
+
+        Args:
+            part_id (str): The ID of the part that owns the data.
+            resource_name (str): The name of the requested resource that captured the data.
+            resource_subtype (str): The subtype of the requested resource that captured the data.
+            method_name (str): The data capture method name.
+            interval (CaptureInterval): Optional time interval to retrieve data for. Contains start and end fields as protobuf
+            Timestamps defining the time range to query.
+
+        Returns:
+            Stream[ExportTabularDataResponse]: An asynchronous stream of unified tabular data and metadata.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+        """
+
+        request = ExportTabularDataRequest(
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
+        )
+
+        return await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
     async def binary_data_by_filter(
         self,
