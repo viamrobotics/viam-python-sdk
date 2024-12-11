@@ -2,7 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
-from viam.components.motor import MotorClient, MotorStatus, create_status
+from viam.components.motor import MotorClient
 from viam.components.motor.service import MotorRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.motor import (
@@ -23,7 +23,7 @@ from viam.proto.component.motor import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockMotor
@@ -130,12 +130,6 @@ class TestMotor:
         command = {"command": "args"}
         resp = await motor.do_command(command)
         assert resp == {"command": command}
-
-    async def test_status(self, motor: MockMotor):
-        await motor.set_power(10)
-        status = await create_status(motor)
-        assert status.name == motor.get_resource_name(motor.name)
-        assert status.status == message_to_struct(MotorStatus(is_powered=True, position=0, is_moving=True))
 
     async def test_extra(self, motor: MockMotor):
         assert motor.extra is None

@@ -1,6 +1,6 @@
 from grpclib.testing import ChannelFor
 
-from viam.components.gantry import GantryClient, GantryStatus, create_status
+from viam.components.gantry import GantryClient
 from viam.components.gantry.service import GantryRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.gantry import (
@@ -17,7 +17,7 @@ from viam.proto.component.gantry import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockGantry
@@ -57,12 +57,6 @@ class TestGantry:
         assert await self.gantry.is_moving()
         await self.gantry.stop()
         assert not await self.gantry.is_moving()
-
-    async def test_status(self):
-        await self.gantry.move_to_position([1, 2, 3], [4, 5, 6])
-        status = await create_status(self.gantry)
-        assert status.name == MockGantry.get_resource_name(self.gantry.name)
-        assert status.status == message_to_struct(GantryStatus(lengths_mm=[4, 5, 6], positions_mm=[1, 2, 3], is_moving=True))
 
     async def test_extra(self):
         assert self.gantry.extra is None or len(self.gantry.extra) == 0
