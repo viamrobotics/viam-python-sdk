@@ -438,7 +438,7 @@ class DataClient:
         request = ExportTabularDataRequest(
             part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
         )
-        response = await self._data_client.ExportTabularData(request, metadata=self._metadata)
+        response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
         return [
             DataClient.TabularDataPoint(
