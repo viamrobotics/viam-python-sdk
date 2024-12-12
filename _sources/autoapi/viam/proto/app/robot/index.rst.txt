@@ -1621,7 +1621,7 @@ Module Contents
 
 
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: global___MaintenanceConfig | None = ...)
+.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: global___MaintenanceConfig | None = ..., disable_log_deduplication: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1653,6 +1653,13 @@ Module Contents
       :type:  str
 
       Attributes a particular revision to the config.
+
+
+   .. py:attribute:: disable_log_deduplication
+      :type:  bool
+
+      Disables the robot's log deduplication (identical, noisy logs will still
+      be output individually instead of aggregated.)
 
 
    .. py:property:: cloud

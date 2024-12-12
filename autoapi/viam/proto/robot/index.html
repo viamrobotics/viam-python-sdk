@@ -207,6 +207,11 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusRequest"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusRequest</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.State"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.State</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.STATE_UNSPECIFIED"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.STATE_UNSPECIFIED</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.STATE_INITIALIZING"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.STATE_INITIALIZING</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.STATE_RUNNING"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.STATE_RUNNING</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.state"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.state</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.resources"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.resources</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.config"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.config</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetMachineStatusResponse.HasField()</span></code></a></li>
@@ -1373,12 +1378,41 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetMachineStatusResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceStatus</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ConfigStatus</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetMachineStatusResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceStatus</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ConfigStatus</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___GetMachineStatusResponse</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.State" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_State</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.STATE_UNSPECIFIED">
+<span class="sig-name descname"><span class="pre">STATE_UNSPECIFIED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse"><span class="pre">GetMachineStatusResponse</span></a></em><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.STATE_UNSPECIFIED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.STATE_INITIALIZING">
+<span class="sig-name descname"><span class="pre">STATE_INITIALIZING</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse"><span class="pre">GetMachineStatusResponse</span></a></em><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.STATE_INITIALIZING" title="Permalink to this definition"></a></dt>
+<dd><p>the machine is reachable but still in the process of configuring initial
+modules and resources.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.STATE_RUNNING">
+<span class="sig-name descname"><span class="pre">STATE_RUNNING</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse"><span class="pre">GetMachineStatusResponse</span></a></em><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.STATE_RUNNING" title="Permalink to this definition"></a></dt>
+<dd><p>the machine has finished initializing.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.state">
+<span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___GetMachineStatusResponse.State.ValueType</span></em><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.robot.GetMachineStatusResponse.resources">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceStatus</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.GetMachineStatusResponse.resources" title="Permalink to this definition"></a></dt>
