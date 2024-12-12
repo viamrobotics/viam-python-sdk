@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import bson
 from google.protobuf.struct_pb2 import Struct
-from grpclib.client import Channel, Stream
+from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
@@ -341,25 +341,20 @@ class DataClient:
 
     async def export_tabular_data(
         self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, interval: Optional[CaptureInterval] = None
-    ) -> Stream[ExportTabularDataResponse]:
+    ) -> List[ExportTabularDataResponse]:
         """Obtain unified tabular data and metadata from the specified data source.
 
         ::
-
-            my_data = []
 
             tabular_data = await data_client.export_tabular_data(
                 part_id="<PART-ID>",
                 resource_name="<RESOURCE-NAME>",
                 resource_subtype="<RESOURCE-SUBTYPE>",
                 method_name="<METHOD-NAME>",
-                interval="<INTERVAL>
+                interval="<INTERVAL>"
             )
 
-            async for response in tabular_data:
-                my_data.append(tabular_data)
-
-            print(f"My data: {my_data}")
+            print(f"My data: {tabular_data}")
 
         Args:
             part_id (str): The ID of the part that owns the data.
@@ -370,7 +365,7 @@ class DataClient:
             Timestamps defining the time range to query.
 
         Returns:
-            Stream[ExportTabularDataResponse]: An asynchronous stream of unified tabular data and metadata.
+            List[ExportTabularDataResponse]: The unified tabular data and metadata.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
@@ -378,8 +373,8 @@ class DataClient:
         request = ExportTabularDataRequest(
             part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
         )
-
-        return await self._data_client.ExportTabularData(request, metadata=self._metadata)
+        response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
+        return response
 
     async def binary_data_by_filter(
         self,
