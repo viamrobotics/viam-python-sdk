@@ -351,7 +351,8 @@ class DataClient:
                 resource_name="<RESOURCE-NAME>",
                 resource_subtype="<RESOURCE-SUBTYPE>",
                 method_name="<METHOD-NAME>",
-                interval="<INTERVAL>"
+                start_time="<START_TIME>"
+                end_time="<END_TIME>"
             )
 
             print(f"My data: {tabular_data}")
