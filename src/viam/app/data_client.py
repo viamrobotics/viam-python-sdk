@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import bson
 from google.protobuf.struct_pb2 import Struct
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.data import (
