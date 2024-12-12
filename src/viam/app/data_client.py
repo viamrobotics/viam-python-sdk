@@ -340,7 +340,7 @@ class DataClient:
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
     async def export_tabular_data(
-        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, interval: Optional[CaptureInterval] = None
+        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None
     ) -> List[ExportTabularDataResponse]:
         """Obtain unified tabular data and metadata from the specified data source.
 
@@ -361,8 +361,8 @@ class DataClient:
             resource_name (str): The name of the requested resource that captured the data.
             resource_subtype (str): The subtype of the requested resource that captured the data.
             method_name (str): The data capture method name.
-            interval (CaptureInterval): Optional time interval to retrieve data for. Contains start and end fields as protobuf
-            Timestamps defining the time range to query.
+            start_time (datetime): Optional start time for requesting a specific range of data.
+            end_time (datetime): Optional end time for requesting a specific range of data.
 
         Returns:
             List[ExportTabularDataResponse]: The unified tabular data and metadata.
@@ -370,11 +370,11 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
+        interval=CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
         request = ExportTabularDataRequest(
             part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
         )
-        response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
-        return response
+        return await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
     async def binary_data_by_filter(
         self,

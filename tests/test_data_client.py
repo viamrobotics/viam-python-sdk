@@ -199,7 +199,7 @@ class TestClient:
     async def test_export_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            tabular_data = await client.export_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD, INTERVAL)
+            tabular_data = await client.export_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD, START_DATETIME, END_DATETIME)
             assert tabular_data is not None
             for tabular_datum in tabular_data:
                 assert tabular_datum is not None
