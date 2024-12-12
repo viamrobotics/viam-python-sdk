@@ -8,6 +8,4 @@ __all__ = [
     "Gripper",
 ]
 
-Registry.register_subtype(
-    ResourceRegistration(Gripper, GripperRPCService, lambda name, channel: GripperClient(name, channel))
-)
+Registry.register_subtype(ResourceRegistration(Gripper, GripperRPCService, lambda name, channel: GripperClient(name, channel)))

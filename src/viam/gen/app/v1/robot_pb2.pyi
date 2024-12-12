@@ -59,6 +59,7 @@ class RobotConfig(google.protobuf.message.Message):
     LOG_FIELD_NUMBER: builtins.int
     REVISION_FIELD_NUMBER: builtins.int
     MAINTENANCE_FIELD_NUMBER: builtins.int
+    DISABLE_LOG_DEDUPLICATION_FIELD_NUMBER: builtins.int
     debug: builtins.bool
     'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
     disable_partial_start: builtins.bool
@@ -66,6 +67,8 @@ class RobotConfig(google.protobuf.message.Message):
     'Turns on pprof http server on localhost. By default false.'
     revision: builtins.str
     'Attributes a particular revision to the config.'
+    disable_log_deduplication: builtins.bool
+    "Disables the robot's log deduplication (identical, noisy logs will still\n    be output individually instead of aggregated.)\n    "
 
     @property
     def cloud(self) -> global___CloudConfig:
@@ -115,13 +118,13 @@ class RobotConfig(google.protobuf.message.Message):
     def maintenance(self) -> global___MaintenanceConfig:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=...) -> None:
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=..., disable_log_deduplication: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
+    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_log_deduplication', b'disable_log_deduplication', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
         ...
 
     @typing.overload
