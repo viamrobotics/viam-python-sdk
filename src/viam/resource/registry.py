@@ -1,12 +1,10 @@
 from dataclasses import dataclass
 from threading import Lock
-from typing import TYPE_CHECKING, Any, Callable, ClassVar, Coroutine, Dict, Generic, Mapping, Type, TypeVar
+from typing import TYPE_CHECKING, Callable, ClassVar, Dict, Generic, Mapping, Type, TypeVar
 
-from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 
 from viam.errors import DuplicateResourceError, ResourceNotFoundError, ValidationError
-from viam.proto.robot import Status
 
 from .base import ResourceBase
 
@@ -15,10 +13,6 @@ if TYPE_CHECKING:
     from .types import Model, ResourceCreator, Subtype, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
-
-
-async def default_create_status(resource: ResourceBase) -> Status:
-    return Status(name=resource.get_resource_name(resource.name), status=Struct())
 
 
 @dataclass
@@ -61,12 +55,6 @@ class ResourceRegistration(Generic[Resource]):
 
     create_rpc_client: Callable[[str, Channel], Resource]
     """A function that will create the RPC client for this resource
-    """
-
-    create_status: Callable[[Resource], Coroutine[Any, Any, Status]] = default_create_status
-    """A function to create a Status object for this resource.
-
-    If the resource does not provide a custom status type, the default implementation can be used.
     """
 
 

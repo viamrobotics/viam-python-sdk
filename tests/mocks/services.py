@@ -322,14 +322,6 @@ from viam.proto.service.motion import (
     StopPlanResponse,
 )
 from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
-from viam.proto.service.sensors import (
-    GetReadingsRequest,
-    GetReadingsResponse,
-    GetSensorsRequest,
-    GetSensorsResponse,
-    Readings,
-    SensorsServiceBase,
-)
 from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
 from viam.proto.service.vision import Classification, Detection
 from viam.services.generic import Generic as GenericService
@@ -627,37 +619,6 @@ class MockMotion(MotionServiceBase):
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         await stream.send_message(self.get_plan_response)
-
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(DoCommandResponse(result=request.command))
-
-
-class MockSensors(SensorsServiceBase):
-    def __init__(self, sensors: List[ResourceName], readings: List[Readings]):
-        self.sensors = sensors
-        self.readings = readings
-        self.extra: Optional[Mapping[str, Any]] = None
-        self.timeout: Optional[float] = None
-
-    async def GetSensors(self, stream: Stream[GetSensorsRequest, GetSensorsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetSensorsResponse(sensor_names=self.sensors)
-        await stream.send_message(response)
-
-    async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.sensors_for_readings: List[ResourceName] = list(request.sensor_names)
-        response = GetReadingsResponse(readings=self.readings)
-        await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

@@ -29,8 +29,6 @@ from viam.proto.robot import (
     GetMachineStatusResponse,
     GetOperationsRequest,
     GetOperationsResponse,
-    GetStatusRequest,
-    GetStatusResponse,
     GetVersionRequest,
     GetVersionResponse,
     LogRequest,
@@ -44,7 +42,6 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
-from viam.proto.robot import Status as PBStatus
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
@@ -600,34 +597,6 @@ class RobotClient:
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
-
-    ##########
-    # STATUS #
-    ##########
-    async def get_status(self, components: Optional[List[ResourceName]] = None) -> List[PBStatus]:
-        """
-        Get the status of the machine's components. You can optionally
-        provide a list of ``ResourceName`` for which you want statuses.
-
-        ::
-
-            # Get the status of the resources on the machine.
-            statuses = await machine.get_status()
-            resource_statuses = machine_status.resources
-
-        Args:
-            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
-                ``ResourceName`` for components you want statuses.
-
-        Returns:
-            List[viam.proto.robot.Status]: A list of statuses for each requested resource.
-
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
-        """
-        names = components if components is not None else []
-        request = GetStatusRequest(resource_names=names)
-        response: GetStatusResponse = await self._client.GetStatus(request)
-        return list(response.status)
 
     ##############
     # OPERATIONS #

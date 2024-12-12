@@ -2100,6 +2100,25 @@ class FragmentError(google.protobuf.message.Message):
 global___FragmentError = FragmentError
 
 @typing.final
+class FragmentUsage(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATIONS_FIELD_NUMBER: builtins.int
+    MACHINES_FIELD_NUMBER: builtins.int
+    MACHINES_IN_CURRENT_ORG_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.int
+    organizations: builtins.int
+    machines: builtins.int
+    machines_in_current_org: builtins.int
+
+    def __init__(self, *, fragment_id: builtins.int=..., organizations: builtins.int=..., machines: builtins.int=..., machines_in_current_org: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'machines', b'machines', 'machines_in_current_org', b'machines_in_current_org', 'organizations', b'organizations']) -> None:
+        ...
+global___FragmentUsage = FragmentUsage
+
+@typing.final
 class ResolvedFragment(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_ID_FIELD_NUMBER: builtins.int
@@ -2149,15 +2168,20 @@ global___ListFragmentsRequest = ListFragmentsRequest
 class ListFragmentsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENTS_FIELD_NUMBER: builtins.int
+    FRAGMENT_USAGES_FIELD_NUMBER: builtins.int
 
     @property
     def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
         ...
 
-    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=...) -> None:
+    @property
+    def fragment_usages(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentUsage]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=..., fragment_usages: collections.abc.Iterable[global___FragmentUsage] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_usages', b'fragment_usages', 'fragments', b'fragments']) -> None:
         ...
 global___ListFragmentsResponse = ListFragmentsResponse
 
@@ -2165,12 +2189,14 @@ global___ListFragmentsResponse = ListFragmentsResponse
 class GetFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
+    CURRENT_ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
+    current_organization_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., current_organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['current_organization_id', b'current_organization_id', 'id', b'id']) -> None:
         ...
 global___GetFragmentRequest = GetFragmentRequest
 
@@ -2178,18 +2204,23 @@ global___GetFragmentRequest = GetFragmentRequest
 class GetFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_FIELD_NUMBER: builtins.int
+    FRAGMENT_USAGE_FIELD_NUMBER: builtins.int
 
     @property
     def fragment(self) -> global___Fragment:
         ...
 
-    def __init__(self, *, fragment: global___Fragment | None=...) -> None:
+    @property
+    def fragment_usage(self) -> global___FragmentUsage:
         ...
 
-    def HasField(self, field_name: typing.Literal['fragment', b'fragment']) -> builtins.bool:
+    def __init__(self, *, fragment: global___Fragment | None=..., fragment_usage: global___FragmentUsage | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragment', b'fragment']) -> None:
+    def HasField(self, field_name: typing.Literal['fragment', b'fragment', 'fragment_usage', b'fragment_usage']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment', b'fragment', 'fragment_usage', b'fragment_usage']) -> None:
         ...
 global___GetFragmentResponse = GetFragmentResponse
 
