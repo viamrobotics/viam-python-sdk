@@ -3675,13 +3675,28 @@ class OrgDetails(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     ORG_NAME_FIELD_NUMBER: builtins.int
+    ORG_CID_FIELD_NUMBER: builtins.int
+    PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     org_id: builtins.str
     org_name: builtins.str
+    org_cid: builtins.str
+    public_namespace: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=..., org_name: builtins.str=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., org_name: builtins.str=..., org_cid: builtins.str | None=..., public_namespace: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['org_id', b'org_id', 'org_name', b'org_name']) -> None:
+    def HasField(self, field_name: typing.Literal['_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'org_cid', b'org_cid', 'public_namespace', b'public_namespace']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'org_cid', b'org_cid', 'org_id', b'org_id', 'org_name', b'org_name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_org_cid', b'_org_cid']) -> typing.Literal['org_cid'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_public_namespace', b'_public_namespace']) -> typing.Literal['public_namespace'] | None:
         ...
 global___OrgDetails = OrgDetails
 
@@ -3700,6 +3715,60 @@ class ListOrganizationsByUserResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['orgs', b'orgs']) -> None:
         ...
 global___ListOrganizationsByUserResponse = ListOrganizationsByUserResponse
+
+@typing.final
+class SearchOrganizationsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    ORG_NAME_FIELD_NUMBER: builtins.int
+    CID_FIELD_NUMBER: builtins.int
+    PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    org_name: builtins.str
+    cid: builtins.str
+    public_namespace: builtins.str
+
+    def __init__(self, *, org_id: builtins.str | None=..., org_name: builtins.str | None=..., cid: builtins.str | None=..., public_namespace: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_org_id', b'_org_id', '_org_name', b'_org_name', '_public_namespace', b'_public_namespace', 'cid', b'cid', 'org_id', b'org_id', 'org_name', b'org_name', 'public_namespace', b'public_namespace']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_org_id', b'_org_id', '_org_name', b'_org_name', '_public_namespace', b'_public_namespace', 'cid', b'cid', 'org_id', b'org_id', 'org_name', b'org_name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_cid', b'_cid']) -> typing.Literal['cid'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_org_id', b'_org_id']) -> typing.Literal['org_id'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_org_name', b'_org_name']) -> typing.Literal['org_name'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_public_namespace', b'_public_namespace']) -> typing.Literal['public_namespace'] | None:
+        ...
+global___SearchOrganizationsRequest = SearchOrganizationsRequest
+
+@typing.final
+class SearchOrganizationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def organizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OrgDetails]:
+        ...
+
+    def __init__(self, *, organizations: collections.abc.Iterable[global___OrgDetails] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['organizations', b'organizations']) -> None:
+        ...
+global___SearchOrganizationsResponse = SearchOrganizationsResponse
 
 @typing.final
 class CreateKeyRequest(google.protobuf.message.Message):
