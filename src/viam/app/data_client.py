@@ -182,13 +182,13 @@ class DataClient:
         part_name: str
         """The robot part name"""
 
-        method_parameters: Mapping[str, Any]
+        method_parameters: Mapping[str, ValueTypes]
         """Additional parameters associated with the data capture method"""
 
         tags: List[str]
         """A list of tags associated with the data point"""
 
-        payload: Mapping[str, Any]
+        payload: Mapping[str, ValueTypes]
         """The captured data"""
 
         def __str__(self) -> str:
