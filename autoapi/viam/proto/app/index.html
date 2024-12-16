@@ -90,6 +90,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListOrganizations"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListOrganizations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetOrganizationsWithAccessToLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetOrganizationsWithAccessToLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListOrganizationsByUser"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListOrganizationsByUser()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.SearchOrganizations"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.SearchOrganizations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetOrganization"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetOrganization()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetOrganizationNamespaceAvailability"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetOrganizationNamespaceAvailability()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateOrganization"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateOrganization()</span></code></a></li>
@@ -182,6 +183,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.ListOrganizations"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.ListOrganizations</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.GetOrganizationsWithAccessToLocation"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.GetOrganizationsWithAccessToLocation</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.ListOrganizationsByUser"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.ListOrganizationsByUser</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.SearchOrganizations"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.SearchOrganizations</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.GetOrganization"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.GetOrganization</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.GetOrganizationNamespaceAvailability"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.GetOrganizationNamespaceAvailability</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub.UpdateOrganization"><code class="docutils literal notranslate"><span class="pre">AppServiceStub.UpdateOrganization</span></code></a></li>
@@ -273,6 +275,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.ListOrganizations"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.ListOrganizations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.GetOrganizationsWithAccessToLocation"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.GetOrganizationsWithAccessToLocation()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.ListOrganizationsByUser"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.ListOrganizationsByUser()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.SearchOrganizations"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.SearchOrganizations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.GetOrganization"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.GetOrganization()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.GetOrganizationNamespaceAvailability"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.GetOrganizationNamespaceAvailability()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UnimplementedAppServiceBase.UpdateOrganization"><code class="docutils literal notranslate"><span class="pre">UnimplementedAppServiceBase.UpdateOrganization()</span></code></a></li>
@@ -1159,6 +1162,10 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.OrgDetails"><code class="docutils literal notranslate"><span class="pre">OrgDetails</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.org_id"><code class="docutils literal notranslate"><span class="pre">OrgDetails.org_id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.org_name"><code class="docutils literal notranslate"><span class="pre">OrgDetails.org_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.org_cid"><code class="docutils literal notranslate"><span class="pre">OrgDetails.org_cid</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.public_namespace"><code class="docutils literal notranslate"><span class="pre">OrgDetails.public_namespace</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.HasField"><code class="docutils literal notranslate"><span class="pre">OrgDetails.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.OrgDetails.WhichOneof"><code class="docutils literal notranslate"><span class="pre">OrgDetails.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.ReadOAuthAppRequest"><code class="docutils literal notranslate"><span class="pre">ReadOAuthAppRequest</span></code></a><ul>
@@ -1280,6 +1287,19 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot.location_id"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot.location_id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot.robot_name"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot.robot_name</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot.robot_main_part_id"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot.robot_main_part_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.org_id"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.org_id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.org_name"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.org_name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.cid"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.cid</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.public_namespace"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.public_namespace</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.HasField()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsResponse"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.SearchOrganizationsResponse.organizations"><code class="docutils literal notranslate"><span class="pre">SearchOrganizationsResponse.organizations</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.app.SharedSecret"><code class="docutils literal notranslate"><span class="pre">SharedSecret</span></code></a><ul>
@@ -2126,6 +2146,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RoverRentalRobot" title="viam.proto.app.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.SearchOrganizationsRequest" title="viam.proto.app.SearchOrganizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SearchOrganizationsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.SearchOrganizationsResponse" title="viam.proto.app.SearchOrganizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SearchOrganizationsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.SharedSecret" title="viam.proto.app.SharedSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SharedSecret</span></code></a></p></td>
 <td><p>SharedSecret is a secret used for LocationAuth and RobotParts.</p></td>
 </tr>
@@ -2284,6 +2310,15 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.ListOrganizationsByUser">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListOrganizationsByUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest" title="viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest"><span class="pre">app.v1.app_pb2.ListOrganizationsByUserRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse" title="viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse"><span class="pre">app.v1.app_pb2.ListOrganizationsByUserResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.ListOrganizationsByUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.ListOrganizationsByUser" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.SearchOrganizations">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SearchOrganizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.SearchOrganizationsRequest" title="viam.gen.app.v1.app_pb2.SearchOrganizationsRequest"><span class="pre">app.v1.app_pb2.SearchOrganizationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.SearchOrganizationsResponse" title="viam.gen.app.v1.app_pb2.SearchOrganizationsResponse"><span class="pre">app.v1.app_pb2.SearchOrganizationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.SearchOrganizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.SearchOrganizations" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -3073,6 +3108,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceStub.SearchOrganizations">
+<span class="sig-name descname"><span class="pre">SearchOrganizations</span></span><a class="headerlink" href="#viam.proto.app.AppServiceStub.SearchOrganizations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceStub.GetOrganization">
 <span class="sig-name descname"><span class="pre">GetOrganization</span></span><a class="headerlink" href="#viam.proto.app.AppServiceStub.GetOrganization" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -3518,6 +3558,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.ListOrganizationsByUser">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListOrganizationsByUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest" title="viam.gen.app.v1.app_pb2.ListOrganizationsByUserRequest"><span class="pre">app.v1.app_pb2.ListOrganizationsByUserRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse" title="viam.gen.app.v1.app_pb2.ListOrganizationsByUserResponse"><span class="pre">app.v1.app_pb2.ListOrganizationsByUserResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.ListOrganizationsByUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.ListOrganizationsByUser" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.UnimplementedAppServiceBase.SearchOrganizations">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SearchOrganizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.SearchOrganizationsRequest" title="viam.gen.app.v1.app_pb2.SearchOrganizationsRequest"><span class="pre">app.v1.app_pb2.SearchOrganizationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.SearchOrganizationsResponse" title="viam.gen.app.v1.app_pb2.SearchOrganizationsResponse"><span class="pre">app.v1.app_pb2.SearchOrganizationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#UnimplementedAppServiceBase.SearchOrganizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.UnimplementedAppServiceBase.SearchOrganizations" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -8408,7 +8453,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.OrgDetails">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">OrgDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.OrgDetails" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">OrgDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_cid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.OrgDetails" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -8423,6 +8468,62 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.OrgDetails.org_name">
 <span class="sig-name descname"><span class="pre">org_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.OrgDetails.org_name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.OrgDetails.org_cid">
+<span class="sig-name descname"><span class="pre">org_cid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.OrgDetails.org_cid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.OrgDetails.public_namespace">
+<span class="sig-name descname"><span class="pre">public_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.OrgDetails.public_namespace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.OrgDetails.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_org_cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_cid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_public_namespace'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'org_cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'org_cid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'public_namespace'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.OrgDetails.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.OrgDetails.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_org_cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_cid'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'org_cid'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.OrgDetails.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_public_namespace'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'public_namespace'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -9140,6 +9241,101 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.RoverRentalRobot.robot_main_part_id">
 <span class="sig-name descname"><span class="pre">robot_main_part_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.RoverRentalRobot.robot_main_part_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">SearchOrganizationsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.org_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.org_name">
+<span class="sig-name descname"><span class="pre">org_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.org_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.cid">
+<span class="sig-name descname"><span class="pre">cid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.cid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.public_namespace">
+<span class="sig-name descname"><span class="pre">public_namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.public_namespace" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_cid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_org_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_org_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_public_namespace'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'cid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'org_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'org_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'org_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'org_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'public_namespace'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_cid'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_cid'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cid'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.SearchOrganizationsRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_org_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'org_id'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_org_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'org_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_public_namespace'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_public_namespace'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'public_namespace'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">SearchOrganizationsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___OrgDetails</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.SearchOrganizationsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.SearchOrganizationsResponse.organizations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">organizations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___OrgDetails</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.SearchOrganizationsResponse.organizations" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
