@@ -23,6 +23,7 @@ from viam.proto.app.data import (
     BinaryID,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    CaptureInterval,
     CaptureMetadata,
     ConfigureDatabaseUserRequest,
     DataRequest,
@@ -33,6 +34,8 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    ExportTabularDataRequest,
+    ExportTabularDataResponse,
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
@@ -145,6 +148,69 @@ class DataClient:
                 return str(self) == str(other)
             return False
 
+    @dataclass
+    class TabularDataPoint:
+        """Represents a tabular data point and its associated metadata."""
+
+        part_id: str
+        """The robot part ID"""
+
+        resource_name: str
+        """The resource name"""
+
+        resource_subtype: str
+        """The resource subtype. Ex: `rdk:component:sensor`"""
+
+        method_name: str
+        """The method used for data capture. Ex" `Readings`"""
+
+        time_captured: datetime
+        """The time at which the data point was captured"""
+
+        organization_id: str
+        """The organization ID"""
+
+        location_id: str
+        """The location ID"""
+
+        robot_name: str
+        """The robot name"""
+
+        robot_id: str
+        """The robot ID"""
+
+        part_name: str
+        """The robot part name"""
+
+        method_parameters: Mapping[str, ValueTypes]
+        """Additional parameters associated with the data capture method"""
+
+        tags: List[str]
+        """A list of tags associated with the data point"""
+
+        payload: Mapping[str, ValueTypes]
+        """The captured data"""
+
+        def __str__(self) -> str:
+            return (
+                f"TabularDataPoint("
+                f"robot='{self.robot_name}' (id={self.robot_id}), "
+                f"part='{self.part_name}' (id={self.part_id}), "
+                f"resource='{self.resource_name}' ({self.resource_subtype}), "
+                f"method='{self.method_name}', "
+                f"org={self.organization_id}, "
+                f"location={self.location_id}, "
+                f"time='{self.time_captured.isoformat()}', "
+                f"params={self.method_parameters}, "
+                f"tags={self.tags}, "
+                f"payload={self.payload})"
+            )
+
+        def __eq__(self, other: object) -> bool:
+            if isinstance(other, DataClient.TabularDataPoint):
+                return str(self) == str(other)
+            return False
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
 
@@ -254,7 +320,6 @@ class DataClient:
                 sql_query="SELECT * FROM readings LIMIT 5"
             )
 
-
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
@@ -284,7 +349,6 @@ class DataClient:
 
             print(f"Tabular Data: {tabular_data}")
 
-
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
@@ -307,13 +371,12 @@ class DataClient:
 
         ::
 
-                time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
-                    part_id="<PART-ID>",
-                    resource_name="<RESOURCE-NAME>",
-                    resource_subtype="<RESOURCE-SUBTYPE>",
-                    method_name="<METHOD-NAME>"
-                )
-
+            time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
+                part_id="<PART-ID>",
+                resource_name="<RESOURCE-NAME>",
+                resource_subtype="<RESOURCE-SUBTYPE>",
+                method_name="<METHOD-NAME>"
+            )
 
         Args:
             part_id (str): The ID of the part that owns the data.
@@ -327,6 +390,7 @@ class DataClient:
             datetime: The time captured,
             datetime: The time synced,
             Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
@@ -337,6 +401,64 @@ class DataClient:
         if not response.payload:
             return None
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
+
+    async def export_tabular_data(
+        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None
+    ) -> List[TabularDataPoint]:
+        """Obtain unified tabular data and metadata from the specified data source.
+
+        ::
+
+            tabular_data = await data_client.export_tabular_data(
+                part_id="<PART-ID>",
+                resource_name="<RESOURCE-NAME>",
+                resource_subtype="<RESOURCE-SUBTYPE>",
+                method_name="<METHOD-NAME>",
+                start_time="<START_TIME>"
+                end_time="<END_TIME>"
+            )
+
+            print(f"My data: {tabular_data}")
+
+        Args:
+            part_id (str): The ID of the part that owns the data.
+            resource_name (str): The name of the requested resource that captured the data.
+            resource_subtype (str): The subtype of the requested resource that captured the data.
+            method_name (str): The data capture method name.
+            start_time (datetime): Optional start time for requesting a specific range of data.
+            end_time (datetime): Optional end time for requesting a specific range of data.
+
+        Returns:
+            List[TabularDataPoint]: The unified tabular data and metadata.
+
+        For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+        """
+
+        interval=CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
+        request = ExportTabularDataRequest(
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
+        )
+        response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
+
+        return [
+            DataClient.TabularDataPoint(
+                part_id=resp.part_id,
+                resource_name=resp.resource_name,
+                resource_subtype=resp.resource_subtype,
+                method_name=resp.method_name,
+                time_captured=resp.time_captured.ToDatetime(),
+                organization_id=resp.organization_id,
+                location_id=resp.location_id,
+                robot_name=resp.robot_name,
+                robot_id=resp.robot_id,
+                part_name=resp.part_name,
+                method_parameters=struct_to_dict(resp.method_parameters),
+                tags=list(resp.tags),
+                payload=struct_to_dict(resp.payload)
+            )
+            for resp in response
+        ]
+
 
     async def binary_data_by_filter(
         self,

@@ -61,7 +61,7 @@ We use [`uv`](https://docs.astral.sh/uv/) to manage our environments and depende
 
 4. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
 
-- When testing, make sure you use the correct virtual environment by running either `uv make test` or `source .venv/bin/activate; make test`
+- When testing, make sure you use the correct virtual environment by running either `uv run make test` or `source .venv/bin/activate; make test`
 
 5. Commit your changes and open a pull request.
 

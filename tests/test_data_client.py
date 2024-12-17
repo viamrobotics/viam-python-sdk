@@ -2,12 +2,13 @@ from datetime import datetime
 from typing import List
 
 import pytest
+from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.data import Annotations, BinaryData, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
-from viam.utils import create_filter
+from viam.proto.app.data import Annotations, BinaryData, BinaryID, BinaryMetadata, BoundingBox, CaptureInterval, CaptureMetadata, ExportTabularDataResponse, Filter, Order
+from viam.utils import create_filter, dict_to_struct
 
 from .mocks.services import MockData
 
@@ -56,6 +57,7 @@ FILTER = create_filter(
     bbox_labels=BBOX_LABELS,
     dataset_id=DATASET_ID,
 )
+INTERVAL=CaptureInterval(start=START_TS, end=END_TS)
 
 FILE_ID = "file_id"
 BINARY_ID = BinaryID(file_id=FILE_ID, organization_id=ORG_ID, location_id=LOCATION_ID)
@@ -101,6 +103,20 @@ BINARY_METADATA = BinaryMetadata(
 )
 
 TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
+TABULAR_EXPORT_RESPONSE = [ExportTabularDataResponse(
+    part_id=TABULAR_METADATA.part_id,
+    resource_name = TABULAR_METADATA.component_name,
+    resource_subtype = TABULAR_METADATA.component_type,
+    time_captured = END_TS,
+    organization_id = TABULAR_METADATA.organization_id,
+    location_id =TABULAR_METADATA.location_id,
+    robot_name = TABULAR_METADATA.robot_name,
+    robot_id = TABULAR_METADATA.robot_id,
+    part_name = TABULAR_METADATA.part_name,
+    method_parameters = Struct(),
+    tags = TABULAR_METADATA.tags,
+    payload = dict_to_struct(TABULAR_DATA),
+)]
 TABULAR_QUERY_RESPONSE = [
     {"key1": START_DATETIME, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": END_DATETIME}},
 ]
@@ -117,6 +133,7 @@ DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 def service() -> MockData:
     return MockData(
         tabular_response=TABULAR_RESPONSE,
+        tabular_export_response=TABULAR_EXPORT_RESPONSE,
         tabular_query_response=TABULAR_QUERY_RESPONSE,
         binary_response=BINARY_RESPONSE,
         delete_remove_response=DELETE_REMOVE_RESPONSE,
@@ -178,6 +195,31 @@ class TestClient:
             assert payload == TABULAR_DATA
             assert time_captured == time
             assert time_synced == time
+
+    async def test_export_tabular_data(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            tabular_data = await client.export_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD, START_DATETIME, END_DATETIME)
+            assert tabular_data is not None
+            for tabular_datum in tabular_data:
+                assert tabular_datum is not None
+                assert tabular_datum.part_id == TABULAR_METADATA.part_id
+                assert tabular_datum.resource_name == TABULAR_METADATA.component_name
+                assert tabular_datum.resource_subtype == TABULAR_METADATA.component_type
+                assert tabular_datum.time_captured == END_DATETIME
+                assert tabular_datum.organization_id == TABULAR_METADATA.organization_id
+                assert tabular_datum.location_id == TABULAR_METADATA.location_id
+                assert tabular_datum.robot_name == TABULAR_METADATA.robot_name
+                assert tabular_datum.robot_id == TABULAR_METADATA.robot_id
+                assert tabular_datum.part_name == TABULAR_METADATA.part_name
+                assert tabular_datum.method_parameters == TABULAR_METADATA.method_parameters
+                assert tabular_datum.tags == TABULAR_METADATA.tags
+                assert tabular_datum.payload == TABULAR_DATA
+            assert service.part_id == PART_ID
+            assert service.resource_name == COMPONENT_NAME
+            assert service.resource_subtype == COMPONENT_TYPE
+            assert service.method_name == METHOD
+            assert service.interval == INTERVAL
 
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:

@@ -201,6 +201,8 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    ExportTabularDataRequest,
+    ExportTabularDataResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
@@ -767,6 +769,7 @@ class MockData(UnimplementedDataServiceBase):
     def __init__(
         self,
         tabular_response: List[DataClient.TabularData],
+        tabular_export_response: List[ExportTabularDataResponse],
         tabular_query_response: List[Dict[str, Union[ValueTypes, datetime]]],
         binary_response: List[BinaryData],
         delete_remove_response: int,
@@ -775,6 +778,7 @@ class MockData(UnimplementedDataServiceBase):
         hostname_response: str,
     ):
         self.tabular_response = tabular_response
+        self.tabular_export_response = tabular_export_response
         self.tabular_query_response = tabular_query_response
         self.binary_response = binary_response
         self.delete_remove_response = delete_remove_response
@@ -975,6 +979,16 @@ class MockData(UnimplementedDataServiceBase):
         data = dict_to_struct(self.tabular_response[0].data)
         await stream.send_message(GetLatestTabularDataResponse(time_captured=timestamp, time_synced=timestamp, payload=data))
 
+    async def ExportTabularData(self, stream: Stream[ExportTabularDataRequest, ExportTabularDataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.part_id = request.part_id
+        self.resource_name = request.resource_name
+        self.resource_subtype = request.resource_subtype
+        self.method_name = request.method_name
+        self.interval = request.interval
+        for tabular_data in self.tabular_export_response:
+            await stream.send_message(tabular_data)
 
 class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
