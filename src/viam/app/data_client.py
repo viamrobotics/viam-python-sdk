@@ -270,7 +270,7 @@ class DataClient:
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def tabular_data_by_mql(
-        self, organization_id: str, mql_query: Union[List[bytes], Dict[str, Union[ValueTypes, datetime]]]
+        self, organization_id: str, mql_queries: Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -278,10 +278,9 @@ class DataClient:
 
             import bson
 
-            # using pymongo package (pip install pymongo)
-            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
-                bson.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
-                bson.encode({ "$limit": 5 })
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_query=[
+                { '$match': { 'location_id': '<YOUR-LOCATION-ID>' } },
+                { "$limit": 5 }
             ])
 
             print(f"Tabular Data: {tabular_data}")
@@ -290,7 +289,7 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            mql_query (Union[List[bytes], Dict[str, Union[ValueTypes, datetime]]]): The MQL query to run as a list of BSON queries.
+            mql_queries (Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]): The MQL query to run as a list of BSON queries.
                 Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
@@ -298,7 +297,7 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
-        mql_binary = bson.encode(mql_query) if isinstance(mql_query, dict) else mql_query
+        mql_binary = [bson.encode(query) for query in mql_queries] if isinstance(mql_queries[0], dict) else mql_queries
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
