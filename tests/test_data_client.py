@@ -73,7 +73,7 @@ BBOX = BoundingBox(
 )
 BBOXES = [BBOX]
 SQL_QUERY = "sql_query"
-MQL_BINARY = {"binary": "mql_binary"}
+MQL_BINARY = [{"binary": "mql_binary"}]
 TABULAR_DATA = {"key": "value"}
 TABULAR_METADATA = CaptureMetadata(
     organization_id=ORG_ID,
