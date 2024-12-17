@@ -270,9 +270,7 @@ class DataClient:
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
     async def tabular_data_by_mql(
-        self,
-        organization_id: str,
-        mql_query: Union[List[bytes], Dict[str, Union[ValueTypes, datetime]]]
+        self, organization_id: str, mql_query: Union[List[bytes], Dict[str, Union[ValueTypes, datetime]]]
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
