@@ -112,6 +112,7 @@
     <span class="n">BinaryID</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
+    <span class="n">CaptureInterval</span><span class="p">,</span>
     <span class="n">CaptureMetadata</span><span class="p">,</span>
     <span class="n">ConfigureDatabaseUserRequest</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
@@ -122,6 +123,8 @@
     <span class="n">DeleteBinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">DeleteTabularDataRequest</span><span class="p">,</span>
     <span class="n">DeleteTabularDataResponse</span><span class="p">,</span>
+    <span class="n">ExportTabularDataRequest</span><span class="p">,</span>
+    <span class="n">ExportTabularDataResponse</span><span class="p">,</span>
     <span class="n">Filter</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionRequest</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
@@ -234,6 +237,69 @@
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div></div>
 
+<div class="viewcode-block" id="DataClient.TabularDataPoint"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">TabularDataPoint</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a tabular data point and its associated metadata.&quot;&quot;&quot;</span>
+
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The robot part ID&quot;&quot;&quot;</span>
+
+        <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The resource name&quot;&quot;&quot;</span>
+
+        <span class="n">resource_subtype</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The resource subtype. Ex: `rdk:component:sensor`&quot;&quot;&quot;</span>
+
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method used for data capture. Ex&quot; `Readings`&quot;&quot;&quot;</span>
+
+        <span class="n">time_captured</span><span class="p">:</span> <span class="n">datetime</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The time at which the data point was captured&quot;&quot;&quot;</span>
+
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The organization ID&quot;&quot;&quot;</span>
+
+        <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The location ID&quot;&quot;&quot;</span>
+
+        <span class="n">robot_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The robot name&quot;&quot;&quot;</span>
+
+        <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The robot ID&quot;&quot;&quot;</span>
+
+        <span class="n">part_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The robot part name&quot;&quot;&quot;</span>
+
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Additional parameters associated with the data capture method&quot;&quot;&quot;</span>
+
+        <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;A list of tags associated with the data point&quot;&quot;&quot;</span>
+
+        <span class="n">payload</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The captured data&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DataClient.TabularDataPoint.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;TabularDataPoint(&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;robot=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_name</span><span class="si">}</span><span class="s2">&#39; (id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_id</span><span class="si">}</span><span class="s2">), &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;part=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">part_name</span><span class="si">}</span><span class="s2">&#39; (id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">part_id</span><span class="si">}</span><span class="s2">), &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;resource=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_name</span><span class="si">}</span><span class="s2">&#39; (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_subtype</span><span class="si">}</span><span class="s2">), &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;method=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;org=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">organization_id</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;location=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">location_id</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;time=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_captured</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39;, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;params=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method_parameters</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;tags=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="si">}</span><span class="s2">, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;payload=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.TabularDataPoint.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularDataPoint.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularDataPoint</span><span class="p">):</span>
+                <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span></div></div>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `DataClient` that maintains a connection to app.</span>
 
@@ -343,7 +409,6 @@
 <span class="sd">                sql_query=&quot;SELECT * FROM readings LIMIT 5&quot;</span>
 <span class="sd">            )</span>
 
-
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
@@ -373,7 +438,6 @@
 
 <span class="sd">            print(f&quot;Tabular Data: {tabular_data}&quot;)</span>
 
-
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
@@ -396,13 +460,12 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">                time_captured, time_synced, payload = await data_client.get_latest_tabular_data(</span>
-<span class="sd">                    part_id=&quot;&lt;PART-ID&gt;&quot;,</span>
-<span class="sd">                    resource_name=&quot;&lt;RESOURCE-NAME&gt;&quot;,</span>
-<span class="sd">                    resource_subtype=&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;,</span>
-<span class="sd">                    method_name=&quot;&lt;METHOD-NAME&gt;&quot;</span>
-<span class="sd">                )</span>
-
+<span class="sd">            time_captured, time_synced, payload = await data_client.get_latest_tabular_data(</span>
+<span class="sd">                part_id=&quot;&lt;PART-ID&gt;&quot;,</span>
+<span class="sd">                resource_name=&quot;&lt;RESOURCE-NAME&gt;&quot;,</span>
+<span class="sd">                resource_subtype=&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;,</span>
+<span class="sd">                method_name=&quot;&lt;METHOD-NAME&gt;&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): The ID of the part that owns the data.</span>
@@ -416,6 +479,7 @@
 <span class="sd">            datetime: The time captured,</span>
 <span class="sd">            datetime: The time synced,</span>
 <span class="sd">            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.</span>
+
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -426,6 +490,64 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">time_captured</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">response</span><span class="o">.</span><span class="n">time_synced</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.export_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.export_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">export_tabular_data</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TabularDataPoint</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata from the specified data source.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            tabular_data = await data_client.export_tabular_data(</span>
+<span class="sd">                part_id=&quot;&lt;PART-ID&gt;&quot;,</span>
+<span class="sd">                resource_name=&quot;&lt;RESOURCE-NAME&gt;&quot;,</span>
+<span class="sd">                resource_subtype=&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;,</span>
+<span class="sd">                method_name=&quot;&lt;METHOD-NAME&gt;&quot;,</span>
+<span class="sd">                start_time=&quot;&lt;START_TIME&gt;&quot;</span>
+<span class="sd">                end_time=&quot;&lt;END_TIME&gt;&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">            print(f&quot;My data: {tabular_data}&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): The ID of the part that owns the data.</span>
+<span class="sd">            resource_name (str): The name of the requested resource that captured the data.</span>
+<span class="sd">            resource_subtype (str): The subtype of the requested resource that captured the data.</span>
+<span class="sd">            method_name (str): The data capture method name.</span>
+<span class="sd">            start_time (datetime): Optional start time for requesting a specific range of data.</span>
+<span class="sd">            end_time (datetime): Optional end time for requesting a specific range of data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[TabularDataPoint]: The unified tabular data and metadata.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">interval</span><span class="o">=</span><span class="n">CaptureInterval</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">))</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ExportTabularDataRequest</span><span class="p">(</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_subtype</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ExportTabularDataResponse</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ExportTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularDataPoint</span><span class="p">(</span>
+                <span class="n">part_id</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">part_id</span><span class="p">,</span>
+                <span class="n">resource_name</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">resource_name</span><span class="p">,</span>
+                <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span>
+                <span class="n">method_name</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">method_name</span><span class="p">,</span>
+                <span class="n">time_captured</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">time_captured</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
+                <span class="n">organization_id</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+                <span class="n">location_id</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">location_id</span><span class="p">,</span>
+                <span class="n">robot_name</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">robot_name</span><span class="p">,</span>
+                <span class="n">robot_id</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">robot_id</span><span class="p">,</span>
+                <span class="n">part_name</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">part_name</span><span class="p">,</span>
+                <span class="n">method_parameters</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">method_parameters</span><span class="p">),</span>
+                <span class="n">tags</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">tags</span><span class="p">),</span>
+                <span class="n">payload</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">payload</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">response</span>
+        <span class="p">]</span></div>
+
 
 <div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

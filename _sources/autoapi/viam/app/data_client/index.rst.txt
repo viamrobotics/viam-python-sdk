@@ -97,6 +97,100 @@ Module Contents
 
 
 
+   .. py:class:: TabularDataPoint
+
+      Represents a tabular data point and its associated metadata.
+
+
+      .. py:attribute:: part_id
+         :type:  str
+
+         The robot part ID
+
+
+      .. py:attribute:: resource_name
+         :type:  str
+
+         The resource name
+
+
+      .. py:attribute:: resource_subtype
+         :type:  str
+
+         component:sensor`
+
+         :type: The resource subtype. Ex
+
+         :type: `rdk
+
+
+      .. py:attribute:: method_name
+         :type:  str
+
+         The method used for data capture. Ex" `Readings`
+
+
+      .. py:attribute:: time_captured
+         :type:  datetime.datetime
+
+         The time at which the data point was captured
+
+
+      .. py:attribute:: organization_id
+         :type:  str
+
+         The organization ID
+
+
+      .. py:attribute:: location_id
+         :type:  str
+
+         The location ID
+
+
+      .. py:attribute:: robot_name
+         :type:  str
+
+         The robot name
+
+
+      .. py:attribute:: robot_id
+         :type:  str
+
+         The robot ID
+
+
+      .. py:attribute:: part_name
+         :type:  str
+
+         The robot part name
+
+
+      .. py:attribute:: method_parameters
+         :type:  Mapping[str, viam.utils.ValueTypes]
+
+         Additional parameters associated with the data capture method
+
+
+      .. py:attribute:: tags
+         :type:  List[str]
+
+         A list of tags associated with the data point
+
+
+      .. py:attribute:: payload
+         :type:  Mapping[str, viam.utils.ValueTypes]
+
+         The captured data
+
+
+      .. py:method:: __str__() -> str
+
+
+      .. py:method:: __eq__(other: object) -> bool
+
+
+
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[TabularData], int, str]
       :async:
 
@@ -162,7 +256,6 @@ Module Contents
               sql_query="SELECT * FROM readings LIMIT 5"
           )
 
-
       :param organization_id: The ID of the organization that owns the data.
                               You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
@@ -194,7 +287,6 @@ Module Contents
 
           print(f"Tabular Data: {tabular_data}")
 
-
       :param organization_id: The ID of the organization that owns the data.
                               You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
@@ -217,13 +309,12 @@ Module Contents
 
       ::
 
-              time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
-                  part_id="<PART-ID>",
-                  resource_name="<RESOURCE-NAME>",
-                  resource_subtype="<RESOURCE-SUBTYPE>",
-                  method_name="<METHOD-NAME>"
-              )
-
+          time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
+              part_id="<PART-ID>",
+              resource_name="<RESOURCE-NAME>",
+              resource_subtype="<RESOURCE-SUBTYPE>",
+              method_name="<METHOD-NAME>"
+          )
 
       :param part_id: The ID of the part that owns the data.
       :type part_id: str
@@ -240,6 +331,45 @@ Module Contents
                 datetime: The time synced,
                 Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
       :rtype: Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]
+
+      For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
+
+
+
+   .. py:method:: export_tabular_data(part_id: str, resource_name: str, resource_subtype: str, method_name: str, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None) -> List[TabularDataPoint]
+      :async:
+
+
+      Obtain unified tabular data and metadata from the specified data source.
+
+      ::
+
+          tabular_data = await data_client.export_tabular_data(
+              part_id="<PART-ID>",
+              resource_name="<RESOURCE-NAME>",
+              resource_subtype="<RESOURCE-SUBTYPE>",
+              method_name="<METHOD-NAME>",
+              start_time="<START_TIME>"
+              end_time="<END_TIME>"
+          )
+
+          print(f"My data: {tabular_data}")
+
+      :param part_id: The ID of the part that owns the data.
+      :type part_id: str
+      :param resource_name: The name of the requested resource that captured the data.
+      :type resource_name: str
+      :param resource_subtype: The subtype of the requested resource that captured the data.
+      :type resource_subtype: str
+      :param method_name: The data capture method name.
+      :type method_name: str
+      :param start_time: Optional start time for requesting a specific range of data.
+      :type start_time: datetime
+      :param end_time: Optional end time for requesting a specific range of data.
+      :type end_time: datetime
+
+      :returns: The unified tabular data and metadata.
+      :rtype: List[TabularDataPoint]
 
       For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
 
