@@ -297,7 +297,10 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
-        mql_binary = [bson.encode(query) for query in mql_queries] if isinstance(mql_queries[0], dict) else mql_queries
+        if isinstance(mql_queries[0], dict):
+            mql_binary = [bson.encode(query) for query in mql_queries]
+        else:
+            mql_binary = mql_queries
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
