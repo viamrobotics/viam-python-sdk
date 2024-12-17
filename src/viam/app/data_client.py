@@ -293,7 +293,7 @@ class DataClient:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
             mql_query (Union[List[bytes], Dict[str, Union[ValueTypes, datetime]]]): The MQL query to run as a list of BSON queries.
-                Note: Use a dictionary for `mql_query` as support for bytes will be removed in the future.
+                Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
