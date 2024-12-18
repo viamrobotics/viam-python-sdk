@@ -11,7 +11,7 @@ on:
 
 jobs:
   generate-docs:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,8 +30,8 @@ jobs:
 
       - name: Generate docs
         run: |
-          # uv run python3 -m docs.examples._server &
-          # uv run python3 -m examples.server.v1.server 0.0.0.0 9091 &
+          uv run python3 -m docs.examples._server &
+          uv run python3 -m examples.server.v1.server 0.0.0.0 9091 &
           sleep 2
           uv run make documentation
 
@@ -41,11 +41,11 @@ jobs:
           name: html-docs
           path: docs/_build/html/
 
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: github.ref == 'refs/heads/main'
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: docs/_build/html
-      #     publish_branch: docs-gh_pages
-      #     cname: python.viam.dev
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_build/html
+          publish_branch: docs-gh_pages
+          cname: python.viam.dev
