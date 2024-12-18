@@ -334,17 +334,18 @@ class DataClient:
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
-    async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, Union[ValueTypes, datetime]]]:
+    async def tabular_data_by_mql(
+        self, organization_id: str, mql_queries: Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]
+    ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
         ::
 
             import bson
 
-            # using pymongo package (pip install pymongo)
-            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
-                bson.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
-                bson.encode({ "$limit": 5 })
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_query=[
+                { '$match': { 'location_id': '<YOUR-LOCATION-ID>' } },
+                { "$limit": 5 }
             ])
 
             print(f"Tabular Data: {tabular_data}")
@@ -352,14 +353,15 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
-                `pymongo`.
+            mql_queries (Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]): The MQL query to run as a list of BSON queries.
+                Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
+        mql_binary: List[bytes] = [bson.encode(query) for query in mql_queries] if isinstance(mql_queries[0], dict) else mql_queries  # type: ignore
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
