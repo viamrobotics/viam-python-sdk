@@ -1,8 +1,9 @@
+import functools
 import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -269,8 +270,31 @@ class DataClient:
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
+    def _alias_param(param_name: str, param_alias: str) -> Callable:
+        """
+        Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
+
+        Args:
+            param_name: name of param in function to alias
+            param_alias: alias that can be used for this param
+        Returns:
+            The input function, plus param alias.
+        """
+        def decorator(func: Callable):
+            @functools.wraps(func)
+            def wrapper(*args, **kwargs):
+                alias_param_value = kwargs.get(param_alias)
+                if alias_param_value:
+                    kwargs[param_name] = alias_param_value
+                    del kwargs[param_alias]
+                result = func(*args, **kwargs)
+                return result
+            return wrapper
+        return decorator
+
+    @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
-        self, organization_id: str, mql_queries: Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]
+        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -289,7 +313,7 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            mql_queries (Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]): The MQL query to run as a list of BSON queries.
+            query (Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]): The MQL query to run as a list of BSON queries.
                 Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
@@ -297,8 +321,8 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
-        mql_binary: List[bytes] = [bson.encode(query) for query in mql_queries] if isinstance(mql_queries[0], dict) else mql_queries  # type: ignore
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
+        binary: List[bytes] = [bson.encode(query) for query in query] if isinstance(query[0], dict) else query  # type: ignore
+        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 

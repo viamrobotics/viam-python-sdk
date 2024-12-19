@@ -163,6 +163,9 @@ class TestClient:
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
             assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
+            response = await client.tabular_data_by_mql(ORG_ID, mql_binary=[b"mql_binary"])
+            assert isinstance(response[0]["key1"], datetime)
+            assert response == TABULAR_QUERY_RESPONSE
 
     async def test_get_latest_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
