@@ -1,8 +1,9 @@
+import functools
 import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -87,6 +88,31 @@ from viam.proto.app.datasync import (
 from viam.utils import ValueTypes, create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
+
+
+def _alias_param(param_name: str, param_alias: str) -> Callable:
+    """
+    Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
+
+    Args:
+        param_name: name of param in function to alias
+        param_alias: alias that can be used for this param
+    Returns:
+        The input function, plus param alias.
+    """
+    def decorator(func: Callable):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            alias_param_value = kwargs.get(param_alias)
+            if alias_param_value:
+                # Only use alias value if param is not given.
+                if not kwargs.get(param_name):
+                    kwargs[param_name] = alias_param_value
+                del kwargs[param_alias]
+            result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
 
 
 class DataClient:
@@ -334,17 +360,19 @@ class DataClient:
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
-    async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, Union[ValueTypes, datetime]]]:
+    @_alias_param("query", param_alias="mql_binary")
+    async def tabular_data_by_mql(
+        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]]
+    ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
         ::
 
             import bson
 
-            # using pymongo package (pip install pymongo)
-            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_binary=[
-                bson.encode({ '$match': { 'location_id': '<YOUR-LOCATION-ID>' } }),
-                bson.encode({ "$limit": 5 })
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_query=[
+                { '$match': { 'location_id': '<YOUR-LOCATION-ID>' } },
+                { "$limit": 5 }
             ])
 
             print(f"Tabular Data: {tabular_data}")
@@ -352,15 +380,16 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
-                `pymongo`.
+            query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run as a list of BSON queries.
+                Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
+        binary: List[bytes] = [bson.encode(query) for query in query] if isinstance(query[0], dict) else query  # type: ignore
+        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
