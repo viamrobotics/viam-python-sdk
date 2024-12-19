@@ -297,7 +297,7 @@ class DataClient:
 
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
-        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]
+        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]]
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -316,7 +316,7 @@ class DataClient:
         Args:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
-            query (Union[List[bytes], List[Dict[str, Union[ValueTypes, datetime]]]]): The MQL query to run as a list of BSON queries.
+            query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run as a list of BSON queries.
                 Note: Support for bytes will be removed in the future, so using a dictionary is preferred.
 
         Returns:
