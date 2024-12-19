@@ -37,7 +37,11 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         """Takes flat data (protobuf RepeatedScalarFieldContainer | bytes) to output an ndarray
         of appropriate dtype and shape"""
         make_array = np.frombuffer if dtype == np.int8 or dtype == np.uint8 else np.array
-        return make_array(flat_data, dtype).reshape(shape)
+        # as per proto, int16 and uint16 are stored as uint32. As of numpy v2, this creates
+        # some strange interactions with negative values for int16 specifically. creating
+        # our array as a uint32 array initially and then casting to int16 solves this.
+        arr = make_array(flat_data, dtype) if dtype != np.int16 else np.astype(make_array(flat_data, np.uint32), np.int16)
+        return arr.reshape(shape)
 
     ndarrays: Dict[str, NDArray] = dict()
     for name, flat_tensor in flat_tensors.tensors.items():
