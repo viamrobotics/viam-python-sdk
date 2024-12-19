@@ -32,17 +32,24 @@ jobs:
           sleep 2
           uv run make documentation
 
+      - name: Test
+        run: |
+          echo 'test' > docs/_build/html/my-test-file.txt
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: html-docs
           path: docs/_build/html/
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_build/html
-          publish_branch: docs-gh_pages
-          cname: python.viam.dev
+      - name: Check folder
+        run: ls docs/_build/html/
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: github.ref == 'refs/heads/main'
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: docs/_build/html
+      #     publish_branch: docs-gh_pages
+      #     cname: python.viam.dev
