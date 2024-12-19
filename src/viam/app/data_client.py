@@ -87,6 +87,29 @@ from viam.utils import ValueTypes, create_filter, datetime_to_timestamp, struct_
 LOGGER = logging.getLogger(__name__)
 
 
+def _alias_param(param_name: str, param_alias: str) -> Callable:
+    """
+    Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
+
+    Args:
+        param_name: name of param in function to alias
+        param_alias: alias that can be used for this param
+    Returns:
+        The input function, plus param alias.
+    """
+    def decorator(func: Callable):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            alias_param_value = kwargs.get(param_alias)
+            if alias_param_value:
+                kwargs[param_name] = alias_param_value
+                del kwargs[param_alias]
+            result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+
 class DataClient:
     """gRPC client for uploading and retrieving data from app.
 
@@ -269,28 +292,6 @@ class DataClient:
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
-
-    def _alias_param(param_name: str, param_alias: str) -> Callable:
-        """
-        Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
-
-        Args:
-            param_name: name of param in function to alias
-            param_alias: alias that can be used for this param
-        Returns:
-            The input function, plus param alias.
-        """
-        def decorator(func: Callable):
-            @functools.wraps(func)
-            def wrapper(*args, **kwargs):
-                alias_param_value = kwargs.get(param_alias)
-                if alias_param_value:
-                    kwargs[param_name] = alias_param_value
-                    del kwargs[param_alias]
-                result = func(*args, **kwargs)
-                return result
-            return wrapper
-        return decorator
 
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
