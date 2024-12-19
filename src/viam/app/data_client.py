@@ -102,7 +102,7 @@ def _alias_param(param_name: str, param_alias: str) -> Callable:
         def wrapper(*args, **kwargs):
             alias_param_value = kwargs.get(param_alias)
             if alias_param_value:
-                # Only use the binary if query is not given.
+                # Only use alias value if param is not given.
                 if not kwargs.get(param_name):
                     kwargs[param_name] = alias_param_value
                 del kwargs[param_alias]
