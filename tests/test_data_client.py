@@ -75,7 +75,7 @@ BBOX = BoundingBox(
 )
 BBOXES = [BBOX]
 SQL_QUERY = "sql_query"
-MQL_BINARY = [b"mql_binary"]
+MQL_BINARY = [{"binary": "mql_binary"}]
 TABULAR_DATA = {"key": "value"}
 TABULAR_METADATA = CaptureMetadata(
     organization_id=ORG_ID,
@@ -178,6 +178,9 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
+            assert isinstance(response[0]["key1"], datetime)
+            assert response == TABULAR_QUERY_RESPONSE
+            response = await client.tabular_data_by_mql(ORG_ID, mql_binary=[b"mql_binary"])
             assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
 
