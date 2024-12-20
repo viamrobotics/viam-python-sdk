@@ -173,7 +173,7 @@
     <span class="n">StreamingDataCaptureUploadResponse</span><span class="p">,</span>
     <span class="n">UploadMetadata</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -423,17 +423,19 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataBySQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataBySQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.tabular_data_by_mql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_mql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mql_binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
+<div class="viewcode-block" id="DataClient.tabular_data_by_mql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;mql_binary&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_mql</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            import bson</span>
 
-<span class="sd">            # using pymongo package (pip install pymongo)</span>
-<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_binary=[</span>
-<span class="sd">                bson.encode({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } }),</span>
-<span class="sd">                bson.encode({ &quot;$limit&quot;: 5 })</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, mql_query=[</span>
+<span class="sd">                { &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;YOUR-LOCATION-ID&gt;&#39; } },</span>
+<span class="sd">                { &quot;$limit&quot;: 5 }</span>
 <span class="sd">            ])</span>
 
 <span class="sd">            print(f&quot;Tabular Data: {tabular_data}&quot;)</span>
@@ -441,15 +443,16 @@
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
-<span class="sd">            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like</span>
-<span class="sd">                `pymongo`.</span>
+<span class="sd">            query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run as a list of BSON queries.</span>
+<span class="sd">                Note: Support for bytes will be removed in the future, so using a dictionary is preferred.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/appendix/apis/data-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">mql_binary</span><span class="p">)</span>
+        <span class="n">binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">query</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">query</span>  <span class="c1"># type: ignore</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">binary</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByMQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByMQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
 
