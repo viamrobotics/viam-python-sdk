@@ -371,12 +371,20 @@ class DataClient:
 
         ::
 
-            time_captured, time_synced, payload = await data_client.get_latest_tabular_data(
-                part_id="<PART-ID>",
-                resource_name="<RESOURCE-NAME>",
-                resource_subtype="<RESOURCE-SUBTYPE>",
-                method_name="<METHOD-NAME>"
+            tabular_data = await data_client.get_latest_tabular_data(
+                part_id="77ae3145-7b91-123a-a234-e567cdca8910",
+                resource_name="camera-1",
+                resource_subtype="rdk:component:camera",
+                method_name="GetImage"
             )
+
+            if tabular_data and len(tabular_data) == 3:
+                time_captured, time_synced, payload = tabular_data
+                print(f"Time Captured: {time_captured}")
+                print(f"Time Synced: {time_synced}")
+                print(f"Payload: {payload}")
+            else:
+                print(f"No data returned: {tabular_data}")
 
         Args:
             part_id (str): The ID of the part that owns the data.
