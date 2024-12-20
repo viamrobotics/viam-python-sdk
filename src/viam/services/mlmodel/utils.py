@@ -1,8 +1,8 @@
 from typing import Dict
-from packaging.version import Version
 
 import numpy as np
 from numpy.typing import NDArray
+from packaging.version import Version
 
 from viam.proto.service.mlmodel import (
     FlatTensor,
@@ -43,7 +43,7 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         # trying to create an np.Int16 value with an out of bounds int due to rollover.
         # Creating our array as a uint32 array initially and then casting to int16 solves this.
         if Version(np.__version__) >= Version("2") and dtype == np.int16:
-            arr = np.astype(make_array(flat_data, np.uint32), np.int16) # pyright: ignore [reportAttributeAccessIssue]
+            arr = np.astype(make_array(flat_data, np.uint32), np.int16)  # pyright: ignore [reportAttributeAccessIssue]
 
         else:
             arr = make_array(flat_data, dtype)

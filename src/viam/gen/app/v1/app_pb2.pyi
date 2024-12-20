@@ -2106,12 +2106,12 @@ class FragmentUsage(google.protobuf.message.Message):
     ORGANIZATIONS_FIELD_NUMBER: builtins.int
     MACHINES_FIELD_NUMBER: builtins.int
     MACHINES_IN_CURRENT_ORG_FIELD_NUMBER: builtins.int
-    fragment_id: builtins.int
+    fragment_id: builtins.str
     organizations: builtins.int
     machines: builtins.int
     machines_in_current_org: builtins.int
 
-    def __init__(self, *, fragment_id: builtins.int=..., organizations: builtins.int=..., machines: builtins.int=..., machines_in_current_org: builtins.int=...) -> None:
+    def __init__(self, *, fragment_id: builtins.str=..., organizations: builtins.int=..., machines: builtins.int=..., machines_in_current_org: builtins.int=...) -> None:
         ...
 
     def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'machines', b'machines', 'machines_in_current_org', b'machines_in_current_org', 'organizations', b'organizations']) -> None:
@@ -3059,12 +3059,20 @@ global___RegistryItem = RegistryItem
 class GetRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
+    INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     item_id: builtins.str
+    include_markdown_documentation: builtins.bool
 
-    def __init__(self, *, item_id: builtins.str=...) -> None:
+    def __init__(self, *, item_id: builtins.str=..., include_markdown_documentation: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['item_id', b'item_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation', 'item_id', b'item_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> typing.Literal['include_markdown_documentation'] | None:
         ...
 global___GetRegistryItemRequest = GetRegistryItemRequest
 
@@ -3123,22 +3131,42 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTION_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
+    MODULE_UPDATE_METADATA_FIELD_NUMBER: builtins.int
+    ML_MODEL_UPDATE_METADATA_FIELD_NUMBER: builtins.int
+    ML_TRAINING_UPDATE_METADATA_FIELD_NUMBER: builtins.int
     item_id: builtins.str
     type: app.packages.v1.packages_pb2.PackageType.ValueType
     description: builtins.str
     visibility: global___Visibility.ValueType
     url: builtins.str
 
-    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=...) -> None:
+    @property
+    def module_update_metadata(self) -> global___UpdateModuleMetadata:
         ...
 
-    def HasField(self, field_name: typing.Literal['_url', b'_url', 'url', b'url']) -> builtins.bool:
+    @property
+    def ml_model_update_metadata(self) -> global___UpdateMLModelMetadata:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'type', b'type', 'url', b'url', 'visibility', b'visibility']) -> None:
+    @property
+    def ml_training_update_metadata(self) -> global___UpdateMLTrainingMetadata:
         ...
 
+    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=..., module_update_metadata: global___UpdateModuleMetadata | None=..., ml_model_update_metadata: global___UpdateMLModelMetadata | None=..., ml_training_update_metadata: global___UpdateMLTrainingMetadata | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_url', b'_url', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'url', b'url']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'type', b'type', 'url', b'url', 'visibility', b'visibility']) -> None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_url', b'_url']) -> typing.Literal['url'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['metadata', b'metadata']) -> typing.Literal['module_update_metadata', 'ml_model_update_metadata', 'ml_training_update_metadata'] | None:
         ...
 global___UpdateRegistryItemRequest = UpdateRegistryItemRequest
 
@@ -3161,10 +3189,12 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     SEARCH_TERM_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACES_FIELD_NUMBER: builtins.int
+    INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The id of the organization to return registry items for.'
     search_term: builtins.str
     page_token: builtins.str
+    include_markdown_documentation: builtins.bool
 
     @property
     def types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[app.packages.v1.packages_pb2.PackageType.ValueType]:
@@ -3186,13 +3216,17 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     def public_namespaces(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """One or more public namespaces to return results for."""
 
-    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=..., public_namespaces: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=..., public_namespaces: collections.abc.Iterable[builtins.str] | None=..., include_markdown_documentation: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
+    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> typing.Literal['include_markdown_documentation'] | None:
         ...
 
     @typing.overload
@@ -3359,19 +3393,79 @@ class UpdateModuleResponse(google.protobuf.message.Message):
 global___UpdateModuleResponse = UpdateModuleResponse
 
 @typing.final
+class UpdateModuleMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODELS_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
+    entrypoint: builtins.str
+    'The executable to run to start the module program'
+
+    @property
+    def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
+        """A list of models that are available in the module"""
+
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'models', b'models']) -> None:
+        ...
+global___UpdateModuleMetadata = UpdateModuleMetadata
+
+@typing.final
+class UpdateMLModelMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+    model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
+    def __init__(self, *, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type']) -> None:
+        ...
+global___UpdateMLModelMetadata = UpdateMLModelMetadata
+
+@typing.final
+class UpdateMLTrainingMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    DRAFT_FIELD_NUMBER: builtins.int
+    model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+    model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+    draft: builtins.bool
+
+    def __init__(self, *, model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., draft: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type']) -> None:
+        ...
+global___UpdateMLTrainingMetadata = UpdateMLTrainingMetadata
+
+@typing.final
 class Model(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     API_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
+    MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     api: builtins.str
     'The colon-delimited-triplet of the api implemented by the model'
     model: builtins.str
     'The colon-delimited-triplet of the model'
+    markdown_documentation: builtins.str
+    'The markdown content describing the usage of the model'
 
-    def __init__(self, *, api: builtins.str=..., model: builtins.str=...) -> None:
+    def __init__(self, *, api: builtins.str=..., model: builtins.str=..., markdown_documentation: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['api', b'api', 'model', b'model']) -> None:
+    def HasField(self, field_name: typing.Literal['_markdown_documentation', b'_markdown_documentation', 'markdown_documentation', b'markdown_documentation']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'markdown_documentation', b'markdown_documentation', 'model', b'model']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_markdown_documentation', b'_markdown_documentation']) -> typing.Literal['markdown_documentation'] | None:
         ...
 global___Model = Model
 
@@ -3446,13 +3540,21 @@ global___UploadModuleFileResponse = UploadModuleFileResponse
 class GetModuleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
+    INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
+    include_markdown_documentation: builtins.bool
 
-    def __init__(self, *, module_id: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., include_markdown_documentation: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['module_id', b'module_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation', 'module_id', b'module_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> typing.Literal['include_markdown_documentation'] | None:
         ...
 global___GetModuleRequest = GetModuleRequest
 
@@ -3599,18 +3701,25 @@ global___Uploads = Uploads
 class ListModulesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The id of the organization to return private modules for.'
+    include_markdown_documentation: builtins.bool
 
-    def __init__(self, *, organization_id: builtins.str | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str | None=..., include_markdown_documentation: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id']) -> None:
         ...
 
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> typing.Literal['include_markdown_documentation'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_organization_id', b'_organization_id']) -> typing.Literal['organization_id'] | None:
         ...
 global___ListModulesRequest = ListModulesRequest

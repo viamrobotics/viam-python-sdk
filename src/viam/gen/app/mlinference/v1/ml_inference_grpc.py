@@ -6,6 +6,7 @@ import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import app
+from .... import service
 
 class MLInferenceServiceBase(abc.ABC):
 
