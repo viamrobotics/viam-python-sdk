@@ -4,7 +4,7 @@ import functools
 import sys
 import threading
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
+from typing import Any, Callable, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -339,3 +339,28 @@ def create_filter(
         bbox_labels=bbox_labels,
         dataset_id=dataset_id if dataset_id else "",
     )
+
+
+def _alias_param(param_name: str, param_alias: str) -> Callable:
+    """
+    Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
+
+    Args:
+        param_name: name of param in function to alias
+        param_alias: alias that can be used for this param
+    Returns:
+        The input function, plus param alias.
+    """
+    def decorator(func: Callable):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            alias_param_value = kwargs.get(param_alias)
+            if alias_param_value:
+                # Only use alias value if param is not given.
+                if not kwargs.get(param_name):
+                    kwargs[param_name] = alias_param_value
+                del kwargs[param_alias]
+            result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator

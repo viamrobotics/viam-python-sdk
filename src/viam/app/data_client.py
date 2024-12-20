@@ -1,9 +1,8 @@
-import functools
 import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -82,34 +81,9 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
-from viam.utils import ValueTypes, create_filter, datetime_to_timestamp, struct_to_dict
+from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
-
-
-def _alias_param(param_name: str, param_alias: str) -> Callable:
-    """
-    Decorator for aliasing a param in a function. Intended for providing backwards compatibility on params with name changes.
-
-    Args:
-        param_name: name of param in function to alias
-        param_alias: alias that can be used for this param
-    Returns:
-        The input function, plus param alias.
-    """
-    def decorator(func: Callable):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            alias_param_value = kwargs.get(param_alias)
-            if alias_param_value:
-                # Only use alias value if param is not given.
-                if not kwargs.get(param_name):
-                    kwargs[param_name] = alias_param_value
-                del kwargs[param_alias]
-            result = func(*args, **kwargs)
-            return result
-        return wrapper
-    return decorator
 
 
 class DataClient:
