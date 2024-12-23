@@ -6,6 +6,7 @@ from .... import app
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+from .... import service
 import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -38,7 +39,23 @@ global___GetInferenceRequest = GetInferenceRequest
 @typing.final
 class GetInferenceResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    OUTPUT_TENSORS_FIELD_NUMBER: builtins.int
+    ANNOTATIONS_FIELD_NUMBER: builtins.int
 
-    def __init__(self) -> None:
+    @property
+    def output_tensors(self) -> service.mlmodel.v1.mlmodel_pb2.FlatTensors:
+        ...
+
+    @property
+    def annotations(self) -> app.data.v1.data_pb2.Annotations:
+        ...
+
+    def __init__(self, *, output_tensors: service.mlmodel.v1.mlmodel_pb2.FlatTensors | None=..., annotations: app.data.v1.data_pb2.Annotations | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['annotations', b'annotations', 'output_tensors', b'output_tensors']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['annotations', b'annotations', 'output_tensors', b'output_tensors']) -> None:
         ...
 global___GetInferenceResponse = GetInferenceResponse

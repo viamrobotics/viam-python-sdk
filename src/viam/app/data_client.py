@@ -406,7 +406,13 @@ class DataClient:
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
     async def export_tabular_data(
-        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str, start_time: Optional[datetime] = None, end_time: Optional[datetime] = None
+        self,
+        part_id: str,
+        resource_name: str,
+        resource_subtype: str,
+        method_name: str,
+        start_time: Optional[datetime] = None,
+        end_time: Optional[datetime] = None,
     ) -> List[TabularDataPoint]:
         """Obtain unified tabular data and metadata from the specified data source.
 
@@ -437,7 +443,7 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/appendix/apis/data-client/>`_.
         """
 
-        interval=CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
+        interval = CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
         request = ExportTabularDataRequest(
             part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
         )
@@ -457,11 +463,10 @@ class DataClient:
                 part_name=resp.part_name,
                 method_parameters=struct_to_dict(resp.method_parameters),
                 tags=list(resp.tags),
-                payload=struct_to_dict(resp.payload)
+                payload=struct_to_dict(resp.payload),
             )
             for resp in response
         ]
-
 
     async def binary_data_by_filter(
         self,
