@@ -250,6 +250,9 @@ Classes
    viam.proto.app.UpdateFragmentResponse
    viam.proto.app.UpdateLocationRequest
    viam.proto.app.UpdateLocationResponse
+   viam.proto.app.UpdateMLModelMetadata
+   viam.proto.app.UpdateMLTrainingMetadata
+   viam.proto.app.UpdateModuleMetadata
    viam.proto.app.UpdateModuleRequest
    viam.proto.app.UpdateModuleResponse
    viam.proto.app.UpdateOAuthAppRequest
@@ -3407,7 +3410,7 @@ Package Contents
 
 
 
-.. py:class:: FragmentUsage(*, fragment_id: int = ..., organizations: int = ..., machines: int = ..., machines_in_current_org: int = ...)
+.. py:class:: FragmentUsage(*, fragment_id: str = ..., organizations: int = ..., machines: int = ..., machines_in_current_org: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3420,7 +3423,7 @@ Package Contents
 
 
    .. py:attribute:: fragment_id
-      :type:  int
+      :type:  str
 
 
    .. py:attribute:: organizations
@@ -3697,7 +3700,7 @@ Package Contents
 
 
 
-.. py:class:: GetModuleRequest(*, module_id: str = ...)
+.. py:class:: GetModuleRequest(*, module_id: str = ..., include_markdown_documentation: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3715,6 +3718,44 @@ Package Contents
       name where prefix is the module owner's orgid or namespace)
 
       :type: The id of the module (formatted as prefix
+
+
+   .. py:attribute:: include_markdown_documentation
+      :type:  bool
+
+
+   .. py:method:: HasField(field_name: Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> Literal['include_markdown_documentation'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: GetModuleResponse(*, module: global___Module | None = ...)
@@ -3869,7 +3910,7 @@ Package Contents
 
 
 
-.. py:class:: GetRegistryItemRequest(*, item_id: str = ...)
+.. py:class:: GetRegistryItemRequest(*, item_id: str = ..., include_markdown_documentation: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3883,6 +3924,44 @@ Package Contents
 
    .. py:attribute:: item_id
       :type:  str
+
+
+   .. py:attribute:: include_markdown_documentation
+      :type:  bool
+
+
+   .. py:method:: HasField(field_name: Literal['_include_markdown_documentation', b'_include_markdown_documentation', 'include_markdown_documentation', b'include_markdown_documentation']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> Literal['include_markdown_documentation'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: GetRegistryItemResponse(*, item: global___RegistryItem | None = ...)
@@ -4510,7 +4589,7 @@ Package Contents
 
 
 
-.. py:class:: ListModulesRequest(*, organization_id: str | None = ...)
+.. py:class:: ListModulesRequest(*, organization_id: str | None = ..., include_markdown_documentation: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4528,7 +4607,11 @@ Package Contents
       The id of the organization to return private modules for.
 
 
-   .. py:method:: HasField(field_name: Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> bool
+   .. py:attribute:: include_markdown_documentation
+      :type:  bool
+
+
+   .. py:method:: HasField(field_name: Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4546,7 +4629,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> Literal['include_markdown_documentation'] | None
+                  WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -4717,7 +4801,7 @@ Package Contents
 
 
 
-.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ...)
+.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ..., include_markdown_documentation: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4741,6 +4825,10 @@ Package Contents
 
    .. py:attribute:: page_token
       :type:  str
+
+
+   .. py:attribute:: include_markdown_documentation
+      :type:  bool
 
 
    .. py:property:: types
@@ -4769,7 +4857,7 @@ Package Contents
       One or more public namespaces to return results for.
 
 
-   .. py:method:: HasField(field_name: Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> bool
+   .. py:method:: HasField(field_name: Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4787,7 +4875,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_include_markdown_documentation', b'_include_markdown_documentation']) -> Literal['include_markdown_documentation'] | None
+                  WhichOneof(oneof_group: Literal['_organization_id', b'_organization_id']) -> Literal['organization_id'] | None
                   WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
                   WhichOneof(oneof_group: Literal['_search_term', b'_search_term']) -> Literal['search_term'] | None
 
@@ -5189,7 +5278,7 @@ Package Contents
 
 
 
-.. py:class:: Model(*, api: str = ..., model: str = ...)
+.. py:class:: Model(*, api: str = ..., model: str = ..., markdown_documentation: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5211,6 +5300,46 @@ Package Contents
       :type:  str
 
       The colon-delimited-triplet of the model
+
+
+   .. py:attribute:: markdown_documentation
+      :type:  str
+
+      The markdown content describing the usage of the model
+
+
+   .. py:method:: HasField(field_name: Literal['_markdown_documentation', b'_markdown_documentation', 'markdown_documentation', b'markdown_documentation']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_markdown_documentation', b'_markdown_documentation']) -> Literal['markdown_documentation'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ...)
@@ -7330,6 +7459,74 @@ Package Contents
 
 
 
+.. py:class:: UpdateMLModelMetadata(*, model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: model_type
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+
+
+   .. py:attribute:: model_framework
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
+
+.. py:class:: UpdateMLTrainingMetadata(*, model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: model_type
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+
+
+   .. py:attribute:: model_framework
+      :type:  viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
+
+   .. py:attribute:: draft
+      :type:  bool
+
+
+.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: entrypoint
+      :type:  str
+
+      The executable to run to start the module program
+
+
+   .. py:property:: models
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
+
+      A list of models that are available in the module
+
+
 .. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -7668,7 +7865,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ...)
+.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ..., module_update_metadata: global___UpdateModuleMetadata | None = ..., ml_model_update_metadata: global___UpdateMLModelMetadata | None = ..., ml_training_update_metadata: global___UpdateMLTrainingMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7700,7 +7897,22 @@ Package Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_url', b'_url', 'url', b'url']) -> bool
+   .. py:property:: module_update_metadata
+      :type: global___UpdateModuleMetadata
+
+
+
+   .. py:property:: ml_model_update_metadata
+      :type: global___UpdateMLModelMetadata
+
+
+
+   .. py:property:: ml_training_update_metadata
+      :type: global___UpdateMLTrainingMetadata
+
+
+
+   .. py:method:: HasField(field_name: Literal['_url', b'_url', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'url', b'url']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7719,6 +7931,7 @@ Package Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_url', b'_url']) -> Literal['url'] | None
+                  WhichOneof(oneof_group: Literal['metadata', b'metadata']) -> Literal['module_update_metadata', 'ml_model_update_metadata', 'ml_training_update_metadata'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
