@@ -327,9 +327,6 @@ class MockBoard(Board):
         except KeyError:
             raise ResourceNotFoundError("Board.GPIOPin", name)
 
-    async def digital_interrupt_names(self) -> List[str]:
-        return [key for key in self.digital_interrupts.keys()]
-
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
         self.timeout = timeout

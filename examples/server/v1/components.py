@@ -306,9 +306,6 @@ class ExampleBoard(Board):
         except KeyError:
             raise ResourceNotFoundError("Board.GPIOPin", name)
 
-    async def digital_interrupt_names(self) -> List[str]:
-        return [key for key in self.digital_interrupts.keys()]
-
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()
 

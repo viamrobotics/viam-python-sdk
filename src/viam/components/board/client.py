@@ -184,11 +184,6 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
         return GPIOPinClient(name, self)
 
-    async def digital_interrupt_names(self) -> List[str]:
-        if self._digital_interrupt_names is None:
-            return []
-        return self._digital_interrupt_names
-
     async def do_command(
         self,
         command: Mapping[str, ValueTypes],
