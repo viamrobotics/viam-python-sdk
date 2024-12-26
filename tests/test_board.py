@@ -113,10 +113,6 @@ class TestBoard:
         pin = await board.gpio_pin_by_name("pin1")
         assert pin.name == "pin1"
 
-    async def test_analog_names(self, board: MockBoard):
-        names = await board.analog_names()
-        assert names == ["analog1"]
-
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
         assert names == ["interrupt1"]
@@ -356,16 +352,6 @@ class TestClient:
 
             pin = await client.gpio_pin_by_name("pin1")
             assert pin.name == "pin1"
-
-    async def test_analog_names(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-
-            reader = await client.analog_by_name("analog1")
-            assert reader.name == "analog1"
-
-            names = await client.analog_names()
-            assert names == ["analog1"]
 
     async def test_digital_interrupt_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:

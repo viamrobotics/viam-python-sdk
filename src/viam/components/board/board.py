@@ -365,25 +365,6 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def analog_names(self) -> List[str]:
-        """
-        Get the names of all known analog readers and/or writers.
-
-        ::
-
-            my_board = Board.from_robot(robot=machine, name="my_board")
-
-            # Get the name of every Analog configured on the board.
-            names = await my_board.analog_names()
-
-        Returns:
-            List[str]: The list of names of all known analog readers/writers.
-
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-        """
-        ...
-
-    @abc.abstractmethod
     async def digital_interrupt_names(self) -> List[str]:
         """
         Get the names of all known digital interrupts.
