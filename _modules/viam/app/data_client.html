@@ -463,12 +463,20 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            time_captured, time_synced, payload = await data_client.get_latest_tabular_data(</span>
-<span class="sd">                part_id=&quot;&lt;PART-ID&gt;&quot;,</span>
-<span class="sd">                resource_name=&quot;&lt;RESOURCE-NAME&gt;&quot;,</span>
-<span class="sd">                resource_subtype=&quot;&lt;RESOURCE-SUBTYPE&gt;&quot;,</span>
-<span class="sd">                method_name=&quot;&lt;METHOD-NAME&gt;&quot;</span>
+<span class="sd">            tabular_data = await data_client.get_latest_tabular_data(</span>
+<span class="sd">                part_id=&quot;77ae3145-7b91-123a-a234-e567cdca8910&quot;,</span>
+<span class="sd">                resource_name=&quot;camera-1&quot;,</span>
+<span class="sd">                resource_subtype=&quot;rdk:component:camera&quot;,</span>
+<span class="sd">                method_name=&quot;GetImage&quot;</span>
 <span class="sd">            )</span>
+
+<span class="sd">            if tabular_data:</span>
+<span class="sd">                time_captured, time_synced, payload = tabular_data</span>
+<span class="sd">                print(f&quot;Time Captured: {time_captured}&quot;)</span>
+<span class="sd">                print(f&quot;Time Synced: {time_synced}&quot;)</span>
+<span class="sd">                print(f&quot;Payload: {payload}&quot;)</span>
+<span class="sd">            else:</span>
+<span class="sd">                print(f&quot;No data returned: {tabular_data}&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): The ID of the part that owns the data.</span>
