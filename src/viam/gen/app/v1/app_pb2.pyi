@@ -3449,22 +3449,30 @@ class Model(google.protobuf.message.Message):
     API_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
     MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
     api: builtins.str
     'The colon-delimited-triplet of the api implemented by the model'
     model: builtins.str
     'The colon-delimited-triplet of the model'
     markdown_documentation: builtins.str
     'The markdown content describing the usage of the model'
+    description: builtins.str
+    'A short description of the model that explains its purpose'
 
-    def __init__(self, *, api: builtins.str=..., model: builtins.str=..., markdown_documentation: builtins.str | None=...) -> None:
+    def __init__(self, *, api: builtins.str=..., model: builtins.str=..., markdown_documentation: builtins.str | None=..., description: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_markdown_documentation', b'_markdown_documentation', 'markdown_documentation', b'markdown_documentation']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'description', b'description', 'markdown_documentation', b'markdown_documentation']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'markdown_documentation', b'markdown_documentation', 'model', b'model']) -> None:
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'description', b'description', 'markdown_documentation', b'markdown_documentation', 'model', b'model']) -> None:
         ...
 
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_description', b'_description']) -> typing.Literal['description'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_markdown_documentation', b'_markdown_documentation']) -> typing.Literal['markdown_documentation'] | None:
         ...
 global___Model = Model

@@ -351,6 +351,7 @@ def _alias_param(param_name: str, param_alias: str) -> Callable:
     Returns:
         The input function, plus param alias.
     """
+
     def decorator(func: Callable):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -362,5 +363,7 @@ def _alias_param(param_name: str, param_alias: str) -> Callable:
                 del kwargs[param_alias]
             result = func(*args, **kwargs)
             return result
+
         return wrapper
+
     return decorator
