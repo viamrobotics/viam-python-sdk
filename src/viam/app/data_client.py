@@ -378,7 +378,7 @@ class DataClient:
                 method_name="GetImage"
             )
 
-            if tabular_data and len(tabular_data) == 3:
+            if tabular_data:
                 time_captured, time_synced, payload = tabular_data
                 print(f"Time Captured: {time_captured}")
                 print(f"Time Synced: {time_synced}")
