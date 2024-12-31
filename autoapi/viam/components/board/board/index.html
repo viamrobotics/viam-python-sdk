@@ -94,8 +94,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.analog_by_name"><code class="docutils literal notranslate"><span class="pre">Board.analog_by_name()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.digital_interrupt_by_name"><code class="docutils literal notranslate"><span class="pre">Board.digital_interrupt_by_name()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.gpio_pin_by_name"><code class="docutils literal notranslate"><span class="pre">Board.gpio_pin_by_name()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.analog_names"><code class="docutils literal notranslate"><span class="pre">Board.analog_names()</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.digital_interrupt_names"><code class="docutils literal notranslate"><span class="pre">Board.digital_interrupt_names()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.set_power_mode"><code class="docutils literal notranslate"><span class="pre">Board.set_power_mode()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.stream_ticks"><code class="docutils literal notranslate"><span class="pre">Board.stream_ticks()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board.from_robot"><code class="docutils literal notranslate"><span class="pre">Board.from_robot()</span></code></a></li>
@@ -604,56 +602,6 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.board.Board.GPIOPin" title="viam.components.board.board.Board.GPIOPin">GPIOPin</a></p>
-</dd>
-</dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/board/">Board component</a>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.analog_names">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.analog_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.analog_names" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Async<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>Get the names of all known analog readers and/or writers.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the name of every Analog configured on the board.</span>
-<span class="n">names</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_names</span><span class="p">()</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The list of names of all known analog readers/writers.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[str]</p>
-</dd>
-</dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/board/">Board component</a>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.digital_interrupt_names">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.digital_interrupt_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.digital_interrupt_names" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Async<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>Get the names of all known digital interrupts.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
-
-<span class="c1"># Get the name of every DigitalInterrupt configured on the board.</span>
-<span class="n">names</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_names</span><span class="p">()</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The names of the digital interrupts.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[str]</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/components/board/">Board component</a>.</p>

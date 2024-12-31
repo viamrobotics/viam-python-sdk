@@ -354,46 +354,6 @@ Module Contents
 
 
 
-   .. py:method:: analog_names() -> List[str]
-      :async:
-
-
-      Get the names of all known analog readers and/or writers.
-
-      ::
-
-          my_board = Board.from_robot(robot=machine, name="my_board")
-
-          # Get the name of every Analog configured on the board.
-          names = await my_board.analog_names()
-
-      :returns: The list of names of all known analog readers/writers.
-      :rtype: List[str]
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
-
-
-   .. py:method:: digital_interrupt_names() -> List[str]
-      :async:
-
-
-      Get the names of all known digital interrupts.
-
-      ::
-
-          my_board = Board.from_robot(robot=machine, name="my_board")
-
-          # Get the name of every DigitalInterrupt configured on the board.
-          names = await my_board.digital_interrupt_names()
-
-      :returns: The names of the digital interrupts.
-      :rtype: List[str]
-
-      For more information, see `Board component <https://docs.viam.com/components/board/>`_.
-
-
-
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
