@@ -6159,7 +6159,7 @@ Module Contents
 
 .. py:data:: global___UpdateMLTrainingMetadata
 
-.. py:class:: Model(*, api: str = ..., model: str = ..., markdown_documentation: str | None = ...)
+.. py:class:: Model(*, api: str = ..., model: str = ..., markdown_documentation: str | None = ..., description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6189,7 +6189,13 @@ Module Contents
       The markdown content describing the usage of the model
 
 
-   .. py:method:: HasField(field_name: Literal['_markdown_documentation', b'_markdown_documentation', 'markdown_documentation', b'markdown_documentation']) -> bool
+   .. py:attribute:: description
+      :type:  str
+
+      A short description of the model that explains its purpose
+
+
+   .. py:method:: HasField(field_name: Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'description', b'description', 'markdown_documentation', b'markdown_documentation']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -6207,7 +6213,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_markdown_documentation', b'_markdown_documentation']) -> Literal['markdown_documentation'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_description', b'_description']) -> Literal['description'] | None
+                  WhichOneof(oneof_group: Literal['_markdown_documentation', b'_markdown_documentation']) -> Literal['markdown_documentation'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
