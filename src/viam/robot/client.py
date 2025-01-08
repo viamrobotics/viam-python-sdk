@@ -1,4 +1,5 @@
 import asyncio
+import sys
 from dataclasses import dataclass
 from datetime import datetime
 from threading import RLock
@@ -431,6 +432,9 @@ class RobotClient:
                     self._sessions_client.reset()
                     self._close_channel()
                     await asyncio.sleep(reconnect_every)
+            if not self._connected:
+                # We failed to reconnect, sys.exit() so that this thread doesn't stick around forever.
+                sys.exit()
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
