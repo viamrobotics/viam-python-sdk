@@ -472,6 +472,49 @@ class Discovery(google.protobuf.message.Message):
 global___Discovery = Discovery
 
 @typing.final
+class ModuleModel(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODULE_NAME_FIELD_NUMBER: builtins.int
+    MODEL_FIELD_NUMBER: builtins.int
+    API_FIELD_NUMBER: builtins.int
+    FROM_LOCAL_MODULE_FIELD_NUMBER: builtins.int
+    module_name: builtins.str
+    model: builtins.str
+    api: builtins.str
+    from_local_module: builtins.bool
+
+    def __init__(self, *, module_name: builtins.str=..., model: builtins.str=..., api: builtins.str=..., from_local_module: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['api', b'api', 'from_local_module', b'from_local_module', 'model', b'model', 'module_name', b'module_name']) -> None:
+        ...
+global___ModuleModel = ModuleModel
+
+@typing.final
+class GetModelsFromModulesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetModelsFromModulesRequest = GetModelsFromModulesRequest
+
+@typing.final
+class GetModelsFromModulesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODELS_FIELD_NUMBER: builtins.int
+
+    @property
+    def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ModuleModel]:
+        ...
+
+    def __init__(self, *, models: collections.abc.Iterable[global___ModuleModel] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['models', b'models']) -> None:
+        ...
+global___GetModelsFromModulesResponse = GetModelsFromModulesResponse
+
+@typing.final
 class DiscoverComponentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     QUERIES_FIELD_NUMBER: builtins.int
