@@ -1382,24 +1382,31 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd><p>Upload tabular sensor data.</p>
 <p>Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
 app.viam.com. Tabular data can be found under the “Sensors” subtab of the Data tab on app.viam.com.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
+<span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
     <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
-    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;rdk:component:motor&#39;</span><span class="p">,</span>
-    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
-    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;rdk:component:movement_sensor&#39;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;my_movement_sensor&#39;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;Readings&#39;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sensor_data&quot;</span><span class="p">],</span>
     <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">)],</span>
-    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
+    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span>
+        <span class="s1">&#39;readings&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;linear_velocity&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
+            <span class="s1">&#39;angular_velocity&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tabular_data</strong> (<em>List</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – List of the data to be uploaded, represented tabularly as a collection of dictionaries.</p></li>
+<li><p><strong>tabular_data</strong> (<em>List</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – List of the data to be uploaded, represented tabularly as a collection of dictionaries.
+Must include the key “readings” for sensors.</p></li>
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the component used to capture the data.</p></li>
 <li><p><strong>component_type</strong> (<em>str</em>) – Type of the component used to capture the data (for example, “rdk:component:movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>str</em>) – Name of the component used to capture the data.</p></li>

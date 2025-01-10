@@ -1434,21 +1434,28 @@
 
 <span class="sd">        ::</span>
 
+<span class="sd">            from datetime import datetime</span>
+
 <span class="sd">            time_requested = datetime(2023, 6, 5, 11)</span>
 <span class="sd">            time_received = datetime(2023, 6, 5, 11, 0, 3)</span>
-
 <span class="sd">            file_id = await data_client.tabular_data_capture_upload(</span>
 <span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
-<span class="sd">                component_type=&#39;rdk:component:motor&#39;,</span>
-<span class="sd">                component_name=&#39;left_motor&#39;,</span>
-<span class="sd">                method_name=&#39;IsPowered&#39;,</span>
-<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                component_type=&#39;rdk:component:movement_sensor&#39;,</span>
+<span class="sd">                component_name=&#39;my_movement_sensor&#39;,</span>
+<span class="sd">                method_name=&#39;Readings&#39;,</span>
+<span class="sd">                tags=[&quot;sensor_data&quot;],</span>
 <span class="sd">                data_request_times=[(time_requested, time_received)],</span>
-<span class="sd">                tabular_data=[{&#39;PowerPCT&#39;: 0, &#39;IsPowered&#39;: False}]</span>
+<span class="sd">                tabular_data=[{</span>
+<span class="sd">                    &#39;readings&#39;: {</span>
+<span class="sd">                        &#39;linear_velocity&#39;: {&#39;x&#39;: 0.5, &#39;y&#39;: 0.0, &#39;z&#39;: 0.0},</span>
+<span class="sd">                        &#39;angular_velocity&#39;: {&#39;x&#39;: 0.0, &#39;y&#39;: 0.0, &#39;z&#39;: 0.1}</span>
+<span class="sd">                    }</span>
+<span class="sd">                }]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
+<span class="sd">                Must include the key &quot;readings&quot; for sensors.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
 <span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;rdk:component:movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
