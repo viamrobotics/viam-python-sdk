@@ -31,7 +31,7 @@ class Board(ComponentBase):
 
         from viam.components.board import Board
 
-    For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+    For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -52,7 +52,7 @@ class Board(ComponentBase):
         the reader's minimum and maximum possible values, and its step size (the minimum possible
         change between values it can read).
 
-        For more information, see `analogs <https://docs.viam.com/components/board/#analogs>`_.
+        For more information, see `analogs <https://docs.viam.com/dev/reference/apis/components/board/#analogs>`_.
         """
 
         def __init__(self, name: str):
@@ -78,7 +78,7 @@ class Board(ComponentBase):
             Returns:
                 Value: The current value, including the min, max, and step_size of the reader.
 
-            For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
+            For more information, see `Board component Analog API <https://docs.viam.com/dev/reference/apis/components/board/#analog-api>`_.
             """
             ...
 
@@ -100,7 +100,7 @@ class Board(ComponentBase):
             Args:
                 value (int): Value to write to the analog writer.
 
-            For more information, see `Board component Analog API <https://docs.viam.com/components/board/#analog-api>`_.
+            For more information, see `Board component Analog API <https://docs.viam.com/dev/reference/apis/components/board/#analog-api>`_.
             """
             ...
 
@@ -110,7 +110,7 @@ class Board(ComponentBase):
         when interrupted, calls the added callbacks. Post processors can
         be added to modify what Value it ultimately returns.
 
-        For more information, see `digital_interrupts <https://docs.viam.com/components/board/#digital_interrupts>`_.
+        For more information, see `digital_interrupts <https://docs.viam.com/dev/reference/apis/components/board/#digital_interrupts>`_.
         """
 
         name: str
@@ -141,7 +141,7 @@ class Board(ComponentBase):
                 int: The current value.
 
             For more information, see
-            `Board component DigitalInterrupt API <https://docs.viam.com/components/board/#digitalinterrupt-api>`_.
+            `Board component DigitalInterrupt API <https://docs.viam.com/dev/reference/apis/components/board/#digitalinterrupt-api>`_.
             """
             ...
 
@@ -174,7 +174,7 @@ class Board(ComponentBase):
             Args:
                 high (bool): When true, sets the pin to high. When false, sets the pin to low.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -196,7 +196,7 @@ class Board(ComponentBase):
             Returns:
                 bool: Indicates if the state of the pin is high.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -218,7 +218,7 @@ class Board(ComponentBase):
             Returns:
                 float: The duty cycle.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -241,7 +241,7 @@ class Board(ComponentBase):
             Args:
                 duty_cycle (float): The duty cycle.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -263,7 +263,7 @@ class Board(ComponentBase):
             Returns:
                 int: The PWM frequency.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -293,7 +293,7 @@ class Board(ComponentBase):
             Args:
                 frequency (int): The frequency, in Hz.
 
-            For more information, see `GPIOPin API <https://docs.viam.com/components/board/#gpiopin-api>`_.
+            For more information, see `GPIOPin API <https://docs.viam.com/dev/reference/apis/components/board/#gpiopin-api>`_.
             """
             ...
 
@@ -315,7 +315,7 @@ class Board(ComponentBase):
         Returns:
             Analog: The analog reader or writer.
 
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+        For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/#analogbyname>`_.
         """
         ...
 
@@ -338,7 +338,7 @@ class Board(ComponentBase):
         Returns:
             DigitalInterrupt: The digital interrupt.
 
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+        For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/#digitalinterruptbyname>`_.
         """
         ...
 
@@ -360,7 +360,7 @@ class Board(ComponentBase):
         Returns:
             GPIOPin: The pin.
 
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+        For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/#gpiopinbyname>`_.
         """
         ...
 
@@ -382,7 +382,7 @@ class Board(ComponentBase):
             mode (PowerMode): The desired power mode.
             duration (Optional[timedelta]): Requested duration to stay in power mode.
 
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+        For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/#setpowermode>`_.
         """
         ...
 
@@ -409,6 +409,6 @@ class Board(ComponentBase):
         Returns:
             TickStream: stream of ticks.
 
-        For more information, see `Board component <https://docs.viam.com/components/board/>`_.
+        For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/#streamticks>`_.
         """
         ...

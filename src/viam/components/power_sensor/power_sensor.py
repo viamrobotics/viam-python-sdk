@@ -16,7 +16,7 @@ class PowerSensor(ComponentBase):
 
         from viam.components.power_sensor import PowerSensor
 
-    For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
+    For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -39,7 +39,7 @@ class PowerSensor(ComponentBase):
             Tuple[float, bool]: A float representing the voltage reading in V. A bool indicating whether the voltage is AC (`true`) or DC
             (`false`).
 
-        For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
+        For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getvoltage>`_.
         """
         ...
 
@@ -59,7 +59,7 @@ class PowerSensor(ComponentBase):
             Tuple[float, bool]: A tuple which includes a float representing the current reading in amps, and a bool indicating whether the
             current is AC (`true`) or DC (`false`).
 
-        For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
+        For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getcurrent>`_.
         """
         ...
 
@@ -78,7 +78,7 @@ class PowerSensor(ComponentBase):
         Returns:
             float: The power reading in watts.
 
-        For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
+        For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getpower>`_.
         """
         ...
 
@@ -99,6 +99,6 @@ class PowerSensor(ComponentBase):
             Mapping[str, Any]: The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
                 amperes (float), is_ac (bool), and power in watts (float).
 
-        For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
+        For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getreadings>`_.
         """
         ...

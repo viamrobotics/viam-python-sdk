@@ -68,7 +68,7 @@ class Generic(ComponentBase):
         await asyncio.sleep(10)
         component.power  # 0
 
-    For more information, see `Gantry component <https://docs.viam.com/components/generic/>`_.
+    For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/generic/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
