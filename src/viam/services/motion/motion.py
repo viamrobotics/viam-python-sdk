@@ -21,7 +21,7 @@ class Motion(ServiceBase):
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
     ``world_state`` message, the motion planning service will also account for those.
 
-    For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+    For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/>`_.
     """
 
     Plan: "TypeAlias" = GetPlanResponse
@@ -80,7 +80,7 @@ class Motion(ServiceBase):
         Returns:
             bool: Whether the move was successful.
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#move>`_.
         """
         ...
 
@@ -155,7 +155,7 @@ class Motion(ServiceBase):
         Returns:
             str: ExecutionID of the ``move_on_globe()`` call, which can be used to track execution progress.
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#moveonglobe>`_.
         """
         ...
 
@@ -222,7 +222,7 @@ class Motion(ServiceBase):
         Returns:
             str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#moveonmap>`_.
         """
         ...
 
@@ -249,7 +249,7 @@ class Motion(ServiceBase):
         Args:
             component_name (ResourceName): The component to stop
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#stopplan>`_.
         """
         ...
 
@@ -295,7 +295,7 @@ class Motion(ServiceBase):
         Returns:
             ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus & replan history which matches the request
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#getplan>`_.
         """
         ...
 
@@ -328,7 +328,7 @@ class Motion(ServiceBase):
             ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the
             associated IDs of all plans within the TTL ordered by timestamp in ascending order.
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#listplanstatuses>`_.
         """
         ...
 
@@ -373,6 +373,6 @@ class Motion(ServiceBase):
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
 
-        For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+        For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#getpose>`_.
         """
         ...

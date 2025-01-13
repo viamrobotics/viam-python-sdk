@@ -1,12 +1,12 @@
 # VIAM Simple Module Example
 This example goes through how to create custom modular resources using Viam's python SDK, and how to connect it to a Robot.
 
-This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
+This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/operate/get-started/other-hardware/).
 
 ## Purpose
 Modular resources allow you to define custom components and services, and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
 
-For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module), which contains multiple new APIs and custom resource models.
+For more information, see the [documentation](hhttps://docs.viam.com/operate/get-started/other-hardware/). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module), which contains multiple new APIs and custom resource models.
 
 For a fully fleshed-out example of a Python module that uses Github CI to upload to the Viam Registry, take a look at [python-example-module](https://github.com/viam-labs/python-example-module). For an example that uses Docker to manage dependencies, take a look at [python-container-module](https://github.com/viamrobotics/python-container-module). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
@@ -24,11 +24,11 @@ Outside the `src` directory, there is a `client.py` file. You can use this file 
 ## Configuring and using the module
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
 
-The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/simple_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
+The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/simple_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/operate/get-started/other-hardware/#upload-your-module) for more details.
 
-Once the module has been added to your robot, add a new component that uses the `MySensor` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details.
+Once the module has been added to your robot, add a new component that uses the `MySensor` model. See the [documentation](https://docs.viam.com/operate/get-started/other-hardware/#add-your-new-modular-resource-to-your-machines) for more details.
 
-Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/registry/create/#name-your-new-resource-model).
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/operate/reference/naming-modules/#create-a-namespace-for-your-organization).
 
 An example configuration for a Sensor component could look like this:
 ```json

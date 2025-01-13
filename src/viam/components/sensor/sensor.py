@@ -19,7 +19,7 @@ class Sensor(ComponentBase):
 
         from viam.components.sensor import Sensor
 
-    For more information, see `Sensor component <https://docs.viam.com/components/sensor/>`_.
+    For more information, see `Sensor component <https://docs.viam.com/dev/reference/apis/components/sensor/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -43,6 +43,6 @@ class Sensor(ComponentBase):
         Returns:
             Mapping[str, Any]: The measurements. Can be of any type.
 
-        For more information, see `Sensor component <https://docs.viam.com/components/sensor/>`_.
+        For more information, see `Sensor component <https://docs.viam.com/dev/reference/apis/components/sensor/#getreadings>`_.
         """
         ...

@@ -18,7 +18,7 @@ class Servo(ComponentBase):
 
         from viam.components.servo import Servo
 
-    For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
+    For more information, see `Servo component <https://docs.viam.com/dev/reference/apis/components/servo/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -43,7 +43,7 @@ class Servo(ComponentBase):
         Args:
             angle (int): The desired angle of the servo in degrees.
 
-        For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
+        For more information, see `Servo component <https://docs.viam.com/dev/reference/apis/components/servo/#move>`_.
         """
         ...
 
@@ -71,7 +71,7 @@ class Servo(ComponentBase):
         Returns:
             int: The current angle of the servo in degrees.
 
-        For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
+        For more information, see `Servo component <https://docs.viam.com/dev/reference/apis/components/servo/#getposition>`_.
         """
         ...
 
@@ -90,7 +90,7 @@ class Servo(ComponentBase):
             # Stop the servo. It is assumed that the servo stops moving immediately.
             await my_servo.stop()
 
-        For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
+        For more information, see `Servo component <https://docs.viam.com/dev/reference/apis/components/servo/#stop>`_.
         """
         ...
 
@@ -109,6 +109,6 @@ class Servo(ComponentBase):
         Returns:
             bool: Whether the servo is moving.
 
-        For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
+        For more information, see `Servo component <https://docs.viam.com/dev/reference/apis/components/servo/#ismoving>`_.
         """
         ...

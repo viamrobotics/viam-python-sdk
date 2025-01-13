@@ -49,7 +49,7 @@ class BillingClient:
         if __name__ == '__main__':
             asyncio.run(main())
 
-    For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
+    For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/>`_.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -80,7 +80,7 @@ class BillingClient:
         Returns:
             viam.proto.app.billing.GetCurrentMonthUsageResponse: the current month usage information
 
-        For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getcurrentmonthusage>`_.
         """
         request = GetCurrentMonthUsageRequest(org_id=org_id)
         return await self._billing_client.GetCurrentMonthUsage(request, metadata=self._metadata, timeout=timeout)
@@ -97,7 +97,7 @@ class BillingClient:
             org_id (str): the ID of the org to request data from
             dest (str): the filepath to save the invoice to
 
-        For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicepdf>`_.
         """
         stream: Stream[GetInvoicePdfRequest, GetInvoicePdfResponse]
         async with self._billing_client.GetInvoicePdf.open(timeout=timeout, metadata=self._metadata) as stream:
@@ -119,7 +119,7 @@ class BillingClient:
         Returns:
             viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all org invoices
 
-        For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicessummary>`_.
         """
         request = GetInvoicesSummaryRequest(org_id=org_id)
         return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata, timeout=timeout)
@@ -137,7 +137,7 @@ class BillingClient:
         Returns:
             viam.proto.app.billing.GetOrgBillingInformationResponse: the org billing information
 
-        For more information, see `Billing Client API <https://docs.viam.com/appendix/apis/billing-client/>`_.
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getorgbillinginformation>`_.
         """
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
