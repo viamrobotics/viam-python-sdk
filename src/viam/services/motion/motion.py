@@ -26,7 +26,7 @@ class Motion(ServiceBase):
 
     Plan: "TypeAlias" = GetPlanResponse
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion"
     )
 

@@ -83,7 +83,7 @@ class Module:
         for model in models:
             if not hasattr(model, "MODEL"):
                 raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
-            module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
+            module.add_model_from_registry(model.API, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
         await module.start()
 
     @classmethod

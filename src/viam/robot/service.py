@@ -26,7 +26,7 @@ class RobotService(UnimplementedRobotServiceBase, ResourceRPCServiceBase):
 
         for resource in self.manager.resources.values():
             # If the resource is a MovementSensor, DO NOT include Sensor as well (it will get added via MovementSensor)
-            if resource.SUBTYPE == Sensor.SUBTYPE and MovementSensor.get_resource_name(resource.name) in self.manager.resources:
+            if resource.API == Sensor.API and MovementSensor.get_resource_name(resource.name) in self.manager.resources:
                 continue
 
             md.update(resource_names_for_resource(resource))

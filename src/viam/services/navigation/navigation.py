@@ -18,7 +18,7 @@ class Navigation(ServiceBase):
     For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "navigation"
     )
 

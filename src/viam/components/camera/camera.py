@@ -30,7 +30,7 @@ class Camera(ComponentBase):
     For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera"
     )
 

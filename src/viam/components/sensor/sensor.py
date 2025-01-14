@@ -22,7 +22,7 @@ class Sensor(ComponentBase):
     For more information, see `Sensor component <https://docs.viam.com/components/sensor/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor"
     )
 

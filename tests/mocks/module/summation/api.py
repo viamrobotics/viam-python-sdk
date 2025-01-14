@@ -15,7 +15,7 @@ from ..proto.summation_pb2 import SumRequest, SumResponse
 class SummationService(ServiceBase):
     """Example service to use with the example module"""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_SERVICE, "summation")
+    API: Final = Subtype("acme", RESOURCE_TYPE_SERVICE, "summation")
 
     @abc.abstractmethod
     async def sum(self, nums: Sequence[float]) -> float: ...

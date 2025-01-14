@@ -86,11 +86,11 @@ class Registry:
             ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
-            if registration.resource_type.SUBTYPE in cls._APIS:
-                raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
+            if registration.resource_type.API in cls._APIS:
+                raise DuplicateResourceError(str(registration.resource_type.API))
 
             if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
-                cls._APIS[registration.resource_type.SUBTYPE] = registration
+                cls._APIS[registration.resource_type.API] = registration
             else:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 

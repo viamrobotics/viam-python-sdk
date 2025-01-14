@@ -16,7 +16,7 @@ class PoseTracker(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker"
     )
 

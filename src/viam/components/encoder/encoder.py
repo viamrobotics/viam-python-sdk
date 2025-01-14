@@ -28,7 +28,7 @@ class Encoder(ComponentBase):
     For more information, see `Encoder component <https://docs.viam.com/components/encoder/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "encoder"
     )
 

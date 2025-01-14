@@ -44,7 +44,7 @@ class ResourceManager:
         Args:
             resource (ResourceBase): The resource to register
         """
-        Registry.lookup_subtype(resource.SUBTYPE)  # confirm the subtype is registered in Registry
+        Registry.lookup_subtype(resource.API)  # confirm the subtype is registered in Registry
 
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}

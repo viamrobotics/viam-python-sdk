@@ -25,7 +25,7 @@ class SLAM(ServiceBase):
     For more information, see `SLAM service <https://docs.viam.com/services/slam/>`_.
     """
 
-    SUBTYPE: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     Properties: "TypeAlias" = GetPropertiesResponse
 
