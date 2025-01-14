@@ -63,7 +63,7 @@ class Vision(ServiceBase):
     For more information, see `Computer Vision service <https://docs.viam.com/services/vision/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
     )
 

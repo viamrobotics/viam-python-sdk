@@ -28,7 +28,7 @@ from ..proto.gizmo_pb2 import (
 class Gizmo(ComponentBase):
     """Example component to use with the example module."""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
+    API: Final = Subtype("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
 
     @abc.abstractmethod
     async def do_one(self, arg1: str, **kwargs) -> bool: ...
