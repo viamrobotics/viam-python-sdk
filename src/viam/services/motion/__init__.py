@@ -8,7 +8,7 @@ from .service import MotionRPCService
 __all__ = ["Motion", "MotionClient", "MotionConfiguration", "Constraints"]
 
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         Motion,
         MotionRPCService,

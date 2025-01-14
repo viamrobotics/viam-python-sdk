@@ -70,27 +70,27 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict["API", ResourceRegistration]] = {}
+    _APIS: ClassVar[Dict["API", ResourceRegistration]] = {}
     _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
-    def register_subtype(cls, registration: ResourceRegistration[Resource]):
-        """Register a Subtype with the Registry
+    def register_api(cls, registration: ResourceRegistration[Resource]):
+        """Register an API with the Registry
 
         Args:
-            registration (ResourceRegistration): Object containing registration data for the subtype
+            registration (ResourceRegistration): Object containing registration data for the API
 
         Raises:
-            DuplicateResourceError: Raised if the Subtype to register is already in the registry
+            DuplicateResourceError: Raised if the API to register is already in the registry
             ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
-            if registration.resource_type.SUBTYPE in cls._SUBTYPES:
+            if registration.resource_type.SUBTYPE in cls._APIS:
                 raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
 
             if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
-                cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+                cls._APIS[registration.resource_type.SUBTYPE] = registration
             else:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 
@@ -132,7 +132,7 @@ class Registry:
         """
         with cls._lock:
             try:
-                return cls._SUBTYPES[subtype]
+                return cls._APIS[subtype]
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_api)
 
@@ -184,7 +184,7 @@ class Registry:
             Mapping[Subtype, ResourceRegistration]: All registered resources
         """
         with cls._lock:
-            return cls._SUBTYPES.copy()
+            return cls._APIS.copy()
 
     @classmethod
     def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:

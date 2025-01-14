@@ -14,4 +14,4 @@ __all__ = [
     "SLAM",
 ]
 
-Registry.register_subtype(ResourceRegistration(SLAM, SLAMRPCService, lambda name, channel: SLAMClient(name, channel)))
+Registry.register_api(ResourceRegistration(SLAM, SLAMRPCService, lambda name, channel: SLAMClient(name, channel)))

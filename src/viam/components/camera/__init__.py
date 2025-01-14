@@ -13,7 +13,7 @@ __all__ = [
     "ViamImage",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         Camera,
         CameraRPCService,

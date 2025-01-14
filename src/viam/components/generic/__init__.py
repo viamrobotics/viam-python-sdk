@@ -9,7 +9,7 @@ __all__ = [
     "Generic",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         Generic,
         GenericRPCService,

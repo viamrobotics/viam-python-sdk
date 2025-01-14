@@ -8,4 +8,4 @@ __all__ = [
     "Gantry",
 ]
 
-Registry.register_subtype(ResourceRegistration(Gantry, GantryRPCService, lambda name, channel: GantryClient(name, channel)))
+Registry.register_api(ResourceRegistration(Gantry, GantryRPCService, lambda name, channel: GantryClient(name, channel)))
