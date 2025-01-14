@@ -192,7 +192,7 @@ class Module:
         config: ComponentConfig = request.config
         subtype = API.from_string(config.api)
         name = config.name
-        rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
+        rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_api, name=name)
         resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
@@ -241,7 +241,7 @@ class Module:
                 subtype=ResourceName(
                     namespace=subtype.namespace,
                     type=subtype.resource_type,
-                    subtype=subtype.resource_subtype,
+                    subtype=subtype.resource_api,
                     name="",
                 ),
                 proto_service=svc_name,

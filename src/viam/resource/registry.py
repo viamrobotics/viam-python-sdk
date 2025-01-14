@@ -134,7 +134,7 @@ class Registry:
             try:
                 return cls._SUBTYPES[subtype]
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_api)
 
     @classmethod
     def lookup_resource_creator(cls, subtype: "API", model: "Model") -> "ResourceCreator":
@@ -154,7 +154,7 @@ class Registry:
             try:
                 return cls._RESOURCES[f"{subtype}/{model}"].creator
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_api)
 
     @classmethod
     def lookup_validator(cls, subtype: "API", model: "Model") -> "Validator":
@@ -172,7 +172,7 @@ class Registry:
         except AttributeError:
             return lambda x: []
         except KeyError:
-            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_api)
 
     @classmethod
     def REGISTERED_SUBTYPES(cls) -> Mapping["API", ResourceRegistration]:

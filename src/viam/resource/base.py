@@ -48,7 +48,7 @@ class ResourceBase(Protocol):
         return ResourceName(
             namespace=cls.SUBTYPE.namespace,
             type=cls.SUBTYPE.resource_type,
-            subtype=cls.SUBTYPE.resource_subtype,
+            subtype=cls.SUBTYPE.resource_api,
             name=name,
         )
 

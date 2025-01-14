@@ -109,7 +109,7 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
                 subtype: API = registration.resource_type.SUBTYPE
                 rns.append(
                     ResourceName(
-                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=resource.name
+                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_api, name=resource.name
                     )
                 )
     return rns
