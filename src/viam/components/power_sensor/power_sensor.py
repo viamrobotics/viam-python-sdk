@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 from viam.utils import SensorReading
 
 
@@ -19,7 +19,7 @@ class PowerSensor(ComponentBase):
     For more information, see `Power Sensor component <https://docs.viam.com/components/power-sensor/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "power_sensor"
     )
 

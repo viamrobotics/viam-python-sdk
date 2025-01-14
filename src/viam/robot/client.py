@@ -47,7 +47,7 @@ from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, API
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
@@ -340,12 +340,12 @@ class RobotClient:
             else:
                 await self._manager.remove_resource(resourceName)
                 self._manager.register(
-                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_subtype(API.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
                 )
         else:
             try:
                 self._manager.register(
-                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_subtype(API.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
                 )
             except ResourceNotFoundError:
                 pass

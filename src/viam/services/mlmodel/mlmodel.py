@@ -4,7 +4,7 @@ from typing import Dict, Final, Mapping, Optional
 from numpy.typing import NDArray
 
 from viam.proto.service.mlmodel import Metadata
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
 from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
@@ -21,7 +21,7 @@ class MLModel(ServiceBase):
     For more information, see `ML model service <https://docs.viam.com/services/ml/deploy/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel"
     )
 

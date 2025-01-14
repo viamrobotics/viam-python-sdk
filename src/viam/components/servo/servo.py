@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Final, Mapping, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 
@@ -21,7 +21,7 @@ class Servo(ComponentBase):
     For more information, see `Servo component <https://docs.viam.com/components/servo/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo"
     )
 

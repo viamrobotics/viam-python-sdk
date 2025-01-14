@@ -20,7 +20,7 @@ RESOURCE_TYPE_COMPONENT = "component"
 RESOURCE_TYPE_SERVICE = "service"
 
 
-class Subtype:
+class API:
     """Represents a known component/service (resource) API"""
 
     namespace: str
@@ -47,7 +47,7 @@ class Subtype:
         return hash(str(self))
 
     def __eq__(self, other: object) -> bool:
-        if isinstance(other, Subtype):
+        if isinstance(other, API):
             return str(self) == str(other)
         return False
 

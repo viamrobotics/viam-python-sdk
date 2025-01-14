@@ -4,7 +4,7 @@ from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
 from viam.proto.component.board import PowerMode, ReadAnalogReaderResponse, StreamTicksResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
@@ -34,7 +34,7 @@ class Board(ComponentBase):
     For more information, see `Board component <https://docs.viam.com/components/board/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board"
     )
 

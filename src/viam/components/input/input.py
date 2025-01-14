@@ -10,7 +10,7 @@ from typing_extensions import Self
 from viam.components.component_base import ComponentBase
 from viam.errors import NotSupportedError
 from viam.proto.component.inputcontroller import Event as PBEvent
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 
 class EventType(str, Enum):
@@ -143,7 +143,7 @@ class Controller(ComponentBase):
     For more information, see `Input Controller component <https://docs.viam.com/components/input-controller/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "input_controller"
     )
 

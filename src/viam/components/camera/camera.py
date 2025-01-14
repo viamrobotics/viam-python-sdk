@@ -5,7 +5,7 @@ from typing import Any, Dict, Final, List, Optional, Tuple
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 
@@ -30,7 +30,7 @@ class Camera(ComponentBase):
     For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera"
     )
 

@@ -2,7 +2,7 @@ import abc
 from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 from . import Vector3
@@ -23,7 +23,7 @@ class Base(ComponentBase):
     For more information, see `Base component <https://docs.viam.com/components/base/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base"
     )
 

@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Final, Mapping, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 from viam.utils import SensorReading
 
 from ..component_base import ComponentBase
@@ -22,7 +22,7 @@ class Sensor(ComponentBase):
     For more information, see `Sensor component <https://docs.viam.com/components/sensor/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor"
     )
 
