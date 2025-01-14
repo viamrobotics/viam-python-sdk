@@ -115,4 +115,4 @@ class MyArm(Arm):
         LOGGER.info(f"{self.name} is closed.")
 
 
-Registry.register_resource_creator(Arm.SUBTYPE, MyArm.MODEL, ResourceCreatorRegistration(MyArm.new))
+Registry.register_resource_creator(Arm.API, MyArm.MODEL, ResourceCreatorRegistration(MyArm.new))

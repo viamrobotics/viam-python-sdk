@@ -15,10 +15,10 @@ async def main():
     Resource models must be pre-registered. For an example, see the `gizmo.__init__.py` file.
     """
     module = Module.from_args()
-    module.add_model_from_registry(Gizmo.SUBTYPE, MyGizmo.MODEL)
-    module.add_model_from_registry(SummationService.SUBTYPE, MySummationService.MODEL)
-    module.add_model_from_registry(Arm.SUBTYPE, MyArm.MODEL)
-    module.add_model_from_registry(Base.SUBTYPE, MyBase.MODEL)
+    module.add_model_from_registry(Gizmo.API, MyGizmo.MODEL)
+    module.add_model_from_registry(SummationService.API, MySummationService.MODEL)
+    module.add_model_from_registry(Arm.API, MyArm.MODEL)
+    module.add_model_from_registry(Base.API, MyBase.MODEL)
     await module.start()
 
 

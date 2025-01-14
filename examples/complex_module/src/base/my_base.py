@@ -18,7 +18,7 @@ class MyBase(Base, Reconfigurable):
     MyBase implements a base that only supports set_power (basic forward/back/turn controls), is_moving (check if in motion), and stop (stop
     all motion).
 
-    It inherits from the built-in resource subtype Base and conforms to the ``Reconfigurable`` protocol, which signifies that this component
+    It inherits from the built-in resource API Base and conforms to the ``Reconfigurable`` protocol, which signifies that this component
     can be reconfigured. Additionally, it specifies a constructor function ``MyBase.new`` which conforms to the
     ``resource.types.ResourceCreator`` type required for all models. It also specifies a validator function `MyBase.validate_config` which
     conforms to the ``resource.types.Validator`` type and returns implicit dependencies for the model.
@@ -147,4 +147,4 @@ class MyBase(Base, Reconfigurable):
         raise NotImplementedError()
 
 
-Registry.register_resource_creator(Base.SUBTYPE, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))
+Registry.register_resource_creator(Base.API, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))
