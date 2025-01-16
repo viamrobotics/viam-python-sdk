@@ -9,8 +9,6 @@ from viam.proto.robot import (
     BlockForOperationResponse,
     CancelOperationRequest,
     CancelOperationResponse,
-    DiscoverComponentsRequest,
-    DiscoverComponentsResponse,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
     GetCloudMetadataRequest,
@@ -99,9 +97,6 @@ class MockRobot(UnimplementedRobotServiceBase):
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
         raise MethodNotImplementedError("TransformPose").grpc_error
-
-    async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
-        raise MethodNotImplementedError("DiscoverComponents").grpc_error
 
     async def StopAll(self, stream: Stream[StopAllRequest, StopAllResponse]) -> None:
         raise MethodNotImplementedError("StopAll").grpc_error

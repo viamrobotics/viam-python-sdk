@@ -21,8 +21,6 @@ from viam.proto.robot import (
     BlockForOperationResponse,
     CancelOperationRequest,
     CancelOperationResponse,
-    DiscoverComponentsRequest,
-    DiscoverComponentsResponse,
     Discovery,
     DiscoveryQuery,
     FrameSystemConfig,
@@ -168,12 +166,6 @@ def service() -> RobotService:
         response = TransformPoseResponse(pose=TRANSFORM_RESPONSE)
         await stream.send_message(response)
 
-    async def DiscoverComponents(stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        response = DiscoverComponentsResponse(discovery=DISCOVERY_RESPONSE)
-        await stream.send_message(response)
-
     async def GetOperations(stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -205,7 +197,6 @@ def service() -> RobotService:
     service = RobotService(manager)
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
-    service.DiscoverComponents = DiscoverComponents
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
     service.Shutdown = Shutdown
@@ -372,13 +363,6 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             pose = await client.transform_pose(PoseInFrame(), "some dest")
             assert pose == TRANSFORM_RESPONSE
-            await client.close()
-
-    async def test_discover_components(self, service: RobotService):
-        async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            discoveries = await client.discover_components([DISCOVERY_QUERY])
-            assert discoveries == DISCOVERY_RESPONSE
             await client.close()
 
     async def test_get_cloud_metadata(self, service: RobotService):
