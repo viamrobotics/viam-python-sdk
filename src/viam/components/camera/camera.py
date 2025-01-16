@@ -27,7 +27,7 @@ class Camera(ComponentBase):
 
         from viam.components.camera import Camera
 
-    For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+    For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -65,7 +65,7 @@ class Camera(ComponentBase):
         Returns:
             ViamImage: The frame.
 
-        For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimage>`_.
         """
         ...
 
@@ -86,7 +86,7 @@ class Camera(ComponentBase):
             Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
             returned from the camera system, and the second [1] the metadata associated with this response.
 
-        For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.
         """
         ...
 
@@ -122,7 +122,7 @@ class Camera(ComponentBase):
             Tuple[bytes, str]: A tuple containing two values; the first [0] the pointcloud data,
             and the second [1] the mimetype of the pointcloud (for example, PCD).
 
-        For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getpointcloud>`_.
         """
         ...
 
@@ -140,6 +140,6 @@ class Camera(ComponentBase):
         Returns:
             Properties: The properties of the camera.
 
-        For more information, see `Camera component <https://docs.viam.com/components/camera/>`_.
+        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getproperties>`_.
         """
         ...

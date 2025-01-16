@@ -18,7 +18,7 @@ class MLModel(ServiceBase):
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
 
-    For more information, see `ML model service <https://docs.viam.com/services/ml/deploy/>`_.
+    For more information, see `ML model service <https://docs.viam.com/dev/reference/apis/services/ml/>`_.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -56,7 +56,7 @@ class MLModel(ServiceBase):
         Returns:
             Dict[str, NDArray]: A dictionary of output flat tensors as specified in the metadata
 
-        For more information, see `ML model service <https://docs.viam.com/services/ml/deploy/>`_.
+        For more information, see `ML model service <https://docs.viam.com/dev/reference/apis/services/ml/#infer>`_.
         """
         ...
 
@@ -73,6 +73,6 @@ class MLModel(ServiceBase):
         Returns:
             Metadata: The metadata
 
-        For more information, see `ML model service <https://docs.viam.com/services/ml/deploy/>`_.
+        For more information, see `ML model service <https://docs.viam.com/dev/reference/apis/services/ml/#metadata>`_.
         """
         ...

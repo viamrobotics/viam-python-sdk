@@ -2,13 +2,13 @@
 
 This example goes through how to create custom modular resources using Viam's python SDK, and how to connect it to a Robot.
 
-This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
+This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/operate/get-started/other-hardware/).
 
 ## Purpose
 
 Modular resources allow you to define custom components and services, and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
 
-For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/simple_module), which only contains one custom resource model in one file.
+For more information, see the [documentation](https://docs.viam.com/operate/get-started/other-hardware/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/simple_module), which only contains one custom resource model in one file.
 
 For a fully fleshed-out example of a Python module that uses Github CI to upload to the Viam Registry, take a look at [python-example-module](https://github.com/viam-labs/python-example-module). For an example that uses Docker to manage dependencies, take a look at [python-container-module](https://github.com/viamrobotics/python-container-module). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
@@ -18,7 +18,7 @@ The definition of the new resources are in the `src` directory. Within this dire
 
 The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. It also has the compiled python output of the protobuf definition.
 
-The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. The `api.py` file defines what a `Gizmo` can do (mirroring the `proto` definition), implements the gRPC `GizmoService` for receiving calls, and the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. The `my_gizmo.py` file in contains the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info. This implementation uses the `validate_config` function to specify an implicit dependency on a `motor` by default and throw an error if there is an `invalid` attribute.
+The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. The `api.py` file defines what a `Gizmo` can do (mirroring the `proto` definition), implements the gRPC `GizmoService` for receiving calls, and the gRPC `GizmoClient` for making calls. See [Design your module](https://docs.viam.com/operate/get-started/other-hardware/#design-your-module) for more info on how to choose an API. The `my_gizmo.py` file in contains the unique implementation of a `Gizmo`. This is defined as a specific `Model`. This implementation uses the `validate_config` function to specify an implicit dependency on a `motor` by default and throw an error if there is an `invalid` attribute.
 
 Similarly, the `summation` directory contains the analogous definitions for the `Summation` service type. The files in this directory mirror the files in the `gizmo` directory.
 
@@ -34,11 +34,11 @@ Outside the `src` directory, there is a `client.py` file. You can use this file 
 
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
 
-The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/complex_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
+The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/complex_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/operate/get-started/other-hardware/) for more details.
 
-Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/extend/modular-resources/configure/) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
+Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/operate/get-started/other-hardware/#add-your-new-modular-resource-to-your-machines) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
 
-Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/registry/create/#name-your-new-resource-model).
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/operate/reference/naming-modules/#create-a-namespace-for-your-organization).
 
 An example configuration for an Arm component, a Gizmo component, and a Summation service could look like this:
 
