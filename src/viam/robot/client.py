@@ -763,9 +763,12 @@ class RobotClient:
         response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
         warnings.warn(
             "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.",
-            DeprecationWarning, stacklevel=2)
+            DeprecationWarning,
+            stacklevel=2,
+        )
         LOGGER.warning(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.")
+            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead."
+        )
         return list(response.discovery)
 
     ############
