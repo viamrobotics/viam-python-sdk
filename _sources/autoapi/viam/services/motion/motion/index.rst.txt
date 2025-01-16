@@ -25,7 +25,7 @@ Module Contents
    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
    ``world_state`` message, the motion planning service will also account for those.
 
-   For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+   For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/>`_.
 
 
    .. py:attribute:: Plan
@@ -88,7 +88,7 @@ Module Contents
       :returns: Whether the move was successful.
       :rtype: bool
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#move>`_.
 
 
 
@@ -162,7 +162,7 @@ Module Contents
       :returns: ExecutionID of the ``move_on_globe()`` call, which can be used to track execution progress.
       :rtype: str
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#moveonglobe>`_.
 
 
 
@@ -228,7 +228,7 @@ Module Contents
       :returns: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.
       :rtype: str
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#moveonmap>`_.
 
 
 
@@ -253,7 +253,7 @@ Module Contents
       :param component_name: The component to stop
       :type component_name: ResourceName
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#stopplan>`_.
 
 
 
@@ -297,7 +297,7 @@ Module Contents
       :returns: The current PlanWithStatus & replan history which matches the request
       :rtype: ``GetPlanResponse`` (GetPlanResponse)
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#getplan>`_.
 
 
 
@@ -328,7 +328,7 @@ Module Contents
                 associated IDs of all plans within the TTL ordered by timestamp in ascending order.
       :rtype: ``ListPlanStatusesResponse`` (ListPlanStatusesResponse)
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#listplanstatuses>`_.
 
 
 
@@ -370,7 +370,7 @@ Module Contents
       :returns: Pose of the given component and the frame in which it was observed.
       :rtype: ``Pose`` (PoseInFrame)
 
-      For more information, see `Motion service <https://docs.viam.com/services/motion/>`_.
+      For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#getpose>`_.
 
 
 

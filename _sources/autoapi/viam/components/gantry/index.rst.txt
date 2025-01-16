@@ -41,7 +41,7 @@ Package Contents
 
        from viam.components.gantry import Gantry
 
-   For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+   For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/>`_.
 
 
    .. py:attribute:: SUBTYPE
@@ -68,7 +68,7 @@ Package Contents
       :returns: A list of the position of the axes of the gantry in millimeters.
       :rtype: List[float]
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getposition>`_.
 
 
 
@@ -99,7 +99,7 @@ Package Contents
       :param speeds: A list of speeds in millimeters per second for the gantry to move at respective to each axis.
       :type speeds: List[float]
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#movetoposition>`_.
 
 
 
@@ -120,7 +120,7 @@ Package Contents
       :returns: Whether the gantry has run the homing sequence successfully.
       :rtype: bool
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#home>`_.
 
 
 
@@ -142,7 +142,7 @@ Package Contents
       :returns: A list of the lengths of the axes of the gantry in millimeters.
       :rtype: List[float]
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getlengths>`_.
 
 
 
@@ -162,7 +162,7 @@ Package Contents
           # immediately.
           await my_gantry.stop()
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#stop>`_.
 
 
 
@@ -188,7 +188,7 @@ Package Contents
       :returns: Whether the gantry is moving.
       :rtype: bool
 
-      For more information, see `Gantry component <https://docs.viam.com/components/gantry/>`_.
+      For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#ismoving>`_.
 
 
 
@@ -236,7 +236,7 @@ Package Contents
 
 
       Get all geometries associated with the component, in their current configuration, in the
-      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
 
       ::
 

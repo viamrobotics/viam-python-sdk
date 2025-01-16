@@ -107,7 +107,7 @@
 
 <span class="sd">        from viam.components.motor import Motor</span>
 
-<span class="sd">    For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">    For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Motor.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Properties">[docs]</a>    <span class="nd">@dataclass</span>
@@ -142,7 +142,7 @@
 <span class="sd">            power (float): Power between -1 and 1</span>
 <span class="sd">                (negative implies backwards).</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#setpower&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -174,7 +174,7 @@
 <span class="sd">            revolutions (float): Number of revolutions the motor should run for</span>
 <span class="sd">                (negative implies backwards).</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#gofor&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -205,7 +205,7 @@
 <span class="sd">            rpm (float): Speed at which the motor should rotate (absolute value).</span>
 <span class="sd">            position_revolutions (float): Target position relative to home/zero, in revolutions.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#goto&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -232,7 +232,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            rpm (float): Speed at which the motor should rotate.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#setrpm&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -258,7 +258,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            offset (float): The offset from the current position to new home/zero position.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#resetzeroposition&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -285,7 +285,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            float: Number of revolutions the motor is away from zero/home.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#getposition&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -315,7 +315,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: Map of feature names to supported status.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#getproperties&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -337,7 +337,7 @@
 <span class="sd">            # Stop the motor.</span>
 <span class="sd">            await my_motor.stop()</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#stop&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -365,7 +365,7 @@
 <span class="sd">            Tuple[bool, float]: A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and</span>
 <span class="sd">                the second [1] value indicates the current power percentage of the motor.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#ispowered&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -385,7 +385,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the motor is moving.</span>
 
-<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/components/motor/&gt;`_.</span>
+<span class="sd">        For more information, see `Motor component &lt;https://docs.viam.com/dev/reference/apis/components/motor/#ismoving&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

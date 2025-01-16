@@ -109,7 +109,7 @@
 
 <span class="sd">        from viam.components.base import Base</span>
 
-<span class="sd">    For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">    For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -154,7 +154,7 @@
 <span class="sd">            velocity (float): The velocity (in millimeters per second) to move.</span>
 <span class="sd">                Negative implies backwards.</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#movestraight&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -187,7 +187,7 @@
 <span class="sd">                to spin.</span>
 <span class="sd">                Given a positive angle and a positive velocity, the base will turn to the left.</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#spin&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -242,7 +242,7 @@
 <span class="sd">            angular (Vector3): The angular component. Only the Z component is used</span>
 <span class="sd">                for wheeled base. Positive turns left; negative turns right.</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#setpower&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -272,7 +272,7 @@
 <span class="sd">            linear (Vector3): Velocity in mm/sec</span>
 <span class="sd">            angular (Vector3): Velocity in deg/sec</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#setvelocity&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Base.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/base/index.html#viam.components.base.base.Base.stop">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
@@ -296,7 +296,7 @@
 <span class="sd">            # Stop the base.</span>
 <span class="sd">            await my_base.stop()</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#stop&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -316,7 +316,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the base is moving.</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#ismoving&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -344,7 +344,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: The properties of the base</span>
 
-<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/components/base/&gt;`_.</span>
+<span class="sd">        For more information, see `Base component &lt;https://docs.viam.com/dev/reference/apis/components/base/#getproperties&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

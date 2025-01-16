@@ -50,7 +50,7 @@ Module Contents
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :rtype: Pose
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getendposition>`_.
 
 
 
@@ -76,7 +76,7 @@ Module Contents
                    Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
       :type pose: Pose
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetoposition>`_.
 
 
 
@@ -98,7 +98,7 @@ Module Contents
                 and translational values (mm).
       :rtype: JointPositions
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getjointpositions>`_.
 
 
 
@@ -125,7 +125,7 @@ Module Contents
       :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#movetojointpositions>`_.
 
 
 
@@ -142,7 +142,7 @@ Module Contents
           # Stop all motion of the arm. It is assumed that the arm stops immediately.
           await my_arm.stop()
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#stop>`_.
 
 
 
@@ -165,7 +165,7 @@ Module Contents
       :returns: Whether the arm is moving.
       :rtype: bool
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#ismoving>`_.
 
 
 
@@ -215,7 +215,7 @@ Module Contents
                 and the second [1] value represents the byte contents of the file.
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
-      For more information, see `Arm component <https://docs.viam.com/components/arm/>`_.
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
 
 
 
@@ -224,7 +224,7 @@ Module Contents
 
 
       Get all geometries associated with the component, in their current configuration, in the
-      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
 
       ::
 

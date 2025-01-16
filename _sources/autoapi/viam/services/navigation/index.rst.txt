@@ -175,7 +175,7 @@ Package Contents
    navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
-   For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+   For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/>`_.
 
 
    .. py:attribute:: SUBTYPE
@@ -209,7 +209,7 @@ Package Contents
                 reach the specified destination or Waypoint.
       :rtype: List[navigation.Path]
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getpaths>`_.
 
 
 
@@ -236,7 +236,7 @@ Package Contents
                 represented in a GeoPoint with latitude and longitude values.
       :rtype: navigation.GeoPoint
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getlocation>`_.
 
 
 
@@ -266,7 +266,7 @@ Package Contents
                 These are objects designated for the robot to avoid when navigating.
       :rtype: List[navigation.GeoGeometry]
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getobstacles>`_.
 
 
 
@@ -294,7 +294,7 @@ Package Contents
                 These are locations designated within a path for the robot to navigate to.
       :rtype: List[navigation.Waypoint]
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getwaypoints>`_.
 
 
 
@@ -324,7 +324,7 @@ Package Contents
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#addwaypoint>`_.
 
 
 
@@ -350,7 +350,7 @@ Package Contents
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#removewaypoint>`_.
 
 
 
@@ -381,7 +381,7 @@ Package Contents
       :returns: The Mode the service is operating in.
       :rtype: navigation.Mode.ValueType
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getmode>`_.
 
 
 
@@ -411,7 +411,7 @@ Package Contents
       :param mode: The Mode for the service to operate in.
       :type mode: navigation.Mode.ValueType
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#setmode>`_.
 
 
 
@@ -437,7 +437,7 @@ Package Contents
       :returns: Information about the type of map the service is using.
       :rtype: MapType.ValueType
 
-      For more information, see `Navigation service <https://docs.viam.com/services/navigation/>`_.
+      For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getproperties>`_.
 
 
 

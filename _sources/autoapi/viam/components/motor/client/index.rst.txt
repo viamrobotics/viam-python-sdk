@@ -47,7 +47,7 @@ Module Contents
                     (negative implies backwards).
       :type power: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#setpower>`_.
 
 
 
@@ -73,7 +73,7 @@ Module Contents
                           (negative implies backwards).
       :type revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#gofor>`_.
 
 
 
@@ -98,7 +98,7 @@ Module Contents
       :param position_revolutions: Target position relative to home/zero, in revolutions.
       :type position_revolutions: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#goto>`_.
 
 
 
@@ -119,7 +119,7 @@ Module Contents
       :param rpm: Speed at which the motor should rotate.
       :type rpm: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#setrpm>`_.
 
 
 
@@ -139,7 +139,7 @@ Module Contents
       :param offset: The offset from the current position to new home/zero position.
       :type offset: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#resetzeroposition>`_.
 
 
 
@@ -161,7 +161,7 @@ Module Contents
       :returns: Number of revolutions the motor is away from zero/home.
       :rtype: float
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#getposition>`_.
 
 
 
@@ -186,7 +186,7 @@ Module Contents
       :returns: Map of feature names to supported status.
       :rtype: Properties
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#getproperties>`_.
 
 
 
@@ -203,7 +203,7 @@ Module Contents
           # Stop the motor.
           await my_motor.stop()
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#stop>`_.
 
 
 
@@ -228,7 +228,7 @@ Module Contents
                     the second [1] value indicates the current power percentage of the motor.
       :rtype: Tuple[bool, float]
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#ispowered>`_.
 
 
 
@@ -249,7 +249,7 @@ Module Contents
       :returns: Whether the motor is moving.
       :rtype: bool
 
-      For more information, see `Motor component <https://docs.viam.com/components/motor/>`_.
+      For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#ismoving>`_.
 
 
 
@@ -279,7 +279,7 @@ Module Contents
 
 
       Get all geometries associated with the component, in their current configuration, in the
-      `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
 
       ::
 

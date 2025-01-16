@@ -606,7 +606,7 @@
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
 
-<span class="sd">    For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">    For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -671,7 +671,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The ID of the user.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getuseridbyemail&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetUserIDByEmailRequest</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetUserIDByEmailResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetUserIDByEmail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -690,7 +690,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Organization: The created organization.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createorganization&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOrganizationRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -706,7 +706,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Organization]: The list of organizations.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listorganizations&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationsRequest</span><span class="p">()</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -725,7 +725,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.OrganizationIdentity]: The list of organizations.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getorganizationswithaccesstolocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationsWithAccessToLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationsWithAccessToLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganizationsWithAccessToLocation</span><span class="p">(</span>
@@ -746,7 +746,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[OrgDetails]: The list of organizations.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listorganizationsbyuser&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationsByUserRequest</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationsByUserResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizationsByUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -769,7 +769,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Organization: The requested organization.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getorganization&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -793,7 +793,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if the provided namespace is available.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getorganizationnamespaceavailability&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationNamespaceAvailabilityRequest</span><span class="p">(</span><span class="n">public_namespace</span><span class="o">=</span><span class="n">public_namespace</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationNamespaceAvailabilityResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganizationNamespaceAvailability</span><span class="p">(</span>
@@ -832,7 +832,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Organization: The updated organization.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updateorganization&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
@@ -855,7 +855,7 @@
 <span class="sd">            org_id (str): The ID of the organization.</span>
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -875,7 +875,7 @@
 <span class="sd">            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first</span>
 <span class="sd">            [0] of organization members, and the second [1] of organization invites.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listorganizationmembers&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationMembersRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationMembersResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizationMembers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -912,7 +912,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            OrganizationInvite: The organization invite.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createorganizationinvite&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOrganizationInviteRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="n">send_email_invite</span>
@@ -966,7 +966,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.OrganizationInvite: The updated invite.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updateorganizationinviteauthorizations&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">add_authorizations</span><span class="o">=</span><span class="n">add_authorizations</span><span class="p">,</span> <span class="n">remove_authorizations</span><span class="o">=</span><span class="n">remove_authorizations</span>
@@ -991,7 +991,7 @@
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            user_id (str): The ID of the user to remove.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationmember&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationMemberRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganizationMember</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1011,7 +1011,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no pending invite is associated with the provided email address.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationinvite&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1034,7 +1034,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.OrganizationInvite: The organization invite sent.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#resendorganizationinvite&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ResendOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ResendOrganizationInviteResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ResendOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1060,7 +1060,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The newly created location.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createlocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="o">=</span><span class="n">parent_location_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1083,7 +1083,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The location.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getlocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1128,7 +1128,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The newly updated location.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updatelocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="o">=</span><span class="n">parent_location_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1147,7 +1147,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid location ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletelocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1166,7 +1166,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Location]: The list of locations.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listlocations&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListLocationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListLocationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListLocations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1183,7 +1183,7 @@
 <span class="sd">            organization_id (str): The ID of the organization.</span>
 <span class="sd">            location_id (str): The ID of the location.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#sharelocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ShareLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ShareLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1199,7 +1199,7 @@
 <span class="sd">            organization_id (str): The ID of the organization.</span>
 <span class="sd">            location_id (str): The ID of the location.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#unsharelocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UnshareLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UnshareLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1222,7 +1222,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.LocationAuth: The `LocationAuth` containing location secrets.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#locationauth&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">LocationAuthRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">LocationAuthResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">LocationAuth</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1246,7 +1246,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.LocationAuth: The specified location&#39;s `LocationAuth` containing the newly created secret.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createlocationsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationSecretRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationSecretResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1270,7 +1270,7 @@
 <span class="sd">            GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn&#39;t passed and there was no location</span>
 <span class="sd">                ID provided at `AppClient` instantiation.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationSecretRequest</span><span class="p">(</span>
             <span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span>
@@ -1293,7 +1293,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Robot: The machine.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1313,7 +1313,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRoverRentalRobotsRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRoverRentalRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRoverRentalRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1337,7 +1337,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.RobotPart]: The list of machine parts.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotparts&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartsRequest</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotParts</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1364,7 +1364,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The machine part.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1411,7 +1411,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.LogEntry]: The list of log entries.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotpartlogs&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">num_log_entries</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;num_log_entries must be at least 0.&quot;</span><span class="p">)</span>
@@ -1509,7 +1509,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the machine part&#39;s history.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartHistoryRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1536,7 +1536,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The newly updated robot part.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1561,7 +1561,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The new machine part&#39;s ID.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#newrobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotPartRequest</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">part_name</span><span class="o">=</span><span class="n">part_name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">NewRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">NewRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1582,7 +1582,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleterobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotPartRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1600,7 +1600,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[APIKeyWithAuthorizations]: The list of API keys.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotAPIKeysRequest</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotAPIKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotAPIKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1620,7 +1620,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#markpartasmain&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MarkPartAsMainRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartAsMain</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1639,7 +1639,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine part ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#markpartforrestart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MarkPartForRestartRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartForRestart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1661,7 +1661,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The machine part the new secret was generated for.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createrobotpartsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateRobotPartSecretRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateRobotPartSecretResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateRobotPartSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1683,7 +1683,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine part ID or secret ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;hhttps://docs.viam.com/dev/reference/apis/fleet/#deleterobotpartsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotPartSecretRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPartSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1706,7 +1706,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Robot]: The list of robots.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listrobots&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1730,7 +1730,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The new robot&#39;s ID.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#newrobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotRequest</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">NewRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">NewRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1760,7 +1760,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Robot: The newly updated machine.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
@@ -1781,7 +1781,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid machine ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleterobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1809,7 +1809,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.Fragment]: The list of fragments.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listfragments&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
@@ -1838,7 +1838,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.Fragment: The fragment.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getfragment&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1864,7 +1864,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.Fragment: The newly created fragment.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createfragment&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateFragmentRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -1906,7 +1906,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.Fragment: The newly updated fragment.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updatefragment&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateFragmentRequest</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">,</span>
@@ -1932,7 +1932,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid fragment ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletefragment&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1962,7 +1962,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.FragmentHistoryResponse: A list of documents with the fragment history.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getfragmenthistory&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetFragmentHistoryRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">page_limit</span><span class="o">=</span><span class="n">page_limit</span><span class="p">)</span>
@@ -2001,7 +2001,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#addrole&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
@@ -2046,7 +2046,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#removerole&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
@@ -2101,7 +2101,7 @@
 <span class="sd">                Must match `new_resource_id`.</span>
 <span class="sd">            new_resource_id (str): New ID of the resource the role applies to (that is, either an organization, location, or robot ID).</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#changerole&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">old_authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
@@ -2143,7 +2143,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Authorization]: The list of authorizations.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listauthorizations&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListAuthorizationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">resource_ids</span><span class="o">=</span><span class="n">resource_ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListAuthorizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2175,7 +2175,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.AuthorizedPermissions]: The permissions argument, with invalid permissions filtered out.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#checkpermissions&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CheckPermissionsRequest</span><span class="p">(</span><span class="n">permissions</span><span class="o">=</span><span class="n">permissions</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CheckPermissionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CheckPermissions</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2197,7 +2197,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            RegistryItem: The registry item.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getregistryitem&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRegistryItemResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2217,7 +2217,7 @@
 <span class="sd">            name (str): The name of the registry item, which must be unique within your org.</span>
 <span class="sd">            type (PackageType.ValueType): The type of the item in the registry.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createregistryitem&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateRegistryItemRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -2245,6 +2245,8 @@
 <span class="sd">            type (PackageType.ValueType): The type of the item in the registry.</span>
 <span class="sd">            description (str): The description of the registry item.</span>
 <span class="sd">            visibility (Visibility.ValueType): The visibility of the registry item.</span>
+
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updateregistryitem&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="p">)</span>
@@ -2297,7 +2299,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[RegistryItem]: The list of registry items.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listregistryitems&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListRegistryItemsRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
@@ -2322,7 +2324,7 @@
 <span class="sd">            item_id (str): The ID of the deleted registry item, containing either the namespace and module name</span>
 <span class="sd">                (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteregistryitem&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -2346,7 +2348,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createmodule&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateModuleRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2395,7 +2397,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The URL of the newly updated module.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updatemodule&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateModuleRequest</span><span class="p">(</span>
             <span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span>
@@ -2433,7 +2435,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: URL of uploaded file.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#uploadmodulefile&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request_module_file_info</span> <span class="o">=</span> <span class="n">UploadModuleFileRequest</span><span class="p">(</span><span class="n">module_file_info</span><span class="o">=</span><span class="n">module_file_info</span><span class="p">)</span>
         <span class="n">request_file</span> <span class="o">=</span> <span class="n">UploadModuleFileRequest</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
@@ -2463,7 +2465,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Module: The module.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getmodule&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2483,7 +2485,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Module]: The list of modules.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listmodules&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListModulesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListModules</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -2523,7 +2525,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: The api key and api key ID.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createkey&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
         <span class="n">authorizations_pb</span> <span class="o">=</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="n">org_id</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authorizations</span><span class="p">]</span>
@@ -2541,7 +2543,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): The ID of the API key.</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletekey&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteKeyRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -2560,7 +2562,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: The API key and API key id</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createkeyfromexistingkeyauthorizations&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateKeyFromExistingKeyAuthorizationsRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateKeyFromExistingKeyAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateKeyFromExistingKeyAuthorizations</span><span class="p">(</span>
@@ -2581,7 +2583,10 @@
 <span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.&quot;&quot;&quot;</span>
+<span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.</span>
+
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listkeys&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListKeysRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div>
@@ -2599,7 +2604,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: The API key and API key id</span>
 
-<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/appendix/apis/fleet/&gt;`_.</span>
+<span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#rotatekey&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RotateKeyRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">RotateKeyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RotateKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>

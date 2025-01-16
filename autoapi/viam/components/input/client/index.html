@@ -221,7 +221,7 @@
 <dd class="field-even"><p>List[<a class="reference internal" href="../index.html#viam.components.input.Control" title="viam.components.input.Control">Control</a>]</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/input-controller/">Input Controller component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/input-controller/#getcontrols">Input Controller component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -248,7 +248,7 @@
 <dd class="field-even"><p>Dict[<a class="reference internal" href="../index.html#viam.components.input.Control" title="viam.components.input.Control">Control</a>, <a class="reference internal" href="../index.html#viam.components.input.Event" title="viam.components.input.Event">Event</a>]</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/input-controller/">Input Controller component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/input-controller/#getevents">Input Controller component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -308,7 +308,7 @@ specific triggers</p></li>
 </ul>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/input-controller/">Input Controller component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/input-controller/#registercontrolcallback">Input Controller component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -344,7 +344,7 @@ specific triggers</p></li>
 <dd class="field-odd"><p><strong>event</strong> (<a class="reference internal" href="../index.html#viam.components.input.Event" title="viam.components.input.Event"><em>Event</em></a>) – The event to trigger</p>
 </dd>
 </dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/components/input-controller/">Input Controller component</a>.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/input-controller/#triggerevent">Input Controller component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -375,7 +375,7 @@ specific triggers</p></li>
 <dt class="sig sig-object py" id="viam.components.input.client.ControllerClient.get_geometries">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><span class="pre">viam.proto.common.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/input/client.html#ControllerClient.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.client.ControllerClient.get_geometries" title="Permalink to this definition"></a></dt>
 <dd><p>Get all geometries associated with the component, in their current configuration, in the
-<a class="reference external" href="https://docs.viam.com/services/frame-system/">frame</a> of the component.</p>
+<a class="reference external" href="https://docs.viam.com/operate/mobility/define-geometry/">frame</a> of the component.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometries</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_geometries</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">geometries</span><span class="p">:</span>

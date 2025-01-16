@@ -144,7 +144,7 @@
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
 
-<span class="sd">    For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">    For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
@@ -154,7 +154,7 @@
 <span class="sd">            channel (grpclib.client.Channel): Connection to app.</span>
 <span class="sd">            metadata (Mapping[str, str]): Required authorization token to send requests to app.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span> <span class="o">=</span> <span class="n">MLTrainingServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
@@ -195,7 +195,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: the ID of the training job.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#submittrainingjob&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitTrainingJobRequest</span><span class="p">(</span>
@@ -236,7 +236,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: the ID of the training job.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#submitcustomtrainingjob&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">(</span>
@@ -264,7 +264,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.mltraining.TrainingJobMetadata: the training job data.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#gettrainingjob&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
@@ -294,7 +294,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.mltraining.TrainingJobMetadata]: the list of training job data.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#listtrainingjobs&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">training_status</span> <span class="o">=</span> <span class="n">training_status</span> <span class="k">if</span> <span class="n">training_status</span> <span class="k">else</span> <span class="n">TrainingStatus</span><span class="o">.</span><span class="n">TRAINING_STATUS_UNSPECIFIED</span>
@@ -317,7 +317,7 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if no training job exists with the given ID.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#canceltrainingjob&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
@@ -334,7 +334,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): the ID of the training job to delete.</span>
 
-<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/appendix/apis/ml-training-client/&gt;`_.</span>
+<span class="sd">        For more information, see `ML Training Client API &lt;https://docs.viam.com/dev/reference/apis/ml-training-client/#deletecompletedtrainingjob&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">DeleteCompletedTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>

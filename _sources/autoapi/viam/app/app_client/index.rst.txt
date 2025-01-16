@@ -410,7 +410,7 @@ Module Contents
        if __name__ == '__main__':
            asyncio.run(main())
 
-   For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+   For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/>`_.
 
 
    .. py:method:: get_user_id_by_email(email: str) -> str
@@ -429,7 +429,7 @@ Module Contents
       :returns: The ID of the user.
       :rtype: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getuseridbyemail>`_.
 
 
 
@@ -449,7 +449,7 @@ Module Contents
       :returns: The created organization.
       :rtype: Organization
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createorganization>`_.
 
 
 
@@ -466,7 +466,7 @@ Module Contents
       :returns: The list of organizations.
       :rtype: List[viam.proto.app.Organization]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizations>`_.
 
 
 
@@ -486,7 +486,7 @@ Module Contents
       :returns: The list of organizations.
       :rtype: List[viam.proto.app.OrganizationIdentity]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getorganizationswithaccesstolocation>`_.
 
 
 
@@ -506,7 +506,7 @@ Module Contents
       :returns: The list of organizations.
       :rtype: List[OrgDetails]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationsbyuser>`_.
 
 
 
@@ -529,7 +529,7 @@ Module Contents
       :returns: The requested organization.
       :rtype: viam.proto.app.Organization
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getorganization>`_.
 
 
 
@@ -553,7 +553,7 @@ Module Contents
       :returns: True if the provided namespace is available.
       :rtype: bool
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getorganizationnamespaceavailability>`_.
 
 
 
@@ -587,7 +587,7 @@ Module Contents
       :returns: The updated organization.
       :rtype: viam.proto.app.Organization
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updateorganization>`_.
 
 
 
@@ -605,7 +605,7 @@ Module Contents
                      You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization>`_.
 
 
 
@@ -627,7 +627,7 @@ Module Contents
                 [0] of organization members, and the second [1] of organization invites.
       :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listorganizationmembers>`_.
 
 
 
@@ -661,7 +661,7 @@ Module Contents
       :returns: The organization invite.
       :rtype: OrganizationInvite
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createorganizationinvite>`_.
 
 
 
@@ -710,7 +710,7 @@ Module Contents
       :returns: The updated invite.
       :rtype: viam.proto.app.OrganizationInvite
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updateorganizationinviteauthorizations>`_.
 
 
 
@@ -733,7 +733,7 @@ Module Contents
       :param user_id: The ID of the user to remove.
       :type user_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationmember>`_.
 
 
 
@@ -755,7 +755,7 @@ Module Contents
 
       :raises GRPCError: If no pending invite is associated with the provided email address.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationinvite>`_.
 
 
 
@@ -780,7 +780,7 @@ Module Contents
       :returns: The organization invite sent.
       :rtype: viam.proto.app.OrganizationInvite
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#resendorganizationinvite>`_.
 
 
 
@@ -808,7 +808,7 @@ Module Contents
       :returns: The newly created location.
       :rtype: viam.proto.app.Location
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createlocation>`_.
 
 
 
@@ -831,7 +831,7 @@ Module Contents
       :returns: The location.
       :rtype: viam.proto.app.Location
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getlocation>`_.
 
 
 
@@ -878,7 +878,7 @@ Module Contents
       :returns: The newly updated location.
       :rtype: viam.proto.app.Location
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updatelocation>`_.
 
 
 
@@ -897,7 +897,7 @@ Module Contents
 
       :raises GRPCError: If an invalid location ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletelocation>`_.
 
 
 
@@ -918,7 +918,7 @@ Module Contents
       :returns: The list of locations.
       :rtype: List[viam.proto.app.Location]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listlocations>`_.
 
 
 
@@ -937,7 +937,7 @@ Module Contents
       :param location_id: The ID of the location.
       :type location_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#sharelocation>`_.
 
 
 
@@ -956,7 +956,7 @@ Module Contents
       :param location_id: The ID of the location.
       :type location_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#unsharelocation>`_.
 
 
 
@@ -980,7 +980,7 @@ Module Contents
       :returns: The `LocationAuth` containing location secrets.
       :rtype: viam.proto.app.LocationAuth
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#locationauth>`_.
 
 
 
@@ -1004,7 +1004,7 @@ Module Contents
       :returns: The specified location's `LocationAuth` containing the newly created secret.
       :rtype: viam.proto.app.LocationAuth
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createlocationsecret>`_.
 
 
 
@@ -1029,7 +1029,7 @@ Module Contents
       :raises GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn't passed and there was no location
           ID provided at `AppClient` instantiation.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret>`_.
 
 
 
@@ -1051,7 +1051,7 @@ Module Contents
       :returns: The machine.
       :rtype: viam.proto.app.Robot
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobot>`_.
 
 
 
@@ -1072,7 +1072,7 @@ Module Contents
       :returns: The list of rover rental robots.
       :rtype: List[viam.proto.app.RoverRentalRobot]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/>`_.
 
 
 
@@ -1096,7 +1096,7 @@ Module Contents
       :returns: The list of machine parts.
       :rtype: List[viam.app.app_client.RobotPart]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotparts>`_.
 
 
 
@@ -1125,7 +1125,7 @@ Module Contents
       :returns: The machine part.
       :rtype: viam.app.app_client.RobotPart
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotpart>`_.
 
 
 
@@ -1160,7 +1160,7 @@ Module Contents
       :returns: The list of log entries.
       :rtype: List[viam.app.app_client.LogEntry]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotpartlogs>`_.
 
 
 
@@ -1209,7 +1209,7 @@ Module Contents
       :returns: The list of the machine part's history.
       :rtype: List[viam.app.app_client.RobotPartHistoryEntry]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
 
 
 
@@ -1238,7 +1238,7 @@ Module Contents
       :returns: The newly updated robot part.
       :rtype: viam.app.app_client.RobotPart
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart>`_.
 
 
 
@@ -1264,7 +1264,7 @@ Module Contents
       :returns: The new machine part's ID.
       :rtype: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#newrobotpart>`_.
 
 
 
@@ -1285,7 +1285,7 @@ Module Contents
 
       :raises GRPCError: If an invalid machine part ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleterobotpart>`_.
 
 
 
@@ -1305,7 +1305,7 @@ Module Contents
       :returns: The list of API keys.
       :rtype: List[APIKeyWithAuthorizations]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getrobotapikeys>`_.
 
 
 
@@ -1325,7 +1325,7 @@ Module Contents
 
       :raises GRPCError: If an invalid machine part ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#markpartasmain>`_.
 
 
 
@@ -1345,7 +1345,7 @@ Module Contents
 
       :raises GRPCError: If an invalid machine part ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#markpartforrestart>`_.
 
 
 
@@ -1368,7 +1368,7 @@ Module Contents
       :returns: The machine part the new secret was generated for.
       :rtype: viam.app.app_client.RobotPart
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createrobotpartsecret>`_.
 
 
 
@@ -1391,7 +1391,7 @@ Module Contents
 
       :raises GRPCError: If an invalid machine part ID or secret ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <hhttps://docs.viam.com/dev/reference/apis/fleet/#deleterobotpartsecret>`_.
 
 
 
@@ -1415,7 +1415,7 @@ Module Contents
       :returns: The list of robots.
       :rtype: List[viam.proto.app.Robot]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listrobots>`_.
 
 
 
@@ -1440,7 +1440,7 @@ Module Contents
       :returns: The new robot's ID.
       :rtype: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#newrobot>`_.
 
 
 
@@ -1472,7 +1472,7 @@ Module Contents
       :returns: The newly updated machine.
       :rtype: viam.proto.app.Robot
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobot>`_.
 
 
 
@@ -1491,7 +1491,7 @@ Module Contents
 
       :raises GRPCError: If an invalid machine ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleterobot>`_.
 
 
 
@@ -1521,7 +1521,7 @@ Module Contents
       :returns: The list of fragments.
       :rtype: List[viam.app.app_client.Fragment]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listfragments>`_.
 
 
 
@@ -1546,7 +1546,7 @@ Module Contents
       :returns: The fragment.
       :rtype: viam.app.app_client.Fragment
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getfragment>`_.
 
 
 
@@ -1574,7 +1574,7 @@ Module Contents
       :returns: The newly created fragment.
       :rtype: viam.app.app_client.Fragment
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createfragment>`_.
 
 
 
@@ -1613,7 +1613,7 @@ Module Contents
       :returns: The newly updated fragment.
       :rtype: viam.app.app_client.Fragment
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updatefragment>`_.
 
 
 
@@ -1633,7 +1633,7 @@ Module Contents
 
       :raises GRPCError: If an invalid fragment ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletefragment>`_.
 
 
 
@@ -1664,7 +1664,7 @@ Module Contents
       :returns: A list of documents with the fragment history.
       :rtype: viam.app.app_client.FragmentHistoryResponse
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getfragmenthistory>`_.
 
 
 
@@ -1699,7 +1699,7 @@ Module Contents
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#addrole>`_.
 
 
 
@@ -1734,7 +1734,7 @@ Module Contents
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#removerole>`_.
 
 
 
@@ -1779,7 +1779,7 @@ Module Contents
       :param new_resource_id: New ID of the resource the role applies to (that is, either an organization, location, or robot ID).
       :type new_resource_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#changerole>`_.
 
 
 
@@ -1806,7 +1806,7 @@ Module Contents
       :returns: The list of authorizations.
       :rtype: List[viam.proto.app.Authorization]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listauthorizations>`_.
 
 
 
@@ -1838,7 +1838,7 @@ Module Contents
       :returns: The permissions argument, with invalid permissions filtered out.
       :rtype: List[viam.proto.app.AuthorizedPermissions]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#checkpermissions>`_.
 
 
 
@@ -1861,7 +1861,7 @@ Module Contents
       :returns: The registry item.
       :rtype: RegistryItem
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getregistryitem>`_.
 
 
 
@@ -1884,7 +1884,7 @@ Module Contents
       :param type: The type of the item in the registry.
       :type type: PackageType.ValueType
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createregistryitem>`_.
 
 
 
@@ -1915,6 +1915,8 @@ Module Contents
       :type description: str
       :param visibility: The visibility of the registry item.
       :type visibility: Visibility.ValueType
+
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updateregistryitem>`_.
 
 
 
@@ -1965,7 +1967,7 @@ Module Contents
       :returns: The list of registry items.
       :rtype: List[RegistryItem]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listregistryitems>`_.
 
 
 
@@ -1983,7 +1985,7 @@ Module Contents
                       (for example, `my-org:my-module`) or organization ID and module name (`org-id:my-module`).
       :type item_id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteregistryitem>`_.
 
 
 
@@ -2009,7 +2011,7 @@ Module Contents
       :returns: A tuple containing the ID [0] of the new module and its URL [1].
       :rtype: Tuple[str, str]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createmodule>`_.
 
 
 
@@ -2055,7 +2057,7 @@ Module Contents
       :returns: The URL of the newly updated module.
       :rtype: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updatemodule>`_.
 
 
 
@@ -2088,7 +2090,7 @@ Module Contents
       :returns: URL of uploaded file.
       :rtype: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#uploadmodulefile>`_.
 
 
 
@@ -2111,7 +2113,7 @@ Module Contents
       :returns: The module.
       :rtype: viam.proto.app.Module
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getmodule>`_.
 
 
 
@@ -2132,7 +2134,7 @@ Module Contents
       :returns: The list of modules.
       :rtype: List[viam.proto.app.Module]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listmodules>`_.
 
 
 
@@ -2172,7 +2174,7 @@ Module Contents
       :returns: The api key and api key ID.
       :rtype: Tuple[str, str]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkey>`_.
 
 
 
@@ -2189,7 +2191,7 @@ Module Contents
       :param id: The ID of the API key.
       :type id: str
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletekey>`_.
 
 
 
@@ -2210,7 +2212,7 @@ Module Contents
       :returns: The API key and API key id
       :rtype: Tuple[str, str]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createkeyfromexistingkeyauthorizations>`_.
 
 
 
@@ -2231,6 +2233,8 @@ Module Contents
       :returns: The existing API keys and authorizations.
       :rtype: List[viam.proto.app.APIKeyWithAuthorizations]
 
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listkeys>`_.
+
 
 
    .. py:method:: rotate_key(id: str) -> Tuple[str, str]
@@ -2249,7 +2253,7 @@ Module Contents
       :returns: The API key and API key id
       :rtype: Tuple[str, str]
 
-      For more information, see `Fleet Management API <https://docs.viam.com/appendix/apis/fleet/>`_.
+      For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#rotatekey>`_.
 
 
 
