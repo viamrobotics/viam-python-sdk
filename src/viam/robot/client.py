@@ -733,7 +733,7 @@ class RobotClient:
         queries: List[DiscoveryQuery],
     ) -> List[Discovery]:
         """
-        Deprecated:: v0.38.0 use the Discovery Service API instead.
+        Deprecated: v0.38.0, use the Discovery Service APIs instead.
         Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.
         Returns module names for modules.
 
@@ -762,10 +762,10 @@ class RobotClient:
         request = DiscoverComponentsRequest(queries=queries)
         response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
         warnings.warn(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoverySerrvice APIS instead.",
+            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.",
             DeprecationWarning, stacklevel=2)
         LOGGER.warning(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoverySerrvice APIS instead.")
+            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.")
         return list(response.discovery)
 
     ############
