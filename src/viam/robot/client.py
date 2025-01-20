@@ -918,6 +918,7 @@ class RobotClient:
             machine_status = await machine.get_machine_status()
             resource_statuses = machine_status.resources
             config_status = machine_status.config
+            machine_state = machine_status.state
 
         Returns:
             viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) and config of the machine.
