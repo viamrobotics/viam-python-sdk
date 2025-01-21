@@ -53,33 +53,33 @@ class API:
 
     @classmethod
     def from_resource_name(cls, resource_name: ResourceName) -> Self:
-        """Convert a ```ResourceName``` into a ```Subtype```
+        """Convert a ```ResourceName``` into a ```API```
 
         Args:
             resource_name (viam.proto.common.ResourceName): The ResourceName to convert
 
         Returns:
-            Self: A new Subtype
+            Self: A new API
         """
         return cls(resource_name.namespace, resource_name.type, resource_name.subtype)
 
     @classmethod
     def from_string(cls, string: str) -> Self:
-        """Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)
+        """Create a ```API``` from its string representation (namespace:resource_type:resource_subtype)
 
         Args:
-            string (str): The Subtype as a string
+            string (str): The API as a string
 
         Raises:
-            ValueError: Raised if the string does not represent a valid Subtype
+            ValueError: Raised if the string does not represent a valid API
 
         Returns:
-            Self: A new Subtype
+            Self: A new API
         """
         regex = re.compile(r"^([\w-]+):([\w-]+):([\w-]+)$")
         match = regex.match(string)
         if not match:
-            raise ValueError(f"{string} is not a valid Subtype")
+            raise ValueError(f"{string} is not a valid API")
         return cls(match.group(1), match.group(2), match.group(3))
 
 

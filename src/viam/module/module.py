@@ -83,7 +83,7 @@ class Module:
         for model in models:
             if not hasattr(model, "MODEL"):
                 raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
-            module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
+            module.add_model_from_registry(model.API, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
         await module.start()
 
     @classmethod
@@ -180,9 +180,9 @@ class Module:
     async def add_resource(self, request: AddResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
-        subtype = API.from_string(config.api)
+        api = API.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
-        creator = Registry.lookup_resource_creator(subtype, model)
+        creator = Registry.lookup_resource_creator(api, model)
         resource = creator(config, dependencies)
         update_log_level(resource.logger, config.log_configuration.level.upper())
         self.server.register(resource)
@@ -190,9 +190,9 @@ class Module:
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
-        subtype = API.from_string(config.api)
+        api = API.from_string(config.api)
         name = config.name
-        rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
+        rn = ResourceName(namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=name)
         resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
@@ -223,25 +223,25 @@ class Module:
         svcname_to_models: Mapping[Tuple[str, API], List[Model]] = {}
         for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             subtype_str, model_str = subtype_model_str.split("/")
-            subtype = API.from_string(subtype_str)
+            api = API.from_string(subtype_str)
             model = Model.from_string(model_str)
 
-            registration = Registry.lookup_subtype(subtype)
+            registration = Registry.lookup_api(api)
             service = registration.rpc_service(self.server)
             service_name = _service_name(service)
 
-            models = svcname_to_models.get((service_name, subtype), [])
+            models = svcname_to_models.get((service_name, api), [])
             models.append(model)
-            svcname_to_models[(service_name, subtype)] = models
+            svcname_to_models[(service_name, api)] = models
 
         handlers: List[HandlerDefinition] = []
         for key, value in svcname_to_models.items():
-            svc_name, subtype = key
+            svc_name, api = key
             rpc_subtype = ResourceRPCSubtype(
                 subtype=ResourceName(
-                    namespace=subtype.namespace,
-                    type=subtype.resource_type,
-                    subtype=subtype.resource_subtype,
+                    namespace=api.namespace,
+                    type=api.resource_type,
+                    subtype=api.resource_subtype,
                     name="",
                 ),
                 proto_service=svc_name,
@@ -251,20 +251,20 @@ class Module:
 
         return ReadyResponse(ready=self._ready, handlermap=HandlerMap(handlers=handlers))
 
-    def add_model_from_registry(self, subtype: API, model: Model):
+    def add_model_from_registry(self, api: API, model: Model):
         """Add a pre-registered model to this Module"""
 
         # All we need to do is double check that the model has already been registered
         try:
-            Registry.lookup_resource_creator(subtype, model)
+            Registry.lookup_resource_creator(api, model)
         except ResourceNotFoundError:
-            raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")
+            raise ValueError(f"Cannot add model because it has not been registered. Subtype: {api}. Model: {model}")
 
     async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
         config: ComponentConfig = request.config
-        subtype = API.from_string(config.api)
+        api = API.from_string(config.api)
         model = Model.from_string(config.model)
-        validator = Registry.lookup_validator(subtype, model)
+        validator = Registry.lookup_validator(api, model)
         try:
             dependencies = validator(config)
             return ValidateConfigResponse(dependencies=dependencies)

@@ -70,7 +70,7 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict["API", ResourceRegistration]] = {}
+    _APIS: ClassVar[Dict["API", ResourceRegistration]] = {}
     _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
@@ -86,11 +86,11 @@ class Registry:
             ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
-            if registration.resource_type.SUBTYPE in cls._SUBTYPES:
-                raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
+            if registration.resource_type.API in cls._APIS:
+                raise DuplicateResourceError(str(registration.resource_type.API))
 
             if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
-                cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+                cls._APIS[registration.resource_type.API] = registration
             else:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 
@@ -118,26 +118,26 @@ class Registry:
                 raise ValidationError("A creator function was not provided")
 
     @classmethod
-    def lookup_subtype(cls, subtype: "API") -> ResourceRegistration:
-        """Lookup and retrieve a registered Subtype by its name
+    def lookup_api(cls, api: "API") -> ResourceRegistration:
+        """Lookup and retrieve a registered API by its name
 
         Args:
-            subtype (str): The subtype of the resource
+            api (str): The API of the resource
 
         Raises:
-            ResourceNotFoundError: Raised if the Subtype is not registered
+            ResourceNotFoundError: Raised if the API is not registered
 
         Returns:
             ResourceRegistration: The registration object of the resource
         """
         with cls._lock:
             try:
-                return cls._SUBTYPES[subtype]
+                return cls._APIS[api]
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
-    def lookup_resource_creator(cls, subtype: "API", model: "Model") -> "ResourceCreator":
+    def lookup_resource_creator(cls, api: "API", model: "Model") -> "ResourceCreator":
         """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
@@ -152,9 +152,9 @@ class Registry:
         """
         with cls._lock:
             try:
-                return cls._RESOURCES[f"{subtype}/{model}"].creator
+                return cls._RESOURCES[f"{api}/{model}"].creator
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
     def lookup_validator(cls, subtype: "API", model: "Model") -> "Validator":
@@ -184,7 +184,7 @@ class Registry:
             Mapping[Subtype, ResourceRegistration]: All registered resources
         """
         with cls._lock:
-            return cls._SUBTYPES.copy()
+            return cls._APIS.copy()
 
     @classmethod
     def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:

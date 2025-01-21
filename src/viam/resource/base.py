@@ -20,7 +20,7 @@ class ResourceBase(Protocol):
     The base requirements for a Resource.
     """
 
-    SUBTYPE: ClassVar["API"]
+    API: ClassVar["API"]
     """The Subtype of the Resource"""
 
     name: str
@@ -46,9 +46,9 @@ class ResourceBase(Protocol):
             ResourceName: The ResourceName of this Resource
         """
         return ResourceName(
-            namespace=cls.SUBTYPE.namespace,
-            type=cls.SUBTYPE.resource_type,
-            subtype=cls.SUBTYPE.resource_subtype,
+            namespace=cls.API.namespace,
+            type=cls.API.resource_type,
+            subtype=cls.API.resource_subtype,
             name=name,
         )
 
