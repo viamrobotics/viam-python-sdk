@@ -31,7 +31,7 @@ async def test_reset_channel():
 
 async def test_builtin_clients_are_reconfigurable():
     async with ChannelFor([]) as channel:
-        for subtype, registration in Registry.REGISTERED_SUBTYPES().items():
+        for subtype, registration in Registry.REGISTERED_APIS().items():
             if subtype.namespace == RESOURCE_NAMESPACE_RDK:
                 client = registration.create_rpc_client("client", channel)
                 assert isinstance(client, ReconfigurableResourceRPCClientBase)

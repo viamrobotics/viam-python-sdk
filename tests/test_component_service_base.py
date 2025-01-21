@@ -13,12 +13,12 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import Subtype
+from viam.resource.types import API
 
 
 async def test_cancellation_propagation():
     class TestComponent(ComponentBase):
-        SUBTYPE = Subtype("test", "test", "test")
+        API = API("test", "test", "test")
 
         long_running_task_cancelled = False
 
