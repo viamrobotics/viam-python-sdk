@@ -45,4 +45,4 @@ class MySummationService(SummationService, Reconfigurable):
         self.subtract = config.attributes.fields["subtract"].bool_value or False
 
 
-Registry.register_resource_creator(SummationService.SUBTYPE, MySummationService.MODEL, ResourceCreatorRegistration(MySummationService.new))
+Registry.register_resource_creator(SummationService.API, MySummationService.MODEL, ResourceCreatorRegistration(MySummationService.new))

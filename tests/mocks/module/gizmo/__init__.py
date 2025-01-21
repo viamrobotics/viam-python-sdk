@@ -6,4 +6,4 @@ from .my_gizmo import MyGizmo
 
 Registry.register_api(ResourceRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
 
-Registry.register_resource_creator(Gizmo.SUBTYPE, MyGizmo.MODEL, ResourceCreatorRegistration(MyGizmo.new, MyGizmo.validate_config))
+Registry.register_resource_creator(Gizmo.API, MyGizmo.MODEL, ResourceCreatorRegistration(MyGizmo.new, MyGizmo.validate_config))

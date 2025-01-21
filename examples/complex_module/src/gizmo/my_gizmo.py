@@ -79,4 +79,4 @@ class MyGizmo(Gizmo, Reconfigurable):
         LOGGER.info(f"{self.name} is closed.")
 
 
-Registry.register_resource_creator(Gizmo.SUBTYPE, MyGizmo.MODEL, ResourceCreatorRegistration(MyGizmo.new, MyGizmo.validate_config))
+Registry.register_resource_creator(Gizmo.API, MyGizmo.MODEL, ResourceCreatorRegistration(MyGizmo.new, MyGizmo.validate_config))

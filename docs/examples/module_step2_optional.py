@@ -57,7 +57,7 @@ class MySensor(Sensor):
 
 
 async def main():
-    Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new, MySensor.validate_config))
+    Registry.register_resource_creator(Sensor.API, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new, MySensor.validate_config))
 
 
 if __name__ == "__main__":

@@ -5,4 +5,4 @@ from .my_summation import MySummationService
 
 Registry.register_api(ResourceRegistration(SummationService, SummationRPCService, lambda name, channel: SummationClient(name, channel)))
 
-Registry.register_resource_creator(SummationService.SUBTYPE, MySummationService.MODEL, ResourceCreatorRegistration(MySummationService.new))
+Registry.register_resource_creator(SummationService.API, MySummationService.MODEL, ResourceCreatorRegistration(MySummationService.new))

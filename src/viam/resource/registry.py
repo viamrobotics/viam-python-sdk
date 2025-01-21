@@ -95,19 +95,19 @@ class Registry:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 
     @classmethod
-    def register_resource_creator(cls, subtype: "API", model: "Model", registration: ResourceCreatorRegistration):
+    def register_resource_creator(cls, api: "API", model: "Model", registration: ResourceCreatorRegistration):
         """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
             registration (ResourceCreatorRegistration): The registration functions of the model
 
         Raises:
-            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+            DuplicateResourceError: Raised if the API and Model pairing is already registered
             ValidationError: Raised if registration does not have creator
         """
-        key = f"{subtype}/{model}"
+        key = f"{api}/{model}"
         with cls._lock:
             if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
