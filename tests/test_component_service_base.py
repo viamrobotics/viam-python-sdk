@@ -52,7 +52,7 @@ async def test_cancellation_propagation():
     with pytest.raises(ResourceNotFoundError):
         service = TestService(ResourceManager([component]))
 
-    Registry.register_subtype(ResourceRegistration(TestComponent, TestService, lambda name, channel: TestClient(name, channel)))
+    Registry.register_api(ResourceRegistration(TestComponent, TestService, lambda name, channel: TestClient(name, channel)))
     service = TestService(ResourceManager([component]))
 
     # Test bare functions

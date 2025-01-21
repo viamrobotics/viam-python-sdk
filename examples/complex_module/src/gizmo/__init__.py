@@ -7,4 +7,4 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .api import Gizmo, GizmoClient, GizmoService
 
-Registry.register_subtype(ResourceRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
+Registry.register_api(ResourceRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
