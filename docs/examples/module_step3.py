@@ -43,7 +43,7 @@ async def main():
     Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new))
 
     module = Module.from_args()
-    module.add_model_from_registry(Sensor.SUBTYPE, MySensor.MODEL)
+    module.add_model_from_registry(Sensor.API, MySensor.MODEL)
     await module.start()
 
 

@@ -18,7 +18,7 @@ from viam.proto.module import (
     ValidateConfigResponse,
 )
 from viam.proto.robot import ResourceRPCSubtype
-from viam.resource.types import Model, Subtype
+from viam.resource.types import Model, API
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.utils import dict_to_struct
@@ -33,7 +33,7 @@ from .test_robot import service as robot_service  # noqa: F401
 @pytest.fixture
 async def module(request):
     module = Module("some_fake_address")
-    module.add_model_from_registry(Gizmo.SUBTYPE, MyGizmo.MODEL)
+    module.add_model_from_registry(Gizmo.API, MyGizmo.MODEL)
     request.cls.module = module
     yield module
     await module.stop()
@@ -175,10 +175,10 @@ class TestModule:
 
     def test_add_model_from_registry(self):
         mod = Module("fake")
-        mod.add_model_from_registry(Gizmo.SUBTYPE, MyGizmo.MODEL)
+        mod.add_model_from_registry(Gizmo.API, MyGizmo.MODEL)
 
         with pytest.raises(ValueError):
-            mod.add_model_from_registry(Subtype.from_string("fake:fake:fake"), Model.from_string("faker:faker:faker"))
+            mod.add_model_from_registry(API.from_string("fake:fake:fake"), Model.from_string("faker:faker:faker"))
 
     async def test_multiple_resources_same_model(self, module: Module):
         req = AddResourceRequest(
