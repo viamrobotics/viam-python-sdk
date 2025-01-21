@@ -175,7 +175,7 @@ class Registry:
             raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_SUBTYPES(cls) -> Mapping["API", ResourceRegistration]:
+    def REGISTERED_APIS(cls) -> Mapping["API", ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
         - Value: The registration object for the resource

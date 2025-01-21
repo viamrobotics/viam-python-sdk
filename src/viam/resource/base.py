@@ -21,7 +21,7 @@ class ResourceBase(Protocol):
     """
 
     API: ClassVar["API"]
-    """The Subtype of the Resource"""
+    """The API of the Resource"""
 
     name: str
     """The name of the Resource"""
