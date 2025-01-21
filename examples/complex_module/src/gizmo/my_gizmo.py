@@ -38,7 +38,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         # can raise errors that will be returned to the parent through gRPC. Validate functions can
         # also return a sequence of strings representing the implicit dependencies of the resource.
         if "invalid" in config.attributes.fields:
-            raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
+            raise Exception(f"'invalid' attribute not allowed for model {cls.API}:{cls.MODEL}")
         arg1 = config.attributes.fields["arg1"].string_value
         if arg1 == "":
             raise Exception("A arg1 attribute is required for Gizmo component.")

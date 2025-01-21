@@ -96,7 +96,7 @@ class Registry:
 
     @classmethod
     def register_resource_creator(cls, api: "API", model: "Model", registration: ResourceCreatorRegistration):
-        """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
+        """Register a specific ``Model`` and validator function for the specific resource ``API`` with the Registry
 
         Args:
             api (API): The API of the resource
@@ -138,14 +138,14 @@ class Registry:
 
     @classmethod
     def lookup_resource_creator(cls, api: "API", model: "Model") -> "ResourceCreator":
-        """Lookup and retrieve a registered resource creator by its subtype and model
+        """Lookup and retrieve a registered resource creator by its API and model
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
 
         Raises:
-            ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+            ResourceNotFoundError: Raised if the API Model pairing is not registered
 
         Returns:
             ResourceCreator: The function to create the resource

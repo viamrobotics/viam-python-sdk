@@ -1,5 +1,5 @@
 """
-This file registers the Summation subtype with the Viam Registry, as well as the specific MySummation model.
+This file registers the Summation API with the Viam Registry, as well as the specific MySummation model.
 """
 
 from viam.resource.registry import Registry, ResourceRegistration

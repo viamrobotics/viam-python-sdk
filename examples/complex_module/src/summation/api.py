@@ -7,7 +7,7 @@ and the gRPC client that will be able to make calls to this service.
 
 In this example, the ``Summation`` abstract class defines what functionality is required for all Summation services.
 It extends ``ServiceBase``, as all service types must.
-It also defines its specific ``SUBTYPE``, which is used internally to keep track of supported types.
+It also defines its specific ``API``, which is used internally to keep track of supported types.
 
 The ``SummationRPCService`` implements the gRPC service for the Summation service. This will allow other robots and clients to make
 requests of the Summation service. It extends both from ``SummationServiceBase`` and ``RPCServiceBase``.
@@ -27,7 +27,7 @@ from grpclib.client import Channel
 from grpclib.server import Stream
 
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_TYPE_SERVICE, API
 from viam.services.service_base import ServiceBase
 
 from ..proto.summation_grpc import SummationServiceBase, SummationServiceStub
@@ -37,7 +37,7 @@ from ..proto.summation_pb2 import SumRequest, SumResponse
 class SummationService(ServiceBase):
     """Example service to use with the example module"""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_SERVICE, "summation")
+    API: Final = API("acme", RESOURCE_TYPE_SERVICE, "summation")
 
     @abc.abstractmethod
     async def sum(self, nums: Sequence[float]) -> float:

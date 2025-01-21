@@ -1,5 +1,5 @@
 """
-This file registers the Gizmo subtype with the Viam Registry, as well as the specific MyGizmo model.
+This file registers the Gizmo API with the Viam Registry, as well as the specific MyGizmo model.
 """
 
 from viam.components.motor import *  # noqa: F403 Need to import motor so the component registers itself
