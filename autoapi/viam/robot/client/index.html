@@ -791,6 +791,7 @@ shutting down when response is ready.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">machine_status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_machine_status</span><span class="p">()</span>
 <span class="n">resource_statuses</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">resources</span>
 <span class="n">config_status</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">config</span>
+<span class="n">machine_state</span> <span class="o">=</span> <span class="n">machine_status</span><span class="o">.</span><span class="n">state</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
