@@ -20,7 +20,7 @@ class Gripper(ComponentBase):
     For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper"
     )
 

@@ -143,7 +143,7 @@ class Controller(ComponentBase):
     For more information, see `Input Controller component <https://docs.viam.com/dev/reference/apis/components/input-controller/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "input_controller"
     )
 

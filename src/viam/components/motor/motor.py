@@ -25,7 +25,7 @@ class Motor(ComponentBase):
     class Properties:
         position_reporting: bool
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor"
     )
 

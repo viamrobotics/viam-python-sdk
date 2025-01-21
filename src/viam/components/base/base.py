@@ -23,7 +23,7 @@ class Base(ComponentBase):
     For more information, see `Base component <https://docs.viam.com/dev/reference/apis/components/base/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base"
     )
 

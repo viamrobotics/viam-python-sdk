@@ -21,7 +21,7 @@ class MLModel(ServiceBase):
     For more information, see `ML model service <https://docs.viam.com/dev/reference/apis/services/ml/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel"
     )
 

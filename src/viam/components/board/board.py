@@ -34,7 +34,7 @@ class Board(ComponentBase):
     For more information, see `Board component <https://docs.viam.com/dev/reference/apis/components/board/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board"
     )
 

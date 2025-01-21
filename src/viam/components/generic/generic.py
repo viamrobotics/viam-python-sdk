@@ -71,6 +71,6 @@ class Generic(ComponentBase):
     For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/generic/>`_.
     """
 
-    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "generic"
     )
