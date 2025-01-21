@@ -23,11 +23,11 @@ class ComponentBase(abc.ABC, ResourceBase):
     All components must inherit from this class.
     """
 
-    SUBTYPE: ClassVar["API"]
+    API: ClassVar["API"]
 
     def __init__(self, name: str, *, logger: Optional[Logger] = None):
         self.name = name
-        self.logger = logger if logger is not None else getLogger(f"{self.SUBTYPE}.{name}")
+        self.logger = logger if logger is not None else getLogger(f"{self.API}.{name}")
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

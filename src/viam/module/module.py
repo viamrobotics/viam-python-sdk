@@ -221,9 +221,9 @@ class Module:
         await self._connect_to_parent()
 
         svcname_to_models: Mapping[Tuple[str, API], List[Model]] = {}
-        for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
-            subtype_str, model_str = subtype_model_str.split("/")
-            api = API.from_string(subtype_str)
+        for api_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
+            api_str, model_str = api_model_str.split("/")
+            api = API.from_string(api_str)
             model = Model.from_string(model_str)
 
             registration = Registry.lookup_api(api)
@@ -258,7 +258,7 @@ class Module:
         try:
             Registry.lookup_resource_creator(api, model)
         except ResourceNotFoundError:
-            raise ValueError(f"Cannot add model because it has not been registered. Subtype: {api}. Model: {model}")
+            raise ValueError(f"Cannot add model because it has not been registered. API: {api}. Model: {model}")
 
     async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
         config: ComponentConfig = request.config
