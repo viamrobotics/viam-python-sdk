@@ -21,4 +21,4 @@ from .service import MLModelRPCService
 
 __all__ = ["File", "LabelType", "Metadata", "MLModel", "MLModelClient", "TensorInfo"]
 
-Registry.register_subtype(ResourceRegistration(MLModel, MLModelRPCService, lambda name, channel: MLModelClient(name, channel)))
+Registry.register_api(ResourceRegistration(MLModel, MLModelRPCService, lambda name, channel: MLModelClient(name, channel)))

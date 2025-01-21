@@ -8,7 +8,7 @@ __all__ = [
     "PowerSensor",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         PowerSensor,
         PowerSensorRPCService,

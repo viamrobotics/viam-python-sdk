@@ -6,4 +6,4 @@ from .service import BoardRPCService
 
 __all__ = ["Board", "Tick", "TickStream"]
 
-Registry.register_subtype(ResourceRegistration(Board, BoardRPCService, lambda name, channel: BoardClient(name, channel)))
+Registry.register_api(ResourceRegistration(Board, BoardRPCService, lambda name, channel: BoardClient(name, channel)))

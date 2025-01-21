@@ -8,4 +8,4 @@ __all__ = [
     "Motor",
 ]
 
-Registry.register_subtype(ResourceRegistration(Motor, MotorRPCService, lambda name, channel: MotorClient(name, channel)))
+Registry.register_api(ResourceRegistration(Motor, MotorRPCService, lambda name, channel: MotorClient(name, channel)))
