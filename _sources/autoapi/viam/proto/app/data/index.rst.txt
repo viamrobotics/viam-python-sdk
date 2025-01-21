@@ -1948,7 +1948,7 @@ Package Contents
 
 
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1960,12 +1960,50 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: use_recent_data
+      :type:  bool
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
       mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
       document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
       namespace, which holds the Viam organization's tabular data.
+
+
+   .. py:method:: HasField(field_name: Literal['_use_recent_data', b'_use_recent_data', 'use_recent_data', b'use_recent_data']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: TabularDataByMQLResponse(*, raw_data: collections.abc.Iterable[bytes] | None = ...)
