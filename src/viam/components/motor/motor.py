@@ -2,7 +2,7 @@ import abc
 from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Tuple
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 
@@ -25,7 +25,7 @@ class Motor(ComponentBase):
     class Properties:
         position_reporting: bool
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor"
     )
 

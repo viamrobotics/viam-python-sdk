@@ -3,7 +3,7 @@ import sys
 from typing import Final, List, Optional
 
 from viam.proto.service.slam import GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
 
 from ..service_base import ServiceBase
 from . import Pose
@@ -25,7 +25,7 @@ class SLAM(ServiceBase):
     For more information, see `SLAM service <https://docs.viam.com/dev/reference/apis/services/slam/>`_.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     Properties: "TypeAlias" = GetPropertiesResponse
 

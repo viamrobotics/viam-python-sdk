@@ -10,7 +10,7 @@ from .. import logging
 from ..errors import MethodNotImplementedError
 from .base import ResourceBase
 from .registry import Registry, ResourceCreatorRegistration
-from .types import Model, ModelFamily, Subtype
+from .types import Model, ModelFamily, API
 
 modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 
@@ -92,7 +92,7 @@ class EasyResource:
     See examples/easy_resource/main.py for extended usage.
     """
 
-    SUBTYPE: ClassVar[Subtype]
+    SUBTYPE: ClassVar[API]
     MODEL: ClassVar[Model]
 
     def __init_subclass__(cls, register=True, **kwargs):

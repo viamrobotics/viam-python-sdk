@@ -7,7 +7,7 @@ from typing_extensions import Self
 from viam.operations import Operation
 from viam.proto.common import ResourceName
 
-from .types import Subtype
+from .types import API
 
 if TYPE_CHECKING:
     from viam.robot.client import RobotClient
@@ -20,7 +20,7 @@ class ResourceBase(Protocol):
     The base requirements for a Resource.
     """
 
-    SUBTYPE: ClassVar["Subtype"]
+    SUBTYPE: ClassVar["API"]
     """The Subtype of the Resource"""
 
     name: str

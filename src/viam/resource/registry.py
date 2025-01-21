@@ -10,7 +10,7 @@ from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import Model, ResourceCreator, Subtype, Validator
+    from .types import Model, ResourceCreator, API, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -70,7 +70,7 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
+    _SUBTYPES: ClassVar[Dict["API", ResourceRegistration]] = {}
     _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
@@ -95,7 +95,7 @@ class Registry:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 
     @classmethod
-    def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
+    def register_resource_creator(cls, subtype: "API", model: "Model", registration: ResourceCreatorRegistration):
         """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
@@ -118,7 +118,7 @@ class Registry:
                 raise ValidationError("A creator function was not provided")
 
     @classmethod
-    def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
+    def lookup_subtype(cls, subtype: "API") -> ResourceRegistration:
         """Lookup and retrieve a registered Subtype by its name
 
         Args:
@@ -137,7 +137,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
+    def lookup_resource_creator(cls, subtype: "API", model: "Model") -> "ResourceCreator":
         """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
@@ -157,7 +157,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> "Validator":
+    def lookup_validator(cls, subtype: "API", model: "Model") -> "Validator":
         """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
 
         Args:
@@ -175,7 +175,7 @@ class Registry:
             raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
+    def REGISTERED_SUBTYPES(cls) -> Mapping["API", ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
         - Value: The registration object for the resource

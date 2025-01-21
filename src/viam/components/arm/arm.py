@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Dict, Final, Optional, Tuple
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 from . import JointPositions, KinematicsFileFormat, Pose
@@ -26,7 +26,7 @@ class Arm(ComponentBase):
     For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/>`_.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     @abc.abstractmethod
     async def get_end_position(

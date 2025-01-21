@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, Final, Optional
 
 from viam.components.component_base import ComponentBase
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 
 class Gripper(ComponentBase):
@@ -20,7 +20,7 @@ class Gripper(ComponentBase):
     For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper"
     )
 

@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import ResourceName
-from viam.resource.base import ResourceBase, Subtype
+from viam.resource.base import ResourceBase, API
 from viam.utils import ValueTypes
 
 if TYPE_CHECKING:
@@ -19,7 +19,7 @@ class ServiceClientBase(abc.ABC, ResourceBase):
     All service clients must inherit from this class.
     """
 
-    SUBTYPE: ClassVar[Subtype]
+    SUBTYPE: ClassVar[API]
     channel: Channel
 
     def __init__(self, name: str, channel: Channel):

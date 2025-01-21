@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.proto.component.encoder import PositionType
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
 
 from ..component_base import ComponentBase
 
@@ -28,7 +28,7 @@ class Encoder(ComponentBase):
     For more information, see `Encoder component <https://docs.viam.com/dev/reference/apis/components/encoder/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    SUBTYPE: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "encoder"
     )
 

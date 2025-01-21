@@ -27,7 +27,7 @@ from viam.proto.module import (
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, Subtype, resource_name_from_string
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, API, resource_name_from_string
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
@@ -180,7 +180,7 @@ class Module:
     async def add_resource(self, request: AddResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
-        subtype = Subtype.from_string(config.api)
+        subtype = API.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
         creator = Registry.lookup_resource_creator(subtype, model)
         resource = creator(config, dependencies)
@@ -190,7 +190,7 @@ class Module:
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
-        subtype = Subtype.from_string(config.api)
+        subtype = API.from_string(config.api)
         name = config.name
         rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
         resource = self.server.get_resource(ResourceBase, rn)
@@ -220,10 +220,10 @@ class Module:
         self._parent_address = request.parent_address
         await self._connect_to_parent()
 
-        svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
+        svcname_to_models: Mapping[Tuple[str, API], List[Model]] = {}
         for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             subtype_str, model_str = subtype_model_str.split("/")
-            subtype = Subtype.from_string(subtype_str)
+            subtype = API.from_string(subtype_str)
             model = Model.from_string(model_str)
 
             registration = Registry.lookup_subtype(subtype)
@@ -251,7 +251,7 @@ class Module:
 
         return ReadyResponse(ready=self._ready, handlermap=HandlerMap(handlers=handlers))
 
-    def add_model_from_registry(self, subtype: Subtype, model: Model):
+    def add_model_from_registry(self, subtype: API, model: Model):
         """Add a pre-registered model to this Module"""
 
         # All we need to do is double check that the model has already been registered
@@ -262,7 +262,7 @@ class Module:
 
     async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
         config: ComponentConfig = request.config
-        subtype = Subtype.from_string(config.api)
+        subtype = API.from_string(config.api)
         model = Model.from_string(config.model)
         validator = Registry.lookup_validator(subtype, model)
         try:
