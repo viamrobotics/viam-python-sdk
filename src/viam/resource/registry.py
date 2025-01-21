@@ -75,14 +75,14 @@ class Registry:
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
-    def register_subtype(cls, registration: ResourceRegistration[Resource]):
-        """Register a Subtype with the Registry
+    def register_api(cls, registration: ResourceRegistration[Resource]):
+        """Register a API with the Registry
 
         Args:
-            registration (ResourceRegistration): Object containing registration data for the subtype
+            registration (ResourceRegistration): Object containing registration data for the API
 
         Raises:
-            DuplicateResourceError: Raised if the Subtype to register is already in the registry
+            DuplicateResourceError: Raised if the API to register is already in the registry
             ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
@@ -157,31 +157,31 @@ class Registry:
                 raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
-    def lookup_validator(cls, subtype: "API", model: "Model") -> "Validator":
-        """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+    def lookup_validator(cls, api: "API", model: "Model") -> "Validator":
+        """Lookup and retrieve a registered validator function by its API and model. If there is none, return None
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
 
         Returns:
             Validator: The function to validate the resource
         """
         try:
-            return cls._RESOURCES[f"{subtype}/{model}"].validator
+            return cls._RESOURCES[f"{api}/{model}"].validator
         except AttributeError:
             return lambda x: []
         except KeyError:
-            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+            raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
     def REGISTERED_APIS(cls) -> Mapping["API", ResourceRegistration]:
         """The dictionary of all registered resources
-        - Key: Subtype of the resource
+        - Key: API of the resource
         - Value: The registration object for the resource
 
         Returns:
-            Mapping[Subtype, ResourceRegistration]: All registered resources
+            Mapping[API, ResourceRegistration]: All registered resources
         """
         with cls._lock:
             return cls._APIS.copy()
@@ -189,7 +189,7 @@ class Registry:
     @classmethod
     def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:
         """The dictionary of all registered resources
-        - Key: subtype/model
+        - Key: API/model
         - Value: The ResourceCreatorRegistration for the resource
 
         Returns:
