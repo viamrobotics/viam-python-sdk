@@ -19,7 +19,7 @@ class ServiceClientBase(abc.ABC, ResourceBase):
     All service clients must inherit from this class.
     """
 
-    SUBTYPE: ClassVar[API]
+    API: ClassVar[API]
     channel: Channel
 
     def __init__(self, name: str, channel: Channel):
@@ -37,7 +37,7 @@ class ServiceClientBase(abc.ABC, ResourceBase):
         Returns:
             Self: The service client, if it exists on the robot
         """
-        resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.SUBTYPE.resource_subtype, name=name)
+        resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.API.resource_subtype, name=name)
         if resource_name not in robot.resource_names:
             raise ResourceNotFoundError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)

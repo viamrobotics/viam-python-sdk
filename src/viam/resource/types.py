@@ -41,7 +41,7 @@ class API:
         return f"{self.namespace}:{self.resource_type}:{self.resource_subtype}"
 
     def __repr__(self) -> str:
-        return f"<viam.resource.types.Subtype {str(self)} at {hex(id(self))}>"
+        return f"<viam.resource.types.API {str(self)} at {hex(id(self))}>"
 
     def __hash__(self) -> int:
         return hash(str(self))
