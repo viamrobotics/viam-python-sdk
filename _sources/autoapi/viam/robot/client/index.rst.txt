@@ -635,11 +635,11 @@ Module Contents
       ::
 
           machine_status = await machine.get_machine_status()
+          machine_state = machine_status.state
           resource_statuses = machine_status.resources
           config_status = machine_status.config
-          machine_state = machine_status.state
 
-      :returns: current status of the resources (List[ResourceStatus]) and config of the machine.
+      :returns: current status of the machine (initializing or running), resources (List[ResourceStatus]) and config of the machine.
       :rtype: viam.proto.robot.GetMachineStatusResponse
 
       For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
