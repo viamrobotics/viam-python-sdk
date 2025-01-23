@@ -158,6 +158,12 @@ class DataClient:
         resource_name: str
         """The resource name"""
 
+        resource_subtype: str
+        """
+        deprecated; use `resource_api`
+        The resource API. Ex: `rdk:component:sensor`
+        """
+
         resource_api: str
         """The resource API. Ex: `rdk:component:sensor`"""
 
@@ -367,6 +373,7 @@ class DataClient:
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
+    @_alias_param("resource_api", param_alias="resource_subtype")
     async def get_latest_tabular_data(
         self, part_id: str, resource_name: str, resource_api: str, method_name: str
     ) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
@@ -413,6 +420,7 @@ class DataClient:
             return None
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
+    @_alias_param("resource_api", param_alias="resource_subtype")
     async def export_tabular_data(
         self,
         part_id: str,
@@ -461,6 +469,7 @@ class DataClient:
             DataClient.TabularDataPoint(
                 part_id=resp.part_id,
                 resource_name=resp.resource_name,
+                resource_subtype=resp.resource_subtype,
                 resource_api=resp.resource_subtype,
                 method_name=resp.method_name,
                 time_captured=resp.time_captured.ToDatetime(),
