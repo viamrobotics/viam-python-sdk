@@ -29,11 +29,14 @@ from viam.proto.robot import (
     GetCloudMetadataResponse,
     GetMachineStatusRequest,
     GetMachineStatusResponse,
+    GetModelsFromModulesRequest,
+    GetModelsFromModulesResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetVersionRequest,
     GetVersionResponse,
     LogRequest,
+    ModuleModel,
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
@@ -770,6 +773,31 @@ class RobotClient:
             "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead."
         )
         return list(response.discovery)
+
+    #################
+    # MODULE MODELS #
+    #################
+
+    async def get_models_from_modules(
+        self,
+    ) -> List[ModuleModel]:
+        """
+
+        Get a list of module models.
+
+        ::
+            # Get module models
+            module_modles = await machine.get_models_from_modules(qs)
+
+        Args:
+
+        Returns:
+            List[ModuleModel]: A list of discovered models.
+
+        """
+        request = GetModelsFromModulesRequest()
+        response: GetModelsFromModulesResponse = await self._client.GetModelsFromModules(request)
+        return list(response.models)
 
     ############
     # STOP ALL #
