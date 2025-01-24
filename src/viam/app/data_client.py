@@ -158,12 +158,6 @@ class DataClient:
         resource_name: str
         """The resource name"""
 
-        resource_subtype: str
-        """
-        deprecated; use `resource_api`
-        The resource API. Ex: `rdk:component:sensor`
-        """
-
         resource_api: str
         """The resource API. Ex: `rdk:component:sensor`"""
 
@@ -216,6 +210,15 @@ class DataClient:
             if isinstance(other, DataClient.TabularDataPoint):
                 return str(self) == str(other)
             return False
+
+        @property
+        def resource_subtype(self) -> str:
+            warnings.warn(
+                "`TabularDataPoint.resource_subtype` is deprecated. Use `TabularDataPoint.resource_api` instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            return self.resource_api
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
@@ -469,7 +472,6 @@ class DataClient:
             DataClient.TabularDataPoint(
                 part_id=resp.part_id,
                 resource_name=resp.resource_name,
-                resource_subtype=resp.resource_subtype,
                 resource_api=resp.resource_subtype,
                 method_name=resp.method_name,
                 time_captured=resp.time_captured.ToDatetime(),
