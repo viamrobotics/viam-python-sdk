@@ -919,11 +919,12 @@ class RobotClient:
         ::
 
             machine_status = await machine.get_machine_status()
+            machine_state = machine_status.state
             resource_statuses = machine_status.resources
             config_status = machine_status.config
 
         Returns:
-            viam.proto.robot.GetMachineStatusResponse: current status of the resources (List[ResourceStatus]) and config of the machine.
+            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), resources (List[ResourceStatus]) and config of the machine.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """

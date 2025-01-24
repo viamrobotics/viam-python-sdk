@@ -389,7 +389,9 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
+    USE_RECENT_DATA_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
+    use_recent_data: builtins.bool
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -398,10 +400,16 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
         namespace, which holds the Viam organization's tabular data.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['mql_binary', b'mql_binary', 'organization_id', b'organization_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_use_recent_data', b'_use_recent_data', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_use_recent_data', b'_use_recent_data', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_recent_data', b'use_recent_data']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_use_recent_data', b'_use_recent_data']) -> typing.Literal['use_recent_data'] | None:
         ...
 global___TabularDataByMQLRequest = TabularDataByMQLRequest
 

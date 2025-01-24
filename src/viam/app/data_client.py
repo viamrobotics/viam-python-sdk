@@ -162,7 +162,7 @@ class DataClient:
         """The resource API. Ex: `rdk:component:sensor`"""
 
         method_name: str
-        """The method used for data capture. Ex" `Readings`"""
+        """The method used for data capture. Ex: `Readings`"""
 
         time_captured: datetime
         """The time at which the data point was captured"""
