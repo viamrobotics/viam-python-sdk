@@ -1,6 +1,6 @@
 from typing import Final
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 
 from ..service_base import ServiceBase
 

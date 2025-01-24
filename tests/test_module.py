@@ -18,7 +18,7 @@ from viam.proto.module import (
     ValidateConfigResponse,
 )
 from viam.proto.robot import ResourceRPCSubtype
-from viam.resource.types import Model, API
+from viam.resource.types import API, Model
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.utils import dict_to_struct

@@ -10,7 +10,7 @@ from .. import logging
 from ..errors import MethodNotImplementedError
 from .base import ResourceBase
 from .registry import Registry, ResourceCreatorRegistration
-from .types import Model, ModelFamily, API
+from .types import API, Model, ModelFamily
 
 modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 

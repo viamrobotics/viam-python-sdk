@@ -10,7 +10,7 @@ from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import Model, ResourceCreator, API, Validator
+    from .types import API, Model, ResourceCreator, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 

@@ -3,7 +3,7 @@ import sys
 from typing import Final, List, Optional
 
 from viam.proto.service.slam import GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 
 from ..service_base import ServiceBase
 from . import Pose

@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import ResourceName
-from viam.resource.base import ResourceBase, API
+from viam.resource.base import API, ResourceBase
 from viam.utils import ValueTypes
 
 if TYPE_CHECKING:

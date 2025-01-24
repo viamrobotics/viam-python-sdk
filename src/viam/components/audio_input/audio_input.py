@@ -8,7 +8,7 @@ from typing_extensions import Self
 
 from viam.media.audio import Audio, AudioStream
 from viam.proto.component.audioinput import PropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.streams import StreamSource
 
 from ..component_base import ComponentBase

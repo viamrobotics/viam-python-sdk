@@ -5,7 +5,7 @@ from typing import Final, List, Mapping, Optional
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase

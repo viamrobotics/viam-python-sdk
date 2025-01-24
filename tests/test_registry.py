@@ -6,7 +6,7 @@ from viam.components.component_base import ComponentBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, API, resource_name_from_string
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, resource_name_from_string
 
 
 class FakeComponent(ComponentBase):

@@ -7,7 +7,7 @@ from typing_extensions import Self
 
 from viam.components.component_base import ComponentBase
 from viam.proto.component.movementsensor import GetAccuracyResponse, GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.utils import SensorReading
 
 from . import GeoPoint, Orientation, Vector3

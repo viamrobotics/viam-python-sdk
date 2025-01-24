@@ -27,7 +27,7 @@ from viam.proto.module import (
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, API, resource_name_from_string
+from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, resource_name_from_string
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server

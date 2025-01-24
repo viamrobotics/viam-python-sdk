@@ -4,7 +4,7 @@ from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
 from viam.proto.component.board import PowerMode, ReadAnalogReaderResponse, StreamTicksResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.streams import Stream
 
 from ..component_base import ComponentBase

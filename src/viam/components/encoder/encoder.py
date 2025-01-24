@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.proto.component.encoder import PositionType
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
 

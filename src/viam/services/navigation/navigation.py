@@ -1,7 +1,7 @@
 import abc
 from typing import Final, List, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 
 from ..service_base import ServiceBase
 from . import GeoGeometry, GeoPoint, MapType, Mode, Path, Waypoint

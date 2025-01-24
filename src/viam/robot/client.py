@@ -48,7 +48,7 @@ from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
@@ -763,9 +763,12 @@ class RobotClient:
         response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
         warnings.warn(
             "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.",
-            DeprecationWarning, stacklevel=2)
+            DeprecationWarning,
+            stacklevel=2,
+        )
         LOGGER.warning(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.")
+            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead."
+        )
         return list(response.discovery)
 
     ############

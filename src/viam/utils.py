@@ -107,11 +107,7 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
         for registration in Registry.REGISTERED_APIS().values():
             if klass is registration.resource_type:
                 api: API = registration.resource_type.API
-                rns.append(
-                    ResourceName(
-                        namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=resource.name
-                    )
-                )
+                rns.append(ResourceName(namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=resource.name))
     return rns
 
 

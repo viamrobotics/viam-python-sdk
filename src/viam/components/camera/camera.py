@@ -5,7 +5,7 @@ from typing import Any, Dict, Final, List, Optional, Tuple
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
 

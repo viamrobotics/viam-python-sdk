@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, Final, List, Mapping, Optional
 
 from viam.proto.common import PoseInFrame
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
 

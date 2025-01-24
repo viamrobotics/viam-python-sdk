@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.utils import SensorReading
 
 
