@@ -425,7 +425,9 @@ global___GetSessionsResponse = GetSessionsResponse
 
 @typing.final
 class DiscoveryQuery(google.protobuf.message.Message):
-    """Discovery"""
+    """Discovery
+    Discovery is deprecated
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUBTYPE_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int

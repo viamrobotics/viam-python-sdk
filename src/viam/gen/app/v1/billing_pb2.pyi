@@ -59,7 +59,7 @@ class _UsageCostTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._
     USAGE_COST_TYPE_BINARY_DATA_EGRESS: _UsageCostType.ValueType
     USAGE_COST_TYPE_TABULAR_DATA_EGRESS: _UsageCostType.ValueType
     USAGE_COST_TYPE_LOGS_EGRESS: _UsageCostType.ValueType
-    USAGE_COST_TYPE_ML_TRAINING_LOGS_EGRESS: _UsageCostType.ValueType
+    USAGE_COST_TYPE_TRAINING_LOGS_EGRESS: _UsageCostType.ValueType
 
 class UsageCostType(_UsageCostType, metaclass=_UsageCostTypeEnumTypeWrapper):
     ...
@@ -84,7 +84,7 @@ USAGE_COST_TYPE_LOGS_UPLOAD: UsageCostType.ValueType
 USAGE_COST_TYPE_BINARY_DATA_EGRESS: UsageCostType.ValueType
 USAGE_COST_TYPE_TABULAR_DATA_EGRESS: UsageCostType.ValueType
 USAGE_COST_TYPE_LOGS_EGRESS: UsageCostType.ValueType
-USAGE_COST_TYPE_ML_TRAINING_LOGS_EGRESS: UsageCostType.ValueType
+USAGE_COST_TYPE_TRAINING_LOGS_EGRESS: UsageCostType.ValueType
 global___UsageCostType = UsageCostType
 
 class _SourceType:
