@@ -1,0 +1,72 @@
+viam.gen.component.button.v1.button_grpc
+========================================
+
+.. py:module:: viam.gen.component.button.v1.button_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.component.button.v1.button_grpc.ButtonServiceBase
+   viam.gen.component.button.v1.button_grpc.UnimplementedButtonServiceBase
+   viam.gen.component.button.v1.button_grpc.ButtonServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: ButtonServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: Push(stream: grpclib.server.Stream[component.button.v1.button_pb2.PushRequest, component.button.v1.button_pb2.PushResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedButtonServiceBase
+
+   Bases: :py:obj:`ButtonServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: Push(stream: grpclib.server.Stream[component.button.v1.button_pb2.PushRequest, component.button.v1.button_pb2.PushResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+.. py:class:: ButtonServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: Push
+
+
+   .. py:attribute:: DoCommand
+
+

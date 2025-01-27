@@ -3361,7 +3361,7 @@ Package Contents
    Bases: :py:obj:`_FragmentErrorType`
 
 
-.. py:class:: FragmentHistoryEntry(*, fragment: str = ..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___Fragment | None = ..., edited_by: global___AuthenticatorInfo | None = ...)
+.. py:class:: FragmentHistoryEntry(*, fragment: str = ..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___Fragment | None = ..., edited_by: global___AuthenticatorInfo | None = ..., revision: str = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3374,6 +3374,10 @@ Package Contents
 
 
    .. py:attribute:: fragment
+      :type:  str
+
+
+   .. py:attribute:: revision
       :type:  str
 
 
@@ -3392,7 +3396,12 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> bool
+   .. py:property:: config
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['config', b'config', 'edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> bool
 
       Checks if a certain field is set for the message.
 
