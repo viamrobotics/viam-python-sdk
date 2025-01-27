@@ -1010,6 +1010,7 @@
 <span class="sd">            machine_status = await machine.get_machine_status()</span>
 <span class="sd">            machine_state = machine_status.state</span>
 <span class="sd">            resource_statuses = machine_status.resources</span>
+<span class="sd">            cloud_metadata = machine_status.resources[0].cloud_metadata</span>
 <span class="sd">            config_status = machine_status.config</span>
 
 <span class="sd">        Returns:</span>
