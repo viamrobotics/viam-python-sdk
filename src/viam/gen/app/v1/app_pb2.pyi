@@ -2058,7 +2058,10 @@ class FragmentHistoryEntry(google.protobuf.message.Message):
     EDITED_ON_FIELD_NUMBER: builtins.int
     OLD_FIELD_NUMBER: builtins.int
     EDITED_BY_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
+    CONFIG_FIELD_NUMBER: builtins.int
     fragment: builtins.str
+    revision: builtins.str
 
     @property
     def edited_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -2072,13 +2075,17 @@ class FragmentHistoryEntry(google.protobuf.message.Message):
     def edited_by(self) -> global___AuthenticatorInfo:
         ...
 
-    def __init__(self, *, fragment: builtins.str=..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___Fragment | None=..., edited_by: global___AuthenticatorInfo | None=...) -> None:
+    @property
+    def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def HasField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> builtins.bool:
+    def __init__(self, *, fragment: builtins.str=..., edited_on: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___Fragment | None=..., edited_by: global___AuthenticatorInfo | None=..., revision: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['edited_by', b'edited_by', 'edited_on', b'edited_on', 'fragment', b'fragment', 'old', b'old']) -> None:
+    def HasField(self, field_name: typing.Literal['config', b'config', 'edited_by', b'edited_by', 'edited_on', b'edited_on', 'old', b'old']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'edited_by', b'edited_by', 'edited_on', b'edited_on', 'fragment', b'fragment', 'old', b'old', 'revision', b'revision']) -> None:
         ...
 global___FragmentHistoryEntry = FragmentHistoryEntry
 
