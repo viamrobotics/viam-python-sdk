@@ -921,6 +921,7 @@ class RobotClient:
             machine_status = await machine.get_machine_status()
             machine_state = machine_status.state
             resource_statuses = machine_status.resources
+            cloud_metadata = machine_status.resources[0].cloud_metadata
             config_status = machine_status.config
 
         Returns:
