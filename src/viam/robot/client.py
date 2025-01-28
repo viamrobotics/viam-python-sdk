@@ -264,6 +264,10 @@ class RobotClient:
         )
 
         try:
+            # make sure the robot status isn't initializing (i.e., that the robot is ready for queries)
+            # before we try to refresh
+            while await self._check_still_initializing():
+                pass
             await self.refresh()
         except Exception:
             LOGGER.error("Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.")
@@ -281,6 +285,10 @@ class RobotClient:
                 name=f"{viam._TASK_PREFIX}-robot_check_connection",
             )
 
+        self._check_status_task = asyncio.create_task(
+            self._check_status(), name=f"{viam._TASK_PREFIX}-robot_check_status"
+        )
+
         return self
 
     _channel: Channel
@@ -294,6 +302,7 @@ class RobotClient:
     _refresh_task: Optional[asyncio.Task] = None
     _check_connection_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
+    _check_status_task: asyncio.Task
     _should_close_channel: bool
     _closed: bool = False
     _sessions_client: SessionsClient
@@ -308,24 +317,27 @@ class RobotClient:
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
+        with self._lock:
+            self._refresh_inner()
+
+    async def _refresh_inner(self):
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
-        with self._lock:
-            if resource_names == self._resource_names:
-                return
-            for rname in resource_names:
-                if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
-                    continue
-                if rname.subtype == "remote":
-                    continue
+        if resource_names == self._resource_names:
+            return
+        for rname in resource_names:
+            if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
+                continue
+            if rname.subtype == "remote":
+                continue
 
-                await self._create_or_reset_client(rname)
+            await self._create_or_reset_client(rname)
 
-            for rname in self.resource_names:
-                if rname not in resource_names:
-                    await self._manager.remove_resource(rname)
+        for rname in self.resource_names:
+            if rname not in resource_names:
+                await self._manager.remove_resource(rname)
 
-            self._resource_names = resource_names
+        self._resource_names = resource_names
 
     async def _create_or_reset_client(self, resourceName: ResourceName):
         if resourceName in self._manager.resources:
@@ -350,6 +362,30 @@ class RobotClient:
                 )
             except ResourceNotFoundError:
                 pass
+
+    async def _check_still_initializing(self):
+        await asyncio.sleep(.1)
+        status = await self.get_machine_status()
+        return status.state == status.STATE_INITIALIZING
+
+    async def _check_status(self):
+        while True:
+            # check to see if we're initializing. if not, then we're connected, and so we're good
+            if not await self._check_still_initializing():
+                continue
+
+            # at this point we know we're still initializing. so we want to take the lock to prevent
+            # attempts to do anything meaningful until we know the machine is ready for queries
+            with self._lock:
+                while await self._check_still_initializing():
+                    pass
+
+                # now we know the machine is ready, but it's possible that we detected the need to
+                # ensure connection in the middle of a refresh call or after a refreh call completed,
+                # and therefore that the robot got an incorrect response from the `ResourceNames` call.
+                # So, we should refresh right now to make sure everything is correct, before we release
+                # the lock.
+                self._refresh_inner()
 
     async def _refresh_every(self, interval: int):
         while True:
