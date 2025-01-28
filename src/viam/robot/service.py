@@ -8,6 +8,8 @@ from viam.components.sensor import Sensor
 from viam.errors import ViamGRPCError
 from viam.proto.common import ResourceName
 from viam.proto.robot import (
+    GetMachineStatusRequest,
+    GetMachineStatusResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     StopAllRequest,
@@ -32,6 +34,11 @@ class RobotService(UnimplementedRobotServiceBase, ResourceRPCServiceBase):
             md.update(resource_names_for_resource(resource))
 
         return list(md)
+
+    async def GetMachineStatus(self, stream: Stream[GetMachineStatusRequest, GetMachineStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetMachineStatusResponse(state=GetMachineStatusResponse.STATE_RUNNING))
 
     async def ResourceNames(self, stream: Stream[ResourceNamesRequest, ResourceNamesResponse]) -> None:
         request = await stream.recv_message()

@@ -6,11 +6,6 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.server import Server, Stream
 from grpclib.utils import graceful_exit
 
-from viam.proto.robot import (
-        UnimplementedRobotServiceBase,
-        GetMachineStatusRequest,
-        GetMachineStatusResponse
-)
 from viam.app.data_client import DataClient
 from viam.proto.app import (
     AddRoleRequest,
@@ -600,13 +595,8 @@ class MockApp(UnimplementedAppServiceBase):
         raise NotImplementedError()
 
 
-class MockRobot(UnimplementedRobotServiceBase):
-    async def GetMachineStatus(self, stream: Stream[GetMachineStatusRequest, GetMachineStatusResponse]) -> None:
-        await stream.send_message(GetMachineStatusResponse(state: GetMachineStatusResponse.STATE_RUNNING))
-
-
 async def main(*, host: str = "127.0.0.1", port: int = 9092) -> None:
-    server = Server([MockData(), MockDataSync(), MockApp(), MockRobot()])
+    server = Server([MockData(), MockDataSync(), MockApp()])
     with graceful_exit([server]):
         await server.start(host, port)
         await server.wait_closed()
