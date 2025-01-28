@@ -318,7 +318,7 @@ class RobotClient:
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
         with self._lock:
-            self._refresh_inner()
+            await self._refresh_inner()
 
     async def _refresh_inner(self):
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
@@ -385,7 +385,7 @@ class RobotClient:
                 # and therefore that the robot got an incorrect response from the `ResourceNames` call.
                 # So, we should refresh right now to make sure everything is correct, before we release
                 # the lock.
-                self._refresh_inner()
+                await self._refresh_inner()
 
     async def _refresh_every(self, interval: int):
         while True:
