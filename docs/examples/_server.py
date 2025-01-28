@@ -606,7 +606,7 @@ class MockRobot(UnimplementedRobotServiceBase):
 
 
 async def main(*, host: str = "127.0.0.1", port: int = 9092) -> None:
-    server = Server([MockData(), MockDataSync(), MockApp()])
+    server = Server([MockData(), MockDataSync(), MockApp(), MockRobot()])
     with graceful_exit([server]):
         await server.start(host, port)
         await server.wait_closed()
