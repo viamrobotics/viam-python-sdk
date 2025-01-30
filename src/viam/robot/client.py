@@ -264,7 +264,8 @@ class RobotClient:
         )
 
         try:
-            if options.dial_options.with_synchronous_connect:
+            synchronous_connect = options.dial_options.with_synchronous_connect if options.dial_options else False
+            if synchronous_connect:
                 # the user has asked for a synchronous connect, so delay returning the robot
                 # client until it is running.
                 await self.wait_until_ready()
@@ -448,7 +449,7 @@ class RobotClient:
             # there isn't a programmatic way for a user to detect this and therefore call
             # expect changes in status or call `wait_until_ready`. So, let's make sure the machine
             # is ready.
-            self.wait_until_ready()
+            await self.wait_until_ready()
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
