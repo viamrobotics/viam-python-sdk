@@ -267,8 +267,7 @@ class RobotClient:
             if options.dial_options.with_synchronous_connect:
                 # the user has asked for a synchronous connect, so delay returning the robot
                 # client until it is running.
-                while await self._check_still_initializing():
-                    pass
+                await self.wait_until_ready()
             await self.refresh()
         except Exception:
             LOGGER.error("Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.")
@@ -358,11 +357,6 @@ class RobotClient:
                 )
             except ResourceNotFoundError:
                 pass
-
-    async def _check_still_initializing(self):
-        await asyncio.sleep(.1)
-        status = await self.get_machine_status()
-        return status.state == status.STATE_INITIALIZING
 
     async def _refresh_every(self, interval: int):
         while True:
@@ -957,13 +951,15 @@ class RobotClient:
 
     async def wait_until_ready(self):
         """
-        Waits until robot status is running, then returns.
+        Waits until robot is done initializing, then returns.
 
         ::
 
             machine = await RobotClient.at_address(...)
             await machine.wait_until_ready()
         """
-
-        while await self._check_still_initializing():
-            pass
+        while True:
+            await asyncio.sleep(.1)
+            status = await self.get_machine_status()
+            if status.state != status.STATE_INITIALIZING:
+                return
