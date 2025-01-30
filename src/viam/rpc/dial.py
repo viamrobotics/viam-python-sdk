@@ -74,6 +74,9 @@ class DialOptions:
     """Number of seconds before the dial connection times out
     Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go"""
 
+    with_synchronous_connect: bool = False
+    """If detected, delays return of a RobotClient until the machine status is running"""
+
     def __init__(
         self,
         *,
@@ -84,6 +87,7 @@ class DialOptions:
         allow_insecure_downgrade: bool = False,
         allow_insecure_with_creds_downgrade: bool = False,
         max_reconnect_attempts: int = 3,
+        with_synchronous_connect: bool = False,
         timeout: float = 20,
     ) -> None:
         self.disable_webrtc = disable_webrtc
@@ -94,6 +98,7 @@ class DialOptions:
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
         self.max_reconnect_attempts = max_reconnect_attempts
         self.timeout = timeout
+        self.with_synchronous_connect = with_synchronous_connect
 
     @classmethod
     def with_api_key(cls, api_key: str, api_key_id: str) -> Self:

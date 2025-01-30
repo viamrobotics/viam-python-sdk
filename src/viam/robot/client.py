@@ -264,10 +264,11 @@ class RobotClient:
         )
 
         try:
-            # make sure the robot status isn't initializing (i.e., that the robot is ready for queries)
-            # before we try to refresh
-            while await self._check_still_initializing():
-                pass
+            if options.dial_options.with_synchronous_connect:
+                # the user has asked for a synchronous connect, so delay returning the robot
+                # client until it is running.
+                while await self._check_still_initializing():
+                    pass
             await self.refresh()
         except Exception:
             LOGGER.error("Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.")
@@ -285,10 +286,6 @@ class RobotClient:
                 name=f"{viam._TASK_PREFIX}-robot_check_connection",
             )
 
-        self._check_status_task = asyncio.create_task(
-            self._check_status(), name=f"{viam._TASK_PREFIX}-robot_check_status"
-        )
-
         return self
 
     _channel: Channel
@@ -302,7 +299,6 @@ class RobotClient:
     _refresh_task: Optional[asyncio.Task] = None
     _check_connection_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
-    _check_status_task: asyncio.Task
     _should_close_channel: bool
     _closed: bool = False
     _sessions_client: SessionsClient
@@ -367,25 +363,6 @@ class RobotClient:
         await asyncio.sleep(.1)
         status = await self.get_machine_status()
         return status.state == status.STATE_INITIALIZING
-
-    async def _check_status(self):
-        while True:
-            # check to see if we're initializing. if not, then we're connected, and so we're good
-            if not await self._check_still_initializing():
-                continue
-
-            # at this point we know we're still initializing. so we want to take the lock to prevent
-            # attempts to do anything meaningful until we know the machine is ready for queries
-            with self._lock:
-                while await self._check_still_initializing():
-                    pass
-
-                # now we know the machine is ready, but it's possible that we detected the need to
-                # ensure connection in the middle of a refresh call or after a refreh call completed,
-                # and therefore that the robot got an incorrect response from the `ResourceNames` call.
-                # So, we should refresh right now to make sure everything is correct, before we release
-                # the lock.
-                await self._refresh_inner()
 
     async def _refresh_every(self, interval: int):
         while True:
@@ -472,6 +449,12 @@ class RobotClient:
             if not self._connected:
                 # We failed to reconnect, sys.exit() so that this thread doesn't stick around forever.
                 sys.exit()
+
+            # we've hade to reconnect which means the machine may still be initializing, but
+            # there isn't a programmatic way for a user to detect this and therefore call
+            # expect changes in status or call `wait_until_ready`. So, let's make sure the machine
+            # is ready.
+            self.wait_until_ready()
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
@@ -967,3 +950,20 @@ class RobotClient:
 
         request = GetMachineStatusRequest()
         return await self._client.GetMachineStatus(request)
+
+    ######################
+    #  Wait Until Ready  #
+    ######################
+
+    async def wait_until_ready(self):
+        """
+        Waits until robot status is running, then returns.
+
+        ::
+
+            machine = await RobotClient.at_address(...)
+            await machine.wait_until_ready()
+        """
+
+        while await self._check_still_initializing():
+            pass
