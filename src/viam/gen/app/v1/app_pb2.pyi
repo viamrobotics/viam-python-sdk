@@ -852,19 +852,21 @@ class BillingAddress(google.protobuf.message.Message):
     CITY_FIELD_NUMBER: builtins.int
     STATE_FIELD_NUMBER: builtins.int
     ZIPCODE_FIELD_NUMBER: builtins.int
+    COUNTRY_FIELD_NUMBER: builtins.int
     address_line_1: builtins.str
     address_line_2: builtins.str
     city: builtins.str
     state: builtins.str
     zipcode: builtins.str
+    country: builtins.str
 
-    def __init__(self, *, address_line_1: builtins.str=..., address_line_2: builtins.str | None=..., city: builtins.str=..., state: builtins.str=..., zipcode: builtins.str=...) -> None:
+    def __init__(self, *, address_line_1: builtins.str=..., address_line_2: builtins.str | None=..., city: builtins.str=..., state: builtins.str=..., zipcode: builtins.str=..., country: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_address_line_2', b'_address_line_2', 'address_line_2', b'address_line_2']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_address_line_2', b'_address_line_2', 'address_line_1', b'address_line_1', 'address_line_2', b'address_line_2', 'city', b'city', 'state', b'state', 'zipcode', b'zipcode']) -> None:
+    def ClearField(self, field_name: typing.Literal['_address_line_2', b'_address_line_2', 'address_line_1', b'address_line_1', 'address_line_2', b'address_line_2', 'city', b'city', 'country', b'country', 'state', b'state', 'zipcode', b'zipcode']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_address_line_2', b'_address_line_2']) -> typing.Literal['address_line_2'] | None:
@@ -2015,6 +2017,7 @@ class Fragment(google.protobuf.message.Message):
     ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     LAST_UPDATED_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     organization_owner: builtins.str
@@ -2028,6 +2031,7 @@ class Fragment(google.protobuf.message.Message):
     'whether the organization(s) using this fragment is the same as the fragment org'
     visibility: global___FragmentVisibility.ValueType
     'the visibility of a fragment; public, private or unlisted'
+    revision: builtins.str
 
     @property
     def fragment(self) -> google.protobuf.struct_pb2.Struct:
@@ -2041,13 +2045,13 @@ class Fragment(google.protobuf.message.Message):
     def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """latest timestamp when fragment was updated"""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=..., visibility: global___FragmentVisibility.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=..., visibility: global___FragmentVisibility.ValueType=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., revision: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'last_updated', b'last_updated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'last_updated', b'last_updated', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'revision', b'revision', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']) -> None:
         ...
 global___Fragment = Fragment
 
@@ -2090,6 +2094,42 @@ class FragmentHistoryEntry(google.protobuf.message.Message):
 global___FragmentHistoryEntry = FragmentHistoryEntry
 
 @typing.final
+class FragmentRevision(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    REVISION_FIELD_NUMBER: builtins.int
+    CREATED_AT_FIELD_NUMBER: builtins.int
+    revision: builtins.str
+
+    @property
+    def created_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, revision: builtins.str=..., created_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['created_at', b'created_at']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['created_at', b'created_at', 'revision', b'revision']) -> None:
+        ...
+global___FragmentRevision = FragmentRevision
+
+@typing.final
+class FragmentTag(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TAG_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
+    tag: builtins.str
+    revision: builtins.str
+
+    def __init__(self, *, tag: builtins.str=..., revision: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['revision', b'revision', 'tag', b'tag']) -> None:
+        ...
+global___FragmentTag = FragmentTag
+
+@typing.final
 class FragmentError(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ERROR_TYPE_FIELD_NUMBER: builtins.int
@@ -2108,20 +2148,30 @@ global___FragmentError = FragmentError
 
 @typing.final
 class FragmentUsage(google.protobuf.message.Message):
+    """Cached fragment usage statistics"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_ID_FIELD_NUMBER: builtins.int
     ORGANIZATIONS_FIELD_NUMBER: builtins.int
     MACHINES_FIELD_NUMBER: builtins.int
     MACHINES_IN_CURRENT_ORG_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
     fragment_id: builtins.str
     organizations: builtins.int
     machines: builtins.int
     machines_in_current_org: builtins.int
+    version: builtins.str
+    'revision or tag'
 
-    def __init__(self, *, fragment_id: builtins.str=..., organizations: builtins.int=..., machines: builtins.int=..., machines_in_current_org: builtins.int=...) -> None:
+    def __init__(self, *, fragment_id: builtins.str=..., organizations: builtins.int=..., machines: builtins.int=..., machines_in_current_org: builtins.int=..., version: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'machines', b'machines', 'machines_in_current_org', b'machines_in_current_org', 'organizations', b'organizations']) -> None:
+    def HasField(self, field_name: typing.Literal['_version', b'_version', 'version', b'version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_version', b'_version', 'fragment_id', b'fragment_id', 'machines', b'machines', 'machines_in_current_org', b'machines_in_current_org', 'organizations', b'organizations', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_version', b'_version']) -> typing.Literal['version'] | None:
         ...
 global___FragmentUsage = FragmentUsage
 
@@ -2197,13 +2247,22 @@ class GetFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     CURRENT_ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
     id: builtins.str
     current_organization_id: builtins.str
+    version: builtins.str
+    'revision or tag'
 
-    def __init__(self, *, id: builtins.str=..., current_organization_id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., current_organization_id: builtins.str=..., version: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['current_organization_id', b'current_organization_id', 'id', b'id']) -> None:
+    def HasField(self, field_name: typing.Literal['_version', b'_version', 'version', b'version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_version', b'_version', 'current_organization_id', b'current_organization_id', 'id', b'id', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_version', b'_version']) -> typing.Literal['version'] | None:
         ...
 global___GetFragmentRequest = GetFragmentRequest
 
@@ -2212,6 +2271,8 @@ class GetFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_FIELD_NUMBER: builtins.int
     FRAGMENT_USAGE_FIELD_NUMBER: builtins.int
+    REVISIONS_FIELD_NUMBER: builtins.int
+    TAGS_FIELD_NUMBER: builtins.int
 
     @property
     def fragment(self) -> global___Fragment:
@@ -2221,13 +2282,21 @@ class GetFragmentResponse(google.protobuf.message.Message):
     def fragment_usage(self) -> global___FragmentUsage:
         ...
 
-    def __init__(self, *, fragment: global___Fragment | None=..., fragment_usage: global___FragmentUsage | None=...) -> None:
+    @property
+    def revisions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentRevision]:
+        ...
+
+    @property
+    def tags(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTag]:
+        ...
+
+    def __init__(self, *, fragment: global___Fragment | None=..., fragment_usage: global___FragmentUsage | None=..., revisions: collections.abc.Iterable[global___FragmentRevision] | None=..., tags: collections.abc.Iterable[global___FragmentTag] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['fragment', b'fragment', 'fragment_usage', b'fragment_usage']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragment', b'fragment', 'fragment_usage', b'fragment_usage']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment', b'fragment', 'fragment_usage', b'fragment_usage', 'revisions', b'revisions', 'tags', b'tags']) -> None:
         ...
 global___GetFragmentResponse = GetFragmentResponse
 
