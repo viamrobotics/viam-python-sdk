@@ -7,8 +7,8 @@
 name: run-htmltest-external
 on:
   schedule:
-    # 10am UTC on weekdays
-    - cron: "0 10 * * 1,2,3,4,5"
+    # 10am UTC on Mondays
+    - cron: "0 10 * * 1"
 jobs:
   htmltest:
     runs-on: ubuntu-latest
