@@ -520,6 +520,23 @@ Module Contents
 
 
 
+   .. py:method:: get_models_from_modules() -> List[viam.proto.robot.ModuleModel]
+      :async:
+
+
+      Get a list of module models.
+
+      ::
+          # Get module models
+          module_modles = await machine.get_models_from_modules(qs)
+
+      Args:
+
+      :returns: A list of discovered models.
+      :rtype: List[ModuleModel]
+
+
+
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
       :async:
 

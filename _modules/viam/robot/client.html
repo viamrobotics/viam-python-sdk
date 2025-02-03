@@ -118,11 +118,14 @@
     <span class="n">GetCloudMetadataResponse</span><span class="p">,</span>
     <span class="n">GetMachineStatusRequest</span><span class="p">,</span>
     <span class="n">GetMachineStatusResponse</span><span class="p">,</span>
+    <span class="n">GetModelsFromModulesRequest</span><span class="p">,</span>
+    <span class="n">GetModelsFromModulesResponse</span><span class="p">,</span>
     <span class="n">GetOperationsRequest</span><span class="p">,</span>
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
     <span class="n">GetVersionRequest</span><span class="p">,</span>
     <span class="n">GetVersionResponse</span><span class="p">,</span>
     <span class="n">LogRequest</span><span class="p">,</span>
+    <span class="n">ModuleModel</span><span class="p">,</span>
     <span class="n">Operation</span><span class="p">,</span>
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
@@ -859,6 +862,31 @@
             <span class="s2">&quot;RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.&quot;</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">discovery</span><span class="p">)</span></div>
+
+    <span class="c1">#################</span>
+    <span class="c1"># MODULE MODELS #</span>
+    <span class="c1">#################</span>
+
+<div class="viewcode-block" id="RobotClient.get_models_from_modules"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_models_from_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_models_from_modules</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ModuleModel</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Get a list of module models.</span>
+
+<span class="sd">        ::</span>
+<span class="sd">            # Get module models</span>
+<span class="sd">            module_modles = await machine.get_models_from_modules(qs)</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[ModuleModel]: A list of discovered models.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetModelsFromModulesRequest</span><span class="p">()</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetModelsFromModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetModelsFromModules</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">models</span><span class="p">)</span></div>
 
     <span class="c1">############</span>
     <span class="c1"># STOP ALL #</span>

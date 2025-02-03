@@ -90,6 +90,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_point_cloud"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_point_cloud()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components"><code class="docutils literal notranslate"><span class="pre">RobotClient.discover_components()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_models_from_modules"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_models_from_modules()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_cloud_metadata"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_cloud_metadata()</span></code></a></li>
@@ -682,6 +683,26 @@ Returns module names for modules.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_models_from_modules">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_models_from_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.ModuleModel" title="viam.proto.robot.ModuleModel"><span class="pre">viam.proto.robot.ModuleModel</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_models_from_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_models_from_modules" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of module models.</p>
+<dl class="simple">
+<dt>::</dt><dd><p># Get module models
+module_modles = await machine.get_models_from_modules(qs)</p>
+</dd>
+</dl>
+<p>Args:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of discovered models.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.ModuleModel" title="viam.gen.robot.v1.robot_pb2.ModuleModel">ModuleModel</a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
