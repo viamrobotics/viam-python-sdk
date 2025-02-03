@@ -2469,6 +2469,35 @@ class GetFragmentHistoryResponse(google.protobuf.message.Message):
 global___GetFragmentHistoryResponse = GetFragmentHistoryResponse
 
 @typing.final
+class GetFragmentUsageRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+
+    def __init__(self, *, fragment_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id']) -> None:
+        ...
+global___GetFragmentUsageRequest = GetFragmentUsageRequest
+
+@typing.final
+class GetFragmentUsageResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VERSION_USAGES_FIELD_NUMBER: builtins.int
+
+    @property
+    def version_usages(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentUsage]:
+        ...
+
+    def __init__(self, *, version_usages: collections.abc.Iterable[global___FragmentUsage] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['version_usages', b'version_usages']) -> None:
+        ...
+global___GetFragmentUsageResponse = GetFragmentUsageResponse
+
+@typing.final
 class ListRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
