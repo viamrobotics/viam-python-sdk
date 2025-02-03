@@ -96,7 +96,7 @@
 <span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">Operation</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 
-<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">API</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
@@ -109,8 +109,8 @@
 <span class="sd">    The base requirements for a Resource.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="s2">&quot;Subtype&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Subtype of the Resource&quot;&quot;&quot;</span>
+    <span class="n">API</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="s2">&quot;API&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The API of the Resource&quot;&quot;&quot;</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the Resource&quot;&quot;&quot;</span>
@@ -135,9 +135,9 @@
 <span class="sd">            ResourceName: The ResourceName of this Resource</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ResourceName</span><span class="p">(</span>
-            <span class="n">namespace</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span>
-            <span class="nb">type</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span>
-            <span class="n">subtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span>
+            <span class="n">namespace</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">API</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">API</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span>
+            <span class="n">subtype</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">API</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
         <span class="p">)</span></div>
 

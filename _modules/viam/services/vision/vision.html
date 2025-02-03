@@ -94,7 +94,7 @@
 <span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">ViamImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="n">Classification</span><span class="p">,</span> <span class="n">Detection</span><span class="p">,</span> <span class="n">GetPropertiesResponse</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span>
 
 <span class="kn">from</span> <span class="nn">..service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
@@ -152,7 +152,7 @@
 <span class="sd">    For more information, see `Computer Vision service &lt;https://docs.viam.com/dev/reference/apis/services/vision/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
+    <span class="n">API</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;vision&quot;</span>
     <span class="p">)</span>
 

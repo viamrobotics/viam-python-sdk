@@ -21,7 +21,7 @@ Classes
 
 .. autoapisummary::
 
-   viam.resource.types.Subtype
+   viam.resource.types.API
    viam.resource.types.ModelFamily
    viam.resource.types.Model
    viam.resource.types.SupportsGetGeometries
@@ -50,7 +50,7 @@ Module Contents
    :value: 'service'
 
 
-.. py:class:: Subtype(namespace: str, resource_type: str, resource_subtype: str)
+.. py:class:: API(namespace: str, resource_type: str, resource_subtype: str)
 
    Represents a known component/service (resource) API
 
@@ -89,12 +89,12 @@ Module Contents
       :classmethod:
 
 
-      Convert a ```ResourceName``` into a ```Subtype```
+      Convert a ```ResourceName``` into a ```API```
 
       :param resource_name: The ResourceName to convert
       :type resource_name: viam.proto.common.ResourceName
 
-      :returns: A new Subtype
+      :returns: A new API
       :rtype: Self
 
 
@@ -103,14 +103,14 @@ Module Contents
       :classmethod:
 
 
-      Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)
+      Create a ```API``` from its string representation (namespace:resource_type:resource_subtype)
 
-      :param string: The Subtype as a string
+      :param string: The API as a string
       :type string: str
 
-      :raises ValueError: Raised if the string does not represent a valid Subtype
+      :raises ValueError: Raised if the string does not represent a valid API
 
-      :returns: A new Subtype
+      :returns: A new API
       :rtype: Self
 
 

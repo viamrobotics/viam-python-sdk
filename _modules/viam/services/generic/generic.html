@@ -89,7 +89,7 @@
   <h1>Source code for viam.services.generic.generic</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Final</span>
 
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span>
 
 <span class="kn">from</span> <span class="nn">..service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
 
@@ -142,7 +142,7 @@
 <span class="sd">        service.val  # 5</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
+    <span class="n">API</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;generic&quot;</span>
     <span class="p">)</span></div>
 </pre></div>

@@ -97,7 +97,7 @@
 
 <span class="kn">from</span> <span class="nn">viam.media.audio</span> <span class="kn">import</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">AudioStream</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="n">PropertiesResponse</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
 <span class="kn">from</span> <span class="nn">viam.streams</span> <span class="kn">import</span> <span class="n">StreamSource</span>
 
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
@@ -111,7 +111,7 @@
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
+    <span class="n">API</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;audio_input&quot;</span>
     <span class="p">)</span>
 

@@ -114,12 +114,12 @@ Module Contents
          The resource name
 
 
-      .. py:attribute:: resource_subtype
+      .. py:attribute:: resource_api
          :type:  str
 
          component:sensor`
 
-         :type: The resource subtype. Ex
+         :type: The resource API. Ex
 
          :type: `rdk
 
@@ -190,6 +190,11 @@ Module Contents
 
 
       .. py:method:: __eq__(other: object) -> bool
+
+
+      .. py:property:: resource_subtype
+         :type: str
+
 
 
 
@@ -302,7 +307,7 @@ Module Contents
 
 
 
-   .. py:method:: get_latest_tabular_data(part_id: str, resource_name: str, resource_subtype: str, method_name: str) -> Optional[Tuple[datetime.datetime, datetime.datetime, Dict[str, viam.utils.ValueTypes]]]
+   .. py:method:: get_latest_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str) -> Optional[Tuple[datetime.datetime, datetime.datetime, Dict[str, viam.utils.ValueTypes]]]
       :async:
 
 
@@ -313,7 +318,7 @@ Module Contents
           tabular_data = await data_client.get_latest_tabular_data(
               part_id="77ae3145-7b91-123a-a234-e567cdca8910",
               resource_name="camera-1",
-              resource_subtype="rdk:component:camera",
+              resource_api="rdk:component:camera",
               method_name="GetImage"
           )
 
@@ -329,8 +334,8 @@ Module Contents
       :type part_id: str
       :param resource_name: The name of the requested resource that captured the data. Ex: "my-sensor".
       :type resource_name: str
-      :param resource_subtype: The subtype of the requested resource that captured the data. Ex: "rdk:component:sensor".
-      :type resource_subtype: str
+      :param resource_api: The API of the requested resource that captured the data. Ex: "rdk:component:sensor".
+      :type resource_api: str
       :param method_name: The data capture method name. Ex: "Readings".
       :type method_name: str
 
@@ -345,7 +350,7 @@ Module Contents
 
 
 
-   .. py:method:: export_tabular_data(part_id: str, resource_name: str, resource_subtype: str, method_name: str, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None) -> List[TabularDataPoint]
+   .. py:method:: export_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None) -> List[TabularDataPoint]
       :async:
 
 
@@ -356,7 +361,7 @@ Module Contents
           tabular_data = await data_client.export_tabular_data(
               part_id="<PART-ID>",
               resource_name="<RESOURCE-NAME>",
-              resource_subtype="<RESOURCE-SUBTYPE>",
+              resource_api="<RESOURCE-API>",
               method_name="<METHOD-NAME>",
               start_time="<START_TIME>"
               end_time="<END_TIME>"
@@ -368,8 +373,8 @@ Module Contents
       :type part_id: str
       :param resource_name: The name of the requested resource that captured the data.
       :type resource_name: str
-      :param resource_subtype: The subtype of the requested resource that captured the data.
-      :type resource_subtype: str
+      :param resource_api: The API of the requested resource that captured the data.
+      :type resource_api: str
       :param method_name: The data capture method name.
       :type method_name: str
       :param start_time: Optional start time for requesting a specific range of data.

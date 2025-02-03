@@ -109,7 +109,7 @@
 <span class="n">RESOURCE_TYPE_SERVICE</span> <span class="o">=</span> <span class="s2">&quot;service&quot;</span>
 
 
-<div class="viewcode-block" id="Subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype">[docs]</a><span class="k">class</span> <span class="nc">Subtype</span><span class="p">:</span>
+<div class="viewcode-block" id="API"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API">[docs]</a><span class="k">class</span> <span class="nc">API</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a known component/service (resource) API&quot;&quot;&quot;</span>
 
     <span class="n">namespace</span><span class="p">:</span> <span class="nb">str</span>
@@ -126,49 +126,49 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">resource_type</span> <span class="o">=</span> <span class="n">resource_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource_subtype</span> <span class="o">=</span> <span class="n">resource_subtype</span>
 
-<div class="viewcode-block" id="Subtype.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="API.__str__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_type</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_subtype</span><span class="si">}</span><span class="s2">&quot;</span></div>
 
-<div class="viewcode-block" id="Subtype.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;viam.resource.types.Subtype </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
+<div class="viewcode-block" id="API.__repr__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;viam.resource.types.API </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
 
-<div class="viewcode-block" id="Subtype.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="API.__hash__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.__hash__">[docs]</a>    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Subtype.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">):</span>
+<div class="viewcode-block" id="API.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">API</span><span class="p">):</span>
             <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Subtype.from_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.from_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="API.from_resource_name"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.from_resource_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_resource_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">resource_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert a ```ResourceName``` into a ```Subtype```</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert a ```ResourceName``` into a ```API```</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            resource_name (viam.proto.common.ResourceName): The ResourceName to convert</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Self: A new Subtype</span>
+<span class="sd">            Self: A new API</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">resource_name</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">.</span><span class="n">subtype</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Subtype.from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="API.from_string"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.API.from_string">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a ```API``` from its string representation (namespace:resource_type:resource_subtype)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            string (str): The Subtype as a string</span>
+<span class="sd">            string (str): The API as a string</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            ValueError: Raised if the string does not represent a valid Subtype</span>
+<span class="sd">            ValueError: Raised if the string does not represent a valid API</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Self: A new Subtype</span>
+<span class="sd">            Self: A new API</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([\w-]+):([\w-]+):([\w-]+)$&quot;</span><span class="p">)</span>
         <span class="n">match</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">string</span><span class="si">}</span><span class="s2"> is not a valid Subtype&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">string</span><span class="si">}</span><span class="s2"> is not a valid API&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span></div></div>
 
 

@@ -128,12 +128,12 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            DuplicateResourceError: Error if attempting to register resource</span>
 <span class="sd">                                     with the name of an existing resource</span>
-<span class="sd">            ResourceNotFoundError: Raised if the subtype of the resource is not registered</span>
+<span class="sd">            ResourceNotFoundError: Raised if the API of the resource is not registered</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            resource (ResourceBase): The resource to register</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">)</span>  <span class="c1"># confirm the subtype is registered in Registry</span>
+        <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_api</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">API</span><span class="p">)</span>  <span class="c1"># confirm the API is registered in Registry</span>
 
         <span class="n">_BaseClasses</span> <span class="o">=</span> <span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">,</span> <span class="n">ServiceBase</span><span class="p">)</span>
         <span class="n">rnames</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>

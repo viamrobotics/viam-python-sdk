@@ -94,80 +94,80 @@ Module Contents
    resource using ``Registry.register(...)``.
 
 
-   .. py:method:: register_subtype(registration: ResourceRegistration[Resource])
+   .. py:method:: register_api(registration: ResourceRegistration[Resource])
       :classmethod:
 
 
-      Register a Subtype with the Registry
+      Register a API with the Registry
 
-      :param registration: Object containing registration data for the subtype
+      :param registration: Object containing registration data for the API
       :type registration: ResourceRegistration
 
-      :raises DuplicateResourceError: Raised if the Subtype to register is already in the registry
+      :raises DuplicateResourceError: Raised if the API to register is already in the registry
       :raises ValidationError: Raised if registration is missing any necessary parameters
 
 
 
-   .. py:method:: register_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, registration: ResourceCreatorRegistration)
+   .. py:method:: register_resource_creator(api: viam.resource.types.API, model: viam.resource.types.Model, registration: ResourceCreatorRegistration)
       :classmethod:
 
 
-      Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
+      Register a specific ``Model`` and validator function for the specific resource ``API`` with the Registry
 
-      :param subtype: The Subtype of the resource
-      :type subtype: Subtype
+      :param api: The API of the resource
+      :type api: API
       :param model: The Model of the resource
       :type model: Model
       :param registration: The registration functions of the model
       :type registration: ResourceCreatorRegistration
 
-      :raises DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+      :raises DuplicateResourceError: Raised if the API and Model pairing is already registered
       :raises ValidationError: Raised if registration does not have creator
 
 
 
-   .. py:method:: lookup_subtype(subtype: viam.resource.types.Subtype) -> ResourceRegistration
+   .. py:method:: lookup_api(api: viam.resource.types.API) -> ResourceRegistration
       :classmethod:
 
 
-      Lookup and retrieve a registered Subtype by its name
+      Lookup and retrieve a registered API by its name
 
-      :param subtype: The subtype of the resource
-      :type subtype: str
+      :param api: The API of the resource
+      :type api: str
 
-      :raises ResourceNotFoundError: Raised if the Subtype is not registered
+      :raises ResourceNotFoundError: Raised if the API is not registered
 
       :returns: The registration object of the resource
       :rtype: ResourceRegistration
 
 
 
-   .. py:method:: lookup_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ResourceCreator
+   .. py:method:: lookup_resource_creator(api: viam.resource.types.API, model: viam.resource.types.Model) -> viam.resource.types.ResourceCreator
       :classmethod:
 
 
-      Lookup and retrieve a registered resource creator by its subtype and model
+      Lookup and retrieve a registered resource creator by its API and model
 
-      :param subtype: The Subtype of the resource
-      :type subtype: Subtype
+      :param api: The API of the resource
+      :type api: API
       :param model: The Model of the resource
       :type model: Model
 
-      :raises ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+      :raises ResourceNotFoundError: Raised if the API Model pairing is not registered
 
       :returns: The function to create the resource
       :rtype: ResourceCreator
 
 
 
-   .. py:method:: lookup_validator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.Validator
+   .. py:method:: lookup_validator(api: viam.resource.types.API, model: viam.resource.types.Model) -> viam.resource.types.Validator
       :classmethod:
 
 
-      Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+      Lookup and retrieve a registered validator function by its API and model. If there is none, return None
 
-      :param subtype: The Subtype of the resource
-      :type subtype: Subtype
+      :param api: The API of the resource
+      :type api: API
       :param model: The Model of the resource
       :type model: Model
 
@@ -176,16 +176,16 @@ Module Contents
 
 
 
-   .. py:method:: REGISTERED_SUBTYPES() -> Mapping[viam.resource.types.Subtype, ResourceRegistration]
+   .. py:method:: REGISTERED_APIS() -> Mapping[viam.resource.types.API, ResourceRegistration]
       :classmethod:
 
 
       The dictionary of all registered resources
-      - Key: Subtype of the resource
+      - Key: API of the resource
       - Value: The registration object for the resource
 
       :returns: All registered resources
-      :rtype: Mapping[Subtype, ResourceRegistration]
+      :rtype: Mapping[API, ResourceRegistration]
 
 
 
@@ -194,7 +194,7 @@ Module Contents
 
 
       The dictionary of all registered resources
-      - Key: subtype/model
+      - Key: API/model
       - Value: The ResourceCreatorRegistration for the resource
 
       :returns: All registered resources
