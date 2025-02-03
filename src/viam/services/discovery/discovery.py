@@ -2,7 +2,7 @@ import abc
 from typing import Final, List, Mapping, Optional
 
 from viam.proto.app.robot import ComponentConfig
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
 from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
@@ -18,7 +18,7 @@ class Discovery(ServiceBase):
 
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "discovery"
     )
 

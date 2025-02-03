@@ -9,4 +9,4 @@ __all__ = [
     "Discovery",
 ]
 
-Registry.register_subtype(ResourceRegistration(Discovery, DiscoveryRPCService, lambda name, channel: DiscoveryClient(name, channel)))
+Registry.register_api(ResourceRegistration(Discovery, DiscoveryRPCService, lambda name, channel: DiscoveryClient(name, channel)))
