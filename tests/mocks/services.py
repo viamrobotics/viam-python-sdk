@@ -266,6 +266,7 @@ from viam.proto.app.mltraining import (
     UnimplementedMLTrainingServiceBase,
 )
 from viam.proto.app.packages import PackageType
+from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -324,6 +325,7 @@ from viam.proto.service.motion import (
 from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
 from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
 from viam.proto.service.vision import Classification, Detection
+from viam.services.discovery import Discovery
 from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
@@ -426,6 +428,31 @@ class MockVision(Vision):
         self.extra = extra
         self.timeout = timeout
         return self.point_clouds
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {"cmd": command}
+
+
+class MockDiscovery(Discovery):
+    def __init__(
+        self,
+        name: str,
+    ):
+        self.extra: Optional[Mapping[str, Any]] = None
+        self.timeout: Optional[float] = None
+        super().__init__(name)
+
+    async def discover_resources(
+        self,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> List[ComponentConfig]:
+        self.extra = extra
+        self.timeout = timeout
+        result = ComponentConfig()
+        return [result]
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
