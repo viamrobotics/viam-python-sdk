@@ -8,7 +8,7 @@ __all__ = [
     "PoseTracker",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         PoseTracker,
         PoseTrackerRPCService,

@@ -147,4 +147,4 @@ class MyBase(Base, Reconfigurable):
         raise NotImplementedError()
 
 
-Registry.register_resource_creator(Base.SUBTYPE, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))
+Registry.register_resource_creator(Base.API, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))

@@ -122,7 +122,7 @@ The SDK provides a number of abstract base components and services (collectively
    1. Define all requirements of the resource in `{RESOURCE_NAME}.py`
    1. Implement the gRPC service for the new resource in `service.py`
    1. Create a gRPC client for the new resource in `client.py`
-   1. Register the subtype and define package exports in `__init__.py`
+   1. Register the API and define package exports in `__init__.py`
 1. Write tests for the new resource and add the resource to `tests.mocks.{components|services}`
 1. If the resource is a component, add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
 

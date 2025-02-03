@@ -16,7 +16,7 @@ from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeome
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
-from viam.resource.types import Subtype, SupportsGetGeometries
+from viam.resource.types import API, SupportsGetGeometries
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -104,14 +104,10 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
 
     for klass in resource.__class__.mro():
-        for registration in Registry.REGISTERED_SUBTYPES().values():
+        for registration in Registry.REGISTERED_APIS().values():
             if klass is registration.resource_type:
-                subtype: Subtype = registration.resource_type.SUBTYPE
-                rns.append(
-                    ResourceName(
-                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=resource.name
-                    )
-                )
+                api: API = registration.resource_type.API
+                rns.append(ResourceName(namespace=api.namespace, type=api.resource_type, subtype=api.resource_subtype, name=resource.name))
     return rns
 
 

@@ -536,8 +536,8 @@ class TestRobotClient:
                 ) -> List[Geometry]:
                     return await self.actual_client.get_geometries(timeout=timeout)
 
-            old_create_client = Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client
-            Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)
+            old_create_client = Registry._APIS[Arm.API].create_rpc_client
+            Registry._APIS[Arm.API].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)
 
             client = await RobotClient.with_channel(channel, RobotClient.Options())
 
@@ -548,7 +548,7 @@ class TestRobotClient:
                 assert arm_client is not client.get_component(Arm.get_resource_name(arm_client.name))  # Should be a new client now
 
             await client.close()
-            Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = old_create_client
+            Registry._APIS[Arm.API].create_rpc_client = old_create_client
 
     async def test_shutdown(self, service: RobotService):
         async with ChannelFor([service]) as channel:

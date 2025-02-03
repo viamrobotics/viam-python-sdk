@@ -39,12 +39,12 @@ class ResourceManager:
         Raises:
             DuplicateResourceError: Error if attempting to register resource
                                      with the name of an existing resource
-            ResourceNotFoundError: Raised if the subtype of the resource is not registered
+            ResourceNotFoundError: Raised if the API of the resource is not registered
 
         Args:
             resource (ResourceBase): The resource to register
         """
-        Registry.lookup_subtype(resource.SUBTYPE)  # confirm the subtype is registered in Registry
+        Registry.lookup_api(resource.API)  # confirm the API is registered in Registry
 
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}

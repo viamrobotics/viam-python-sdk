@@ -9,7 +9,7 @@ from viam.resource.base import ResourceBase
 from viam.utils import ValueTypes
 
 if TYPE_CHECKING:
-    from viam.resource.types import Subtype
+    from viam.resource.types import API
     from viam.robot.client import RobotClient
 
 
@@ -18,11 +18,11 @@ class ServiceBase(abc.ABC, ResourceBase):
     All services must inherit from this class.
     """
 
-    SUBTYPE: ClassVar["Subtype"]
+    API: ClassVar["API"]
 
     def __init__(self, name: str, *, logger: Optional[Logger] = None) -> None:
         self.name = name
-        self.logger = logger if logger is not None else getLogger(f"{self.SUBTYPE}.{name}")
+        self.logger = logger if logger is not None else getLogger(f"{self.API}.{name}")
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

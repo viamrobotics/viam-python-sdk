@@ -7,7 +7,7 @@ from grpclib.server import Stream
 from viam.components.component_base import ComponentBase
 from viam.components.generic.client import do_command
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import API, RESOURCE_TYPE_COMPONENT
 from viam.utils import ValueTypes
 
 from ..proto.gizmo_grpc import GizmoServiceBase, GizmoServiceStub
@@ -28,7 +28,7 @@ from ..proto.gizmo_pb2 import (
 class Gizmo(ComponentBase):
     """Example component to use with the example module."""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
+    API: Final = API("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
 
     @abc.abstractmethod
     async def do_one(self, arg1: str, **kwargs) -> bool: ...

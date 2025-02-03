@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         Encoder,
         EncoderRPCService,

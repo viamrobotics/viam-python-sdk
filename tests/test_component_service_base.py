@@ -13,12 +13,12 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import Subtype
+from viam.resource.types import API
 
 
 async def test_cancellation_propagation():
     class TestComponent(ComponentBase):
-        SUBTYPE = Subtype("test", "test", "test")
+        API = API("test", "test", "test")
 
         long_running_task_cancelled = False
 
@@ -52,7 +52,7 @@ async def test_cancellation_propagation():
     with pytest.raises(ResourceNotFoundError):
         service = TestService(ResourceManager([component]))
 
-    Registry.register_subtype(ResourceRegistration(TestComponent, TestService, lambda name, channel: TestClient(name, channel)))
+    Registry.register_api(ResourceRegistration(TestComponent, TestService, lambda name, channel: TestClient(name, channel)))
     service = TestService(ResourceManager([component]))
 
     # Test bare functions

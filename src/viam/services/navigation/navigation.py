@@ -1,7 +1,7 @@
 import abc
 from typing import Final, List, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 
 from ..service_base import ServiceBase
 from . import GeoGeometry, GeoPoint, MapType, Mode, Path, Waypoint
@@ -18,7 +18,7 @@ class Navigation(ServiceBase):
     For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/>`_.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "navigation"
     )
 

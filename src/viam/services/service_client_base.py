@@ -6,7 +6,7 @@ from typing_extensions import Self
 
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import ResourceName
-from viam.resource.base import ResourceBase, Subtype
+from viam.resource.base import API, ResourceBase
 from viam.utils import ValueTypes
 
 if TYPE_CHECKING:
@@ -19,7 +19,7 @@ class ServiceClientBase(abc.ABC, ResourceBase):
     All service clients must inherit from this class.
     """
 
-    SUBTYPE: ClassVar[Subtype]
+    API: ClassVar[API]
     channel: Channel
 
     def __init__(self, name: str, channel: Channel):
@@ -37,7 +37,7 @@ class ServiceClientBase(abc.ABC, ResourceBase):
         Returns:
             Self: The service client, if it exists on the robot
         """
-        resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.SUBTYPE.resource_subtype, name=name)
+        resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.API.resource_subtype, name=name)
         if resource_name not in robot.resource_names:
             raise ResourceNotFoundError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)

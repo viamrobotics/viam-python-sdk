@@ -12,7 +12,7 @@ __all__ = [
     "Vector3",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         MovementSensor,
         MovementSensorRPCService,

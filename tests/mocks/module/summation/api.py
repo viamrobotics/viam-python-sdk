@@ -5,7 +5,7 @@ from grpclib.client import Channel
 from grpclib.server import Stream
 
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import API, RESOURCE_TYPE_SERVICE
 from viam.services.service_base import ServiceBase
 
 from ..proto.summation_grpc import SummationServiceBase, SummationServiceStub
@@ -15,7 +15,7 @@ from ..proto.summation_pb2 import SumRequest, SumResponse
 class SummationService(ServiceBase):
     """Example service to use with the example module"""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_SERVICE, "summation")
+    API: Final = API("acme", RESOURCE_TYPE_SERVICE, "summation")
 
     @abc.abstractmethod
     async def sum(self, nums: Sequence[float]) -> float: ...

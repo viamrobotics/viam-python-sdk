@@ -8,4 +8,4 @@ __all__ = [
     "Servo",
 ]
 
-Registry.register_subtype(ResourceRegistration(Servo, ServoRPCService, lambda name, channel: ServoClient(name, channel)))
+Registry.register_api(ResourceRegistration(Servo, ServoRPCService, lambda name, channel: ServoClient(name, channel)))

@@ -10,7 +10,7 @@ from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import Model, ResourceCreator, Subtype, Validator
+    from .types import API, Model, ResourceCreator, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -70,44 +70,44 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
+    _APIS: ClassVar[Dict["API", ResourceRegistration]] = {}
     _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
-    def register_subtype(cls, registration: ResourceRegistration[Resource]):
-        """Register a Subtype with the Registry
+    def register_api(cls, registration: ResourceRegistration[Resource]):
+        """Register a API with the Registry
 
         Args:
-            registration (ResourceRegistration): Object containing registration data for the subtype
+            registration (ResourceRegistration): Object containing registration data for the API
 
         Raises:
-            DuplicateResourceError: Raised if the Subtype to register is already in the registry
+            DuplicateResourceError: Raised if the API to register is already in the registry
             ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
-            if registration.resource_type.SUBTYPE in cls._SUBTYPES:
-                raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
+            if registration.resource_type.API in cls._APIS:
+                raise DuplicateResourceError(str(registration.resource_type.API))
 
             if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
-                cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+                cls._APIS[registration.resource_type.API] = registration
             else:
                 raise ValidationError("Passed resource registration does not have correct parameters")
 
     @classmethod
-    def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
-        """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
+    def register_resource_creator(cls, api: "API", model: "Model", registration: ResourceCreatorRegistration):
+        """Register a specific ``Model`` and validator function for the specific resource ``API`` with the Registry
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
             registration (ResourceCreatorRegistration): The registration functions of the model
 
         Raises:
-            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+            DuplicateResourceError: Raised if the API and Model pairing is already registered
             ValidationError: Raised if registration does not have creator
         """
-        key = f"{subtype}/{model}"
+        key = f"{api}/{model}"
         with cls._lock:
             if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
@@ -118,78 +118,78 @@ class Registry:
                 raise ValidationError("A creator function was not provided")
 
     @classmethod
-    def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
-        """Lookup and retrieve a registered Subtype by its name
+    def lookup_api(cls, api: "API") -> ResourceRegistration:
+        """Lookup and retrieve a registered API by its name
 
         Args:
-            subtype (str): The subtype of the resource
+            api (str): The API of the resource
 
         Raises:
-            ResourceNotFoundError: Raised if the Subtype is not registered
+            ResourceNotFoundError: Raised if the API is not registered
 
         Returns:
             ResourceRegistration: The registration object of the resource
         """
         with cls._lock:
             try:
-                return cls._SUBTYPES[subtype]
+                return cls._APIS[api]
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
-    def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
-        """Lookup and retrieve a registered resource creator by its subtype and model
+    def lookup_resource_creator(cls, api: "API", model: "Model") -> "ResourceCreator":
+        """Lookup and retrieve a registered resource creator by its API and model
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
 
         Raises:
-            ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+            ResourceNotFoundError: Raised if the API Model pairing is not registered
 
         Returns:
             ResourceCreator: The function to create the resource
         """
         with cls._lock:
             try:
-                return cls._RESOURCES[f"{subtype}/{model}"].creator
+                return cls._RESOURCES[f"{api}/{model}"].creator
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
-    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> "Validator":
-        """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+    def lookup_validator(cls, api: "API", model: "Model") -> "Validator":
+        """Lookup and retrieve a registered validator function by its API and model. If there is none, return None
 
         Args:
-            subtype (Subtype): The Subtype of the resource
+            api (API): The API of the resource
             model (Model): The Model of the resource
 
         Returns:
             Validator: The function to validate the resource
         """
         try:
-            return cls._RESOURCES[f"{subtype}/{model}"].validator
+            return cls._RESOURCES[f"{api}/{model}"].validator
         except AttributeError:
             return lambda x: []
         except KeyError:
-            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+            raise ResourceNotFoundError(api.resource_type, api.resource_subtype)
 
     @classmethod
-    def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
+    def REGISTERED_APIS(cls) -> Mapping["API", ResourceRegistration]:
         """The dictionary of all registered resources
-        - Key: Subtype of the resource
+        - Key: API of the resource
         - Value: The registration object for the resource
 
         Returns:
-            Mapping[Subtype, ResourceRegistration]: All registered resources
+            Mapping[API, ResourceRegistration]: All registered resources
         """
         with cls._lock:
-            return cls._SUBTYPES.copy()
+            return cls._APIS.copy()
 
     @classmethod
     def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:
         """The dictionary of all registered resources
-        - Key: subtype/model
+        - Key: API/model
         - Value: The ResourceCreatorRegistration for the resource
 
         Returns:
