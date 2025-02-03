@@ -10,7 +10,7 @@ from .. import logging
 from ..errors import MethodNotImplementedError
 from .base import ResourceBase
 from .registry import Registry, ResourceCreatorRegistration
-from .types import Model, ModelFamily, Subtype
+from .types import API, Model, ModelFamily
 
 modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 
@@ -92,7 +92,7 @@ class EasyResource:
     See examples/easy_resource/main.py for extended usage.
     """
 
-    SUBTYPE: ClassVar[Subtype]
+    API: ClassVar[API]
     MODEL: ClassVar[Model]
 
     def __init_subclass__(cls, register=True, **kwargs):
@@ -117,7 +117,7 @@ class EasyResource:
         when an instance of your model is instantiated. You can override this in your subclass.
         """
         self = cls(config.name)
-        logger.debug("created %s %s %s", cls.SUBTYPE, cls.MODEL, config.name)
+        logger.debug("created %s %s %s", cls.API, cls.MODEL, config.name)
         self.reconfigure(config, dependencies)
         return self
 
@@ -140,14 +140,14 @@ class EasyResource:
         This adds the model to the global registry. It is called by __init_subclass__ and you typically
         won't call it directly.
         """
-        logger.debug("registering %s %s", cls.SUBTYPE, cls.MODEL)
+        logger.debug("registering %s %s", cls.API, cls.MODEL)
         # note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()
         # walk in ResourceManager.register.
         Registry.register_resource_creator(
-            cls.SUBTYPE,
+            cls.API,
             cls.MODEL,
             ResourceCreatorRegistration(cls.new, cls.validate_config),  # pyright: ignore [reportArgumentType]
         )
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
-        logger.debug("reconfigure %s %s", self.SUBTYPE, self.MODEL)
+        logger.debug("reconfigure %s %s", self.API, self.MODEL)

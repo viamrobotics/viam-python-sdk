@@ -221,7 +221,7 @@ class TestClient:
                 assert tabular_datum is not None
                 assert tabular_datum.part_id == TABULAR_METADATA.part_id
                 assert tabular_datum.resource_name == TABULAR_METADATA.component_name
-                assert tabular_datum.resource_subtype == TABULAR_METADATA.component_type
+                assert tabular_datum.resource_api == TABULAR_METADATA.component_type
                 assert tabular_datum.time_captured == END_DATETIME
                 assert tabular_datum.organization_id == TABULAR_METADATA.organization_id
                 assert tabular_datum.location_id == TABULAR_METADATA.location_id

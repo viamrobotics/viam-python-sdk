@@ -8,7 +8,7 @@ from typing_extensions import Self
 
 from viam.media.audio import Audio, AudioStream
 from viam.proto.component.audioinput import PropertiesResponse
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.streams import StreamSource
 
 from ..component_base import ComponentBase
@@ -22,7 +22,7 @@ class AudioInput(ComponentBase, StreamSource[Audio]):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+    API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input"
     )
 

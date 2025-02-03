@@ -12,6 +12,4 @@ __all__ = [
     "EventType",
 ]
 
-Registry.register_subtype(
-    ResourceRegistration(Controller, InputControllerRPCService, lambda name, channel: ControllerClient(name, channel))
-)
+Registry.register_api(ResourceRegistration(Controller, InputControllerRPCService, lambda name, channel: ControllerClient(name, channel)))

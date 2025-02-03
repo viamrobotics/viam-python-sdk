@@ -158,8 +158,8 @@ class DataClient:
         resource_name: str
         """The resource name"""
 
-        resource_subtype: str
-        """The resource subtype. Ex: `rdk:component:sensor`"""
+        resource_api: str
+        """The resource API. Ex: `rdk:component:sensor`"""
 
         method_name: str
         """The method used for data capture. Ex: `Readings`"""
@@ -196,7 +196,7 @@ class DataClient:
                 f"TabularDataPoint("
                 f"robot='{self.robot_name}' (id={self.robot_id}), "
                 f"part='{self.part_name}' (id={self.part_id}), "
-                f"resource='{self.resource_name}' ({self.resource_subtype}), "
+                f"resource='{self.resource_name}' ({self.resource_api}), "
                 f"method='{self.method_name}', "
                 f"org={self.organization_id}, "
                 f"location={self.location_id}, "
@@ -210,6 +210,15 @@ class DataClient:
             if isinstance(other, DataClient.TabularDataPoint):
                 return str(self) == str(other)
             return False
+
+        @property
+        def resource_subtype(self) -> str:
+            warnings.warn(
+                "`TabularDataPoint.resource_subtype` is deprecated. Use `TabularDataPoint.resource_api` instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            return self.resource_api
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
@@ -367,8 +376,9 @@ class DataClient:
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
+    @_alias_param("resource_api", param_alias="resource_subtype")
     async def get_latest_tabular_data(
-        self, part_id: str, resource_name: str, resource_subtype: str, method_name: str
+        self, part_id: str, resource_name: str, resource_api: str, method_name: str
     ) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
@@ -377,7 +387,7 @@ class DataClient:
             tabular_data = await data_client.get_latest_tabular_data(
                 part_id="77ae3145-7b91-123a-a234-e567cdca8910",
                 resource_name="camera-1",
-                resource_subtype="rdk:component:camera",
+                resource_api="rdk:component:camera",
                 method_name="GetImage"
             )
 
@@ -392,7 +402,7 @@ class DataClient:
         Args:
             part_id (str): The ID of the part that owns the data.
             resource_name (str): The name of the requested resource that captured the data. Ex: "my-sensor".
-            resource_subtype (str): The subtype of the requested resource that captured the data. Ex: "rdk:component:sensor".
+            resource_api (str): The API of the requested resource that captured the data. Ex: "rdk:component:sensor".
             method_name (str): The data capture method name. Ex: "Readings".
 
         Returns:
@@ -406,18 +416,19 @@ class DataClient:
         """
 
         request = GetLatestTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name
         )
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
             return None
         return response.time_captured.ToDatetime(), response.time_synced.ToDatetime(), struct_to_dict(response.payload)
 
+    @_alias_param("resource_api", param_alias="resource_subtype")
     async def export_tabular_data(
         self,
         part_id: str,
         resource_name: str,
-        resource_subtype: str,
+        resource_api: str,
         method_name: str,
         start_time: Optional[datetime] = None,
         end_time: Optional[datetime] = None,
@@ -429,7 +440,7 @@ class DataClient:
             tabular_data = await data_client.export_tabular_data(
                 part_id="<PART-ID>",
                 resource_name="<RESOURCE-NAME>",
-                resource_subtype="<RESOURCE-SUBTYPE>",
+                resource_api="<RESOURCE-API>",
                 method_name="<METHOD-NAME>",
                 start_time="<START_TIME>"
                 end_time="<END_TIME>"
@@ -440,7 +451,7 @@ class DataClient:
         Args:
             part_id (str): The ID of the part that owns the data.
             resource_name (str): The name of the requested resource that captured the data.
-            resource_subtype (str): The subtype of the requested resource that captured the data.
+            resource_api (str): The API of the requested resource that captured the data.
             method_name (str): The data capture method name.
             start_time (datetime): Optional start time for requesting a specific range of data.
             end_time (datetime): Optional end time for requesting a specific range of data.
@@ -453,7 +464,7 @@ class DataClient:
 
         interval = CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
         request = ExportTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_subtype, method_name=method_name, interval=interval
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name, interval=interval
         )
         response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
@@ -461,7 +472,7 @@ class DataClient:
             DataClient.TabularDataPoint(
                 part_id=resp.part_id,
                 resource_name=resp.resource_name,
-                resource_subtype=resp.resource_subtype,
+                resource_api=resp.resource_subtype,
                 method_name=resp.method_name,
                 time_captured=resp.time_captured.ToDatetime(),
                 organization_id=resp.organization_id,

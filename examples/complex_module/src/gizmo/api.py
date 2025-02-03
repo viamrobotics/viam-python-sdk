@@ -6,7 +6,7 @@ the gRPC service that will handle calls to the component,
 and the gRPC client that will be able to make calls to this component.
 
 In this example, the ``Gizmo`` abstract class defines what functionality is required for all Gizmos. It extends ``ComponentBase``,
-as all component types must. It also defines its specific ``SUBTYPE``, which is used internally to keep track of supported types.
+as all component types must. It also defines its specific ``API``, which is used internally to keep track of supported types.
 
 The ``GizmoService`` implements the gRPC service for the Gizmo. This will allow other robots and clients to make requests of the Gizmo.
 It extends both from ``GizmoServiceBase`` and ``ResourceRPCServiceBase``. The former is the gRPC service as defined by the proto,
@@ -28,7 +28,7 @@ from grpclib.server import Stream
 from viam.components.component_base import ComponentBase
 from viam.components.generic.client import do_command
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, Subtype
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, API
 from viam.utils import ValueTypes
 
 from ..proto.gizmo_grpc import GizmoServiceBase, GizmoServiceStub
@@ -49,7 +49,7 @@ from ..proto.gizmo_pb2 import (
 class Gizmo(ComponentBase):
     """Example component to use with the example module."""
 
-    SUBTYPE: Final = Subtype("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
+    API: Final = API("acme", RESOURCE_TYPE_COMPONENT, "gizmo")
 
     @abc.abstractmethod
     async def do_one(self, arg1: str, **kwargs) -> bool:

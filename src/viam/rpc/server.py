@@ -41,7 +41,7 @@ class Server(ResourceManager):
         super().__init__(resources)
 
         services = [SignalingService(), RobotService(manager=self)]
-        for registration in Registry.REGISTERED_SUBTYPES().values():
+        for registration in Registry.REGISTERED_APIS().values():
             if issubclass(registration.rpc_service, ResourceRPCServiceBase):
                 services.append(registration.rpc_service(manager=self))
             else:

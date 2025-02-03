@@ -9,7 +9,7 @@ __all__ = [
     "Sensor",
 ]
 
-Registry.register_subtype(
+Registry.register_api(
     ResourceRegistration(
         Sensor,
         SensorRPCService,

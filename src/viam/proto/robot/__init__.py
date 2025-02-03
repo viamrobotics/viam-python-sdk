@@ -10,8 +10,8 @@ from ...gen.robot.v1.robot_pb2 import (
     CancelOperationRequest,
     CancelOperationResponse,
     ConfigStatus,
-    DiscoverComponentsRequest,
-    DiscoverComponentsResponse,
+    DiscoverComponentsRequest,  # deprecated, remove on march 10th
+    DiscoverComponentsResponse,  # deprecated, remove on march 10th
     Discovery,
     DiscoveryQuery,
     FrameSystemConfig,
@@ -75,8 +75,8 @@ __all__ = [
     "CancelOperationRequest",
     "CancelOperationResponse",
     "ConfigStatus",
-    "DiscoverComponentsRequest",
-    "DiscoverComponentsResponse",
+    "DiscoverComponentsRequest",  # deprecated, remove on march 10th
+    "DiscoverComponentsResponse",  # deprecated, remove on march 10th
     "Discovery",
     "DiscoveryQuery",
     "FrameSystemConfig",

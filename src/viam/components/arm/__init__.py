@@ -13,4 +13,4 @@ __all__ = [
     "Pose",
 ]
 
-Registry.register_subtype(ResourceRegistration(Arm, ArmRPCService, lambda name, channel: ArmClient(name, channel)))
+Registry.register_api(ResourceRegistration(Arm, ArmRPCService, lambda name, channel: ArmClient(name, channel)))

@@ -8,4 +8,4 @@ from .service import NavigationRPCService
 
 __all__ = ["GeoPoint", "GeoGeometry", "NavigationClient", "Navigation", "Waypoint", "Mode", "Path", "MapType"]
 
-Registry.register_subtype(ResourceRegistration(Navigation, NavigationRPCService, lambda name, channel: NavigationClient(name, channel)))
+Registry.register_api(ResourceRegistration(Navigation, NavigationRPCService, lambda name, channel: NavigationClient(name, channel)))

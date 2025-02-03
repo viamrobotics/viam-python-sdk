@@ -6,11 +6,11 @@ from viam.components.component_base import ComponentBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, Subtype, resource_name_from_string
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, resource_name_from_string
 
 
 class FakeComponent(ComponentBase):
-    SUBTYPE = Subtype("fake", "fake", "fake")
+    API = API("fake", "fake", "fake")
 
 
 class FakeComponentService(ResourceRPCServiceBase):
@@ -23,67 +23,67 @@ class FakeComponentClient(FakeComponent):
 
 
 def test_components_register_themselves_correctly():
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gantry") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor") in Registry.REGISTERED_SUBTYPES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo") in Registry.REGISTERED_SUBTYPES()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gantry") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor") in Registry.REGISTERED_APIS()
+    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo") in Registry.REGISTERED_APIS()
 
 
 def test_lookup():
     with pytest.raises(ResourceNotFoundError):
-        Registry.lookup_subtype(Subtype("fake", "fake", "fake"))
+        Registry.lookup_api(API("fake", "fake", "fake"))
 
-    component = Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
-    assert component.resource_type.SUBTYPE == Arm.SUBTYPE
+    component = Registry.lookup_api(API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
+    assert component.resource_type.API == Arm.API
 
 
 def test_registration():
-    assert FakeComponent.SUBTYPE not in Registry.REGISTERED_SUBTYPES()
+    assert FakeComponent.API not in Registry.REGISTERED_APIS()
 
-    Registry.register_subtype(
+    Registry.register_api(
         ResourceRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
     )
-    assert FakeComponent.SUBTYPE in Registry.REGISTERED_SUBTYPES()
-    component = Registry.lookup_subtype(FakeComponent.SUBTYPE)
+    assert FakeComponent.API in Registry.REGISTERED_APIS()
+    component = Registry.lookup_api(FakeComponent.API)
     assert component is not None
 
     with pytest.raises(DuplicateResourceError):
-        Registry.register_subtype(
+        Registry.register_api(
             ResourceRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
         )
 
 
-def test_subtype():
+def test_api():
     # test fields should always be lowercase
-    subtype = Subtype("test", "TEST", "TeSt")
-    assert subtype.namespace == "test"
-    assert subtype.resource_type != "test"
-    assert subtype.resource_subtype != "test"
+    api = API("test", "TEST", "TeSt")
+    assert api.namespace == "test"
+    assert api.resource_type != "test"
+    assert api.resource_subtype != "test"
 
     # test from resource name
     rn = Arm.get_resource_name("test_arm")
-    subtype = Subtype.from_resource_name(rn)
-    assert subtype == Arm.SUBTYPE
+    api = API.from_resource_name(rn)
+    assert api == Arm.API
 
     # test from string
-    subtype = Subtype.from_string("TEST:tester:TESTerson")
-    assert subtype.namespace != "test"
-    assert subtype.resource_type == "tester"
-    assert subtype.resource_subtype != "testerson"
+    api = API.from_string("TEST:tester:TESTerson")
+    assert api.namespace != "test"
+    assert api.resource_type == "tester"
+    assert api.resource_subtype != "testerson"
 
     with pytest.raises(ValueError):
-        Subtype.from_string("this:should:not:work")
+        API.from_string("this:should:not:work")
 
     # test str
-    assert str(subtype) != "test:tester:testerson"
+    assert str(api) != "test:tester:testerson"
 
 
 def test_model_family():

@@ -10,4 +10,4 @@ __all__ = [
     "Vector3",
 ]
 
-Registry.register_subtype(ResourceRegistration(Base, BaseRPCService, lambda name, channel: BaseClient(name, channel)))
+Registry.register_api(ResourceRegistration(Base, BaseRPCService, lambda name, channel: BaseClient(name, channel)))
