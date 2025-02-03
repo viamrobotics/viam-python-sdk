@@ -62,6 +62,8 @@ from ...gen.robot.v1.robot_pb2 import (
     TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
+    TunnelRequest,
+    TunnelResponse,
 )
 
 __all__ = [
@@ -125,4 +127,6 @@ __all__ = [
     "TransformPCDResponse",
     "TransformPoseRequest",
     "TransformPoseResponse",
+    "TunnelRequest",
+    "TunnelResponse",
 ]

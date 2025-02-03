@@ -38,15 +38,42 @@ PEER_CONNECTION_TYPE_WEBRTC: PeerConnectionType.ValueType
 global___PeerConnectionType = PeerConnectionType
 
 @typing.final
+class TunnelRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESTINATION_PORT_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    destination_port: builtins.int
+    data: builtins.bytes
+
+    def __init__(self, *, destination_port: builtins.int=..., data: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'destination_port', b'destination_port']) -> None:
+        ...
+global___TunnelRequest = TunnelRequest
+
+@typing.final
+class TunnelResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+    data: builtins.bytes
+
+    def __init__(self, *, data: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+        ...
+global___TunnelResponse = TunnelResponse
+
+@typing.final
 class FrameSystemConfig(google.protobuf.message.Message):
-    """this is an experimental API message"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAME_FIELD_NUMBER: builtins.int
     KINEMATICS_FIELD_NUMBER: builtins.int
 
     @property
     def frame(self) -> common.v1.common_pb2.Transform:
-        ...
+        """this is an experimental API message"""
 
     @property
     def kinematics(self) -> google.protobuf.struct_pb2.Struct:
