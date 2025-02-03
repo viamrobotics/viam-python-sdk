@@ -2,7 +2,7 @@ import abc
 from typing import Final, List, Mapping, Optional
 
 from viam.proto.app.robot import ComponentConfig
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, API
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
