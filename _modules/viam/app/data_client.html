@@ -410,6 +410,7 @@
 
 <div class="viewcode-block" id="DataClient.tabular_data_by_sql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_sql">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with SQL.</span>
+<span class="sd">        Make sure your API key has permissions at the organization level in order to use this.</span>
 
 <span class="sd">        ::</span>
 
