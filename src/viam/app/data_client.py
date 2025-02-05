@@ -321,6 +321,7 @@ class DataClient:
 
     async def tabular_data_by_sql(self, organization_id: str, sql_query: str) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with SQL.
+        Make sure your API key has permissions at the organization level in order to use this.
 
         ::
 
