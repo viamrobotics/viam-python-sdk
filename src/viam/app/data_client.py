@@ -364,7 +364,7 @@ class DataClient:
             organization_id (str): The ID of the organization that owns the data.
                 You can obtain your organization ID from the Viam app's organization settings page.
             query (Union[List[bytes], List[Dict[str, Any]]]): "The MQL query to run, as a list of MongoDB aggregation pipeline stages. 
-                Note: Each stage can be provided as either raw BSON bytes or as a dictionary, but support for bytes will be removed in the future, 
+                Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future, 
                 so using a dictionary is preferred.
 
         Returns:
