@@ -484,8 +484,9 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
 You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
-<li><p><strong>query</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>bytes</em><em>]</em><em>, </em><em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>]</em>) – The MQL query to run as a list of BSON queries.
-Note: Support for bytes will be removed in the future, so using a dictionary is preferred.</p></li>
+<li><p><strong>query</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>bytes</em><em>]</em><em>, </em><em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>]</em>) – “The MQL query to run, as a list of MongoDB aggregation pipeline stages.
+Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
+so using a dictionary is preferred.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
