@@ -2498,6 +2498,70 @@ class GetFragmentUsageResponse(google.protobuf.message.Message):
 global___GetFragmentUsageResponse = GetFragmentUsageResponse
 
 @typing.final
+class SetFragmentTagRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    TAG_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+    tag: builtins.str
+    revision: builtins.str
+
+    def __init__(self, *, fragment_id: builtins.str=..., tag: builtins.str=..., revision: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'revision', b'revision', 'tag', b'tag']) -> None:
+        ...
+global___SetFragmentTagRequest = SetFragmentTagRequest
+
+@typing.final
+class SetFragmentTagResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TAGS_FIELD_NUMBER: builtins.int
+
+    @property
+    def tags(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTag]:
+        ...
+
+    def __init__(self, *, tags: collections.abc.Iterable[global___FragmentTag] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['tags', b'tags']) -> None:
+        ...
+global___SetFragmentTagResponse = SetFragmentTagResponse
+
+@typing.final
+class DeleteFragmentTagRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    TAG_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+    tag: builtins.str
+
+    def __init__(self, *, fragment_id: builtins.str=..., tag: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'tag', b'tag']) -> None:
+        ...
+global___DeleteFragmentTagRequest = DeleteFragmentTagRequest
+
+@typing.final
+class DeleteFragmentTagResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TAGS_FIELD_NUMBER: builtins.int
+
+    @property
+    def tags(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentTag]:
+        ...
+
+    def __init__(self, *, tags: collections.abc.Iterable[global___FragmentTag] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['tags', b'tags']) -> None:
+        ...
+global___DeleteFragmentTagResponse = DeleteFragmentTagResponse
+
+@typing.final
 class ListRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
