@@ -471,7 +471,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bson</span>
 
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">mql_query</span><span class="o">=</span><span class="p">[</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="p">[</span>
     <span class="p">{</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;YOUR-LOCATION-ID&gt;&#39;</span> <span class="p">}</span> <span class="p">},</span>
     <span class="p">{</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
 <span class="p">])</span>
