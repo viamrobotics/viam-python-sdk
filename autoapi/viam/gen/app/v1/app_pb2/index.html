@@ -590,6 +590,18 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___GetFragmentUsageResponse" title="viam.gen.app.v1.app_pb2.global___GetFragmentUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetFragmentUsageResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___SetFragmentTagRequest" title="viam.gen.app.v1.app_pb2.global___SetFragmentTagRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetFragmentTagRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___SetFragmentTagResponse" title="viam.gen.app.v1.app_pb2.global___SetFragmentTagResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetFragmentTagResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___DeleteFragmentTagRequest" title="viam.gen.app.v1.app_pb2.global___DeleteFragmentTagRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DeleteFragmentTagRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___DeleteFragmentTagResponse" title="viam.gen.app.v1.app_pb2.global___DeleteFragmentTagResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DeleteFragmentTagResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.global___ListRobotsRequest" title="viam.gen.app.v1.app_pb2.global___ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListRobotsRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -1291,6 +1303,18 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.GetFragmentUsageResponse" title="viam.gen.app.v1.app_pb2.GetFragmentUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFragmentUsageResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.SetFragmentTagRequest" title="viam.gen.app.v1.app_pb2.SetFragmentTagRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetFragmentTagRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.SetFragmentTagResponse" title="viam.gen.app.v1.app_pb2.SetFragmentTagResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetFragmentTagResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest" title="viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteFragmentTagRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse" title="viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteFragmentTagResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.v1.app_pb2.ListRobotsRequest" title="viam.gen.app.v1.app_pb2.ListRobotsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListRobotsRequest</span></code></a></p></td>
@@ -6385,6 +6409,101 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___GetFragmentUsageResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetFragmentUsageResponse</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___GetFragmentUsageResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">SetFragmentTagRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagRequest.fragment_id">
+<span class="sig-name descname"><span class="pre">fragment_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagRequest.fragment_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagRequest.tag">
+<span class="sig-name descname"><span class="pre">tag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagRequest.tag" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagRequest.revision">
+<span class="sig-name descname"><span class="pre">revision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagRequest.revision" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___SetFragmentTagRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetFragmentTagRequest</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___SetFragmentTagRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">SetFragmentTagResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FragmentTag</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.SetFragmentTagResponse.tags">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FragmentTag</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.SetFragmentTagResponse.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___SetFragmentTagResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetFragmentTagResponse</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___SetFragmentTagResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteFragmentTagRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest.fragment_id">
+<span class="sig-name descname"><span class="pre">fragment_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest.fragment_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest.tag">
+<span class="sig-name descname"><span class="pre">tag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagRequest.tag" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___DeleteFragmentTagRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___DeleteFragmentTagRequest</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___DeleteFragmentTagRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteFragmentTagResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FragmentTag</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse.tags">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FragmentTag</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.v1.app_pb2.DeleteFragmentTagResponse.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.v1.app_pb2.global___DeleteFragmentTagResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.v1.app_pb2.</span></span><span class="sig-name descname"><span class="pre">global___DeleteFragmentTagResponse</span></span><a class="headerlink" href="#viam.gen.app.v1.app_pb2.global___DeleteFragmentTagResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
