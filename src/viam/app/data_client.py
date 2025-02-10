@@ -354,7 +354,7 @@ class DataClient:
 
             import bson
 
-            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", mql_query=[
+            tabular_data = await data_client.tabular_data_by_mql(organization_id="<YOUR-ORG-ID>", query=[
                 { '$match': { 'location_id': '<YOUR-LOCATION-ID>' } },
                 { "$limit": 5 }
             ])
