@@ -346,7 +346,7 @@ class DataClient:
 
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
-        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]]
+        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -367,6 +367,7 @@ class DataClient:
             query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.
                 Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
                 so using a dictionary is preferred.
+            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to `False`
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
@@ -374,7 +375,7 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
         """
         binary: List[bytes] = [bson.encode(query) for query in query] if isinstance(query[0], dict) else query  # type: ignore
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary)
+        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary, use_recent_data=use_recent_data)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
