@@ -277,7 +277,7 @@ Module Contents
 
 
 
-   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]]) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
+   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
       :async:
 
 
@@ -301,6 +301,8 @@ Module Contents
                     Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
                     so using a dictionary is preferred.
       :type query: Union[List[bytes], List[Dict[str, Any]]]
+      :param use_recent_data: Whether to query blob storage or your recent data store. Defaults to `False`
+      :type use_recent_data: bool
 
       :returns: An array of decoded BSON data objects.
       :rtype: List[Dict[str, Union[ValueTypes, datetime]]]
