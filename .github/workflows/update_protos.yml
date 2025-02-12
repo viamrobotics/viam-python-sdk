@@ -52,3 +52,16 @@ jobs:
           gh pr view workflow/update-protos && gh pr reopen workflow/update-protos || gh pr create -B main -H workflow/update-protos -t "Automated Protos Update" -b "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" -a njooma -r njooma
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Notify slack of failure
+        uses: slackapi/slack-github-action@v1.24.0
+        if: ${{ failure() }}
+        with:
+          payload: |
+            {
+              "text": "Flutter SDK update protos job has failed",
+              "username": "Flutter SDK",
+              "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
