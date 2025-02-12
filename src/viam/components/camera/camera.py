@@ -48,16 +48,9 @@ class Camera(ComponentBase):
 
         ::
 
-            from viam.media.video import CameraMimeType
-
-            my_camera = Camera.from_robot(robot=machine, name="my_camera")
-
-            # Assume "frame" has a mime_type of "image/vnd.viam.dep"
-            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
-
-            # Convert "frame" to a standard 2D image representation.
-            # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
-            standard_frame = frame.bytes_to_depth_array()
+            my_camera = Camera.from_robot(machine, "my_camera")
+            frame = await my_camera.get_image()
+            print(f"Frame: {frame}")
 
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
