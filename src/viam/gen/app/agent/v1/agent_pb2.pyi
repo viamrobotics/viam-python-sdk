@@ -70,6 +70,7 @@ class DeviceAgentConfigRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     HOST_INFO_FIELD_NUMBER: builtins.int
     SUBSYSTEM_VERSIONS_FIELD_NUMBER: builtins.int
+    VERSION_INFO_FIELD_NUMBER: builtins.int
     id: builtins.str
     'robot partID'
 
@@ -79,15 +80,21 @@ class DeviceAgentConfigRequest(google.protobuf.message.Message):
 
     @property
     def subsystem_versions(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
-        """current subsystems and versions"""
+        """current subsystems and versions
+        DEPRECATED in favor of version_info
+        """
 
-    def __init__(self, *, id: builtins.str=..., host_info: global___HostInfo | None=..., subsystem_versions: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+    @property
+    def version_info(self) -> global___VersionInfo:
+        """Currently installed versions for agent and viam-server"""
+
+    def __init__(self, *, id: builtins.str=..., host_info: global___HostInfo | None=..., subsystem_versions: collections.abc.Mapping[builtins.str, builtins.str] | None=..., version_info: global___VersionInfo | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['host_info', b'host_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['host_info', b'host_info', 'version_info', b'version_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['host_info', b'host_info', 'id', b'id', 'subsystem_versions', b'subsystem_versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['host_info', b'host_info', 'id', b'id', 'subsystem_versions', b'subsystem_versions', 'version_info', b'version_info']) -> None:
         ...
 global___DeviceAgentConfigRequest = DeviceAgentConfigRequest
 
@@ -116,29 +123,61 @@ class DeviceAgentConfigResponse(google.protobuf.message.Message):
             ...
     SUBSYSTEM_CONFIGS_FIELD_NUMBER: builtins.int
     CHECK_INTERVAL_FIELD_NUMBER: builtins.int
+    AGENT_UPDATE_INFO_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_UPDATE_INFO_FIELD_NUMBER: builtins.int
+    ADVANCED_SETTINGS_FIELD_NUMBER: builtins.int
+    NETWORK_CONFIGURATION_FIELD_NUMBER: builtins.int
+    ADDITIONAL_NETWORKS_FIELD_NUMBER: builtins.int
+    SYSTEM_CONFIGURATION_FIELD_NUMBER: builtins.int
 
     @property
     def subsystem_configs(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___DeviceSubsystemConfig]:
         """subsystems to be installed/configured/updated
         note: previously installed subsystems will be removed from the system if removed from this list
+        DEPRECATED in favor of indidivual update_info and settings fields
         """
 
     @property
     def check_interval(self) -> google.protobuf.duration_pb2.Duration:
         """how often this request should be repeated"""
 
-    def __init__(self, *, subsystem_configs: collections.abc.Mapping[builtins.str, global___DeviceSubsystemConfig] | None=..., check_interval: google.protobuf.duration_pb2.Duration | None=...) -> None:
+    @property
+    def agent_update_info(self) -> global___UpdateInfo:
+        """update info for agent and viam-server, parsed/processed in App"""
+
+    @property
+    def viam_server_update_info(self) -> global___UpdateInfo:
         ...
 
-    def HasField(self, field_name: typing.Literal['check_interval', b'check_interval']) -> builtins.bool:
+    @property
+    def advanced_settings(self) -> google.protobuf.struct_pb2.Struct:
+        """various settings that are passed directly to device Agent"""
+
+    @property
+    def network_configuration(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing.Literal['check_interval', b'check_interval', 'subsystem_configs', b'subsystem_configs']) -> None:
+    @property
+    def additional_networks(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    @property
+    def system_configuration(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, subsystem_configs: collections.abc.Mapping[builtins.str, global___DeviceSubsystemConfig] | None=..., check_interval: google.protobuf.duration_pb2.Duration | None=..., agent_update_info: global___UpdateInfo | None=..., viam_server_update_info: global___UpdateInfo | None=..., advanced_settings: google.protobuf.struct_pb2.Struct | None=..., network_configuration: google.protobuf.struct_pb2.Struct | None=..., additional_networks: google.protobuf.struct_pb2.Struct | None=..., system_configuration: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['additional_networks', b'additional_networks', 'advanced_settings', b'advanced_settings', 'agent_update_info', b'agent_update_info', 'check_interval', b'check_interval', 'network_configuration', b'network_configuration', 'system_configuration', b'system_configuration', 'viam_server_update_info', b'viam_server_update_info']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['additional_networks', b'additional_networks', 'advanced_settings', b'advanced_settings', 'agent_update_info', b'agent_update_info', 'check_interval', b'check_interval', 'network_configuration', b'network_configuration', 'subsystem_configs', b'subsystem_configs', 'system_configuration', b'system_configuration', 'viam_server_update_info', b'viam_server_update_info']) -> None:
         ...
 global___DeviceAgentConfigResponse = DeviceAgentConfigResponse
 
 @typing.final
 class DeviceSubsystemConfig(google.protobuf.message.Message):
+    """DEPRECATED as of January 2025"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UPDATE_INFO_FIELD_NUMBER: builtins.int
     DISABLE_FIELD_NUMBER: builtins.int
@@ -150,14 +189,14 @@ class DeviceSubsystemConfig(google.protobuf.message.Message):
     'force_restart will restart the subsystem, even if no updates are available'
 
     @property
-    def update_info(self) -> global___SubsystemUpdateInfo:
+    def update_info(self) -> global___UpdateInfo:
         """data needed to download/validate the subsystem"""
 
     @property
     def attributes(self) -> google.protobuf.struct_pb2.Struct:
         """arbitrary config sections"""
 
-    def __init__(self, *, update_info: global___SubsystemUpdateInfo | None=..., disable: builtins.bool=..., force_restart: builtins.bool=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, update_info: global___UpdateInfo | None=..., disable: builtins.bool=..., force_restart: builtins.bool=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['attributes', b'attributes', 'update_info', b'update_info']) -> builtins.bool:
@@ -166,6 +205,29 @@ class DeviceSubsystemConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['attributes', b'attributes', 'disable', b'disable', 'force_restart', b'force_restart', 'update_info', b'update_info']) -> None:
         ...
 global___DeviceSubsystemConfig = DeviceSubsystemConfig
+
+@typing.final
+class VersionInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    AGENT_RUNNING_FIELD_NUMBER: builtins.int
+    AGENT_INSTALLED_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_RUNNING_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_INSTALLED_FIELD_NUMBER: builtins.int
+    agent_running: builtins.str
+    'the version of agent currently running and making the request'
+    agent_installed: builtins.str
+    'the version of agent installed (will run after restart if different)'
+    viam_server_running: builtins.str
+    'the version of viam-server currently running'
+    viam_server_installed: builtins.str
+    'the version of viam-server installed (will run after restart if different)'
+
+    def __init__(self, *, agent_running: builtins.str=..., agent_installed: builtins.str=..., viam_server_running: builtins.str=..., viam_server_installed: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['agent_installed', b'agent_installed', 'agent_running', b'agent_running', 'viam_server_installed', b'viam_server_installed', 'viam_server_running', b'viam_server_running']) -> None:
+        ...
+global___VersionInfo = VersionInfo
 
 @typing.final
 class HostInfo(google.protobuf.message.Message):
@@ -192,7 +254,7 @@ class HostInfo(google.protobuf.message.Message):
 global___HostInfo = HostInfo
 
 @typing.final
-class SubsystemUpdateInfo(google.protobuf.message.Message):
+class UpdateInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILENAME_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
@@ -215,4 +277,4 @@ class SubsystemUpdateInfo(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing.Literal['filename', b'filename', 'format', b'format', 'sha256', b'sha256', 'url', b'url', 'version', b'version']) -> None:
         ...
-global___SubsystemUpdateInfo = SubsystemUpdateInfo
+global___UpdateInfo = UpdateInfo
