@@ -10,7 +10,8 @@ from ....gen.app.agent.v1.agent_pb2 import (
     DeviceSubsystemConfig,
     HostInfo,
     PackageFormat,
-    SubsystemUpdateInfo,
+    UpdateInfo,
+    VersionInfo,
 )
 
 __all__ = [
@@ -22,5 +23,6 @@ __all__ = [
     "DeviceSubsystemConfig",
     "HostInfo",
     "PackageFormat",
-    "SubsystemUpdateInfo",
+    "UpdateInfo",
+    "VersionInfo",
 ]
