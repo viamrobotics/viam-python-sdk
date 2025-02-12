@@ -137,16 +137,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.media.video import CameraMimeType</span>
-
-<span class="sd">            my_camera = Camera.from_robot(robot=machine, name=&quot;my_camera&quot;)</span>
-
-<span class="sd">            # Assume &quot;frame&quot; has a mime_type of &quot;image/vnd.viam.dep&quot;</span>
-<span class="sd">            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)</span>
-
-<span class="sd">            # Convert &quot;frame&quot; to a standard 2D image representation.</span>
-<span class="sd">            # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].</span>
-<span class="sd">            standard_frame = frame.bytes_to_depth_array()</span>
+<span class="sd">            my_camera = Camera.from_robot(machine, &quot;my_camera&quot;)</span>
+<span class="sd">            frame = await my_camera.get_image()</span>
+<span class="sd">            print(f&quot;Frame: {frame}&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            mime_type (str): The desired mime type of the image. This does not guarantee output type</span>

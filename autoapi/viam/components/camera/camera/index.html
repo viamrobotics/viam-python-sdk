@@ -192,16 +192,9 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 Be sure to close the image when finished.</p>
 <p>NOTE: If the mime type is <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> you can use <a class="reference internal" href="../../../media/video/index.html#viam.media.video.ViamImage.bytes_to_depth_array" title="viam.media.video.ViamImage.bytes_to_depth_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">viam.media.video.ViamImage.bytes_to_depth_array()</span></code></a>
 to convert the data to a standard representation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
-
-<span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
-
-<span class="c1"># Assume &quot;frame&quot; has a mime_type of &quot;image/vnd.viam.dep&quot;</span>
-<span class="n">frame</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">)</span>
-
-<span class="c1"># Convert &quot;frame&quot; to a standard 2D image representation.</span>
-<span class="c1"># Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].</span>
-<span class="n">standard_frame</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">bytes_to_depth_array</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Frame: </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
