@@ -6,6 +6,7 @@ from ... import app
 import builtins
 import collections.abc
 from ... import common
+import google.protobuf.any_pb2
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
@@ -634,6 +635,101 @@ class DeleteOrganizationResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteOrganizationResponse = DeleteOrganizationResponse
+
+@typing.final
+class GetOrganizationMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
+        ...
+global___GetOrganizationMetadataRequest = GetOrganizationMetadataRequest
+
+@typing.final
+class GetOrganizationMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+        ...
+global___GetOrganizationMetadataResponse = GetOrganizationMetadataResponse
+
+@typing.final
+class UpdateOrganizationMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, organization_id: builtins.str=..., data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'organization_id', b'organization_id']) -> None:
+        ...
+global___UpdateOrganizationMetadataRequest = UpdateOrganizationMetadataRequest
+
+@typing.final
+class UpdateOrganizationMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateOrganizationMetadataResponse = UpdateOrganizationMetadataResponse
 
 @typing.final
 class ListOrganizationMembersRequest(google.protobuf.message.Message):
@@ -1366,6 +1462,101 @@ class DeleteLocationResponse(google.protobuf.message.Message):
 global___DeleteLocationResponse = DeleteLocationResponse
 
 @typing.final
+class GetLocationMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+
+    def __init__(self, *, location_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
+        ...
+global___GetLocationMetadataRequest = GetLocationMetadataRequest
+
+@typing.final
+class GetLocationMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+        ...
+global___GetLocationMetadataResponse = GetLocationMetadataResponse
+
+@typing.final
+class UpdateLocationMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, location_id: builtins.str=..., data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'location_id', b'location_id']) -> None:
+        ...
+global___UpdateLocationMetadataRequest = UpdateLocationMetadataRequest
+
+@typing.final
+class UpdateLocationMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateLocationMetadataResponse = UpdateLocationMetadataResponse
+
+@typing.final
 class GetOrganizationsWithAccessToLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1941,6 +2132,101 @@ class DeleteRobotPartRequest(google.protobuf.message.Message):
 global___DeleteRobotPartRequest = DeleteRobotPartRequest
 
 @typing.final
+class GetRobotPartMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___GetRobotPartMetadataRequest = GetRobotPartMetadataRequest
+
+@typing.final
+class GetRobotPartMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+        ...
+global___GetRobotPartMetadataResponse = GetRobotPartMetadataResponse
+
+@typing.final
+class UpdateRobotPartMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    ID_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'id', b'id']) -> None:
+        ...
+global___UpdateRobotPartMetadataRequest = UpdateRobotPartMetadataRequest
+
+@typing.final
+class UpdateRobotPartMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateRobotPartMetadataResponse = UpdateRobotPartMetadataResponse
+
+@typing.final
 class GetRobotAPIKeysRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -2181,7 +2467,9 @@ class ResolvedFragment(google.protobuf.message.Message):
     FRAGMENT_ID_FIELD_NUMBER: builtins.int
     RESOLVED_CONFIG_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
+    REVISION_FIELD_NUMBER: builtins.int
     fragment_id: builtins.str
+    revision: builtins.str
 
     @property
     def resolved_config(self) -> google.protobuf.struct_pb2.Struct:
@@ -2191,13 +2479,13 @@ class ResolvedFragment(google.protobuf.message.Message):
     def error(self) -> global___FragmentError:
         ...
 
-    def __init__(self, *, fragment_id: builtins.str=..., resolved_config: google.protobuf.struct_pb2.Struct | None=..., error: global___FragmentError | None=...) -> None:
+    def __init__(self, *, fragment_id: builtins.str=..., resolved_config: google.protobuf.struct_pb2.Struct | None=..., error: global___FragmentError | None=..., revision: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['error', b'error', 'resolved_config', b'resolved_config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['error', b'error', 'fragment_id', b'fragment_id', 'resolved_config', b'resolved_config']) -> None:
+    def ClearField(self, field_name: typing.Literal['error', b'error', 'fragment_id', b'fragment_id', 'resolved_config', b'resolved_config', 'revision', b'revision']) -> None:
         ...
 global___ResolvedFragment = ResolvedFragment
 
@@ -2575,23 +2863,49 @@ class ListRobotsRequest(google.protobuf.message.Message):
 global___ListRobotsRequest = ListRobotsRequest
 
 @typing.final
+class AdditionalFragment(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+    version: builtins.str
+
+    def __init__(self, *, fragment_id: builtins.str=..., version: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_version', b'_version', 'version', b'version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_version', b'_version', 'fragment_id', b'fragment_id', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_version', b'_version']) -> typing.Literal['version'] | None:
+        ...
+global___AdditionalFragment = AdditionalFragment
+
+@typing.final
 class ListMachineFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MACHINE_ID_FIELD_NUMBER: builtins.int
     ADDITIONAL_FRAGMENT_IDS_FIELD_NUMBER: builtins.int
+    ADDITIONAL_FRAGMENTS_FIELD_NUMBER: builtins.int
     machine_id: builtins.str
     "the machine_id used to filter fragments defined in a machine's parts.\n    Also returns any fragments nested within the fragments defined in parts.\n    "
 
     @property
     def additional_fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        """additional fragment_ids to append to the response. useful when needing to view fragments that will be
+        """TODO(APP-7642): Mark this field as deprecated"""
+
+    @property
+    def additional_fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AdditionalFragment]:
+        """additional fragments to append to the response. useful when needing to view fragments that will be
         provisionally added to the machine alongside existing fragments.
         """
 
-    def __init__(self, *, machine_id: builtins.str=..., additional_fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, machine_id: builtins.str=..., additional_fragment_ids: collections.abc.Iterable[builtins.str] | None=..., additional_fragments: collections.abc.Iterable[global___AdditionalFragment] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['additional_fragment_ids', b'additional_fragment_ids', 'machine_id', b'machine_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['additional_fragment_ids', b'additional_fragment_ids', 'additional_fragments', b'additional_fragments', 'machine_id', b'machine_id']) -> None:
         ...
 global___ListMachineFragmentsRequest = ListMachineFragmentsRequest
 
@@ -2716,6 +3030,101 @@ class DeleteRobotResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteRobotResponse = DeleteRobotResponse
+
+@typing.final
+class GetRobotMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___GetRobotMetadataRequest = GetRobotMetadataRequest
+
+@typing.final
+class GetRobotMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data']) -> None:
+        ...
+global___GetRobotMetadataResponse = GetRobotMetadataResponse
+
+@typing.final
+class UpdateRobotMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class DataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> google.protobuf.any_pb2.Any:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    ID_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., data: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'id', b'id']) -> None:
+        ...
+global___UpdateRobotMetadataRequest = UpdateRobotMetadataRequest
+
+@typing.final
+class UpdateRobotMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateRobotMetadataResponse = UpdateRobotMetadataResponse
 
 @typing.final
 class MarkPartAsMainRequest(google.protobuf.message.Message):
