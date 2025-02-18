@@ -782,18 +782,18 @@ class RobotClient:
         self,
     ) -> List[ModuleModel]:
         """
-
-        Get a list of module models.
+        Get a list of all models provided by local and registry modules on the machine.
+        This includes models that are not currently configured on the machine.
 
         ::
+
             # Get module models
-            module_modles = await machine.get_models_from_modules(qs)
+            module_models = await machine.get_models_from_modules(qs)
 
         Args:
 
         Returns:
             List[ModuleModel]: A list of discovered models.
-
         """
         request = GetModelsFromModulesRequest()
         response: GetModelsFromModulesResponse = await self._client.GetModelsFromModules(request)
@@ -810,10 +810,6 @@ class RobotClient:
         ::
 
             # Cancel all current and outstanding operations for the machine and stop all actuators and movement.
-            await machine.stop_all()
-
-        ::
-
             await machine.stop_all()
 
         Args:
