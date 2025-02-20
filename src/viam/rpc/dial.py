@@ -70,6 +70,13 @@ class DialOptions:
     max_reconnect_attempts: int = 3
     """Max number of times the client attempts to reconnect when connection is lost"""
 
+    initial_connection_attempts: int = 5
+    """Max number of times the client will attempt to establish an initial connection"""
+
+    initial_connection_attempt_timeout: int
+    """Number of seconds before dial connection times out on initial connection attempts
+    Defaults to whatever value is set in the `timeout` field"""
+
     timeout: float = 20
     """Number of seconds before the dial connection times out
     Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go"""
@@ -85,6 +92,8 @@ class DialOptions:
         allow_insecure_with_creds_downgrade: bool = False,
         max_reconnect_attempts: int = 3,
         timeout: float = 20,
+        initial_connection_attempts: int = 5,
+        initial_connection_attempt_timeout: Optional[float] = None,
     ) -> None:
         self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
@@ -94,6 +103,8 @@ class DialOptions:
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
         self.max_reconnect_attempts = max_reconnect_attempts
         self.timeout = timeout
+        self.initial_connection_attempts = initial_connection_attempts
+        self.initial_connection_attempt_timeout = initial_connection_attempt_timeout if initial_connection_attempt_timeout else timeout
 
     @classmethod
     def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
@@ -279,6 +290,26 @@ class _Runtime:
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
+    options = options if options else DialOptions()
+    timeout = options.timeout
+    options.timeout = options.initial_connection_attempt_timeout
+    if options.initial_connection_attempts == 0:
+        options.initial_connection_attempts = -1
+    attempt_countdown = options.initial_connection_attempts
+    exception: Exception
+    while attempt_countdown != 0:
+        try:
+            chan = await _dial_inner(address, options)
+            options.timeout = timeout
+            return chan
+        except Exception as e:
+            nonlocal exception
+            exception = e
+            attempt_countdown -= 1
+    raise exception
+
+
+async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
         event.metadata["viam-client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
 

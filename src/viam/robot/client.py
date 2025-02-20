@@ -52,7 +52,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
-from viam.rpc.dial import DialOptions, ViamChannel, dial
+from viam.rpc.dial import DialOptions, ViamChannel, dial, _dial_inner
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
 from viam.utils import datetime_to_timestamp, dict_to_struct
@@ -403,7 +403,7 @@ class RobotClient:
                 try:
                     self._sessions_client.reset()
 
-                    channel = await dial(self._address, self._options.dial_options)
+                    channel = await _dial_inner(self._address, self._options.dial_options)
 
                     client: RobotServiceStub
                     if isinstance(channel, Channel):
