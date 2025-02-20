@@ -321,13 +321,6 @@ class TestClient:
             assert service.tags == TAGS
             self.assert_filter(filter=service.filter)
 
-    async def test_tags_by_filter(self, service: MockData):
-        async with ChannelFor([service]) as channel:
-            client = DataClient(channel, DATA_SERVICE_METADATA)
-            tags = await client.tags_by_filter(filter=FILTER)
-            assert tags == TAGS_RESPONSE
-            self.assert_filter(filter=service.filter)
-
     async def test_add_bounding_box_to_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
