@@ -871,18 +871,18 @@
         <span class="bp">self</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ModuleModel</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">        Get a list of module models.</span>
+<span class="sd">        Get a list of all models provided by local and registry modules on the machine.</span>
+<span class="sd">        This includes models that are not currently configured on the machine.</span>
 
 <span class="sd">        ::</span>
+
 <span class="sd">            # Get module models</span>
-<span class="sd">            module_modles = await machine.get_models_from_modules(qs)</span>
+<span class="sd">            module_models = await machine.get_models_from_modules(qs)</span>
 
 <span class="sd">        Args:</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[ModuleModel]: A list of discovered models.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetModelsFromModulesRequest</span><span class="p">()</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetModelsFromModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetModelsFromModules</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -899,10 +899,6 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            # Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
-<span class="sd">            await machine.stop_all()</span>
-
-<span class="sd">        ::</span>
-
 <span class="sd">            await machine.stop_all()</span>
 
 <span class="sd">        Args:</span>

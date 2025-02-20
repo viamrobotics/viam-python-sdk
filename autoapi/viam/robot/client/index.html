@@ -688,12 +688,12 @@ Returns module names for modules.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_models_from_modules">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_models_from_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.ModuleModel" title="viam.proto.robot.ModuleModel"><span class="pre">viam.proto.robot.ModuleModel</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_models_from_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_models_from_modules" title="Permalink to this definition"></a></dt>
-<dd><p>Get a list of module models.</p>
-<dl class="simple">
-<dt>::</dt><dd><p># Get module models
-module_modles = await machine.get_models_from_modules(qs)</p>
-</dd>
-</dl>
+<dd><p>Get a list of all models provided by local and registry modules on the machine.
+This includes models that are not currently configured on the machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get module models</span>
+<span class="n">module_models</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">get_models_from_modules</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Args:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -711,9 +711,6 @@ module_modles = await machine.get_models_from_modules(qs)</p>
 <dd><p>Cancel all current and outstanding operations for the machine and stop all actuators and movement.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cancel all current and outstanding operations for the machine and stop all actuators and movement.</span>
 <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
