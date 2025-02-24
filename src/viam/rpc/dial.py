@@ -74,7 +74,7 @@ class DialOptions:
     """Max number of times the client will attempt to establish an initial connection
     If set to a non-positive integer, then there will be no limit to initial connection attempts"""
 
-    initial_connection_attempt_timeout: int
+    initial_connection_attempt_timeout: float
     """Number of seconds before dial connection times out on initial connection attempts
     Defaults to whatever value is set in the `timeout` field"""
 
