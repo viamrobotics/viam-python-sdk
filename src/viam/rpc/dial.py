@@ -70,8 +70,9 @@ class DialOptions:
     max_reconnect_attempts: int = 3
     """Max number of times the client attempts to reconnect when connection is lost"""
 
-    initial_connection_attempts: int = 5
-    """Max number of times the client will attempt to establish an initial connection"""
+    initial_connection_attempts: int = 3
+    """Max number of times the client will attempt to establish an initial connection
+    If set to a non-positive integer, then there will be no limit to initial connection attempts"""
 
     initial_connection_attempt_timeout: int
     """Number of seconds before dial connection times out on initial connection attempts
@@ -92,7 +93,7 @@ class DialOptions:
         allow_insecure_with_creds_downgrade: bool = False,
         max_reconnect_attempts: int = 3,
         timeout: float = 20,
-        initial_connection_attempts: int = 5,
+        initial_connection_attempts: int = 3,
         initial_connection_attempt_timeout: Optional[float] = None,
     ) -> None:
         self.disable_webrtc = disable_webrtc
@@ -303,7 +304,6 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
             options.timeout = timeout
             return chan
         except Exception as e:
-            nonlocal exception
             exception = e
             attempt_countdown -= 1
     raise exception
