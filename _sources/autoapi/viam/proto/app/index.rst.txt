@@ -46,6 +46,7 @@ Classes
    viam.proto.app.AppServiceStub
    viam.proto.app.UnimplementedAppServiceBase
    viam.proto.app.PKCE
+   viam.proto.app.AdditionalFragment
    viam.proto.app.AddRoleRequest
    viam.proto.app.AddRoleResponse
    viam.proto.app.APIKey
@@ -134,10 +135,14 @@ Classes
    viam.proto.app.GetFragmentResponse
    viam.proto.app.GetFragmentUsageRequest
    viam.proto.app.GetFragmentUsageResponse
+   viam.proto.app.GetLocationMetadataRequest
+   viam.proto.app.GetLocationMetadataResponse
    viam.proto.app.GetLocationRequest
    viam.proto.app.GetLocationResponse
    viam.proto.app.GetModuleRequest
    viam.proto.app.GetModuleResponse
+   viam.proto.app.GetOrganizationMetadataRequest
+   viam.proto.app.GetOrganizationMetadataResponse
    viam.proto.app.GetOrganizationNamespaceAvailabilityRequest
    viam.proto.app.GetOrganizationNamespaceAvailabilityResponse
    viam.proto.app.GetOrganizationRequest
@@ -148,10 +153,14 @@ Classes
    viam.proto.app.GetRegistryItemResponse
    viam.proto.app.GetRobotAPIKeysRequest
    viam.proto.app.GetRobotAPIKeysResponse
+   viam.proto.app.GetRobotMetadataRequest
+   viam.proto.app.GetRobotMetadataResponse
    viam.proto.app.GetRobotPartHistoryRequest
    viam.proto.app.GetRobotPartHistoryResponse
    viam.proto.app.GetRobotPartLogsRequest
    viam.proto.app.GetRobotPartLogsResponse
+   viam.proto.app.GetRobotPartMetadataRequest
+   viam.proto.app.GetRobotPartMetadataResponse
    viam.proto.app.GetRobotPartRequest
    viam.proto.app.GetRobotPartResponse
    viam.proto.app.GetRobotPartsRequest
@@ -256,6 +265,8 @@ Classes
    viam.proto.app.UpdateBillingServiceResponse
    viam.proto.app.UpdateFragmentRequest
    viam.proto.app.UpdateFragmentResponse
+   viam.proto.app.UpdateLocationMetadataRequest
+   viam.proto.app.UpdateLocationMetadataResponse
    viam.proto.app.UpdateLocationRequest
    viam.proto.app.UpdateLocationResponse
    viam.proto.app.UpdateMLModelMetadata
@@ -267,10 +278,16 @@ Classes
    viam.proto.app.UpdateOAuthAppResponse
    viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest
    viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse
+   viam.proto.app.UpdateOrganizationMetadataRequest
+   viam.proto.app.UpdateOrganizationMetadataResponse
    viam.proto.app.UpdateOrganizationRequest
    viam.proto.app.UpdateOrganizationResponse
    viam.proto.app.UpdateRegistryItemRequest
    viam.proto.app.UpdateRegistryItemResponse
+   viam.proto.app.UpdateRobotMetadataRequest
+   viam.proto.app.UpdateRobotMetadataResponse
+   viam.proto.app.UpdateRobotPartMetadataRequest
+   viam.proto.app.UpdateRobotPartMetadataResponse
    viam.proto.app.UpdateRobotPartRequest
    viam.proto.app.UpdateRobotPartResponse
    viam.proto.app.UpdateRobotRequest
@@ -359,6 +376,20 @@ Package Contents
 
 
    .. py:method:: DeleteOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteOrganizationRequest, app.v1.app_pb2.DeleteOrganizationResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetOrganizationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationMetadataRequest, app.v1.app_pb2.GetOrganizationMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateOrganizationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationMetadataRequest, app.v1.app_pb2.UpdateOrganizationMetadataResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -540,6 +571,20 @@ Package Contents
 
 
 
+   .. py:method:: GetLocationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetLocationMetadataRequest, app.v1.app_pb2.GetLocationMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateLocationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateLocationMetadataRequest, app.v1.app_pb2.UpdateLocationMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: ListLocations(stream: grpclib.server.Stream[app.v1.app_pb2.ListLocationsRequest, app.v1.app_pb2.ListLocationsResponse]) -> None
       :abstractmethod:
 
@@ -583,6 +628,20 @@ Package Contents
 
 
    .. py:method:: GetRobot(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotRequest, app.v1.app_pb2.GetRobotResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetRobotMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotMetadataRequest, app.v1.app_pb2.GetRobotMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateRobotMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotMetadataRequest, app.v1.app_pb2.UpdateRobotMetadataResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -646,6 +705,20 @@ Package Contents
 
 
    .. py:method:: DeleteRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartRequest, app.v1.app_pb2.DeleteRobotPartResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetRobotPartMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartMetadataRequest, app.v1.app_pb2.GetRobotPartMetadataResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateRobotPartMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotPartMetadataRequest, app.v1.app_pb2.UpdateRobotPartMetadataResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -974,6 +1047,12 @@ Package Contents
    .. py:attribute:: DeleteOrganization
 
 
+   .. py:attribute:: GetOrganizationMetadata
+
+
+   .. py:attribute:: UpdateOrganizationMetadata
+
+
    .. py:attribute:: ListOrganizationMembers
 
 
@@ -1049,6 +1128,12 @@ Package Contents
    .. py:attribute:: DeleteLocation
 
 
+   .. py:attribute:: GetLocationMetadata
+
+
+   .. py:attribute:: UpdateLocationMetadata
+
+
    .. py:attribute:: ListLocations
 
 
@@ -1068,6 +1153,12 @@ Package Contents
 
 
    .. py:attribute:: GetRobot
+
+
+   .. py:attribute:: GetRobotMetadata
+
+
+   .. py:attribute:: UpdateRobotMetadata
 
 
    .. py:attribute:: GetRoverRentalRobots
@@ -1095,6 +1186,12 @@ Package Contents
 
 
    .. py:attribute:: DeleteRobotPart
+
+
+   .. py:attribute:: GetRobotPartMetadata
+
+
+   .. py:attribute:: UpdateRobotPartMetadata
 
 
    .. py:attribute:: GetRobotAPIKeys
@@ -1279,6 +1376,16 @@ Package Contents
 
 
 
+   .. py:method:: GetOrganizationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationMetadataRequest, app.v1.app_pb2.GetOrganizationMetadataResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateOrganizationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationMetadataRequest, app.v1.app_pb2.UpdateOrganizationMetadataResponse]) -> None
+      :async:
+
+
+
    .. py:method:: ListOrganizationMembers(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationMembersRequest, app.v1.app_pb2.ListOrganizationMembersResponse]) -> None
       :async:
 
@@ -1404,6 +1511,16 @@ Package Contents
 
 
 
+   .. py:method:: GetLocationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetLocationMetadataRequest, app.v1.app_pb2.GetLocationMetadataResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateLocationMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateLocationMetadataRequest, app.v1.app_pb2.UpdateLocationMetadataResponse]) -> None
+      :async:
+
+
+
    .. py:method:: ListLocations(stream: grpclib.server.Stream[app.v1.app_pb2.ListLocationsRequest, app.v1.app_pb2.ListLocationsResponse]) -> None
       :async:
 
@@ -1435,6 +1552,16 @@ Package Contents
 
 
    .. py:method:: GetRobot(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotRequest, app.v1.app_pb2.GetRobotResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetRobotMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotMetadataRequest, app.v1.app_pb2.GetRobotMetadataResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateRobotMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotMetadataRequest, app.v1.app_pb2.UpdateRobotMetadataResponse]) -> None
       :async:
 
 
@@ -1480,6 +1607,16 @@ Package Contents
 
 
    .. py:method:: DeleteRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartRequest, app.v1.app_pb2.DeleteRobotPartResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetRobotPartMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartMetadataRequest, app.v1.app_pb2.GetRobotPartMetadataResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateRobotPartMetadata(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotPartMetadataRequest, app.v1.app_pb2.UpdateRobotPartMetadataResponse]) -> None
       :async:
 
 
@@ -1692,6 +1829,60 @@ Package Contents
 .. py:class:: PKCE
 
    Bases: :py:obj:`_PKCE`
+
+
+.. py:class:: AdditionalFragment(*, fragment_id: str = ..., version: str | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: fragment_id
+      :type:  str
+
+
+   .. py:attribute:: version
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_version', b'_version', 'version', b'version']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_version', b'_version']) -> Literal['version'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: AddRoleRequest(*, authorization: global___Authorization | None = ...)
@@ -3931,6 +4122,79 @@ Package Contents
 
 
 
+.. py:class:: GetLocationMetadataRequest(*, location_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+.. py:class:: GetLocationMetadataResponse(*, data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
 .. py:class:: GetLocationRequest(*, location_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4076,6 +4340,79 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: GetOrganizationMetadataRequest(*, organization_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+.. py:class:: GetOrganizationMetadataResponse(*, data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
 
 
 
@@ -4317,6 +4654,79 @@ Package Contents
 
 
 
+.. py:class:: GetRobotMetadataRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: GetRobotMetadataResponse(*, data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
 .. py:class:: GetRobotPartHistoryRequest(*, id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4465,6 +4875,79 @@ Package Contents
 
    .. py:property:: logs
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.LogEntry]
+
+
+
+.. py:class:: GetRobotPartMetadataRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: GetRobotPartMetadataResponse(*, data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
 
 
 
@@ -4826,7 +5309,7 @@ Package Contents
 
 
 
-.. py:class:: ListMachineFragmentsRequest(*, machine_id: str = ..., additional_fragment_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: ListMachineFragmentsRequest(*, machine_id: str = ..., additional_fragment_ids: collections.abc.Iterable[str] | None = ..., additional_fragments: collections.abc.Iterable[global___AdditionalFragment] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4848,7 +5331,15 @@ Package Contents
    .. py:property:: additional_fragment_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
-      additional fragment_ids to append to the response. useful when needing to view fragments that will be
+      Mark this field as deprecated
+
+      :type: TODO(APP-7642)
+
+
+   .. py:property:: additional_fragments
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AdditionalFragment]
+
+      additional fragments to append to the response. useful when needing to view fragments that will be
       provisionally added to the machine alongside existing fragments.
 
 
@@ -6823,7 +7314,7 @@ Package Contents
 
 
 
-.. py:class:: ResolvedFragment(*, fragment_id: str = ..., resolved_config: google.protobuf.struct_pb2.Struct | None = ..., error: global___FragmentError | None = ...)
+.. py:class:: ResolvedFragment(*, fragment_id: str = ..., resolved_config: google.protobuf.struct_pb2.Struct | None = ..., error: global___FragmentError | None = ..., revision: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6836,6 +7327,10 @@ Package Contents
 
 
    .. py:attribute:: fragment_id
+      :type:  str
+
+
+   .. py:attribute:: revision
       :type:  str
 
 
@@ -7684,6 +8179,79 @@ Package Contents
 
 
 
+.. py:class:: UpdateLocationMetadataRequest(*, location_id: str = ..., data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: location_id
+      :type:  str
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
+.. py:class:: UpdateLocationMetadataResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: UpdateLocationRequest(*, location_id: str = ..., name: str | None = ..., parent_location_id: str | None = ..., region: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -8092,6 +8660,79 @@ Package Contents
 
 
 
+.. py:class:: UpdateOrganizationMetadataRequest(*, organization_id: str = ..., data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
+.. py:class:: UpdateOrganizationMetadataResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
 .. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ..., cid: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -8281,6 +8922,152 @@ Package Contents
 
 
 .. py:class:: UpdateRegistryItemResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UpdateRobotMetadataRequest(*, id: str = ..., data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
+.. py:class:: UpdateRobotMetadataResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UpdateRobotPartMetadataRequest(*, id: str = ..., data: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: DataEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: google.protobuf.any_pb2.Any
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
+
+
+
+.. py:class:: UpdateRobotPartMetadataResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

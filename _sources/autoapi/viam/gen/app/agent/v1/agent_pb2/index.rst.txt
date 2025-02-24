@@ -25,8 +25,9 @@ Attributes
    viam.gen.app.agent.v1.agent_pb2.global___DeviceAgentConfigRequest
    viam.gen.app.agent.v1.agent_pb2.global___DeviceAgentConfigResponse
    viam.gen.app.agent.v1.agent_pb2.global___DeviceSubsystemConfig
+   viam.gen.app.agent.v1.agent_pb2.global___VersionInfo
    viam.gen.app.agent.v1.agent_pb2.global___HostInfo
-   viam.gen.app.agent.v1.agent_pb2.global___SubsystemUpdateInfo
+   viam.gen.app.agent.v1.agent_pb2.global___UpdateInfo
 
 
 Classes
@@ -38,8 +39,9 @@ Classes
    viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigRequest
    viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigResponse
    viam.gen.app.agent.v1.agent_pb2.DeviceSubsystemConfig
+   viam.gen.app.agent.v1.agent_pb2.VersionInfo
    viam.gen.app.agent.v1.agent_pb2.HostInfo
-   viam.gen.app.agent.v1.agent_pb2.SubsystemUpdateInfo
+   viam.gen.app.agent.v1.agent_pb2.UpdateInfo
 
 
 Module Contents
@@ -80,7 +82,7 @@ Module Contents
 
 .. py:data:: global___PackageFormat
 
-.. py:class:: DeviceAgentConfigRequest(*, id: str = ..., host_info: global___HostInfo | None = ..., subsystem_versions: collections.abc.Mapping[str, str] | None = ...)
+.. py:class:: DeviceAgentConfigRequest(*, id: str = ..., host_info: global___HostInfo | None = ..., subsystem_versions: collections.abc.Mapping[str, str] | None = ..., version_info: global___VersionInfo | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -125,9 +127,16 @@ Module Contents
       :type: google.protobuf.internal.containers.ScalarMap[str, str]
 
       current subsystems and versions
+      DEPRECATED in favor of version_info
 
 
-   .. py:method:: HasField(field_name: Literal['host_info', b'host_info']) -> bool
+   .. py:property:: version_info
+      :type: global___VersionInfo
+
+      Currently installed versions for agent and viam-server
+
+
+   .. py:method:: HasField(field_name: Literal['host_info', b'host_info', 'version_info', b'version_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -147,7 +156,7 @@ Module Contents
 
 .. py:data:: global___DeviceAgentConfigRequest
 
-.. py:class:: DeviceAgentConfigResponse(*, subsystem_configs: collections.abc.Mapping[str, global___DeviceSubsystemConfig] | None = ..., check_interval: google.protobuf.duration_pb2.Duration | None = ...)
+.. py:class:: DeviceAgentConfigResponse(*, subsystem_configs: collections.abc.Mapping[str, global___DeviceSubsystemConfig] | None = ..., check_interval: google.protobuf.duration_pb2.Duration | None = ..., agent_update_info: global___UpdateInfo | None = ..., viam_server_update_info: global___UpdateInfo | None = ..., advanced_settings: google.protobuf.struct_pb2.Struct | None = ..., network_configuration: google.protobuf.struct_pb2.Struct | None = ..., additional_networks: google.protobuf.struct_pb2.Struct | None = ..., system_configuration: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -204,6 +213,7 @@ Module Contents
 
       subsystems to be installed/configured/updated
       note: previously installed subsystems will be removed from the system if removed from this list
+      DEPRECATED in favor of indidivual update_info and settings fields
 
 
    .. py:property:: check_interval
@@ -212,7 +222,39 @@ Module Contents
       how often this request should be repeated
 
 
-   .. py:method:: HasField(field_name: Literal['check_interval', b'check_interval']) -> bool
+   .. py:property:: agent_update_info
+      :type: global___UpdateInfo
+
+      update info for agent and viam-server, parsed/processed in App
+
+
+   .. py:property:: viam_server_update_info
+      :type: global___UpdateInfo
+
+
+
+   .. py:property:: advanced_settings
+      :type: google.protobuf.struct_pb2.Struct
+
+      various settings that are passed directly to device Agent
+
+
+   .. py:property:: network_configuration
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:property:: additional_networks
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:property:: system_configuration
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['additional_networks', b'additional_networks', 'advanced_settings', b'advanced_settings', 'agent_update_info', b'agent_update_info', 'check_interval', b'check_interval', 'network_configuration', b'network_configuration', 'system_configuration', b'system_configuration', 'viam_server_update_info', b'viam_server_update_info']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -232,16 +274,12 @@ Module Contents
 
 .. py:data:: global___DeviceAgentConfigResponse
 
-.. py:class:: DeviceSubsystemConfig(*, update_info: global___SubsystemUpdateInfo | None = ..., disable: bool = ..., force_restart: bool = ..., attributes: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: DeviceSubsystemConfig(*, update_info: global___UpdateInfo | None = ..., disable: bool = ..., force_restart: bool = ..., attributes: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   DEPRECATED as of January 2025
 
 
    .. py:attribute:: disable
@@ -257,7 +295,7 @@ Module Contents
 
 
    .. py:property:: update_info
-      :type: global___SubsystemUpdateInfo
+      :type: global___UpdateInfo
 
       data needed to download/validate the subsystem
 
@@ -287,6 +325,44 @@ Module Contents
 
 
 .. py:data:: global___DeviceSubsystemConfig
+
+.. py:class:: VersionInfo(*, agent_running: str = ..., agent_installed: str = ..., viam_server_running: str = ..., viam_server_installed: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: agent_running
+      :type:  str
+
+      the version of agent currently running and making the request
+
+
+   .. py:attribute:: agent_installed
+      :type:  str
+
+      the version of agent installed (will run after restart if different)
+
+
+   .. py:attribute:: viam_server_running
+      :type:  str
+
+      the version of viam-server currently running
+
+
+   .. py:attribute:: viam_server_installed
+      :type:  str
+
+      the version of viam-server installed (will run after restart if different)
+
+
+.. py:data:: global___VersionInfo
 
 .. py:class:: HostInfo(*, platform: str = ..., distro: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
@@ -327,7 +403,7 @@ Module Contents
 
 .. py:data:: global___HostInfo
 
-.. py:class:: SubsystemUpdateInfo(*, filename: str = ..., url: str = ..., version: str = ..., sha256: bytes = ..., format: global___PackageFormat = ...)
+.. py:class:: UpdateInfo(*, filename: str = ..., url: str = ..., version: str = ..., sha256: bytes = ..., format: global___PackageFormat = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -369,5 +445,5 @@ Module Contents
       determines if decompression or executable permissions are needed
 
 
-.. py:data:: global___SubsystemUpdateInfo
+.. py:data:: global___UpdateInfo
 
