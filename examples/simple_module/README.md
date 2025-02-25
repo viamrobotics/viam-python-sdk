@@ -1,10 +1,14 @@
-# VIAM Simple Module Example
-This example goes through how to create custom modular resources using Viam's python SDK, and how to connect it to a Robot.
+# Viam Simple Module Example
+This example goes through how to create custom modular resources using Viam's Python SDK, and how to connect it to a machine.
 
 This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/operate/get-started/other-hardware/).
 
+> [!NOTE]
+> You can auto-generate the stub files for your module using the Viam CLI.
+> [Install the CLI and authenticate](https://docs.viam.com/dev/tools/cli/#install), then run `viam module generate` and follow the prompts.
+
 ## Purpose
-Modular resources allow you to define custom components and services, and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
+Modular resources allow you to define custom components and services, and add them to your robot. Viam ships with many component models, but you're not limited to only using those models -- you can add support for other models of hardware and software using modules.
 
 For more information, see the [documentation](hhttps://docs.viam.com/operate/get-started/other-hardware/). For a more complex example, take a look at the [complex module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module), which contains multiple new APIs and custom resource models.
 
