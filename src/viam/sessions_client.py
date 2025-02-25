@@ -18,6 +18,26 @@ from viam.rpc.dial import DialOptions, dial
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
 
+HEARTBEAT_MONITORED_METHODS = frozenset(
+    [
+        "/viam.component.arm.v1.ArmService/MoveToPosition",
+        "/viam.component.arm.v1.ArmService/MoveToJointPositions",
+        "/viam.component.arm.v1.ArmService/MoveThroughJointPositions",
+        "/viam.component.base.v1.BaseService/MoveStraight",
+        "/viam.component.base.v1.BaseService/Spin",
+        "/viam.component.base.v1.BaseService/SetPower",
+        "/viam.component.base.v1.BaseService/SetVelocity",
+        "/viam.component.gantry.v1.GantryService/MoveToPosition",
+        "/viam.component.gripper.v1.GripperService/Open",
+        "/viam.component.gripper.v1.GripperService/Grab",
+        "/viam.component.motor.v1.MotorService/SetPower",
+        "/viam.component.motor.v1.MotorService/GoFor",
+        "/viam.component.motor.v1.MotorService/GoTo",
+        "/viam.component.motor.v1.MotorService/SetRPM",
+        "/viam.component.servo.v1.ServoService/Move",
+    ]
+)
+
 EXEMPT_METADATA_METHODS = frozenset(
     [
         "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
@@ -93,6 +113,9 @@ class SessionsClient:
             return
 
         if event.method_name in EXEMPT_METADATA_METHODS:
+            return
+
+        if event.method_name not in HEARTBEAT_MONITORED_METHODS:
             return
 
         event.metadata.update(await self.metadata)
