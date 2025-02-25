@@ -54,7 +54,7 @@ Module Contents
       The credential
 
 
-.. py:class:: DialOptions(*, disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20)
+.. py:class:: DialOptions(*, disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20, initial_connection_attempts: int = 3, initial_connection_attempt_timeout: Optional[float] = None)
 
    .. py:attribute:: disable_webrtc
       :type:  bool
@@ -109,6 +109,22 @@ Module Contents
 
 
       Max number of times the client attempts to reconnect when connection is lost
+
+
+   .. py:attribute:: initial_connection_attempts
+      :type:  int
+      :value: 3
+
+
+      Max number of times the client will attempt to establish an initial connection
+      If set to a non-positive integer, then there will be no limit to initial connection attempts
+
+
+   .. py:attribute:: initial_connection_attempt_timeout
+      :type:  float
+
+      Number of seconds before dial connection times out on initial connection attempts
+      Defaults to whatever value is set in the `timeout` field
 
 
    .. py:attribute:: timeout

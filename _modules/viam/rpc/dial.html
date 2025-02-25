@@ -159,6 +159,14 @@
     <span class="n">max_reconnect_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Max number of times the client attempts to reconnect when connection is lost&quot;&quot;&quot;</span>
 
+    <span class="n">initial_connection_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Max number of times the client will attempt to establish an initial connection</span>
+<span class="sd">    If set to a non-positive integer, then there will be no limit to initial connection attempts&quot;&quot;&quot;</span>
+
+    <span class="n">initial_connection_attempt_timeout</span><span class="p">:</span> <span class="nb">float</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Number of seconds before dial connection times out on initial connection attempts</span>
+<span class="sd">    Defaults to whatever value is set in the `timeout` field&quot;&quot;&quot;</span>
+
     <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Number of seconds before the dial connection times out</span>
 <span class="sd">    Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go&quot;&quot;&quot;</span>
@@ -174,6 +182,8 @@
         <span class="n">allow_insecure_with_creds_downgrade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">max_reconnect_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">initial_connection_attempts</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">initial_connection_attempt_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disable_webrtc</span> <span class="o">=</span> <span class="n">disable_webrtc</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth_entity</span> <span class="o">=</span> <span class="n">auth_entity</span>
@@ -183,6 +193,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">allow_insecure_with_creds_downgrade</span> <span class="o">=</span> <span class="n">allow_insecure_with_creds_downgrade</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_reconnect_attempts</span> <span class="o">=</span> <span class="n">max_reconnect_attempts</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_connection_attempts</span> <span class="o">=</span> <span class="n">initial_connection_attempts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_connection_attempt_timeout</span> <span class="o">=</span> <span class="n">initial_connection_attempt_timeout</span> <span class="k">if</span> <span class="n">initial_connection_attempt_timeout</span> <span class="k">else</span> <span class="n">timeout</span>
 
 <div class="viewcode-block" id="DialOptions.with_api_key"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.with_api_key">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">with_api_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
@@ -368,6 +380,27 @@
 
 
 <div class="viewcode-block" id="dial"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.dial">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">dial</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ViamChannel</span><span class="p">:</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="k">if</span> <span class="n">options</span> <span class="k">else</span> <span class="n">DialOptions</span><span class="p">()</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">timeout</span>
+    <span class="n">options</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_connection_attempt_timeout</span>
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_connection_attempts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">options</span><span class="o">.</span><span class="n">initial_connection_attempts</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">attempt_countdown</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">initial_connection_attempts</span>
+    <span class="n">exception</span><span class="p">:</span> <span class="ne">Exception</span>
+    <span class="k">while</span> <span class="n">attempt_countdown</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chan</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_inner</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+            <span class="n">options</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+            <span class="k">return</span> <span class="n">chan</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">exception</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="n">attempt_countdown</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="c1"># the only way we could get here is if we failed at least once which means we&#39;ve set the</span>
+    <span class="c1"># exception, so typechecker concerns about a possibly unbounded variable are unfounded</span>
+    <span class="k">raise</span> <span class="n">exception</span> <span class="c1"># type: ignore</span></div>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_dial_inner</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ViamChannel</span><span class="p">:</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">SendRequest</span><span class="p">):</span>
         <span class="n">event</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;viam-client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;python;v</span><span class="si">{</span><span class="n">SDK_VERSION</span><span class="si">}</span><span class="s2">;v</span><span class="si">{</span><span class="n">API_VERSION</span><span class="si">}</span><span class="s2">&quot;</span>
 
@@ -391,7 +424,7 @@
         <span class="k">return</span> <span class="n">channel</span>
 
     <span class="n">runtime</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-    <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to establish a connection to </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+    <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to establish a connection to </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">_dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
