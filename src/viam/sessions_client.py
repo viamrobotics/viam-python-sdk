@@ -38,20 +38,6 @@ HEARTBEAT_MONITORED_METHODS = frozenset(
     ]
 )
 
-EXEMPT_METADATA_METHODS = frozenset(
-    [
-        "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
-        "/proto.rpc.webrtc.v1.SignalingService/Call",
-        "/proto.rpc.webrtc.v1.SignalingService/CallUpdate",
-        "/proto.rpc.webrtc.v1.SignalingService/OptionalWebRTCConfig",
-        "/proto.rpc.v1.AuthService/Authenticate",
-        "/viam.robot.v1.RobotService/ResourceNames",
-        "/viam.robot.v1.RobotService/ResourceRPCSubtypes",
-        "/viam.robot.v1.RobotService/StartSession",
-        "/viam.robot.v1.RobotService/SendSessionHeartbeat",
-    ]
-)
-
 
 class _SupportedState(IntEnum):
     UNKNOWN = 0
@@ -110,9 +96,6 @@ class SessionsClient:
 
     async def _send_request(self, event: SendRequest):
         if self._disabled:
-            return
-
-        if event.method_name in EXEMPT_METADATA_METHODS:
             return
 
         if event.method_name not in HEARTBEAT_MONITORED_METHODS:
