@@ -4,14 +4,6 @@ viam.module.module
 .. py:module:: viam.module.module
 
 
-Attributes
-----------
-
-.. autoapisummary::
-
-   viam.module.module.LOGGER
-
-
 Classes
 -------
 
@@ -23,8 +15,6 @@ Classes
 Module Contents
 ---------------
 
-.. py:data:: LOGGER
-
 .. py:class:: Module(address: str, *, log_level: int = logging.INFO)
 
    .. py:attribute:: parent
@@ -35,6 +25,10 @@ Module Contents
 
    .. py:attribute:: server
       :type:  viam.rpc.server.Server
+
+
+   .. py:attribute:: logger
+      :type:  logging.Logger
 
 
    .. py:method:: from_args() -> typing_extensions.Self
@@ -79,6 +73,9 @@ Module Contents
 
       Full example at examples/easy_resource/main.py.
 
+
+
+   .. py:attribute:: module_name
 
 
    .. py:method:: start()

@@ -71,9 +71,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#viam.module.Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.parent"><code class="docutils literal notranslate"><span class="pre">Module.parent</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.server"><code class="docutils literal notranslate"><span class="pre">Module.server</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.logger"><code class="docutils literal notranslate"><span class="pre">Module.logger</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.from_args"><code class="docutils literal notranslate"><span class="pre">Module.from_args()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.run_with_models"><code class="docutils literal notranslate"><span class="pre">Module.run_with_models()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.run_from_registry"><code class="docutils literal notranslate"><span class="pre">Module.run_from_registry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.module_name"><code class="docutils literal notranslate"><span class="pre">Module.module_name</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.start"><code class="docutils literal notranslate"><span class="pre">Module.start()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.stop"><code class="docutils literal notranslate"><span class="pre">Module.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.module.Module.set_ready"><code class="docutils literal notranslate"><span class="pre">Module.set_ready()</span></code></a></li>
@@ -155,6 +157,11 @@
 <span class="sig-name descname"><span class="pre">server</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../rpc/server/index.html#viam.rpc.server.Server" title="viam.rpc.server.Server"><span class="pre">viam.rpc.server.Server</span></a></em><a class="headerlink" href="#viam.module.Module.server" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.module.Module.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">logging.Logger</span></em><a class="headerlink" href="#viam.module.Module.logger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.module.Module.from_args">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_args</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../_modules/viam/module/module.html#Module.from_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.Module.from_args" title="Permalink to this definition"></a></dt>
@@ -201,6 +208,11 @@ In most cases you’ll want to use run_from_registry instead (see below).</p>
 </dl>
 <p>Full example at examples/easy_resource/main.py.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.module.Module.module_name">
+<span class="sig-name descname"><span class="pre">module_name</span></span><a class="headerlink" href="#viam.module.Module.module_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.module.Module.start">
