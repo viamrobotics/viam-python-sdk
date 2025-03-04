@@ -88,12 +88,14 @@ class DataCaptureUploadResponse(google.protobuf.message.Message):
     """DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
+    binary_data_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
+    def __init__(self, *, file_id: builtins.str=..., binary_data_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['file_id', b'file_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'file_id', b'file_id']) -> None:
         ...
 global___DataCaptureUploadResponse = DataCaptureUploadResponse
 
@@ -132,12 +134,14 @@ class FileUploadResponse(google.protobuf.message.Message):
     """FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
+    binary_data_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
+    def __init__(self, *, file_id: builtins.str=..., binary_data_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['file_id', b'file_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'file_id', b'file_id']) -> None:
         ...
 global___FileUploadResponse = FileUploadResponse
 
@@ -173,12 +177,14 @@ class StreamingDataCaptureUploadResponse(google.protobuf.message.Message):
     """StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
+    binary_data_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
+    def __init__(self, *, file_id: builtins.str=..., binary_data_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['file_id', b'file_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'file_id', b'file_id']) -> None:
         ...
 global___StreamingDataCaptureUploadResponse = StreamingDataCaptureUploadResponse
 

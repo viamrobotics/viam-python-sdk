@@ -1,7 +1,7 @@
 import argparse
 import io
-import os
 import logging as pylogging
+import os
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
@@ -117,7 +117,7 @@ class Module:
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
 
-        module_name = os.environ.get('VIAM_MODULE_NAME')
+        module_name = os.environ.get("VIAM_MODULE_NAME")
         # this can happen if the user is running an old version of viam-server that doesn't set `VIAM_MODULE_NAME`
         if module_name is None:
             module_name = __name__

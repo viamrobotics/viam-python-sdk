@@ -31,6 +31,8 @@ from ...gen.robot.v1.robot_pb2 import (
     GetStatusResponse,
     GetVersionRequest,
     GetVersionResponse,
+    ListTunnelsRequest,
+    ListTunnelsResponse,
     LogRequest,
     LogResponse,
     ModuleModel,
@@ -62,6 +64,7 @@ from ...gen.robot.v1.robot_pb2 import (
     TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
+    Tunnel,
     TunnelRequest,
     TunnelResponse,
 )
@@ -96,6 +99,8 @@ __all__ = [
     "GetStatusResponse",
     "GetVersionRequest",
     "GetVersionResponse",
+    "ListTunnelsRequest",
+    "ListTunnelsResponse",
     "LogRequest",
     "LogResponse",
     "ModuleModel",
@@ -127,6 +132,7 @@ __all__ = [
     "TransformPCDResponse",
     "TransformPoseRequest",
     "TransformPoseResponse",
+    "Tunnel",
     "TunnelRequest",
     "TunnelResponse",
 ]

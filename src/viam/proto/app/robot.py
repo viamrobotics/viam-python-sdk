@@ -38,6 +38,7 @@ from ...gen.app.v1.robot_pb2 import (
     RobotConfig,
     ServiceConfig,
     SessionsConfig,
+    TrafficTunnelEndpoint,
     Translation,
 )
 
@@ -78,5 +79,6 @@ __all__ = [
     "RobotConfig",
     "ServiceConfig",
     "SessionsConfig",
+    "TrafficTunnelEndpoint",
     "Translation",
 ]

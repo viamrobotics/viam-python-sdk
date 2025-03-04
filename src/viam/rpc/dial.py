@@ -308,7 +308,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
             attempt_countdown -= 1
     # the only way we could get here is if we failed at least once which means we've set the
     # exception, so typechecker concerns about a possibly unbounded variable are unfounded
-    raise exception # type: ignore
+    raise exception  # type: ignore
 
 
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
