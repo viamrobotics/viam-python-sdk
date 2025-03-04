@@ -1,5 +1,6 @@
 import argparse
 import io
+import os
 import logging as pylogging
 import sys
 from inspect import iscoroutinefunction
@@ -35,8 +36,6 @@ from viam.rpc.server import Server
 from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
-LOGGER = logging.getLogger(__name__)
-
 
 def _parse_module_args() -> argparse.Namespace:
     """
@@ -56,6 +55,7 @@ class Module:
     _lock: Lock
     parent: Optional[RobotClient] = None
     server: Server
+    logger: pylogging.Logger
 
     @classmethod
     def from_args(cls) -> Self:
@@ -116,6 +116,12 @@ class Module:
         self._address = address
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
+
+        module_name = os.environ.get('VIAM_MODULE_NAME')
+        # this can happen if the user is running an old version of viam-server that doesn't set `VIAM_MODULE_NAME`
+        if module_name is None:
+            module_name = __name__
+        self.logger = logging.getLogger(module_name)
         self._ready = True
         self._lock = Lock()
 
@@ -130,7 +136,7 @@ class Module:
                     log_level=self._log_level,
                 ),
             )
-            LOGGER.debug("Starting module logging")
+            self.logger.debug("Starting module logging")
             logging.setParent(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
@@ -159,13 +165,13 @@ class Module:
 
     async def stop(self):
         """Stop the module service and gRPC server"""
-        LOGGER.debug("Shutting down module")
+        self.logger.debug("Shutting down module")
         try:
             logging.shutdown()
             if self.parent is not None:
                 await self.parent.close()
         except Exception as e:
-            LOGGER.error("Encountered error while shutting down module", exc_info=e)
+            self.logger.error("Encountered error while shutting down module", exc_info=e)
 
     def set_ready(self, ready: bool):
         """Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful
