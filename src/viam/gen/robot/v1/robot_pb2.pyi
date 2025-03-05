@@ -66,6 +66,51 @@ class TunnelResponse(google.protobuf.message.Message):
 global___TunnelResponse = TunnelResponse
 
 @typing.final
+class ListTunnelsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ListTunnelsRequest = ListTunnelsRequest
+
+@typing.final
+class ListTunnelsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TUNNELS_FIELD_NUMBER: builtins.int
+
+    @property
+    def tunnels(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Tunnel]:
+        ...
+
+    def __init__(self, *, tunnels: collections.abc.Iterable[global___Tunnel] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['tunnels', b'tunnels']) -> None:
+        ...
+global___ListTunnelsResponse = ListTunnelsResponse
+
+@typing.final
+class Tunnel(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PORT_FIELD_NUMBER: builtins.int
+    CONNECTION_TIMEOUT_FIELD_NUMBER: builtins.int
+    port: builtins.int
+
+    @property
+    def connection_timeout(self) -> google.protobuf.duration_pb2.Duration:
+        ...
+
+    def __init__(self, *, port: builtins.int=..., connection_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['connection_timeout', b'connection_timeout']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['connection_timeout', b'connection_timeout', 'port', b'port']) -> None:
+        ...
+global___Tunnel = Tunnel
+
+@typing.final
 class FrameSystemConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAME_FIELD_NUMBER: builtins.int

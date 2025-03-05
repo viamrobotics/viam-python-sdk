@@ -658,16 +658,21 @@ class BinaryDataByIDsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
     include_binary: builtins.bool
 
     @property
     def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
         ...
 
-    def __init__(self, *, include_binary: builtins.bool=..., binary_ids: collections.abc.Iterable[global___BinaryID] | None=...) -> None:
+    @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids', 'include_binary', b'include_binary']) -> None:
+    def __init__(self, *, include_binary: builtins.bool=..., binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids', 'include_binary', b'include_binary']) -> None:
         ...
 global___BinaryDataByIDsRequest = BinaryDataByIDsRequest
 
@@ -783,10 +788,12 @@ class BinaryMetadata(google.protobuf.message.Message):
     URI_FIELD_NUMBER: builtins.int
     ANNOTATIONS_FIELD_NUMBER: builtins.int
     DATASET_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     file_name: builtins.str
     file_ext: builtins.str
     uri: builtins.str
+    binary_data_id: builtins.str
 
     @property
     def capture_metadata(self) -> global___CaptureMetadata:
@@ -808,13 +815,13 @@ class BinaryMetadata(google.protobuf.message.Message):
     def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., binary_data_id: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
+    def ClearField(self, field_name: typing.Literal['annotations', b'annotations', 'binary_data_id', b'binary_data_id', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
         ...
 global___BinaryMetadata = BinaryMetadata
 
@@ -895,15 +902,20 @@ class DeleteBinaryDataByIDsRequest(google.protobuf.message.Message):
     """DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
 
     @property
     def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
         ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=...) -> None:
+    @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids']) -> None:
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids']) -> None:
         ...
 global___DeleteBinaryDataByIDsRequest = DeleteBinaryDataByIDsRequest
 
@@ -926,6 +938,7 @@ class AddTagsToBinaryDataByIDsRequest(google.protobuf.message.Message):
     """AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
@@ -933,13 +946,17 @@ class AddTagsToBinaryDataByIDsRequest(google.protobuf.message.Message):
         ...
 
     @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
         ...
 global___AddTagsToBinaryDataByIDsRequest = AddTagsToBinaryDataByIDsRequest
 
@@ -989,6 +1006,7 @@ class RemoveTagsFromBinaryDataByIDsRequest(google.protobuf.message.Message):
     """RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
@@ -996,13 +1014,17 @@ class RemoveTagsFromBinaryDataByIDsRequest(google.protobuf.message.Message):
         ...
 
     @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
         ...
 global___RemoveTagsFromBinaryDataByIDsRequest = RemoveTagsFromBinaryDataByIDsRequest
 
@@ -1103,11 +1125,13 @@ class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
     X_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    binary_data_id: builtins.str
     label: builtins.str
     x_min_normalized: builtins.float
     y_min_normalized: builtins.float
@@ -1118,13 +1142,13 @@ class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
     def binary_id(self) -> global___BinaryID:
         ...
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
+    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['binary_id', b'binary_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
         ...
 global___AddBoundingBoxToImageByIDRequest = AddBoundingBoxToImageByIDRequest
 
@@ -1147,20 +1171,22 @@ class RemoveBoundingBoxFromImageByIDRequest(google.protobuf.message.Message):
     """RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     BBOX_ID_FIELD_NUMBER: builtins.int
+    binary_data_id: builtins.str
     bbox_id: builtins.str
 
     @property
     def binary_id(self) -> global___BinaryID:
         ...
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., bbox_id: builtins.str=...) -> None:
+    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., bbox_id: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['binary_id', b'binary_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['bbox_id', b'bbox_id', 'binary_id', b'binary_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['bbox_id', b'bbox_id', 'binary_data_id', b'binary_data_id', 'binary_id', b'binary_id']) -> None:
         ...
 global___RemoveBoundingBoxFromImageByIDRequest = RemoveBoundingBoxFromImageByIDRequest
 
@@ -1177,12 +1203,14 @@ class UpdateBoundingBoxRequest(google.protobuf.message.Message):
     """UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     BBOX_ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
     X_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    binary_data_id: builtins.str
     bbox_id: builtins.str
     label: builtins.str
     x_min_normalized: builtins.float
@@ -1194,13 +1222,13 @@ class UpdateBoundingBoxRequest(google.protobuf.message.Message):
     def binary_id(self) -> global___BinaryID:
         ...
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., bbox_id: builtins.str=..., label: builtins.str | None=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=...) -> None:
+    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., bbox_id: builtins.str=..., label: builtins.str | None=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'bbox_id', b'bbox_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+    def ClearField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'bbox_id', b'bbox_id', 'binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
         ...
 
     @typing.overload
@@ -1336,6 +1364,7 @@ class AddBinaryDataToDatasetByIDsRequest(google.protobuf.message.Message):
     """AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
     DATASET_ID_FIELD_NUMBER: builtins.int
     dataset_id: builtins.str
 
@@ -1343,10 +1372,14 @@ class AddBinaryDataToDatasetByIDsRequest(google.protobuf.message.Message):
     def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
         ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
+    @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=..., dataset_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
         ...
 global___AddBinaryDataToDatasetByIDsRequest = AddBinaryDataToDatasetByIDsRequest
 
@@ -1363,6 +1396,7 @@ class RemoveBinaryDataFromDatasetByIDsRequest(google.protobuf.message.Message):
     """RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
+    BINARY_DATA_IDS_FIELD_NUMBER: builtins.int
     DATASET_ID_FIELD_NUMBER: builtins.int
     dataset_id: builtins.str
 
@@ -1370,10 +1404,14 @@ class RemoveBinaryDataFromDatasetByIDsRequest(google.protobuf.message.Message):
     def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
         ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
+    @property
+    def binary_data_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., binary_data_ids: collections.abc.Iterable[builtins.str] | None=..., dataset_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['binary_data_ids', b'binary_data_ids', 'binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
         ...
 global___RemoveBinaryDataFromDatasetByIDsRequest = RemoveBinaryDataFromDatasetByIDsRequest
 

@@ -16,23 +16,25 @@ class GetInferenceRequest(google.protobuf.message.Message):
     REGISTRY_ITEM_ID_FIELD_NUMBER: builtins.int
     REGISTRY_ITEM_VERSION_FIELD_NUMBER: builtins.int
     BINARY_ID_FIELD_NUMBER: builtins.int
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     registry_item_id: builtins.str
     'The model framework and model type are inferred from the ML model registry item;\n    For valid model types (classification, detections) we will return the formatted\n    labels or annotations from the associated inference outputs.\n    '
     registry_item_version: builtins.str
+    binary_data_id: builtins.str
     organization_id: builtins.str
 
     @property
     def binary_id(self) -> app.data.v1.data_pb2.BinaryID:
         ...
 
-    def __init__(self, *, registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., binary_id: app.data.v1.data_pb2.BinaryID | None=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., binary_id: app.data.v1.data_pb2.BinaryID | None=..., binary_data_id: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['binary_id', b'binary_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_id', b'binary_id', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
+    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
         ...
 global___GetInferenceRequest = GetInferenceRequest
 

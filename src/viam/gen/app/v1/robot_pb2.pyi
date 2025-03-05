@@ -422,6 +422,7 @@ class NetworkConfig(google.protobuf.message.Message):
     TLS_CERT_FILE_FIELD_NUMBER: builtins.int
     TLS_KEY_FILE_FIELD_NUMBER: builtins.int
     SESSIONS_FIELD_NUMBER: builtins.int
+    TRAFFIC_TUNNEL_ENDPOINTS_FIELD_NUMBER: builtins.int
     fqdn: builtins.str
     bind_address: builtins.str
     tls_cert_file: builtins.str
@@ -431,13 +432,17 @@ class NetworkConfig(google.protobuf.message.Message):
     def sessions(self) -> global___SessionsConfig:
         ...
 
-    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=...) -> None:
+    @property
+    def traffic_tunnel_endpoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrafficTunnelEndpoint]:
+        ...
+
+    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['sessions', b'sessions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file']) -> None:
+    def ClearField(self, field_name: typing.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file', 'traffic_tunnel_endpoints', b'traffic_tunnel_endpoints']) -> None:
         ...
 global___NetworkConfig = NetworkConfig
 
@@ -459,6 +464,27 @@ class SessionsConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['heartbeat_window', b'heartbeat_window']) -> None:
         ...
 global___SessionsConfig = SessionsConfig
+
+@typing.final
+class TrafficTunnelEndpoint(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PORT_FIELD_NUMBER: builtins.int
+    CONNECTION_TIMEOUT_FIELD_NUMBER: builtins.int
+    port: builtins.int
+
+    @property
+    def connection_timeout(self) -> google.protobuf.duration_pb2.Duration:
+        ...
+
+    def __init__(self, *, port: builtins.int=..., connection_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['connection_timeout', b'connection_timeout']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['connection_timeout', b'connection_timeout', 'port', b'port']) -> None:
+        ...
+global___TrafficTunnelEndpoint = TrafficTunnelEndpoint
 
 @typing.final
 class AuthConfig(google.protobuf.message.Message):

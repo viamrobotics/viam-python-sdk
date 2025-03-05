@@ -1221,6 +1221,7 @@ class Location(google.protobuf.message.Message):
     CREATED_ON_FIELD_NUMBER: builtins.int
     ROBOT_COUNT_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
+    PRIMARY_ORG_IDENTITY_FIELD_NUMBER: builtins.int
     id: builtins.str
     'Location ID.'
     name: builtins.str
@@ -1246,13 +1247,20 @@ class Location(google.protobuf.message.Message):
     def config(self) -> global___StorageConfig:
         """Config for how data in this location is stored."""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str=..., auth: global___LocationAuth | None=..., organizations: collections.abc.Iterable[global___LocationOrganization] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=..., config: global___StorageConfig | None=...) -> None:
+    @property
+    def primary_org_identity(self) -> global___OrganizationIdentity:
+        """The organization that is the primary owner of the location."""
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str=..., auth: global___LocationAuth | None=..., organizations: collections.abc.Iterable[global___LocationOrganization] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=..., config: global___StorageConfig | None=..., primary_org_identity: global___OrganizationIdentity | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_primary_org_identity', b'_primary_org_identity', 'auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'primary_org_identity', b'primary_org_identity']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id', 'robot_count', b'robot_count']) -> None:
+    def ClearField(self, field_name: typing.Literal['_primary_org_identity', b'_primary_org_identity', 'auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id', 'primary_org_identity', b'primary_org_identity', 'robot_count', b'robot_count']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_primary_org_identity', b'_primary_org_identity']) -> typing.Literal['primary_org_identity'] | None:
         ...
 global___Location = Location
 
