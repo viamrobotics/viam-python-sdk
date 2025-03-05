@@ -128,6 +128,7 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse.file_id"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse.file_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse.binary_data_id"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse.binary_data_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.DataType"><code class="docutils literal notranslate"><span class="pre">DataType</span></code></a></li>
@@ -144,6 +145,7 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse.file_id"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse.file_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse.binary_data_id"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse.binary_data_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.MimeType"><code class="docutils literal notranslate"><span class="pre">MimeType</span></code></a></li>
@@ -172,6 +174,7 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse"><code class="docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse.file_id"><code class="docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse.file_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse.binary_data_id"><code class="docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse.binary_data_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata"><code class="docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a><ul>
@@ -604,12 +607,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse.binary_data_id">
+<span class="sig-name descname"><span class="pre">binary_data_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse.binary_data_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -697,12 +705,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse.binary_data_id">
+<span class="sig-name descname"><span class="pre">binary_data_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse.binary_data_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -894,12 +907,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">StreamingDataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">StreamingDataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadResponse.binary_data_id">
+<span class="sig-name descname"><span class="pre">binary_data_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse.binary_data_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

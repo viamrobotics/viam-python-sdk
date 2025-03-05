@@ -451,7 +451,7 @@ Package Contents
 
 
 
-.. py:class:: AddBinaryDataToDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., dataset_id: str = ...)
+.. py:class:: AddBinaryDataToDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -468,6 +468,11 @@ Package Contents
 
 
 
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
 .. py:class:: AddBinaryDataToDatasetByIDsResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -480,13 +485,17 @@ Package Contents
    shown below.
 
 
-.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
+.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
    AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
    with the associated label and position in normalized coordinates will be added.
+
+
+   .. py:attribute:: binary_data_id
+      :type:  str
 
 
    .. py:attribute:: label
@@ -592,7 +601,7 @@ Package Contents
    shown below.
 
 
-.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -602,6 +611,11 @@ Package Contents
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
@@ -743,7 +757,7 @@ Package Contents
 
 
 
-.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...)
+.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -757,6 +771,11 @@ Package Contents
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
@@ -797,7 +816,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ..., binary_data_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -818,6 +837,10 @@ Package Contents
 
 
    .. py:attribute:: uri
+      :type:  str
+
+
+   .. py:attribute:: binary_data_id
       :type:  str
 
 
@@ -1292,7 +1315,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...)
+.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1302,6 +1325,11 @@ Package Contents
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
@@ -1680,7 +1708,7 @@ Package Contents
    Order specifies the order in which data is returned.
 
 
-.. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., dataset_id: str = ...)
+.. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1697,6 +1725,11 @@ Package Contents
 
 
 
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
 .. py:class:: RemoveBinaryDataFromDatasetByIDsResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1709,12 +1742,16 @@ Package Contents
    shown below.
 
 
-.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: global___BinaryID | None = ..., bbox_id: str = ...)
+.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
    RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.
+
+
+   .. py:attribute:: binary_data_id
+      :type:  str
 
 
    .. py:attribute:: bbox_id
@@ -1804,7 +1841,7 @@ Package Contents
       :type:  int
 
 
-.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., tags: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1814,6 +1851,11 @@ Package Contents
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+
+   .. py:property:: binary_data_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
@@ -2122,12 +2164,16 @@ Package Contents
    TagsFilterType specifies how data can be filtered based on tags.
 
 
-.. py:class:: UpdateBoundingBoxRequest(*, binary_id: global___BinaryID | None = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ...)
+.. py:class:: UpdateBoundingBoxRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
    UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.
+
+
+   .. py:attribute:: binary_data_id
+      :type:  str
 
 
    .. py:attribute:: bbox_id

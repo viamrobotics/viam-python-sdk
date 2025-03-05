@@ -2471,7 +2471,7 @@ Module Contents
 
 .. py:data:: global___StorageConfig
 
-.. py:class:: Location(*, id: str = ..., name: str = ..., parent_location_id: str = ..., auth: global___LocationAuth | None = ..., organizations: collections.abc.Iterable[global___LocationOrganization] | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_count: int = ..., config: global___StorageConfig | None = ...)
+.. py:class:: Location(*, id: str = ..., name: str = ..., parent_location_id: str = ..., auth: global___LocationAuth | None = ..., organizations: collections.abc.Iterable[global___LocationOrganization] | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_count: int = ..., config: global___StorageConfig | None = ..., primary_org_identity: global___OrganizationIdentity | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2529,7 +2529,13 @@ Module Contents
       Config for how data in this location is stored.
 
 
-   .. py:method:: HasField(field_name: Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on']) -> bool
+   .. py:property:: primary_org_identity
+      :type: global___OrganizationIdentity
+
+      The organization that is the primary owner of the location.
+
+
+   .. py:method:: HasField(field_name: Literal['_primary_org_identity', b'_primary_org_identity', 'auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'primary_org_identity', b'primary_org_identity']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2544,6 +2550,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_primary_org_identity', b'_primary_org_identity']) -> Literal['primary_org_identity'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

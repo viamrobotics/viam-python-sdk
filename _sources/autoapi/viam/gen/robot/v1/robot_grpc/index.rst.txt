@@ -187,6 +187,13 @@ Module Contents
 
 
 
+   .. py:method:: ListTunnels(stream: grpclib.server.Stream[robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -314,6 +321,11 @@ Module Contents
 
 
 
+   .. py:method:: ListTunnels(stream: grpclib.server.Stream[robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse]) -> None
+      :async:
+
+
+
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetOperations
@@ -383,5 +395,8 @@ Module Contents
 
 
    .. py:attribute:: Tunnel
+
+
+   .. py:attribute:: ListTunnels
 
 
