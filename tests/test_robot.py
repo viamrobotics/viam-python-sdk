@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional, Tuple
 from unittest import mock
 
 import pytest
-from google.protobuf.struct_pb2 import Struct, Value
 from grpclib.client import Channel
 from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
