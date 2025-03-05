@@ -18,10 +18,6 @@ from viam.proto.common import LogEntry, PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
     BlockForOperationRequest,
     CancelOperationRequest,
-    DiscoverComponentsRequest,
-    DiscoverComponentsResponse,
-    Discovery,
-    DiscoveryQuery,
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
@@ -726,53 +722,6 @@ class RobotClient:
 
     async def transform_point_cloud(self):
         raise NotImplementedError()
-
-    #######################
-    # COMPONENT DISCOVERY #
-    #######################
-
-    async def discover_components(
-        self,
-        queries: List[DiscoveryQuery],
-    ) -> List[Discovery]:
-        """
-        Deprecated: v0.38.0, use the Discovery Service APIs instead.
-        Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.
-        Returns module names for modules.
-
-        ::
-
-            from viam.proto.robot import DiscoveryQuery
-
-            # Define a new discovery query.
-            q = DiscoveryQuery(subtype="camera", model="webcam")
-
-            # Define a list of discovery queries.
-            qs = [q]
-
-            # Get component configurations with these queries.
-            component_configs = await machine.discover_components(qs)
-
-        Args:
-
-            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup potential configurations for.
-
-        Returns:
-            List[Discovery]: A list of discovered potential component configurations.
-
-        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
-        """
-        request = DiscoverComponentsRequest(queries=queries)
-        response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
-        warnings.warn(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        LOGGER.warning(
-            "RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead."
-        )
-        return list(response.discovery)
 
     #################
     # MODULE MODELS #
