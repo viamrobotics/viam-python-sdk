@@ -52,7 +52,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
-from viam.rpc.dial import DialOptions, ViamChannel, dial, _dial_inner
+from viam.rpc.dial import DialOptions, ViamChannel, _dial_inner, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
 from viam.utils import datetime_to_timestamp, dict_to_struct
