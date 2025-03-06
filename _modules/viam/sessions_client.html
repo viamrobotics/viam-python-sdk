@@ -88,11 +88,13 @@
              
   <h1>Source code for viam.sessions_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">pkgutil</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">Thread</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
@@ -101,25 +103,12 @@
 <span class="kn">from</span> <span class="nn">grpclib.metadata</span> <span class="kn">import</span> <span class="n">_MetadataLike</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.gen.common.v1.common_pb2</span> <span class="kn">import</span> <span class="n">safety_heartbeat_monitored</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">RobotServiceStub</span><span class="p">,</span> <span class="n">SendSessionHeartbeatRequest</span><span class="p">,</span> <span class="n">StartSessionRequest</span><span class="p">,</span> <span class="n">StartSessionResponse</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">SESSION_METADATA_KEY</span> <span class="o">=</span> <span class="s2">&quot;viam-sid&quot;</span>
-
-<span class="n">EXEMPT_METADATA_METHODS</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="s2">&quot;/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/proto.rpc.webrtc.v1.SignalingService/Call&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/proto.rpc.webrtc.v1.SignalingService/CallUpdate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/proto.rpc.webrtc.v1.SignalingService/OptionalWebRTCConfig&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/proto.rpc.v1.AuthService/Authenticate&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/viam.robot.v1.RobotService/ResourceNames&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/viam.robot.v1.RobotService/ResourceRPCSubtypes&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/viam.robot.v1.RobotService/StartSession&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;/viam.robot.v1.RobotService/SendSessionHeartbeat&quot;</span><span class="p">,</span>
-    <span class="p">]</span>
-<span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">_SupportedState</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
@@ -144,6 +133,8 @@
     <span class="n">_heartbeat_interval</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">timedelta</span><span class="p">]</span>
     <span class="n">_supported</span><span class="p">:</span> <span class="n">_SupportedState</span>
     <span class="n">_thread</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Thread</span><span class="p">]</span>
+
+    <span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">direct_dial_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">disabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
@@ -181,7 +172,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_disabled</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">method_name</span> <span class="ow">in</span> <span class="n">EXEMPT_METADATA_METHODS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_safety_heartbeat_monitored</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="p">):</span>
             <span class="k">return</span>
 
         <span class="n">event</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
@@ -271,7 +262,53 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">==</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span><span class="n">SESSION_METADATA_KEY</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">}</span>
 
-        <span class="k">return</span> <span class="p">{}</span></div>
+        <span class="k">return</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_is_safety_heartbeat_monitored</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span>
+
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">service_path</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">method_name</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">service_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;viam&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">resource_type</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">resource_subtype</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">service_name</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;viam.gen.</span><span class="si">{</span><span class="n">resource_type</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">resource_subtype</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">submods</span> <span class="o">=</span> <span class="n">pkgutil</span><span class="o">.</span><span class="n">iter_modules</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">__path__</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">submods</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;_pb2&quot;</span> <span class="ow">in</span> <span class="n">mod</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                    <span class="n">submod</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">mod</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">DESCRIPTOR</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">submod</span><span class="p">,</span> <span class="s2">&quot;DESCRIPTOR&quot;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">services_by_name</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                        <span class="k">if</span> <span class="n">service</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">service_name</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">method_actual</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">methods</span><span class="p">:</span>
+                                <span class="k">if</span> <span class="n">method_actual</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">method_name</span><span class="p">:</span>
+                                    <span class="n">options</span> <span class="o">=</span> <span class="n">method_actual</span><span class="o">.</span><span class="n">GetOptions</span><span class="p">()</span>
+                                    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">HasExtension</span><span class="p">(</span><span class="n">safety_heartbeat_monitored</span><span class="p">):</span>
+                                        <span class="n">is_monitored</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">Extensions</span><span class="p">[</span><span class="n">safety_heartbeat_monitored</span><span class="p">]</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">is_monitored</span>
+                                        <span class="k">return</span> <span class="n">is_monitored</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
 </pre></div>
 
            </div>
