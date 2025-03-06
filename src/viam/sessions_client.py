@@ -1,9 +1,11 @@
 import asyncio
+import importlib
+import pkgutil
 from copy import deepcopy
 from datetime import timedelta
 from enum import IntEnum
 from threading import Lock, Thread
-from typing import Optional
+from typing import MutableMapping, Optional
 
 from grpclib import Status
 from grpclib.client import Channel
@@ -12,25 +14,12 @@ from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
 from viam import logging
+from viam.gen.common.v1.common_pb2 import safety_heartbeat_monitored
 from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
 from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
-
-EXEMPT_METADATA_METHODS = frozenset(
-    [
-        "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
-        "/proto.rpc.webrtc.v1.SignalingService/Call",
-        "/proto.rpc.webrtc.v1.SignalingService/CallUpdate",
-        "/proto.rpc.webrtc.v1.SignalingService/OptionalWebRTCConfig",
-        "/proto.rpc.v1.AuthService/Authenticate",
-        "/viam.robot.v1.RobotService/ResourceNames",
-        "/viam.robot.v1.RobotService/ResourceRPCSubtypes",
-        "/viam.robot.v1.RobotService/StartSession",
-        "/viam.robot.v1.RobotService/SendSessionHeartbeat",
-    ]
-)
 
 
 class _SupportedState(IntEnum):
@@ -55,6 +44,8 @@ class SessionsClient:
     _heartbeat_interval: Optional[timedelta]
     _supported: _SupportedState
     _thread: Optional[Thread]
+
+    _HEARTBEAT_MONITORED_METHODS: MutableMapping[str, bool] = {}
 
     def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
@@ -92,7 +83,7 @@ class SessionsClient:
         if self._disabled:
             return
 
-        if event.method_name in EXEMPT_METADATA_METHODS:
+        if not self._is_safety_heartbeat_monitored(event.method_name):
             return
 
         event.metadata.update(await self.metadata)
@@ -183,3 +174,49 @@ class SessionsClient:
             return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
+
+    def _is_safety_heartbeat_monitored(self, method: str) -> bool:
+        if method in self._HEARTBEAT_MONITORED_METHODS:
+            return self._HEARTBEAT_MONITORED_METHODS[method]
+
+        parts = method.split("/")
+        if len(parts) != 3:
+            self._HEARTBEAT_MONITORED_METHODS[method] = False
+            return False
+        service_path = parts[1]
+        method_name = parts[2]
+
+        parts = service_path.split(".")
+        if len(parts) < 5:
+            self._HEARTBEAT_MONITORED_METHODS[method] = False
+            return False
+        if parts[0] != "viam":
+            self._HEARTBEAT_MONITORED_METHODS[method] = False
+            return False
+        resource_type = parts[1]
+        resource_subtype = parts[2]
+        version = parts[3]
+        service_name = parts[4]
+        try:
+            module = importlib.import_module(f"viam.gen.{resource_type}.{resource_subtype}.{version}")
+            submods = pkgutil.iter_modules(module.__path__)
+            for mod in submods:
+                if "_pb2" in mod.name:
+                    submod = getattr(module, mod.name)
+                    DESCRIPTOR = getattr(submod, "DESCRIPTOR")
+                    for service in DESCRIPTOR.services_by_name.values():
+                        if service.name == service_name:
+                            for method_actual in service.methods:
+                                if method_actual.name == method_name:
+                                    options = method_actual.GetOptions()
+                                    if options.HasExtension(safety_heartbeat_monitored):
+                                        is_monitored = options.Extensions[safety_heartbeat_monitored]
+                                        self._HEARTBEAT_MONITORED_METHODS[method] = is_monitored
+                                        return is_monitored
+                                    self._HEARTBEAT_MONITORED_METHODS[method] = False
+                                    return False
+            self._HEARTBEAT_MONITORED_METHODS[method] = False
+            return False
+        except Exception:
+            self._HEARTBEAT_MONITORED_METHODS[method] = False
+            return False

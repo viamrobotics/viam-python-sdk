@@ -123,3 +123,13 @@ async def test_sessions_disabled(service: MockRobot):
         assert await client.metadata == {}
         assert client._supported == _SupportedState.UNKNOWN
         assert not client._heartbeat_interval
+
+
+async def test_safete_heartbeat_monitored():
+    async with ChannelFor([]) as channel:
+        client = SessionsClient(channel, "", None, disabled=True)
+        is_monitored = client._is_safety_heartbeat_monitored("/viam.component.arm.v1.ArmService/MoveToPosition")
+        assert is_monitored is True
+
+        is_monitored = client._is_safety_heartbeat_monitored("/viam.component.camera.v1.CameraService/GetImage")
+        assert is_monitored is False
