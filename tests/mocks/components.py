@@ -28,6 +28,7 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
+from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
@@ -1010,6 +1011,35 @@ class MockServo(Servo):
         self.extra = extra
         self.timeout = timeout
         return self.geometries
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
+class MockSwitch(Switch):
+    def __init__(self, name: str, number_of_positions: int = 3, position: int = 0):
+        self.number_of_positions = number_of_positions
+        self.position = position
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
+        super().__init__(name)
+
+    async def get_position(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        self.extra = extra
+        self.timeout = timeout
+        return self.position
+
+    async def get_number_of_positions(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        self.extra = extra
+        self.timeout = timeout
+        return self.number_of_positions
+
+    async def set_position(
+        self, position: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> None:
+        self.extra = extra
+        self.timeout = timeout
+        self.position = position
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
