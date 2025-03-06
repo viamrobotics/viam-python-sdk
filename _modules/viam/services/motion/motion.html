@@ -136,7 +136,7 @@
 <span class="sd">        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with</span>
 <span class="sd">        originating ReferenceFrame&#39;s name. Then pass in the resource name into ``component_name``. Ex::</span>
 
-<span class="sd">            resource_name = Arm.get_resource_name(&quot;externalFrame&quot;)</span>
+<span class="sd">            resource_name = Gripper.get_resource_name(&quot;externalFrame&quot;)</span>
 <span class="sd">            success = await MotionServiceClient.move(resource_name, ...)</span>
 
 <span class="sd">        ::</span>
@@ -436,11 +436,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
-<span class="sd">            # (``Base``, ``Gripper``, etc).</span>
+<span class="sd">            # Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work</span>
+<span class="sd">            # (``Arm``, ``Base``, etc).</span>
 
 <span class="sd">            # Create a `component_name`:</span>
-<span class="sd">            component_name = Arm.get_resource_name(&quot;arm&quot;)</span>
+<span class="sd">            component_name = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
 
 <span class="sd">            from viam.components.gripper import Gripper</span>
 <span class="sd">            from viam.services.motion import MotionClient</span>

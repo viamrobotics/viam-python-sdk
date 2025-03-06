@@ -181,7 +181,7 @@
 <p>Note: Frames designated with respect to components can also be used as the <code class="docutils literal notranslate"><span class="pre">component_name</span></code> when calling for a move. This
 technique allows for planning and moving the frame itself to the <code class="docutils literal notranslate"><span class="pre">destination</span></code>. To do so, simply create a resource name with
 originating ReferenceFrame’s name. Then pass in the resource name into <code class="docutils literal notranslate"><span class="pre">component_name</span></code>. Ex:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;externalFrame&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_name</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;externalFrame&quot;</span><span class="p">)</span>
 <span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MotionServiceClient</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">resource_name</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -469,11 +469,11 @@ associated IDs of all plans within the TTL ordered by timestamp in ascending ord
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the Pose and observer frame for any given component on a robot.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
-<span class="c1"># (``Base``, ``Gripper``, etc).</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work</span>
+<span class="c1"># (``Arm``, ``Base``, etc).</span>
 
 <span class="c1"># Create a `component_name`:</span>
-<span class="n">component_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;arm&quot;</span><span class="p">)</span>
+<span class="n">component_name</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>
 <span class="kn">from</span> <span class="nn">viam.services.motion</span> <span class="kn">import</span> <span class="n">MotionClient</span>

@@ -40,7 +40,7 @@ Module Contents
       technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with
       originating ReferenceFrame's name. Then pass in the resource name into ``component_name``. Ex::
 
-          resource_name = Arm.get_resource_name("externalFrame")
+          resource_name = Gripper.get_resource_name("externalFrame")
           success = await MotionServiceClient.move(resource_name, ...)
 
       ::
@@ -318,11 +318,11 @@ Module Contents
 
       ::
 
-          # Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
-          # (``Base``, ``Gripper``, etc).
+          # Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work
+          # (``Arm``, ``Base``, etc).
 
           # Create a `component_name`:
-          component_name = Arm.get_resource_name("arm")
+          component_name = Gripper.get_resource_name("my_gripper")
 
           from viam.components.gripper import Gripper
           from viam.services.motion import MotionClient
