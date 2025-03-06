@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional, Tuple
 from unittest import mock
 
 import pytest
-from google.protobuf.struct_pb2 import Struct, Value
 from grpclib.client import Channel
 from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
@@ -21,8 +20,6 @@ from viam.proto.robot import (
     BlockForOperationResponse,
     CancelOperationRequest,
     CancelOperationResponse,
-    Discovery,
-    DiscoveryQuery,
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
@@ -82,20 +79,6 @@ CONFIG_RESPONSE = [
 ]
 
 TRANSFORM_RESPONSE = PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
-
-DISCOVERY_QUERY = DiscoveryQuery(subtype="camera", model="webcam")
-
-DISCOVERY_RESPONSE = [
-    Discovery(
-        query=DISCOVERY_QUERY,
-        results=Struct(
-            fields={
-                "foo": Value(string_value="bar"),
-                "one": Value(number_value=1),
-            }
-        ),
-    )
-]
 
 OPERATION_ID = "abc"
 
