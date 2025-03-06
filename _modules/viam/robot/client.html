@@ -89,7 +89,6 @@
   <h1>Source code for viam.robot.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
@@ -107,10 +106,6 @@
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BlockForOperationRequest</span><span class="p">,</span>
     <span class="n">CancelOperationRequest</span><span class="p">,</span>
-    <span class="n">DiscoverComponentsRequest</span><span class="p">,</span>
-    <span class="n">DiscoverComponentsResponse</span><span class="p">,</span>
-    <span class="n">Discovery</span><span class="p">,</span>
-    <span class="n">DiscoveryQuery</span><span class="p">,</span>
     <span class="n">FrameSystemConfig</span><span class="p">,</span>
     <span class="n">FrameSystemConfigRequest</span><span class="p">,</span>
     <span class="n">FrameSystemConfigResponse</span><span class="p">,</span>
@@ -815,53 +810,6 @@
 
 <div class="viewcode-block" id="RobotClient.transform_point_cloud"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_point_cloud">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-    <span class="c1">#######################</span>
-    <span class="c1"># COMPONENT DISCOVERY #</span>
-    <span class="c1">#######################</span>
-
-<div class="viewcode-block" id="RobotClient.discover_components"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.discover_components">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">discover_components</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DiscoveryQuery</span><span class="p">],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Discovery</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Deprecated: v0.38.0, use the Discovery Service APIs instead.</span>
-<span class="sd">        Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.</span>
-<span class="sd">        Returns module names for modules.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            from viam.proto.robot import DiscoveryQuery</span>
-
-<span class="sd">            # Define a new discovery query.</span>
-<span class="sd">            q = DiscoveryQuery(subtype=&quot;camera&quot;, model=&quot;webcam&quot;)</span>
-
-<span class="sd">            # Define a list of discovery queries.</span>
-<span class="sd">            qs = [q]</span>
-
-<span class="sd">            # Get component configurations with these queries.</span>
-<span class="sd">            component_configs = await machine.discover_components(qs)</span>
-
-<span class="sd">        Args:</span>
-
-<span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup potential configurations for.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[Discovery]: A list of discovered potential component configurations.</span>
-
-<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DiscoverComponentsRequest</span><span class="p">(</span><span class="n">queries</span><span class="o">=</span><span class="n">queries</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">DiscoverComponentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">DiscoverComponents</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-            <span class="s2">&quot;RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.&quot;</span><span class="p">,</span>
-            <span class="ne">DeprecationWarning</span><span class="p">,</span>
-            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">&quot;RobotClient.discover_components is deprecated. It will be removed on March 10 2025. Use the DiscoveryService APIs instead.&quot;</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">discovery</span><span class="p">)</span></div>
 
     <span class="c1">#################</span>
     <span class="c1"># MODULE MODELS #</span>

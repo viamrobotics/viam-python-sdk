@@ -89,7 +89,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_frame_system_config()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_point_cloud"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_point_cloud()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components"><code class="docutils literal notranslate"><span class="pre">RobotClient.discover_components()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_models_from_modules"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_models_from_modules()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
@@ -651,38 +650,6 @@ has finished or has been cancelled.</p>
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.client.RobotClient.discover_components">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><span class="pre">viam.proto.robot.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Discovery" title="viam.proto.robot.Discovery"><span class="pre">viam.proto.robot.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.discover_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
-<dd><p>Deprecated: v0.38.0, use the Discovery Service APIs instead.
-Get a list of discovered potential component configurations, for example listing different supported resolutions. Currently only works for some cameras.
-Returns module names for modules.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">DiscoveryQuery</span>
-
-<span class="c1"># Define a new discovery query.</span>
-<span class="n">q</span> <span class="o">=</span> <span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;webcam&quot;</span><span class="p">)</span>
-
-<span class="c1"># Define a list of discovery queries.</span>
-<span class="n">qs</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">]</span>
-
-<span class="c1"># Get component configurations with these queries.</span>
-<span class="n">component_configs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">discover_components</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><em>viam.proto.robot.DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup potential configurations for.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of discovered potential component configurations.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Discovery" title="viam.gen.robot.v1.robot_pb2.Discovery">Discovery</a>]</p>
-</dd>
-</dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
