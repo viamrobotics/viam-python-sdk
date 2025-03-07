@@ -7,7 +7,6 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 from ... import app
 from ... import common
-import google.protobuf.any_pb2
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 from ... import tagger
