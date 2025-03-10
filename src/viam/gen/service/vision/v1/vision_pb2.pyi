@@ -113,6 +113,10 @@ class Detection(google.protobuf.message.Message):
     Y_MAX_FIELD_NUMBER: builtins.int
     CONFIDENCE_FIELD_NUMBER: builtins.int
     CLASS_NAME_FIELD_NUMBER: builtins.int
+    X_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
+    Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
+    X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     x_min: builtins.int
     'the four corners of the box'
     y_min: builtins.int
@@ -122,14 +126,19 @@ class Detection(google.protobuf.message.Message):
     'the confidence of the detection'
     class_name: builtins.str
     'label associated with the detected object'
+    x_min_normalized: builtins.float
+    'the four corners of the box, in proportion to the respective image dimension'
+    y_min_normalized: builtins.float
+    x_max_normalized: builtins.float
+    y_max_normalized: builtins.float
 
-    def __init__(self, *, x_min: builtins.int | None=..., y_min: builtins.int | None=..., x_max: builtins.int | None=..., y_max: builtins.int | None=..., confidence: builtins.float=..., class_name: builtins.str=...) -> None:
+    def __init__(self, *, x_min: builtins.int | None=..., y_min: builtins.int | None=..., x_max: builtins.int | None=..., y_max: builtins.int | None=..., confidence: builtins.float=..., class_name: builtins.str=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_max_normalized', b'_x_max_normalized', '_x_min', b'_x_min', '_x_min_normalized', b'_x_min_normalized', '_y_max', b'_y_max', '_y_max_normalized', b'_y_max_normalized', '_y_min', b'_y_min', '_y_min_normalized', b'_y_min_normalized', 'x_max', b'x_max', 'x_max_normalized', b'x_max_normalized', 'x_min', b'x_min', 'x_min_normalized', b'x_min_normalized', 'y_max', b'y_max', 'y_max_normalized', b'y_max_normalized', 'y_min', b'y_min', 'y_min_normalized', b'y_min_normalized']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
+    def ClearField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_max_normalized', b'_x_max_normalized', '_x_min', b'_x_min', '_x_min_normalized', b'_x_min_normalized', '_y_max', b'_y_max', '_y_max_normalized', b'_y_max_normalized', '_y_min', b'_y_min', '_y_min_normalized', b'_y_min_normalized', 'class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_max_normalized', b'x_max_normalized', 'x_min', b'x_min', 'x_min_normalized', b'x_min_normalized', 'y_max', b'y_max', 'y_max_normalized', b'y_max_normalized', 'y_min', b'y_min', 'y_min_normalized', b'y_min_normalized']) -> None:
         ...
 
     @typing.overload
@@ -137,7 +146,15 @@ class Detection(google.protobuf.message.Message):
         ...
 
     @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_x_max_normalized', b'_x_max_normalized']) -> typing.Literal['x_max_normalized'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_x_min', b'_x_min']) -> typing.Literal['x_min'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_x_min_normalized', b'_x_min_normalized']) -> typing.Literal['x_min_normalized'] | None:
         ...
 
     @typing.overload
@@ -145,7 +162,15 @@ class Detection(google.protobuf.message.Message):
         ...
 
     @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_y_max_normalized', b'_y_max_normalized']) -> typing.Literal['y_max_normalized'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_y_min', b'_y_min']) -> typing.Literal['y_min'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_y_min_normalized', b'_y_min_normalized']) -> typing.Literal['y_min_normalized'] | None:
         ...
 global___Detection = Detection
 
