@@ -170,6 +170,27 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ConfigStatus.HasField"><code class="docutils literal notranslate"><span class="pre">ConfigStatus.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsRequest"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsRequest.queries"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest.queries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsResponse"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsResponse.discovery"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse.discovery</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.Discovery"><code class="docutils literal notranslate"><span class="pre">Discovery</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Discovery.query"><code class="docutils literal notranslate"><span class="pre">Discovery.query</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Discovery.results"><code class="docutils literal notranslate"><span class="pre">Discovery.results</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Discovery.HasField"><code class="docutils literal notranslate"><span class="pre">Discovery.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery.subtype"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.subtype</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery.model"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.model</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery.extra"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.extra</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery.HasField"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.frame</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.kinematics"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.kinematics</span></code></a></li>
@@ -472,6 +493,18 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.ConfigStatus" title="viam.proto.robot.ConfigStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigStatus</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsRequest" title="viam.proto.robot.DiscoverComponentsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoverComponentsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.DiscoverComponentsResponse" title="viam.proto.robot.DiscoverComponentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoverComponentsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.Discovery" title="viam.proto.robot.Discovery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Discovery</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiscoveryQuery</span></code></a></p></td>
+<td><p>Discovery</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -1192,6 +1225,125 @@ shown below.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.ConfigStatus.HasField">
 <span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'last_updated'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'last_updated'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.ConfigStatus.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoverComponentsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">DiscoverComponentsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DiscoveryQuery</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.DiscoverComponentsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoverComponentsRequest.queries">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DiscoveryQuery</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.DiscoverComponentsRequest.queries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoverComponentsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">DiscoverComponentsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discovery</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Discovery</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.DiscoverComponentsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoverComponentsResponse.discovery">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovery</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Discovery</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.DiscoverComponentsResponse.discovery" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.Discovery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">Discovery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DiscoveryQuery</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.Discovery" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.Discovery.query">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DiscoveryQuery</span></em><a class="headerlink" href="#viam.proto.robot.Discovery.query" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.Discovery.results">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">results</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.robot.Discovery.results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.Discovery.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'query'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'query'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'results'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'results'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.Discovery.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoveryQuery">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">DiscoveryQuery</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.DiscoveryQuery" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Discovery
+Discovery is deprecated</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoveryQuery.subtype">
+<span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.DiscoveryQuery.subtype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoveryQuery.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.DiscoveryQuery.model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoveryQuery.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.robot.DiscoveryQuery.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.DiscoveryQuery.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.DiscoveryQuery.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
