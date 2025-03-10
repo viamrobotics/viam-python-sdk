@@ -1,0 +1,229 @@
+viam.components.switch.switch
+=============================
+
+.. py:module:: viam.components.switch.switch
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.switch.switch.Switch
+
+
+Module Contents
+---------------
+
+.. py:class:: Switch(name: str, *, logger: Optional[logging.Logger] = None)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+
+   Switch represents a device with two or more finite states (or positions) than can be set and retrieved.
+
+   This acts as an abstract base class for any drivers representing specific
+   switch implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   ::
+
+       from viam.components.switch import Switch
+
+   For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/>`_.
+
+
+   .. py:attribute:: API
+      :type:  Final
+
+      The API of the Resource
+
+
+   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+      :abstractmethod:
+
+      :async:
+
+
+      Get the current position of the switch
+
+      ::
+
+          my_switch = Switch.from_robot(robot=machine, name="my_switch")
+
+          # Update the switch from its current position to the desired position of 1.
+          await my_switch.set_position(1)
+
+          # Get the current set position of the switch.
+          pos1 = await my_switch.get_position()
+
+          # Update the switch from its current position to the desired position.
+          await my_switch.set_position(0)
+
+          # Get the current set position of the switch.
+          pos2 = await my_switch.get_position()
+
+      :returns: The current position of the switch within the range of available positions.
+      :rtype: int
+
+      For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/Switch/#getposition>`_.
+
+
+
+   .. py:method:: set_position(position: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
+      :abstractmethod:
+
+      :async:
+
+
+      Sets the current position of the switch.
+
+      ::
+
+          my_switch = Switch.from_robot(robot=machine, name="my_switch")
+
+          # Update the switch from its current position to the desired position of 1.
+          await my_switch.set_position(1)
+
+          # Update the switch from its current position to the desired position of 0.
+          await my_switch.set_position(0)
+
+      :param position: The position of the switch within the range of available positions.
+      :type position: int
+
+      For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#setposition>`_.
+
+
+
+   .. py:method:: get_number_of_positions(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+      :abstractmethod:
+
+      :async:
+
+
+      Get the number of available positions on the switch.
+
+      ::
+
+          my_switch = Switch.from_robot(robot=machine, name="my_switch")
+
+          print(await my_switch.get_number_of_positions())
+
+      :returns: The number of available positions.
+      :rtype: int
+
+      For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#getnumberofpositions>`_.
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = await component.do_command(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = Arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+

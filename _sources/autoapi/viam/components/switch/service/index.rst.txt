@@ -1,0 +1,48 @@
+viam.components.switch.service
+==============================
+
+.. py:module:: viam.components.switch.service
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.switch.service.SwitchRPCService
+
+
+Module Contents
+---------------
+
+.. py:class:: SwitchRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.component.switch.SwitchServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.switch.switch.Switch`\ ]
+
+
+   gRPC Service for a generic Switch
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[viam.gen.component.switch.v1.switch_pb2.GetPositionRequest, viam.gen.component.switch.v1.switch_pb2.GetPositionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: SetPosition(stream: grpclib.server.Stream[viam.gen.component.switch.v1.switch_pb2.SetPositionRequest, viam.gen.component.switch.v1.switch_pb2.SetPositionResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetNumberOfPositions(stream: grpclib.server.Stream[viam.gen.component.switch.v1.switch_pb2.GetNumberOfPositionsRequest, viam.gen.component.switch.v1.switch_pb2.GetNumberOfPositionsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
