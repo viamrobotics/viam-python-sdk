@@ -1,8 +1,8 @@
 import abc
 from typing import Any, Final, Mapping, Optional
 
-from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.components.component_base import ComponentBase
+from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 
 class Switch(ComponentBase):

@@ -1,16 +1,16 @@
 from grpclib.server import Stream
 
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-)
 from viam.gen.component.switch.v1.switch_pb2 import (
+    GetNumberOfPositionsRequest,
+    GetNumberOfPositionsResponse,
     GetPositionRequest,
     GetPositionResponse,
     SetPositionRequest,
     SetPositionResponse,
-    GetNumberOfPositionsRequest,
-    GetNumberOfPositionsResponse,
+)
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
 )
 from viam.proto.component.switch import SwitchServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
