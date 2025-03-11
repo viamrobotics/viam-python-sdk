@@ -91,18 +91,18 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
+<span class="kn">from</span> <span class="nn">viam.gen.component.switch.v1.switch_pb2</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetNumberOfPositionsRequest</span><span class="p">,</span>
+    <span class="n">GetNumberOfPositionsResponse</span><span class="p">,</span>
+    <span class="n">GetPositionRequest</span><span class="p">,</span>
+    <span class="n">GetPositionResponse</span><span class="p">,</span>
+    <span class="n">SetPositionRequest</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DoCommandRequest</span><span class="p">,</span>
     <span class="n">DoCommandResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.switch</span> <span class="kn">import</span> <span class="n">SwitchServiceStub</span>
-<span class="kn">from</span> <span class="nn">viam.gen.component.switch.v1.switch_pb2</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">GetPositionRequest</span><span class="p">,</span>
-    <span class="n">GetPositionResponse</span><span class="p">,</span>
-    <span class="n">SetPositionRequest</span><span class="p">,</span>
-    <span class="n">GetNumberOfPositionsRequest</span><span class="p">,</span>
-    <span class="n">GetNumberOfPositionsResponse</span><span class="p">,</span>
-<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ValueTypes</span><span class="p">,</span>

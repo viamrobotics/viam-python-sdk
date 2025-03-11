@@ -288,6 +288,8 @@ Attributes
    viam.gen.app.v1.app_pb2.global___RotateKeyResponse
    viam.gen.app.v1.app_pb2.global___CreateKeyFromExistingKeyAuthorizationsRequest
    viam.gen.app.v1.app_pb2.global___CreateKeyFromExistingKeyAuthorizationsResponse
+   viam.gen.app.v1.app_pb2.global___GetAppContentRequest
+   viam.gen.app.v1.app_pb2.global___GetAppContentResponse
    viam.gen.app.v1.app_pb2.global___OrganizationSetLogoRequest
    viam.gen.app.v1.app_pb2.global___OrganizationSetLogoResponse
    viam.gen.app.v1.app_pb2.global___OrganizationGetLogoRequest
@@ -548,6 +550,8 @@ Classes
    viam.gen.app.v1.app_pb2.RotateKeyResponse
    viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest
    viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse
+   viam.gen.app.v1.app_pb2.GetAppContentRequest
+   viam.gen.app.v1.app_pb2.GetAppContentResponse
    viam.gen.app.v1.app_pb2.OrganizationSetLogoRequest
    viam.gen.app.v1.app_pb2.OrganizationSetLogoResponse
    viam.gen.app.v1.app_pb2.OrganizationGetLogoRequest
@@ -6508,7 +6512,7 @@ Module Contents
 
 .. py:data:: global___CreateRegistryItemResponse
 
-.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ..., module_update_metadata: global___UpdateModuleMetadata | None = ..., ml_model_update_metadata: global___UpdateMLModelMetadata | None = ..., ml_training_update_metadata: global___UpdateMLTrainingMetadata | None = ...)
+.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ..., update_module_metadata: global___UpdateModuleMetadata | None = ..., update_ml_model_metadata: global___UpdateMLModelMetadata | None = ..., update_ml_training_metadata: global___UpdateMLTrainingMetadata | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6540,22 +6544,22 @@ Module Contents
       :type:  str
 
 
-   .. py:property:: module_update_metadata
+   .. py:property:: update_module_metadata
       :type: global___UpdateModuleMetadata
 
 
 
-   .. py:property:: ml_model_update_metadata
+   .. py:property:: update_ml_model_metadata
       :type: global___UpdateMLModelMetadata
 
 
 
-   .. py:property:: ml_training_update_metadata
+   .. py:property:: update_ml_training_metadata
       :type: global___UpdateMLTrainingMetadata
 
 
 
-   .. py:method:: HasField(field_name: Literal['_url', b'_url', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'url', b'url']) -> bool
+   .. py:method:: HasField(field_name: Literal['_url', b'_url', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -6574,7 +6578,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_url', b'_url']) -> Literal['url'] | None
-                  WhichOneof(oneof_group: Literal['metadata', b'metadata']) -> Literal['module_update_metadata', 'ml_model_update_metadata', 'ml_training_update_metadata'] | None
+                  WhichOneof(oneof_group: Literal['metadata', b'metadata']) -> Literal['update_module_metadata', 'update_ml_model_metadata', 'update_ml_training_metadata'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7028,7 +7032,7 @@ Module Contents
 
 .. py:data:: global___UpdateMLTrainingMetadata
 
-.. py:class:: Model(*, api: str = ..., model: str = ..., markdown_documentation: str | None = ..., description: str | None = ...)
+.. py:class:: Model(*, api: str = ..., model: str = ..., markdown_documentation: str | None = ..., description: str | None = ..., supported_hardware: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7062,6 +7066,12 @@ Module Contents
       :type:  str
 
       A short description of the model that explains its purpose
+
+
+   .. py:property:: supported_hardware
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      A list of supported hardware names
 
 
    .. py:method:: HasField(field_name: Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'description', b'description', 'markdown_documentation', b'markdown_documentation']) -> bool
@@ -8189,6 +8199,46 @@ Module Contents
 
 
 .. py:data:: global___CreateKeyFromExistingKeyAuthorizationsResponse
+
+.. py:class:: GetAppContentRequest(*, public_namespace: str = ..., name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: public_namespace
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:data:: global___GetAppContentRequest
+
+.. py:class:: GetAppContentResponse(*, url: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: url
+      :type:  str
+
+
+.. py:data:: global___GetAppContentResponse
 
 .. py:class:: OrganizationSetLogoRequest(*, org_id: str = ..., logo: bytes = ...)
 

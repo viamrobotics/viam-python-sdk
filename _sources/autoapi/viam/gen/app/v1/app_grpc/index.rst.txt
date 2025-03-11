@@ -726,6 +726,13 @@ Module Contents
 
 
 
+   .. py:method:: GetAppContent(stream: grpclib.server.Stream[app.v1.app_pb2.GetAppContentRequest, app.v1.app_pb2.GetAppContentResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -1238,6 +1245,11 @@ Module Contents
 
 
 
+   .. py:method:: GetAppContent(stream: grpclib.server.Stream[app.v1.app_pb2.GetAppContentRequest, app.v1.app_pb2.GetAppContentResponse]) -> None
+      :async:
+
+
+
 .. py:class:: AppServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetUserIDByEmail
@@ -1538,5 +1550,8 @@ Module Contents
 
 
    .. py:attribute:: CreateKeyFromExistingKeyAuthorizations
+
+
+   .. py:attribute:: GetAppContent
 
 
