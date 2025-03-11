@@ -7,8 +7,4 @@ from .switch import Switch
 
 __all__ = ["Switch"]
 
-Registry.register_api(
-    ResourceRegistration(
-        Switch, SwitchRPCService, lambda name, channel: SwitchClient(name, channel)
-    )
-)
+Registry.register_api(ResourceRegistration(Switch, SwitchRPCService, lambda name, channel: SwitchClient(name, channel)))

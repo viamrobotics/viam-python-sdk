@@ -2,18 +2,18 @@ from typing import Any, Mapping, Optional
 
 from grpclib.client import Channel
 
+from viam.gen.component.switch.v1.switch_pb2 import (
+    GetNumberOfPositionsRequest,
+    GetNumberOfPositionsResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    SetPositionRequest,
+)
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
 )
 from viam.proto.component.switch import SwitchServiceStub
-from viam.gen.component.switch.v1.switch_pb2 import (
-    GetPositionRequest,
-    GetPositionResponse,
-    SetPositionRequest,
-    GetNumberOfPositionsRequest,
-    GetNumberOfPositionsResponse,
-)
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import (
     ValueTypes,
