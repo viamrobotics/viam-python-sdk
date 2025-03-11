@@ -1,18 +1,18 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.switch.service import SwitchRPCService
 from viam.components.switch import SwitchClient
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-)
+from viam.components.switch.service import SwitchRPCService
 from viam.gen.component.switch.v1.switch_pb2 import (
+    GetNumberOfPositionsRequest,
+    GetNumberOfPositionsResponse,
     GetPositionRequest,
     GetPositionResponse,
     SetPositionRequest,
-    GetNumberOfPositionsRequest,
-    GetNumberOfPositionsResponse,
+)
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
 )
 from viam.proto.component.switch import SwitchServiceStub
 from viam.resource.manager import ResourceManager

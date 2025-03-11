@@ -3580,9 +3580,9 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTION_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
-    MODULE_UPDATE_METADATA_FIELD_NUMBER: builtins.int
-    ML_MODEL_UPDATE_METADATA_FIELD_NUMBER: builtins.int
-    ML_TRAINING_UPDATE_METADATA_FIELD_NUMBER: builtins.int
+    UPDATE_MODULE_METADATA_FIELD_NUMBER: builtins.int
+    UPDATE_ML_MODEL_METADATA_FIELD_NUMBER: builtins.int
+    UPDATE_ML_TRAINING_METADATA_FIELD_NUMBER: builtins.int
     item_id: builtins.str
     type: app.packages.v1.packages_pb2.PackageType.ValueType
     description: builtins.str
@@ -3590,24 +3590,24 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     url: builtins.str
 
     @property
-    def module_update_metadata(self) -> global___UpdateModuleMetadata:
+    def update_module_metadata(self) -> global___UpdateModuleMetadata:
         ...
 
     @property
-    def ml_model_update_metadata(self) -> global___UpdateMLModelMetadata:
+    def update_ml_model_metadata(self) -> global___UpdateMLModelMetadata:
         ...
 
     @property
-    def ml_training_update_metadata(self) -> global___UpdateMLTrainingMetadata:
+    def update_ml_training_metadata(self) -> global___UpdateMLTrainingMetadata:
         ...
 
-    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=..., module_update_metadata: global___UpdateModuleMetadata | None=..., ml_model_update_metadata: global___UpdateMLModelMetadata | None=..., ml_training_update_metadata: global___UpdateMLTrainingMetadata | None=...) -> None:
+    def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str | None=..., update_module_metadata: global___UpdateModuleMetadata | None=..., update_ml_model_metadata: global___UpdateMLModelMetadata | None=..., update_ml_training_metadata: global___UpdateMLTrainingMetadata | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_url', b'_url', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'url', b'url']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_url', b'_url', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_update_metadata', b'ml_model_update_metadata', 'ml_training_update_metadata', b'ml_training_update_metadata', 'module_update_metadata', b'module_update_metadata', 'type', b'type', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['_url', b'_url', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'type', b'type', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 
     @typing.overload
@@ -3615,7 +3615,7 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal['metadata', b'metadata']) -> typing.Literal['module_update_metadata', 'ml_model_update_metadata', 'ml_training_update_metadata'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['metadata', b'metadata']) -> typing.Literal['update_module_metadata', 'update_ml_model_metadata', 'update_ml_training_metadata'] | None:
         ...
 global___UpdateRegistryItemRequest = UpdateRegistryItemRequest
 
@@ -3899,6 +3899,7 @@ class Model(google.protobuf.message.Message):
     MODEL_FIELD_NUMBER: builtins.int
     MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
+    SUPPORTED_HARDWARE_FIELD_NUMBER: builtins.int
     api: builtins.str
     'The colon-delimited-triplet of the api implemented by the model'
     model: builtins.str
@@ -3908,13 +3909,17 @@ class Model(google.protobuf.message.Message):
     description: builtins.str
     'A short description of the model that explains its purpose'
 
-    def __init__(self, *, api: builtins.str=..., model: builtins.str=..., markdown_documentation: builtins.str | None=..., description: builtins.str | None=...) -> None:
+    @property
+    def supported_hardware(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """A list of supported hardware names"""
+
+    def __init__(self, *, api: builtins.str=..., model: builtins.str=..., markdown_documentation: builtins.str | None=..., description: builtins.str | None=..., supported_hardware: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'description', b'description', 'markdown_documentation', b'markdown_documentation']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'description', b'description', 'markdown_documentation', b'markdown_documentation', 'model', b'model']) -> None:
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_markdown_documentation', b'_markdown_documentation', 'api', b'api', 'description', b'description', 'markdown_documentation', b'markdown_documentation', 'model', b'model', 'supported_hardware', b'supported_hardware']) -> None:
         ...
 
     @typing.overload
@@ -4549,6 +4554,34 @@ class CreateKeyFromExistingKeyAuthorizationsResponse(google.protobuf.message.Mes
     def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___CreateKeyFromExistingKeyAuthorizationsResponse = CreateKeyFromExistingKeyAuthorizationsResponse
+
+@typing.final
+class GetAppContentRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    public_namespace: builtins.str
+    name: builtins.str
+
+    def __init__(self, *, public_namespace: builtins.str=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+global___GetAppContentRequest = GetAppContentRequest
+
+@typing.final
+class GetAppContentResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    URL_FIELD_NUMBER: builtins.int
+    url: builtins.str
+
+    def __init__(self, *, url: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['url', b'url']) -> None:
+        ...
+global___GetAppContentResponse = GetAppContentResponse
 
 @typing.final
 class OrganizationSetLogoRequest(google.protobuf.message.Message):
