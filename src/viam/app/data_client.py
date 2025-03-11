@@ -1210,8 +1210,9 @@ class DataClient:
 
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to add to dataset. To retrieve these IDs,
-                navigate to your dataset's page in the Viam app,
-                click **...** in the left-hand menu, and click **Copy dataset ID**.
+                navigate to your data page, click on an image and copy its File ID from the details tab.
+                To retrieve the dataset ID, navigate to your dataset's page in the Viam app,
+                and use the left-hand menu to copy the dataset ID.
             dataset_id (str): The ID of the dataset to be added to.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
@@ -1250,8 +1251,9 @@ class DataClient:
 
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset. To retrieve these IDs,
-                navigate to your dataset's page in the Viam app,
-                click **...** in the left-hand menu, and click **Copy dataset ID**.
+                navigate to your data page, click on an image and copy its File ID from the details tab. To
+                retrieve the dataset ID, navigate to your dataset's page in the Viam app, and use the
+                left-hand menu to copy the dataset ID.
             dataset_id (str): The ID of the dataset to be removed from.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
