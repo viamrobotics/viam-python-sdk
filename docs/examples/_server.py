@@ -192,8 +192,6 @@ from viam.proto.app.data import (
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
     UnimplementedDataServiceBase,
 )
 from viam.proto.app.datasync import (
@@ -285,9 +283,6 @@ class MockData(UnimplementedDataServiceBase):
     async def RemoveTagsFromBinaryDataByFilter(
         self, stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
     ) -> None:
-        pass
-
-    async def TagsByFilter(self, stream: Stream[TagsByFilterRequest, TagsByFilterResponse]) -> None:
         pass
 
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
