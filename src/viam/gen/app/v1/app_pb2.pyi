@@ -3797,6 +3797,7 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     visibility: global___Visibility.ValueType
@@ -3814,18 +3815,42 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'apps', b'apps', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
+
+@typing.final
+class App(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The name of the application'
+    type: builtins.str
+    'The type of the application'
+    entrypoint: builtins.str
+    'The entrypoint of the application'
+
+    def __init__(self, *, name: builtins.str=..., type: builtins.str=..., entrypoint: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'name', b'name', 'type', b'type']) -> None:
+        ...
+global___App = App
 
 @typing.final
 class UpdateModuleResponse(google.protobuf.message.Message):
