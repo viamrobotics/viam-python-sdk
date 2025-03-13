@@ -2,7 +2,7 @@ import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union, cast
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -623,11 +623,13 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids>`_.
         """
-        request = BinaryDataByIDsRequest(include_binary=True)
+        request = BinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+            binary_data_ids = cast(List[str], binary_ids)
+            request = BinaryDataByIDsRequest(binary_data_ids=binary_data_ids, include_binary=True)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = BinaryDataByIDsRequest(binary_ids=bin_ids, include_binary=True)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
         if dest:
             try:
@@ -733,9 +735,11 @@ class DataClient:
         """
         request = DeleteBinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+            binary_data_ids = cast(List[str], binary_ids)
+            request = DeleteBinaryDataByIDsRequest(binary_data_ids=binary_data_ids)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = DeleteBinaryDataByIDsRequest(binary_ids=bin_ids)
         response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
         return response.deleted_count
 
@@ -776,11 +780,13 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
         """
-        request = AddTagsToBinaryDataByIDsRequest(tags=tags)
+        request = AddTagsToBinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+            binary_data_ids = cast(List[str], binary_ids)
+            request = AddTagsToBinaryDataByIDsRequest(binary_data_ids=binary_data_ids, tags=tags)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = AddTagsToBinaryDataByIDsRequest(binary_ids=bin_ids, tags=tags)
         await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
 
     async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
@@ -852,9 +858,11 @@ class DataClient:
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(tags=tags)
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+            binary_data_ids = cast(List[str], binary_ids)
+            request = RemoveTagsFromBinaryDataByIDsRequest(binary_data_ids=binary_data_ids, tags=tags)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=bin_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
             request, metadata=self._metadata
         )
@@ -956,17 +964,25 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addboundingboxtoimagebyid>`_.
         """
-        request = AddBoundingBoxToImageByIDRequest(
-            label=label,
-            x_max_normalized=x_max_normalized,
-            x_min_normalized=x_min_normalized,
-            y_max_normalized=y_max_normalized,
-            y_min_normalized=y_min_normalized,
-        )
+        request = AddBoundingBoxToImageByIDRequest()
         if isinstance(binary_id, str):
-            request.binary_data_id = binary_id
+            request = AddBoundingBoxToImageByIDRequest(
+                binary_data_id=binary_id,
+                label=label,
+                x_max_normalized=x_max_normalized,
+                x_min_normalized=x_min_normalized,
+                y_max_normalized=y_max_normalized,
+                y_min_normalized=y_min_normalized,
+            )
         else:
-            request.binary_id = binary_id
+            request = AddBoundingBoxToImageByIDRequest(
+                binary_id=binary_id,
+                label=label,
+                x_max_normalized=x_max_normalized,
+                x_min_normalized=x_min_normalized,
+                y_max_normalized=y_max_normalized,
+                y_min_normalized=y_min_normalized,
+            )
         response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
         return response.bbox_id
 
@@ -989,11 +1005,17 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
         """
-        request = RemoveBoundingBoxFromImageByIDRequest(bbox_id=bbox_id)
+        request = RemoveBoundingBoxFromImageByIDRequest()
         if isinstance(binary_id, str):
-            request.binary_data_id = binary_id
+            request = RemoveBoundingBoxFromImageByIDRequest(
+                binary_data_id=binary_id,
+                bbox_id=bbox_id
+            )
         else:
-            request.binary_id = binary_id
+            request = RemoveBoundingBoxFromImageByIDRequest(
+                binary_id=binary_id,
+                bbox_id=bbox_id
+            )
 
         await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
 
@@ -1211,11 +1233,13 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
         """
-        request = AddBinaryDataToDatasetByIDsRequest(dataset_id=dataset_id)
-        if isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+        request = AddBinaryDataToDatasetByIDsRequest()
+        if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
+            binary_data_ids = cast(List[str], binary_ids)
+            request = AddBinaryDataToDatasetByIDsRequest(binary_data_ids=binary_data_ids, dataset_id=dataset_id)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = AddBinaryDataToDatasetByIDsRequest(binary_ids=bin_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
 
     async def remove_binary_data_from_dataset_by_ids(self, binary_ids: Union[List[BinaryID], List[str]], dataset_id: str) -> None:
@@ -1252,11 +1276,13 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
         """
-        request = RemoveBinaryDataFromDatasetByIDsRequest(dataset_id=dataset_id)
-        if isinstance(binary_ids[0], str):
-            request.binary_data_ids = binary_ids
+        request = RemoveBinaryDataFromDatasetByIDsRequest()
+        if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
+            binary_data_ids = cast(List[str], binary_ids)
+            request = RemoveBinaryDataFromDatasetByIDsRequest(binary_data_ids=binary_data_ids, dataset_id=dataset_id)
         else:
-            request.binary_ids = binary_ids
+            bin_ids = cast(List[BinaryID], binary_ids)
+            request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=bin_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
 
     async def binary_data_capture_upload(
