@@ -1007,15 +1007,9 @@ class DataClient:
         """
         request = RemoveBoundingBoxFromImageByIDRequest()
         if isinstance(binary_id, str):
-            request = RemoveBoundingBoxFromImageByIDRequest(
-                binary_data_id=binary_id,
-                bbox_id=bbox_id
-            )
+            request = RemoveBoundingBoxFromImageByIDRequest(binary_data_id=binary_id, bbox_id=bbox_id)
         else:
-            request = RemoveBoundingBoxFromImageByIDRequest(
-                binary_id=binary_id,
-                bbox_id=bbox_id
-            )
+            request = RemoveBoundingBoxFromImageByIDRequest(binary_id=binary_id, bbox_id=bbox_id)
 
         await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
 
