@@ -2836,6 +2836,200 @@ class ListMachineFragmentsResponse(google.protobuf.message.Message):
 global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
 
 @typing.final
+class ListMachineSummariesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
+        ...
+global___ListMachineSummariesRequest = ListMachineSummariesRequest
+
+@typing.final
+class ListMachineSummariesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_SUMMARIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def location_summaries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSummary]:
+        ...
+
+    def __init__(self, *, location_summaries: collections.abc.Iterable[global___LocationSummary] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_summaries', b'location_summaries']) -> None:
+        ...
+global___ListMachineSummariesResponse = ListMachineSummariesResponse
+
+@typing.final
+class LocationSummary(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    LOCATION_NAME_FIELD_NUMBER: builtins.int
+    MACHINE_SUMMARIES_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+    location_name: builtins.str
+
+    @property
+    def machine_summaries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MachineSummary]:
+        ...
+
+    def __init__(self, *, location_id: builtins.str=..., location_name: builtins.str=..., machine_summaries: collections.abc.Iterable[global___MachineSummary] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'location_name', b'location_name', 'machine_summaries', b'machine_summaries']) -> None:
+        ...
+global___LocationSummary = LocationSummary
+
+@typing.final
+class MachineSummary(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MACHINE_ID_FIELD_NUMBER: builtins.int
+    MACHINE_NAME_FIELD_NUMBER: builtins.int
+    PART_SUMMARIES_FIELD_NUMBER: builtins.int
+    machine_id: builtins.str
+    machine_name: builtins.str
+
+    @property
+    def part_summaries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PartSummary]:
+        ...
+
+    def __init__(self, *, machine_id: builtins.str=..., machine_name: builtins.str=..., part_summaries: collections.abc.Iterable[global___PartSummary] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['machine_id', b'machine_id', 'machine_name', b'machine_name', 'part_summaries', b'part_summaries']) -> None:
+        ...
+global___MachineSummary = MachineSummary
+
+@typing.final
+class FragmentSummary(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    name: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
+        ...
+global___FragmentSummary = FragmentSummary
+
+@typing.final
+class ViamServerVersion(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MAJOR_FIELD_NUMBER: builtins.int
+    MINOR_FIELD_NUMBER: builtins.int
+    major: builtins.str
+    minor: builtins.str
+
+    def __init__(self, *, major: builtins.str=..., minor: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['major', b'major', 'minor', b'minor', 'version', b'version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['major', b'major', 'minor', b'minor', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['version', b'version']) -> typing.Literal['major', 'minor'] | None:
+        ...
+global___ViamServerVersion = ViamServerVersion
+
+@typing.final
+class ViamAgentVersion(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MAJOR_FIELD_NUMBER: builtins.int
+    MINOR_FIELD_NUMBER: builtins.int
+    major: builtins.str
+    minor: builtins.str
+
+    def __init__(self, *, major: builtins.str=..., minor: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['major', b'major', 'minor', b'minor', 'version', b'version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['major', b'major', 'minor', b'minor', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['version', b'version']) -> typing.Literal['major', 'minor'] | None:
+        ...
+global___ViamAgentVersion = ViamAgentVersion
+
+@typing.final
+class PartSummary(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    PART_NAME_FIELD_NUMBER: builtins.int
+    LAST_ONLINE_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
+    VIAM_AGENT_VERSION_FIELD_NUMBER: builtins.int
+    OS_FIELD_NUMBER: builtins.int
+    PLATFORM_FIELD_NUMBER: builtins.int
+    PUBLIC_IP_ADDRESS_FIELD_NUMBER: builtins.int
+    FRAGMENTS_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    part_name: builtins.str
+    os: builtins.str
+    platform: builtins.str
+    public_ip_address: builtins.str
+
+    @property
+    def last_online(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def viam_server_version(self) -> global___ViamServerVersion:
+        ...
+
+    @property
+    def viam_agent_version(self) -> global___ViamAgentVersion:
+        ...
+
+    @property
+    def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentSummary]:
+        ...
+
+    def __init__(self, *, part_id: builtins.str=..., part_name: builtins.str=..., last_online: google.protobuf.timestamp_pb2.Timestamp | None=..., viam_server_version: global___ViamServerVersion | None=..., viam_agent_version: global___ViamAgentVersion | None=..., os: builtins.str | None=..., platform: builtins.str | None=..., public_ip_address: builtins.str | None=..., fragments: collections.abc.Iterable[global___FragmentSummary] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'fragments', b'fragments', 'last_online', b'last_online', 'os', b'os', 'part_id', b'part_id', 'part_name', b'part_name', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_last_online', b'_last_online']) -> typing.Literal['last_online'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_os', b'_os']) -> typing.Literal['os'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_platform', b'_platform']) -> typing.Literal['platform'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_public_ip_address', b'_public_ip_address']) -> typing.Literal['public_ip_address'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_viam_agent_version', b'_viam_agent_version']) -> typing.Literal['viam_agent_version'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_viam_server_version', b'_viam_server_version']) -> typing.Literal['viam_server_version'] | None:
+        ...
+global___PartSummary = PartSummary
+
+@typing.final
 class ListRobotsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOTS_FIELD_NUMBER: builtins.int

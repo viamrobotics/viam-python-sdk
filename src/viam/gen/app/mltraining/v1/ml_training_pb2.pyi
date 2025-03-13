@@ -91,21 +91,23 @@ class SubmitTrainingJobRequest(google.protobuf.message.Message):
     MODEL_NAME_FIELD_NUMBER: builtins.int
     MODEL_VERSION_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     dataset_id: builtins.str
     organization_id: builtins.str
     model_name: builtins.str
     model_version: builtins.str
     model_type: global___ModelType.ValueType
+    model_framework: global___ModelFramework.ValueType
 
     @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., model_framework: global___ModelFramework.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing.Literal['dataset_id', b'dataset_id', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'tags', b'tags']) -> None:
         ...
 global___SubmitTrainingJobRequest = SubmitTrainingJobRequest
 
