@@ -53,7 +53,7 @@ jobs:
           git push -f origin workflow/update-protos
           gh pr view workflow/update-protos && gh pr reopen workflow/update-protos || gh pr create -B main -H workflow/update-protos -t "Automated Protos Update" -b "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" -a njooma -r njooma
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v1.24.0
