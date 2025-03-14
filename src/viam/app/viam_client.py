@@ -1,3 +1,4 @@
+import os
 from typing import Mapping, Optional
 
 from grpclib.client import Channel
@@ -10,7 +11,7 @@ from viam.app.data_client import DataClient
 from viam.app.ml_training_client import MLTrainingClient
 from viam.app.provisioning_client import ProvisioningClient
 from viam.robot.client import RobotClient
-from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
+from viam.rpc.dial import Credentials, DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)
 
@@ -25,13 +26,42 @@ class ViamClient:
     """
 
     @classmethod
+    async def create_from_env_vars(cls, dial_options: Optional[DialOptions] = None, app_url: Optional[str] = None) -> Self:
+        """Create `ViamClient` using credentials set by a module.
+
+        ::
+
+            client = await ViamClient.create_from_env_vars()
+
+        Args:
+            dial_options (Optional[viam.rpc.dial.DialOptions]): Options for authorization and connection to app.
+                If not provided, default options will be selected. Note that `creds` and `auth_entity`
+                fields will be overwritten by the values set by a module.
+            app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
+
+        Raises:
+            ValueError: If there are no env vars set by the module, or if they are set improperly
+
+        """
+        dial_options = dial_options if dial_options else DialOptions()
+        api_key = os.environ.get("VIAM_API_KEY")
+        api_key_id = os.environ.get("VIAM_API_KEY_ID")
+        print(f"apikey is {api_key} and apikeyid is {api_key_id}\n\n\n\n")
+        credentials = Credentials(type="api-key", payload=api_key)
+        dial_options.credentials = credentials
+        dial_options.auth_entity = api_key_id
+
+        return await cls.create_from_dial_options(dial_options, app_url)
+
+
+    @classmethod
     async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
         """Create `ViamClient` that establishes a connection to the Viam app.
 
         ::
 
             dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-            ViamClient.create_from_dial_options(dial_options)
+            client = await ViamClient.create_from_dial_options(dial_options)
 
         Args:
             dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app.
