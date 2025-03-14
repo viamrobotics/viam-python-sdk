@@ -496,56 +496,6 @@ class GetSessionsResponse(google.protobuf.message.Message):
 global___GetSessionsResponse = GetSessionsResponse
 
 @typing.final
-class DiscoveryQuery(google.protobuf.message.Message):
-    """Discovery
-    Discovery is deprecated
-    """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SUBTYPE_FIELD_NUMBER: builtins.int
-    MODEL_FIELD_NUMBER: builtins.int
-    EXTRA_FIELD_NUMBER: builtins.int
-    subtype: builtins.str
-    model: builtins.str
-
-    @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        ...
-
-    def __init__(self, *, subtype: builtins.str=..., model: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'model', b'model', 'subtype', b'subtype']) -> None:
-        ...
-global___DiscoveryQuery = DiscoveryQuery
-
-@typing.final
-class Discovery(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    QUERY_FIELD_NUMBER: builtins.int
-    RESULTS_FIELD_NUMBER: builtins.int
-
-    @property
-    def query(self) -> global___DiscoveryQuery:
-        ...
-
-    @property
-    def results(self) -> google.protobuf.struct_pb2.Struct:
-        ...
-
-    def __init__(self, *, query: global___DiscoveryQuery | None=..., results: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['query', b'query', 'results', b'results']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['query', b'query', 'results', b'results']) -> None:
-        ...
-global___Discovery = Discovery
-
-@typing.final
 class ModuleModel(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_NAME_FIELD_NUMBER: builtins.int
@@ -587,38 +537,6 @@ class GetModelsFromModulesResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['models', b'models']) -> None:
         ...
 global___GetModelsFromModulesResponse = GetModelsFromModulesResponse
-
-@typing.final
-class DiscoverComponentsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    QUERIES_FIELD_NUMBER: builtins.int
-
-    @property
-    def queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]:
-        ...
-
-    def __init__(self, *, queries: collections.abc.Iterable[global___DiscoveryQuery] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['queries', b'queries']) -> None:
-        ...
-global___DiscoverComponentsRequest = DiscoverComponentsRequest
-
-@typing.final
-class DiscoverComponentsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DISCOVERY_FIELD_NUMBER: builtins.int
-
-    @property
-    def discovery(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]:
-        ...
-
-    def __init__(self, *, discovery: collections.abc.Iterable[global___Discovery] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['discovery', b'discovery']) -> None:
-        ...
-global___DiscoverComponentsResponse = DiscoverComponentsResponse
 
 @typing.final
 class Status(google.protobuf.message.Message):
