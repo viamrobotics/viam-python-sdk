@@ -27,7 +27,7 @@ class ViamClient:
 
     @classmethod
     async def create_from_env_vars(cls, dial_options: Optional[DialOptions] = None, app_url: Optional[str] = None) -> Self:
-        """Create `ViamClient` using credentials set by a module.
+        """Create `ViamClient` using credentials set in the environment as `VIAM_API_KEY` and `VIAM_API_KEY_ID`.
 
         ::
 
