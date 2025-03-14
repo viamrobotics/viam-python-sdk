@@ -74,6 +74,35 @@ class TestViamClient:
                     assert client.provisioning_client._channel == channel
                     assert client.provisioning_client._metadata == METADATA
 
+    async def test_client_from_env_vars(self):
+        async with ChannelFor([]) as channel:
+            with patch("viam.app.viam_client._dial_app") as patched_dial:
+                patched_dial.return_value = channel
+                with patch("viam.app.viam_client._get_access_token") as patched_auth:
+                    ACCESS_TOKEN = "MY_ACCESS_TOKEN"
+                    METADATA = {"authorization": f"Bearer {ACCESS_TOKEN}"}
+                    patched_auth.return_value = ACCESS_TOKEN
+
+                    os.environ["VIAM_API_KEY"] = "MY_API_KEY"
+                    os.environ["VIAM_API_KEY_ID"] = str(uuid4())
+
+                    client = await ViamClient.create_from_env_vars()
+
+                    assert client.data_client._channel == channel
+                    assert client.data_client._metadata == METADATA
+
+                    assert client.app_client._channel == channel
+                    assert client.app_client._metadata == METADATA
+
+                    assert client.ml_training_client._channel == channel
+                    assert client.ml_training_client._metadata == METADATA
+
+                    assert client.billing_client._channel == channel
+                    assert client.billing_client._metadata == METADATA
+
+                    assert client.provisioning_client._channel == channel
+                    assert client.provisioning_client._metadata == METADATA
+
     async def test_closes(self):
         async with ChannelFor([]) as channel:
             with patch.object(channel, "close"):
@@ -138,17 +167,3 @@ class TestViamClient:
                     await client.connect_to_machine(id=MACHINE_ID)
                     get_robot_parts.assert_called_once_with(MACHINE_ID)
                     assert get_robot_client.call_args.args[0] == MAIN_PART.fqdn
-
-        async def test_connect_with_env_vars(self):
-            async with ChannelFor([]) as channel:
-                with patch("viam.app.viam_client._dial_app") as patched_dial:
-                    patched_dial.return_value = channel
-                    with patch("viam.app.viam_client._get_access_token") as patched_auth:
-                        patched_auth.return_value = "MY_ACCESS_TOKEN"
-
-                        os.environ["VIAM_API_KEY"] = "MY_API_KEY"
-                        os.environ["VIAM_API_KEY_ID"] = str(uuid4())
-
-                        client = await ViamClient.create_from_env_vars()
-                        assert client.data_client._channel == channel
-                        client.close()
