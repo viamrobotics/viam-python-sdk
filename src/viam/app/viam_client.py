@@ -45,8 +45,11 @@ class ViamClient:
         """
         dial_options = dial_options if dial_options else DialOptions()
         api_key = os.environ.get("VIAM_API_KEY")
+        if api_key is None:
+            raise ValueError("api key cannot be None")
         api_key_id = os.environ.get("VIAM_API_KEY_ID")
-        print(f"apikey is {api_key} and apikeyid is {api_key_id}\n\n\n\n")
+        if api_key_id is None:
+            raise ValueError("api key ID cannot be None")
         credentials = Credentials(type="api-key", payload=api_key)
         dial_options.credentials = credentials
         dial_options.auth_entity = api_key_id
