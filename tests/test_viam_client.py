@@ -1,5 +1,5 @@
-import random
 import os
+import random
 from unittest.mock import patch
 from uuid import uuid4
 

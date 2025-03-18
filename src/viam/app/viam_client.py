@@ -56,7 +56,6 @@ class ViamClient:
 
         return await cls.create_from_dial_options(dial_options, app_url)
 
-
     @classmethod
     async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
         """Create `ViamClient` that establishes a connection to the Viam app.
