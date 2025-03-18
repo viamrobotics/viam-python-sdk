@@ -73,6 +73,8 @@ INTERVAL = CaptureInterval(start=START_TS, end=END_TS)
 FILE_ID = "file_id"
 BINARY_ID = BinaryID(file_id=FILE_ID, organization_id=ORG_ID, location_id=LOCATION_ID)
 BINARY_IDS = [BINARY_ID]
+BINARY_DATA_ID = "binary_data_id"
+BINARY_DATA_IDS = [BINARY_DATA_ID]
 BINARY_DATA = b"binary_data"
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
@@ -104,6 +106,7 @@ TABULAR_METADATA = CaptureMetadata(
 )
 BINARY_METADATA = BinaryMetadata(
     id="id",
+    binary_data_id=BINARY_DATA_ID,
     capture_metadata=TABULAR_METADATA,
     time_requested=START_TS,
     time_received=END_TS,
@@ -270,6 +273,9 @@ class TestClient:
             binary_data = await client.binary_data_by_ids(binary_ids=BINARY_IDS)
             assert binary_data == BINARY_RESPONSE
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
+            binary_data = await client.binary_data_by_ids(binary_ids=BINARY_DATA_IDS)
+            assert binary_data == BINARY_RESPONSE
+            self.assert_binary_data_ids(binary_data_ids=list(service.binary_data_ids))
 
     async def test_delete_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -290,6 +296,9 @@ class TestClient:
             deleted_count = await client.delete_binary_data_by_ids(binary_ids=BINARY_IDS)
             assert deleted_count == DELETE_REMOVE_RESPONSE
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
+            deleted_count = await client.delete_binary_data_by_ids(binary_ids=BINARY_DATA_IDS)
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            self.assert_binary_data_ids(binary_data_ids=list(service.binary_data_ids))
 
     async def test_add_tags_to_binary_data_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -297,6 +306,9 @@ class TestClient:
             await client.add_tags_to_binary_data_by_ids(tags=TAGS, binary_ids=BINARY_IDS)
             assert service.tags == TAGS
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
+            await client.add_tags_to_binary_data_by_ids(tags=TAGS, binary_ids=BINARY_DATA_IDS)
+            assert service.tags == TAGS
+            self.assert_binary_data_ids(binary_data_ids=list(service.binary_data_ids))
 
     async def test_add_tags_to_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -312,6 +324,10 @@ class TestClient:
             assert deleted_count == DELETE_REMOVE_RESPONSE
             assert service.tags == TAGS
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
+            deleted_count = await client.remove_tags_from_binary_data_by_ids(tags=TAGS, binary_ids=BINARY_DATA_IDS)
+            assert deleted_count == DELETE_REMOVE_RESPONSE
+            assert service.tags == TAGS
+            self.assert_binary_data_ids(binary_data_ids=list(service.binary_data_ids))
 
     async def test_remove_tags_from_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -340,6 +356,15 @@ class TestClient:
                 y_max_normalized=0.3,
             )
             assert bbox_label == BBOX_LABEL
+            bbox_label = await client.add_bounding_box_to_image_by_id(
+                binary_id=BINARY_DATA_ID,
+                label="label",
+                x_min_normalized=0,
+                y_min_normalized=0.1,
+                x_max_normalized=0.2,
+                y_max_normalized=0.3,
+            )
+            assert bbox_label == BBOX_LABEL
 
     async def test_remove_bounding_box_from_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -347,6 +372,9 @@ class TestClient:
             await client.remove_bounding_box_from_image_by_id(BBOX_LABEL, BINARY_ID)
             assert service.removed_label == BBOX_LABEL
             assert service.removed_id == BINARY_ID
+            await client.remove_bounding_box_from_image_by_id(BBOX_LABEL, BINARY_DATA_ID)
+            assert service.removed_label == BBOX_LABEL
+            assert service.removed_binary_data_id == BINARY_DATA_ID
 
     async def test_bounding_box_labels_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -374,12 +402,18 @@ class TestClient:
             await client.add_binary_data_to_dataset_by_ids(binary_ids=BINARY_IDS, dataset_id=DATASET_ID)
             assert service.added_data_ids == BINARY_IDS
             assert service.dataset_id == DATASET_ID
+            await client.add_binary_data_to_dataset_by_ids(binary_ids=BINARY_DATA_IDS, dataset_id=DATASET_ID)
+            assert service.added_binary_data_ids == BINARY_DATA_IDS
+            assert service.dataset_id == DATASET_ID
 
     async def test_remove_binary_data_to_dataset_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             await client.remove_binary_data_from_dataset_by_ids(binary_ids=BINARY_IDS, dataset_id=DATASET_ID)
             assert service.removed_data_ids == BINARY_IDS
+            assert service.dataset_id == DATASET_ID
+            await client.remove_binary_data_from_dataset_by_ids(binary_ids=BINARY_DATA_IDS, dataset_id=DATASET_ID)
+            assert service.removed_binary_data_ids == BINARY_DATA_IDS
             assert service.dataset_id == DATASET_ID
 
     def assert_filter(self, filter: Filter) -> None:
@@ -405,3 +439,7 @@ class TestClient:
             assert binary_id.file_id == FILE_ID
             assert binary_id.organization_id == ORG_ID
             assert binary_id.location_id == LOCATION_ID
+
+    def assert_binary_data_ids(self, binary_data_ids: List[str]) -> None:
+        for binary_data_id in binary_data_ids:
+            assert binary_data_id == BINARY_DATA_ID
