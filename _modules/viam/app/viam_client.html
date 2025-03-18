@@ -87,7 +87,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.app.viam_client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
@@ -99,7 +100,7 @@
 <span class="kn">from</span> <span class="nn">viam.app.ml_training_client</span> <span class="kn">import</span> <span class="n">MLTrainingClient</span>
 <span class="kn">from</span> <span class="nn">viam.app.provisioning_client</span> <span class="kn">import</span> <span class="n">ProvisioningClient</span>
 <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
-<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_dial_app</span><span class="p">,</span> <span class="n">_get_access_token</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">Credentials</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_dial_app</span><span class="p">,</span> <span class="n">_get_access_token</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -113,6 +114,38 @@
 <span class="sd">        ViamClient.create_from_dial_options(...)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="ViamClient.create_from_env_vars"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.create_from_env_vars">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_env_vars</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">app_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` using credentials set in the environment as `VIAM_API_KEY` and `VIAM_API_KEY_ID`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            client = await ViamClient.create_from_env_vars()</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dial_options (Optional[viam.rpc.dial.DialOptions]): Options for authorization and connection to app.</span>
+<span class="sd">                If not provided, default options will be selected. Note that `creds` and `auth_entity`</span>
+<span class="sd">                fields will be overwritten by the values set by a module.</span>
+<span class="sd">            app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If there are no env vars set by the module, or if they are set improperly</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dial_options</span> <span class="o">=</span> <span class="n">dial_options</span> <span class="k">if</span> <span class="n">dial_options</span> <span class="k">else</span> <span class="n">DialOptions</span><span class="p">()</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;VIAM_API_KEY&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;api key cannot be None&quot;</span><span class="p">)</span>
+        <span class="n">api_key_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;VIAM_API_KEY_ID&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">api_key_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;api key ID cannot be None&quot;</span><span class="p">)</span>
+        <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;api-key&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+        <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span> <span class="o">=</span> <span class="n">credentials</span>
+        <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span> <span class="o">=</span> <span class="n">api_key_id</span>
+
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">cls</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">,</span> <span class="n">app_url</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="ViamClient.create_from_dial_options"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.create_from_dial_options">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_dial_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">app_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` that establishes a connection to the Viam app.</span>
@@ -120,7 +153,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
-<span class="sd">            ViamClient.create_from_dial_options(dial_options)</span>
+<span class="sd">            client = await ViamClient.create_from_dial_options(dial_options)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app.</span>

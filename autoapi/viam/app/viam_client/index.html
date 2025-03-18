@@ -70,6 +70,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#viam.app.viam_client.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.app.viam_client.ViamClient"><code class="docutils literal notranslate"><span class="pre">ViamClient</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.create_from_env_vars"><code class="docutils literal notranslate"><span class="pre">ViamClient.create_from_env_vars()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.create_from_dial_options"><code class="docutils literal notranslate"><span class="pre">ViamClient.create_from_dial_options()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.data_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.data_client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.app_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.app_client</span></code></a></li>
@@ -159,6 +160,32 @@ There is currently 1 way to instantiate a <cite>ViamClient</cite> object:</p>
 </pre></div>
 </div>
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.create_from_env_vars">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_from_env_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dial_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><span class="pre">viam.rpc.dial.DialOptions</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.create_from_env_vars"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.create_from_env_vars" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Create <cite>ViamClient</cite> using credentials set in the environment as <cite>VIAM_API_KEY</cite> and <cite>VIAM_API_KEY_ID</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_env_vars</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dial_options</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><em>viam.rpc.dial.DialOptions</em></a><em>]</em>) – Options for authorization and connection to app.
+If not provided, default options will be selected. Note that <cite>creds</cite> and <cite>auth_entity</cite>
+fields will be overwritten by the values set by a module.</p></li>
+<li><p><strong>app_url</strong> – (Optional[str]): URL of app. Uses app.viam.com if not specified.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If there are no env vars set by the module, or if they are set improperly</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.create_from_dial_options">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_from_dial_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dial_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><span class="pre">viam.rpc.dial.DialOptions</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.create_from_dial_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.create_from_dial_options" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -167,7 +194,7 @@ There is currently 1 way to instantiate a <cite>ViamClient</cite> object:</p>
 </dl>
 <p>Create <cite>ViamClient</cite> that establishes a connection to the Viam app.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
-<span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">

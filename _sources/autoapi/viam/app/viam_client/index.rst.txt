@@ -35,6 +35,28 @@ Module Contents
        ViamClient.create_from_dial_options(...)
 
 
+   .. py:method:: create_from_env_vars(dial_options: Optional[viam.rpc.dial.DialOptions] = None, app_url: Optional[str] = None) -> typing_extensions.Self
+      :classmethod:
+
+      :async:
+
+
+      Create `ViamClient` using credentials set in the environment as `VIAM_API_KEY` and `VIAM_API_KEY_ID`.
+
+      ::
+
+          client = await ViamClient.create_from_env_vars()
+
+      :param dial_options: Options for authorization and connection to app.
+                           If not provided, default options will be selected. Note that `creds` and `auth_entity`
+                           fields will be overwritten by the values set by a module.
+      :type dial_options: Optional[viam.rpc.dial.DialOptions]
+      :param app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
+
+      :raises ValueError: If there are no env vars set by the module, or if they are set improperly
+
+
+
    .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
       :classmethod:
 
@@ -46,7 +68,7 @@ Module Contents
       ::
 
           dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
-          ViamClient.create_from_dial_options(dial_options)
+          client = await ViamClient.create_from_dial_options(dial_options)
 
       :param dial_options: Required information for authorization and connection to app.
                            `creds` and `auth_entity` fields are required.
