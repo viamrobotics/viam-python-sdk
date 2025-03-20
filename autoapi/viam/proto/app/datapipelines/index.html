@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.proto.app.datapipelines &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.proto.app.dataset" href="../dataset/index.html" />
+    <link rel="prev" title="viam.proto.app.data" href="../data/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.proto</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.proto.app</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../agent/index.html">viam.proto.app.agent</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../cloudslam/index.html">viam.proto.app.cloudslam</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../data/index.html">viam.proto.app.data</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.proto.app.datapipelines</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.GetDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.GetDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.ListDataPipelines"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.ListDataPipelines()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.CreateDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.CreateDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.UpdateDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.UpdateDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.DeleteDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.DeleteDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.GetDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub.GetDataPipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.ListDataPipelines"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub.ListDataPipelines</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.CreateDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub.CreateDataPipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.UpdateDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub.UpdateDataPipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.DeleteDataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipelinesServiceStub.DeleteDataPipeline</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.GetDataPipeline"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase.GetDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.ListDataPipelines"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase.ListDataPipelines()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.CreateDataPipeline"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase.CreateDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.UpdateDataPipeline"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase.UpdateDataPipeline()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.DeleteDataPipeline"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase.DeleteDataPipeline()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest"><code class="docutils literal notranslate"><span class="pre">CreateDataPipelineRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest.data_pipeline"><code class="docutils literal notranslate"><span class="pre">CreateDataPipelineRequest.data_pipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest.HasField"><code class="docutils literal notranslate"><span class="pre">CreateDataPipelineRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineResponse"><code class="docutils literal notranslate"><span class="pre">CreateDataPipelineResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineResponse.id"><code class="docutils literal notranslate"><span class="pre">CreateDataPipelineResponse.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline"><code class="docutils literal notranslate"><span class="pre">DataPipeline</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.id"><code class="docutils literal notranslate"><span class="pre">DataPipeline.id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.organization_id"><code class="docutils literal notranslate"><span class="pre">DataPipeline.organization_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.name"><code class="docutils literal notranslate"><span class="pre">DataPipeline.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.schedule"><code class="docutils literal notranslate"><span class="pre">DataPipeline.schedule</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.enabled"><code class="docutils literal notranslate"><span class="pre">DataPipeline.enabled</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.mql_binary"><code class="docutils literal notranslate"><span class="pre">DataPipeline.mql_binary</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.created_on"><code class="docutils literal notranslate"><span class="pre">DataPipeline.created_on</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.updated_at"><code class="docutils literal notranslate"><span class="pre">DataPipeline.updated_at</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline.HasField"><code class="docutils literal notranslate"><span class="pre">DataPipeline.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.DeleteDataPipelineRequest"><code class="docutils literal notranslate"><span class="pre">DeleteDataPipelineRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.DeleteDataPipelineRequest.id"><code class="docutils literal notranslate"><span class="pre">DeleteDataPipelineRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.DeleteDataPipelineResponse"><code class="docutils literal notranslate"><span class="pre">DeleteDataPipelineResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineRequest"><code class="docutils literal notranslate"><span class="pre">GetDataPipelineRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineRequest.id"><code class="docutils literal notranslate"><span class="pre">GetDataPipelineRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineResponse"><code class="docutils literal notranslate"><span class="pre">GetDataPipelineResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineResponse.data_pipeline"><code class="docutils literal notranslate"><span class="pre">GetDataPipelineResponse.data_pipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetDataPipelineResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesRequest"><code class="docutils literal notranslate"><span class="pre">ListDataPipelinesRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">ListDataPipelinesRequest.organization_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesResponse"><code class="docutils literal notranslate"><span class="pre">ListDataPipelinesResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesResponse.data_pipelines"><code class="docutils literal notranslate"><span class="pre">ListDataPipelinesResponse.data_pipelines</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.id"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineRequest.id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.data_pipeline"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineRequest.data_pipeline</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineResponse"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineResponse.id"><code class="docutils literal notranslate"><span class="pre">UpdateDataPipelineResponse.id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../dataset/index.html">viam.proto.app.dataset</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../datasync/index.html">viam.proto.app.datasync</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../mlinference/index.html">viam.proto.app.mlinference</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../mltraining/index.html">viam.proto.app.mltraining</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../packages/index.html">viam.proto.app.packages</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#classes">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../common/index.html">viam.proto.common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/index.html">viam.proto.component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../module/index.html">viam.proto.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../provisioning/index.html">viam.proto.provisioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../robot/index.html">viam.proto.robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rpc/index.html">viam.proto.rpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../service/index.html">viam.proto.service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html">viam.proto.stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tagger/index.html">viam.proto.tagger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.proto</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.proto.app</a></li>
+      <li class="breadcrumb-item active">viam.proto.app.datapipelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/proto/app/datapipelines/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.proto.app.datapipelines">
+<span id="viam-proto-app-datapipelines"></span><h1>viam.proto.app.datapipelines<a class="headerlink" href="#module-viam.proto.app.datapipelines" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by Viam.
+Do not edit manually!</p>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase" title="viam.proto.app.datapipelines.DataPipelinesServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataPipelinesServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub" title="viam.proto.app.datapipelines.DataPipelinesServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataPipelinesServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase" title="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedDataPipelinesServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest" title="viam.proto.app.datapipelines.CreateDataPipelineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateDataPipelineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.CreateDataPipelineResponse" title="viam.proto.app.datapipelines.CreateDataPipelineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateDataPipelineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.DataPipeline" title="viam.proto.app.datapipelines.DataPipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataPipeline</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.DeleteDataPipelineRequest" title="viam.proto.app.datapipelines.DeleteDataPipelineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteDataPipelineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.DeleteDataPipelineResponse" title="viam.proto.app.datapipelines.DeleteDataPipelineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteDataPipelineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineRequest" title="viam.proto.app.datapipelines.GetDataPipelineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDataPipelineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.GetDataPipelineResponse" title="viam.proto.app.datapipelines.GetDataPipelineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDataPipelineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesRequest" title="viam.proto.app.datapipelines.ListDataPipelinesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListDataPipelinesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.ListDataPipelinesResponse" title="viam.proto.app.datapipelines.ListDataPipelinesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListDataPipelinesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest" title="viam.proto.app.datapipelines.UpdateDataPipelineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateDataPipelineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datapipelines.UpdateDataPipelineResponse" title="viam.proto.app.datapipelines.UpdateDataPipelineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateDataPipelineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">DataPipelinesServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.GetDataPipeline">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.GetDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.GetDataPipeline" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.ListDataPipelines">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListDataPipelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.ListDataPipelines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.ListDataPipelines" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.CreateDataPipeline">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.CreateDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.CreateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.UpdateDataPipeline">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.UpdateDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.UpdateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.DeleteDataPipeline">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.DeleteDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.DeleteDataPipeline" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">DataPipelinesServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#DataPipelinesServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub.GetDataPipeline">
+<span class="sig-name descname"><span class="pre">GetDataPipeline</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.GetDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub.ListDataPipelines">
+<span class="sig-name descname"><span class="pre">ListDataPipelines</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.ListDataPipelines" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub.CreateDataPipeline">
+<span class="sig-name descname"><span class="pre">CreateDataPipeline</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.CreateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub.UpdateDataPipeline">
+<span class="sig-name descname"><span class="pre">UpdateDataPipeline</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.UpdateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipelinesServiceStub.DeleteDataPipeline">
+<span class="sig-name descname"><span class="pre">DeleteDataPipeline</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipelinesServiceStub.DeleteDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">UnimplementedDataPipelinesServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.datapipelines.DataPipelinesServiceBase" title="viam.proto.app.datapipelines.DataPipelinesServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataPipelinesServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.GetDataPipeline">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase.GetDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.GetDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.ListDataPipelines">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListDataPipelines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase.ListDataPipelines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.ListDataPipelines" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.CreateDataPipeline">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase.CreateDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.CreateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.UpdateDataPipeline">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase.UpdateDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.UpdateDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.DeleteDataPipeline">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteDataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datapipelines/v1/data_pipelines_pb2/index.html#viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse" title="viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse"><span class="pre">app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datapipelines/v1/data_pipelines_grpc.html#UnimplementedDataPipelinesServiceBase.DeleteDataPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datapipelines.UnimplementedDataPipelinesServiceBase.DeleteDataPipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.CreateDataPipelineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">CreateDataPipelineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_pipeline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataPipeline</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.CreateDataPipelineRequest.data_pipeline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_pipeline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DataPipeline</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest.data_pipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.CreateDataPipelineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_pipeline'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.datapipelines.CreateDataPipelineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.CreateDataPipelineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">CreateDataPipelineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.CreateDataPipelineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.CreateDataPipelineResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.CreateDataPipelineResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">DataPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_on</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.organization_id" title="Permalink to this definition"></a></dt>
+<dd><p>The associated Viam organization ID.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.name" title="Permalink to this definition"></a></dt>
+<dd><p>A unique identifier at the org level.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.schedule">
+<span class="sig-name descname"><span class="pre">schedule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.schedule" title="Permalink to this definition"></a></dt>
+<dd><p>A cron expression representing the expected execution schedule in UTC (note this also
+defines the input time window; an hourly schedule would process 1 hour of data at a time).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.enabled" title="Permalink to this definition"></a></dt>
+<dd><p>Whether or not the pipeline is enabled.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.mql_binary">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mql_binary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.mql_binary" title="Permalink to this definition"></a></dt>
+<dd><p>A MongoDB aggregation pipeline as a list of BSON documents, where
+each document is one stage in the pipeline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.created_on">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.created_on" title="Permalink to this definition"></a></dt>
+<dd><p>The time the pipeline was created.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.updated_at">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">updated_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.updated_at" title="Permalink to this definition"></a></dt>
+<dd><p>The time the pipeline was last updated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DataPipeline.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'created_on'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'created_on'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'updated_at'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'updated_at'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DataPipeline.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DeleteDataPipelineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">DeleteDataPipelineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.DeleteDataPipelineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DeleteDataPipelineRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.DeleteDataPipelineRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.DeleteDataPipelineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">DeleteDataPipelineResponse</span></span><a class="headerlink" href="#viam.proto.app.datapipelines.DeleteDataPipelineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.GetDataPipelineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">GetDataPipelineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.GetDataPipelineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.GetDataPipelineRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.GetDataPipelineRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.GetDataPipelineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">GetDataPipelineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_pipeline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataPipeline</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.GetDataPipelineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.GetDataPipelineResponse.data_pipeline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_pipeline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DataPipeline</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.GetDataPipelineResponse.data_pipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.GetDataPipelineResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_pipeline'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.datapipelines.GetDataPipelineResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.ListDataPipelinesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">ListDataPipelinesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.ListDataPipelinesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.ListDataPipelinesRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.ListDataPipelinesRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.ListDataPipelinesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">ListDataPipelinesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_pipelines</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DataPipeline</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.ListDataPipelinesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.ListDataPipelinesResponse.data_pipelines">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_pipelines</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DataPipeline</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.datapipelines.ListDataPipelinesResponse.data_pipelines" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">UpdateDataPipelineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_pipeline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataPipeline</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineRequest.data_pipeline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_pipeline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DataPipeline</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.data_pipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_pipeline'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datapipelines.</span></span><span class="sig-name descname"><span class="pre">UpdateDataPipelineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datapipelines.UpdateDataPipelineResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datapipelines.UpdateDataPipelineResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../data/index.html" class="btn btn-neutral float-left" title="viam.proto.app.data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dataset/index.html" class="btn btn-neutral float-right" title="viam.proto.app.dataset" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

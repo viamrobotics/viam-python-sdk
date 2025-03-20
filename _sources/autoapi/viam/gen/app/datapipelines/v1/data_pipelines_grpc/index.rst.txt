@@ -1,0 +1,117 @@
+viam.gen.app.datapipelines.v1.data_pipelines_grpc
+=================================================
+
+.. py:module:: viam.gen.app.datapipelines.v1.data_pipelines_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.app.datapipelines.v1.data_pipelines_grpc.DataPipelinesServiceBase
+   viam.gen.app.datapipelines.v1.data_pipelines_grpc.UnimplementedDataPipelinesServiceBase
+   viam.gen.app.datapipelines.v1.data_pipelines_grpc.DataPipelinesServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: DataPipelinesServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListDataPipelines(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: CreateDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedDataPipelinesServiceBase
+
+   Bases: :py:obj:`DataPipelinesServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListDataPipelines(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CreateDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse]) -> None
+      :async:
+
+
+
+.. py:class:: DataPipelinesServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: GetDataPipeline
+
+
+   .. py:attribute:: ListDataPipelines
+
+
+   .. py:attribute:: CreateDataPipeline
+
+
+   .. py:attribute:: UpdateDataPipeline
+
+
+   .. py:attribute:: DeleteDataPipeline
+
+
