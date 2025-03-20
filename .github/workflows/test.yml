@@ -60,7 +60,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Check Results
         run: |
           echo Python tests: ${{ needs.test.result }}
           [ "${{ needs.test.result }}" == "success" ]
