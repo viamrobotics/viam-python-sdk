@@ -15,6 +15,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
+from viam.components.button import Button
 from viam.components.board import Board, Tick
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
@@ -1040,6 +1041,21 @@ class MockSwitch(Switch):
         self.extra = extra
         self.timeout = timeout
         self.position = position
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+class MockButton(Button):
+    def __init__(self, name: str):
+        self.pushed = False
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
+        super().__init__(name)
+
+    async def push(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
+        self.extra = extra
+        self.timeout = timeout
+        self.pushed = True
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
