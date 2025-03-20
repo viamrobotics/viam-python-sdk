@@ -13,7 +13,7 @@ on:
 
 jobs:
   test:
-    #if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -56,10 +56,11 @@ jobs:
         run: uv run make test_docs
 
   test_passing:
-    #if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Check Results
+        run: |
           echo Python tests: ${{ needs.test.result }}
           [ "${{ needs.test.result }}" == "success" ]
