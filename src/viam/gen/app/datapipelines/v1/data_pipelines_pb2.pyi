@@ -61,6 +61,7 @@ class GetDataPipelineRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
+    'The ID of the data pipeline to retrieve.'
 
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
@@ -93,6 +94,7 @@ class ListDataPipelinesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
+    'The associated Viam organization ID.'
 
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
@@ -120,19 +122,27 @@ global___ListDataPipelinesResponse = ListDataPipelinesResponse
 @typing.final
 class CreateDataPipelineRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DATA_PIPELINE_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    SCHEDULE_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    'The associated Viam organization ID.'
+    name: builtins.str
+    'A unique identifier at the org level.'
+    schedule: builtins.str
+    'A cron expression representing the expected execution schedule in UTC (note this also\n    defines the input time window; an hourly schedule would process 1 hour of data at a time).\n    '
 
     @property
-    def data_pipeline(self) -> global___DataPipeline:
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        """A MongoDB aggregation pipeline as a list of BSON documents, where
+        each document is one stage in the pipeline.
+        """
+
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=...) -> None:
         ...
 
-    def __init__(self, *, data_pipeline: global___DataPipeline | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['data_pipeline', b'data_pipeline']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['data_pipeline', b'data_pipeline']) -> None:
+    def ClearField(self, field_name: typing.Literal['mql_binary', b'mql_binary', 'name', b'name', 'organization_id', b'organization_id', 'schedule', b'schedule']) -> None:
         ...
 global___CreateDataPipelineRequest = CreateDataPipelineRequest
 
@@ -141,6 +151,7 @@ class CreateDataPipelineResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
+    'The ID of the newly created data pipeline.'
 
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
@@ -153,33 +164,37 @@ global___CreateDataPipelineResponse = CreateDataPipelineResponse
 class UpdateDataPipelineRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    DATA_PIPELINE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    SCHEDULE_FIELD_NUMBER: builtins.int
+    ENABLED_FIELD_NUMBER: builtins.int
     id: builtins.str
+    'The ID of the data pipeline to update.'
+    name: builtins.str
+    'A unique identifier at the org level.'
+    schedule: builtins.str
+    'A cron expression representing the expected execution schedule in UTC (note this also\n    defines the input time window; an hourly schedule would process 1 hour of data at a time).\n    '
+    enabled: builtins.bool
+    'Whether or not the pipeline is enabled.'
 
     @property
-    def data_pipeline(self) -> global___DataPipeline:
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        """A MongoDB aggregation pipeline as a list of BSON documents, where
+        each document is one stage in the pipeline.
+        """
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=..., enabled: builtins.bool=...) -> None:
         ...
 
-    def __init__(self, *, id: builtins.str=..., data_pipeline: global___DataPipeline | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing.Literal['data_pipeline', b'data_pipeline']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['data_pipeline', b'data_pipeline', 'id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['enabled', b'enabled', 'id', b'id', 'mql_binary', b'mql_binary', 'name', b'name', 'schedule', b'schedule']) -> None:
         ...
 global___UpdateDataPipelineRequest = UpdateDataPipelineRequest
 
 @typing.final
 class UpdateDataPipelineResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
 
-    def __init__(self, *, id: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+    def __init__(self) -> None:
         ...
 global___UpdateDataPipelineResponse = UpdateDataPipelineResponse
 
@@ -188,6 +203,7 @@ class DeleteDataPipelineRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
+    'The ID of the data pipeline to delete.'
 
     def __init__(self, *, id: builtins.str=...) -> None:
         ...

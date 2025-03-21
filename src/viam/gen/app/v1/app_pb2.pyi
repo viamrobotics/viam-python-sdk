@@ -4792,13 +4792,15 @@ global___GetAppContentRequest = GetAppContentRequest
 @typing.final
 class GetAppContentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    URL_FIELD_NUMBER: builtins.int
-    url: builtins.str
+    BLOB_PATH_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
+    blob_path: builtins.str
+    entrypoint: builtins.str
 
-    def __init__(self, *, url: builtins.str=...) -> None:
+    def __init__(self, *, blob_path: builtins.str=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['url', b'url']) -> None:
+    def ClearField(self, field_name: typing.Literal['blob_path', b'blob_path', 'entrypoint', b'entrypoint']) -> None:
         ...
 global___GetAppContentResponse = GetAppContentResponse
 
