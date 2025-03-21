@@ -44,15 +44,35 @@ jobs:
         run: uv run make format
 
       - name: Add + Commit + Open PR
-        shell: bash
-        run: |
-          git checkout -b workflow/update-protos || git checkout workflow/update-protos
-          git add --all
-          git -c author.name=viambot -c author.email=viambot@users.noreply.github.com -c committer.name=GitHub -c committer.email=noreply@github.com commit -m "[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}"
-          git -c pull.ff=only pull origin workflow/update-protos || true  # do not fail if the branch doesn't exist
-          git push -f origin workflow/update-protos
-          gh pr view workflow/update-protos && gh pr reopen workflow/update-protos || gh pr create -B main -H workflow/update-protos -t "Automated Protos Update" -b "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" -a njooma -r njooma
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
+          branch: 'workflow/update-protos'
+          delete-branch: true
+          title: Automated Protos Update
+          body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
+          assignees: njooma
+          reviewers: njooma
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GIT_ACCESS_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
+
+      - name: Auto approve
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        run: gh pr review --approve "${{ stps.cpr.outputs.pull-request-number }}"
         env:
+          # (TODO ethan) hard to test for sure but it's possible this is insufficient. it's unclear
+          # to me whether an approval from `viambot` is sufficient to satisfy merge requirements.
+          # if not, then this won't work. but that's not particularly bad! it just means we'll still
+          # have to merge by hand, but then we can add `viambot` as a code owner and then automatic
+          # merging will start to work.
           GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Notify slack of failure
