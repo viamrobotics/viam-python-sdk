@@ -80,6 +80,8 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
+    GetRobotMetadataRequest,
+    GetRobotMetadataResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
     GetUserIDByEmailRequest,
@@ -2554,7 +2556,7 @@ class AppClient:
             metadata = await cloud.get_location_metadata(location_id="<YOUR-LOCATION-ID>")
 
         Args:
-            org_id (str): The ID of the location with which the user-defined metadata is associated.
+            location_id (str): The ID of the location with which the user-defined metadata is associated.
                 You can obtain your location ID from the Viam app's locations page.
 
         Returns:
@@ -2562,4 +2564,22 @@ class AppClient:
         """
         request = GetLocationMetadataRequest(location_id=location_id)
         response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def get_robot_metadata(self, robot_id: str) -> Mapping[str, Any]:
+        """Get a robot's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_robot_metadata(robot_id="<YOUR-ROBOT-ID>")
+
+        Args:
+            robot_id (str): The ID of the robot with which the user-defined metadata is associated.
+                You can obtain your robot ID from the Viam app's machine page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+        """
+        request = GetRobotMetadataRequest(id=robot_id)
+        response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request)
         return struct_to_dict(response.data)
