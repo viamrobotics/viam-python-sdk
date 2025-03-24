@@ -142,15 +142,23 @@ from viam.proto.app import (
     UnshareLocationRequest,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
+    UpdateLocationMetadataRequest,
+    UpdateLocationMetadataResponse,
     UpdateLocationRequest,
     UpdateLocationResponse,
     UpdateModuleRequest,
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationMetadataRequest,
+    UpdateOrganizationMetadataResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
+    UpdateRobotMetadataRequest,
+    UpdateRobotMetadataResponse,
+    UpdateRobotPartMetadataRequest,
+    UpdateRobotPartMetadataResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -2550,6 +2558,21 @@ class AppClient:
         response: GetOrganizationMetadataResponse = await self._app_client.GetOrganizationMetadata(request)
         return struct_to_dict(response.data)
 
+    async def update_organization_metadata(self, org_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update an organization's user-defined metadata.
+
+        ::
+
+             await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata=)
+
+        Args:
+            organization_id (str): The ID of the organization with which to associate the user-defined metadata.
+                You can obtain your organization ID from the Viam app's organization settings page.
+            metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.
+        """
+        request = UpdateOrganizationMetadataRequest(organization_id=org_id, data=dict_to_struct(metadata))
+        _: UpdateOrganizationMetadataResponse = await self._app_client.UpdateOrganizationMetadata(request)
+
     async def get_location_metadata(self, location_id: str) -> Mapping[str, Any]:
         """Get a location's user-defined metadata.
 
@@ -2562,11 +2585,26 @@ class AppClient:
                 You can obtain your location ID from the Viam app's locations page.
 
         Returns:
-            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetLocationMetadataRequest(location_id=location_id)
         response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request)
         return struct_to_dict(response.data)
+
+    async def update_location_metadata(self, location_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a location's user-defined metadata.
+
+        ::
+
+             await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
+
+        Args:
+            location_id (str): The ID of the location with which to associate the user-defined metadata.
+                You can obtain your location ID from the Viam app's locations page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateLocationMetadataRequest(location_id=location_id, data=dict_to_struct(metadata))
+        _: UpdateLocationMetadataResponse = await self._app_client.UpdateLocationMetadata(request)
 
     async def get_robot_metadata(self, robot_id: str) -> Mapping[str, Any]:
         """Get a robot's user-defined metadata.
@@ -2580,11 +2618,26 @@ class AppClient:
                 You can obtain your robot ID from the Viam app's machine page.
 
         Returns:
-            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetRobotMetadataRequest(id=robot_id)
         response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request)
         return struct_to_dict(response.data)
+
+    async def update_robot_metadata(self, robot_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a robot's user-defined metadata.
+
+        ::
+
+             await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata=)
+
+        Args:
+            robot_id (str): The ID of the robot with which to associate the user-defined metadata.
+                You can obtain your robot ID from the Viam app's machine page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateRobotMetadataRequest(id=robot_id, data=dict_to_struct(metadata))
+        _: UpdateRobotMetadataResponse = await self._app_client.UpdateRobotMetadata(request)
 
     async def get_robot_part_metadata(self, robot_part_id: str) -> Mapping[str, Any]:
         """Get a robot part's user-defined metadata.
@@ -2595,11 +2648,26 @@ class AppClient:
 
         Args:
             robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.
-                You can obtain your robot ID from the Viam app's machine page.
+                You can obtain your robot part ID from the Viam app's machine page.
 
         Returns:
-            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetRobotPartMetadataRequest(id=robot_part_id)
         response: GetRobotPartMetadataResponse = await self._app_client.GetRobotPartMetadata(request)
         return struct_to_dict(response.data)
+
+    async def update_robot_part_metadata(self, robot_part_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a robot part's user-defined metadata.
+
+        ::
+
+             await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata=)
+
+        Args:
+            robot_id (str): The ID of the robot part with which to associate the user-defined metadata.
+                You can obtain your robot part ID from the Viam app's machine page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
+        _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request)
