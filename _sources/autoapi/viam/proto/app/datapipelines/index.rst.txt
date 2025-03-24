@@ -132,7 +132,7 @@ Package Contents
 
 
 
-.. py:class:: CreateDataPipelineRequest(*, data_pipeline: global___DataPipeline | None = ...)
+.. py:class:: CreateDataPipelineRequest(*, organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -144,27 +144,30 @@ Package Contents
    shown below.
 
 
-   .. py:property:: data_pipeline
-      :type: global___DataPipeline
+   .. py:attribute:: organization_id
+      :type:  str
+
+      The associated Viam organization ID.
 
 
+   .. py:attribute:: name
+      :type:  str
 
-   .. py:method:: HasField(field_name: Literal['data_pipeline', b'data_pipeline']) -> bool
+      A unique identifier at the org level.
 
-      Checks if a certain field is set for the message.
 
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
+   .. py:attribute:: schedule
+      :type:  str
 
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
+      A cron expression representing the expected execution schedule in UTC (note this also
+      defines the input time window; an hourly schedule would process 1 hour of data at a time).
 
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
 
-      :raises ValueError: if the `field_name` is not a member of this message.
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
+      A MongoDB aggregation pipeline as a list of BSON documents, where
+      each document is one stage in the pipeline.
 
 
 .. py:class:: CreateDataPipelineResponse(*, id: str = ...)
@@ -181,6 +184,8 @@ Package Contents
 
    .. py:attribute:: id
       :type:  str
+
+      The ID of the newly created data pipeline.
 
 
 .. py:class:: DataPipeline(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
@@ -276,6 +281,8 @@ Package Contents
    .. py:attribute:: id
       :type:  str
 
+      The ID of the data pipeline to delete.
+
 
 .. py:class:: DeleteDataPipelineResponse
 
@@ -303,6 +310,8 @@ Package Contents
 
    .. py:attribute:: id
       :type:  str
+
+      The ID of the data pipeline to retrieve.
 
 
 .. py:class:: GetDataPipelineResponse(*, data_pipeline: global___DataPipeline | None = ...)
@@ -355,6 +364,8 @@ Package Contents
    .. py:attribute:: organization_id
       :type:  str
 
+      The associated Viam organization ID.
+
 
 .. py:class:: ListDataPipelinesResponse(*, data_pipelines: collections.abc.Iterable[global___DataPipeline] | None = ...)
 
@@ -373,7 +384,7 @@ Package Contents
 
 
 
-.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., data_pipeline: global___DataPipeline | None = ...)
+.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -388,31 +399,36 @@ Package Contents
    .. py:attribute:: id
       :type:  str
 
-
-   .. py:property:: data_pipeline
-      :type: global___DataPipeline
+      The ID of the data pipeline to update.
 
 
+   .. py:attribute:: name
+      :type:  str
 
-   .. py:method:: HasField(field_name: Literal['data_pipeline', b'data_pipeline']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
+      A unique identifier at the org level.
 
 
+   .. py:attribute:: schedule
+      :type:  str
 
-.. py:class:: UpdateDataPipelineResponse(*, id: str = ...)
+      A cron expression representing the expected execution schedule in UTC (note this also
+      defines the input time window; an hourly schedule would process 1 hour of data at a time).
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+
+      Whether or not the pipeline is enabled.
+
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+      A MongoDB aggregation pipeline as a list of BSON documents, where
+      each document is one stage in the pipeline.
+
+
+.. py:class:: UpdateDataPipelineResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -422,9 +438,5 @@ Package Contents
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
-
-
-   .. py:attribute:: id
-      :type:  str
 
 
