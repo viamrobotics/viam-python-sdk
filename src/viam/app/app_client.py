@@ -54,12 +54,16 @@ from viam.proto.app import (
     GetFragmentResponse,
     GetLocationRequest,
     GetLocationResponse,
+    GetLocationMetadataRequest,
+    GetLocationMetadataResponse,
     GetModuleRequest,
     GetModuleResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
@@ -2523,3 +2527,39 @@ class AppClient:
         request = RotateKeyRequest(id=id)
         response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)
         return response.key, response.id
+
+    async def get_organization_metadata(self, org_id: str) -> Mapping[str, Any]:
+        """Get an organization's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_organization_metadata(org_id="<YOUR-ORG-ID>")
+
+        Args:
+            org_id (str): The ID of the organization with which the user-defined metadata is associated.
+                You can obtain your organization ID from the Viam app's organization settings page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+        """
+        request = GetOrganizationMetadataRequest(organization_id=org_id)
+        response: GetOrganizationMetadataResponse = await self._app_client.GetOrganizationMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def get_location_metadata(self, location_id: str) -> Mapping[str, Any]:
+        """Get a location's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_location_metadata(location_id="<YOUR-LOCATION-ID>")
+
+        Args:
+            org_id (str): The ID of the location with which the user-defined metadata is associated.
+                You can obtain your location ID from the Viam app's locations page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+        """
+        request = GetLocationMetadataRequest(location_id=location_id)
+        response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request)
+        return struct_to_dict(response.data)
