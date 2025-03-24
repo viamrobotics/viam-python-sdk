@@ -74,6 +74,8 @@ from viam.proto.app import (
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
     GetRobotPartLogsResponse,
+    GetRobotPartMetadataRequest,
+    GetRobotPartMetadataResponse,
     GetRobotPartRequest,
     GetRobotPartResponse,
     GetRobotPartsRequest,
@@ -2582,4 +2584,22 @@ class AppClient:
         """
         request = GetRobotMetadataRequest(id=robot_id)
         response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def get_robot_part_metadata(self, robot_part_id: str) -> Mapping[str, Any]:
+        """Get a robot part's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>")
+
+        Args:
+            robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.
+                You can obtain your robot ID from the Viam app's machine page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+        """
+        request = GetRobotPartMetadataRequest(id=robot_part_id)
+        response: GetRobotPartMetadataResponse = await self._app_client.GetRobotPartMetadata(request)
         return struct_to_dict(response.data)
