@@ -54,8 +54,6 @@ from viam.proto.app.data import (
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
@@ -886,30 +884,6 @@ class DataClient:
             request, metadata=self._metadata
         )
         return response.deleted_count
-
-    async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
-        """Get a list of tags using a filter.
-
-        ::
-
-            from viam.utils import create_filter
-
-            my_filter = create_filter(component_name="my_camera")
-            tags = await data_client.tags_by_filter(my_filter)
-
-        Args:
-            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
-                return.
-
-        Returns:
-            List[str]: The list of tags.
-
-        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tagsbyfilter>`_.
-        """
-        filter = filter if filter else Filter()
-        request = TagsByFilterRequest(filter=filter)
-        response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
-        return list(response.tags)
 
     async def add_bounding_box_to_image_by_id(
         self,

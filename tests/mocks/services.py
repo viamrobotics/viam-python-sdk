@@ -222,8 +222,6 @@ from viam.proto.app.data import (
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
     UnimplementedDataServiceBase,
 )
 from viam.proto.app.dataset import (
@@ -927,12 +925,6 @@ class MockData(UnimplementedDataServiceBase):
         self.filter = request.filter
         self.tags = request.tags
         await stream.send_message(RemoveTagsFromBinaryDataByFilterResponse(deleted_count=len(request.tags)))
-
-    async def TagsByFilter(self, stream: Stream[TagsByFilterRequest, TagsByFilterResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.filter = request.filter
-        await stream.send_message(TagsByFilterResponse(tags=self.tags_response))
 
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
         request = await stream.recv_message()
