@@ -390,8 +390,11 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     USE_RECENT_DATA_FIELD_NUMBER: builtins.int
+    USE_DATA_PIPELINE_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     use_recent_data: builtins.bool
+    use_data_pipeline: builtins.str
+    'if set, MQL query will target the sink collection for the data pipeline name\n    referenced by this value under the given organization.\n    '
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -400,15 +403,20 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
         namespace, which holds the Viam organization's tabular data.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=..., use_data_pipeline: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_use_recent_data', b'_use_recent_data', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_use_recent_data', b'_use_recent_data', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_recent_data', b'use_recent_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> None:
         ...
 
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_use_data_pipeline', b'_use_data_pipeline']) -> typing.Literal['use_data_pipeline'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_use_recent_data', b'_use_recent_data']) -> typing.Literal['use_recent_data'] | None:
         ...
 global___TabularDataByMQLRequest = TabularDataByMQLRequest
