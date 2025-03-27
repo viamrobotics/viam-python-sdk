@@ -1990,7 +1990,7 @@ Package Contents
 
 
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., use_data_pipeline: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2006,6 +2006,13 @@ Package Contents
       :type:  bool
 
 
+   .. py:attribute:: use_data_pipeline
+      :type:  str
+
+      if set, MQL query will target the sink collection for the data pipeline name
+      referenced by this value under the given organization.
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
@@ -2014,7 +2021,7 @@ Package Contents
       namespace, which holds the Viam organization's tabular data.
 
 
-   .. py:method:: HasField(field_name: Literal['_use_recent_data', b'_use_recent_data', 'use_recent_data', b'use_recent_data']) -> bool
+   .. py:method:: HasField(field_name: Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2032,7 +2039,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_use_data_pipeline', b'_use_data_pipeline']) -> Literal['use_data_pipeline'] | None
+                  WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
