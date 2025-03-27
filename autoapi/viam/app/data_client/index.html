@@ -654,24 +654,16 @@ str: The last-returned page ID.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.binary_data_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryData" title="viam.proto.app.data.BinaryData"><span class="pre">viam.proto.app.data.BinaryData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryData" title="viam.proto.app.data.BinaryData"><span class="pre">viam.proto.app.data.BinaryData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and download binary data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
-    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
+    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span><span class="p">)</span>
 
 <span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_ids</span><span class="p">(</span><span class="n">my_ids</span><span class="p">)</span>
 </pre></div>
@@ -679,12 +671,13 @@ str: The last-returned page ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a><em>]</em>) – <cite>BinaryID</cite> objects specifying the desired data. Must be non-empty.</p></li>
+<li><p><strong>binary_ids</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Binary data id strings specifying the desired data or <cite>BinaryID</cite> objects. Must be non-empty.
+Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field instead.</p></li>
 <li><p><strong>dest</strong> (<em>str</em>) – Optional filepath for writing retrieved data.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If no <cite>BinaryID</cite> objects are provided.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If no binary data id strings or <cite>BinaryID</cite> objects are provided.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The binary data.</p>
@@ -764,7 +757,7 @@ all data being deleted. Exercise caution when using this option. You must specif
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_binary_data_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_binary_data_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and delete binary data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
@@ -780,11 +773,7 @@ all data being deleted. Exercise caution when using this option. You must specif
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
     <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-        <span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span>
     <span class="p">)</span>
 
 <span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_binary_data_by_ids</span><span class="p">(</span><span class="n">my_ids</span><span class="p">)</span>
@@ -792,10 +781,14 @@ all data being deleted. Exercise caution when using this option. You must specif
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a><em>]</em>) – <cite>BinaryID</cite> objects specifying the data to be deleted. Must be non-empty.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>binary_ids</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Binary data id strings specifying the data to be deleted or <cite>BinaryID</cite> objects.</p></li>
+<li><p><strong>non-empty.</strong> (<em>Must be</em>) – Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If no <cite>BinaryID</cite> objects are provided.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If no binary data id strings or <cite>BinaryID</cite> objects are provided.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The number of items deleted.</p>
@@ -809,10 +802,9 @@ all data being deleted. Exercise caution when using this option. You must specif
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_tags_to_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_tags_to_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_tags_to_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_tags_to_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Add tags to binary data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
@@ -827,11 +819,7 @@ all data being deleted. Exercise caution when using this option. You must specif
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
     <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-        <span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span>
     <span class="p">)</span>
 
 <span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">my_ids</span><span class="p">)</span>
@@ -841,11 +829,14 @@ all data being deleted. Exercise caution when using this option. You must specif
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tags</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of tags to add to specified binary data. Must be non-empty.</p></li>
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><em>viam.app.proto.BinaryID</em><em>]</em>) – List of <cite>BinaryID</cite> objects specifying binary data to tag. Must be non-empty.</p></li>
+<li><p><strong>binary_ids</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Binary data id strings specifying the data to be tagged or <cite>BinaryID</cite> objects.
+Must be non-empty.
+Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If no <cite>BinaryID</cite> objects or tags are provided.</p>
+<dd class="field-even"><p><strong>GRPCError</strong> – If no binary data id strings or <cite>BinaryID</cite> objects are provided.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids">Data Client API</a>.</p>
@@ -879,10 +870,9 @@ tagged.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Remove tags from binary data by IDs.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
 
@@ -898,11 +888,7 @@ tagged.</p></li>
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
     <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-        <span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span>
     <span class="p">)</span>
 
 <span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_tags_from_binary_data_by_ids</span><span class="p">(</span>
@@ -913,7 +899,10 @@ tagged.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tags</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of tags to remove from specified binary data. Must be non-empty.</p></li>
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – List of <cite>BinaryID</cite> objects specifying binary data to untag. Must be non-empty.</p></li>
+<li><p><strong>binary_ids</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – Binary data id strings specifying the data to be untagged or <cite>BinaryID</cite> objects.
+Must be non-empty.
+Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -988,32 +977,28 @@ return.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Add a bounding box to an image.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-
-<span class="n">MY_BINARY_ID</span> <span class="o">=</span> <span class="n">BinaryID</span><span class="p">(</span>
-    <span class="n">file_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-FILE-ID&gt;&quot;</span><span class="p">,</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
-    <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-LOCATION-ID&gt;&quot;</span>
-<span class="p">)</span>
-
-<span class="n">bbox_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
-    <span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_ID</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
-    <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">y_min_normalized</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
-    <span class="n">x_max_normalized</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
-    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">bbox_id</span><span class="p">)</span>
-</pre></div>
-</div>
+<dl>
+<dt>::</dt><dd><dl class="simple">
+<dt>bbox_id = await data_client.add_bounding_box_to_image_by_id(</dt><dd><p>binary_id=MY_BINARY_DATA_ID,
+label=”label”,
+x_min_normalized=0,
+y_min_normalized=.1,
+x_max_normalized=.2,
+y_max_normalized=.3</p>
+</dd>
+</dl>
+<p>)</p>
+<p>print(bbox_id)</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_id</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a>) – The ID of the image to add the bounding box to.</p></li>
+<li><p><strong>binary_id</strong> (<em>Union</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a><em>, </em><em>str</em><em>]</em>) – The binary data id or <cite>BinaryID</cite> of the image to add the bounding box to.
+Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
 <li><p><strong>label</strong> (<em>str</em>) – A label for the bounding box.</p></li>
 <li><p><strong>x_min_normalized</strong> (<em>float</em>) – Min X value of the bounding box normalized from 0 to 1.</p></li>
 <li><p><strong>y_min_normalized</strong> (<em>float</em>) – Min Y value of the bounding box normalized from 0 to 1.</p></li>
@@ -1036,18 +1021,10 @@ return.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_bounding_box_from_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_bounding_box_from_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_bounding_box_from_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_bounding_box_from_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Removes a bounding box from an image.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-
-<span class="n">MY_BINARY_ID</span> <span class="o">=</span> <span class="n">BinaryID</span><span class="p">(</span>
-    <span class="n">file_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">file_id</span><span class="p">,</span>
-    <span class="n">organization_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">-</span><span class="nb">id</span><span class="p">,</span>
-    <span class="n">location_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">location</span><span class="o">-</span><span class="nb">id</span>
-<span class="p">)</span>
-
-<span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_bounding_box_from_image_by_id</span><span class="p">(</span>
-<span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_ID</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_bounding_box_from_image_by_id</span><span class="p">(</span>
+<span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_DATA_ID</span><span class="p">,</span>
 <span class="n">bbox_id</span><span class="o">=</span><span class="s2">&quot;your-bounding-box-id-to-delete&quot;</span>
 <span class="p">)</span>
 </pre></div>
@@ -1056,7 +1033,9 @@ return.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bbox_id</strong> (<em>str</em>) – The ID of the bounding box to remove.</p></li>
-<li><p><strong>binary_id</strong> (<em>viam.proto.arr.data.BinaryID</em>) – Binary ID of the image to remove the bounding box from.</p></li>
+<li><p><strong>binary_id</strong> (<em>Union</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a><em>, </em><em>str</em><em>]</em>) – The binary data id or <cite>BinaryID</cite> of the image to remove the bounding box</p></li>
+<li><p><strong>from.</strong> – Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1258,12 +1237,10 @@ clicking on the dataset, clicking the <strong>…</strong> menu and selecting <s
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_binary_data_to_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_binary_data_to_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_binary_data_to_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_binary_data_to_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Add the BinaryData to the provided dataset.</p>
 <p>This BinaryData will be tagged with the VIAM_DATASET_{id} label.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -1271,11 +1248,7 @@ clicking on the dataset, clicking the <strong>…</strong> menu and selecting <s
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
     <span class="n">my_binary_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-            <span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span>
         <span class="p">)</span>
 
 <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_binary_data_to_dataset_by_ids</span><span class="p">(</span>
@@ -1300,12 +1273,10 @@ and use the left-hand menu to copy the dataset ID.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_binary_data_from_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_binary_data_from_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_binary_data_from_dataset_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_binary_data_from_dataset_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Remove the BinaryData from the provided dataset.</p>
 <p>This BinaryData will lose the VIAM_DATASET_{id} tag.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
-
-<span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary_metadata</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
     <span class="n">include_binary_data</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
@@ -1313,11 +1284,7 @@ and use the left-hand menu to copy the dataset ID.</p></li>
 
 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
     <span class="n">my_binary_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="n">BinaryID</span><span class="p">(</span>
-            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
-        <span class="p">)</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">binary_data_id</span>
     <span class="p">)</span>
 
 <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_binary_data_from_dataset_by_ids</span><span class="p">(</span>
@@ -1329,10 +1296,12 @@ and use the left-hand menu to copy the dataset ID.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – The IDs of binary data to remove from dataset. To retrieve these IDs,
+<li><p><strong>binary_ids</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – The IDs of binary data to remove from dataset. To retrieve these IDs,
 navigate to your data page, click on an image and copy its File ID from the details tab. To
 retrieve the dataset ID, navigate to your dataset’s page in the Viam app, and use the
-left-hand menu to copy the dataset ID.</p></li>
+left-hand menu to copy the dataset ID.
+Note: <cite>BinaryID</cite> objects are deprecated and will be removed in a future release. Please use the binary data id field
+instead.</p></li>
 <li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset to be removed from.</p></li>
 </ul>
 </dd>
@@ -1383,7 +1352,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid part ID is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The file_id of the uploaded data.</p>
+<dd class="field-odd"><p>The binary_data_id of the uploaded data.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
@@ -1489,7 +1458,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid part ID is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The file_id of the uploaded data.</p>
+<dd class="field-odd"><p>The binary_data_id of the uploaded data.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>

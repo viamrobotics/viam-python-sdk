@@ -469,15 +469,13 @@ Module Contents
 
 
 
-   .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
+   .. py:method:: binary_data_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
       :async:
 
 
       Filter and download binary data.
 
       ::
-
-          from viam.proto.app.data import BinaryID
 
           binary_metadata, count, last = await data_client.binary_data_by_filter(
               include_binary_data=False
@@ -486,22 +484,17 @@ Module Contents
           my_ids = []
 
           for obj in binary_metadata:
-              my_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                  )
-              )
+              my_ids.append(obj.metadata.binary_data_id)
 
           binary_data = await data_client.binary_data_by_ids(my_ids)
 
-      :param binary_ids: `BinaryID` objects specifying the desired data. Must be non-empty.
-      :type binary_ids: List[viam.proto.app.data.BinaryID]
+      :param binary_ids: Binary data id strings specifying the desired data or `BinaryID` objects. Must be non-empty.
+                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field instead.
+      :type binary_ids: Union[List[BinaryID], List[str]]
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :raises GRPCError: If no `BinaryID` objects are provided.
+      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
 
       :returns: The binary data.
       :rtype: List[viam.proto.app.data.BinaryData]
@@ -573,7 +566,7 @@ Module Contents
 
 
 
-   .. py:method:: delete_binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID]) -> int
+   .. py:method:: delete_binary_data_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]]) -> int
       :async:
 
 
@@ -595,19 +588,17 @@ Module Contents
 
           for obj in binary_metadata:
               my_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                  )
+                  obj.metadata.binary_data_id
               )
 
           binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
-      :param binary_ids: `BinaryID` objects specifying the data to be deleted. Must be non-empty.
-      :type binary_ids: List[viam.proto.app.data.BinaryID]
+      :param binary_ids: Binary data id strings specifying the data to be deleted or `BinaryID` objects.
+      :type binary_ids: Union[List[BinaryID], List[str]]
+      :param Must be non-empty.: Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                                 instead.
 
-      :raises GRPCError: If no `BinaryID` objects are provided.
+      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
 
       :returns: The number of items deleted.
       :rtype: int
@@ -616,7 +607,7 @@ Module Contents
 
 
 
-   .. py:method:: add_tags_to_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> None
+   .. py:method:: add_tags_to_binary_data_by_ids(tags: List[str], binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]]) -> None
       :async:
 
 
@@ -624,7 +615,6 @@ Module Contents
 
       ::
 
-          from viam.proto.app.data import BinaryID
           from viam.utils import create_filter
 
           tags = ["tag1", "tag2"]
@@ -640,21 +630,20 @@ Module Contents
 
           for obj in binary_metadata:
               my_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                  )
+                  obj.metadata.binary_data_id
               )
 
           binary_data = await data_client.add_tags_to_binary_data_by_ids(tags, my_ids)
 
       :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param binary_ids: List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
-      :type binary_ids: List[viam.app.proto.BinaryID]
+      :param binary_ids: Binary data id strings specifying the data to be tagged or `BinaryID` objects.
+                         Must be non-empty.
+                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                         instead.
+      :type binary_ids: Union[List[BinaryID], List[str]]
 
-      :raises GRPCError: If no `BinaryID` objects or tags are provided.
+      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
 
@@ -686,7 +675,7 @@ Module Contents
 
 
 
-   .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> int
+   .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]]) -> int
       :async:
 
 
@@ -694,7 +683,6 @@ Module Contents
 
       ::
 
-          from viam.proto.app.data import BinaryID
           from viam.utils import create_filter
 
           tags = ["tag1", "tag2"]
@@ -711,11 +699,7 @@ Module Contents
 
           for obj in binary_metadata:
               my_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                  )
+                  obj.metadata.binary_data_id
               )
 
           binary_data = await data_client.remove_tags_from_binary_data_by_ids(
@@ -723,8 +707,11 @@ Module Contents
 
       :param tags: List of tags to remove from specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param binary_ids: List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
-      :type binary_ids: List[BinaryID]
+      :param binary_ids: Binary data id strings specifying the data to be untagged or `BinaryID` objects.
+                         Must be non-empty.
+                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                         instead.
+      :type binary_ids: Union[List[BinaryID], List[str]]
 
       :raises GRPCError: If no binary_ids or tags are provided.
 
@@ -788,24 +775,15 @@ Module Contents
 
 
 
-   .. py:method:: add_bounding_box_to_image_by_id(binary_id: viam.proto.app.data.BinaryID, label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float) -> str
+   .. py:method:: add_bounding_box_to_image_by_id(binary_id: Union[viam.proto.app.data.BinaryID, str], label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float) -> str
       :async:
 
 
       Add a bounding box to an image.
 
       ::
-
-          from viam.proto.app.data import BinaryID
-
-          MY_BINARY_ID = BinaryID(
-              file_id="<YOUR-FILE-ID>",
-              organization_id="<YOUR-ORG-ID>",
-              location_id="<YOUR-LOCATION-ID>"
-          )
-
           bbox_id = await data_client.add_bounding_box_to_image_by_id(
-              binary_id=MY_BINARY_ID,
+              binary_id=MY_BINARY_DATA_ID,
               label="label",
               x_min_normalized=0,
               y_min_normalized=.1,
@@ -815,8 +793,10 @@ Module Contents
 
           print(bbox_id)
 
-      :param binary_id: The ID of the image to add the bounding box to.
-      :type binary_id: viam.proto.app.data.BinaryID
+      :param binary_id: The binary data id or `BinaryID` of the image to add the bounding box to.
+                        Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                        instead.
+      :type binary_id: Union[viam.proto.app.data.BinaryID, str]
       :param label: A label for the bounding box.
       :type label: str
       :param x_min_normalized: Min X value of the bounding box normalized from 0 to 1.
@@ -837,7 +817,7 @@ Module Contents
 
 
 
-   .. py:method:: remove_bounding_box_from_image_by_id(bbox_id: str, binary_id: viam.proto.app.data.BinaryID) -> None
+   .. py:method:: remove_bounding_box_from_image_by_id(bbox_id: str, binary_id: Union[viam.proto.app.data.BinaryID, str]) -> None
       :async:
 
 
@@ -845,23 +825,17 @@ Module Contents
 
       ::
 
-          from viam.proto.app.data import BinaryID
-
-          MY_BINARY_ID = BinaryID(
-              file_id=your-file_id,
-              organization_id=your-org-id,
-              location_id=your-location-id
-          )
-
           await data_client.remove_bounding_box_from_image_by_id(
-          binary_id=MY_BINARY_ID,
+          binary_id=MY_BINARY_DATA_ID,
           bbox_id="your-bounding-box-id-to-delete"
           )
 
       :param bbox_id: The ID of the bounding box to remove.
       :type bbox_id: str
-      :param binary_id: Binary ID of the image to remove the bounding box from.
-      :type binary_id: viam.proto.arr.data.BinaryID
+      :param binary_id: The binary data id or `BinaryID` of the image to remove the bounding box
+      :type binary_id: Union[viam.proto.app.data.BinaryID, str]
+      :param from.: Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                    instead.
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
 
@@ -1058,7 +1032,7 @@ Module Contents
 
 
 
-   .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
+   .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], dataset_id: str) -> None
       :async:
 
 
@@ -1068,8 +1042,6 @@ Module Contents
 
       ::
 
-          from viam.proto.app.data import BinaryID
-
           binary_metadata, count, last = await data_client.binary_data_by_filter(
               include_binary_data=False
           )
@@ -1078,11 +1050,7 @@ Module Contents
 
           for obj in binary_metadata:
               my_binary_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                      )
+                  obj.metadata.binary_data_id
                   )
 
           await data_client.add_binary_data_to_dataset_by_ids(
@@ -1102,7 +1070,7 @@ Module Contents
 
 
 
-   .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
+   .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], dataset_id: str) -> None
       :async:
 
 
@@ -1112,8 +1080,6 @@ Module Contents
 
       ::
 
-          from viam.proto.app.data import BinaryID
-
           binary_metadata, count, last = await data_client.binary_data_by_filter(
               include_binary_data=False
           )
@@ -1122,11 +1088,7 @@ Module Contents
 
           for obj in binary_metadata:
               my_binary_ids.append(
-                  BinaryID(
-                      file_id=obj.metadata.id,
-                      organization_id=obj.metadata.capture_metadata.organization_id,
-                      location_id=obj.metadata.capture_metadata.location_id
-                  )
+                  obj.metadata.binary_data_id
               )
 
           await data_client.remove_binary_data_from_dataset_by_ids(
@@ -1138,7 +1100,9 @@ Module Contents
                          navigate to your data page, click on an image and copy its File ID from the details tab. To
                          retrieve the dataset ID, navigate to your dataset's page in the Viam app, and use the
                          left-hand menu to copy the dataset ID.
-      :type binary_ids: List[BinaryID]
+                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
+                         instead.
+      :type binary_ids: Union[List[BinaryID], List[str]]
       :param dataset_id: The ID of the dataset to be removed from.
       :type dataset_id: str
 
@@ -1196,7 +1160,7 @@ Module Contents
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: The file_id of the uploaded data.
+      :returns: The binary_data_id of the uploaded data.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload>`_.
@@ -1308,7 +1272,7 @@ Module Contents
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: The file_id of the uploaded data.
+      :returns: The binary_data_id of the uploaded data.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload>`_.
