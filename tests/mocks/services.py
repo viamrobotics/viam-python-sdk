@@ -873,6 +873,7 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
+        self.binary_data_ids = request.binary_data_ids
         await stream.send_message(BinaryDataByIDsResponse(data=self.binary_response))
 
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
@@ -892,12 +893,14 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
+        self.binary_data_ids = request.binary_data_ids
         await stream.send_message(DeleteBinaryDataByIDsResponse(deleted_count=self.delete_remove_response))
 
     async def AddTagsToBinaryDataByIDs(self, stream: Stream[AddTagsToBinaryDataByIDsRequest, AddTagsToBinaryDataByIDsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
+        self.binary_data_ids = request.binary_data_ids
         self.tags = request.tags
         await stream.send_message(AddTagsToBinaryDataByIDsResponse())
 
@@ -916,6 +919,7 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
+        self.binary_data_ids = request.binary_data_ids
         self.tags = request.tags
         await stream.send_message(RemoveTagsFromBinaryDataByIDsResponse(deleted_count=self.delete_remove_response))
 
@@ -946,6 +950,7 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.removed_label = request.bbox_id
         self.removed_id = request.binary_id
+        self.removed_binary_data_id = request.binary_data_id
         await stream.send_message(RemoveBoundingBoxFromImageByIDResponse())
 
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
@@ -973,6 +978,7 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.added_data_ids = request.binary_ids
+        self.added_binary_data_ids = request.binary_data_ids
         self.dataset_id = request.dataset_id
         await stream.send_message(AddBinaryDataToDatasetByIDsResponse())
 
@@ -982,6 +988,7 @@ class MockData(UnimplementedDataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.removed_data_ids = request.binary_ids
+        self.removed_binary_data_ids = request.binary_data_ids
         self.dataset_id = request.dataset_id
         await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
@@ -1067,7 +1074,7 @@ class MockDataSync(DataSyncServiceBase):
         assert request is not None
         self.metadata = request.metadata
         self.sensor_contents = request.sensor_contents
-        await stream.send_message(DataCaptureUploadResponse(file_id=self.file_upload_response))
+        await stream.send_message(DataCaptureUploadResponse(binary_data_id=self.file_upload_response, file_id=self.file_upload_response))
 
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
         request_metadata = await stream.recv_message()
@@ -1076,7 +1083,7 @@ class MockDataSync(DataSyncServiceBase):
         request_file_contents = await stream.recv_message()
         assert request_file_contents is not None
         self.binary_data = request_file_contents.file_contents.data
-        await stream.send_message(FileUploadResponse(file_id=self.file_upload_response))
+        await stream.send_message(FileUploadResponse(binary_data_id=self.file_upload_response))
 
     async def StreamingDataCaptureUpload(
         self, stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
@@ -1087,7 +1094,7 @@ class MockDataSync(DataSyncServiceBase):
         request_data_contents = await stream.recv_message()
         assert request_data_contents is not None
         self.binary_data = request_data_contents.data
-        await stream.send_message(StreamingDataCaptureUploadResponse(file_id=self.file_upload_response))
+        await stream.send_message(StreamingDataCaptureUploadResponse(binary_data_id=self.file_upload_response))
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
