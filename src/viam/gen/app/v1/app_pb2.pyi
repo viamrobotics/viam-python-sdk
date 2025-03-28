@@ -4467,18 +4467,24 @@ class OrgDetails(google.protobuf.message.Message):
     ORG_NAME_FIELD_NUMBER: builtins.int
     ORG_CID_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    BILLING_TIER_FIELD_NUMBER: builtins.int
     org_id: builtins.str
     org_name: builtins.str
     org_cid: builtins.str
     public_namespace: builtins.str
+    billing_tier: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=..., org_name: builtins.str=..., org_cid: builtins.str | None=..., public_namespace: builtins.str | None=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., org_name: builtins.str=..., org_cid: builtins.str | None=..., public_namespace: builtins.str | None=..., billing_tier: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'org_cid', b'org_cid', 'public_namespace', b'public_namespace']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'billing_tier', b'billing_tier', 'org_cid', b'org_cid', 'public_namespace', b'public_namespace']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'org_cid', b'org_cid', 'org_id', b'org_id', 'org_name', b'org_name', 'public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'billing_tier', b'billing_tier', 'org_cid', b'org_cid', 'org_id', b'org_id', 'org_name', b'org_name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_billing_tier', b'_billing_tier']) -> typing.Literal['billing_tier'] | None:
         ...
 
     @typing.overload
