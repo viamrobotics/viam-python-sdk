@@ -935,6 +935,7 @@ class DataClient:
         """Add a bounding box to an image.
 
         ::
+
             bbox_id = await data_client.add_bounding_box_to_image_by_id(
                 binary_id=MY_BINARY_DATA_ID,
                 label="label",
