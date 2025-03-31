@@ -2,9 +2,7 @@ from typing import Any, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.gen.component.button.v1.button_pb2 import (
-    PushRequest
-)
+from viam.gen.component.button.v1.button_pb2 import PushRequest
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
