@@ -1,9 +1,9 @@
 import viam.gen.component.button.v1.button_pb2
 from viam.resource.registry import Registry, ResourceRegistration
 
+from .button import Button
 from .client import ButtonClient
 from .service import ButtonRPCService
-from .button import Button
 
 __all__ = ["Button"]
 

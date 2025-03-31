@@ -3,9 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.button import ButtonClient
 from viam.components.button.service import ButtonRPCService
-from viam.gen.component.button.v1.button_pb2 import (
-    PushRequest
-)
+from viam.gen.component.button.v1.button_pb2 import PushRequest
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
