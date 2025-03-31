@@ -1,0 +1,38 @@
+viam.components.button.service
+==============================
+
+.. py:module:: viam.components.button.service
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.button.service.ButtonRPCService
+
+
+Module Contents
+---------------
+
+.. py:class:: ButtonRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.component.button.ButtonServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.button.button.Button`\ ]
+
+
+   gRPC Service for a generic Button
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:method:: Push(stream: grpclib.server.Stream[viam.gen.component.button.v1.button_pb2.PushRequest, viam.gen.component.button.v1.button_pb2.PushResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
