@@ -414,3 +414,50 @@ class SendPaymentRequiredEmailResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___SendPaymentRequiredEmailResponse = SendPaymentRequiredEmailResponse
+
+@typing.final
+class GetAvailableBillingTiersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetAvailableBillingTiersRequest = GetAvailableBillingTiersRequest
+
+@typing.final
+class GetAvailableBillingTiersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TIERS_FIELD_NUMBER: builtins.int
+
+    @property
+    def tiers(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, tiers: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['tiers', b'tiers']) -> None:
+        ...
+global___GetAvailableBillingTiersResponse = GetAvailableBillingTiersResponse
+
+@typing.final
+class UpdateOrganizationBillingTierRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    BILLING_TIER_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    billing_tier: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=..., billing_tier: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_tier', b'billing_tier', 'organization_id', b'organization_id']) -> None:
+        ...
+global___UpdateOrganizationBillingTierRequest = UpdateOrganizationBillingTierRequest
+
+@typing.final
+class UpdateOrganizationBillingTierResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateOrganizationBillingTierResponse = UpdateOrganizationBillingTierResponse
