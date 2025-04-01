@@ -979,20 +979,18 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Add a bounding box to an image.</p>
-<dl>
-<dt>::</dt><dd><dl class="simple">
-<dt>bbox_id = await data_client.add_bounding_box_to_image_by_id(</dt><dd><p>binary_id=”&lt;YOUR-BINARY-DATA-ID&gt;”,
-label=”label”,
-x_min_normalized=0,
-y_min_normalized=.1,
-x_max_normalized=.2,
-y_max_normalized=.3</p>
-</dd>
-</dl>
-<p>)</p>
-<p>print(bbox_id)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bbox_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
+    <span class="n">binary_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">y_min_normalized</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+    <span class="n">x_max_normalized</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bbox_id</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
