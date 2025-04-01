@@ -61,6 +61,20 @@ Module Contents
 
 
 
+   .. py:method:: GetAvailableBillingTiers(stream: grpclib.server.Stream[app.v1.billing_pb2.GetAvailableBillingTiersRequest, app.v1.billing_pb2.GetAvailableBillingTiersResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateOrganizationBillingTier(stream: grpclib.server.Stream[app.v1.billing_pb2.UpdateOrganizationBillingTierRequest, app.v1.billing_pb2.UpdateOrganizationBillingTierResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -98,6 +112,16 @@ Module Contents
 
 
 
+   .. py:method:: GetAvailableBillingTiers(stream: grpclib.server.Stream[app.v1.billing_pb2.GetAvailableBillingTiersRequest, app.v1.billing_pb2.GetAvailableBillingTiersResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateOrganizationBillingTier(stream: grpclib.server.Stream[app.v1.billing_pb2.UpdateOrganizationBillingTierRequest, app.v1.billing_pb2.UpdateOrganizationBillingTierResponse]) -> None
+      :async:
+
+
+
 .. py:class:: BillingServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetCurrentMonthUsage
@@ -113,5 +137,11 @@ Module Contents
 
 
    .. py:attribute:: SendPaymentRequiredEmail
+
+
+   .. py:attribute:: GetAvailableBillingTiers
+
+
+   .. py:attribute:: UpdateOrganizationBillingTier
 
 

@@ -6385,7 +6385,7 @@ Module Contents
 
 .. py:data:: global___ModuleVersion
 
-.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
+.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6409,6 +6409,12 @@ Module Contents
       The path to a setup script that is run before a newly downloaded module starts.
 
 
+   .. py:attribute:: markdown_description
+      :type:  str
+
+      markdown content for the entire module
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
@@ -6422,7 +6428,7 @@ Module Contents
       When this is returned from the backend, the versions are sorted in ascending order by the semver version
 
 
-   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -6441,6 +6447,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+                  WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -6848,7 +6855,7 @@ Module Contents
 
 .. py:data:: global___CreateRegistryItemResponse
 
-.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ..., update_module_metadata: global___UpdateModuleMetadata | None = ..., update_ml_model_metadata: global___UpdateMLModelMetadata | None = ..., update_ml_training_metadata: global___UpdateMLTrainingMetadata | None = ...)
+.. py:class:: UpdateRegistryItemRequest(*, item_id: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., description: str = ..., visibility: global___Visibility = ..., url: str | None = ..., update_module_metadata: global___UpdateModuleMetadata | None = ..., update_ml_model_metadata: global___UpdateMLModelMetadata | None = ..., update_ml_training_metadata: global___UpdateMLTrainingMetadata | None = ..., markdown_description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6880,6 +6887,10 @@ Module Contents
       :type:  str
 
 
+   .. py:attribute:: markdown_description
+      :type:  str
+
+
    .. py:property:: update_module_metadata
       :type: global___UpdateModuleMetadata
 
@@ -6895,7 +6906,7 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_url', b'_url', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']) -> bool
+   .. py:method:: HasField(field_name: Literal['_markdown_description', b'_markdown_description', '_url', b'_url', 'markdown_description', b'markdown_description', 'metadata', b'metadata', 'update_ml_model_metadata', b'update_ml_model_metadata', 'update_ml_training_metadata', b'update_ml_training_metadata', 'update_module_metadata', b'update_module_metadata', 'url', b'url']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -6913,7 +6924,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_url', b'_url']) -> Literal['url'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
+                  WhichOneof(oneof_group: Literal['_url', b'_url']) -> Literal['url'] | None
                   WhichOneof(oneof_group: Literal['metadata', b'metadata']) -> Literal['update_module_metadata', 'update_ml_model_metadata', 'update_ml_training_metadata'] | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -7182,7 +7194,7 @@ Module Contents
 
 .. py:data:: global___CreateModuleResponse
 
-.. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
+.. py:class:: UpdateModuleRequest(*, module_id: str = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ..., markdown_description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7232,6 +7244,12 @@ Module Contents
       The path to a setup script that is run before a newly downloaded module starts.
 
 
+   .. py:attribute:: markdown_description
+      :type:  str
+
+      longer documentation provided in markdown format
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
@@ -7244,7 +7262,7 @@ Module Contents
       A list of applications associated with the module
 
 
-   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7263,6 +7281,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+                  WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7705,7 +7724,7 @@ Module Contents
 
 .. py:data:: global___GetModuleResponse
 
-.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ...)
+.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7786,6 +7805,12 @@ Module Contents
       The path to a setup script that is run before a newly downloaded module starts.
 
 
+   .. py:attribute:: markdown_description
+      :type:  str
+
+      Longer documentation provided in markdown format
+
+
    .. py:property:: versions
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]
 
@@ -7799,7 +7824,7 @@ Module Contents
       A list of models that are available in the module
 
 
-   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7818,6 +7843,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+                  WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7835,7 +7861,7 @@ Module Contents
 
 .. py:data:: global___Module
 
-.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ...)
+.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7865,6 +7891,12 @@ Module Contents
       The path to a setup script that is run before a newly downloaded module starts.
 
 
+   .. py:attribute:: markdown_description
+      :type:  str
+
+      The markdown documentation for this version of the module
+
+
    .. py:property:: files
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]
 
@@ -7877,7 +7909,7 @@ Module Contents
       The models that this verion of the module provides
 
 
-   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> bool
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7896,6 +7928,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+                  WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -8090,7 +8123,7 @@ Module Contents
 
 .. py:data:: global___ListOrganizationsByUserRequest
 
-.. py:class:: OrgDetails(*, org_id: str = ..., org_name: str = ..., org_cid: str | None = ..., public_namespace: str | None = ...)
+.. py:class:: OrgDetails(*, org_id: str = ..., org_name: str = ..., org_cid: str | None = ..., public_namespace: str | None = ..., billing_tier: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8118,7 +8151,11 @@ Module Contents
       :type:  str
 
 
-   .. py:method:: HasField(field_name: Literal['_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'org_cid', b'org_cid', 'public_namespace', b'public_namespace']) -> bool
+   .. py:attribute:: billing_tier
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_billing_tier', b'_billing_tier', '_org_cid', b'_org_cid', '_public_namespace', b'_public_namespace', 'billing_tier', b'billing_tier', 'org_cid', b'org_cid', 'public_namespace', b'public_namespace']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -8136,7 +8173,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_org_cid', b'_org_cid']) -> Literal['org_cid'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_billing_tier', b'_billing_tier']) -> Literal['billing_tier'] | None
+                  WhichOneof(oneof_group: Literal['_org_cid', b'_org_cid']) -> Literal['org_cid'] | None
                   WhichOneof(oneof_group: Literal['_public_namespace', b'_public_namespace']) -> Literal['public_namespace'] | None
 
       Returns the name of the field that is set inside a oneof group.
