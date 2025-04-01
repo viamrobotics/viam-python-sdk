@@ -1111,6 +1111,9 @@ Module Contents
           my_robot_part = await cloud.get_robot_part(
               robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22"
           )
+          # Check if machine is live (last access time less than 10 sec ago)
+          if (time.time() - my_robot_part.last_access.timestamp()) <= 10000:
+              print("Machine is live.")
 
       :param robot_part_id: ID of the machine part to get. You can retrieve this value by navigating to the machine's page,
                             clicking on the part status dropdown, and clicking the copy icon next to Part ID.

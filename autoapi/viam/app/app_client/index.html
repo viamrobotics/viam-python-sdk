@@ -1454,6 +1454,9 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_robot_part</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part</span><span class="p">(</span>
     <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
 <span class="p">)</span>
+<span class="c1"># Check if machine is live (last access time less than 10 sec ago)</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">my_robot_part</span><span class="o">.</span><span class="n">last_access</span><span class="o">.</span><span class="n">timestamp</span><span class="p">())</span> <span class="o">&lt;=</span> <span class="mi">10000</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Machine is live.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
