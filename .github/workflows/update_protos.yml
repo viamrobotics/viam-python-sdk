@@ -66,7 +66,7 @@ jobs:
 
       - name: Auto approve
         if: steps.cpr.outputs.pull-request-operation == 'created'
-        run: gh pr review --approve "${{ stps.cpr.outputs.pull-request-number }}"
+        run: gh pr review --approve "${{ steps.cpr.outputs.pull-request-number }}"
         env:
           # (TODO ethan) hard to test for sure but it's possible this is insufficient. it's unclear
           # to me whether an approval from `viambot` is sufficient to satisfy merge requirements.
