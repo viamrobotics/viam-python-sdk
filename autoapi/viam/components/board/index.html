@@ -252,7 +252,7 @@ change between values it can read).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the Analog &quot;my_example_analog_reader&quot;.</span>
-<span class="n">reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_reader_by_name</span><span class="p">(</span>
+<span class="n">reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_by_name</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_example_analog_reader&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get the value of the digital signal &quot;my_example_analog_reader&quot; has most</span>
