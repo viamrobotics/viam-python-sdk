@@ -27,6 +27,9 @@ jobs:
         with:
           enable-cache: true
 
+      - name: prune origin
+        run: git remote prune origin
+
       - name: Setup Python
         run: uv python install
 
