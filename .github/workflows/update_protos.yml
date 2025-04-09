@@ -53,11 +53,11 @@ jobs:
 
       - name: stash and all
         run: |
+          git remote prune origin
+          git prune
           git fetch origin
           git stash
           git checkout main
-          git remote prune origin
-          git prune
           git stash pop
 
       - name: Add + Commit + Open PR
