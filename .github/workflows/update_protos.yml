@@ -50,6 +50,7 @@ jobs:
       - name: Print Info
         run: |
           git status
+          git rev-parse --abbrev-ref HEAD
 
       - name: stash and all
         run: |
