@@ -53,6 +53,7 @@ jobs:
 
       - name: stash and all
         run: |
+          git fetch origin
           git stash
           git checkout main
           git stash pop
