@@ -2,7 +2,6 @@ name: Update Protos + Open PR
 
 on:
   workflow_dispatch:
-  pull_request:
   repository_dispatch:
     types:
       - protos-updated
@@ -36,8 +35,8 @@ jobs:
 
       - name: Store API version
         run: |
-          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py v0.1.425
-          echo "Updated API version to v0.1.425 in src/viam/version_metadata.py"
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
+          echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: uv run make buf
@@ -60,25 +59,6 @@ jobs:
           assignees: njooma
           reviewers: njooma
           token: ${{ secrets.GIT_ACCESS_TOKEN }}
-
-      - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GIT_ACCESS_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
-
-      - name: Auto approve
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        run: gh pr review --approve "${{ steps.cpr.outputs.pull-request-number }}"
-        env:
-          # (TODO ethan) hard to test for sure but it's possible this is insufficient. it's unclear
-          # to me whether an approval from `viambot` is sufficient to satisfy merge requirements.
-          # if not, then this won't work. but that's not particularly bad! it just means we'll still
-          # have to merge by hand, but then we can add `viambot` as a code owner and then automatic
-          # merging will start to work.
-          GH_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
 
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v1.24.0
