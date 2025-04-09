@@ -47,6 +47,12 @@ jobs:
       - name: Format
         run: uv run make format
 
+      - name: Print Info
+        run: |
+          git status
+          git remote prune upstream
+          git status
+
       - name: Add + Commit + Open PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
