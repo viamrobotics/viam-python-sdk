@@ -50,7 +50,7 @@ jobs:
       - name: Print Info
         run: |
           git status
-          git remote prune upstream
+          git remote prune origin
           git status
 
       - name: Add + Commit + Open PR
