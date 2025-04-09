@@ -55,7 +55,7 @@ jobs:
         run: |
           git remote prune origin
           git prune
-          git fetch origin
+          git fetch origin --unshallow
           git stash
           git checkout main
           git stash pop
