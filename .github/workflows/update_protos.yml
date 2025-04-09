@@ -56,8 +56,8 @@ jobs:
           git remote prune origin
           git prune
           git remote set-branches origin "*"
-          git branch -d workflow/update-protos
           git fetch origin --unshallow
+          git branch -d workflow/update-protos || true
           git stash
           git checkout main
           git stash pop
