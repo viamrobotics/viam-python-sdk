@@ -61,6 +61,27 @@ Module Contents
 
 
 
+   .. py:method:: EnableDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DisableDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListPipelineRuns(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -98,6 +119,21 @@ Module Contents
 
 
 
+   .. py:method:: EnableDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DisableDataPipeline(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListPipelineRuns(stream: grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse]) -> None
+      :async:
+
+
+
 .. py:class:: DataPipelinesServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetDataPipeline
@@ -113,5 +149,14 @@ Module Contents
 
 
    .. py:attribute:: DeleteDataPipeline
+
+
+   .. py:attribute:: EnableDataPipeline
+
+
+   .. py:attribute:: DisableDataPipeline
+
+
+   .. py:attribute:: ListPipelineRuns
 
 

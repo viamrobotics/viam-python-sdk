@@ -72,6 +72,8 @@ Classes
    viam.proto.app.data.TabularDataByMQLResponse
    viam.proto.app.data.TabularDataBySQLRequest
    viam.proto.app.data.TabularDataBySQLResponse
+   viam.proto.app.data.TabularDataSource
+   viam.proto.app.data.TabularDataSourceType
    viam.proto.app.data.TagsByFilterRequest
    viam.proto.app.data.TagsByFilterResponse
    viam.proto.app.data.TagsFilter
@@ -1990,7 +1992,7 @@ Package Contents
 
 
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., use_data_pipeline: str | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: global___TabularDataSource | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2005,12 +2007,7 @@ Package Contents
    .. py:attribute:: use_recent_data
       :type:  bool
 
-
-   .. py:attribute:: use_data_pipeline
-      :type:  str
-
-      if set, MQL query will target the sink collection for the data pipeline name
-      referenced by this value under the given organization.
+      Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
 
 
    .. py:property:: mql_binary
@@ -2021,7 +2018,14 @@ Package Contents
       namespace, which holds the Viam organization's tabular data.
 
 
-   .. py:method:: HasField(field_name: Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> bool
+   .. py:property:: data_source
+      :type: global___TabularDataSource
+
+      data_source is an optional field that can be used to specify the data source for the query.
+      If not specified, the query will run on "standard" storage.
+
+
+   .. py:method:: HasField(field_name: Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'use_recent_data', b'use_recent_data']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2039,7 +2043,7 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_use_data_pipeline', b'_use_data_pipeline']) -> Literal['use_data_pipeline'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_data_source', b'_data_source']) -> Literal['data_source'] | None
                   WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -2100,6 +2104,67 @@ Package Contents
    .. py:property:: raw_data
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
+
+
+.. py:class:: TabularDataSource(*, type: global___TabularDataSourceType = ..., pipeline_id: str | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   TabularDataSource specifies the data source for user queries to execute on.
+
+
+   .. py:attribute:: type
+      :type:  global___TabularDataSourceType
+
+
+   .. py:attribute:: pipeline_id
+      :type:  str
+
+      pipeline_id is the ID of the pipeline to query. Required when using
+      TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
+
+
+   .. py:method:: HasField(field_name: Literal['_pipeline_id', b'_pipeline_id', 'pipeline_id', b'pipeline_id']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_id', b'_pipeline_id']) -> Literal['pipeline_id'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: TabularDataSourceType
+
+   Bases: :py:obj:`_TabularDataSourceType`
+
+
+   TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
 
 
 .. py:class:: TagsByFilterRequest(*, filter: global___Filter | None = ...)

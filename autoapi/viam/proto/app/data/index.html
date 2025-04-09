@@ -470,8 +470,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.organization_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.use_recent_data"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.use_recent_data</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.use_data_pipeline"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.use_data_pipeline</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_binary"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_binary</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.data_source"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.data_source</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.HasField()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.WhichOneof()</span></code></a></li>
 </ul>
@@ -489,6 +489,14 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse.raw_data"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLResponse.raw_data</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TabularDataSource"><code class="docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataSource.type"><code class="docutils literal notranslate"><span class="pre">TabularDataSource.type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataSource.pipeline_id"><code class="docutils literal notranslate"><span class="pre">TabularDataSource.pipeline_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataSource.HasField"><code class="docutils literal notranslate"><span class="pre">TabularDataSource.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataSource.WhichOneof"><code class="docutils literal notranslate"><span class="pre">TabularDataSource.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType"><code class="docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest.filter"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest.filter</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest.HasField()</span></code></a></li>
@@ -754,6 +762,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
 <td><p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSource" title="viam.proto.app.data.TabularDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a></p></td>
+<td><p>TabularDataSource specifies the data source for user queries to execute on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType" title="viam.proto.app.data.TabularDataSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></p></td>
+<td><p>TabularDataSourceType specifies the data source type for TabularDataByMQL queries.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter.</p></td>
@@ -2927,7 +2941,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_recent_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_data_pipeline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_recent_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TabularDataSource</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>TabularDataByMQLRequest requests tabular data using an MQL query.</p>
 <dl class="py attribute">
@@ -2938,13 +2952,7 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.use_recent_data">
 <span class="sig-name descname"><span class="pre">use_recent_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.use_recent_data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.use_data_pipeline">
-<span class="sig-name descname"><span class="pre">use_data_pipeline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.use_data_pipeline" title="Permalink to this definition"></a></dt>
-<dd><p>if set, MQL query will target the sink collection for the data pipeline name
-referenced by this value under the given organization.</p>
+<dd><p>Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -2955,9 +2963,16 @@ document is one stage in the pipeline. The pipeline is run on the “sensorData.
 namespace, which holds the Viam organization’s tabular data.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.data_source">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data_source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TabularDataSource</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.data_source" title="Permalink to this definition"></a></dt>
+<dd><p>data_source is an optional field that can be used to specify the data source for the query.
+If not specified, the query will run on “standard” storage.</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_use_data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_data_pipeline'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'use_data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'use_data_pipeline'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -2980,7 +2995,7 @@ be raised.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_use_data_pipeline'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_data_pipeline'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'use_data_pipeline'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_data_source'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'data_source'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.WhichOneof" title="Permalink to this definition"></a></dt>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
@@ -3045,6 +3060,76 @@ or “sensorData.readings”.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">raw_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLResponse.raw_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TabularDataSourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataSource" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularDataSource specifies the data source for user queries to execute on.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSource.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TabularDataSourceType</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataSource.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSource.pipeline_id">
+<span class="sig-name descname"><span class="pre">pipeline_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataSource.pipeline_id" title="Permalink to this definition"></a></dt>
+<dd><p>pipeline_id is the ID of the pipeline to query. Required when using
+TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSource.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pipeline_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pipeline_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataSource.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSource.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_id'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pipeline_id'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataSource.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataSourceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataSourceType</span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataSourceType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TabularDataSourceType</span></code></p>
+<p>TabularDataSourceType specifies the data source type for TabularDataByMQL queries.</p>
 </dd></dl>
 
 <dl class="py class">

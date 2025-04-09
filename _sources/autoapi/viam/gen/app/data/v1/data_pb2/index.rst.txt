@@ -25,6 +25,11 @@ Attributes
    viam.gen.app.data.v1.data_pb2.TAGS_FILTER_TYPE_TAGGED
    viam.gen.app.data.v1.data_pb2.TAGS_FILTER_TYPE_UNTAGGED
    viam.gen.app.data.v1.data_pb2.global___TagsFilterType
+   viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
+   viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_STANDARD
+   viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
+   viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK
+   viam.gen.app.data.v1.data_pb2.global___TabularDataSourceType
    viam.gen.app.data.v1.data_pb2.global___DataRequest
    viam.gen.app.data.v1.data_pb2.global___Filter
    viam.gen.app.data.v1.data_pb2.global___TagsFilter
@@ -35,6 +40,7 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___TabularData
    viam.gen.app.data.v1.data_pb2.global___TabularDataBySQLRequest
    viam.gen.app.data.v1.data_pb2.global___TabularDataBySQLResponse
+   viam.gen.app.data.v1.data_pb2.global___TabularDataSource
    viam.gen.app.data.v1.data_pb2.global___TabularDataByMQLRequest
    viam.gen.app.data.v1.data_pb2.global___TabularDataByMQLResponse
    viam.gen.app.data.v1.data_pb2.global___ExportTabularDataRequest
@@ -92,6 +98,7 @@ Classes
 
    viam.gen.app.data.v1.data_pb2.Order
    viam.gen.app.data.v1.data_pb2.TagsFilterType
+   viam.gen.app.data.v1.data_pb2.TabularDataSourceType
    viam.gen.app.data.v1.data_pb2.DataRequest
    viam.gen.app.data.v1.data_pb2.Filter
    viam.gen.app.data.v1.data_pb2.TagsFilter
@@ -102,6 +109,7 @@ Classes
    viam.gen.app.data.v1.data_pb2.TabularData
    viam.gen.app.data.v1.data_pb2.TabularDataBySQLRequest
    viam.gen.app.data.v1.data_pb2.TabularDataBySQLResponse
+   viam.gen.app.data.v1.data_pb2.TabularDataSource
    viam.gen.app.data.v1.data_pb2.TabularDataByMQLRequest
    viam.gen.app.data.v1.data_pb2.TabularDataByMQLResponse
    viam.gen.app.data.v1.data_pb2.ExportTabularDataRequest
@@ -204,6 +212,38 @@ Module Contents
    TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.
 
 .. py:data:: global___TagsFilterType
+
+.. py:class:: TabularDataSourceType
+
+   Bases: :py:obj:`_TabularDataSourceType`
+
+
+   TabularDataSourceType specifies the data source type for TabularDataByMQL queries.
+
+
+.. py:data:: TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
+   :type:  TabularDataSourceType
+
+.. py:data:: TABULAR_DATA_SOURCE_TYPE_STANDARD
+   :type:  TabularDataSourceType
+
+   TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is
+   the default option and available for all data synced to Viam.
+
+.. py:data:: TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
+   :type:  TabularDataSourceType
+
+   TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a
+   premium feature requiring opting in specific data sources.
+   See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store
+
+.. py:data:: TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK
+   :type:  TabularDataSourceType
+
+   TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of
+   a data pipeline. When using this, a pipeline ID needs to be specified.
+
+.. py:data:: global___TabularDataSourceType
 
 .. py:class:: DataRequest(*, filter: global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: global___Order = ...)
 
@@ -665,38 +705,26 @@ Module Contents
 
 .. py:data:: global___TabularDataBySQLResponse
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., use_data_pipeline: str | None = ...)
+.. py:class:: TabularDataSource(*, type: global___TabularDataSourceType = ..., pipeline_id: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
 
-   TabularDataByMQLRequest requests tabular data using an MQL query.
+   TabularDataSource specifies the data source for user queries to execute on.
 
 
-   .. py:attribute:: organization_id
+   .. py:attribute:: type
+      :type:  global___TabularDataSourceType
+
+
+   .. py:attribute:: pipeline_id
       :type:  str
 
-
-   .. py:attribute:: use_recent_data
-      :type:  bool
-
-
-   .. py:attribute:: use_data_pipeline
-      :type:  str
-
-      if set, MQL query will target the sink collection for the data pipeline name
-      referenced by this value under the given organization.
+      pipeline_id is the ID of the pipeline to query. Required when using
+      TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.
 
 
-   .. py:property:: mql_binary
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
-
-      mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
-      document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
-      namespace, which holds the Viam organization's tabular data.
-
-
-   .. py:method:: HasField(field_name: Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> bool
+   .. py:method:: HasField(field_name: Literal['_pipeline_id', b'_pipeline_id', 'pipeline_id', b'pipeline_id']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -714,7 +742,76 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_use_data_pipeline', b'_use_data_pipeline']) -> Literal['use_data_pipeline'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_id', b'_pipeline_id']) -> Literal['pipeline_id'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___TabularDataSource
+
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: global___TabularDataSource | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   TabularDataByMQLRequest requests tabular data using an MQL query.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: use_recent_data
+      :type:  bool
+
+      Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
+
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+      mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
+      document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
+      namespace, which holds the Viam organization's tabular data.
+
+
+   .. py:property:: data_source
+      :type: global___TabularDataSource
+
+      data_source is an optional field that can be used to specify the data source for the query.
+      If not specified, the query will run on "standard" storage.
+
+
+   .. py:method:: HasField(field_name: Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'use_recent_data', b'use_recent_data']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_data_source', b'_data_source']) -> Literal['data_source'] | None
                   WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
 
       Returns the name of the field that is set inside a oneof group.

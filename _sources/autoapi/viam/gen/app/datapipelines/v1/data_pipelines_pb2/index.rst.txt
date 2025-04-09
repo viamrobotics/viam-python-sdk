@@ -16,6 +16,12 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DESCRIPTOR
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_UNSPECIFIED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_SCHEDULED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_STARTED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_COMPLETED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_FAILED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___PipelineRunStatus
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DataPipeline
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___GetDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___GetDataPipelineResponse
@@ -27,6 +33,13 @@ Attributes
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___UpdateDataPipelineResponse
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DeleteDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DeleteDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___EnableDataPipelineRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___EnableDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DisableDataPipelineRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DisableDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListPipelineRunsRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListPipelineRunsResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___PipelineRun
 
 
 Classes
@@ -34,6 +47,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PipelineRunStatus
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DataPipeline
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse
@@ -45,6 +59,13 @@ Classes
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PipelineRun
 
 
 Module Contents
@@ -52,6 +73,28 @@ Module Contents
 
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
+
+.. py:class:: PipelineRunStatus
+
+   Bases: :py:obj:`_PipelineRunStatus`
+
+
+.. py:data:: PIPELINE_RUN_STATUS_UNSPECIFIED
+   :type:  PipelineRunStatus
+
+.. py:data:: PIPELINE_RUN_STATUS_SCHEDULED
+   :type:  PipelineRunStatus
+
+.. py:data:: PIPELINE_RUN_STATUS_STARTED
+   :type:  PipelineRunStatus
+
+.. py:data:: PIPELINE_RUN_STATUS_COMPLETED
+   :type:  PipelineRunStatus
+
+.. py:data:: PIPELINE_RUN_STATUS_FAILED
+   :type:  PipelineRunStatus
+
+.. py:data:: global___PipelineRunStatus
 
 .. py:class:: DataPipeline(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
@@ -289,7 +332,7 @@ Module Contents
 
 .. py:data:: global___CreateDataPipelineResponse
 
-.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ...)
+.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -318,12 +361,6 @@ Module Contents
 
       A cron expression representing the expected execution schedule in UTC (note this also
       defines the input time window; an hourly schedule would process 1 hour of data at a time).
-
-
-   .. py:attribute:: enabled
-      :type:  bool
-
-      Whether or not the pipeline is enabled.
 
 
    .. py:property:: mql_binary
@@ -382,4 +419,208 @@ Module Contents
 
 
 .. py:data:: global___DeleteDataPipelineResponse
+
+.. py:class:: EnableDataPipelineRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The ID of the data pipeline to enable.
+
+
+.. py:data:: global___EnableDataPipelineRequest
+
+.. py:class:: EnableDataPipelineResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___EnableDataPipelineResponse
+
+.. py:class:: DisableDataPipelineRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The ID of the data pipeline to disable.
+
+
+.. py:data:: global___DisableDataPipelineRequest
+
+.. py:class:: DisableDataPipelineResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___DisableDataPipelineResponse
+
+.. py:class:: ListPipelineRunsRequest(*, id: str = ..., page_size: int = ..., page_token: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The ID of the data pipeline to list runs for.
+
+
+   .. py:attribute:: page_size
+      :type:  int
+
+      pagination fields
+
+
+   .. py:attribute:: page_token
+      :type:  str
+
+
+.. py:data:: global___ListPipelineRunsRequest
+
+.. py:class:: ListPipelineRunsResponse(*, pipeline_id: str = ..., runs: collections.abc.Iterable[global___PipelineRun] | None = ..., next_page_token: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: pipeline_id
+      :type:  str
+
+      The ID of the data pipeline the runs are for.
+
+
+   .. py:attribute:: next_page_token
+      :type:  str
+
+      A token to retrieve the next page of results.
+
+
+   .. py:property:: runs
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PipelineRun]
+
+      The runs that were run.
+
+
+.. py:data:: global___ListPipelineRunsResponse
+
+.. py:class:: PipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: global___PipelineRunStatus = ..., reason: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+      The ID of the run.
+
+
+   .. py:attribute:: status
+      :type:  global___PipelineRunStatus
+
+      The status of the run.
+
+
+   .. py:attribute:: reason
+      :type:  str
+
+      An optional message related to the run status.
+
+
+   .. py:property:: start_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The time the run started.
+
+
+   .. py:property:: end_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The time the run ended.
+
+
+   .. py:property:: data_start_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The start time of the data that was processed in the run.
+
+
+   .. py:property:: data_end_time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The end time of the data that was processed in the run.
+
+
+   .. py:method:: HasField(field_name: Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'start_time', b'start_time']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___PipelineRun
 
