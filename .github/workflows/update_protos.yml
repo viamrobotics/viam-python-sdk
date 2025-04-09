@@ -59,7 +59,7 @@ jobs:
           body: This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes
           assignees: njooma
           reviewers: njooma
-          token: ${{ secrets.GIT_ACCESS_TOKEN }}
+          #token: ${{ secrets.GIT_ACCESS_TOKEN }}
 
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
