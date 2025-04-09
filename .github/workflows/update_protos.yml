@@ -78,7 +78,7 @@ jobs:
           # if not, then this won't work. but that's not particularly bad! it just means we'll still
           # have to merge by hand, but then we can add `viambot` as a code owner and then automatic
           # merging will start to work.
-          GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_READ_TOKEN }}
 
       - name: Notify slack of failure
         uses: slackapi/slack-github-action@v1.24.0
