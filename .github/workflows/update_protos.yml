@@ -53,10 +53,10 @@ jobs:
 
       - name: stash and all
         run: |
+          git fetch origin --unshallow
+          git remote set-branches origin "*"
           git remote prune origin
           git prune
-          git remote set-branches origin "*"
-          git fetch origin --unshallow
           git branch -d origin/workflow/update-protos || true
           git stash
           git checkout main
