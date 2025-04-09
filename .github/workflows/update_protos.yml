@@ -36,8 +36,8 @@ jobs:
 
       - name: Store API version
         run: |
-          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py v0.1.426
-          echo "Updated API version to v0.1.426 in src/viam/version_metadata.py"
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py v0.1.424
+          echo "Updated API version to v0.1.424 in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: uv run make buf
