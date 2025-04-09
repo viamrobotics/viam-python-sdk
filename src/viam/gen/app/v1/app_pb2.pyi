@@ -2789,6 +2789,51 @@ class AdditionalFragment(google.protobuf.message.Message):
 global___AdditionalFragment = AdditionalFragment
 
 @typing.final
+class ListNestedFragmentsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    ADDITIONAL_FRAGMENTS_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+
+    @property
+    def additional_fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AdditionalFragment]:
+        ...
+
+    def __init__(self, *, fragment_id: builtins.str | None=..., additional_fragments: collections.abc.Iterable[global___AdditionalFragment] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_fragment_id', b'_fragment_id', 'fragment_id', b'fragment_id']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_fragment_id', b'_fragment_id', 'additional_fragments', b'additional_fragments', 'fragment_id', b'fragment_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_fragment_id', b'_fragment_id']) -> typing.Literal['fragment_id'] | None:
+        ...
+global___ListNestedFragmentsRequest = ListNestedFragmentsRequest
+
+@typing.final
+class ListNestedFragmentsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FRAGMENTS_FIELD_NUMBER: builtins.int
+    RESOLVED_FRAGMENTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Fragment]:
+        ...
+
+    @property
+    def resolved_fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResolvedFragment]:
+        ...
+
+    def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=..., resolved_fragments: collections.abc.Iterable[global___ResolvedFragment] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments', 'resolved_fragments', b'resolved_fragments']) -> None:
+        ...
+global___ListNestedFragmentsResponse = ListNestedFragmentsResponse
+
+@typing.final
 class ListMachineFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MACHINE_ID_FIELD_NUMBER: builtins.int
@@ -3494,12 +3539,15 @@ class ModuleVersion(google.protobuf.message.Message):
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
+    MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
     'The entrypoint for this version of the module'
     first_run: builtins.str
     'The path to a setup script that is run before a newly downloaded module starts.'
+    markdown_description: builtins.str
+    'The markdown documentation for this version of the module'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -3509,16 +3557,21 @@ class ModuleVersion(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', 'first_run', b'first_run']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']) -> None:
         ...
 
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_first_run', b'_first_run']) -> typing.Literal['first_run'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_markdown_description', b'_markdown_description']) -> typing.Literal['markdown_description'] | None:
         ...
 global___ModuleVersion = ModuleVersion
 
@@ -3936,6 +3989,40 @@ class DeleteRegistryItemResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteRegistryItemResponse = DeleteRegistryItemResponse
+
+@typing.final
+class RenameRegistryItemRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: builtins.int
+    NEW_NAME_FIELD_NUMBER: builtins.int
+    item_id: builtins.str
+    new_name: builtins.str
+
+    def __init__(self, *, item_id: builtins.str=..., new_name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['item_id', b'item_id', 'new_name', b'new_name']) -> None:
+        ...
+global___RenameRegistryItemRequest = RenameRegistryItemRequest
+
+@typing.final
+class RenameRegistryItemResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_FIELD_NUMBER: builtins.int
+
+    @property
+    def item(self) -> global___RegistryItem:
+        ...
+
+    def __init__(self, *, item: global___RegistryItem | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['item', b'item']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['item', b'item']) -> None:
+        ...
+global___RenameRegistryItemResponse = RenameRegistryItemResponse
 
 @typing.final
 class TransferRegistryItemRequest(google.protobuf.message.Message):

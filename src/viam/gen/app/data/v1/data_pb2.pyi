@@ -61,6 +61,31 @@ TAGS_FILTER_TYPE_UNTAGGED: TagsFilterType.ValueType
 'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.'
 global___TagsFilterType = TagsFilterType
 
+class _TabularDataSourceType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _TabularDataSourceTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_TabularDataSourceType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED: _TabularDataSourceType.ValueType
+    TABULAR_DATA_SOURCE_TYPE_STANDARD: _TabularDataSourceType.ValueType
+    'TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is\n    the default option and available for all data synced to Viam.\n    '
+    TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE: _TabularDataSourceType.ValueType
+    'TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a\n    premium feature requiring opting in specific data sources.\n    See docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store\n    '
+    TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK: _TabularDataSourceType.ValueType
+    'TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of\n    a data pipeline. When using this, a pipeline ID needs to be specified.\n    '
+
+class TabularDataSourceType(_TabularDataSourceType, metaclass=_TabularDataSourceTypeEnumTypeWrapper):
+    """TabularDataSourceType specifies the data source type for TabularDataByMQL queries."""
+TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED: TabularDataSourceType.ValueType
+TABULAR_DATA_SOURCE_TYPE_STANDARD: TabularDataSourceType.ValueType
+'TABULAR_DATA_SOURCE_TYPE_STANDARD indicates reading from standard storage. This is\nthe default option and available for all data synced to Viam.\n'
+TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE: TabularDataSourceType.ValueType
+'TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE indicates reading from hot storage. This is a\npremium feature requiring opting in specific data sources.\nSee docs at https://docs.viam.com/data-ai/capture-data/advanced/advanced-data-capture-sync/#capture-to-the-hot-data-store\n'
+TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK: TabularDataSourceType.ValueType
+'TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of\na data pipeline. When using this, a pipeline ID needs to be specified.\n'
+global___TabularDataSourceType = TabularDataSourceType
+
 @typing.final
 class DataRequest(google.protobuf.message.Message):
     """DataRequest encapsulates the filter for the data, a limit on the maximum results returned,
@@ -384,17 +409,39 @@ class TabularDataBySQLResponse(google.protobuf.message.Message):
 global___TabularDataBySQLResponse = TabularDataBySQLResponse
 
 @typing.final
+class TabularDataSource(google.protobuf.message.Message):
+    """TabularDataSource specifies the data source for user queries to execute on."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TYPE_FIELD_NUMBER: builtins.int
+    PIPELINE_ID_FIELD_NUMBER: builtins.int
+    type: global___TabularDataSourceType.ValueType
+    pipeline_id: builtins.str
+    'pipeline_id is the ID of the pipeline to query. Required when using\n    TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK.\n    '
+
+    def __init__(self, *, type: global___TabularDataSourceType.ValueType=..., pipeline_id: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_pipeline_id', b'_pipeline_id', 'pipeline_id', b'pipeline_id']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_pipeline_id', b'_pipeline_id', 'pipeline_id', b'pipeline_id', 'type', b'type']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_pipeline_id', b'_pipeline_id']) -> typing.Literal['pipeline_id'] | None:
+        ...
+global___TabularDataSource = TabularDataSource
+
+@typing.final
 class TabularDataByMQLRequest(google.protobuf.message.Message):
     """TabularDataByMQLRequest requests tabular data using an MQL query."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     USE_RECENT_DATA_FIELD_NUMBER: builtins.int
-    USE_DATA_PIPELINE_FIELD_NUMBER: builtins.int
+    DATA_SOURCE_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     use_recent_data: builtins.bool
-    use_data_pipeline: builtins.str
-    'if set, MQL query will target the sink collection for the data pipeline name\n    referenced by this value under the given organization.\n    '
+    'Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.'
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -403,17 +450,23 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
         namespace, which holds the Viam organization's tabular data.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=..., use_data_pipeline: builtins.str | None=...) -> None:
+    @property
+    def data_source(self) -> global___TabularDataSource:
+        """data_source is an optional field that can be used to specify the data source for the query.
+        If not specified, the query will run on "standard" storage.
+        """
+
+    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=..., data_source: global___TabularDataSource | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_use_data_pipeline', b'_use_data_pipeline', '_use_recent_data', b'_use_recent_data', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_data_pipeline', b'use_data_pipeline', 'use_recent_data', b'use_recent_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_recent_data', b'use_recent_data']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal['_use_data_pipeline', b'_use_data_pipeline']) -> typing.Literal['use_data_pipeline'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_data_source', b'_data_source']) -> typing.Literal['data_source'] | None:
         ...
 
     @typing.overload

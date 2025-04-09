@@ -167,15 +167,12 @@ class UpdateDataPipelineRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     SCHEDULE_FIELD_NUMBER: builtins.int
-    ENABLED_FIELD_NUMBER: builtins.int
     id: builtins.str
     'The ID of the data pipeline to update.'
     name: builtins.str
     'A unique identifier at the org level.'
     schedule: builtins.str
     'A cron expression representing the expected execution schedule in UTC (note this also\n    defines the input time window; an hourly schedule would process 1 hour of data at a time).\n    '
-    enabled: builtins.bool
-    'Whether or not the pipeline is enabled.'
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -183,10 +180,10 @@ class UpdateDataPipelineRequest(google.protobuf.message.Message):
         each document is one stage in the pipeline.
         """
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=..., enabled: builtins.bool=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['enabled', b'enabled', 'id', b'id', 'mql_binary', b'mql_binary', 'name', b'name', 'schedule', b'schedule']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'mql_binary', b'mql_binary', 'name', b'name', 'schedule', b'schedule']) -> None:
         ...
 global___UpdateDataPipelineRequest = UpdateDataPipelineRequest
 
@@ -219,3 +216,47 @@ class DeleteDataPipelineResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteDataPipelineResponse = DeleteDataPipelineResponse
+
+@typing.final
+class EnableDataPipelineRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    'The ID of the data pipeline to enable.'
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___EnableDataPipelineRequest = EnableDataPipelineRequest
+
+@typing.final
+class EnableDataPipelineResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___EnableDataPipelineResponse = EnableDataPipelineResponse
+
+@typing.final
+class DisableDataPipelineRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    'The ID of the data pipeline to disable.'
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___DisableDataPipelineRequest = DisableDataPipelineRequest
+
+@typing.final
+class DisableDataPipelineResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DisableDataPipelineResponse = DisableDataPipelineResponse
