@@ -30,8 +30,20 @@ class DataPipelinesServiceBase(abc.ABC):
     async def DeleteDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def EnableDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def DisableDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ListPipelineRuns(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.app.datapipelines.v1.DataPipelinesService/GetDataPipeline': grpclib.const.Handler(self.GetDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/ListDataPipelines': grpclib.const.Handler(self.ListDataPipelines, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse), '/viam.app.datapipelines.v1.DataPipelinesService/CreateDataPipeline': grpclib.const.Handler(self.CreateDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline': grpclib.const.Handler(self.UpdateDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/DeleteDataPipeline': grpclib.const.Handler(self.DeleteDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse)}
+        return {'/viam.app.datapipelines.v1.DataPipelinesService/GetDataPipeline': grpclib.const.Handler(self.GetDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/ListDataPipelines': grpclib.const.Handler(self.ListDataPipelines, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesRequest, app.datapipelines.v1.data_pipelines_pb2.ListDataPipelinesResponse), '/viam.app.datapipelines.v1.DataPipelinesService/CreateDataPipeline': grpclib.const.Handler(self.CreateDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline': grpclib.const.Handler(self.UpdateDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/DeleteDataPipeline': grpclib.const.Handler(self.DeleteDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/EnableDataPipeline': grpclib.const.Handler(self.EnableDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/DisableDataPipeline': grpclib.const.Handler(self.DisableDataPipeline, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse), '/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns': grpclib.const.Handler(self.ListPipelineRuns, grpclib.const.Cardinality.UNARY_UNARY, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse)}
 
 class UnimplementedDataPipelinesServiceBase(DataPipelinesServiceBase):
 
@@ -50,6 +62,15 @@ class UnimplementedDataPipelinesServiceBase(DataPipelinesServiceBase):
     async def DeleteDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def EnableDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def DisableDataPipeline(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def ListPipelineRuns(self, stream: 'grpclib.server.Stream[app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class DataPipelinesServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -58,3 +79,6 @@ class DataPipelinesServiceStub:
         self.CreateDataPipeline = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/CreateDataPipeline', app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.CreateDataPipelineResponse)
         self.UpdateDataPipeline = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/UpdateDataPipeline', app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.UpdateDataPipelineResponse)
         self.DeleteDataPipeline = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/DeleteDataPipeline', app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DeleteDataPipelineResponse)
+        self.EnableDataPipeline = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/EnableDataPipeline', app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse)
+        self.DisableDataPipeline = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/DisableDataPipeline', app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest, app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse)
+        self.ListPipelineRuns = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.datapipelines.v1.DataPipelinesService/ListPipelineRuns', app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest, app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse)
