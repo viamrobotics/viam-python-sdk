@@ -50,8 +50,12 @@ jobs:
       - name: Print Info
         run: |
           git status
-          git remote prune upstream
-          git status
+
+      - name: stash and all
+        run: |
+          git stash
+          git checkout main
+          git stash pop
 
       - name: Add + Commit + Open PR
         id: cpr
