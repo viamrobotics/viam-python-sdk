@@ -47,18 +47,6 @@ jobs:
       - name: Format
         run: uv run make format
 
-      - name: Print Info
-        run: |
-          git branch
-          git rev-parse --abbrev-ref HEAD
-
-      #- name: stash and all
-        #run: |
-          #git remote set-branches origin "*"
-          #git fetch origin --unshallow
-          #git remote prune origin
-          #git prune
-
       - name: Add + Commit + Open PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
@@ -92,15 +80,15 @@ jobs:
           # merging will start to work.
           GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
 
-      #- name: Notify slack of failure
-       # uses: slackapi/slack-github-action@v1.24.0
-        #if: ${{ failure() }}
-        #with:
-         # payload: |
-          #  {
-           #   "text": "Python SDK update protos job has failed",
-            #  "username": "Python SDK",
-             # "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
-            #}
-        #env:
-          #SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
+      - name: Notify slack of failure
+        uses: slackapi/slack-github-action@v1.24.0
+        if: ${{ failure() }}
+        with:
+          payload: |
+            {
+              "text": "Python SDK update protos job has failed",
+              "username": "Python SDK",
+              "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
