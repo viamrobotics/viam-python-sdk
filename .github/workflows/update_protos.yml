@@ -2,6 +2,7 @@ name: Update Protos + Open PR
 
 on:
   workflow_dispatch:
+  pull_request:
   repository_dispatch:
     types:
       - protos-updated
@@ -35,8 +36,8 @@ jobs:
 
       - name: Store API version
         run: |
-          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
-          echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py v0.1.425
+          echo "Updated API version to v0.1.425 in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: uv run make buf
@@ -45,6 +46,12 @@ jobs:
 
       - name: Format
         run: uv run make format
+
+      - name: Print Info
+        run: |
+          git status
+          git remote prune origin
+          git status
 
       - name: Add + Commit + Open PR
         id: cpr
@@ -79,15 +86,15 @@ jobs:
           # merging will start to work.
           GH_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
 
-      - name: Notify slack of failure
-        uses: slackapi/slack-github-action@v1.24.0
-        if: ${{ failure() }}
-        with:
-          payload: |
-            {
-              "text": "Python SDK update protos job has failed",
-              "username": "Python SDK",
-              "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
+      #- name: Notify slack of failure
+       # uses: slackapi/slack-github-action@v1.24.0
+        #if: ${{ failure() }}
+        #with:
+         # payload: |
+          #  {
+           #   "text": "Python SDK update protos job has failed",
+            #  "username": "Python SDK",
+             # "icon_url": "https://media.tenor.com/bZMubztJxGkAAAAe/charlie-brown-walking-charlie-brown.png"
+            #}
+        #env:
+          #SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEAM_SDK_WEBHOOK_URL }}
