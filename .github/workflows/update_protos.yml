@@ -52,24 +52,19 @@ jobs:
           git branch
           git rev-parse --abbrev-ref HEAD
 
-      - name: stash and all
-        run: |
-          git remote set-branches origin "*"
-          git fetch origin --unshallow
-          git remote prune origin
-          git prune
-          git branch -d workflow/update-protos || true
-
-      - name: try checkout
-        run: |
-          git checkout workflow/update-protos 
+      #- name: stash and all
+        #run: |
+          #git remote set-branches origin "*"
+          #git fetch origin --unshallow
+          #git remote prune origin
+          #git prune
 
       - name: Add + Commit + Open PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
-          branch: 'workflow/update-protos'
+          branch: 'workflow/update-proto'
           delete-branch: true
           base: main
           title: Automated Protos Update
