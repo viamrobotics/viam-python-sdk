@@ -60,6 +60,10 @@ jobs:
           git prune
           git branch -d workflow/update-protos || true
 
+      - name: try checkout
+        run: |
+          git checkout workflow/update-protos 
+
       - name: Add + Commit + Open PR
         id: cpr
         uses: peter-evans/create-pull-request@v7
