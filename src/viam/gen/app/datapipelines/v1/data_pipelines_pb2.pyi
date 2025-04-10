@@ -338,13 +338,10 @@ class PipelineRun(google.protobuf.message.Message):
     DATA_START_TIME_FIELD_NUMBER: builtins.int
     DATA_END_TIME_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
-    REASON_FIELD_NUMBER: builtins.int
     id: builtins.str
     'The ID of the run.'
     status: global___PipelineRunStatus.ValueType
     'The status of the run.'
-    reason: builtins.str
-    'An optional message related to the run status.'
 
     @property
     def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -362,12 +359,12 @@ class PipelineRun(google.protobuf.message.Message):
     def data_end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The end time of the data that was processed in the run."""
 
-    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___PipelineRunStatus.ValueType=..., reason: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___PipelineRunStatus.ValueType=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'start_time', b'start_time']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'id', b'id', 'reason', b'reason', 'start_time', b'start_time', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'id', b'id', 'start_time', b'start_time', 'status', b'status']) -> None:
         ...
 global___PipelineRun = PipelineRun
