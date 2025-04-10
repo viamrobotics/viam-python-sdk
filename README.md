@@ -18,6 +18,12 @@ Currently, we have pre-built binaries for macOS (both Intel `x86_64` and Apple S
 
 `pip install viam-sdk`
 
+If you want to install on Windows, you can install from github directly with `pip`:
+
+`pip install git+https://github.com/viamrobotics/viam-python-sdk.git`
+
+Note that only direct gRPC connections are supported on windows; you will need to [disable webrtc](https://python.viam.dev/autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.disable_webrtc) or else connection will fail. 
+
 If you intend to use the [`MLModel` service](https://python.viam.dev/autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.mlmodel.MLModel), use the following command instead, which installs additional required dependencies:
 
 `pip install 'viam-sdk[mlmodel]'`
