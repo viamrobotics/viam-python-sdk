@@ -31,8 +31,6 @@ If you intend to use the [`MLModel` service](https://python.viam.dev/autoapi/via
 You can also run this command on an existing Python SDK install to add support for the ML model service.
 See the [ML (machine learning) model service](https://docs.viam.com/data-ai/ai/deploy/) documentation for more information.
 
-Windows is not supported. If you are using Windows, install `viam-sdk` in WSL. For other unsupported systems, read further on how to install from source.
-
 ### Upgrading
 
 To upgrade, simply run the `pip install` command with the `-U` option:
