@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import importlib
 import pkgutil
 from copy import deepcopy
@@ -16,7 +17,7 @@ from grpclib.metadata import _MetadataLike
 from viam import logging
 from viam.gen.common.v1.common_pb2 import safety_heartbeat_monitored
 from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
-from viam.rpc.dial import DialOptions, dial
+from viam.rpc.dial import DialOptions, dial, _host_port_from_url
 
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
@@ -37,6 +38,7 @@ class SessionsClient:
     channel: Channel
     client: RobotServiceStub
     _address: str
+    _robot_address: Optional[str]
     _dial_options: DialOptions
     _disabled: bool
     _lock: Lock
@@ -47,10 +49,11 @@ class SessionsClient:
 
     _HEARTBEAT_MONITORED_METHODS: MutableMapping[str, bool] = {}
 
-    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
+    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False, robot_addr: Optional[str] = None):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._address = direct_dial_address
+        self._robot_address = robot_addr
         self._disabled = disabled
         self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
         self._dial_options.disable_webrtc = True
@@ -158,8 +161,22 @@ class SessionsClient:
         else:
             LOGGER.debug("Sent heartbeat successfully")
 
+    def _get_local_addr(self) -> str:
+        if sys.platform != "windows" and sys.platform != "cygwin":
+            return self._address # if we're not on windows, we want the direct dial address
+        if self._robot_address is None:
+            return self._address
+
+        # we're on windows and have an actual address, let's connect to it via mDNS to
+        # ensure connectivity
+        host, port = _host_port_from_url(self._robot_address)
+        if port is None:
+            port = 8080
+        return f'{host}.local:{port}'
+
     async def _heartbeat_process(self, wait: float):
-        channel = await dial(address=self._address, options=self._dial_options)
+        addr = self._get_local_addr()
+        channel = await dial(address=addr, options=self._dial_options)
         client = RobotServiceStub(channel.channel)
         while True:
             with self._lock:

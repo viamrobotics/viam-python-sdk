@@ -237,7 +237,7 @@ class RobotClient:
         return await cls._with_channel(channel, options, False)
 
     @classmethod
-    async def _with_channel(cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool):
+    async def _with_channel(cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool, robot_addr: Optional[str] = None):
         """INTERNAL USE ONLY"""
 
         self = cls()
@@ -258,7 +258,7 @@ class RobotClient:
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
         self._sessions_client = SessionsClient(
-            self._channel, self._address, self._options.dial_options, disabled=self._options.disable_sessions
+            self._channel, self._address, self._options.dial_options, disabled=self._options.disable_sessions, robot_addr=robot_addr
         )
 
         try:

@@ -311,6 +311,13 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
     raise exception  # type: ignore
 
 
+def _create_chan(path: str) -> Channel:
+    if sys.platform == 'win32' or sys.platform == 'cygwin':
+        host, port = _host_port_from_url(path) 
+        return Channel(host=host, port=port, ssl=None)
+    return Channel(path=path, ssl=None)
+
+
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
         event.metadata["viam-client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
@@ -324,7 +331,7 @@ async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> Vi
     path, path_ptr = await runtime.dial(address, opts)
     if path:
         LOGGER.info(f"Connecting to socket: {path}")
-        chan = Channel(path=path, ssl=None)
+        chan = _create_chan(path)
         listen(chan, SendRequest, send_request)
 
         def release():
