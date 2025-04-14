@@ -313,8 +313,10 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
 
 def _create_chan(path: str) -> Channel:
     if sys.platform == 'win32' or sys.platform == 'cygwin':
-        host, port = _host_port_from_url(path) 
+        # we have to use a TCP connection, so we want a host and port for our channel.
+        host, port = _host_port_from_url(path)
         return Channel(host=host, port=port, ssl=None)
+    # we're not on windows and so can use a UDS
     return Channel(path=path, ssl=None)
 
 

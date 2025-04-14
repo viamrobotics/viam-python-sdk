@@ -56,7 +56,8 @@ class SessionsClient:
         self._robot_address = robot_addr
         self._disabled = disabled
         self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
-        self._dial_options.disable_webrtc = True
+        if sys.platform != "win32" and sys.platform != "cygwin":
+            self._dial_options.disable_webrtc = True
         self._lock = Lock()
         self._current_id = ""
         self._heartbeat_interval = None
@@ -162,17 +163,12 @@ class SessionsClient:
             LOGGER.debug("Sent heartbeat successfully")
 
     def _get_local_addr(self) -> str:
-        if sys.platform != "windows" and sys.platform != "cygwin":
-            return self._address # if we're not on windows, we want the direct dial address
-        if self._robot_address is None:
+        if sys.platform != "win32" and sys.platform != "cygwin":
+            # if we're not on windows, we want the direct dial address
             return self._address
 
-        # we're on windows and have an actual address, let's connect to it via mDNS to
-        # ensure connectivity
-        host, port = _host_port_from_url(self._robot_address)
-        if port is None:
-            port = 8080
-        return f'{host}.local:{port}'
+        # return `robot_address` if it exists, otherwise fallback
+        return self._robot_address if self._robot_address is not None else self._address
 
     async def _heartbeat_process(self, wait: float):
         addr = self._get_local_addr()

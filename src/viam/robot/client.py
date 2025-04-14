@@ -202,7 +202,7 @@ class RobotClient:
         """
         logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
-        machine = await cls._with_channel(channel, options, True)
+        machine = await cls._with_channel(channel, options, True, robot_addr=address)
         machine._address = address
         return machine
 
@@ -415,11 +415,13 @@ class RobotClient:
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
                     direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
+                    # CR erodkin: instead of passing both types of address, can we see if we're on windows and pass only the one we care about?
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
                         direct_dial_address=direct_dial_address,
                         dial_options=self._options.dial_options,
                         disabled=self._options.disable_sessions,
+                        robot_addr=self._address
                     )
 
                     await self.refresh()
