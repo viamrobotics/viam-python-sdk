@@ -555,7 +555,7 @@ Package Contents
       The runs that were run.
 
 
-.. py:class:: PipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: global___PipelineRunStatus = ..., reason: str = ...)
+.. py:class:: PipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: global___PipelineRunStatus = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -577,12 +577,6 @@ Package Contents
       :type:  global___PipelineRunStatus
 
       The status of the run.
-
-
-   .. py:attribute:: reason
-      :type:  str
-
-      An optional message related to the run status.
 
 
    .. py:property:: start_time
