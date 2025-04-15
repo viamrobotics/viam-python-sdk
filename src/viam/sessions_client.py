@@ -17,7 +17,7 @@ from grpclib.metadata import _MetadataLike
 from viam import logging
 from viam.gen.common.v1.common_pb2 import safety_heartbeat_monitored
 from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
-from viam.rpc.dial import DialOptions, dial, _host_port_from_url
+from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
