@@ -415,7 +415,6 @@ class RobotClient:
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
                     direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
-                    # CR erodkin: instead of passing both types of address, can we see if we're on windows and pass only the one we care about?
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
                         direct_dial_address=direct_dial_address,

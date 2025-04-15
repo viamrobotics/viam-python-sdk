@@ -232,8 +232,9 @@ class _Runtime:
     _ptr: ctypes.c_void_p
 
     def __init__(self) -> None:
+        suffix = 'dylib' if sys.platform == 'darwin' else 'so' if 'linux' in sys.platform else 'dll'
         LOGGER.debug("Creating new viam-rust-utils runtime")
-        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{suffix}"
         self._lib = ctypes.CDLL(libname.__str__())
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
