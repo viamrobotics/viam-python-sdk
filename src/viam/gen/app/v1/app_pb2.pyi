@@ -1993,6 +1993,7 @@ class UpdateRobotPartRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     ROBOT_CONFIG_FIELD_NUMBER: builtins.int
+    LAST_KNOWN_UPDATE_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -2000,13 +2001,20 @@ class UpdateRobotPartRequest(google.protobuf.message.Message):
     def robot_config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def last_known_update(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing.Literal['robot_config', b'robot_config']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name', 'robot_config', b'robot_config']) -> None:
+    def HasField(self, field_name: typing.Literal['_last_known_update', b'_last_known_update', 'last_known_update', b'last_known_update', 'robot_config', b'robot_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_last_known_update', b'_last_known_update', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'robot_config', b'robot_config']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_last_known_update', b'_last_known_update']) -> typing.Literal['last_known_update'] | None:
         ...
 global___UpdateRobotPartRequest = UpdateRobotPartRequest
 
@@ -2548,6 +2556,7 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     CONFIG_FIELD_NUMBER: builtins.int
     PUBLIC_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
+    LAST_KNOWN_UPDATE_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     public: builtins.bool
@@ -2557,13 +2566,21 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=..., visibility: global___FragmentVisibility.ValueType | None=...) -> None:
+    @property
+    def last_known_update(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing.Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'public', b'public', 'visibility', b'visibility']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=..., visibility: global___FragmentVisibility.ValueType | None=..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public', 'visibility', b'visibility']) -> None:
+    def HasField(self, field_name: typing.Literal['_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'last_known_update', b'last_known_update', 'public', b'public', 'visibility', b'visibility']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'id', b'id', 'last_known_update', b'last_known_update', 'name', b'name', 'public', b'public', 'visibility', b'visibility']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_last_known_update', b'_last_known_update']) -> typing.Literal['last_known_update'] | None:
         ...
 
     @typing.overload
