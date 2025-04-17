@@ -686,7 +686,7 @@ Module Contents
 
 .. py:data:: global___ServiceConfig
 
-.. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ..., sessions: global___SessionsConfig | None = ..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None = ...)
+.. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ..., sessions: global___SessionsConfig | None = ..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None = ..., no_tls: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -712,6 +712,10 @@ Module Contents
 
    .. py:attribute:: tls_key_file
       :type:  str
+
+
+   .. py:attribute:: no_tls
+      :type:  bool
 
 
    .. py:property:: sessions

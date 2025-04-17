@@ -3809,7 +3809,7 @@ Module Contents
 
 .. py:data:: global___GetRobotPartHistoryResponse
 
-.. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3834,7 +3834,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['robot_config', b'robot_config']) -> bool
+   .. py:property:: last_known_update
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_last_known_update', b'_last_known_update', 'last_known_update', b'last_known_update', 'robot_config', b'robot_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -3849,6 +3854,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_last_known_update', b'_last_known_update']) -> Literal['last_known_update'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -4787,7 +4808,7 @@ Module Contents
 
 .. py:data:: global___CreateFragmentResponse
 
-.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ..., visibility: global___FragmentVisibility | None = ...)
+.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ..., visibility: global___FragmentVisibility | None = ..., last_known_update: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4820,7 +4841,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'public', b'public', 'visibility', b'visibility']) -> bool
+   .. py:property:: last_known_update
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_last_known_update', b'_last_known_update', '_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'last_known_update', b'last_known_update', 'public', b'public', 'visibility', b'visibility']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -4838,7 +4864,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_public', b'_public']) -> Literal['public'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_last_known_update', b'_last_known_update']) -> Literal['last_known_update'] | None
+                  WhichOneof(oneof_group: Literal['_public', b'_public']) -> Literal['public'] | None
                   WhichOneof(oneof_group: Literal['_visibility', b'_visibility']) -> Literal['visibility'] | None
 
       Returns the name of the field that is set inside a oneof group.
