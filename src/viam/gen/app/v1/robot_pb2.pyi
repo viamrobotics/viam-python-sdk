@@ -423,10 +423,12 @@ class NetworkConfig(google.protobuf.message.Message):
     TLS_KEY_FILE_FIELD_NUMBER: builtins.int
     SESSIONS_FIELD_NUMBER: builtins.int
     TRAFFIC_TUNNEL_ENDPOINTS_FIELD_NUMBER: builtins.int
+    NO_TLS_FIELD_NUMBER: builtins.int
     fqdn: builtins.str
     bind_address: builtins.str
     tls_cert_file: builtins.str
     tls_key_file: builtins.str
+    no_tls: builtins.bool
 
     @property
     def sessions(self) -> global___SessionsConfig:
@@ -436,13 +438,13 @@ class NetworkConfig(google.protobuf.message.Message):
     def traffic_tunnel_endpoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TrafficTunnelEndpoint]:
         ...
 
-    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None=...) -> None:
+    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=..., traffic_tunnel_endpoints: collections.abc.Iterable[global___TrafficTunnelEndpoint] | None=..., no_tls: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['sessions', b'sessions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file', 'traffic_tunnel_endpoints', b'traffic_tunnel_endpoints']) -> None:
+    def ClearField(self, field_name: typing.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'no_tls', b'no_tls', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file', 'traffic_tunnel_endpoints', b'traffic_tunnel_endpoints']) -> None:
         ...
 global___NetworkConfig = NetworkConfig
 
