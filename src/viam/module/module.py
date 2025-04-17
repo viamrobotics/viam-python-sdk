@@ -1,5 +1,4 @@
 import argparse
-import datetime
 import io
 import logging as pylogging
 import os
