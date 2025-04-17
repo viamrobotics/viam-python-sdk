@@ -37,8 +37,8 @@ class SessionsClient:
 
     channel: Channel
     client: RobotServiceStub
-    _address: str
-    _robot_address: Optional[str]
+    _address: str  # direct dial address, when using webRTC this is the local socket rather than a robot address
+    _robot_address: Optional[str]  # the actual machine address on app.viam.com. important for creating a sessions client on Windows
     _dial_options: DialOptions
     _disabled: bool
     _lock: Lock
@@ -168,6 +168,8 @@ class SessionsClient:
             return self._address
 
         # return `robot_address` if it exists, otherwise fallback
+        # when using TCP (i.e., on Windows), we need to create a connection to the actual
+        # robot address for a sessions client to maintain connectivity successfully
         return self._robot_address if self._robot_address is not None else self._address
 
     async def _heartbeat_process(self, wait: float):
