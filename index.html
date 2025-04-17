@@ -106,11 +106,13 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>Currently, we have pre-built binaries for macOS (both Intel <code class="docutils literal notranslate"><span class="pre">x86_64</span></code> and Apple Silicon) and Linux (<code class="docutils literal notranslate"><span class="pre">x86</span></code>, <code class="docutils literal notranslate"><span class="pre">aarch64</span></code>, <code class="docutils literal notranslate"><span class="pre">armv6l</span></code>) that you can install using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-sdk</span></code></p>
+<p>If you want to install on Windows, you can install from github directly with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/viamrobotics/viam-python-sdk.git</span></code></p>
+<p>Note that only direct gRPC connections are supported on Windows; you will need to <a class="reference external" href="https://python.viam.dev/autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.disable_webrtc">disable webrtc</a> or else connection will fail. Full support (including webRTC) <em>does</em> exist on WSL.</p>
 <p>If you intend to use the <a class="reference external" href="https://python.viam.dev/autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.mlmodel.MLModel"><code class="docutils literal notranslate"><span class="pre">MLModel</span></code> service</a>, use the following command instead, which installs additional required dependencies:</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'viam-sdk[mlmodel]'</span></code></p>
 <p>You can also run this command on an existing Python SDK install to add support for the ML model service.
 See the <a class="reference external" href="https://docs.viam.com/data-ai/ai/deploy/">ML (machine learning) model service</a> documentation for more information.</p>
-<p>Windows is not supported. If you are using Windows, install <code class="docutils literal notranslate"><span class="pre">viam-sdk</span></code> in WSL. For other unsupported systems, read further on how to install from source.</p>
 <section id="upgrading">
 <h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this heading"></a></h3>
 <p>To upgrade, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:
