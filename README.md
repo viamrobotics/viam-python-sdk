@@ -22,7 +22,7 @@ If you want to install on Windows, you can install from github directly with `pi
 
 `pip install git+https://github.com/viamrobotics/viam-python-sdk.git`
 
-Note that only direct gRPC connections are supported on Windows; you will need to [disable webrtc](https://python.viam.dev/autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.disable_webrtc) or else connection will fail. 
+Note that only direct gRPC connections are supported on Windows; you will need to [disable webrtc](https://python.viam.dev/autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.disable_webrtc) or else connection will fail. Full support (including webRTC) _does_ exist on WSL.
 
 If you intend to use the [`MLModel` service](https://python.viam.dev/autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.mlmodel.MLModel), use the following command instead, which installs additional required dependencies:
 
