@@ -30,7 +30,7 @@ Module Contents
    :value: 'viam-sid'
 
 
-.. py:class:: SessionsClient(channel: grpclib.client.Channel, direct_dial_address: str, dial_options: Optional[viam.rpc.dial.DialOptions], *, disabled: bool = False)
+.. py:class:: SessionsClient(channel: grpclib.client.Channel, direct_dial_address: str, dial_options: Optional[viam.rpc.dial.DialOptions], *, disabled: bool = False, robot_addr: Optional[str] = None)
 
    A Session allows a client to express that it is actively connected and
    supports stopping actuating components when it's not.
@@ -42,11 +42,6 @@ Module Contents
 
    .. py:attribute:: client
       :type:  viam.proto.robot.RobotServiceStub
-
-
-   .. py:attribute:: disable_webrtc
-      :value: True
-
 
 
    .. py:method:: reset()

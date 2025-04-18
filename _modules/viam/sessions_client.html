@@ -88,6 +88,7 @@
              
   <h1>Source code for viam.sessions_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">importlib</span>
 <span class="kn">import</span> <span class="nn">pkgutil</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
@@ -125,7 +126,8 @@
 
     <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">RobotServiceStub</span>
-    <span class="n">_address</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_address</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># direct dial address, when using webRTC this is the local socket rather than a robot address</span>
+    <span class="n">_robot_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>  <span class="c1"># the actual machine address on app.viam.com. important for creating a sessions client on Windows</span>
     <span class="n">_dial_options</span><span class="p">:</span> <span class="n">DialOptions</span>
     <span class="n">_disabled</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">_lock</span><span class="p">:</span> <span class="n">Lock</span>
@@ -136,13 +138,15 @@
 
     <span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">direct_dial_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">disabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">direct_dial_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">disabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">robot_addr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">direct_dial_address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_robot_address</span> <span class="o">=</span> <span class="n">robot_addr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_disabled</span> <span class="o">=</span> <span class="n">disabled</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span> <span class="k">if</span> <span class="n">dial_options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">DialOptions</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="o">.</span><span class="n">disable_webrtc</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s2">&quot;win32&quot;</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s2">&quot;cygwin&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="o">.</span><span class="n">disable_webrtc</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span> <span class="o">=</span> <span class="kc">None</span>
@@ -247,8 +251,19 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sent heartbeat successfully&quot;</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_get_local_addr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s2">&quot;win32&quot;</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">!=</span> <span class="s2">&quot;cygwin&quot;</span><span class="p">:</span>
+            <span class="c1"># if we&#39;re not on windows, we want the direct dial address</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_address</span>
+
+        <span class="c1"># return `robot_address` if it exists, otherwise fallback</span>
+        <span class="c1"># when using TCP (i.e., on Windows), we need to create a connection to the actual</span>
+        <span class="c1"># robot address for a sessions client to maintain connectivity successfully</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_address</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_address</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_address</span>
+
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_heartbeat_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="p">)</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_local_addr</span><span class="p">()</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="p">)</span>
         <span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
