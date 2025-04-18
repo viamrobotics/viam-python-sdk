@@ -232,8 +232,9 @@ class _Runtime:
     _ptr: ctypes.c_void_p
 
     def __init__(self) -> None:
+        suffix = 'dylib' if sys.platform == 'darwin' else 'so' if 'linux' in sys.platform else 'dll'
         LOGGER.debug("Creating new viam-rust-utils runtime")
-        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{suffix}"
         self._lib = ctypes.CDLL(libname.__str__())
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
@@ -311,6 +312,15 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
     raise exception  # type: ignore
 
 
+def _create_chan(path: str) -> Channel:
+    if sys.platform == 'win32' or sys.platform == 'cygwin':
+        # we have to use a TCP connection, so we want a host and port for our channel.
+        host, port = _host_port_from_url(path)
+        return Channel(host=host, port=port, ssl=None)
+    # we're not on windows and so can use a UDS
+    return Channel(path=path, ssl=None)
+
+
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
         event.metadata["viam-client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
@@ -324,7 +334,7 @@ async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> Vi
     path, path_ptr = await runtime.dial(address, opts)
     if path:
         LOGGER.info(f"Connecting to socket: {path}")
-        chan = Channel(path=path, ssl=None)
+        chan = _create_chan(path)
         listen(chan, SendRequest, send_request)
 
         def release():

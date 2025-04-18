@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import importlib
 import pkgutil
 from copy import deepcopy
@@ -36,7 +37,8 @@ class SessionsClient:
 
     channel: Channel
     client: RobotServiceStub
-    _address: str
+    _address: str  # direct dial address, when using webRTC this is the local socket rather than a robot address
+    _robot_address: Optional[str]  # the actual machine address on app.viam.com. important for creating a sessions client on Windows
     _dial_options: DialOptions
     _disabled: bool
     _lock: Lock
@@ -47,13 +49,15 @@ class SessionsClient:
 
     _HEARTBEAT_MONITORED_METHODS: MutableMapping[str, bool] = {}
 
-    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
+    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False, robot_addr: Optional[str] = None):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._address = direct_dial_address
+        self._robot_address = robot_addr
         self._disabled = disabled
         self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
-        self._dial_options.disable_webrtc = True
+        if sys.platform != "win32" and sys.platform != "cygwin":
+            self._dial_options.disable_webrtc = True
         self._lock = Lock()
         self._current_id = ""
         self._heartbeat_interval = None
@@ -158,8 +162,19 @@ class SessionsClient:
         else:
             LOGGER.debug("Sent heartbeat successfully")
 
+    def _get_local_addr(self) -> str:
+        if sys.platform != "win32" and sys.platform != "cygwin":
+            # if we're not on windows, we want the direct dial address
+            return self._address
+
+        # return `robot_address` if it exists, otherwise fallback
+        # when using TCP (i.e., on Windows), we need to create a connection to the actual
+        # robot address for a sessions client to maintain connectivity successfully
+        return self._robot_address if self._robot_address is not None else self._address
+
     async def _heartbeat_process(self, wait: float):
-        channel = await dial(address=self._address, options=self._dial_options)
+        addr = self._get_local_addr()
+        channel = await dial(address=addr, options=self._dial_options)
         client = RobotServiceStub(channel.channel)
         while True:
             with self._lock:
