@@ -615,6 +615,46 @@ class UpdateOrganizationResponse(google.protobuf.message.Message):
 global___UpdateOrganizationResponse = UpdateOrganizationResponse
 
 @typing.final
+class UpdateOrganizationNamespaceRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    NEW_PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    new_public_namespace: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=..., new_public_namespace: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_new_public_namespace', b'_new_public_namespace', 'new_public_namespace', b'new_public_namespace']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_new_public_namespace', b'_new_public_namespace', 'new_public_namespace', b'new_public_namespace', 'organization_id', b'organization_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_new_public_namespace', b'_new_public_namespace']) -> typing.Literal['new_public_namespace'] | None:
+        ...
+global___UpdateOrganizationNamespaceRequest = UpdateOrganizationNamespaceRequest
+
+@typing.final
+class UpdateOrganizationNamespaceResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def organization(self) -> global___Organization:
+        ...
+
+    def __init__(self, *, organization: global___Organization | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['organization', b'organization']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['organization', b'organization']) -> None:
+        ...
+global___UpdateOrganizationNamespaceResponse = UpdateOrganizationNamespaceResponse
+
+@typing.final
 class DeleteOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
