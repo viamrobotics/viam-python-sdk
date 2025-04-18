@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING
 
+from grpclib import Status
 from grpclib.server import Stream
 
+from viam.errors import ViamGRPCError
 from viam.proto.module import (
     AddResourceRequest,
     AddResourceResponse,
@@ -29,7 +31,13 @@ class ModuleRPCService(ModuleServiceBase):
     async def AddResource(self, stream: Stream[AddResourceRequest, AddResourceResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await self._module.add_resource(request)
+        try:
+            await self._module.add_resource(request, deadline=stream.deadline)
+        except TimeoutError:
+            raise ViamGRPCError(
+                message="Timeout while adding resource",
+                grpc_code=Status.DEADLINE_EXCEEDED,
+            )
         await stream.send_message(AddResourceResponse())
 
     async def ReconfigureResource(self, stream: Stream[ReconfigureResourceRequest, ReconfigureResourceResponse]) -> None:

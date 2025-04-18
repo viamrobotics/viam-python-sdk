@@ -7,6 +7,7 @@ from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
 
+from grpclib.metadata import Deadline
 from grpclib.utils import _service_name
 from typing_extensions import Self
 
@@ -183,13 +184,15 @@ class Module:
         with self._lock:
             self._ready = ready
 
-    async def add_resource(self, request: AddResourceRequest):
+    async def add_resource(self, request: AddResourceRequest, *, deadline: Optional[Deadline] = None):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
         api = API.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
         creator = Registry.lookup_resource_creator(api, model)
         resource = creator(config, dependencies)
+        if deadline is not None and deadline.time_remaining() <= 0:
+            raise TimeoutError("Deadline expired")
         update_log_level(resource.logger, config.log_configuration.level.upper())
         self.server.register(resource)
 
