@@ -1,7 +1,7 @@
 import asyncio
-import sys
 import importlib
 import pkgutil
+import sys
 from copy import deepcopy
 from datetime import timedelta
 from enum import IntEnum
@@ -49,7 +49,15 @@ class SessionsClient:
 
     _HEARTBEAT_MONITORED_METHODS: MutableMapping[str, bool] = {}
 
-    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False, robot_addr: Optional[str] = None):
+    def __init__(
+        self,
+        channel: Channel,
+        direct_dial_address: str,
+        dial_options: Optional[DialOptions],
+        *,
+        disabled: bool = False,
+        robot_addr: Optional[str] = None,
+    ):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._address = direct_dial_address

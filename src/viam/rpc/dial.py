@@ -232,7 +232,7 @@ class _Runtime:
     _ptr: ctypes.c_void_p
 
     def __init__(self) -> None:
-        suffix = 'dylib' if sys.platform == 'darwin' else 'so' if 'linux' in sys.platform else 'dll'
+        suffix = "dylib" if sys.platform == "darwin" else "so" if "linux" in sys.platform else "dll"
         LOGGER.debug("Creating new viam-rust-utils runtime")
         libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{suffix}"
         self._lib = ctypes.CDLL(libname.__str__())
@@ -313,7 +313,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
 
 
 def _create_chan(path: str) -> Channel:
-    if sys.platform == 'win32' or sys.platform == 'cygwin':
+    if sys.platform == "win32" or sys.platform == "cygwin":
         # we have to use a TCP connection, so we want a host and port for our channel.
         host, port = _host_port_from_url(path)
         return Channel(host=host, port=port, ssl=None)

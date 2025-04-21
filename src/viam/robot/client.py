@@ -237,7 +237,9 @@ class RobotClient:
         return await cls._with_channel(channel, options, False)
 
     @classmethod
-    async def _with_channel(cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool, robot_addr: Optional[str] = None):
+    async def _with_channel(
+        cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool, robot_addr: Optional[str] = None
+    ):
         """INTERNAL USE ONLY"""
 
         self = cls()
@@ -420,7 +422,7 @@ class RobotClient:
                         direct_dial_address=direct_dial_address,
                         dial_options=self._options.dial_options,
                         disabled=self._options.disable_sessions,
-                        robot_addr=self._address
+                        robot_addr=self._address,
                     )
 
                     await self.refresh()
