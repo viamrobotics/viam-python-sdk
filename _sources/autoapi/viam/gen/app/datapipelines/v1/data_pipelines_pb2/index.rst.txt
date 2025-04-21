@@ -16,12 +16,12 @@ Attributes
 .. autoapisummary::
 
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DESCRIPTOR
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_UNSPECIFIED
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_SCHEDULED
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_STARTED
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_COMPLETED
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PIPELINE_RUN_STATUS_FAILED
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___PipelineRunStatus
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DATA_PIPELINE_RUN_STATUS_UNSPECIFIED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DATA_PIPELINE_RUN_STATUS_SCHEDULED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DATA_PIPELINE_RUN_STATUS_STARTED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DATA_PIPELINE_RUN_STATUS_COMPLETED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DATA_PIPELINE_RUN_STATUS_FAILED
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DataPipelineRunStatus
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DataPipeline
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___GetDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___GetDataPipelineResponse
@@ -37,9 +37,9 @@ Attributes
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___EnableDataPipelineResponse
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DisableDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DisableDataPipelineResponse
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListPipelineRunsRequest
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListPipelineRunsResponse
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___PipelineRun
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListDataPipelineRunsRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___ListDataPipelineRunsResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.global___DataPipelineRun
 
 
 Classes
@@ -47,7 +47,7 @@ Classes
 
 .. autoapisummary::
 
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PipelineRunStatus
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DataPipelineRunStatus
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DataPipeline
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.GetDataPipelineResponse
@@ -63,9 +63,9 @@ Classes
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.EnableDataPipelineResponse
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineRequest
    viam.gen.app.datapipelines.v1.data_pipelines_pb2.DisableDataPipelineResponse
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsRequest
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListPipelineRunsResponse
-   viam.gen.app.datapipelines.v1.data_pipelines_pb2.PipelineRun
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelineRunsRequest
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.ListDataPipelineRunsResponse
+   viam.gen.app.datapipelines.v1.data_pipelines_pb2.DataPipelineRun
 
 
 Module Contents
@@ -74,27 +74,27 @@ Module Contents
 .. py:data:: DESCRIPTOR
    :type:  google.protobuf.descriptor.FileDescriptor
 
-.. py:class:: PipelineRunStatus
+.. py:class:: DataPipelineRunStatus
 
-   Bases: :py:obj:`_PipelineRunStatus`
+   Bases: :py:obj:`_DataPipelineRunStatus`
 
 
-.. py:data:: PIPELINE_RUN_STATUS_UNSPECIFIED
-   :type:  PipelineRunStatus
+.. py:data:: DATA_PIPELINE_RUN_STATUS_UNSPECIFIED
+   :type:  DataPipelineRunStatus
 
-.. py:data:: PIPELINE_RUN_STATUS_SCHEDULED
-   :type:  PipelineRunStatus
+.. py:data:: DATA_PIPELINE_RUN_STATUS_SCHEDULED
+   :type:  DataPipelineRunStatus
 
-.. py:data:: PIPELINE_RUN_STATUS_STARTED
-   :type:  PipelineRunStatus
+.. py:data:: DATA_PIPELINE_RUN_STATUS_STARTED
+   :type:  DataPipelineRunStatus
 
-.. py:data:: PIPELINE_RUN_STATUS_COMPLETED
-   :type:  PipelineRunStatus
+.. py:data:: DATA_PIPELINE_RUN_STATUS_COMPLETED
+   :type:  DataPipelineRunStatus
 
-.. py:data:: PIPELINE_RUN_STATUS_FAILED
-   :type:  PipelineRunStatus
+.. py:data:: DATA_PIPELINE_RUN_STATUS_FAILED
+   :type:  DataPipelineRunStatus
 
-.. py:data:: global___PipelineRunStatus
+.. py:data:: global___DataPipelineRunStatus
 
 .. py:class:: DataPipeline(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
@@ -488,7 +488,7 @@ Module Contents
 
 .. py:data:: global___DisableDataPipelineResponse
 
-.. py:class:: ListPipelineRunsRequest(*, id: str = ..., page_size: int = ..., page_token: str = ...)
+.. py:class:: ListDataPipelineRunsRequest(*, id: str = ..., page_size: int = ..., page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -516,9 +516,9 @@ Module Contents
       :type:  str
 
 
-.. py:data:: global___ListPipelineRunsRequest
+.. py:data:: global___ListDataPipelineRunsRequest
 
-.. py:class:: ListPipelineRunsResponse(*, pipeline_id: str = ..., runs: collections.abc.Iterable[global___PipelineRun] | None = ..., next_page_token: str = ...)
+.. py:class:: ListDataPipelineRunsResponse(*, pipeline_id: str = ..., runs: collections.abc.Iterable[global___DataPipelineRun] | None = ..., next_page_token: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -543,14 +543,14 @@ Module Contents
 
 
    .. py:property:: runs
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PipelineRun]
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DataPipelineRun]
 
       The runs that were run.
 
 
-.. py:data:: global___ListPipelineRunsResponse
+.. py:data:: global___ListDataPipelineRunsResponse
 
-.. py:class:: PipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: global___PipelineRunStatus = ...)
+.. py:class:: DataPipelineRun(*, id: str = ..., start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., status: global___DataPipelineRunStatus = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -569,7 +569,7 @@ Module Contents
 
 
    .. py:attribute:: status
-      :type:  global___PipelineRunStatus
+      :type:  global___DataPipelineRunStatus
 
       The status of the run.
 
@@ -616,5 +616,5 @@ Module Contents
 
 
 
-.. py:data:: global___PipelineRun
+.. py:data:: global___DataPipelineRun
 
