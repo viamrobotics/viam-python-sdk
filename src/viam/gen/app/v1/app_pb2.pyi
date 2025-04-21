@@ -622,16 +622,10 @@ class UpdateOrganizationNamespaceRequest(google.protobuf.message.Message):
     organization_id: builtins.str
     new_public_namespace: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., new_public_namespace: builtins.str | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., new_public_namespace: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_new_public_namespace', b'_new_public_namespace', 'new_public_namespace', b'new_public_namespace']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['_new_public_namespace', b'_new_public_namespace', 'new_public_namespace', b'new_public_namespace', 'organization_id', b'organization_id']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing.Literal['_new_public_namespace', b'_new_public_namespace']) -> typing.Literal['new_public_namespace'] | None:
+    def ClearField(self, field_name: typing.Literal['new_public_namespace', b'new_public_namespace', 'organization_id', b'organization_id']) -> None:
         ...
 global___UpdateOrganizationNamespaceRequest = UpdateOrganizationNamespaceRequest
 
