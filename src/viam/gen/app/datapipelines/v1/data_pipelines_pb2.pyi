@@ -17,26 +17,26 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class _PipelineRunStatus:
+class _DataPipelineRunStatus:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _PipelineRunStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PipelineRunStatus.ValueType], builtins.type):
+class _DataPipelineRunStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_DataPipelineRunStatus.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    PIPELINE_RUN_STATUS_UNSPECIFIED: _PipelineRunStatus.ValueType
-    PIPELINE_RUN_STATUS_SCHEDULED: _PipelineRunStatus.ValueType
-    PIPELINE_RUN_STATUS_STARTED: _PipelineRunStatus.ValueType
-    PIPELINE_RUN_STATUS_COMPLETED: _PipelineRunStatus.ValueType
-    PIPELINE_RUN_STATUS_FAILED: _PipelineRunStatus.ValueType
+    DATA_PIPELINE_RUN_STATUS_UNSPECIFIED: _DataPipelineRunStatus.ValueType
+    DATA_PIPELINE_RUN_STATUS_SCHEDULED: _DataPipelineRunStatus.ValueType
+    DATA_PIPELINE_RUN_STATUS_STARTED: _DataPipelineRunStatus.ValueType
+    DATA_PIPELINE_RUN_STATUS_COMPLETED: _DataPipelineRunStatus.ValueType
+    DATA_PIPELINE_RUN_STATUS_FAILED: _DataPipelineRunStatus.ValueType
 
-class PipelineRunStatus(_PipelineRunStatus, metaclass=_PipelineRunStatusEnumTypeWrapper):
+class DataPipelineRunStatus(_DataPipelineRunStatus, metaclass=_DataPipelineRunStatusEnumTypeWrapper):
     ...
-PIPELINE_RUN_STATUS_UNSPECIFIED: PipelineRunStatus.ValueType
-PIPELINE_RUN_STATUS_SCHEDULED: PipelineRunStatus.ValueType
-PIPELINE_RUN_STATUS_STARTED: PipelineRunStatus.ValueType
-PIPELINE_RUN_STATUS_COMPLETED: PipelineRunStatus.ValueType
-PIPELINE_RUN_STATUS_FAILED: PipelineRunStatus.ValueType
-global___PipelineRunStatus = PipelineRunStatus
+DATA_PIPELINE_RUN_STATUS_UNSPECIFIED: DataPipelineRunStatus.ValueType
+DATA_PIPELINE_RUN_STATUS_SCHEDULED: DataPipelineRunStatus.ValueType
+DATA_PIPELINE_RUN_STATUS_STARTED: DataPipelineRunStatus.ValueType
+DATA_PIPELINE_RUN_STATUS_COMPLETED: DataPipelineRunStatus.ValueType
+DATA_PIPELINE_RUN_STATUS_FAILED: DataPipelineRunStatus.ValueType
+global___DataPipelineRunStatus = DataPipelineRunStatus
 
 @typing.final
 class DataPipeline(google.protobuf.message.Message):
@@ -289,7 +289,7 @@ class DisableDataPipelineResponse(google.protobuf.message.Message):
 global___DisableDataPipelineResponse = DisableDataPipelineResponse
 
 @typing.final
-class ListPipelineRunsRequest(google.protobuf.message.Message):
+class ListDataPipelineRunsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     PAGE_SIZE_FIELD_NUMBER: builtins.int
@@ -305,10 +305,10 @@ class ListPipelineRunsRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing.Literal['id', b'id', 'page_size', b'page_size', 'page_token', b'page_token']) -> None:
         ...
-global___ListPipelineRunsRequest = ListPipelineRunsRequest
+global___ListDataPipelineRunsRequest = ListDataPipelineRunsRequest
 
 @typing.final
-class ListPipelineRunsResponse(google.protobuf.message.Message):
+class ListDataPipelineRunsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PIPELINE_ID_FIELD_NUMBER: builtins.int
     RUNS_FIELD_NUMBER: builtins.int
@@ -319,18 +319,18 @@ class ListPipelineRunsResponse(google.protobuf.message.Message):
     'A token to retrieve the next page of results.'
 
     @property
-    def runs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PipelineRun]:
+    def runs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DataPipelineRun]:
         """The runs that were run."""
 
-    def __init__(self, *, pipeline_id: builtins.str=..., runs: collections.abc.Iterable[global___PipelineRun] | None=..., next_page_token: builtins.str=...) -> None:
+    def __init__(self, *, pipeline_id: builtins.str=..., runs: collections.abc.Iterable[global___DataPipelineRun] | None=..., next_page_token: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing.Literal['next_page_token', b'next_page_token', 'pipeline_id', b'pipeline_id', 'runs', b'runs']) -> None:
         ...
-global___ListPipelineRunsResponse = ListPipelineRunsResponse
+global___ListDataPipelineRunsResponse = ListDataPipelineRunsResponse
 
 @typing.final
-class PipelineRun(google.protobuf.message.Message):
+class DataPipelineRun(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     START_TIME_FIELD_NUMBER: builtins.int
@@ -340,7 +340,7 @@ class PipelineRun(google.protobuf.message.Message):
     STATUS_FIELD_NUMBER: builtins.int
     id: builtins.str
     'The ID of the run.'
-    status: global___PipelineRunStatus.ValueType
+    status: global___DataPipelineRunStatus.ValueType
     'The status of the run.'
 
     @property
@@ -359,7 +359,7 @@ class PipelineRun(google.protobuf.message.Message):
     def data_end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The end time of the data that was processed in the run."""
 
-    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___PipelineRunStatus.ValueType=...) -> None:
+    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___DataPipelineRunStatus.ValueType=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'start_time', b'start_time']) -> builtins.bool:
@@ -367,4 +367,4 @@ class PipelineRun(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'id', b'id', 'start_time', b'start_time', 'status', b'status']) -> None:
         ...
-global___PipelineRun = PipelineRun
+global___DataPipelineRun = DataPipelineRun
