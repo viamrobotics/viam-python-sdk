@@ -1,4 +1,4 @@
-__version__ = "0.45.1"
+__version__ = "0.45.2"
 
 API_VERSION = "v0.1.432"
 SDK_VERSION = __version__
