@@ -1514,7 +1514,7 @@ Module Contents
 
 .. py:data:: global___UpdateOrganizationResponse
 
-.. py:class:: UpdateOrganizationNamespaceRequest(*, organization_id: str = ..., new_public_namespace: str | None = ...)
+.. py:class:: UpdateOrganizationNamespaceRequest(*, organization_id: str = ..., new_public_namespace: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1532,40 +1532,6 @@ Module Contents
 
    .. py:attribute:: new_public_namespace
       :type:  str
-
-
-   .. py:method:: HasField(field_name: Literal['_new_public_namespace', b'_new_public_namespace', 'new_public_namespace', b'new_public_namespace']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-   .. py:method:: WhichOneof(oneof_group: Literal['_new_public_namespace', b'_new_public_namespace']) -> Literal['new_public_namespace'] | None
-
-      Returns the name of the field that is set inside a oneof group.
-
-      If no field is set, returns None.
-
-      :param oneof_group: the name of the oneof group to check.
-      :type oneof_group: str
-
-      :returns: The name of the group that is set, or None.
-      :rtype: str or None
-
-      :raises ValueError: no group with the given name exists
-
 
 
 .. py:data:: global___UpdateOrganizationNamespaceRequest
