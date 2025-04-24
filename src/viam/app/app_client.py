@@ -1429,7 +1429,8 @@ class AppClient:
         response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
-    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
+    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None,
+                                last_known_update: Optional[datetime] = None) -> RobotPart:
         """Change the name and assign an optional new configuration to a machine part.
 
         ::
@@ -1443,16 +1444,19 @@ class AppClient:
             name (str): New name to be updated on the robot part.
             robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine
                 part's config will remain as is (no change) if one isn't passed.
-
+            last_known_update (datetime): Optional time of the last known update to this part's config. If provided, this will result in a
+                GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
+                parameter will result in an overwrite of the upstream config.
         Raises:
-            GRPCError: If either an invalid machine part ID, name, or config is passed.
-
+            GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since
+                last_known_update.
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart>`_.
         """
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
+        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None,
+                                         last_known_update=last_known_update)
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -1791,6 +1795,7 @@ class AppClient:
         config: Optional[Mapping[str, Any]] = None,
         public: Optional[bool] = None,
         visibility: Optional[Fragment.Visibility] = None,
+        last_known_update: Optional[datetime] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1813,9 +1818,11 @@ class AppClient:
             visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
                 to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
                 A fragment is private by default when created.
-
+            last_known_update (datetime): Optional time of the last known update to this fragment's config. If provided, this will result in
+                a GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting
+                this parameter will result in an overwrite of the upstream config.
         Raises:
-            GRPCError: if an invalid ID, name, or config is passed.
+            GRPCError: if an invalid ID, name, or config is passed, or if the upstream fragment config has changed since last_known_update.
 
         Returns:
             viam.app.app_client.Fragment: The newly updated fragment.
@@ -1828,6 +1835,7 @@ class AppClient:
             config=dict_to_struct(config) if config else None,
             public=public,
             visibility=visibility.to_proto() if visibility else None,
+            last_known_update=last_known_update,
         )
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
