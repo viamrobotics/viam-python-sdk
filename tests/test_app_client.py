@@ -474,7 +474,8 @@ class TestClient:
     async def test_update_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG)
+            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG,
+                                                                last_known_update=datetime.now())
             assert service.robot_part_id == ID
             assert service.name == NAME
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
