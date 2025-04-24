@@ -582,7 +582,7 @@ class TestClient:
     async def test_update_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragment = await client.update_fragment(fragment_id=ID, name=NAME, public=PUBLIC)
+            fragment = await client.update_fragment(fragment_id=ID, name=NAME, public=PUBLIC, last_known_update=datetime.now())
             assert service.fragment_id == ID
             assert service.name == NAME
             assert service.public == PUBLIC
