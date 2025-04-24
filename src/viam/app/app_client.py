@@ -1456,7 +1456,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart>`_.
         """
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None,
-                                         last_known_update=last_known_update)
+                                         last_known_update=datetime_to_timestamp(last_known_update))
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -1835,7 +1835,7 @@ class AppClient:
             config=dict_to_struct(config) if config else None,
             public=public,
             visibility=visibility.to_proto() if visibility else None,
-            last_known_update=last_known_update,
+            last_known_update=datetime_to_timestamp(last_known_update),
         )
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
