@@ -84,6 +84,28 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
+
+from viam.proto.app.datapipelines import (
+    CreateDataPipelineRequest,
+    CreateDataPipelineResponse,
+    DataPipeline as ProtoDataPipeline,
+    DataPipelinesServiceStub,
+    DataPipelineRun,
+    DataPipelineRunStatus,
+    DeleteDataPipelineRequest,
+    DisableDataPipelineRequest,
+    EnableDataPipelineRequest,
+    GetDataPipelineRequest,
+    GetDataPipelineResponse,
+    ListDataPipelineRunsRequest,
+    ListDataPipelineRunsResponse,
+    ListDataPipelinesRequest,
+    ListDataPipelinesResponse,
+    UpdateDataPipelineRequest,
+    UpdateDataPipelineResponse,
+)
+
+
 from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
@@ -147,7 +169,6 @@ class DataClient:
             if isinstance(other, DataClient.TabularData):
                 return str(self) == str(other)
             return False
-
     @dataclass
     class TabularDataPoint:
         """Represents a tabular data point and its associated metadata."""
@@ -220,6 +241,91 @@ class DataClient:
             )
             return self.resource_api
 
+
+    @dataclass
+    class DataPipeline:
+        """Represents a data pipeline and its associated metadata."""
+
+        id: str
+        """The ID of the data pipeline"""
+
+        organization_id: str
+        """The organization ID"""
+
+        name: str
+        """The name of the data pipeline"""
+
+        mql_binary: List[bytes]
+        """The MQL binary of the data pipeline"""
+
+        schedule: str
+        """The schedule of the data pipeline"""
+
+        created_on: datetime
+        """The time the data pipeline was created"""
+
+        updated_at: datetime
+        """The time the data pipeline was last updated"""
+
+    @dataclass
+    class DataPipelineRun:
+        """Represents a data pipeline run and its associated metadata."""
+        id: str
+        """The ID of the data pipeline run"""
+
+        status: DataPipelineRunStatus
+        """The status of the data pipeline run"""
+
+        start_time: datetime
+        """The time the data pipeline run started"""
+
+        end_time: datetime
+        """The time the data pipeline run ended"""
+
+        data_start_time: datetime
+        """The start time of the data that was processed in the run."""
+        data_end_time: datetime
+        """The end time of the data that was processed in the run."""
+
+    @dataclass
+    class DataPipelineRunsPage:
+        """Represents a page of data pipeline runs and provides pagination functionality."""
+
+        _client: "DataClient"
+        """The data client used to make API calls"""
+
+        pipeline_id: str
+        """The ID of the pipeline these runs belong to"""
+
+        page_size: int
+        """The number of runs per page"""
+
+        runs: List["DataClient.DataPipelineRun"]
+        """The list of runs in this page"""
+
+        next_page_token: str
+        """The token to use to get the next page of results"""
+
+        async def next_page(self) -> "DataClient.DataPipelineRunsPage":
+            """Get the next page of data pipeline runs.
+
+            Returns:
+                DataPipelineRunsPage: The next page of runs, or an empty page if there are no more runs
+            """
+            if not self.next_page_token:
+                return DataClient.DataPipelineRunsPage(
+                    _client=self._client,
+                    pipeline_id=self.pipeline_id,
+                    page_size=self.page_size,
+                    runs=[],
+                    next_page_token=""
+                )
+            return await self._client._list_data_pipeline_runs(
+                self.pipeline_id,
+                self.page_size,
+                self.next_page_token
+            )
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
 
@@ -231,11 +337,13 @@ class DataClient:
         self._data_client = DataServiceStub(channel)
         self._data_sync_client = DataSyncServiceStub(channel)
         self._dataset_client = DatasetServiceStub(channel)
+        self._data_pipelines_client = DataPipelinesServiceStub(channel)
         self._channel = channel
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
     _dataset_client: DatasetServiceStub
+    _data_pipelines_client: DataPipelinesServiceStub
     _metadata: Mapping[str, str]
     _channel: Channel
 
@@ -1676,6 +1784,160 @@ class DataClient:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
                 raise TypeError("Response cannot be empty")
             return response
+
+    async def get_data_pipeline(self, id: str) -> DataPipeline:
+        """Get a data pipeline by its ID.
+
+        Args:
+            id (str): The ID of the data pipeline to get.
+
+        Returns:
+            DataPipeline: The data pipeline with the given ID.
+        """
+        request = GetDataPipelineRequest(id=id)
+        response: GetDataPipelineResponse = await self._data_pipelines_client.GetDataPipeline(request, metadata=self._metadata)
+        return self._proto_pipeline_to_pipeline(response.data_pipeline)
+
+    async def list_data_pipelines(self, organization_id: str) -> List[DataPipeline]:
+        """List all of the data pipelines for an organization.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the pipelines.
+                You can obtain your organization ID from the Viam app's organization settings page.
+
+        Returns:
+            List[DataPipeline]: A list of all of the data pipelines for the given organization.
+        """
+        request = ListDataPipelinesRequest(organization_id=organization_id)
+        response: ListDataPipelinesResponse = await self._data_pipelines_client.ListDataPipelines(request, metadata=self._metadata)
+        return [self._proto_pipeline_to_pipeline(pipeline) for pipeline in response.data_pipelines]
+
+    async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str:
+        """Create a new data pipeline.
+
+        Args:
+            organization_id (str): The ID of the organization that will own the pipeline.
+                You can obtain your organization ID from the Viam app's organization settings page.
+            name (str): The name of the pipeline.
+            mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
+            schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
+                defines the input time window; an hourly schedule would process 1 hour of data at a time).
+
+        Returns:
+            str: The ID of the newly created pipeline.
+        """
+        binary: List[bytes] = [bson.encode(query) for query in mql_binary]
+        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule)
+        response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
+        return response.id
+
+    async def delete_data_pipeline(self, id: str) -> None:
+        """Delete a data pipeline by its ID.
+
+        Args:
+            id (str): The ID of the data pipeline to delete.
+        """
+        request = DeleteDataPipelineRequest(id=id)
+        await self._data_pipelines_client.DeleteDataPipeline(request, metadata=self._metadata)
+
+    async def enable_data_pipeline(self, id: str) -> None:
+        """Enable a data pipeline by its ID.
+
+        Args:
+            id (str): The ID of the data pipeline to enable.
+        """
+        request = EnableDataPipelineRequest(id=id)
+        await self._data_pipelines_client.EnableDataPipeline(request, metadata=self._metadata)
+
+    async def disable_data_pipeline(self, id: str) -> None:
+        """Disable a data pipeline by its ID.
+
+        Args:
+            id (str): The ID of the data pipeline to disable.
+        """
+        request = DisableDataPipelineRequest(id=id)
+        await self._data_pipelines_client.DisableDataPipeline(request, metadata=self._metadata)
+
+    async def update_data_pipeline(self, id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> None:
+        """Update a data pipeline by its ID.
+
+        Args:
+            id (str): The ID of the data pipeline to update.
+            name (str): The name of the pipeline.
+            mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
+            schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
+                defines the input time window; an hourly schedule would process 1 hour of data at a time).
+        """
+        binary: List[bytes] = [bson.encode(query) for query in mql_binary]
+        request = UpdateDataPipelineRequest(id=id, name=name, mql_binary=binary, schedule=schedule)
+        await self._data_pipelines_client.UpdateDataPipeline(request, metadata=self._metadata)
+
+    async def list_data_pipeline_runs(self, id: str, page_size: int =10) -> DataPipelineRunsPage:
+        """List all of the data pipeline runs for a data pipeline.
+
+        Args:
+            id (str): The ID of the pipeline to list runs for
+            page_size (int): The number of runs to return per page. Defaults to 10.
+
+        Returns:
+            DataPipelineRunsPage: A page of data pipeline runs with pagination support
+        """
+        return await self._list_data_pipeline_runs(id, page_size)
+
+    async def _list_data_pipeline_runs(
+        self, id: str, page_size: int, page_token: str = ""
+    ) -> DataPipelineRunsPage:
+        """Internal method to list data pipeline runs with pagination.
+
+        Args:
+            id (str): The ID of the pipeline to list runs for
+            page_size (int): The number of runs to return per page
+            page_token (str): The token to use to get the next page of results
+
+        Returns:
+            DataPipelineRunsPage: A page of data pipeline runs with pagination support
+        """
+        request = ListDataPipelineRunsRequest(
+            id=id,
+            page_size=page_size,
+            page_token=page_token
+        )
+        response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(
+            request,
+            metadata=self._metadata
+        )
+
+        runs = [
+            DataClient.DataPipelineRun(
+                id=run.id,
+                status=run.status,
+                start_time=run.start_time.ToDatetime(),
+                end_time=run.end_time.ToDatetime(),
+                data_start_time=run.data_start_time.ToDatetime(),
+                data_end_time=run.data_end_time.ToDatetime(),
+            )
+            for run in response.runs
+        ]
+
+        return DataClient.DataPipelineRunsPage(
+            _client=self,
+            pipeline_id=id,
+            page_size=page_size,
+            runs=runs,
+            next_page_token=response.next_page_token
+        )
+
+    @staticmethod
+    def _proto_pipeline_to_pipeline(proto_pipeline: ProtoDataPipeline) -> DataPipeline:
+        return DataClient.DataPipeline(
+            id=proto_pipeline.id,
+            organization_id=proto_pipeline.organization_id,
+            name=proto_pipeline.name,
+            mql_binary=[bson.decode(bson_bytes) for bson_bytes in proto_pipeline.mql_binary],
+            schedule=proto_pipeline.schedule,
+            created_on=proto_pipeline.created_on.ToDatetime(),
+            updated_at=proto_pipeline.updated_at.ToDatetime(),
+        )
 
     @staticmethod
     def create_filter(

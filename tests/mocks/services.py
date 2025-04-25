@@ -249,6 +249,24 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadRequest,
     StreamingDataCaptureUploadResponse,
 )
+from viam.proto.app.datapipelines import (
+    CreateDataPipelineRequest,
+    CreateDataPipelineResponse,
+    DeleteDataPipelineRequest,
+    DisableDataPipelineRequest,
+    EnableDataPipelineRequest,
+    EnableDataPipelineResponse,
+    GetDataPipelineRequest,
+    GetDataPipelineResponse,
+    ListDataPipelineRunsRequest,
+    ListDataPipelineRunsResponse,
+    ListDataPipelinesRequest,
+    ListDataPipelinesResponse,
+    UpdateDataPipelineRequest,
+    UpdateDataPipelineResponse,
+    DeleteDataPipelineResponse,
+    DisableDataPipelineResponse,
+)
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
     CancelTrainingJobResponse,
@@ -1095,6 +1113,65 @@ class MockDataSync(DataSyncServiceBase):
         assert request_data_contents is not None
         self.binary_data = request_data_contents.data
         await stream.send_message(StreamingDataCaptureUploadResponse(binary_data_id=self.file_upload_response))
+
+class MockDataPipeline(DataPipelineServiceBase):
+    def __init__(self, create_response: str, list_response: Sequence["DataClass.DataPipeline"]):
+        self.create_response = create_response
+        self.list_response = list_response
+
+    async def CreateDataPipeline(self, stream: Stream[CreateDataPipelineRequest, CreateDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.mql_binary = request.mql_binary
+        self.schedule = request.schedule
+        self.org_id = request.organization_id
+        await stream.send_message(CreateDataPipelineResponse(id=self.create_response))
+
+    async def GetDataPipeline(self, stream: Stream[GetDataPipelineRequest, GetDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        await stream.send_message(GetDataPipelineResponse(pipeline=self.list_response[0]))
+
+    async def ListDataPipelines(self, stream: Stream[ListDataPipelinesRequest, ListDataPipelinesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListDataPipelinesResponse(pipelines=self.list_response))
+
+    async def UpdateDataPipeline(self, stream: Stream[UpdateDataPipelineRequest, UpdateDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        self.mql_binary = request.mql_binary
+        self.schedule = request.schedule
+        await stream.send_message(UpdateDataPipelineResponse())
+
+    async def DeleteDataPipeline(self, stream: Stream[DeleteDataPipelineRequest, DeleteDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        await stream.send_message(DeleteDataPipelineResponse())
+
+    async def EnableDataPipeline(self, stream: Stream[EnableDataPipelineRequest, EnableDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        await stream.send_message(EnableDataPipelineResponse())
+
+    async def DisableDataPipeline(self, stream: Stream[DisableDataPipelineRequest, DisableDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        await stream.send_message(DisableDataPipelineResponse())
+
+    async def ListDataPipelineRuns(self, stream: Stream[ListDataPipelineRunsRequest, ListDataPipelineRunsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        await stream.send_message(ListDataPipelineRunsResponse())
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
