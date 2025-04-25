@@ -92,7 +92,7 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retrieving data from app.
 
-    This class's constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance o
+    This class's constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance of
     :class:`ViamClient`.
 
     Establish a connection::
