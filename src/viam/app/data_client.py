@@ -281,9 +281,10 @@ class DataClient:
 
         Returns:
             Tuple[List[TabularData], int, str]: A tuple containing the following:
-            List[TabularData]: The tabular data,
-            int: The count (number of entries),
-            str: The last-returned page ID.
+
+                - tabular_data (*List[TabularData]*): The tabular data.
+                - count (*int*): The count (number of entries).
+                - last (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
         """
@@ -409,9 +410,9 @@ class DataClient:
         Returns:
             Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for
                 the data source or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
-                - **time_captured** (*datetime*): The time captured.
-                - **time_synced** (*datetime*): The time synced.
-                - **payload** (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
+                - time_captured (*datetime*): The time captured.
+                - time_synced (*datetime*): The time synced.
+                - payload (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
         """
@@ -555,9 +556,10 @@ class DataClient:
 
         Returns:
             Tuple[List[~viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
-                - **data** (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
-                - **count** (*int*): The count (number of entries).
-                - **last** (*str*): The last-returned page ID.
+
+                - data (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
+                - count (*int*): The count (number of entries).
+                - last (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
         """
