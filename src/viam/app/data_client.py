@@ -54,6 +54,8 @@ from viam.proto.app.data import (
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
+    TabularDataSourceType,
+    TabularDataSource,
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
@@ -90,7 +92,6 @@ from viam.proto.app.datapipelines import (
     CreateDataPipelineResponse,
     DataPipeline as ProtoDataPipeline,
     DataPipelinesServiceStub,
-    DataPipelineRun,
     DataPipelineRunStatus,
     DeleteDataPipelineRequest,
     DisableDataPipelineRequest,
@@ -102,7 +103,6 @@ from viam.proto.app.datapipelines import (
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
     UpdateDataPipelineRequest,
-    UpdateDataPipelineResponse,
 )
 
 
@@ -266,6 +266,9 @@ class DataClient:
 
         updated_at: datetime
         """The time the data pipeline was last updated"""
+
+        enabled: bool
+        """Whether the data pipeline is enabled"""
 
     @dataclass
     class DataPipelineRun:
@@ -454,7 +457,9 @@ class DataClient:
 
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
-        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None
+        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None,
+        tabular_data_source_type: Optional[TabularDataSourceType.ValueType] = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
+        pipeline_id: Optional[str] = None
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -475,7 +480,12 @@ class DataClient:
             query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.
                 Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
                 so using a dictionary is preferred.
-            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to `False`
+            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to `False`.
+                Deprecated, use `tabular_data_source_type` instead.
+            tabular_data_source_type (viam.proto.app.data.TabularDataSourceType): The data source to query.
+                Defaults to `TABULAR_DATA_SOURCE_TYPE_STANDARD`.
+            pipeline_id (str): The ID of the data pipeline to query. Defaults to `None`.
+                Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
@@ -483,7 +493,10 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
         """
         binary: List[bytes] = [bson.encode(query) for query in query] if isinstance(query[0], dict) else query  # type: ignore
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary, use_recent_data=use_recent_data)
+        data_source = TabularDataSource(type=tabular_data_source_type, pipeline_id=pipeline_id)
+        if use_recent_data:
+            data_source.type = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
+        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary, data_source=data_source)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
@@ -1935,6 +1948,7 @@ class DataClient:
             name=proto_pipeline.name,
             mql_binary=[bson.decode(bson_bytes) for bson_bytes in proto_pipeline.mql_binary],
             schedule=proto_pipeline.schedule,
+            enabled=proto_pipeline.enabled,
             created_on=proto_pipeline.created_on.ToDatetime(),
             updated_at=proto_pipeline.updated_at.ToDatetime(),
         )
