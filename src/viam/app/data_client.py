@@ -169,6 +169,7 @@ class DataClient:
             if isinstance(other, DataClient.TabularData):
                 return str(self) == str(other)
             return False
+
     @dataclass
     class TabularDataPoint:
         """Represents a tabular data point and its associated metadata."""
@@ -1801,6 +1802,10 @@ class DataClient:
     async def get_data_pipeline(self, id: str) -> DataPipeline:
         """Get a data pipeline by its ID.
 
+        ::
+
+            data_pipeline = await data_client.get_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
+
         Args:
             id (str): The ID of the data pipeline to get.
 
@@ -1813,6 +1818,10 @@ class DataClient:
 
     async def list_data_pipelines(self, organization_id: str) -> List[DataPipeline]:
         """List all of the data pipelines for an organization.
+
+        ::
+
+            data_pipelines = await data_client.list_data_pipelines(organization_id="<YOUR-ORGANIZATION-ID>")
 
         Args:
             organization_id (str): The ID of the organization that owns the pipelines.
@@ -1827,6 +1836,15 @@ class DataClient:
 
     async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str:
         """Create a new data pipeline.
+
+        ::
+
+            data_pipeline_id = await data_client.create_data_pipeline(
+                organization_id="<YOUR-ORGANIZATION-ID>",
+                name="<YOUR-PIPELINE-NAME>",
+                mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
+                schedule="<YOUR-SCHEDULE>"
+            )
 
         Args:
             organization_id (str): The ID of the organization that will own the pipeline.
@@ -1847,6 +1865,10 @@ class DataClient:
     async def delete_data_pipeline(self, id: str) -> None:
         """Delete a data pipeline by its ID.
 
+        ::
+
+            await data_client.delete_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
+
         Args:
             id (str): The ID of the data pipeline to delete.
         """
@@ -1855,6 +1877,10 @@ class DataClient:
 
     async def enable_data_pipeline(self, id: str) -> None:
         """Enable a data pipeline by its ID.
+
+        ::
+
+            await data_client.enable_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
 
         Args:
             id (str): The ID of the data pipeline to enable.
@@ -1865,6 +1891,10 @@ class DataClient:
     async def disable_data_pipeline(self, id: str) -> None:
         """Disable a data pipeline by its ID.
 
+        ::
+
+            await data_client.disable_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
+
         Args:
             id (str): The ID of the data pipeline to disable.
         """
@@ -1873,6 +1903,15 @@ class DataClient:
 
     async def update_data_pipeline(self, id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> None:
         """Update a data pipeline by its ID.
+
+        ::
+
+            await data_client.update_data_pipeline(
+                id="<YOUR-DATA-PIPELINE-ID>",
+                name="<YOUR-PIPELINE-NAME>",
+                mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
+                schedule="<YOUR-SCHEDULE>"
+            )
 
         Args:
             id (str): The ID of the data pipeline to update.
@@ -1887,6 +1926,12 @@ class DataClient:
 
     async def list_data_pipeline_runs(self, id: str, page_size: int =10) -> DataPipelineRunsPage:
         """List all of the data pipeline runs for a data pipeline.
+
+        ::
+
+            data_pipeline_runs = await data_client.list_data_pipeline_runs(id="<YOUR-DATA-PIPELINE-ID>")
+            while len(data_pipeline_runs.runs) > 0:
+                data_pipeline_runs = await data_pipeline_runs.next_page()
 
         Args:
             id (str): The ID of the pipeline to list runs for
