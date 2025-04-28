@@ -256,7 +256,7 @@ class DataClient:
         name: str
         """The name of the data pipeline"""
 
-        mql_binary: List[bytes]
+        mql_binary: List[Dict[str, Any]]
         """The MQL binary of the data pipeline"""
 
         schedule: str
@@ -277,7 +277,7 @@ class DataClient:
         id: str
         """The ID of the data pipeline run"""
 
-        status: DataPipelineRunStatus
+        status: DataPipelineRunStatus.ValueType
         """The status of the data pipeline run"""
 
         start_time: datetime
@@ -459,7 +459,7 @@ class DataClient:
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
         self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None,
-        tabular_data_source_type: Optional[TabularDataSourceType.ValueType] = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
+        tabular_data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
         pipeline_id: Optional[str] = None
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
