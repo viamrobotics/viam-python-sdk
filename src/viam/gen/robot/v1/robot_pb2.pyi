@@ -225,7 +225,7 @@ class TransformPCDRequest(google.protobuf.message.Message):
     SOURCE_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
     point_cloud_pcd: builtins.bytes
-    'the point clouds to transform. This should be [in the PCD format](https://pointclouds.org/documentation/tutorials/pcd_file_format.html),\n encoded into bytes\n    '
+    'the point clouds to transform. This should be in the PCD format\n    encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html\n    '
     source: builtins.str
     'the reference frame of the point cloud.'
     destination: builtins.str

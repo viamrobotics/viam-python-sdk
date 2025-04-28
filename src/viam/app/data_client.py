@@ -282,9 +282,9 @@ class DataClient:
         Returns:
             Tuple[List[TabularData], int, str]: A tuple containing the following:
 
-                - tabular_data (*List[TabularData]*): The tabular data.
-                - count (*int*): The count (number of entries).
-                - last (*str*): The last-returned page ID.
+                - ``tabular_data`` (*List[TabularData]*): The tabular data.
+                - ``count`` (*int*): The count (number of entries).
+                - ``last`` (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
         """
@@ -408,11 +408,16 @@ class DataClient:
             method_name (str): The data capture method name. Ex: "Readings".
 
         Returns:
-            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for
-                the data source or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
-                - time_captured (*datetime*): The time captured.
-                - time_synced (*datetime*): The time synced.
-                - payload (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
+            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of ``None`` means that one of the following is true:
+
+                - this data source has not yet synced data
+                - the most recently captured data from this data source is over a year old
+
+            Otherwise, the data source has synced data in the last year, so the returned tuple contains the following:
+
+                - ``time_captured`` (*datetime*): The time captured.
+                - ``time_synced`` (*datetime*): The time synced.
+                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
         """
@@ -557,9 +562,9 @@ class DataClient:
         Returns:
             Tuple[List[~viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
 
-                - data (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
-                - count (*int*): The count (number of entries).
-                - last (*str*): The last-returned page ID.
+                - ``data`` (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
+                - ``count`` (*int*): The count (number of entries).
+                - ``last`` (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
         """
@@ -1310,8 +1315,8 @@ class DataClient:
     ) -> str:
         """Upload binary sensor data.
 
-        Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata,
-        to app.viam.com. Binary data can be found on the **DATA** page of the Viam app.
+        Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+        Binary data can be found on the **DATA** page of the Viam app.
 
         ::
 
@@ -1391,8 +1396,8 @@ class DataClient:
     ) -> str:
         """Upload tabular sensor data.
 
-        Upload tabular data collected on a robot through a specific component (for example, a motor), along with the relevant metadata,
-        to app.viam.com. Tabular data can be found under the **Sensors** tab of the **DATA** page.
+        Upload tabular data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+        Tabular data can be found under the **Sensors** tab of the **DATA** page.
 
         ::
 
@@ -1490,7 +1495,7 @@ class DataClient:
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
         tags: Optional[List[str]] = None,
     ) -> str:
-        """Uploads the metadata and contents of streaming binary data to app.viam.com.
+        """Uploads the metadata and contents of streaming binary data.
 
         ::
 
@@ -1569,7 +1574,7 @@ class DataClient:
     ) -> str:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found in the
+        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
         **Files** tab of the **DATA** page.
 
         ::
@@ -1629,7 +1634,7 @@ class DataClient:
     ) -> str:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found in the
+        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
         **Files** tab of the **DATA** page.
 
         ::
