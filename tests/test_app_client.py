@@ -777,3 +777,27 @@ class TestClient:
             key, id = await client.rotate_key(ID)
             assert key == API_KEY
             assert id == ID
+
+    async def test_get_organization_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_update_organization_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_get_location_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_update_location_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_get_robot_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_update_robot_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_get_robot_part_metadata(self, service: MockApp):
+        _ = service
+
+    async def test_update_robot_part_metadata(self, service: MockApp):
+        _ = service
