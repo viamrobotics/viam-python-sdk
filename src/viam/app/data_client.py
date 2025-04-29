@@ -409,8 +409,8 @@ class DataClient:
 
         Returns:
             Optional[Tuple[datetime, datetime, Dict[str, ~viam.utils.ValueTypes]]]: A return value of ``None`` means that this data source
-                has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
-                tuple contains the following:
+            has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
+            tuple contains the following:
 
                 - ``time_captured`` (*datetime*): The time captured.
                 - ``time_synced`` (*datetime*): The time synced.
