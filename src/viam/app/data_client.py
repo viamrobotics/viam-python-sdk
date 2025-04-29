@@ -1591,11 +1591,11 @@ class DataClient:
             component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if one isn't
+            file_name (Optional[str]): Optional name of the file. The empty string `""` will be assigned as the file name if one isn't
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
-            file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
+            file_extension (Optional[str]): Optional file extension. The empty string `""` will be assigned as the file extension if one
+                isn't provided. Files with a `.jpeg`, `.jpg`, or `.png` extension will be saved to the **Images** tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 
         Raises:
