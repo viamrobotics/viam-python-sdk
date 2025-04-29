@@ -29,10 +29,10 @@ Module Contents
 
    gRPC client for uploading and retrieving data from app.
 
-   Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
-   `ViamClient`.
+   This class's constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance of
+   :class:`ViamClient`.
 
-   Establish a Connection::
+   Establish a connection::
 
        import asyncio
 
@@ -117,19 +117,17 @@ Module Contents
       .. py:attribute:: resource_api
          :type:  str
 
-         component:sensor
+         sensor
 
-         :type: The resource API. Ex
+         :type: The resource API. For example, rdk
 
-         :type: rdk
+         :type: component
 
 
       .. py:attribute:: method_name
          :type:  str
 
-         Readings
-
-         :type: The method used for data capture. Ex
+         The method used for data capture. For example, Readings
 
 
       .. py:attribute:: time_captured
@@ -202,9 +200,8 @@ Module Contents
       :async:
 
 
-      Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-      in the returned tuple. If a destination is provided, the data will be saved to that file.
-      If the file is not empty, it will be overwritten.
+      Filter and download tabular data. The data will be paginated into pages of ``limit`` items; the returned tuple will include
+      the pagination ID. If a destination is provided, this method saves returned data to that file, overwriting any existing file content.
 
       ::
 
@@ -221,29 +218,31 @@ Module Contents
 
           print(f"My data: {my_data}")
 
-      :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
-                     data.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Optional, specifies tabular data to retrieve. If missing, matches all tabular data.
+      :type filter: ~viam.proto.app.data.Filter
       :param limit: The maximum number of entries to include in a page. Defaults to 50 if unspecified.
       :type limit: int
       :param sort_order: The desired sort order of the data.
-      :type sort_order: viam.proto.app.data.Order
+      :type sort_order: ~viam.proto.app.data.Order
       :param last: Optional string indicating the object identifier of the last-returned data.
-                   This object identifier is returned by calls to `TabularDataByFilter` as the `last` value.
-                   If provided, the server will return the next data entries after the last object identifier.
+                   Returned by calls to :class:`TabularDataByFilter` as the ``last`` value.
+                   If provided, the server returns the next data entries after the last object identifier.
       :type last: str
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool
       :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                    like cloud SLAM. Defaults to `False`.
+                                    like cloud SLAM. Defaults to ``False``.
       :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: A tuple containing the following:
-                List[TabularData]: The tabular data,
-                int: The count (number of entries),
-                str: The last-returned page ID.
+      :returns:
+
+                A tuple containing the following:
+
+                    - ``tabular_data`` (*List[TabularData]*): The tabular data.
+                    - ``count`` (*int*): The count (number of entries).
+                    - ``last`` (*str*): The last-returned page ID.
       :rtype: Tuple[List[TabularData], int, str]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
@@ -265,7 +264,7 @@ Module Contents
           )
 
       :param organization_id: The ID of the organization that owns the data.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
       :param sql_query: The SQL query to run.
       :type sql_query: str
@@ -295,13 +294,13 @@ Module Contents
           print(f"Tabular Data: {tabular_data}")
 
       :param organization_id: The ID of the organization that owns the data.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
       :param query: The MQL query to run, as a list of MongoDB aggregation pipeline stages.
-                    Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
-                    so using a dictionary is preferred.
+                    Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
+                    future, so prefer the dictionary option.
       :type query: Union[List[bytes], List[Dict[str, Any]]]
-      :param use_recent_data: Whether to query blob storage or your recent data store. Defaults to `False`
+      :param use_recent_data: Whether to query blob storage or your recent data store. Defaults to ``False``.
       :type use_recent_data: bool
 
       :returns: An array of decoded BSON data objects.
@@ -336,18 +335,20 @@ Module Contents
 
       :param part_id: The ID of the part that owns the data.
       :type part_id: str
-      :param resource_name: The name of the requested resource that captured the data. Ex: "my-sensor".
+      :param resource_name: The name of the requested resource that captured the data. For example, "my-sensor".
       :type resource_name: str
-      :param resource_api: The API of the requested resource that captured the data. Ex: "rdk:component:sensor".
+      :param resource_api: The API of the requested resource that captured the data. For example, "rdk:component:sensor".
       :type resource_api: str
-      :param method_name: The data capture method name. Ex: "Readings".
+      :param method_name: The data capture method name. For exampe, "Readings".
       :type method_name: str
 
-      :returns: A return value of None means that data hasn't been synced yet for the data source
-                or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
-                datetime: The time captured,
-                datetime: The time synced,
-                Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+      :returns: A return value of ``None`` means that this data source
+                has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
+                tuple contains the following:
+
+                    - ``time_captured`` (*datetime*): The time captured.
+                    - ``time_synced`` (*datetime*): The time synced.
+                    - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
       :rtype: Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
@@ -397,9 +398,9 @@ Module Contents
       :async:
 
 
-      Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-      in the returned tuple. If a destination is provided, the data will be saved to that file.
-      If the file is not empty, it will be overwritten.
+      Filter and download binary data. The data will be paginated into pages of ``limit`` items, and the pagination ID will be included
+      in the returned tuple as ``last``. If a destination is provided, this method saves returned data to that file,
+      overwriting any existing file content.
 
       ::
 
@@ -437,15 +438,14 @@ Module Contents
                   break
               my_untagged_data.extend(data)
 
-      :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
-                     data.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Optional, specifies tabular data to retrieve. An empty filter matches all binary data.
+      :type filter: ~viam.proto.app.data.Filter
       :param limit: The maximum number of entries to include in a page. Defaults to 50 if unspecified.
       :type limit: int
       :param sort_order: The desired sort order of the data.
-      :type sort_order: viam.proto.app.data.Order
+      :type sort_order: ~viam.proto.app.data.Order
       :param last: Optional string indicating the object identifier of the last-returned data.
-                   This object identifier is returned by calls to `BinaryDataByFilter` as the `last` value.
+                   This object identifier is returned by calls to :meth:`binary_data_by_filter` as the ``last`` value.
                    If provided, the server will return the next data entries after the last object identifier.
       :type last: str
       :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
@@ -454,16 +454,19 @@ Module Contents
       :param count_only: Whether to return only the total count of entries.
       :type count_only: bool
       :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                    like cloud SLAM. Defaults to `False`.
+                                    like cloud SLAM. Defaults to ``False``.
       :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: A tuple containing the following:
-                List[viam.proto.app.data.BinaryData]: The binary data,
-                int: The count (number of entries),
-                str: The last-returned page ID.
-      :rtype: Tuple[List[viam.proto.app.data.BinaryData], int, str]
+      :returns:
+
+                A tuple containing the following:
+
+                    - ``data`` (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
+                    - ``count`` (*int*): The count (number of entries).
+                    - ``last`` (*str*): The last-returned page ID.
+      :rtype: Tuple[List[~viam.proto.app.data.BinaryData], int, str]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
 
@@ -488,16 +491,18 @@ Module Contents
 
           binary_data = await data_client.binary_data_by_ids(my_ids)
 
-      :param binary_ids: Binary data id strings specifying the desired data or `BinaryID` objects. Must be non-empty.
-                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field instead.
-      :type binary_ids: Union[List[BinaryID], List[str]]
+      :param binary_ids: Binary data ID strings specifying the desired data or
+                         :class:`BinaryID` objects. Must be non-empty.
+                         *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                         list of strings.*
+      :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+      :raises GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
       :returns: The binary data.
-      :rtype: List[viam.proto.app.data.BinaryData]
+      :rtype: List[~viam.proto.app.data.BinaryData]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids>`_.
 
@@ -516,11 +521,11 @@ Module Contents
               delete_older_than_days=150
           )
 
-      :param organization_id: ID of organization to delete data from.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+      :param organization_id: The ID of the organization to delete the data from.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
-      :param delete_older_than_days: Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
-                                     is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
+      :param delete_older_than_days: Delete data that was captured up to *this many* days ago. For example, a value of
+                                     10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
       :type delete_older_than_days: int
 
       :returns: The number of items deleted.
@@ -536,7 +541,7 @@ Module Contents
       :async:
 
 
-      Deprecated: use delete_tabular_data instead.
+      Deprecated: use :meth:`delete_tabular_data` instead.
 
 
 
@@ -554,10 +559,11 @@ Module Contents
 
           res = await data_client.delete_binary_data_by_filter(my_filter)
 
-      :param filter: Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
-                     all data being deleted. Exercise caution when using this option. You must specify an organization ID with
-                     "organization_ids" when using this option.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Optional, specifies binary data to delete.
+                     **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**
+                     You must specify an organization ID with ``organization_ids`` when using this option.
+                     To find your organization ID, visit the organization settings page in the Viam app.
+      :type filter: ~viam.proto.app.data.Filter
 
       :returns: The number of items deleted.
       :rtype: int
@@ -593,12 +599,13 @@ Module Contents
 
           binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
-      :param binary_ids: Binary data id strings specifying the data to be deleted or `BinaryID` objects.
-      :type binary_ids: Union[List[BinaryID], List[str]]
-      :param Must be non-empty.: Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                                 instead.
+      :param binary_ids: Binary data ID strings specifying the data to be deleted or
+                         :class:`BinaryID` objects. Must be non-empty.
+                         *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                         list of strings.*
+      :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
 
-      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+      :raises GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
       :returns: The number of items deleted.
       :rtype: int
@@ -637,13 +644,13 @@ Module Contents
 
       :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param binary_ids: Binary data id strings specifying the data to be tagged or `BinaryID` objects.
-                         Must be non-empty.
-                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                         instead.
-      :type binary_ids: Union[List[BinaryID], List[str]]
+      :param binary_ids: Binary data ID strings specifying the data to be tagged or
+                         :class:`BinaryID` objects. Must be non-empty.
+                         *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                         list of strings.*
+      :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
 
-      :raises GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+      :raises GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
 
@@ -665,9 +672,8 @@ Module Contents
 
       :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param filter: `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be
-                     tagged.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Specifies binary data to tag. If none is provided, tags all data.
+      :type filter: ~viam.proto.app.data.Filter
 
       :raises GRPCError: If no tags are provided.
 
@@ -707,13 +713,13 @@ Module Contents
 
       :param tags: List of tags to remove from specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param binary_ids: Binary data id strings specifying the data to be untagged or `BinaryID` objects.
-                         Must be non-empty.
-                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                         instead.
-      :type binary_ids: Union[List[BinaryID], List[str]]
+      :param binary_ids: Binary data ID strings specifying the data to be untagged
+                         or `BinaryID` objects. Must be non-empty.
+                         *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                         list of strings.*
+      :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
 
-      :raises GRPCError: If no binary_ids or tags are provided.
+      :raises GRPCError: If no binary data ID strings, :class:`BinaryID` objects, or tags are provided.
 
       :returns: The number of tags removed.
       :rtype: int
@@ -738,9 +744,8 @@ Module Contents
 
       :param tags: List of tags to remove from specified binary data.
       :type tags: List[str]
-      :param filter: `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
-                     untagged.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Specifies binary data to untag. If none is provided, removes tags from all data.
+      :type filter: ~viam.proto.app.data.Filter
 
       :raises GRPCError: If no tags are provided.
 
@@ -764,9 +769,8 @@ Module Contents
           my_filter = create_filter(component_name="my_camera")
           tags = await data_client.tags_by_filter(my_filter)
 
-      :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
-                     return.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Specifies subset ofdata to retrieve tags from. If none is provided, returns all tags.
+      :type filter: ~viam.proto.app.data.Filter
 
       :returns: The list of tags.
       :rtype: List[str]
@@ -794,10 +798,10 @@ Module Contents
 
           print(bbox_id)
 
-      :param binary_id: The binary data id or `BinaryID` of the image to add the bounding box to.
-                        Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                        instead.
-      :type binary_id: Union[viam.proto.app.data.BinaryID, str]
+      :param binary_id: The binary data ID or :class:`BinaryID` of the image to add the bounding
+                        box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data
+                        IDs as a list of strings.*
+      :type binary_id: Union[~viam.proto.app.data.BinaryID, str]
       :param label: A label for the bounding box.
       :type label: str
       :param x_min_normalized: Min X value of the bounding box normalized from 0 to 1.
@@ -833,10 +837,11 @@ Module Contents
 
       :param bbox_id: The ID of the bounding box to remove.
       :type bbox_id: str
-      :param binary_id: The binary data id or `BinaryID` of the image to remove the bounding box
-      :type binary_id: Union[viam.proto.app.data.BinaryID, str]
-      :param from.: Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                    instead.
+      :param binary_id: The binary data ID or :class:`BinaryID` of the image to remove the
+                        bounding box from.
+                        *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                        list of strings.*
+      :type binary_id: Union[~viam.proto.app.data.BinaryID, str]
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
 
@@ -858,9 +863,9 @@ Module Contents
 
           print(bounding_box_labels)
 
-      :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
-                     return.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Specifies data to retrieve bounding box labels from. If none is provided, returns labels
+      :type filter: ~viam.proto.app.data.Filter
+      :param from all data.:
 
       :returns: The list of bounding box labels.
       :rtype: List[str]
@@ -879,8 +884,8 @@ Module Contents
 
           hostname = await data_client.get_database_connection(organization_id="<YOUR-ORG-ID>")
 
-      :param organization_id: Organization to retrieve the connection for.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+      :param organization_id: The ID of the organization you'd like to connect to.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
 
       :returns: The hostname of the federated database.
@@ -904,8 +909,8 @@ Module Contents
               password="Your_Password@1234"
           )
 
-      :param organization_id: The ID of the organization.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+      :param organization_id: The ID of the organization you'd like to configure a database user for.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
       :param password: The password of the user.
       :type password: str
@@ -931,7 +936,7 @@ Module Contents
       :param name: The name of the dataset being created.
       :type name: str
       :param organization_id: The ID of the organization where the dataset is being created.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
 
       :returns: The dataset ID of the created dataset.
@@ -954,9 +959,12 @@ Module Contents
           )
           print(datasets)
 
-      :param ids: The IDs of the datasets being called for. To retrieve these IDs,
-                  navigate to your dataset's page in the Viam app,
-                  click **...** in the left-hand menu, and click **Copy dataset ID**.
+      :param ids: The IDs of the datasets that you would like to retrieve information about. To retrieve a dataset ID:
+
+                  - Navigate to the **DATASETS** tab of the **DATA** page.
+                  - Click on the dataset.
+                  - Click the **...** menu.
+                  - Select **Copy dataset ID**.
       :type ids: List[str]
 
       :returns: The list of datasets.
@@ -979,8 +987,8 @@ Module Contents
           )
           print(datasets)
 
-      :param organization_id: The ID of the organization.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+      :param organization_id: The ID of the organization you'd like to retrieve datasets from.
+                              To find your organization ID, visit the organization settings page in the Viam app.
       :type organization_id: str
 
       :returns: The list of datasets in the organization.
@@ -1003,8 +1011,12 @@ Module Contents
               name="MyDataset"
           )
 
-      :param id: The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-                 clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+      :param id: The ID of the dataset. To retrieve the dataset ID:
+
+                 - Navigate to the **DATASETS** tab of the **DATA** page.
+                 - Click on the dataset.
+                 - Click the **...** menu.
+                 - Select **Copy dataset ID**.
       :type id: str
       :param name: The new name of the dataset.
       :type name: str
@@ -1025,8 +1037,12 @@ Module Contents
               id="<YOUR-DATASET-ID>"
           )
 
-      :param id: The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-                 clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+      :param id: The ID of the dataset. To retrieve the dataset ID:
+
+                 - Navigate to the **DATASETS** tab of the **DATA** page.
+                 - Click on the dataset.
+                 - Click the **...** menu.
+                 - Select **Copy dataset ID**.
       :type id: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletedataset>`_.
@@ -1047,24 +1063,27 @@ Module Contents
               include_binary_data=False
           )
 
-          my_binary_ids = []
+          my_binary_data_ids = []
 
           for obj in binary_metadata:
-              my_binary_ids.append(
+              my_binary_data_ids.append(
                   obj.metadata.binary_data_id
                   )
 
           await data_client.add_binary_data_to_dataset_by_ids(
-              binary_ids=my_binary_ids,
+              binary_ids=my_binary_data_ids,
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
 
-      :param binary_ids: The IDs of binary data to add to dataset. To retrieve these IDs,
-                         navigate to your data page, click on an image and copy its File ID from the details tab.
-                         To retrieve the dataset ID, navigate to your dataset's page in the Viam app,
-                         and use the left-hand menu to copy the dataset ID.
-      :type binary_ids: List[BinaryID]
-      :param dataset_id: The ID of the dataset to be added to.
+      :param binary_ids: Unique identifiers for binary data to add to the dataset. To retrieve these IDs,
+                         navigate to the DATA page, click on an image, and copy its Binary Data ID from the details tab.
+      :type binary_ids: List[~viam.proto.app.data.BinaryID]
+      :param dataset_id: The ID of the dataset to be added to.  To retrieve the dataset ID:
+
+                         - Navigate to the **DATASETS** tab of the **DATA** page.
+                         - Click on the dataset.
+                         - Click the **...** menu.
+                         - Select **Copy dataset ID**.
       :type dataset_id: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
@@ -1085,26 +1104,29 @@ Module Contents
               include_binary_data=False
           )
 
-          my_binary_ids = []
+          my_binary_data_ids = []
 
           for obj in binary_metadata:
-              my_binary_ids.append(
+              my_binary_data_ids.append(
                   obj.metadata.binary_data_id
               )
 
           await data_client.remove_binary_data_from_dataset_by_ids(
-              binary_ids=my_binary_ids,
+              binary_ids=my_binary_data_ids,
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
 
-      :param binary_ids: The IDs of binary data to remove from dataset. To retrieve these IDs,
-                         navigate to your data page, click on an image and copy its File ID from the details tab. To
-                         retrieve the dataset ID, navigate to your dataset's page in the Viam app, and use the
-                         left-hand menu to copy the dataset ID.
-                         Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                         instead.
-      :type binary_ids: Union[List[BinaryID], List[str]]
-      :param dataset_id: The ID of the dataset to be removed from.
+      :param binary_ids: Unique identifiers for the binary data to remove from the dataset. To retrieve these IDs,
+                         navigate to the DATA page, click on an image and copy its Binary Data ID from the details tab.
+                         *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                         list of strings.*
+      :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
+      :param dataset_id: The ID of the dataset to be removed from. To retrieve the dataset ID:
+
+                         - Navigate to the **DATASETS** tab of the **DATA** page.
+                         - Click on the dataset.
+                         - Click the **...** menu.
+                         - Select **Copy dataset ID**.
       :type dataset_id: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
@@ -1117,8 +1139,8 @@ Module Contents
 
       Upload binary sensor data.
 
-      Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
-      app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
+      Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+      Binary data can be found on the **DATA** page of the Viam app.
 
       ::
 
@@ -1147,21 +1169,21 @@ Module Contents
       :type component_name: str
       :param method_name: Name of the method used to capture the data.
       :type method_name: str
-      :param file_extension: The file extension of binary data including the period, for example .jpg, .png, .pcd.
-                             The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
-                             or .png extension will be saved to the images tab.
+      :param file_extension: The file extension of binary data, *including the period*, for example ``.jpg``, ``.png``, ``.pcd``.
+                             The backend routes the binary to its corresponding mime type based on this extension. Files with a ``.jpeg``, ``.jpg``,
+                             or ``.png`` extension will appear in the **Images** tab.
       :type file_extension: str
       :param method_parameters: Optional dictionary of method parameters. No longer in active use.
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
       :param data_request_times: Optional tuple containing datetime objects
-                                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+                                 denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: The binary_data_id of the uploaded data.
+      :returns: The binary data ID of the uploaded data.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload>`_.
@@ -1174,8 +1196,8 @@ Module Contents
 
       Upload tabular sensor data.
 
-      Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
-      app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
+      Upload tabular data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+      Tabular data can be found under the **Sensors** tab of the **DATA** page.
 
       ::
 
@@ -1199,19 +1221,19 @@ Module Contents
           )
 
       :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
-                           Must include the key "readings" for sensors.
+                           Must include the key ``readings`` for sensors.
       :type tabular_data: List[Mapping[str, Any]]
       :param part_id: Part ID of the component used to capture the data.
       :type part_id: str
-      :param component_type: Type of the component used to capture the data (for example, "rdk:component:movement_sensor").
+      :param component_type: Type of the component used to capture the data (for example, ``rdk:component:movement_sensor``).
       :type component_type: str
       :param component_name: Name of the component used to capture the data.
       :type component_name: str
       :param method_name: Name of the method used to capture the data.
       :type method_name: str
-      :param data_request_times: List of tuples, each containing `datetime` objects
-                                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of
-                                 tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same metadata.
+      :param data_request_times: List of tuples, each containing ``datetime`` objects
+                                 denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
+                                 Pass a list of tabular data and timestamps with length ``n > 1`` to upload ``n`` datapoints, all with the same metadata.
       :type data_request_times: List[Tuple[datetime.datetime, datetime.datetime]]
       :param method_parameters: Optional dictionary of method parameters. No longer in active use.
       :type method_parameters: Optional[Mapping[str, Any]]
@@ -1219,10 +1241,10 @@ Module Contents
       :type tags: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
-      :raises ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+      :raises ValueError: If the provided list of `Timestamp` objects has a length that does not match the length of the list of tabular
           data.
 
-      :returns: The file_id of the uploaded data.
+      :returns: The file ID of the uploaded data.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload>`_.
@@ -1251,11 +1273,11 @@ Module Contents
               tags=["tag_1", "tag_2"]
           )
 
-      :param data: the data to be uploaded.
+      :param data: The data to be uploaded.
       :type data: bytes
       :param part_id: Part ID of the resource associated with the file.
       :type part_id: str
-      :param file_ext: file extension type for the data. required for determining MIME type.
+      :param file_ext: File extension type for the data. required for determining MIME type.
       :type file_ext: str
       :param component_type: Optional type of the component associated with the file (for example, "movement_sensor").
       :type component_type: Optional[str]
@@ -1266,14 +1288,14 @@ Module Contents
       :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
       :type method_parameters: Optional[str]
       :param data_request_times: Optional tuple containing datetime objects
-                                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+                                 denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: The binary_data_id of the uploaded data.
+      :returns: The binary data ID of the uploaded data.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload>`_.
@@ -1286,8 +1308,8 @@ Module Contents
 
       Upload arbitrary file data.
 
-      Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
-      "Files" subtab of the Data tab on app.viam.com.
+      Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
+      **Files** tab of the **DATA** page.
 
       ::
 
@@ -1309,20 +1331,20 @@ Module Contents
       :type component_name: Optional[str]
       :param method_name: Optional name of the method associated with the file.
       :type method_name: Optional[str]
-      :param file_name: Optional name of the file. The empty string "" will be assigned as the file name if one isn't
+      :param file_name: Optional name of the file. The empty string ``""`` will be assigned as the file name if one isn't
                         provided.
       :type file_name: Optional[str]
       :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
       :type method_parameters: Optional[str]
-      :param file_extension: Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                             provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
+      :param file_extension: Optional file extension. The empty string ``""`` will be assigned as the file extension if one
+                             isn't provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.
       :type file_extension: Optional[str]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: ID of the new file.
+      :returns: Binary data ID of the new file.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileupload>`_.
@@ -1335,8 +1357,8 @@ Module Contents
 
       Upload arbitrary file data.
 
-      Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
-      "Files" subtab of the Data tab on app.viam.com.
+      Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
+      **Files** tab of the **DATA** page.
 
       ::
 
@@ -1364,7 +1386,7 @@ Module Contents
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.
 
-      :returns: ID of the new file.
+      :returns: Binary data ID of the new file.
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.

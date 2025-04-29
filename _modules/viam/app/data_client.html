@@ -181,10 +181,10 @@
 <div class="viewcode-block" id="DataClient"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient">[docs]</a><span class="k">class</span> <span class="nc">DataClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for uploading and retrieving data from app.</span>
 
-<span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through</span>
-<span class="sd">    `ViamClient`.</span>
+<span class="sd">    This class&#39;s constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance of</span>
+<span class="sd">    :class:`ViamClient`.</span>
 
-<span class="sd">    Establish a Connection::</span>
+<span class="sd">    Establish a connection::</span>
 
 <span class="sd">        import asyncio</span>
 
@@ -248,10 +248,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The resource name&quot;&quot;&quot;</span>
 
         <span class="n">resource_api</span><span class="p">:</span> <span class="nb">str</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The resource API. Ex: rdk:component:sensor&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The resource API. For example, rdk:component:sensor&quot;&quot;&quot;</span>
 
         <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method used for data capture. Ex: Readings&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method used for data capture. For example, Readings&quot;&quot;&quot;</span>
 
         <span class="n">time_captured</span><span class="p">:</span> <span class="n">datetime</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The time at which the data point was captured&quot;&quot;&quot;</span>
@@ -310,7 +310,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_api</span></div>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `DataClient` that maintains a connection to app.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a :class:`DataClient` that maintains a connection to app.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            channel (grpclib.client.Channel): Connection to app.</span>
@@ -338,9 +338,8 @@
         <span class="n">include_internal_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TabularData</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included</span>
-<span class="sd">        in the returned tuple. If a destination is provided, the data will be saved to that file.</span>
-<span class="sd">        If the file is not empty, it will be overwritten.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data. The data will be paginated into pages of ``limit`` items; the returned tuple will include</span>
+<span class="sd">        the pagination ID. If a destination is provided, this method saves returned data to that file, overwriting any existing file content.</span>
 
 <span class="sd">        ::</span>
 
@@ -358,23 +357,23 @@
 <span class="sd">            print(f&quot;My data: {my_data}&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular</span>
-<span class="sd">                data.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Optional, specifies tabular data to retrieve. If missing, matches all tabular data.</span>
 <span class="sd">            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.</span>
-<span class="sd">            sort_order (viam.proto.app.data.Order): The desired sort order of the data.</span>
+<span class="sd">            sort_order (~viam.proto.app.data.Order): The desired sort order of the data.</span>
 <span class="sd">            last (str): Optional string indicating the object identifier of the last-returned data.</span>
-<span class="sd">                        This object identifier is returned by calls to `TabularDataByFilter` as the `last` value.</span>
-<span class="sd">                        If provided, the server will return the next data entries after the last object identifier.</span>
+<span class="sd">                Returned by calls to :class:`TabularDataByFilter` as the ``last`` value.</span>
+<span class="sd">                If provided, the server returns the next data entries after the last object identifier.</span>
 <span class="sd">            count_only (bool): Whether to return only the total count of entries.</span>
 <span class="sd">            include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,</span>
-<span class="sd">                                          like cloud SLAM. Defaults to `False`.</span>
+<span class="sd">                like cloud SLAM. Defaults to ``False``.</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[List[TabularData], int, str]: A tuple containing the following:</span>
-<span class="sd">            List[TabularData]: The tabular data,</span>
-<span class="sd">            int: The count (number of entries),</span>
-<span class="sd">            str: The last-returned page ID.</span>
+
+<span class="sd">                - ``tabular_data`` (*List[TabularData]*): The tabular data.</span>
+<span class="sd">                - ``count`` (*int*): The count (number of entries).</span>
+<span class="sd">                - ``last`` (*str*): The last-returned page ID.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -421,7 +420,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 <span class="sd">            sql_query (str): The SQL query to run.</span>
 
 <span class="sd">        Returns:</span>
@@ -452,11 +451,11 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 <span class="sd">            query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.</span>
-<span class="sd">                Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,</span>
-<span class="sd">                so using a dictionary is preferred.</span>
-<span class="sd">            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to `False`</span>
+<span class="sd">                Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the</span>
+<span class="sd">                future, so prefer the dictionary option.</span>
+<span class="sd">            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to ``False``.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
@@ -493,16 +492,19 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): The ID of the part that owns the data.</span>
-<span class="sd">            resource_name (str): The name of the requested resource that captured the data. Ex: &quot;my-sensor&quot;.</span>
-<span class="sd">            resource_api (str): The API of the requested resource that captured the data. Ex: &quot;rdk:component:sensor&quot;.</span>
-<span class="sd">            method_name (str): The data capture method name. Ex: &quot;Readings&quot;.</span>
+<span class="sd">            resource_name (str): The name of the requested resource that captured the data. For example, &quot;my-sensor&quot;.</span>
+<span class="sd">            resource_api (str): The API of the requested resource that captured the data. For example, &quot;rdk:component:sensor&quot;.</span>
+<span class="sd">            method_name (str): The data capture method name. For exampe, &quot;Readings&quot;.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn&#39;t been synced yet for the data source</span>
-<span class="sd">            or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:</span>
-<span class="sd">            datetime: The time captured,</span>
-<span class="sd">            datetime: The time synced,</span>
-<span class="sd">            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.</span>
+<span class="sd">            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:</span>
+<span class="sd">            A return value of ``None`` means that this data source</span>
+<span class="sd">            has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned</span>
+<span class="sd">            tuple contains the following:</span>
+
+<span class="sd">                - ``time_captured`` (*datetime*): The time captured.</span>
+<span class="sd">                - ``time_synced`` (*datetime*): The time synced.</span>
+<span class="sd">                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -590,9 +592,9 @@
         <span class="n">include_internal_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included</span>
-<span class="sd">        in the returned tuple. If a destination is provided, the data will be saved to that file.</span>
-<span class="sd">        If the file is not empty, it will be overwritten.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data. The data will be paginated into pages of ``limit`` items, and the pagination ID will be included</span>
+<span class="sd">        in the returned tuple as ``last``. If a destination is provided, this method saves returned data to that file,</span>
+<span class="sd">        overwriting any existing file content.</span>
 
 <span class="sd">        ::</span>
 
@@ -631,25 +633,25 @@
 <span class="sd">                my_untagged_data.extend(data)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary</span>
-<span class="sd">                data.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Optional, specifies tabular data to retrieve. An empty filter matches all binary data.</span>
 <span class="sd">            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.</span>
-<span class="sd">            sort_order (viam.proto.app.data.Order): The desired sort order of the data.</span>
+<span class="sd">            sort_order (~viam.proto.app.data.Order): The desired sort order of the data.</span>
 <span class="sd">            last (str): Optional string indicating the object identifier of the last-returned data.</span>
-<span class="sd">                        This object identifier is returned by calls to `BinaryDataByFilter` as the `last` value.</span>
-<span class="sd">                        If provided, the server will return the next data entries after the last object identifier.</span>
+<span class="sd">                This object identifier is returned by calls to :meth:`binary_data_by_filter` as the ``last`` value.</span>
+<span class="sd">                If provided, the server will return the next data entries after the last object identifier.</span>
 <span class="sd">            include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.</span>
-<span class="sd">                                        Defaults to true (that is, both the files&#39; data and metadata are returned).</span>
+<span class="sd">                Defaults to true (that is, both the files&#39; data and metadata are returned).</span>
 <span class="sd">            count_only (bool): Whether to return only the total count of entries.</span>
 <span class="sd">            include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,</span>
-<span class="sd">                                          like cloud SLAM. Defaults to `False`.</span>
+<span class="sd">                like cloud SLAM. Defaults to ``False``.</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[List[viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:</span>
-<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data,</span>
-<span class="sd">            int: The count (number of entries),</span>
-<span class="sd">            str: The last-returned page ID.</span>
+<span class="sd">            Tuple[List[~viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:</span>
+
+<span class="sd">                - ``data`` (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.</span>
+<span class="sd">                - ``count`` (*int*): The count (number of entries).</span>
+<span class="sd">                - ``last`` (*str*): The last-returned page ID.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -700,15 +702,17 @@
 <span class="sd">            binary_data = await data_client.binary_data_by_ids(my_ids)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the desired data or `BinaryID` objects. Must be non-empty.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field instead.</span>
+<span class="sd">            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the desired data or</span>
+<span class="sd">                :class:`BinaryID` objects. Must be non-empty.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If no binary data id strings or `BinaryID` objects are provided.</span>
+<span class="sd">            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data.</span>
+<span class="sd">            List[~viam.proto.app.data.BinaryData]: The binary data.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -740,10 +744,10 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): ID of organization to delete data from.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
-<span class="sd">            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`</span>
-<span class="sd">                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.</span>
+<span class="sd">            organization_id (str): The ID of the organization to delete the data from.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of</span>
+<span class="sd">                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
@@ -755,7 +759,7 @@
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
 
 <div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deprecated: use delete_tabular_data instead.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deprecated: use :meth:`delete_tabular_data` instead.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DataClient.delete_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -770,9 +774,10 @@
 <span class="sd">            res = await data_client.delete_binary_data_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
-<span class="sd">                all data being deleted. Exercise caution when using this option. You must specify an organization ID with</span>
-<span class="sd">                &quot;organization_ids&quot; when using this option.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Optional, specifies binary data to delete.</span>
+<span class="sd">                **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**</span>
+<span class="sd">                You must specify an organization ID with ``organization_ids`` when using this option.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
@@ -809,13 +814,13 @@
 <span class="sd">            binary_data = await data_client.delete_binary_data_by_ids(my_ids)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be deleted or `BinaryID` objects.</span>
-<span class="sd">            Must be non-empty.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
+<span class="sd">            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be deleted or</span>
+<span class="sd">                :class:`BinaryID` objects. Must be non-empty.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If no binary data id strings or `BinaryID` objects are provided.</span>
+<span class="sd">            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
@@ -859,13 +864,13 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
-<span class="sd">            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be tagged or `BinaryID` objects.</span>
-<span class="sd">                Must be non-empty.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
+<span class="sd">            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be tagged or</span>
+<span class="sd">                :class:`BinaryID` objects. Must be non-empty.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If no binary data id strings or `BinaryID` objects are provided.</span>
+<span class="sd">            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -891,8 +896,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be</span>
-<span class="sd">                tagged.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Specifies binary data to tag. If none is provided, tags all data.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no tags are provided.</span>
@@ -932,13 +936,13 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.</span>
-<span class="sd">            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be untagged or `BinaryID` objects.</span>
-<span class="sd">                Must be non-empty.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
+<span class="sd">            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be untagged</span>
+<span class="sd">                or `BinaryID` objects. Must be non-empty.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If no binary_ids or tags are provided.</span>
+<span class="sd">            GRPCError: If no binary data ID strings, :class:`BinaryID` objects, or tags are provided.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of tags removed.</span>
@@ -970,8 +974,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data.</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be</span>
-<span class="sd">                untagged.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Specifies binary data to untag. If none is provided, removes tags from all data.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no tags are provided.</span>
@@ -999,8 +1002,7 @@
 <span class="sd">            tags = await data_client.tags_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will</span>
-<span class="sd">                return.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Specifies subset ofdata to retrieve tags from. If none is provided, returns all tags.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of tags.</span>
@@ -1037,9 +1039,9 @@
 <span class="sd">            print(bbox_id)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_id (Union[viam.proto.app.data.BinaryID, str]): The binary data id or `BinaryID` of the image to add the bounding box to.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
+<span class="sd">            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding</span>
+<span class="sd">                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data</span>
+<span class="sd">                IDs as a list of strings.*</span>
 <span class="sd">            label (str): A label for the bounding box.</span>
 <span class="sd">            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.</span>
 <span class="sd">            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.</span>
@@ -1088,10 +1090,10 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            bbox_id (str): The ID of the bounding box to remove.</span>
-<span class="sd">            binary_id (Union[viam.proto.app.data.BinaryID, str]): The binary data id or `BinaryID` of the image to remove the bounding box</span>
-<span class="sd">            from.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
+<span class="sd">            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to remove the</span>
+<span class="sd">                bounding box from.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1117,8 +1119,8 @@
 <span class="sd">            print(bounding_box_labels)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will</span>
-<span class="sd">                return.</span>
+<span class="sd">            filter (~viam.proto.app.data.Filter): Specifies data to retrieve bounding box labels from. If none is provided, returns labels</span>
+<span class="sd">            from all data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of bounding box labels.</span>
@@ -1138,8 +1140,8 @@
 <span class="sd">            hostname = await data_client.get_database_connection(organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): Organization to retrieve the connection for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">            organization_id (str): The ID of the organization you&#39;d like to connect to.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The hostname of the federated database.</span>
@@ -1162,8 +1164,8 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): The ID of the organization.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">            organization_id (str): The ID of the organization you&#39;d like to configure a database user for.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 <span class="sd">            password (str): The password of the user.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser&gt;`_.</span>
@@ -1185,7 +1187,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): The name of the dataset being created.</span>
 <span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
@@ -1207,9 +1209,12 @@
 <span class="sd">            print(datasets)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            ids (List[str]): The IDs of the datasets being called for. To retrieve these IDs,</span>
-<span class="sd">                navigate to your dataset&#39;s page in the Viam app,</span>
-<span class="sd">                click **...** in the left-hand menu, and click **Copy dataset ID**.</span>
+<span class="sd">            ids (List[str]): The IDs of the datasets that you would like to retrieve information about. To retrieve a dataset ID:</span>
+
+<span class="sd">                - Navigate to the **DATASETS** tab of the **DATA** page.</span>
+<span class="sd">                - Click on the dataset.</span>
+<span class="sd">                - Click the **...** menu.</span>
+<span class="sd">                - Select **Copy dataset ID**.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets.</span>
@@ -1232,8 +1237,8 @@
 <span class="sd">            print(datasets)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): The ID of the organization.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">            organization_id (str): The ID of the organization you&#39;d like to retrieve datasets from.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
@@ -1258,8 +1263,12 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
-<span class="sd">                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
+<span class="sd">            id (str): The ID of the dataset. To retrieve the dataset ID:</span>
+
+<span class="sd">                - Navigate to the **DATASETS** tab of the **DATA** page.</span>
+<span class="sd">                - Click on the dataset.</span>
+<span class="sd">                - Click the **...** menu.</span>
+<span class="sd">                - Select **Copy dataset ID**.</span>
 <span class="sd">            name (str): The new name of the dataset.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#renamedataset&gt;`_.</span>
@@ -1277,8 +1286,12 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,</span>
-<span class="sd">                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.</span>
+<span class="sd">            id (str): The ID of the dataset. To retrieve the dataset ID:</span>
+
+<span class="sd">                    - Navigate to the **DATASETS** tab of the **DATA** page.</span>
+<span class="sd">                    - Click on the dataset.</span>
+<span class="sd">                    - Click the **...** menu.</span>
+<span class="sd">                    - Select **Copy dataset ID**.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deletedataset&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1296,24 +1309,27 @@
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
-<span class="sd">            my_binary_ids = []</span>
+<span class="sd">            my_binary_data_ids = []</span>
 
 <span class="sd">            for obj in binary_metadata:</span>
-<span class="sd">                my_binary_ids.append(</span>
+<span class="sd">                my_binary_data_ids.append(</span>
 <span class="sd">                    obj.metadata.binary_data_id</span>
 <span class="sd">                    )</span>
 
 <span class="sd">            await data_client.add_binary_data_to_dataset_by_ids(</span>
-<span class="sd">                binary_ids=my_binary_ids,</span>
+<span class="sd">                binary_ids=my_binary_data_ids,</span>
 <span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset. To retrieve these IDs,</span>
-<span class="sd">                navigate to your data page, click on an image and copy its File ID from the details tab.</span>
-<span class="sd">                To retrieve the dataset ID, navigate to your dataset&#39;s page in the Viam app,</span>
-<span class="sd">                and use the left-hand menu to copy the dataset ID.</span>
-<span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
+<span class="sd">            binary_ids (List[~viam.proto.app.data.BinaryID]): Unique identifiers for binary data to add to the dataset. To retrieve these IDs,</span>
+<span class="sd">                navigate to the DATA page, click on an image, and copy its Binary Data ID from the details tab.</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be added to.  To retrieve the dataset ID:</span>
+
+<span class="sd">                - Navigate to the **DATASETS** tab of the **DATA** page.</span>
+<span class="sd">                - Click on the dataset.</span>
+<span class="sd">                - Click the **...** menu.</span>
+<span class="sd">                - Select **Copy dataset ID**.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1337,26 +1353,29 @@
 <span class="sd">                include_binary_data=False</span>
 <span class="sd">            )</span>
 
-<span class="sd">            my_binary_ids = []</span>
+<span class="sd">            my_binary_data_ids = []</span>
 
 <span class="sd">            for obj in binary_metadata:</span>
-<span class="sd">                my_binary_ids.append(</span>
+<span class="sd">                my_binary_data_ids.append(</span>
 <span class="sd">                    obj.metadata.binary_data_id</span>
 <span class="sd">                )</span>
 
 <span class="sd">            await data_client.remove_binary_data_from_dataset_by_ids(</span>
-<span class="sd">                binary_ids=my_binary_ids,</span>
+<span class="sd">                binary_ids=my_binary_data_ids,</span>
 <span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (Union[List[BinaryID], List[str]]): The IDs of binary data to remove from dataset. To retrieve these IDs,</span>
-<span class="sd">                navigate to your data page, click on an image and copy its File ID from the details tab. To</span>
-<span class="sd">                retrieve the dataset ID, navigate to your dataset&#39;s page in the Viam app, and use the</span>
-<span class="sd">                left-hand menu to copy the dataset ID.</span>
-<span class="sd">                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field</span>
-<span class="sd">                instead.</span>
-<span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
+<span class="sd">            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Unique identifiers for the binary data to remove from the dataset. To retrieve these IDs,</span>
+<span class="sd">                navigate to the DATA page, click on an image and copy its Binary Data ID from the details tab.</span>
+<span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be removed from. To retrieve the dataset ID:</span>
+
+<span class="sd">                - Navigate to the **DATASETS** tab of the **DATA** page.</span>
+<span class="sd">                - Click on the dataset.</span>
+<span class="sd">                - Click the **...** menu.</span>
+<span class="sd">                - Select **Copy dataset ID**.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1383,8 +1402,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
 
-<span class="sd">        Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to</span>
-<span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
+<span class="sd">        Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.</span>
+<span class="sd">        Binary data can be found on the **DATA** page of the Viam app.</span>
 
 <span class="sd">        ::</span>
 
@@ -1409,19 +1428,19 @@
 <span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
-<span class="sd">            file_extension (str): The file extension of binary data including the period, for example .jpg, .png, .pcd.</span>
-<span class="sd">                The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,</span>
-<span class="sd">                or .png extension will be saved to the images tab.</span>
+<span class="sd">            file_extension (str): The file extension of binary data, *including the period*, for example ``.jpg``, ``.png``, ``.pcd``.</span>
+<span class="sd">                The backend routes the binary to its corresponding mime type based on this extension. Files with a ``.jpeg``, ``.jpg``,</span>
+<span class="sd">                or ``.png`` extension will appear in the **Images** tab.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
 <span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects</span>
-<span class="sd">                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.</span>
+<span class="sd">                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The binary_data_id of the uploaded data.</span>
+<span class="sd">            str: The binary data ID of the uploaded data.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1464,8 +1483,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
 
-<span class="sd">        Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to</span>
-<span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; subtab of the Data tab on app.viam.com.</span>
+<span class="sd">        Upload tabular data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.</span>
+<span class="sd">        Tabular data can be found under the **Sensors** tab of the **DATA** page.</span>
 
 <span class="sd">        ::</span>
 
@@ -1490,24 +1509,24 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
-<span class="sd">                Must include the key &quot;readings&quot; for sensors.</span>
+<span class="sd">                Must include the key ``readings`` for sensors.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
-<span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;rdk:component:movement_sensor&quot;).</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (for example, ``rdk:component:movement_sensor``).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
-<span class="sd">            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing `datetime` objects</span>
-<span class="sd">                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of</span>
-<span class="sd">                tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the same metadata.</span>
+<span class="sd">            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing ``datetime`` objects</span>
+<span class="sd">                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.</span>
+<span class="sd">                Pass a list of tabular data and timestamps with length ``n &gt; 1`` to upload ``n`` datapoints, all with the same metadata.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
-<span class="sd">            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular</span>
+<span class="sd">            ValueError: If the provided list of `Timestamp` objects has a length that does not match the length of the list of tabular</span>
 <span class="sd">                data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The file_id of the uploaded data.</span>
+<span class="sd">            str: The file ID of the uploaded data.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1582,22 +1601,22 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            data (bytes): the data to be uploaded.</span>
+<span class="sd">            data (bytes): The data to be uploaded.</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
-<span class="sd">            file_ext (str): file extension type for the data. required for determining MIME type.</span>
+<span class="sd">            file_ext (str): File extension type for the data. required for determining MIME type.</span>
 <span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
 <span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects</span>
-<span class="sd">                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.</span>
+<span class="sd">                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The binary_data_id of the uploaded data.</span>
+<span class="sd">            str: The binary data ID of the uploaded data.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1642,8 +1661,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
-<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
-<span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
+<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the</span>
+<span class="sd">        **Files** tab of the **DATA** page.</span>
 
 <span class="sd">        ::</span>
 
@@ -1661,18 +1680,18 @@
 <span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
-<span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string &quot;&quot; will be assigned as the file name if one isn&#39;t</span>
+<span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string ``&quot;&quot;`` will be assigned as the file name if one isn&#39;t</span>
 <span class="sd">                provided.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
-<span class="sd">            file_extension (Optional[str]): Optional file extension. The empty string &quot;&quot; will be assigned as the file extension if one isn&#39;t</span>
-<span class="sd">                provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.</span>
+<span class="sd">            file_extension (Optional[str]): Optional file extension. The empty string ``&quot;&quot;`` will be assigned as the file extension if one</span>
+<span class="sd">                isn&#39;t provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: ID of the new file.</span>
+<span class="sd">            str: Binary data ID of the new file.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#fileupload&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1702,8 +1721,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
-<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
-<span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
+<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the</span>
+<span class="sd">        **Files** tab of the **DATA** page.</span>
 
 <span class="sd">        ::</span>
 
@@ -1728,7 +1747,7 @@
 <span class="sd">            FileNotFoundError: If the provided filepath is not found.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: ID of the new file.</span>
+<span class="sd">            str: Binary data ID of the new file.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
