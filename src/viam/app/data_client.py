@@ -1220,15 +1220,15 @@ class DataClient:
                 include_binary_data=False
             )
 
-            my_binary_ids = []
+            my_binary_data_ids = []
 
             for obj in binary_metadata:
-                my_binary_ids.append(
+                my_binary_data_ids.append(
                     obj.metadata.binary_data_id
                     )
 
             await data_client.add_binary_data_to_dataset_by_ids(
-                binary_ids=my_binary_ids,
+                binary_ids=my_binary_data_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
 
@@ -1264,15 +1264,15 @@ class DataClient:
                 include_binary_data=False
             )
 
-            my_binary_ids = []
+            my_binary_data_ids = []
 
             for obj in binary_metadata:
-                my_binary_ids.append(
+                my_binary_data_ids.append(
                     obj.metadata.binary_data_id
                 )
 
             await data_client.remove_binary_data_from_dataset_by_ids(
-                binary_ids=my_binary_ids,
+                binary_ids=my_binary_data_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
 
