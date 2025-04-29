@@ -159,10 +159,10 @@ class DataClient:
         """The resource name"""
 
         resource_api: str
-        """The resource API. Ex: rdk:component:sensor"""
+        """The resource API. For example, rdk:component:sensor"""
 
         method_name: str
-        """The method used for data capture. Ex: Readings"""
+        """The method used for data capture. For example, Readings"""
 
         time_captured: datetime
         """The time at which the data point was captured"""
@@ -335,7 +335,7 @@ class DataClient:
             sql_query (str): The SQL query to run.
 
         Returns:
-            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
+            List[Dict[str, Union[~viam.utils.ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabysql>`_.
         """
@@ -369,7 +369,7 @@ class DataClient:
             use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to ``False``.
 
         Returns:
-            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
+            List[Dict[str, Union[~viam.utils.ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
         """
@@ -408,13 +408,13 @@ class DataClient:
             method_name (str): The data capture method name. Ex: "Readings".
 
         Returns:
-            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of ``None`` means that this data source
+            Optional[Tuple[datetime, datetime, Dict[str, ~viam.utils.ValueTypes]]]: A return value of ``None`` means that this data source
                 has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
                 tuple contains the following:
 
                 - ``time_captured`` (*datetime*): The time captured.
                 - ``time_synced`` (*datetime*): The time synced.
-                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
+                - ``payload`` (*Dict[str, ~viam.utils.ValueTypes]*): The latest tabular data captured from the specified data source.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
         """
@@ -612,8 +612,8 @@ class DataClient:
             binary_data = await data_client.binary_data_by_ids(my_ids)
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data ID strings specifying the desired data or :class:`BinaryID` objects.
-                Must be non-empty.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the desired data or
+                :class:`BinaryID` objects. Must be non-empty.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
             dest (str): Optional filepath for writing retrieved data.
@@ -724,8 +724,8 @@ class DataClient:
             binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data ID strings specifying the data to be deleted or :class:`BinaryID`
-                objects. Must be non-empty.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be deleted or
+                :class:`BinaryID` objects. Must be non-empty.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
 
@@ -774,8 +774,8 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data ID strings specifying the data to be tagged or :class:`BinaryID`
-                objects. Must be non-empty.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be tagged or
+                :class:`BinaryID` objects. Must be non-empty.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
 
@@ -846,8 +846,8 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data ID strings specifying the data to be untagged or `BinaryID` objects.
-                Must be non-empty.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be untagged
+                or `BinaryID` objects. Must be non-empty.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
 
@@ -1232,7 +1232,7 @@ class DataClient:
             )
 
         Args:
-            binary_ids (List[BinaryID]): Unique identifiers for binary data to add to the dataset. To retrieve these IDs,
+            binary_ids (List[~viam.proto.app.data.BinaryID]): Unique identifiers for binary data to add to the dataset. To retrieve these IDs,
                 navigate to the DATA page, click on an image, and copy its Binary Data ID from the details tab.
             dataset_id (str): The ID of the dataset to be added to.  To retrieve the dataset ID:
 
@@ -1276,7 +1276,7 @@ class DataClient:
             )
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): Unique identifiers for the binary data to remove from the dataset. To retrieve these IDs,
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Unique identifiers for the binary data to remove from the dataset. To retrieve these IDs,
                 navigate to the DATA page, click on an image and copy its Binary Data ID from the details tab.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
