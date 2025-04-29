@@ -335,7 +335,7 @@ class DataClient:
             sql_query (str): The SQL query to run.
 
         Returns:
-            List[Dict[str, Union[~viam.utils.ValueTypes, datetime]]]: An array of decoded BSON data objects.
+            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabysql>`_.
         """
@@ -369,7 +369,7 @@ class DataClient:
             use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to ``False``.
 
         Returns:
-            List[Dict[str, Union[~viam.utils.ValueTypes, datetime]]]: An array of decoded BSON data objects.
+            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabymql>`_.
         """
@@ -403,18 +403,19 @@ class DataClient:
 
         Args:
             part_id (str): The ID of the part that owns the data.
-            resource_name (str): The name of the requested resource that captured the data. Ex: "my-sensor".
-            resource_api (str): The API of the requested resource that captured the data. Ex: "rdk:component:sensor".
-            method_name (str): The data capture method name. Ex: "Readings".
+            resource_name (str): The name of the requested resource that captured the data. For example, "my-sensor".
+            resource_api (str): The API of the requested resource that captured the data. For example, "rdk:component:sensor".
+            method_name (str): The data capture method name. For exampe, "Readings".
 
         Returns:
-            Optional[Tuple[datetime, datetime, Dict[str, ~viam.utils.ValueTypes]]]: A return value of ``None`` means that this data source
+            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
+            A return value of ``None`` means that this data source
             has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
             tuple contains the following:
 
                 - ``time_captured`` (*datetime*): The time captured.
                 - ``time_synced`` (*datetime*): The time synced.
-                - ``payload`` (*Dict[str, ~viam.utils.ValueTypes]*): The latest tabular data captured from the specified data source.
+                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
         """
