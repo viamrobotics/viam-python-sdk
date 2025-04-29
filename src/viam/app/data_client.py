@@ -92,10 +92,10 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retrieving data from app.
 
-    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
-    `ViamClient`.
+    This class's constructor instantiates relevant service stubs. Always make :class:`DataClient` method calls through an instance of
+    :class:`ViamClient`.
 
-    Establish a Connection::
+    Establish a connection::
 
         import asyncio
 
@@ -159,10 +159,10 @@ class DataClient:
         """The resource name"""
 
         resource_api: str
-        """The resource API. Ex: rdk:component:sensor"""
+        """The resource API. For example, rdk:component:sensor"""
 
         method_name: str
-        """The method used for data capture. Ex: Readings"""
+        """The method used for data capture. For example, Readings"""
 
         time_captured: datetime
         """The time at which the data point was captured"""
@@ -221,7 +221,7 @@ class DataClient:
             return self.resource_api
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
-        """Create a `DataClient` that maintains a connection to app.
+        """Create a :class:`DataClient` that maintains a connection to app.
 
         Args:
             channel (grpclib.client.Channel): Connection to app.
@@ -249,9 +249,8 @@ class DataClient:
         include_internal_data: bool = False,
         dest: Optional[str] = None,
     ) -> Tuple[List[TabularData], int, str]:
-        """Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-        in the returned tuple. If a destination is provided, the data will be saved to that file.
-        If the file is not empty, it will be overwritten.
+        """Filter and download tabular data. The data will be paginated into pages of ``limit`` items; the returned tuple will include
+        the pagination ID. If a destination is provided, this method saves returned data to that file, overwriting any existing file content.
 
         ::
 
@@ -269,23 +268,23 @@ class DataClient:
             print(f"My data: {my_data}")
 
         Args:
-            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
-                data.
+            filter (~viam.proto.app.data.Filter): Optional, specifies tabular data to retrieve. If missing, matches all tabular data.
             limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.
-            sort_order (viam.proto.app.data.Order): The desired sort order of the data.
+            sort_order (~viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the object identifier of the last-returned data.
-                        This object identifier is returned by calls to `TabularDataByFilter` as the `last` value.
-                        If provided, the server will return the next data entries after the last object identifier.
+                Returned by calls to :class:`TabularDataByFilter` as the ``last`` value.
+                If provided, the server returns the next data entries after the last object identifier.
             count_only (bool): Whether to return only the total count of entries.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                          like cloud SLAM. Defaults to `False`.
+                like cloud SLAM. Defaults to ``False``.
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
             Tuple[List[TabularData], int, str]: A tuple containing the following:
-            List[TabularData]: The tabular data,
-            int: The count (number of entries),
-            str: The last-returned page ID.
+
+                - ``tabular_data`` (*List[TabularData]*): The tabular data.
+                - ``count`` (*int*): The count (number of entries).
+                - ``last`` (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
         """
@@ -332,7 +331,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                To find your organization ID, visit the organization settings page in the Viam app.
             sql_query (str): The SQL query to run.
 
         Returns:
@@ -363,11 +362,11 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                To find your organization ID, visit the organization settings page in the Viam app.
             query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.
-                Note: Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the future,
-                so using a dictionary is preferred.
-            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to `False`
+                Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
+                future, so prefer the dictionary option.
+            use_recent_data (bool): Whether to query blob storage or your recent data store. Defaults to ``False``.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
@@ -404,16 +403,19 @@ class DataClient:
 
         Args:
             part_id (str): The ID of the part that owns the data.
-            resource_name (str): The name of the requested resource that captured the data. Ex: "my-sensor".
-            resource_api (str): The API of the requested resource that captured the data. Ex: "rdk:component:sensor".
-            method_name (str): The data capture method name. Ex: "Readings".
+            resource_name (str): The name of the requested resource that captured the data. For example, "my-sensor".
+            resource_api (str): The API of the requested resource that captured the data. For example, "rdk:component:sensor".
+            method_name (str): The data capture method name. For exampe, "Readings".
 
         Returns:
-            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]: A return value of None means that data hasn't been synced yet for the data source
-            or the most recently captured data was over a year ago, otherwise the returned tuple contains the following:
-            datetime: The time captured,
-            datetime: The time synced,
-            Dict[str, ValueTypes]: The latest tabular data captured from the specified data source.
+            Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
+            A return value of ``None`` means that this data source
+            has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
+            tuple contains the following:
+
+                - ``time_captured`` (*datetime*): The time captured.
+                - ``time_synced`` (*datetime*): The time synced.
+                - ``payload`` (*Dict[str, ValueTypes]*): The latest tabular data captured from the specified data source.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#getlatesttabulardata>`_.
         """
@@ -501,9 +503,9 @@ class DataClient:
         include_internal_data: bool = False,
         dest: Optional[str] = None,
     ) -> Tuple[List[BinaryData], int, str]:
-        """Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-        in the returned tuple. If a destination is provided, the data will be saved to that file.
-        If the file is not empty, it will be overwritten.
+        """Filter and download binary data. The data will be paginated into pages of ``limit`` items, and the pagination ID will be included
+        in the returned tuple as ``last``. If a destination is provided, this method saves returned data to that file,
+        overwriting any existing file content.
 
         ::
 
@@ -542,25 +544,25 @@ class DataClient:
                 my_untagged_data.extend(data)
 
         Args:
-            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
-                data.
+            filter (~viam.proto.app.data.Filter): Optional, specifies tabular data to retrieve. An empty filter matches all binary data.
             limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.
-            sort_order (viam.proto.app.data.Order): The desired sort order of the data.
+            sort_order (~viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the object identifier of the last-returned data.
-                        This object identifier is returned by calls to `BinaryDataByFilter` as the `last` value.
-                        If provided, the server will return the next data entries after the last object identifier.
+                This object identifier is returned by calls to :meth:`binary_data_by_filter` as the ``last`` value.
+                If provided, the server will return the next data entries after the last object identifier.
             include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.
-                                        Defaults to true (that is, both the files' data and metadata are returned).
+                Defaults to true (that is, both the files' data and metadata are returned).
             count_only (bool): Whether to return only the total count of entries.
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
-                                          like cloud SLAM. Defaults to `False`.
+                like cloud SLAM. Defaults to ``False``.
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            Tuple[List[viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
-            List[viam.proto.app.data.BinaryData]: The binary data,
-            int: The count (number of entries),
-            str: The last-returned page ID.
+            Tuple[List[~viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
+
+                - ``data`` (*List[* :class:`~viam.proto.app.data.BinaryData` *]*): The binary data.
+                - ``count`` (*int*): The count (number of entries).
+                - ``last`` (*str*): The last-returned page ID.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
         """
@@ -611,15 +613,17 @@ class DataClient:
             binary_data = await data_client.binary_data_by_ids(my_ids)
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the desired data or `BinaryID` objects. Must be non-empty.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field instead.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the desired data or
+                :class:`BinaryID` objects. Must be non-empty.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
             dest (str): Optional filepath for writing retrieved data.
 
         Raises:
-            GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
         Returns:
-            List[viam.proto.app.data.BinaryData]: The binary data.
+            List[~viam.proto.app.data.BinaryData]: The binary data.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyids>`_.
         """
@@ -651,10 +655,10 @@ class DataClient:
             )
 
         Args:
-            organization_id (str): ID of organization to delete data from.
-                You can obtain your organization ID from the Viam app's organization settings page.
-            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
-                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
+            organization_id (str): The ID of the organization to delete the data from.
+                To find your organization ID, visit the organization settings page in the Viam app.
+            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
+                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
 
         Returns:
             int: The number of items deleted.
@@ -666,7 +670,7 @@ class DataClient:
         return response.deleted_count
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
-        """Deprecated: use delete_tabular_data instead."""
+        """Deprecated: use :meth:`delete_tabular_data` instead."""
         raise NotImplementedError()
 
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
@@ -681,9 +685,10 @@ class DataClient:
             res = await data_client.delete_binary_data_by_filter(my_filter)
 
         Args:
-            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
-                all data being deleted. Exercise caution when using this option. You must specify an organization ID with
-                "organization_ids" when using this option.
+            filter (~viam.proto.app.data.Filter): Optional, specifies binary data to delete.
+                **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**
+                You must specify an organization ID with ``organization_ids`` when using this option.
+                To find your organization ID, visit the organization settings page in the Viam app.
 
         Returns:
             int: The number of items deleted.
@@ -720,13 +725,13 @@ class DataClient:
             binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be deleted or `BinaryID` objects.
-            Must be non-empty.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be deleted or
+                :class:`BinaryID` objects. Must be non-empty.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
 
         Raises:
-            GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
         Returns:
             int: The number of items deleted.
@@ -770,13 +775,13 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be tagged or `BinaryID` objects.
-                Must be non-empty.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be tagged or
+                :class:`BinaryID` objects. Must be non-empty.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
 
         Raises:
-            GRPCError: If no binary data id strings or `BinaryID` objects are provided.
+            GRPCError: If no binary data ID strings or :class:`BinaryID` objects are provided.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addtagstobinarydatabyids>`_.
         """
@@ -802,8 +807,7 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
-            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be
-                tagged.
+            filter (~viam.proto.app.data.Filter): Specifies binary data to tag. If none is provided, tags all data.
 
         Raises:
             GRPCError: If no tags are provided.
@@ -843,13 +847,13 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
-            binary_ids (Union[List[BinaryID], List[str]]): Binary data id strings specifying the data to be untagged or `BinaryID` objects.
-                Must be non-empty.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Binary data ID strings specifying the data to be untagged
+                or `BinaryID` objects. Must be non-empty.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
 
         Raises:
-            GRPCError: If no binary_ids or tags are provided.
+            GRPCError: If no binary data ID strings, :class:`BinaryID` objects, or tags are provided.
 
         Returns:
             int: The number of tags removed.
@@ -881,8 +885,7 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data.
-            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
-                untagged.
+            filter (~viam.proto.app.data.Filter): Specifies binary data to untag. If none is provided, removes tags from all data.
 
         Raises:
             GRPCError: If no tags are provided.
@@ -910,8 +913,7 @@ class DataClient:
             tags = await data_client.tags_by_filter(my_filter)
 
         Args:
-            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
-                return.
+            filter (~viam.proto.app.data.Filter): Specifies subset ofdata to retrieve tags from. If none is provided, returns all tags.
 
         Returns:
             List[str]: The list of tags.
@@ -948,9 +950,9 @@ class DataClient:
             print(bbox_id)
 
         Args:
-            binary_id (Union[viam.proto.app.data.BinaryID, str]): The binary data id or `BinaryID` of the image to add the bounding box to.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
+            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding
+                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data
+                IDs as a list of strings.*
             label (str): A label for the bounding box.
             x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
             y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
@@ -999,10 +1001,10 @@ class DataClient:
 
         Args:
             bbox_id (str): The ID of the bounding box to remove.
-            binary_id (Union[viam.proto.app.data.BinaryID, str]): The binary data id or `BinaryID` of the image to remove the bounding box
-            from.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
+            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to remove the
+                bounding box from.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removeboundingboxfromimagebyid>`_.
         """
@@ -1028,8 +1030,8 @@ class DataClient:
             print(bounding_box_labels)
 
         Args:
-            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
-                return.
+            filter (~viam.proto.app.data.Filter): Specifies data to retrieve bounding box labels from. If none is provided, returns labels
+            from all data.
 
         Returns:
             List[str]: The list of bounding box labels.
@@ -1049,8 +1051,8 @@ class DataClient:
             hostname = await data_client.get_database_connection(organization_id="<YOUR-ORG-ID>")
 
         Args:
-            organization_id (str): Organization to retrieve the connection for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+            organization_id (str): The ID of the organization you'd like to connect to.
+                To find your organization ID, visit the organization settings page in the Viam app.
 
         Returns:
             str: The hostname of the federated database.
@@ -1073,8 +1075,8 @@ class DataClient:
             )
 
         Args:
-            organization_id (str): The ID of the organization.
-                You can obtain your organization ID from the Viam app's organization settings page.
+            organization_id (str): The ID of the organization you'd like to configure a database user for.
+                To find your organization ID, visit the organization settings page in the Viam app.
             password (str): The password of the user.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser>`_.
@@ -1096,7 +1098,7 @@ class DataClient:
         Args:
             name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                To find your organization ID, visit the organization settings page in the Viam app.
 
         Returns:
             str: The dataset ID of the created dataset.
@@ -1118,9 +1120,12 @@ class DataClient:
             print(datasets)
 
         Args:
-            ids (List[str]): The IDs of the datasets being called for. To retrieve these IDs,
-                navigate to your dataset's page in the Viam app,
-                click **...** in the left-hand menu, and click **Copy dataset ID**.
+            ids (List[str]): The IDs of the datasets that you would like to retrieve information about. To retrieve a dataset ID:
+
+                - Navigate to the **DATASETS** tab of the **DATA** page.
+                - Click on the dataset.
+                - Click the **...** menu.
+                - Select **Copy dataset ID**.
 
         Returns:
             Sequence[Dataset]: The list of datasets.
@@ -1143,8 +1148,8 @@ class DataClient:
             print(datasets)
 
         Args:
-            organization_id (str): The ID of the organization.
-                You can obtain your organization ID from the Viam app's organization settings page.
+            organization_id (str): The ID of the organization you'd like to retrieve datasets from.
+                To find your organization ID, visit the organization settings page in the Viam app.
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
@@ -1169,8 +1174,12 @@ class DataClient:
             )
 
         Args:
-            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+            id (str): The ID of the dataset. To retrieve the dataset ID:
+
+                - Navigate to the **DATASETS** tab of the **DATA** page.
+                - Click on the dataset.
+                - Click the **...** menu.
+                - Select **Copy dataset ID**.
             name (str): The new name of the dataset.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#renamedataset>`_.
@@ -1188,8 +1197,12 @@ class DataClient:
             )
 
         Args:
-            id (str): The ID of the dataset. You can retrieve this by navigating to the **DATASETS** sub-tab of the **DATA** tab,
-                clicking on the dataset, clicking the **...** menu and selecting **Copy dataset ID**.
+            id (str): The ID of the dataset. To retrieve the dataset ID:
+
+                    - Navigate to the **DATASETS** tab of the **DATA** page.
+                    - Click on the dataset.
+                    - Click the **...** menu.
+                    - Select **Copy dataset ID**.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deletedataset>`_.
         """
@@ -1207,24 +1220,27 @@ class DataClient:
                 include_binary_data=False
             )
 
-            my_binary_ids = []
+            my_binary_data_ids = []
 
             for obj in binary_metadata:
-                my_binary_ids.append(
+                my_binary_data_ids.append(
                     obj.metadata.binary_data_id
                     )
 
             await data_client.add_binary_data_to_dataset_by_ids(
-                binary_ids=my_binary_ids,
+                binary_ids=my_binary_data_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
 
         Args:
-            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset. To retrieve these IDs,
-                navigate to your data page, click on an image and copy its File ID from the details tab.
-                To retrieve the dataset ID, navigate to your dataset's page in the Viam app,
-                and use the left-hand menu to copy the dataset ID.
-            dataset_id (str): The ID of the dataset to be added to.
+            binary_ids (List[~viam.proto.app.data.BinaryID]): Unique identifiers for binary data to add to the dataset. To retrieve these IDs,
+                navigate to the DATA page, click on an image, and copy its Binary Data ID from the details tab.
+            dataset_id (str): The ID of the dataset to be added to.  To retrieve the dataset ID:
+
+                - Navigate to the **DATASETS** tab of the **DATA** page.
+                - Click on the dataset.
+                - Click the **...** menu.
+                - Select **Copy dataset ID**.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#addbinarydatatodatasetbyids>`_.
         """
@@ -1248,26 +1264,29 @@ class DataClient:
                 include_binary_data=False
             )
 
-            my_binary_ids = []
+            my_binary_data_ids = []
 
             for obj in binary_metadata:
-                my_binary_ids.append(
+                my_binary_data_ids.append(
                     obj.metadata.binary_data_id
                 )
 
             await data_client.remove_binary_data_from_dataset_by_ids(
-                binary_ids=my_binary_ids,
+                binary_ids=my_binary_data_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
 
         Args:
-            binary_ids (Union[List[BinaryID], List[str]]): The IDs of binary data to remove from dataset. To retrieve these IDs,
-                navigate to your data page, click on an image and copy its File ID from the details tab. To
-                retrieve the dataset ID, navigate to your dataset's page in the Viam app, and use the
-                left-hand menu to copy the dataset ID.
-                Note: `BinaryID` objects are deprecated and will be removed in a future release. Please use the binary data id field
-                instead.
-            dataset_id (str): The ID of the dataset to be removed from.
+            binary_ids (Union[List[~viam.proto.app.data.BinaryID], List[str]]): Unique identifiers for the binary data to remove from the dataset. To retrieve these IDs,
+                navigate to the DATA page, click on an image and copy its Binary Data ID from the details tab.
+                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
+            dataset_id (str): The ID of the dataset to be removed from. To retrieve the dataset ID:
+
+                - Navigate to the **DATASETS** tab of the **DATA** page.
+                - Click on the dataset.
+                - Click the **...** menu.
+                - Select **Copy dataset ID**.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#removebinarydatafromdatasetbyids>`_.
         """
@@ -1294,8 +1313,8 @@ class DataClient:
     ) -> str:
         """Upload binary sensor data.
 
-        Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
-        app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
+        Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+        Binary data can be found on the **DATA** page of the Viam app.
 
         ::
 
@@ -1320,19 +1339,19 @@ class DataClient:
             component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
-            file_extension (str): The file extension of binary data including the period, for example .jpg, .png, .pcd.
-                The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
-                or .png extension will be saved to the images tab.
+            file_extension (str): The file extension of binary data, *including the period*, for example ``.jpg``, ``.png``, ``.pcd``.
+                The backend routes the binary to its corresponding mime type based on this extension. Files with a ``.jpeg``, ``.jpg``,
+                or ``.png`` extension will appear in the **Images** tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
-                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
 
         Returns:
-            str: The binary_data_id of the uploaded data.
+            str: The binary data ID of the uploaded data.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatacaptureupload>`_.
         """
@@ -1375,8 +1394,8 @@ class DataClient:
     ) -> str:
         """Upload tabular sensor data.
 
-        Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
-        app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
+        Upload tabular data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
+        Tabular data can be found under the **Sensors** tab of the **DATA** page.
 
         ::
 
@@ -1401,24 +1420,24 @@ class DataClient:
 
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
-                Must include the key "readings" for sensors.
+                Must include the key ``readings`` for sensors.
             part_id (str): Part ID of the component used to capture the data.
-            component_type (str): Type of the component used to capture the data (for example, "rdk:component:movement_sensor").
+            component_type (str): Type of the component used to capture the data (for example, ``rdk:component:movement_sensor``).
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
-            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing `datetime` objects
-                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor. Passing a list of
-                tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same metadata.
+            data_request_times (List[Tuple[datetime.datetime, datetime.datetime]]): List of tuples, each containing ``datetime`` objects
+                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
+                Pass a list of tabular data and timestamps with length ``n > 1`` to upload ``n`` datapoints, all with the same metadata.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+            ValueError: If the provided list of `Timestamp` objects has a length that does not match the length of the list of tabular
                 data.
 
         Returns:
-            str: The file_id of the uploaded data.
+            str: The file ID of the uploaded data.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatacaptureupload>`_.
         """
@@ -1493,22 +1512,22 @@ class DataClient:
             )
 
         Args:
-            data (bytes): the data to be uploaded.
+            data (bytes): The data to be uploaded.
             part_id (str): Part ID of the resource associated with the file.
-            file_ext (str): file extension type for the data. required for determining MIME type.
+            file_ext (str): File extension type for the data. required for determining MIME type.
             component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
-                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
 
         Returns:
-            str: The binary_data_id of the uploaded data.
+            str: The binary data ID of the uploaded data.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#streamingdatacaptureupload>`_.
         """
@@ -1553,8 +1572,8 @@ class DataClient:
     ) -> str:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
-        "Files" subtab of the Data tab on app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
+        **Files** tab of the **DATA** page.
 
         ::
 
@@ -1572,18 +1591,18 @@ class DataClient:
             component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if one isn't
+            file_name (Optional[str]): Optional name of the file. The empty string ``""`` will be assigned as the file name if one isn't
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
-            file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
+            file_extension (Optional[str]): Optional file extension. The empty string ``""`` will be assigned as the file extension if one
+                isn't provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
 
         Returns:
-            str: ID of the new file.
+            str: Binary data ID of the new file.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileupload>`_.
         """
@@ -1613,8 +1632,8 @@ class DataClient:
     ) -> str:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
-        "Files" subtab of the Data tab on app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata. File data can be found in the
+        **Files** tab of the **DATA** page.
 
         ::
 
@@ -1639,7 +1658,7 @@ class DataClient:
             FileNotFoundError: If the provided filepath is not found.
 
         Returns:
-            str: ID of the new file.
+            str: Binary data ID of the new file.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
         """
