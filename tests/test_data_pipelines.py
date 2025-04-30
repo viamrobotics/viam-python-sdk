@@ -90,26 +90,6 @@ class TestClient:
             await client.delete_data_pipeline(ID)
             assert service.deleted_id == ID
 
-    async def test_enable_data_pipeline(self, service: MockDataPipelines):
-        async with ChannelFor([service]) as channel:
-            client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.enable_data_pipeline(ID)
-            assert service.enabled_id == ID
-
-    async def test_disable_data_pipeline(self, service: MockDataPipelines):
-        async with ChannelFor([service]) as channel:
-            client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.disable_data_pipeline(ID)
-            assert service.disabled_id == ID
-
-    async def test_update_data_pipeline(self, service: MockDataPipelines):
-        async with ChannelFor([service]) as channel:
-            client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.update_data_pipeline(ID, NAME, MQL_BINARY, UPDATED_SCHEDULE)
-            assert service.name == NAME
-            assert service.mql_binary == MQL_BINARY
-            assert service.schedule == UPDATED_SCHEDULE
-
     async def test_list_data_pipeline_runs(self, service: MockDataPipelines):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)

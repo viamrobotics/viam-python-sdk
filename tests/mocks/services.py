@@ -1144,32 +1144,11 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.org_id = request.organization_id
         await stream.send_message(ListDataPipelinesResponse(data_pipelines=self.list_response))
 
-    async def UpdateDataPipeline(self, stream: Stream[UpdateDataPipelineRequest, UpdateDataPipelineResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.id = request.id
-        self.name = request.name
-        self.mql_binary = request.mql_binary
-        self.schedule = request.schedule
-        await stream.send_message(UpdateDataPipelineResponse())
-
     async def DeleteDataPipeline(self, stream: Stream[DeleteDataPipelineRequest, DeleteDataPipelineResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.deleted_id = request.id
         await stream.send_message(DeleteDataPipelineResponse())
-
-    async def EnableDataPipeline(self, stream: Stream[EnableDataPipelineRequest, EnableDataPipelineResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.enabled_id = request.id
-        await stream.send_message(EnableDataPipelineResponse())
-
-    async def DisableDataPipeline(self, stream: Stream[DisableDataPipelineRequest, DisableDataPipelineResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.disabled_id = request.id
-        await stream.send_message(DisableDataPipelineResponse())
 
     async def ListDataPipelineRuns(self, stream: Stream[ListDataPipelineRunsRequest, ListDataPipelineRunsResponse]) -> None:
         request = await stream.recv_message()

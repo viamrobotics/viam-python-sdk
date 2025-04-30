@@ -1875,55 +1875,6 @@ class DataClient:
         request = DeleteDataPipelineRequest(id=id)
         await self._data_pipelines_client.DeleteDataPipeline(request, metadata=self._metadata)
 
-    async def enable_data_pipeline(self, id: str) -> None:
-        """Enable a data pipeline by its ID.
-
-        ::
-
-            await data_client.enable_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
-
-        Args:
-            id (str): The ID of the data pipeline to enable.
-        """
-        request = EnableDataPipelineRequest(id=id)
-        await self._data_pipelines_client.EnableDataPipeline(request, metadata=self._metadata)
-
-    async def disable_data_pipeline(self, id: str) -> None:
-        """Disable a data pipeline by its ID.
-
-        ::
-
-            await data_client.disable_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
-
-        Args:
-            id (str): The ID of the data pipeline to disable.
-        """
-        request = DisableDataPipelineRequest(id=id)
-        await self._data_pipelines_client.DisableDataPipeline(request, metadata=self._metadata)
-
-    async def update_data_pipeline(self, id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> None:
-        """Update a data pipeline by its ID.
-
-        ::
-
-            await data_client.update_data_pipeline(
-                id="<YOUR-DATA-PIPELINE-ID>",
-                name="<YOUR-PIPELINE-NAME>",
-                mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
-                schedule="<YOUR-SCHEDULE>"
-            )
-
-        Args:
-            id (str): The ID of the data pipeline to update.
-            name (str): The name of the pipeline.
-            mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
-            schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
-                defines the input time window; an hourly schedule would process 1 hour of data at a time).
-        """
-        binary: List[bytes] = [bson.encode(query) for query in mql_binary]
-        request = UpdateDataPipelineRequest(id=id, name=name, mql_binary=binary, schedule=schedule)
-        await self._data_pipelines_client.UpdateDataPipeline(request, metadata=self._metadata)
-
     async def list_data_pipeline_runs(self, id: str, page_size: int =10) -> DataPipelineRunsPage:
         """List all of the data pipeline runs for a data pipeline.
 
