@@ -81,10 +81,14 @@ from viam.proto.app import (
     GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
+    GetRobotMetadataRequest,
+    GetRobotMetadataResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
     GetRobotPartLogsResponse,
+    GetRobotPartMetadataRequest,
+    GetRobotPartMetadataResponse,
     GetRobotPartRequest,
     GetRobotPartResponse,
     GetRobotPartsRequest,
@@ -167,6 +171,10 @@ from viam.proto.app import (
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
     UpdateRegistryItemResponse,
+    UpdateRobotMetadataRequest,
+    UpdateRobotMetadataResponse,
+    UpdateRobotPartMetadataRequest,
+    UpdateRobotPartMetadataResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -1733,6 +1741,28 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.location_metadata[request.location_id] = request.data
         await stream.send_message(UpdateLocationMetadataResponse())
+
+    async def GetRobotMetadata(self, stream: Stream[GetRobotMetadataRequest, GetRobotMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotMetadataResponse(data=self.robot_metadata.get(request.id, dict_to_struct({}))))
+
+    async def UpdateRobotMetadata(self, stream: Stream[UpdateRobotMetadataRequest, UpdateRobotMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_metadata[request.id] = request.data
+        await stream.send_message(UpdateRobotMetadataResponse())
+
+    async def GetRobotPartMetadata(self, stream: Stream[GetRobotPartMetadataRequest, GetRobotPartMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotPartMetadataResponse(data=self.robot_part_metadata.get(request.id, dict_to_struct({}))))
+
+    async def UpdateRobotPartMetadata(self, stream: Stream[UpdateRobotPartMetadataRequest, UpdateRobotPartMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_metadata[request.id] = request.data
+        await stream.send_message(UpdateRobotPartMetadataResponse())
 
 class MockGenericService(GenericService):
     timeout: Optional[float] = None
