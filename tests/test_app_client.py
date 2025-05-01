@@ -205,6 +205,7 @@ VERSION = "version"
 PLATFORM = "platform"
 MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFORM)
 FILE = b"file"
+USER_DEFINED_METADATA = {"number": 0, "string": "string"}
 
 
 @pytest.fixture(scope="function")
@@ -778,26 +779,30 @@ class TestClient:
             assert key == API_KEY
             assert id == ID
 
-    async def test_get_organization_metadata(self, service: MockApp):
-        _ = service
+    async def test_get_and_update_organization_metadata(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.update_organization_metadata(ID, USER_DEFINED_METADATA)
+            user_defined_metadata = await client.get_organization_metadata(ID)
+            assert user_defined_metadata == USER_DEFINED_METADATA
 
-    async def test_update_organization_metadata(self, service: MockApp):
-        _ = service
+    async def test_get_and_update_location_metadata(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.update_location_metadata(ID, USER_DEFINED_METADATA)
+            user_defined_metadata = await client.get_location_metadata(ID)
+            assert user_defined_metadata == USER_DEFINED_METADATA
 
-    async def test_get_location_metadata(self, service: MockApp):
-        _ = service
+    async def test_get_and_update_robot_metadata(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.update_robot_metadata(ID, USER_DEFINED_METADATA)
+            user_defined_metadata = await client.get_robot_metadata(ID)
+            assert user_defined_metadata == USER_DEFINED_METADATA
 
-    async def test_update_location_metadata(self, service: MockApp):
-        _ = service
-
-    async def test_get_robot_metadata(self, service: MockApp):
-        _ = service
-
-    async def test_update_robot_metadata(self, service: MockApp):
-        _ = service
-
-    async def test_get_robot_part_metadata(self, service: MockApp):
-        _ = service
-
-    async def test_update_robot_part_metadata(self, service: MockApp):
-        _ = service
+    async def test_get_and_update_robot_part_metadata(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.update_robot_part_metadata(ID, USER_DEFINED_METADATA)
+            user_defined_metadata = await client.get_robot_part_metadata(ID)
+            assert user_defined_metadata == USER_DEFINED_METADATA
