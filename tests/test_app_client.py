@@ -783,7 +783,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             user_defined_metadata = await client.get_organization_metadata(ID)
-            assert user_defined_metadata is None
+            assert len(user_defined_metadata) == 0
 
             await client.update_organization_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_organization_metadata(ID)
@@ -793,7 +793,8 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             user_defined_metadata = await client.get_location_metadata(ID)
-            assert user_defined_metadata is None
+            assert len(user_defined_metadata) == 0
+
 
             await client.update_location_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_location_metadata(ID)
@@ -803,7 +804,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             user_defined_metadata = await client.get_robot_metadata(ID)
-            assert user_defined_metadata is None
+            assert len(user_defined_metadata) == 0
 
             await client.update_robot_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_robot_metadata(ID)
@@ -813,7 +814,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             user_defined_metadata = await client.get_robot_part_metadata(ID)
-            assert user_defined_metadata is None
+            assert len(user_defined_metadata) == 0
 
             await client.update_robot_part_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_robot_part_metadata(ID)
