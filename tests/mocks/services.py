@@ -71,6 +71,8 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
@@ -155,6 +157,8 @@ from viam.proto.app import (
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationMetadataRequest,
+    UpdateOrganizationMetadataResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
@@ -1240,6 +1244,12 @@ class MockApp(UnimplementedAppServiceBase):
         self.items = items
         self.package_type = package_type
         self.send_email_invite = False
+        self.metadata = {
+            "organizations": {},
+            "locations": {},
+            "robots": {},
+            "robot_parts": {},
+        }
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         request = await stream.recv_message()
@@ -1698,8 +1708,18 @@ class MockApp(UnimplementedAppServiceBase):
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
+        await stream.send_message(GetRegistryItemResponse(item=self.items[0])) 
 
+    async def GetOrganizationMetadata(self, stream: Stream[GetOrganizationMetadataRequest, GetOrganizationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetOrganizationMetadataResponse(data=self.metadata["organizations"].get(request.organization_id, dict_to_struct({}))))
+
+    async def UpdateOrganizationMetadata(self, stream: Stream[UpdateOrganizationMetadataRequest, UpdateOrganizationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.metadata["organizations"][request.organization_id] = request.data
+        await stream.send_message(UpdateOrganizationMetadataResponse())
 
 class MockGenericService(GenericService):
     timeout: Optional[float] = None
