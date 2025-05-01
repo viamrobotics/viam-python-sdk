@@ -1718,7 +1718,7 @@ class MockApp(UnimplementedAppServiceBase):
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(GetRegistryItemResponse(item=self.items[0])) 
+        await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
 
     async def GetOrganizationMetadata(self, stream: Stream[GetOrganizationMetadataRequest, GetOrganizationMetadataResponse]) -> None:
         request = await stream.recv_message()
