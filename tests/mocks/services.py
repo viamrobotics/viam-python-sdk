@@ -1698,6 +1698,7 @@ class MockApp(UnimplementedAppServiceBase):
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.include_markdown_documentation = request.include_markdown_documentation
         await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
 
 

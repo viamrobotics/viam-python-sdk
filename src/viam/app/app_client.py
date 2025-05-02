@@ -2095,7 +2095,7 @@ class AppClient:
         response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
         return list(response.authorized_permissions)
 
-    async def get_registry_item(self, item_id: str) -> RegistryItem:
+    async def get_registry_item(self, item_id: str, include_markdown_documentation: bool = False) -> RegistryItem:
         """Get registry item by ID.
 
         ::
@@ -2113,7 +2113,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getregistryitem>`_.
         """
-        request = GetRegistryItemRequest(item_id=item_id)
+        request = GetRegistryItemRequest(item_id=item_id, include_markdown_documentation=include_markdown_documentation)
         response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
         return response.item
 
