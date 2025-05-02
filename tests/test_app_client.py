@@ -124,7 +124,6 @@ FRAGMENT = FragmentPB(
     organization_name=ORGANIZATION_NAME,
     robot_part_count=NUM,
     only_used_by_owner=ONLY_USED_BY_OWNER,
-    visibility=FRAGMENT_VISIBILITY_PB,
     last_updated=TIME,
 )
 NAMESPACE = "namespace"
