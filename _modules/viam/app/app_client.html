@@ -298,6 +298,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">local_fqdn</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">local_fqdn</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">created_on</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">created_on</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;created_on&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secrets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">robot_part</span><span class="o">.</span><span class="n">secrets</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="o">=</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">last_updated</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">robot_part</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;last_updated&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -314,6 +315,7 @@
     <span class="n">local_fqdn</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">created_on</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
     <span class="n">secrets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SharedSecret</span><span class="p">]]</span>
+    <span class="n">last_updated</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPartPB</span><span class="p">:</span>
@@ -332,6 +334,7 @@
             <span class="n">local_fqdn</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_fqdn</span><span class="p">,</span>
             <span class="n">created_on</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">created_on</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">created_on</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">secrets</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">secrets</span><span class="p">,</span>
+            <span class="n">last_updated</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -457,6 +460,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">organization_count</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">only_used_by_owner</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">visibility</span> <span class="o">=</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">.</span><span class="n">visibility</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="o">=</span> <span class="n">fragment</span><span class="o">.</span><span class="n">last_updated</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">fragment</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;last_updated&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
@@ -470,6 +474,7 @@
     <span class="n">organization_count</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">only_used_by_owner</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">visibility</span><span class="p">:</span> <span class="n">Visibility</span>
+    <span class="n">last_updated</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FragmentPB</span><span class="p">:</span>
@@ -485,6 +490,7 @@
             <span class="n">organization_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span><span class="p">,</span>
             <span class="n">only_used_by_owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span><span class="p">,</span>
             <span class="n">visibility</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">(),</span>
+            <span class="n">last_updated</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_updated</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1534,7 +1540,8 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">part_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">part_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                                <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a machine part.</span>
 
 <span class="sd">        ::</span>
@@ -1548,16 +1555,19 @@
 <span class="sd">            name (str): New name to be updated on the robot part.</span>
 <span class="sd">            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine</span>
 <span class="sd">                part&#39;s config will remain as is (no change) if one isn&#39;t passed.</span>
-
+<span class="sd">            last_known_update (datetime): Optional time of the last known update to this part&#39;s config. If provided, this will result in a</span>
+<span class="sd">                GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this</span>
+<span class="sd">                parameter will result in an overwrite of the upstream config.</span>
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid machine part ID, name, or config is passed.</span>
-
+<span class="sd">            GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since</span>
+<span class="sd">                last_known_update.</span>
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The newly updated robot part.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">last_known_update</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">last_known_update</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
 
@@ -1896,6 +1906,7 @@
         <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">public</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">visibility</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">Visibility</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a fragment name AND its config and/or visibility.</span>
 
@@ -1918,9 +1929,11 @@
 <span class="sd">            visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed</span>
 <span class="sd">                to view the fragment. Not passing this parameter will leave the fragment&#39;s visibility unchanged.</span>
 <span class="sd">                A fragment is private by default when created.</span>
-
+<span class="sd">            last_known_update (datetime): Optional time of the last known update to this fragment&#39;s config. If provided, this will result in</span>
+<span class="sd">                a GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting</span>
+<span class="sd">                this parameter will result in an overwrite of the upstream config.</span>
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: if an invalid ID, name, or config is passed.</span>
+<span class="sd">            GRPCError: if an invalid ID, name, or config is passed, or if the upstream fragment config has changed since last_known_update.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.Fragment: The newly updated fragment.</span>
@@ -1933,6 +1946,7 @@
             <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">,</span>
             <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="o">.</span><span class="n">to_proto</span><span class="p">()</span> <span class="k">if</span> <span class="n">visibility</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">last_known_update</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">last_known_update</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
