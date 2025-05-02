@@ -63,6 +63,8 @@ from viam.proto.app import (
     Fragment,
     GetFragmentRequest,
     GetFragmentResponse,
+    GetLocationMetadataRequest,
+    GetLocationMetadataResponse,
     GetLocationRequest,
     GetLocationResponse,
     GetModuleRequest,
@@ -71,16 +73,22 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
     GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
+    GetRobotMetadataRequest,
+    GetRobotMetadataResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
     GetRobotPartLogsResponse,
+    GetRobotPartMetadataRequest,
+    GetRobotPartMetadataResponse,
     GetRobotPartRequest,
     GetRobotPartResponse,
     GetRobotPartsRequest,
@@ -149,16 +157,24 @@ from viam.proto.app import (
     UnshareLocationResponse,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
+    UpdateLocationMetadataRequest,
+    UpdateLocationMetadataResponse,
     UpdateLocationRequest,
     UpdateLocationResponse,
     UpdateModuleRequest,
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationMetadataRequest,
+    UpdateOrganizationMetadataResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
     UpdateRegistryItemResponse,
+    UpdateRobotMetadataRequest,
+    UpdateRobotMetadataResponse,
+    UpdateRobotPartMetadataRequest,
+    UpdateRobotPartMetadataResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -1240,6 +1256,10 @@ class MockApp(UnimplementedAppServiceBase):
         self.items = items
         self.package_type = package_type
         self.send_email_invite = False
+        self.organization_metadata = {}
+        self.location_metadata = {}
+        self.robot_metadata = {}
+        self.robot_part_metadata = {}
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         request = await stream.recv_message()
@@ -1701,6 +1721,49 @@ class MockApp(UnimplementedAppServiceBase):
         self.include_markdown_documentation = request.include_markdown_documentation
         await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
 
+    async def GetOrganizationMetadata(self, stream: Stream[GetOrganizationMetadataRequest, GetOrganizationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetOrganizationMetadataResponse(data=self.organization_metadata.get(request.organization_id, dict_to_struct({}))))
+
+    async def UpdateOrganizationMetadata(self, stream: Stream[UpdateOrganizationMetadataRequest, UpdateOrganizationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_metadata[request.organization_id] = request.data
+        await stream.send_message(UpdateOrganizationMetadataResponse())
+
+    async def GetLocationMetadata(self, stream: Stream[GetLocationMetadataRequest, GetLocationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetLocationMetadataResponse(data=self.location_metadata.get(request.location_id, dict_to_struct({}))))
+
+    async def UpdateLocationMetadata(self, stream: Stream[UpdateLocationMetadataRequest, UpdateLocationMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_metadata[request.location_id] = request.data
+        await stream.send_message(UpdateLocationMetadataResponse())
+
+    async def GetRobotMetadata(self, stream: Stream[GetRobotMetadataRequest, GetRobotMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotMetadataResponse(data=self.robot_metadata.get(request.id, dict_to_struct({}))))
+
+    async def UpdateRobotMetadata(self, stream: Stream[UpdateRobotMetadataRequest, UpdateRobotMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_metadata[request.id] = request.data
+        await stream.send_message(UpdateRobotMetadataResponse())
+
+    async def GetRobotPartMetadata(self, stream: Stream[GetRobotPartMetadataRequest, GetRobotPartMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotPartMetadataResponse(data=self.robot_part_metadata.get(request.id, dict_to_struct({}))))
+
+    async def UpdateRobotPartMetadata(self, stream: Stream[UpdateRobotPartMetadataRequest, UpdateRobotPartMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_metadata[request.id] = request.data
+        await stream.send_message(UpdateRobotPartMetadataResponse())
 
 class MockGenericService(GenericService):
     timeout: Optional[float] = None
