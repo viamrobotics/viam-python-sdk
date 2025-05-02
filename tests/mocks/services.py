@@ -69,12 +69,12 @@ from viam.proto.app import (
     GetLocationResponse,
     GetModuleRequest,
     GetModuleResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
-    GetOrganizationMetadataRequest,
-    GetOrganizationMetadataResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
@@ -1726,9 +1726,13 @@ class MockApp(UnimplementedAppServiceBase):
     async def GetOrganizationMetadata(self, stream: Stream[GetOrganizationMetadataRequest, GetOrganizationMetadataResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(GetOrganizationMetadataResponse(data=self.organization_metadata.get(request.organization_id, dict_to_struct({}))))
+        await stream.send_message(
+            GetOrganizationMetadataResponse(data=self.organization_metadata.get(request.organization_id, dict_to_struct({})))
+        )
 
-    async def UpdateOrganizationMetadata(self, stream: Stream[UpdateOrganizationMetadataRequest, UpdateOrganizationMetadataResponse]) -> None:
+    async def UpdateOrganizationMetadata(
+        self, stream: Stream[UpdateOrganizationMetadataRequest, UpdateOrganizationMetadataResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.organization_metadata[request.organization_id] = request.data
@@ -1766,6 +1770,7 @@ class MockApp(UnimplementedAppServiceBase):
         assert request is not None
         self.robot_part_metadata[request.id] = request.data
         await stream.send_message(UpdateRobotPartMetadataResponse())
+
 
 class MockGenericService(GenericService):
     timeout: Optional[float] = None
