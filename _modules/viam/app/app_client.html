@@ -143,12 +143,16 @@
     <span class="n">GetFragmentResponse</span><span class="p">,</span>
     <span class="n">GetLocationRequest</span><span class="p">,</span>
     <span class="n">GetLocationResponse</span><span class="p">,</span>
+    <span class="n">GetLocationMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetLocationMetadataResponse</span><span class="p">,</span>
     <span class="n">GetModuleRequest</span><span class="p">,</span>
     <span class="n">GetModuleResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationNamespaceAvailabilityRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationNamespaceAvailabilityResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationResponse</span><span class="p">,</span>
+    <span class="n">GetOrganizationMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetOrganizationMetadataResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationsWithAccessToLocationRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationsWithAccessToLocationResponse</span><span class="p">,</span>
     <span class="n">GetRegistryItemRequest</span><span class="p">,</span>
@@ -159,12 +163,16 @@
     <span class="n">GetRobotPartHistoryResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsResponse</span><span class="p">,</span>
+    <span class="n">GetRobotPartMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetRobotPartMetadataResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartsRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartsResponse</span><span class="p">,</span>
     <span class="n">GetRobotRequest</span><span class="p">,</span>
     <span class="n">GetRobotResponse</span><span class="p">,</span>
+    <span class="n">GetRobotMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetRobotMetadataResponse</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsRequest</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsResponse</span><span class="p">,</span>
     <span class="n">GetUserIDByEmailRequest</span><span class="p">,</span>
@@ -223,15 +231,23 @@
     <span class="n">UnshareLocationRequest</span><span class="p">,</span>
     <span class="n">UpdateFragmentRequest</span><span class="p">,</span>
     <span class="n">UpdateFragmentResponse</span><span class="p">,</span>
+    <span class="n">UpdateLocationMetadataRequest</span><span class="p">,</span>
+    <span class="n">UpdateLocationMetadataResponse</span><span class="p">,</span>
     <span class="n">UpdateLocationRequest</span><span class="p">,</span>
     <span class="n">UpdateLocationResponse</span><span class="p">,</span>
     <span class="n">UpdateModuleRequest</span><span class="p">,</span>
     <span class="n">UpdateModuleResponse</span><span class="p">,</span>
     <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">,</span>
     <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationMetadataRequest</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationMetadataResponse</span><span class="p">,</span>
     <span class="n">UpdateOrganizationRequest</span><span class="p">,</span>
     <span class="n">UpdateOrganizationResponse</span><span class="p">,</span>
     <span class="n">UpdateRegistryItemRequest</span><span class="p">,</span>
+    <span class="n">UpdateRobotMetadataRequest</span><span class="p">,</span>
+    <span class="n">UpdateRobotMetadataResponse</span><span class="p">,</span>
+    <span class="n">UpdateRobotPartMetadataRequest</span><span class="p">,</span>
+    <span class="n">UpdateRobotPartMetadataResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotPartRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotPartResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotRequest</span><span class="p">,</span>
@@ -2611,7 +2627,139 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RotateKeyRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">RotateKeyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RotateKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div></div>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="AppClient.get_organization_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an organization&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            metadata = await cloud.get_organization_metadata(org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization with which the user-defined metadata is associated.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationMetadataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganizationMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_organization_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update an organization&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">             await cloud.update_organization_metadata(org_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;, metadata=)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization with which to associate the user-defined metadata.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationMetadataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">UpdateOrganizationMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateOrganizationMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.get_location_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_location_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_location_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a location&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            metadata = await cloud.get_location_metadata(location_id=&quot;&lt;YOUR-LOCATION-ID&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (str): The ID of the location with which the user-defined metadata is associated.</span>
+<span class="sd">                You can obtain your location ID from the Viam app&#39;s locations page.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationMetadataRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetLocationMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetLocationMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_location_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_location_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_location_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a location&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">             await cloud.update_location_metadata(location_id=&quot;&lt;YOUR-LOCATION-ID&gt;&quot;, metadata=)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (str): The ID of the location with which to associate the user-defined metadata.</span>
+<span class="sd">                You can obtain your location ID from the Viam app&#39;s locations page.</span>
+<span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateLocationMetadataRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">UpdateLocationMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateLocationMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.get_robot_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            metadata = await cloud.get_robot_metadata(robot_id=&quot;&lt;YOUR-ROBOT-ID&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_id (str): The ID of the robot with which the user-defined metadata is associated.</span>
+<span class="sd">                You can obtain your robot ID from the Viam app&#39;s machine page.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_robot_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a robot&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">             await cloud.update_robot_metadata(robot_id=&quot;&lt;YOUR-ROBOT-ID&gt;&quot;, metadata=)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_id (str): The ID of the robot with which to associate the user-defined metadata.</span>
+<span class="sd">                You can obtain your robot ID from the Viam app&#39;s machine page.</span>
+<span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">UpdateRobotMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.get_robot_part_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot part&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            metadata = await cloud.get_robot_part_metadata(robot_part_id=&quot;&lt;YOUR-ROBOT-PART-ID&gt;&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.</span>
+<span class="sd">                You can obtain your robot part ID from the Viam app&#39;s machine page.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_robot_part_metadata"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a robot part&#39;s user-defined metadata.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">             await cloud.update_robot_part_metadata(robot_part_id=&quot;&lt;YOUR-ROBOT-PART-ID&gt;&quot;, metadata=)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_id (str): The ID of the robot part with which to associate the user-defined metadata.</span>
+<span class="sd">                You can obtain your robot part ID from the Viam app&#39;s machine page.</span>
+<span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">UpdateRobotPartMetadataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPartMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

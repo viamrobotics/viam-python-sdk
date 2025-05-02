@@ -211,6 +211,14 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.create_key_from_existing_key_authorizations"><code class="docutils literal notranslate"><span class="pre">AppClient.create_key_from_existing_key_authorizations()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.list_keys"><code class="docutils literal notranslate"><span class="pre">AppClient.list_keys()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.rotate_key"><code class="docutils literal notranslate"><span class="pre">AppClient.rotate_key()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_organization_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.get_organization_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_organization_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.update_organization_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_location_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.get_location_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_location_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.update_location_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_robot_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.get_robot_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_robot_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.update_robot_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.get_robot_part_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.get_robot_part_metadata()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.app_client.AppClient.update_robot_part_metadata"><code class="docutils literal notranslate"><span class="pre">AppClient.update_robot_part_metadata()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -2623,6 +2631,162 @@ You can obtain your organization ID from the Viam app’s organization settings 
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#rotatekey">Fleet Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_organization_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_organization_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_organization_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_organization_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Get an organization’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_organization_metadata</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization with which the user-defined metadata is associated.
+You can obtain your organization ID from the Viam app’s organization settings page.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_organization_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_organization_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_organization_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_organization_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Update an organization’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_organization_metadata</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization with which to associate the user-defined metadata.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+<li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata to upload as a Python dictionary.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_location_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_location_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_location_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_location_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Get a location’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_location_metadata</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-LOCATION-ID&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>location_id</strong> (<em>str</em>) – The ID of the location with which the user-defined metadata is associated.
+You can obtain your location ID from the Viam app’s locations page.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_location_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_location_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_location_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_location_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Update a location’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_location_metadata</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-LOCATION-ID&gt;&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location_id</strong> (<em>str</em>) – The ID of the location with which to associate the user-defined metadata.
+You can obtain your location ID from the Viam app’s locations page.</p></li>
+<li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Get a robot’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_metadata</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ROBOT-ID&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot with which the user-defined metadata is associated.
+You can obtain your robot ID from the Viam app’s machine page.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_robot_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_robot_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_robot_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_robot_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Update a robot’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_robot_metadata</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ROBOT-ID&gt;&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot with which to associate the user-defined metadata.
+You can obtain your robot ID from the Viam app’s machine page.</p></li>
+<li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_part_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_part_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Get a robot part’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part_metadata</span><span class="p">(</span><span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ROBOT-PART-ID&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – The ID of the robot part with which the user-defined metadata is associated.
+You can obtain your robot part ID from the Viam app’s machine page.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_robot_part_metadata">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_robot_part_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_robot_part_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_robot_part_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Update a robot part’s user-defined metadata.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_robot_part_metadata</span><span class="p">(</span><span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ROBOT-PART-ID&gt;&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot part with which to associate the user-defined metadata.
+You can obtain your robot part ID from the Viam app’s machine page.</p></li>
+<li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
