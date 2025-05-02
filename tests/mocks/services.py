@@ -1445,6 +1445,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.robot_part_id = request.id
         self.name = request.name
         self.robot_config = request.robot_config
+        self.last_known_update = request.last_known_update
         await stream.send_message(UpdateRobotPartResponse(part=self.robot_part))
 
     async def NewRobotPart(self, stream: Stream[NewRobotPartRequest, NewRobotPartResponse]) -> None:
@@ -1544,6 +1545,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.fragment_id = request.id
         self.name = request.name
         self.public = request.public
+        self.last_known_update = request.last_known_update
         await stream.send_message(UpdateFragmentResponse(fragment=self.fragment))
 
     async def DeleteFragment(self, stream: Stream[DeleteFragmentRequest, DeleteFragmentResponse]) -> None:
