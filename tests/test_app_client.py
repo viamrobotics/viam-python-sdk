@@ -87,6 +87,7 @@ ROBOT_PART = RobotPart(
     local_fqdn=LOCAL_FQDN,
     created_on=TIME,
     secrets=None,
+    last_updated=TIME,
 )
 ROBOT_PARTS = [ROBOT_PART]
 ROVER_RENTAL_ROBOT = RoverRentalRobot(
@@ -123,6 +124,7 @@ FRAGMENT = FragmentPB(
     organization_name=ORGANIZATION_NAME,
     robot_part_count=NUM,
     only_used_by_owner=ONLY_USED_BY_OWNER,
+    last_updated=TIME,
 )
 NAMESPACE = "namespace"
 AVAILABLE = True
@@ -474,12 +476,15 @@ class TestClient:
 
     async def test_update_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
+            last_known_update = datetime.now()
             client = AppClient(channel, METADATA, ID)
-            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG)
+            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG,
+                                                                last_known_update=last_known_update)
             assert service.robot_part_id == ID
             assert service.name == NAME
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
             assert updated_robot_part.proto == ROBOT_PART
+            assert service.last_known_update == datetime_to_timestamp(last_known_update)
 
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
@@ -582,11 +587,13 @@ class TestClient:
     async def test_update_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragment = await client.update_fragment(fragment_id=ID, name=NAME, public=PUBLIC)
+            last_known_update = datetime.now()
+            fragment = await client.update_fragment(fragment_id=ID, name=NAME, public=PUBLIC, last_known_update=last_known_update)
             assert service.fragment_id == ID
             assert service.name == NAME
             assert service.public == PUBLIC
             assert fragment.proto == FRAGMENT
+            assert service.last_known_update == datetime_to_timestamp(last_known_update)
 
     async def test_delete_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
