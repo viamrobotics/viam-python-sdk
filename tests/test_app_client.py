@@ -481,7 +481,7 @@ class TestClient:
             assert service.name == NAME
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
             assert updated_robot_part.proto == ROBOT_PART
-            assert service.last_known_update == last_known_update
+            assert service.last_known_update == datetime.to_timestamp(last_known_update)
 
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
@@ -590,7 +590,8 @@ class TestClient:
             assert service.name == NAME
             assert service.public == PUBLIC
             assert fragment.proto == FRAGMENT
-            assert service.last_known_update == last_known_update
+            assert service.last_known_update == datetime.to_timestamp(last_known_update)
+
     async def test_delete_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
