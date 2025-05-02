@@ -87,6 +87,7 @@ ROBOT_PART = RobotPart(
     local_fqdn=LOCAL_FQDN,
     created_on=TIME,
     secrets=None,
+    last_updated=TIME,
 )
 ROBOT_PARTS = [ROBOT_PART]
 ROVER_RENTAL_ROBOT = RoverRentalRobot(
@@ -123,6 +124,8 @@ FRAGMENT = FragmentPB(
     organization_name=ORGANIZATION_NAME,
     robot_part_count=NUM,
     only_used_by_owner=ONLY_USED_BY_OWNER,
+    visibility=FRAGMENT_VISIBILITY_PB,
+    last_updated=TIME,
 )
 NAMESPACE = "namespace"
 AVAILABLE = True
