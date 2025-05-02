@@ -655,7 +655,8 @@ class TestClient:
     async def test_get_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            item = await client.get_registry_item(ID)
+            item = await client.get_registry_item(ID, include_markdown_documentation=True)
+            assert service.include_markdown_documentation is True
             assert item.item_id == ITEM.item_id
             assert item.name == ITEM.name
             assert item.visibility == ITEM.visibility
