@@ -193,6 +193,7 @@ class RobotPart:
         self.local_fqdn = robot_part.local_fqdn
         self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
         self.secrets = list(robot_part.secrets)
+        self.last_updated = robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None
         return self
 
     id: str
@@ -209,6 +210,7 @@ class RobotPart:
     local_fqdn: str
     created_on: Optional[datetime]
     secrets: Optional[List[SharedSecret]]
+    last_updated: Optional[datetime]
 
     @property
     def proto(self) -> RobotPartPB:
@@ -227,6 +229,7 @@ class RobotPart:
             local_fqdn=self.local_fqdn,
             created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
             secrets=self.secrets,
+            last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
         )
 
 
@@ -352,6 +355,7 @@ class Fragment:
         self.organization_count = fragment.organization_count
         self.only_used_by_owner = fragment.only_used_by_owner
         self.visibility = Fragment.Visibility.from_proto(fragment.visibility)
+        self.last_updated = fragment.last_updated.ToDatetime() if fragment.HasField("last_updated") else None
         return self
 
     id: str
@@ -365,6 +369,7 @@ class Fragment:
     organization_count: int
     only_used_by_owner: bool
     visibility: Visibility
+    last_updated: Optional[datetime]
 
     @property
     def proto(self) -> FragmentPB:
@@ -380,6 +385,7 @@ class Fragment:
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
             visibility=self.visibility.to_proto(),
+            last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
         )
 
 
