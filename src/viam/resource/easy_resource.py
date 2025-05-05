@@ -122,7 +122,7 @@ class EasyResource:
         return self
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+    def validate_config(cls, config: ComponentConfig) -> (Sequence[str], Sequence[str]):
         """This method allows you to validate the configuration object received from the machine,
         as well as to return any implicit dependencies based on that `config`.
 
@@ -132,7 +132,7 @@ class EasyResource:
         Returns:
             Sequence[str]: A list of implicit dependencies
         """
-        return []
+        return [], []
 
     @classmethod
     def register(cls):

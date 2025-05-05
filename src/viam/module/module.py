@@ -275,7 +275,7 @@ class Module:
         model = Model.from_string(config.model)
         validator = Registry.lookup_validator(api, model)
         try:
-            dependencies = validator(config)
-            return ValidateConfigResponse(dependencies=dependencies)
+            dependencies, optional_dependencies = validator(config)
+            return ValidateConfigResponse(dependencies=dependencies, optional_dependencies=optional_dependencies)
         except Exception as e:
             raise ValidationError(f"{type(Exception)}: {e}").grpc_error

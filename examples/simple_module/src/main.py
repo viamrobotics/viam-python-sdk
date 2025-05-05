@@ -30,14 +30,14 @@ class MySensor(Sensor):
         return sensor
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+    def validate_config(cls, config: ComponentConfig) -> (Sequence[str], Sequence[str]):
         if "multiplier" in config.attributes.fields:
             if not config.attributes.fields["multiplier"].HasField("number_value"):
                 raise Exception("Multiplier must be a float.")
             multiplier = config.attributes.fields["multiplier"].number_value
             if multiplier == 0:
                 raise Exception("Multiplier cannot be 0.")
-        return []
+        return [], []
 
     async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, SensorReading]:
         return {"signal": 1 * self.multiplier}

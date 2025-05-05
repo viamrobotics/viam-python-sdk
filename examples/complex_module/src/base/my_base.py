@@ -39,7 +39,7 @@ class MyBase(Base, Reconfigurable):
 
     # Validates JSON Configuration
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+    def validate_config(cls, config: ComponentConfig) -> (Sequence[str], Sequence[str]):
         attributes_dict = struct_to_dict(config.attributes)
         left_name = attributes_dict.get("left", "")
         assert isinstance(left_name, str)
@@ -50,7 +50,7 @@ class MyBase(Base, Reconfigurable):
         assert isinstance(right_name, str)
         if right_name == "":
             raise Exception("A right attribute is required for a MyBase component.")
-        return [left_name, right_name]
+        return [left_name, right_name], []
 
     # Handles attribute reconfiguration
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
