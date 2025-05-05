@@ -364,7 +364,7 @@ Module Contents
 
 .. py:data:: global___ValidateConfigRequest
 
-.. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[str] | None = ...)
+.. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[str] | None = ..., optional_dependencies: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -377,6 +377,11 @@ Module Contents
 
 
    .. py:property:: dependencies
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+   .. py:property:: optional_dependencies
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 

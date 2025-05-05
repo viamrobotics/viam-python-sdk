@@ -141,24 +141,26 @@
     <span class="n">GetFragmentHistoryResponse</span><span class="p">,</span>
     <span class="n">GetFragmentRequest</span><span class="p">,</span>
     <span class="n">GetFragmentResponse</span><span class="p">,</span>
-    <span class="n">GetLocationRequest</span><span class="p">,</span>
-    <span class="n">GetLocationResponse</span><span class="p">,</span>
     <span class="n">GetLocationMetadataRequest</span><span class="p">,</span>
     <span class="n">GetLocationMetadataResponse</span><span class="p">,</span>
+    <span class="n">GetLocationRequest</span><span class="p">,</span>
+    <span class="n">GetLocationResponse</span><span class="p">,</span>
     <span class="n">GetModuleRequest</span><span class="p">,</span>
     <span class="n">GetModuleResponse</span><span class="p">,</span>
+    <span class="n">GetOrganizationMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetOrganizationMetadataResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationNamespaceAvailabilityRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationNamespaceAvailabilityResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationResponse</span><span class="p">,</span>
-    <span class="n">GetOrganizationMetadataRequest</span><span class="p">,</span>
-    <span class="n">GetOrganizationMetadataResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationsWithAccessToLocationRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationsWithAccessToLocationResponse</span><span class="p">,</span>
     <span class="n">GetRegistryItemRequest</span><span class="p">,</span>
     <span class="n">GetRegistryItemResponse</span><span class="p">,</span>
     <span class="n">GetRobotAPIKeysRequest</span><span class="p">,</span>
     <span class="n">GetRobotAPIKeysResponse</span><span class="p">,</span>
+    <span class="n">GetRobotMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetRobotMetadataResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartHistoryRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartHistoryResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsRequest</span><span class="p">,</span>
@@ -171,8 +173,6 @@
     <span class="n">GetRobotPartsResponse</span><span class="p">,</span>
     <span class="n">GetRobotRequest</span><span class="p">,</span>
     <span class="n">GetRobotResponse</span><span class="p">,</span>
-    <span class="n">GetRobotMetadataRequest</span><span class="p">,</span>
-    <span class="n">GetRobotMetadataResponse</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsRequest</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsResponse</span><span class="p">,</span>
     <span class="n">GetUserIDByEmailRequest</span><span class="p">,</span>
@@ -1540,8 +1540,9 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">part_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">part_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                                <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">last_known_update</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a machine part.</span>
 
 <span class="sd">        ::</span>
@@ -1566,8 +1567,12 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                                         <span class="n">last_known_update</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">last_known_update</span><span class="p">))</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">last_known_update</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">last_known_update</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
 
