@@ -198,14 +198,19 @@ global___ValidateConfigRequest = ValidateConfigRequest
 class ValidateConfigResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DEPENDENCIES_FIELD_NUMBER: builtins.int
+    OPTIONAL_DEPENDENCIES_FIELD_NUMBER: builtins.int
 
     @property
     def dependencies(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, dependencies: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    @property
+    def optional_dependencies(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['dependencies', b'dependencies']) -> None:
+    def __init__(self, *, dependencies: collections.abc.Iterable[builtins.str] | None=..., optional_dependencies: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['dependencies', b'dependencies', 'optional_dependencies', b'optional_dependencies']) -> None:
         ...
 global___ValidateConfigResponse = ValidateConfigResponse

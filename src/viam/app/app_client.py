@@ -52,24 +52,26 @@ from viam.proto.app import (
     GetFragmentHistoryResponse,
     GetFragmentRequest,
     GetFragmentResponse,
-    GetLocationRequest,
-    GetLocationResponse,
     GetLocationMetadataRequest,
     GetLocationMetadataResponse,
+    GetLocationRequest,
+    GetLocationResponse,
     GetModuleRequest,
     GetModuleResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
-    GetOrganizationMetadataRequest,
-    GetOrganizationMetadataResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
     GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
+    GetRobotMetadataRequest,
+    GetRobotMetadataResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -82,8 +84,6 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
-    GetRobotMetadataRequest,
-    GetRobotMetadataResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
     GetUserIDByEmailRequest,
@@ -1451,8 +1451,9 @@ class AppClient:
         response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
-    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None,
-                                last_known_update: Optional[datetime] = None) -> RobotPart:
+    async def update_robot_part(
+        self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime] = None
+    ) -> RobotPart:
         """Change the name and assign an optional new configuration to a machine part.
 
         ::
@@ -1477,8 +1478,12 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart>`_.
         """
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None,
-                                         last_known_update=datetime_to_timestamp(last_known_update))
+        request = UpdateRobotPartRequest(
+            id=robot_part_id,
+            name=name,
+            robot_config=dict_to_struct(robot_config) if robot_config else None,
+            last_known_update=datetime_to_timestamp(last_known_update),
+        )
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 

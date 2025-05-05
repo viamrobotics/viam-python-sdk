@@ -478,8 +478,9 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             last_known_update = datetime.now()
             client = AppClient(channel, METADATA, ID)
-            updated_robot_part = await client.update_robot_part(robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG,
-                                                                last_known_update=last_known_update)
+            updated_robot_part = await client.update_robot_part(
+                robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG, last_known_update=last_known_update
+            )
             assert service.robot_part_id == ID
             assert service.name == NAME
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
@@ -802,7 +803,6 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             user_defined_metadata = await client.get_location_metadata(ID)
             assert len(user_defined_metadata) == 0
-
 
             await client.update_location_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_location_metadata(ID)
