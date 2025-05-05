@@ -33,7 +33,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         return gizmo
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> (Sequence[str], Sequence[str]):
+    def validate_config(cls, config: ComponentConfig) -> tuple[Sequence[str], Sequence[str]]:
         # Custom validation can be done by specifiying a validate function like this one. Validate functions
         # can raise errors that will be returned to the parent through gRPC. Validate functions can
         # also return a sequence of strings representing the implicit dependencies of the resource.
