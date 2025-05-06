@@ -317,6 +317,7 @@ class DataClient:
                 DataPipelineRunsPage: The next page of runs, or an empty page if there are no more runs
             """
             if not self.next_page_token:
+                # no token, return empty next page
                 return DataClient.DataPipelineRunsPage(
                     _client=self._client,
                     pipeline_id=self.pipeline_id,
