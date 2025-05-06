@@ -52,10 +52,14 @@ from viam.proto.app import (
     GetFragmentHistoryResponse,
     GetFragmentRequest,
     GetFragmentResponse,
+    GetLocationMetadataRequest,
+    GetLocationMetadataResponse,
     GetLocationRequest,
     GetLocationResponse,
     GetModuleRequest,
     GetModuleResponse,
+    GetOrganizationMetadataRequest,
+    GetOrganizationMetadataResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
@@ -66,10 +70,14 @@ from viam.proto.app import (
     GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
+    GetRobotMetadataRequest,
+    GetRobotMetadataResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
     GetRobotPartLogsResponse,
+    GetRobotPartMetadataRequest,
+    GetRobotPartMetadataResponse,
     GetRobotPartRequest,
     GetRobotPartResponse,
     GetRobotPartsRequest,
@@ -134,15 +142,23 @@ from viam.proto.app import (
     UnshareLocationRequest,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
+    UpdateLocationMetadataRequest,
+    UpdateLocationMetadataResponse,
     UpdateLocationRequest,
     UpdateLocationResponse,
     UpdateModuleRequest,
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationMetadataRequest,
+    UpdateOrganizationMetadataResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     UpdateRegistryItemRequest,
+    UpdateRobotMetadataRequest,
+    UpdateRobotMetadataResponse,
+    UpdateRobotPartMetadataRequest,
+    UpdateRobotPartMetadataResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -193,6 +209,7 @@ class RobotPart:
         self.local_fqdn = robot_part.local_fqdn
         self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
         self.secrets = list(robot_part.secrets)
+        self.last_updated = robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None
         return self
 
     id: str
@@ -209,6 +226,7 @@ class RobotPart:
     local_fqdn: str
     created_on: Optional[datetime]
     secrets: Optional[List[SharedSecret]]
+    last_updated: Optional[datetime]
 
     @property
     def proto(self) -> RobotPartPB:
@@ -227,6 +245,7 @@ class RobotPart:
             local_fqdn=self.local_fqdn,
             created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
             secrets=self.secrets,
+            last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
         )
 
 
@@ -352,6 +371,7 @@ class Fragment:
         self.organization_count = fragment.organization_count
         self.only_used_by_owner = fragment.only_used_by_owner
         self.visibility = Fragment.Visibility.from_proto(fragment.visibility)
+        self.last_updated = fragment.last_updated.ToDatetime() if fragment.HasField("last_updated") else None
         return self
 
     id: str
@@ -365,6 +385,7 @@ class Fragment:
     organization_count: int
     only_used_by_owner: bool
     visibility: Visibility
+    last_updated: Optional[datetime]
 
     @property
     def proto(self) -> FragmentPB:
@@ -380,6 +401,7 @@ class Fragment:
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
             visibility=self.visibility.to_proto(),
+            last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
         )
 
 
@@ -1429,7 +1451,9 @@ class AppClient:
         response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
         return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
-    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
+    async def update_robot_part(
+        self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None, last_known_update: Optional[datetime] = None
+    ) -> RobotPart:
         """Change the name and assign an optional new configuration to a machine part.
 
         ::
@@ -1443,16 +1467,23 @@ class AppClient:
             name (str): New name to be updated on the robot part.
             robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the machine part. The machine
                 part's config will remain as is (no change) if one isn't passed.
-
+            last_known_update (datetime): Optional time of the last known update to this part's config. If provided, this will result in a
+                GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting this
+                parameter will result in an overwrite of the upstream config.
         Raises:
-            GRPCError: If either an invalid machine part ID, name, or config is passed.
-
+            GRPCError: If either an invalid machine part ID, name, or config is passed, or if the upstream config has changed since
+                last_known_update.
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobotpart>`_.
         """
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
+        request = UpdateRobotPartRequest(
+            id=robot_part_id,
+            name=name,
+            robot_config=dict_to_struct(robot_config) if robot_config else None,
+            last_known_update=datetime_to_timestamp(last_known_update),
+        )
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -1791,6 +1822,7 @@ class AppClient:
         config: Optional[Mapping[str, Any]] = None,
         public: Optional[bool] = None,
         visibility: Optional[Fragment.Visibility] = None,
+        last_known_update: Optional[datetime] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1813,9 +1845,11 @@ class AppClient:
             visibility (Optional[FragmentVisibility]): Optional FragmentVisibility list specifying who should be allowed
                 to view the fragment. Not passing this parameter will leave the fragment's visibility unchanged.
                 A fragment is private by default when created.
-
+            last_known_update (datetime): Optional time of the last known update to this fragment's config. If provided, this will result in
+                a GRPCError if the upstream config has changed since this time, indicating that the local config is out of date. Omitting
+                this parameter will result in an overwrite of the upstream config.
         Raises:
-            GRPCError: if an invalid ID, name, or config is passed.
+            GRPCError: if an invalid ID, name, or config is passed, or if the upstream fragment config has changed since last_known_update.
 
         Returns:
             viam.app.app_client.Fragment: The newly updated fragment.
@@ -1828,6 +1862,7 @@ class AppClient:
             config=dict_to_struct(config) if config else None,
             public=public,
             visibility=visibility.to_proto() if visibility else None,
+            last_known_update=datetime_to_timestamp(last_known_update),
         )
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
@@ -2095,7 +2130,7 @@ class AppClient:
         response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
         return list(response.authorized_permissions)
 
-    async def get_registry_item(self, item_id: str) -> RegistryItem:
+    async def get_registry_item(self, item_id: str, include_markdown_documentation: bool = False) -> RegistryItem:
         """Get registry item by ID.
 
         ::
@@ -2113,7 +2148,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getregistryitem>`_.
         """
-        request = GetRegistryItemRequest(item_id=item_id)
+        request = GetRegistryItemRequest(item_id=item_id, include_markdown_documentation=include_markdown_documentation)
         response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
         return response.item
 
@@ -2523,3 +2558,135 @@ class AppClient:
         request = RotateKeyRequest(id=id)
         response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)
         return response.key, response.id
+
+    async def get_organization_metadata(self, org_id: str) -> Mapping[str, Any]:
+        """Get an organization's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_organization_metadata(org_id="<YOUR-ORG-ID>")
+
+        Args:
+            org_id (str): The ID of the organization with which the user-defined metadata is associated.
+                You can obtain your organization ID from the Viam app's organization settings page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
+        """
+        request = GetOrganizationMetadataRequest(organization_id=org_id)
+        response: GetOrganizationMetadataResponse = await self._app_client.GetOrganizationMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def update_organization_metadata(self, org_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update an organization's user-defined metadata.
+
+        ::
+
+             await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata=)
+
+        Args:
+            organization_id (str): The ID of the organization with which to associate the user-defined metadata.
+                You can obtain your organization ID from the Viam app's organization settings page.
+            metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.
+        """
+        request = UpdateOrganizationMetadataRequest(organization_id=org_id, data=dict_to_struct(metadata))
+        _: UpdateOrganizationMetadataResponse = await self._app_client.UpdateOrganizationMetadata(request)
+
+    async def get_location_metadata(self, location_id: str) -> Mapping[str, Any]:
+        """Get a location's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_location_metadata(location_id="<YOUR-LOCATION-ID>")
+
+        Args:
+            location_id (str): The ID of the location with which the user-defined metadata is associated.
+                You can obtain your location ID from the Viam app's locations page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = GetLocationMetadataRequest(location_id=location_id)
+        response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def update_location_metadata(self, location_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a location's user-defined metadata.
+
+        ::
+
+             await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
+
+        Args:
+            location_id (str): The ID of the location with which to associate the user-defined metadata.
+                You can obtain your location ID from the Viam app's locations page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateLocationMetadataRequest(location_id=location_id, data=dict_to_struct(metadata))
+        _: UpdateLocationMetadataResponse = await self._app_client.UpdateLocationMetadata(request)
+
+    async def get_robot_metadata(self, robot_id: str) -> Mapping[str, Any]:
+        """Get a robot's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_robot_metadata(robot_id="<YOUR-ROBOT-ID>")
+
+        Args:
+            robot_id (str): The ID of the robot with which the user-defined metadata is associated.
+                You can obtain your robot ID from the Viam app's machine page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = GetRobotMetadataRequest(id=robot_id)
+        response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def update_robot_metadata(self, robot_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a robot's user-defined metadata.
+
+        ::
+
+             await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata=)
+
+        Args:
+            robot_id (str): The ID of the robot with which to associate the user-defined metadata.
+                You can obtain your robot ID from the Viam app's machine page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateRobotMetadataRequest(id=robot_id, data=dict_to_struct(metadata))
+        _: UpdateRobotMetadataResponse = await self._app_client.UpdateRobotMetadata(request)
+
+    async def get_robot_part_metadata(self, robot_part_id: str) -> Mapping[str, Any]:
+        """Get a robot part's user-defined metadata.
+
+        ::
+
+            metadata = await cloud.get_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>")
+
+        Args:
+            robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.
+                You can obtain your robot part ID from the Viam app's machine page.
+
+        Returns:
+            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = GetRobotPartMetadataRequest(id=robot_part_id)
+        response: GetRobotPartMetadataResponse = await self._app_client.GetRobotPartMetadata(request)
+        return struct_to_dict(response.data)
+
+    async def update_robot_part_metadata(self, robot_part_id: str, metadata: Mapping[str, Any]) -> None:
+        """Update a robot part's user-defined metadata.
+
+        ::
+
+             await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata=)
+
+        Args:
+            robot_id (str): The ID of the robot part with which to associate the user-defined metadata.
+                You can obtain your robot part ID from the Viam app's machine page.
+            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
+        """
+        request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
+        _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request)
