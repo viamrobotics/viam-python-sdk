@@ -94,15 +94,12 @@ from viam.proto.app.datapipelines import (
     DataPipelinesServiceStub,
     DataPipelineRunStatus,
     DeleteDataPipelineRequest,
-    DisableDataPipelineRequest,
-    EnableDataPipelineRequest,
     GetDataPipelineRequest,
     GetDataPipelineResponse,
     ListDataPipelineRunsRequest,
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
-    UpdateDataPipelineRequest,
 )
 
 
