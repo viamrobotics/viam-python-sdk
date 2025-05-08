@@ -2,7 +2,7 @@ import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union, cast
+from typing import Any, Dict, List, Mapping, Optional, Self, Sequence, Tuple, Union, cast
 
 import bson
 from google.protobuf.struct_pb2 import Struct
@@ -91,6 +91,7 @@ from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
     CreateDataPipelineResponse,
     DataPipeline as ProtoDataPipeline,
+    DataPipelineRun as ProtoDataPipelineRun,
     DataPipelinesServiceStub,
     DataPipelineRunStatus,
     DeleteDataPipelineRequest,
@@ -268,6 +269,19 @@ class DataClient:
         enabled: bool
         """Whether the data pipeline is enabled"""
 
+        @classmethod
+        def from_proto(cls, data_pipeline: ProtoDataPipeline) -> Self:
+            return cls(
+                id=data_pipeline.id,
+                organization_id=data_pipeline.organization_id,
+                name=data_pipeline.name,
+                mql_binary=data_pipeline.mql_binary,
+                schedule=data_pipeline.schedule,
+                created_on=data_pipeline.created_on.ToDatetime(),
+                updated_at=data_pipeline.updated_at.ToDatetime(),
+                enabled=data_pipeline.enabled,
+            )
+
     @dataclass
     class DataPipelineRun:
         """Represents a data pipeline run and its associated metadata."""
@@ -287,6 +301,17 @@ class DataClient:
         """The start time of the data that was processed in the run."""
         data_end_time: datetime
         """The end time of the data that was processed in the run."""
+
+        @classmethod
+        def from_proto(cls, data_pipeline_run: ProtoDataPipelineRun) -> Self:
+            return cls(
+                id=data_pipeline_run.id,
+                status=data_pipeline_run.status,
+                start_time=data_pipeline_run.start_time.ToDatetime(),
+                end_time=data_pipeline_run.end_time.ToDatetime(),
+                data_start_time=data_pipeline_run.data_start_time.ToDatetime(),
+                data_end_time=data_pipeline_run.data_end_time.ToDatetime(),
+            )
 
     @dataclass
     class DataPipelineRunsPage:
@@ -326,6 +351,16 @@ class DataClient:
                 self.pipeline_id,
                 self.page_size,
                 self.next_page_token
+            )
+
+        @classmethod
+        def from_proto(cls, data_pipeline_runs_page: ListDataPipelineRunsResponse, client: "DataClient", page_size: int) -> Self:
+            return cls(
+                _client=client,
+                pipeline_id=data_pipeline_runs_page.pipeline_id,
+                page_size=page_size,
+                runs=[DataClient.DataPipelineRun.from_proto(run) for run in data_pipeline_runs_page.runs],
+                next_page_token=data_pipeline_runs_page.next_page_token,
             )
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -1831,7 +1866,7 @@ class DataClient:
         """
         request = GetDataPipelineRequest(id=id)
         response: GetDataPipelineResponse = await self._data_pipelines_client.GetDataPipeline(request, metadata=self._metadata)
-        return self._proto_pipeline_to_pipeline(response.data_pipeline)
+        return DataClient.DataPipeline.from_proto(response.data_pipeline)
 
     async def list_data_pipelines(self, organization_id: str) -> List[DataPipeline]:
         """List all of the data pipelines for an organization.
@@ -1849,7 +1884,7 @@ class DataClient:
         """
         request = ListDataPipelinesRequest(organization_id=organization_id)
         response: ListDataPipelinesResponse = await self._data_pipelines_client.ListDataPipelines(request, metadata=self._metadata)
-        return [self._proto_pipeline_to_pipeline(pipeline) for pipeline in response.data_pipelines]
+        return [DataClient.DataPipeline.from_proto(pipeline) for pipeline in response.data_pipelines]
 
     async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str:
         """Create a new data pipeline.
@@ -1932,39 +1967,7 @@ class DataClient:
             request,
             metadata=self._metadata
         )
-
-        runs = [
-            DataClient.DataPipelineRun(
-                id=run.id,
-                status=run.status,
-                start_time=run.start_time.ToDatetime(),
-                end_time=run.end_time.ToDatetime(),
-                data_start_time=run.data_start_time.ToDatetime(),
-                data_end_time=run.data_end_time.ToDatetime(),
-            )
-            for run in response.runs
-        ]
-
-        return DataClient.DataPipelineRunsPage(
-            _client=self,
-            pipeline_id=id,
-            page_size=page_size,
-            runs=runs,
-            next_page_token=response.next_page_token
-        )
-
-    @staticmethod
-    def _proto_pipeline_to_pipeline(proto_pipeline: ProtoDataPipeline) -> DataPipeline:
-        return DataClient.DataPipeline(
-            id=proto_pipeline.id,
-            organization_id=proto_pipeline.organization_id,
-            name=proto_pipeline.name,
-            mql_binary=[bson.decode(bson_bytes) for bson_bytes in proto_pipeline.mql_binary],
-            schedule=proto_pipeline.schedule,
-            enabled=proto_pipeline.enabled,
-            created_on=proto_pipeline.created_on.ToDatetime(),
-            updated_at=proto_pipeline.updated_at.ToDatetime(),
-        )
+        return DataClient.DataPipelineRunsPage.from_proto(response, self, page_size)
 
     @staticmethod
     def create_filter(
