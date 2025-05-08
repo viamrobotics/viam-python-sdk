@@ -275,7 +275,7 @@ class DataClient:
                 id=data_pipeline.id,
                 organization_id=data_pipeline.organization_id,
                 name=data_pipeline.name,
-                mql_binary=data_pipeline.mql_binary,
+                mql_binary=[bson.decode(bson_bytes) for bson_bytes in data_pipeline.mql_binary],
                 schedule=data_pipeline.schedule,
                 created_on=data_pipeline.created_on.ToDatetime(),
                 updated_at=data_pipeline.updated_at.ToDatetime(),
