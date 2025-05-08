@@ -3591,6 +3591,7 @@ class ModuleVersion(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
@@ -3608,13 +3609,17 @@ class ModuleVersion(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']) -> None:
         ...
 
     @typing.overload
@@ -3634,6 +3639,7 @@ class ModuleMetadata(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
     first_run: builtins.str
@@ -3651,13 +3657,17 @@ class ModuleMetadata(google.protobuf.message.Message):
         When this is returned from the backend, the versions are sorted in ascending order by the semver version
         """
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'versions', b'versions']) -> None:
         ...
 
     @typing.overload
@@ -4225,6 +4235,7 @@ class UpdateModuleMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
 
@@ -4232,10 +4243,14 @@ class UpdateModuleMetadata(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'models', b'models']) -> None:
+    def ClearField(self, field_name: typing.Literal['apps', b'apps', 'entrypoint', b'entrypoint', 'models', b'models']) -> None:
         ...
 global___UpdateModuleMetadata = UpdateModuleMetadata
 
@@ -4435,6 +4450,7 @@ class Module(google.protobuf.message.Message):
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     name: builtins.str
@@ -4470,13 +4486,17 @@ class Module(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
 
-    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'description', b'description', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
         ...
 
     @typing.overload
@@ -4497,6 +4517,7 @@ class VersionHistory(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     FIRST_RUN_FIELD_NUMBER: builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
+    APPS_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
     entrypoint: builtins.str
@@ -4514,13 +4535,17 @@ class VersionHistory(google.protobuf.message.Message):
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=...) -> None:
+    @property
+    def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
+        """A list of applications associated with the module"""
+
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'files', b'files', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'version', b'version']) -> None:
         ...
 
     @typing.overload
