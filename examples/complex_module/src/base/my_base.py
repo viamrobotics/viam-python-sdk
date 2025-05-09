@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, Mapping, Dict, List, Optional, cast, Sequence
+from typing import Any, ClassVar, Mapping, Dict, List, Optional, cast, Sequence, Tuple
 
 from typing_extensions import Self
 
@@ -39,7 +39,7 @@ class MyBase(Base, Reconfigurable):
 
     # Validates JSON Configuration
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> tuple[Sequence[str], Sequence[str]]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         attributes_dict = struct_to_dict(config.attributes)
         left_name = attributes_dict.get("left", "")
         assert isinstance(left_name, str)

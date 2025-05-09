@@ -1,7 +1,7 @@
 import inspect
 import re
 from abc import ABCMeta
-from typing import Callable, ClassVar, Mapping, Sequence, Union
+from typing import Callable, ClassVar, Mapping, Sequence, Tuple, Union
 
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -122,7 +122,7 @@ class EasyResource:
         return self
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> tuple[Sequence[str], Sequence[str]]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         """This method allows you to validate the configuration object received from the machine,
         as well as to return any implicit dependencies based on that `config`.
 
