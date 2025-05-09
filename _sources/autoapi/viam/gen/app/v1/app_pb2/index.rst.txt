@@ -6486,7 +6486,7 @@ Module Contents
 
 .. py:data:: global___CheckPermissionsResponse
 
-.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
+.. py:class:: ModuleVersion(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6534,6 +6534,12 @@ Module Contents
       The models that this verion of the module provides
 
 
+   .. py:property:: apps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
+
+      A list of applications associated with the module
+
+
    .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
@@ -6571,7 +6577,7 @@ Module Contents
 
 .. py:data:: global___ModuleVersion
 
-.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
+.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -6612,6 +6618,12 @@ Module Contents
 
       A list of versions of the module that are available
       When this is returned from the backend, the versions are sorted in ascending order by the semver version
+
+
+   .. py:property:: apps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
+
+      A list of applications associated with the module
 
 
    .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
@@ -7596,7 +7608,7 @@ Module Contents
 
 .. py:data:: global___UpdateModuleResponse
 
-.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[global___App] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7618,6 +7630,12 @@ Module Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       A list of models that are available in the module
+
+
+   .. py:property:: apps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
+
+      A list of applications associated with the module
 
 
 .. py:data:: global___UpdateModuleMetadata
@@ -7969,7 +7987,7 @@ Module Contents
 
 .. py:data:: global___GetModuleResponse
 
-.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
+.. py:class:: Module(*, module_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., organization_id: str = ..., entrypoint: str = ..., public_namespace: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8069,6 +8087,12 @@ Module Contents
       A list of models that are available in the module
 
 
+   .. py:property:: apps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
+
+      A list of applications associated with the module
+
+
    .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
 
       Checks if a certain field is set for the message.
@@ -8106,7 +8130,7 @@ Module Contents
 
 .. py:data:: global___Module
 
-.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ...)
+.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8152,6 +8176,12 @@ Module Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
       The models that this verion of the module provides
+
+
+   .. py:property:: apps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
+
+      A list of applications associated with the module
 
 
    .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
