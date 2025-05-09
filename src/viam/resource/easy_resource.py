@@ -130,7 +130,7 @@ class EasyResource:
             config (ComponentConfig): The configuration for this resource
 
         Returns:
-            Sequence[str]: A list of implicit dependencies
+            Tuple[Sequence[str], Sequence[str]]: One list of required implicit dependencies and one of optional deps.
         """
         return [], []
 
