@@ -1373,6 +1373,8 @@
 <span class="sd">            my_robot_part = await cloud.get_robot_part(</span>
 <span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
 <span class="sd">            )</span>
+<span class="sd">            # Get the part&#39;s address</span>
+<span class="sd">            address = my_robot_part.fqdn</span>
 <span class="sd">            # Check if machine is live (last access time less than 10 sec ago)</span>
 <span class="sd">            if (time.time() - my_robot_part.last_access.timestamp()) &lt;= 10000:</span>
 <span class="sd">                print(&quot;Machine is live.&quot;)</span>
