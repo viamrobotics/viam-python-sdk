@@ -277,6 +277,8 @@ class Module:
         validator = Registry.lookup_validator(api, model)
         try:
             # backwards compatibility. Support both ([], []) or [] with deprecation warning.
+            # If user's validate returns [str], it will be treated as required dependencies only.
+            # Incorect formats, e.g. int, will raise ValidationError.
             _validator_return_test = validator(config)
             if not (
                 isinstance(_validator_return_test, tuple)

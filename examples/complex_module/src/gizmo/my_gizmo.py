@@ -35,8 +35,8 @@ class MyGizmo(Gizmo, Reconfigurable):
     @classmethod
     def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         # Custom validation can be done by specifiying a validate function like this one. Validate functions
-        # can raise errors that will be returned to the parent through gRPC. Validate functions can
-        # also return a sequence of strings representing the implicit dependencies of the resource.
+        # can raise errors that will be returned to the parent through gRPC. Validate functions can also
+        # return two sequences of strings, representing the implicit required & optional dependencies of the resource.
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.API}:{cls.MODEL}")
         arg1 = config.attributes.fields["arg1"].string_value
