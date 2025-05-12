@@ -196,6 +196,158 @@ Module Contents
 
 
 
+   .. py:class:: DataPipeline
+
+      Represents a data pipeline and its associated metadata.
+
+
+      .. py:attribute:: id
+         :type:  str
+
+         The ID of the data pipeline
+
+
+      .. py:attribute:: organization_id
+         :type:  str
+
+         The organization ID
+
+
+      .. py:attribute:: name
+         :type:  str
+
+         The name of the data pipeline
+
+
+      .. py:attribute:: mql_binary
+         :type:  List[Dict[str, Any]]
+
+         The MQL binary of the data pipeline
+
+
+      .. py:attribute:: schedule
+         :type:  str
+
+         The schedule of the data pipeline
+
+
+      .. py:attribute:: created_on
+         :type:  datetime.datetime
+
+         The time the data pipeline was created
+
+
+      .. py:attribute:: updated_at
+         :type:  datetime.datetime
+
+         The time the data pipeline was last updated
+
+
+      .. py:attribute:: enabled
+         :type:  bool
+
+         Whether the data pipeline is enabled
+
+
+      .. py:method:: from_proto(data_pipeline: viam.proto.app.datapipelines.DataPipeline) -> typing_extensions.Self
+         :classmethod:
+
+
+
+
+   .. py:class:: DataPipelineRun
+
+      Represents a data pipeline run and its associated metadata.
+
+
+      .. py:attribute:: id
+         :type:  str
+
+         The ID of the data pipeline run
+
+
+      .. py:attribute:: status
+         :type:  viam.proto.app.datapipelines.DataPipelineRunStatus.ValueType
+
+         The status of the data pipeline run
+
+
+      .. py:attribute:: start_time
+         :type:  datetime.datetime
+
+         The time the data pipeline run started
+
+
+      .. py:attribute:: end_time
+         :type:  datetime.datetime
+
+         The time the data pipeline run ended
+
+
+      .. py:attribute:: data_start_time
+         :type:  datetime.datetime
+
+         The start time of the data that was processed in the run.
+
+
+      .. py:attribute:: data_end_time
+         :type:  datetime.datetime
+
+         The end time of the data that was processed in the run.
+
+
+      .. py:method:: from_proto(data_pipeline_run: viam.proto.app.datapipelines.DataPipelineRun) -> typing_extensions.Self
+         :classmethod:
+
+
+
+
+   .. py:class:: DataPipelineRunsPage
+
+      Represents a page of data pipeline runs and provides pagination functionality.
+
+
+      .. py:attribute:: pipeline_id
+         :type:  str
+
+         The ID of the pipeline these runs belong to
+
+
+      .. py:attribute:: page_size
+         :type:  int
+
+         The number of runs per page
+
+
+      .. py:attribute:: runs
+         :type:  List[DataClient]
+
+         The list of runs in this page
+
+
+      .. py:attribute:: next_page_token
+         :type:  str
+
+         The token to use to get the next page of results
+
+
+      .. py:method:: next_page() -> DataClient
+         :async:
+
+
+         Get the next page of data pipeline runs.
+
+         :returns: The next page of runs, or an empty page if there are no more runs
+         :rtype: DataPipelineRunsPage
+
+
+
+      .. py:method:: from_proto(data_pipeline_runs_page: viam.proto.app.datapipelines.ListDataPipelineRunsResponse, client: DataClient, page_size: int) -> typing_extensions.Self
+         :classmethod:
+
+
+
+
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[TabularData], int, str]
       :async:
 
@@ -276,7 +428,7 @@ Module Contents
 
 
 
-   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
+   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None, tabular_data_source_type: viam.proto.app.data.TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD, pipeline_id: Optional[str] = None) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
       :async:
 
 
@@ -300,8 +452,15 @@ Module Contents
                     Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
                     future, so prefer the dictionary option.
       :type query: Union[List[bytes], List[Dict[str, Any]]]
-      :param use_recent_data: Whether to query blob storage or your recent data store. Defaults to ``False``.
+      :param use_recent_data: Whether to query blob storage or your recent data store. Defaults to ``False``..
+                              Deprecated, use `tabular_data_source_type` instead.
       :type use_recent_data: bool
+      :param tabular_data_source_type: The data source to query.
+                                       Defaults to `TABULAR_DATA_SOURCE_TYPE_STANDARD`.
+      :type tabular_data_source_type: viam.proto.app.data.TabularDataSourceType
+      :param pipeline_id: The ID of the data pipeline to query. Defaults to `None`.
+                          Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.
+      :type pipeline_id: str
 
       :returns: An array of decoded BSON data objects.
       :rtype: List[Dict[str, Union[ValueTypes, datetime]]]
@@ -1390,6 +1549,111 @@ Module Contents
       :rtype: str
 
       For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#fileuploadfrompath>`_.
+
+
+
+   .. py:method:: get_data_pipeline(id: str) -> DataPipeline
+      :async:
+
+
+      Get a data pipeline by its ID.
+
+      ::
+
+          data_pipeline = await data_client.get_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
+
+      :param id: The ID of the data pipeline to get.
+      :type id: str
+
+      :returns: The data pipeline with the given ID.
+      :rtype: DataPipeline
+
+
+
+   .. py:method:: list_data_pipelines(organization_id: str) -> List[DataPipeline]
+      :async:
+
+
+      List all of the data pipelines for an organization.
+
+      ::
+
+          data_pipelines = await data_client.list_data_pipelines(organization_id="<YOUR-ORGANIZATION-ID>")
+
+      :param organization_id: The ID of the organization that owns the pipelines.
+                              You can obtain your organization ID from the Viam app's organization settings page.
+      :type organization_id: str
+
+      :returns: A list of all of the data pipelines for the given organization.
+      :rtype: List[DataPipeline]
+
+
+
+   .. py:method:: create_data_pipeline(organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str
+      :async:
+
+
+      Create a new data pipeline.
+
+      ::
+
+          data_pipeline_id = await data_client.create_data_pipeline(
+              organization_id="<YOUR-ORGANIZATION-ID>",
+              name="<YOUR-PIPELINE-NAME>",
+              mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
+              schedule="<YOUR-SCHEDULE>"
+          )
+
+      :param organization_id: The ID of the organization that will own the pipeline.
+                              You can obtain your organization ID from the Viam app's organization settings page.
+      :type organization_id: str
+      :param name: The name of the pipeline.
+      :type name: str
+      :param mql_binary: The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
+      :type mql_binary: List[Dict[str, Any]]
+      :param schedule: A cron expression representing the expected execution schedule in UTC (note this also
+                       defines the input time window; an hourly schedule would process 1 hour of data at a time).
+      :type schedule: str
+
+      :returns: The ID of the newly created pipeline.
+      :rtype: str
+
+
+
+   .. py:method:: delete_data_pipeline(id: str) -> None
+      :async:
+
+
+      Delete a data pipeline by its ID.
+
+      ::
+
+          await data_client.delete_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>")
+
+      :param id: The ID of the data pipeline to delete.
+      :type id: str
+
+
+
+   .. py:method:: list_data_pipeline_runs(id: str, page_size: int = 10) -> DataPipelineRunsPage
+      :async:
+
+
+      List all of the data pipeline runs for a data pipeline.
+
+      ::
+
+          data_pipeline_runs = await data_client.list_data_pipeline_runs(id="<YOUR-DATA-PIPELINE-ID>")
+          while len(data_pipeline_runs.runs) > 0:
+              data_pipeline_runs = await data_pipeline_runs.next_page()
+
+      :param id: The ID of the pipeline to list runs for
+      :type id: str
+      :param page_size: The number of runs to return per page. Defaults to 10.
+      :type page_size: int
+
+      :returns: A page of data pipeline runs with pagination support
+      :rtype: DataPipelineRunsPage
 
 
 

@@ -26,7 +26,7 @@ Classes
    viam.services.navigation.Mode
    viam.services.navigation.Path
    viam.services.navigation.Waypoint
-   viam.services.navigation.NavigationClient
+   viam.services.navigation.Navigation
 
 
 Package Contents
@@ -164,22 +164,29 @@ Package Contents
 
 
 
-.. py:class:: NavigationClient(name: str, channel: grpclib.client.Channel)
+.. py:class:: Navigation(name: str, *, logger: Optional[logging.Logger] = None)
 
-   Bases: :py:obj:`viam.services.navigation.navigation.Navigation`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
-
-
-   Connect to the NavigationService, which allows the robot to navigate to specified locations.
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
 
 
-   .. py:attribute:: client
-      :type:  viam.proto.service.navigation.NavigationServiceStub
+   Navigation represents a Navigation service.
+
+   This acts as an abstract base class for any drivers representing specific
+   navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/>`_.
 
 
-   .. py:attribute:: channel
+   .. py:attribute:: API
+      :type:  Final
+
+      The API of the Resource
 
 
-   .. py:method:: get_paths(*, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.service.navigation.Path]
+   .. py:method:: get_paths(*, timeout: Optional[float]) -> List[viam.services.navigation.Path]
+      :abstractmethod:
+
       :async:
 
 
@@ -206,7 +213,9 @@ Package Contents
 
 
 
-   .. py:method:: get_location(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.GeoPoint
+   .. py:method:: get_location(*, timeout: Optional[float]) -> viam.services.navigation.GeoPoint
+      :abstractmethod:
+
       :async:
 
 
@@ -231,7 +240,9 @@ Package Contents
 
 
 
-   .. py:method:: get_obstacles(*, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.GeoGeometry]
+   .. py:method:: get_obstacles(*, timeout: Optional[float]) -> List[viam.services.navigation.GeoGeometry]
+      :abstractmethod:
+
       :async:
 
 
@@ -259,7 +270,9 @@ Package Contents
 
 
 
-   .. py:method:: get_waypoints(*, timeout: Optional[float] = None, **kwargs) -> List[viam.services.navigation.Waypoint]
+   .. py:method:: get_waypoints(*, timeout: Optional[float]) -> List[viam.services.navigation.Waypoint]
+      :abstractmethod:
+
       :async:
 
 
@@ -285,7 +298,9 @@ Package Contents
 
 
 
-   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float])
+      :abstractmethod:
+
       :async:
 
 
@@ -313,7 +328,9 @@ Package Contents
 
 
 
-   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float])
+      :abstractmethod:
+
       :async:
 
 
@@ -337,7 +354,9 @@ Package Contents
 
 
 
-   .. py:method:: get_mode(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.Mode.ValueType
+   .. py:method:: get_mode(*, timeout: Optional[float]) -> viam.services.navigation.Mode.ValueType
+      :abstractmethod:
+
       :async:
 
 
@@ -366,7 +385,9 @@ Package Contents
 
 
 
-   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float])
+      :abstractmethod:
+
       :async:
 
 
@@ -394,7 +415,9 @@ Package Contents
 
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> viam.services.navigation.MapType.ValueType
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> viam.services.navigation.MapType.ValueType
+      :abstractmethod:
+
       :async:
 
 
@@ -415,32 +438,6 @@ Package Contents
       :rtype: MapType.ValueType
 
       For more information, see `Navigation service <https://docs.viam.com/dev/reference/apis/services/navigation/#getproperties>`_.
-
-
-
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
-      :async:
-
-
-      Send/receive arbitrary commands.
-
-      ::
-
-          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
-
-          my_command = {
-            "cmnd": "dosomething",
-            "someparameter": 52
-          }
-
-          # Can be used with any resource, using the motion service as an example
-          await service.do_command(command=my_command)
-
-      :param command: The command to execute
-      :type command: Dict[str, ValueTypes]
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, ValueTypes]
 
 
 
@@ -473,6 +470,34 @@ Package Contents
 
       :returns: The service, if it exists on the robot
       :rtype: Self
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await service.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
 
 
 
