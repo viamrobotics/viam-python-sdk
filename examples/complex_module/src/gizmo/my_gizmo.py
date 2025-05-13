@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Sequence
+from typing import ClassVar, Mapping, Sequence, Tuple
 
 from typing_extensions import Self
 
@@ -33,10 +33,10 @@ class MyGizmo(Gizmo, Reconfigurable):
         return gizmo
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         # Custom validation can be done by specifiying a validate function like this one. Validate functions
-        # can raise errors that will be returned to the parent through gRPC. Validate functions can
-        # also return a sequence of strings representing the implicit dependencies of the resource.
+        # can raise errors that will be returned to the parent through gRPC. Validate functions can also
+        # return two sequences of strings, representing the implicit required & optional dependencies of the resource.
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.API}:{cls.MODEL}")
         arg1 = config.attributes.fields["arg1"].string_value
@@ -45,7 +45,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         motor = [config.attributes.fields["motor"].string_value]
         if motor == [""]:
             raise Exception("A motor is required for Gizmo component.")
-        return motor
+        return motor, []
 
     async def do_one(self, arg1: str, **kwargs) -> bool:
         return arg1 == self.my_arg
