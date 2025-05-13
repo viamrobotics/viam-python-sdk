@@ -98,7 +98,7 @@ Module Contents
 
 
 
-   .. py:method:: validate_config(config: viam.proto.app.robot.ComponentConfig) -> Sequence[str]
+   .. py:method:: validate_config(config: viam.proto.app.robot.ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]
       :classmethod:
 
 
@@ -108,8 +108,8 @@ Module Contents
       :param config: The configuration for this resource
       :type config: ComponentConfig
 
-      :returns: A list of implicit dependencies
-      :rtype: Sequence[str]
+      :returns: One list of required implicit dependencies and one of optional deps.
+      :rtype: Tuple[Sequence[str], Sequence[str]]
 
 
 

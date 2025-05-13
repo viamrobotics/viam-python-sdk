@@ -231,7 +231,7 @@ when an instance of your model is instantiated. You can override this in your su
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.validate_config">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/robot/index.html#viam.proto.app.robot.ComponentConfig" title="viam.proto.app.robot.ComponentConfig"><span class="pre">viam.proto.app.robot.ComponentConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/easy_resource.html#EasyResource.validate_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.validate_config" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/robot/index.html#viam.proto.app.robot.ComponentConfig" title="viam.proto.app.robot.ComponentConfig"><span class="pre">viam.proto.app.robot.ComponentConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/easy_resource.html#EasyResource.validate_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.validate_config" title="Permalink to this definition"></a></dt>
 <dd><p>This method allows you to validate the configuration object received from the machine,
 as well as to return any implicit dependencies based on that <cite>config</cite>.</p>
 <dl class="field-list simple">
@@ -239,10 +239,10 @@ as well as to return any implicit dependencies based on that <cite>config</cite>
 <dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.ComponentConfig" title="viam.gen.app.v1.robot_pb2.ComponentConfig"><em>ComponentConfig</em></a>) – The configuration for this resource</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of implicit dependencies</p>
+<dd class="field-even"><p>One list of required implicit dependencies and one of optional deps.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Sequence[str]</p>
+<dd class="field-odd"><p>Tuple[Sequence[str], Sequence[str]]</p>
 </dd>
 </dl>
 </dd></dl>
