@@ -1,13 +1,13 @@
+from datetime import datetime
+
 import pytest
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.datapipelines import DataPipeline, DataPipelineRunStatus, DataPipelineRun
+from viam.proto.app.datapipelines import DataPipeline, DataPipelineRun, DataPipelineRunStatus
 from viam.utils import datetime_to_timestamp
 
-from datetime import datetime
 from .mocks.services import MockDataPipelines
-
 
 ID = "VIAM_DATAPIPELINE_1"
 NAME = "datapipeline"
@@ -27,7 +27,8 @@ PROTO_DATA_PIPELINE = DataPipeline(
     mql_binary=MQL_BINARY,
     enabled=True,
     created_on=TIMESTAMP_PROTO,
-    updated_at=TIMESTAMP_PROTO)
+    updated_at=TIMESTAMP_PROTO,
+)
 PROTO_DATA_PIPELINES = [PROTO_DATA_PIPELINE]
 
 DATA_PIPELINE = DataClient.DataPipeline.from_proto(PROTO_DATA_PIPELINE)
@@ -35,23 +36,34 @@ DATA_PIPELINES = [DATA_PIPELINE]
 
 RUN_ID = "VIAM_DATAPIPELINE_RUN_1"
 
-PROTO_DATA_PIPELINE_RUN = DataPipelineRun(id=RUN_ID, status=DataPipelineRunStatus.DATA_PIPELINE_RUN_STATUS_COMPLETED,
-                                    start_time=TIMESTAMP_PROTO, end_time=TIMESTAMP_PROTO,
-                                    data_start_time=TIMESTAMP_PROTO, data_end_time=TIMESTAMP_PROTO)
+PROTO_DATA_PIPELINE_RUN = DataPipelineRun(
+    id=RUN_ID,
+    status=DataPipelineRunStatus.DATA_PIPELINE_RUN_STATUS_COMPLETED,
+    start_time=TIMESTAMP_PROTO,
+    end_time=TIMESTAMP_PROTO,
+    data_start_time=TIMESTAMP_PROTO,
+    data_end_time=TIMESTAMP_PROTO,
+)
 PROTO_DATA_PIPELINE_RUNS = [PROTO_DATA_PIPELINE_RUN]
 
-DATA_PIPELINE_RUNS = [DataClient.DataPipelineRun(id=RUN_ID, status=DataPipelineRunStatus.DATA_PIPELINE_RUN_STATUS_COMPLETED,
-                                    start_time=TIMESTAMP, end_time=TIMESTAMP,
-                                    data_start_time=TIMESTAMP, data_end_time=TIMESTAMP)]
+DATA_PIPELINE_RUNS = [
+    DataClient.DataPipelineRun(
+        id=RUN_ID,
+        status=DataPipelineRunStatus.DATA_PIPELINE_RUN_STATUS_COMPLETED,
+        start_time=TIMESTAMP,
+        end_time=TIMESTAMP,
+        data_start_time=TIMESTAMP,
+        data_end_time=TIMESTAMP,
+    )
+]
 
-DATA_PIPELINE_RUNS_PAGE = DataClient.DataPipelineRunsPage(_client=None,
-                                                        next_page_token="",
-                                                        pipeline_id=ID,
-                                                        runs=DATA_PIPELINE_RUNS,
-                                                        page_size=10)
+DATA_PIPELINE_RUNS_PAGE = DataClient.DataPipelineRunsPage(
+    _client=None, next_page_token="", pipeline_id=ID, runs=DATA_PIPELINE_RUNS, page_size=10
+)
 
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
+
 
 @pytest.fixture(scope="function")
 def service() -> MockDataPipelines:
@@ -60,6 +72,7 @@ def service() -> MockDataPipelines:
         PROTO_DATA_PIPELINES,
         PROTO_DATA_PIPELINE_RUNS,
     )
+
 
 class TestClient:
     async def test_create_data_pipeline(self, service: MockDataPipelines):
@@ -96,4 +109,3 @@ class TestClient:
             runs = await client.list_data_pipeline_runs(ID)
             runs._client = None
             assert runs == DATA_PIPELINE_RUNS_PAGE
-
