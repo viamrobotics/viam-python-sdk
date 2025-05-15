@@ -3,11 +3,11 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union, cast
-from typing_extensions import Self
 
 import bson
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
+from typing_extensions import Self
 
 from viam import logging
 from viam.proto.app.data import (
@@ -55,10 +55,29 @@ from viam.proto.app.data import (
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
-    TabularDataSourceType,
     TabularDataSource,
+    TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+)
+from viam.proto.app.datapipelines import (
+    CreateDataPipelineRequest,
+    CreateDataPipelineResponse,
+    DataPipelineRunStatus,
+    DataPipelinesServiceStub,
+    DeleteDataPipelineRequest,
+    GetDataPipelineRequest,
+    GetDataPipelineResponse,
+    ListDataPipelineRunsRequest,
+    ListDataPipelineRunsResponse,
+    ListDataPipelinesRequest,
+    ListDataPipelinesResponse,
+)
+from viam.proto.app.datapipelines import (
+    DataPipeline as ProtoDataPipeline,
+)
+from viam.proto.app.datapipelines import (
+    DataPipelineRun as ProtoDataPipelineRun,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
@@ -87,24 +106,6 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
-
-from viam.proto.app.datapipelines import (
-    CreateDataPipelineRequest,
-    CreateDataPipelineResponse,
-    DataPipeline as ProtoDataPipeline,
-    DataPipelineRun as ProtoDataPipelineRun,
-    DataPipelinesServiceStub,
-    DataPipelineRunStatus,
-    DeleteDataPipelineRequest,
-    GetDataPipelineRequest,
-    GetDataPipelineResponse,
-    ListDataPipelineRunsRequest,
-    ListDataPipelineRunsResponse,
-    ListDataPipelinesRequest,
-    ListDataPipelinesResponse,
-)
-
-
 from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
@@ -241,7 +242,6 @@ class DataClient:
             )
             return self.resource_api
 
-
     @dataclass
     class DataPipeline:
         """Represents a data pipeline and its associated metadata."""
@@ -286,6 +286,7 @@ class DataClient:
     @dataclass
     class DataPipelineRun:
         """Represents a data pipeline run and its associated metadata."""
+
         id: str
         """The ID of the data pipeline run"""
 
@@ -342,17 +343,9 @@ class DataClient:
             if not self.next_page_token:
                 # no token, return empty next page
                 return DataClient.DataPipelineRunsPage(
-                    _client=self._client,
-                    pipeline_id=self.pipeline_id,
-                    page_size=self.page_size,
-                    runs=[],
-                    next_page_token=""
+                    _client=self._client, pipeline_id=self.pipeline_id, page_size=self.page_size, runs=[], next_page_token=""
                 )
-            return await self._client._list_data_pipeline_runs(
-                self.pipeline_id,
-                self.page_size,
-                self.next_page_token
-            )
+            return await self._client._list_data_pipeline_runs(self.pipeline_id, self.page_size, self.next_page_token)
 
         @classmethod
         def from_proto(cls, data_pipeline_runs_page: ListDataPipelineRunsResponse, client: "DataClient", page_size: int) -> Self:
@@ -491,9 +484,12 @@ class DataClient:
 
     @_alias_param("query", param_alias="mql_binary")
     async def tabular_data_by_mql(
-        self, organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None,
+        self,
+        organization_id: str,
+        query: Union[List[bytes], List[Dict[str, Any]]],
+        use_recent_data: Optional[bool] = None,
         tabular_data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
-        pipeline_id: Optional[str] = None
+        pipeline_id: Optional[str] = None,
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -1928,7 +1924,7 @@ class DataClient:
         request = DeleteDataPipelineRequest(id=id)
         await self._data_pipelines_client.DeleteDataPipeline(request, metadata=self._metadata)
 
-    async def list_data_pipeline_runs(self, id: str, page_size: int =10) -> DataPipelineRunsPage:
+    async def list_data_pipeline_runs(self, id: str, page_size: int = 10) -> DataPipelineRunsPage:
         """List all of the data pipeline runs for a data pipeline.
 
         ::
@@ -1946,9 +1942,7 @@ class DataClient:
         """
         return await self._list_data_pipeline_runs(id, page_size)
 
-    async def _list_data_pipeline_runs(
-        self, id: str, page_size: int, page_token: str = ""
-    ) -> DataPipelineRunsPage:
+    async def _list_data_pipeline_runs(self, id: str, page_size: int, page_token: str = "") -> DataPipelineRunsPage:
         """Internal method to list data pipeline runs with pagination.
 
         Args:
@@ -1959,15 +1953,8 @@ class DataClient:
         Returns:
             DataPipelineRunsPage: A page of data pipeline runs with pagination support
         """
-        request = ListDataPipelineRunsRequest(
-            id=id,
-            page_size=page_size,
-            page_token=page_token
-        )
-        response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(
-            request,
-            metadata=self._metadata
-        )
+        request = ListDataPipelineRunsRequest(id=id, page_size=page_size, page_token=page_token)
+        response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(request, metadata=self._metadata)
         return DataClient.DataPipelineRunsPage.from_proto(response, self, page_size)
 
     @staticmethod

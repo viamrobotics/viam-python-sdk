@@ -280,18 +280,13 @@ class Module:
             # If user's validate returns [str], it will be treated as required dependencies only.
             # Incorect formats, e.g. int, will raise ValidationError.
             _validator_return_test = validator(config)
-            if not (
-                isinstance(_validator_return_test, tuple)
-                and len(_validator_return_test) == 2
-            ):
+            if not (isinstance(_validator_return_test, tuple) and len(_validator_return_test) == 2):
                 msg = f"Your validate function {validator.__name__} did not return \
                         type tuple[Sequence[str], Sequence[str]]. Got {_validator_return_test}."
                 self.logger.warning(msg)
-                if (
-                    isinstance(_validator_return_test, Iterable)
-                    and not isinstance(_validator_return_test, str)
-                ) and all(
-                    isinstance(e, str) for e in _validator_return_test  # type: ignore
+                if (isinstance(_validator_return_test, Iterable) and not isinstance(_validator_return_test, str)) and all(
+                    isinstance(e, str)
+                    for e in _validator_return_test  # type: ignore
                 ):
                     self.logger.warning(
                         f"Detected deprecated validate function signature. \
@@ -303,8 +298,6 @@ class Module:
                     raise ValidationError(msg)
 
             dependencies, optional_dependencies = _validator_return_test
-            return ValidateConfigResponse(
-                dependencies=dependencies, optional_dependencies=optional_dependencies
-            )
+            return ValidateConfigResponse(dependencies=dependencies, optional_dependencies=optional_dependencies)
         except Exception as e:
             raise ValidationError(f"{type(Exception)}: {e}").grpc_error

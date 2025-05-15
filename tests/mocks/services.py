@@ -242,6 +242,27 @@ from viam.proto.app.data import (
     TagsByFilterResponse,
     UnimplementedDataServiceBase,
 )
+from viam.proto.app.datapipelines import (
+    CreateDataPipelineRequest,
+    CreateDataPipelineResponse,
+    DataPipeline,
+    DataPipelineRun,
+    DataPipelinesServiceBase,
+    DeleteDataPipelineRequest,
+    DeleteDataPipelineResponse,
+    DisableDataPipelineRequest,
+    DisableDataPipelineResponse,
+    EnableDataPipelineRequest,
+    EnableDataPipelineResponse,
+    GetDataPipelineRequest,
+    GetDataPipelineResponse,
+    ListDataPipelineRunsRequest,
+    ListDataPipelineRunsResponse,
+    ListDataPipelinesRequest,
+    ListDataPipelinesResponse,
+    UpdateDataPipelineRequest,
+    UpdateDataPipelineResponse,
+)
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
     CreateDatasetResponse,
@@ -264,27 +285,6 @@ from viam.proto.app.datasync import (
     FileUploadResponse,
     StreamingDataCaptureUploadRequest,
     StreamingDataCaptureUploadResponse,
-)
-from viam.proto.app.datapipelines import (
-    CreateDataPipelineRequest,
-    CreateDataPipelineResponse,
-    DeleteDataPipelineRequest,
-    DisableDataPipelineRequest,
-    EnableDataPipelineRequest,
-    EnableDataPipelineResponse,
-    GetDataPipelineRequest,
-    GetDataPipelineResponse,
-    DataPipeline,
-    DataPipelineRun,
-    ListDataPipelineRunsRequest,
-    ListDataPipelineRunsResponse,
-    ListDataPipelinesRequest,
-    ListDataPipelinesResponse,
-    UpdateDataPipelineRequest,
-    UpdateDataPipelineResponse,
-    DeleteDataPipelineResponse,
-    DisableDataPipelineResponse,
-    DataPipelinesServiceBase
 )
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
@@ -1132,6 +1132,7 @@ class MockDataSync(DataSyncServiceBase):
         assert request_data_contents is not None
         self.binary_data = request_data_contents.data
         await stream.send_message(StreamingDataCaptureUploadResponse(binary_data_id=self.file_upload_response))
+
 
 class MockDataPipelines(DataPipelinesServiceBase):
     def __init__(self, create_response: str, list_response: Sequence[DataPipeline], runs_response: Sequence[DataPipelineRun]):
