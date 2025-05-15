@@ -44,9 +44,9 @@ jobs:
           - arch: linux_armv6l
             ext: so
             whl: linux_armv7l
-          - arch: win_amd64
+          - arch: windows_x86_64
             ext: dll
-            whl: windows_x86_64
+            whl: win_amd64
     steps:
       - name: Checkout Code - Call
         uses: actions/checkout@v4

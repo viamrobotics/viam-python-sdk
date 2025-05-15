@@ -3,6 +3,7 @@ import io
 import logging as pylogging
 import os
 import sys
+from collections.abc import Iterable
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
@@ -275,7 +276,28 @@ class Module:
         model = Model.from_string(config.model)
         validator = Registry.lookup_validator(api, model)
         try:
-            dependencies = validator(config)
-            return ValidateConfigResponse(dependencies=dependencies)
+            # backwards compatibility. Support both ([], []) or [] with deprecation warning.
+            # If user's validate returns [str], it will be treated as required dependencies only.
+            # Incorect formats, e.g. int, will raise ValidationError.
+            _validator_return_test = validator(config)
+            if not (isinstance(_validator_return_test, tuple) and len(_validator_return_test) == 2):
+                msg = f"Your validate function {validator.__name__} did not return \
+                        type tuple[Sequence[str], Sequence[str]]. Got {_validator_return_test}."
+                self.logger.warning(msg)
+                if (isinstance(_validator_return_test, Iterable) and not isinstance(_validator_return_test, str)) and all(
+                    isinstance(e, str)
+                    for e in _validator_return_test  # type: ignore
+                ):
+                    self.logger.warning(
+                        f"Detected deprecated validate function signature. \
+                                        Treating all dependencies {_validator_return_test} as required dependencies. \
+                                        Please update to new signature Tuple[Sequence[str], Sequence[str]] soon."
+                    )
+                    return ValidateConfigResponse(dependencies=_validator_return_test)
+                else:
+                    raise ValidationError(msg)
+
+            dependencies, optional_dependencies = _validator_return_test
+            return ValidateConfigResponse(dependencies=dependencies, optional_dependencies=optional_dependencies)
         except Exception as e:
             raise ValidationError(f"{type(Exception)}: {e}").grpc_error

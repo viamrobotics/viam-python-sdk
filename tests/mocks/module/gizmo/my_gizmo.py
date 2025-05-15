@@ -1,4 +1,4 @@
-from typing import ClassVar, List, Mapping, Sequence
+from typing import ClassVar, List, Mapping, Sequence, Tuple
 
 from typing_extensions import Self
 
@@ -24,7 +24,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         return gizmo
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> List[str]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[List[str], List[str]]:
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.API}:{cls.MODEL}")
         arg1 = config.attributes.fields["arg1"].string_value
@@ -33,7 +33,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         motor = [config.attributes.fields["motor"].string_value]
         if motor == [""]:
             raise Exception("A motor is required for Gizmo component.")
-        return motor
+        return motor, []
 
     async def do_one(self, arg1: str, **kwargs) -> bool:
         return arg1 == self.my_arg
