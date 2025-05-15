@@ -110,7 +110,7 @@ class Server(ResourceManager):
         if ':' in path:
             host_and_port = path.split(':')
             host = host_and_port[0]
-            port = host_and_port[1]
+            port = int(host_and_port[1])
             path = None
 
         if sys.platform != 'win32':
