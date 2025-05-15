@@ -92,11 +92,11 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">import</span> <span class="nn">bson</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="p">(</span>
@@ -144,10 +144,29 @@
     <span class="n">TabularDataByMQLResponse</span><span class="p">,</span>
     <span class="n">TabularDataBySQLRequest</span><span class="p">,</span>
     <span class="n">TabularDataBySQLResponse</span><span class="p">,</span>
-    <span class="n">TabularDataSourceType</span><span class="p">,</span>
     <span class="n">TabularDataSource</span><span class="p">,</span>
+    <span class="n">TabularDataSourceType</span><span class="p">,</span>
     <span class="n">TagsByFilterRequest</span><span class="p">,</span>
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CreateDataPipelineRequest</span><span class="p">,</span>
+    <span class="n">CreateDataPipelineResponse</span><span class="p">,</span>
+    <span class="n">DataPipelineRunStatus</span><span class="p">,</span>
+    <span class="n">DataPipelinesServiceStub</span><span class="p">,</span>
+    <span class="n">DeleteDataPipelineRequest</span><span class="p">,</span>
+    <span class="n">GetDataPipelineRequest</span><span class="p">,</span>
+    <span class="n">GetDataPipelineResponse</span><span class="p">,</span>
+    <span class="n">ListDataPipelineRunsRequest</span><span class="p">,</span>
+    <span class="n">ListDataPipelineRunsResponse</span><span class="p">,</span>
+    <span class="n">ListDataPipelinesRequest</span><span class="p">,</span>
+    <span class="n">ListDataPipelinesResponse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DataPipeline</span> <span class="k">as</span> <span class="n">ProtoDataPipeline</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DataPipelineRun</span> <span class="k">as</span> <span class="n">ProtoDataPipelineRun</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.dataset</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CreateDatasetRequest</span><span class="p">,</span>
@@ -176,24 +195,6 @@
     <span class="n">StreamingDataCaptureUploadResponse</span><span class="p">,</span>
     <span class="n">UploadMetadata</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">viam.proto.app.datapipelines</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">CreateDataPipelineRequest</span><span class="p">,</span>
-    <span class="n">CreateDataPipelineResponse</span><span class="p">,</span>
-    <span class="n">DataPipeline</span> <span class="k">as</span> <span class="n">ProtoDataPipeline</span><span class="p">,</span>
-    <span class="n">DataPipelineRun</span> <span class="k">as</span> <span class="n">ProtoDataPipelineRun</span><span class="p">,</span>
-    <span class="n">DataPipelinesServiceStub</span><span class="p">,</span>
-    <span class="n">DataPipelineRunStatus</span><span class="p">,</span>
-    <span class="n">DeleteDataPipelineRequest</span><span class="p">,</span>
-    <span class="n">GetDataPipelineRequest</span><span class="p">,</span>
-    <span class="n">GetDataPipelineResponse</span><span class="p">,</span>
-    <span class="n">ListDataPipelineRunsRequest</span><span class="p">,</span>
-    <span class="n">ListDataPipelineRunsResponse</span><span class="p">,</span>
-    <span class="n">ListDataPipelinesRequest</span><span class="p">,</span>
-    <span class="n">ListDataPipelinesResponse</span><span class="p">,</span>
-<span class="p">)</span>
-
-
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -330,7 +331,6 @@
             <span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_api</span></div>
 
-
 <div class="viewcode-block" id="DataClient.DataPipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">DataPipeline</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a data pipeline and its associated metadata.&quot;&quot;&quot;</span>
@@ -375,6 +375,7 @@
 <div class="viewcode-block" id="DataClient.DataPipelineRun"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">DataPipelineRun</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Represents a data pipeline run and its associated metadata.&quot;&quot;&quot;</span>
+
         <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The ID of the data pipeline run&quot;&quot;&quot;</span>
 
@@ -431,17 +432,9 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_page_token</span><span class="p">:</span>
                 <span class="c1"># no token, return empty next page</span>
                 <span class="k">return</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipelineRunsPage</span><span class="p">(</span>
-                    <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">,</span>
-                    <span class="n">pipeline_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span>
-                    <span class="n">page_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
-                    <span class="n">runs</span><span class="o">=</span><span class="p">[],</span>
-                    <span class="n">next_page_token</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+                    <span class="n">_client</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span> <span class="n">runs</span><span class="o">=</span><span class="p">[],</span> <span class="n">next_page_token</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
                 <span class="p">)</span>
-            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">_list_data_pipeline_runs</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">next_page_token</span>
-            <span class="p">)</span></div>
+            <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">_list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pipeline_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_page_token</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.DataPipelineRunsPage.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRunsPage.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
         <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline_runs_page</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="s2">&quot;DataClient&quot;</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
@@ -580,9 +573,12 @@
 
 <div class="viewcode-block" id="DataClient.tabular_data_by_mql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;mql_binary&quot;</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_mql</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span> <span class="n">use_recent_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">query</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+        <span class="n">use_recent_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tabular_data_source_type</span><span class="p">:</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">ValueType</span> <span class="o">=</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">TABULAR_DATA_SOURCE_TYPE_STANDARD</span><span class="p">,</span>
-        <span class="n">pipeline_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">pipeline_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
 
@@ -2017,7 +2013,7 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDataPipelineRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">DeleteDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="DataClient.list_data_pipeline_runs"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipeline_runs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.list_data_pipeline_runs"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_data_pipeline_runs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List all of the data pipeline runs for a data pipeline.</span>
 
 <span class="sd">        ::</span>
@@ -2035,9 +2031,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_data_pipeline_runs</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_size</span><span class="p">)</span></div>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_list_data_pipeline_runs</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_list_data_pipeline_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataPipelineRunsPage</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to list data pipeline runs with pagination.</span>
 
 <span class="sd">        Args:</span>
@@ -2048,15 +2042,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            DataPipelineRunsPage: A page of data pipeline runs with pagination support</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDataPipelineRunsRequest</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span>
-            <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">,</span>
-            <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span>
-        <span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelineRuns</span><span class="p">(</span>
-            <span class="n">request</span><span class="p">,</span>
-            <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDataPipelineRunsRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelineRuns</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipelineRunsPage</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">page_size</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DataClient.create_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_filter">[docs]</a>    <span class="nd">@staticmethod</span>

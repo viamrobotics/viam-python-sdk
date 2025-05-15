@@ -369,18 +369,13 @@
             <span class="c1"># If user&#39;s validate returns [str], it will be treated as required dependencies only.</span>
             <span class="c1"># Incorect formats, e.g. int, will raise ValidationError.</span>
             <span class="n">_validator_return_test</span> <span class="o">=</span> <span class="n">validator</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
-                <span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span>
-                <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Your validate function </span><span class="si">{</span><span class="n">validator</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> did not return </span><span class="se">\</span>
 <span class="s2">                        type tuple[Sequence[str], Sequence[str]]. Got </span><span class="si">{</span><span class="n">_validator_return_test</span><span class="si">}</span><span class="s2">.&quot;</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-                <span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
-                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">_validator_return_test</span>  <span class="c1"># type: ignore</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_validator_return_test</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span>
+                    <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">_validator_return_test</span>  <span class="c1"># type: ignore</span>
                 <span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
                         <span class="sa">f</span><span class="s2">&quot;Detected deprecated validate function signature. </span><span class="se">\</span>
@@ -392,9 +387,7 @@
                     <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
             <span class="n">dependencies</span><span class="p">,</span> <span class="n">optional_dependencies</span> <span class="o">=</span> <span class="n">_validator_return_test</span>
-            <span class="k">return</span> <span class="n">ValidateConfigResponse</span><span class="p">(</span>
-                <span class="n">dependencies</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span> <span class="n">optional_dependencies</span><span class="o">=</span><span class="n">optional_dependencies</span>
-            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">ValidateConfigResponse</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="n">dependencies</span><span class="p">,</span> <span class="n">optional_dependencies</span><span class="o">=</span><span class="n">optional_dependencies</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div></div>
 </pre></div>
