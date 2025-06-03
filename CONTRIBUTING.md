@@ -17,11 +17,11 @@ If you are reporting a bug, please include:
 
 ### Fix Bugs
 
-Find bugs and fix them!
+Look through the [Jira tickets](https://viam.atlassian.net/jira/software/c/projects/RSDK/issues/RSDK-10237?filter=allissues&jql=project%20%3D%20%22RSDK%22%20AND%20component%20%3D%20PythonSDK%20AND%20status%20NOT%20IN%20%28%22Awaiting%20Release%22%2C%20Closed%29%0AORDER%20BY%20created%20DESC) for bug ticket types.
 
 ### Implement Features
 
-Add whatever features you would like to see!
+Look through the [Jira tickets](https://viam.atlassian.net/jira/software/c/projects/RSDK/issues/RSDK-10237?filter=allissues&jql=project%20%3D%20%22RSDK%22%20AND%20component%20%3D%20PythonSDK%20AND%20status%20NOT%20IN%20%28%22Awaiting%20Release%22%2C%20Closed%29%0AORDER%20BY%20created%20DESC) for features which are "task" ticket types.
 
 ### Write Documentation
 
