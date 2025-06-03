@@ -13,7 +13,7 @@ If you are reporting a bug, please include:
 - Any details about your local setup that might be helpful in troubleshooting.
 - Detailed steps to reproduce the bug.
 
-Link to submit <>
+[Link to submit](https://viam.atlassian.net/servicedesk/customer/portal/7)
 
 ### Fix Bugs
 
