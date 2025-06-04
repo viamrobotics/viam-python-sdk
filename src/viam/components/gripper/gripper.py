@@ -130,7 +130,7 @@ class Gripper(ComponentBase):
 
             my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
 
-            # Get the kinematics information associated with the arm.
+            # Get the kinematics information associated with the gripper.
             kinematics = await my_gripper.get_kinematics()
 
             # Get the format of the kinematics file.
