@@ -82,6 +82,13 @@ Package Contents
 
 
 
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -103,6 +110,9 @@ Package Contents
 
 
    .. py:attribute:: GetGeometries
+
+
+   .. py:attribute:: GetKinematics
 
 
 .. py:class:: UnimplementedGripperServiceBase
@@ -140,6 +150,11 @@ Package Contents
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
       :async:
 
 
