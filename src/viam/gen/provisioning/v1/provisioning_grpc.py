@@ -25,8 +25,12 @@ class ProvisioningServiceBase(abc.ABC):
     async def GetNetworkList(self, stream: 'grpclib.server.Stream[provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def ExitProvisioning(self, stream: 'grpclib.server.Stream[provisioning.v1.provisioning_pb2.ExitProvisioningRequest, provisioning.v1.provisioning_pb2.ExitProvisioningResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus': grpclib.const.Handler(self.GetSmartMachineStatus, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest, provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse), '/viam.provisioning.v1.ProvisioningService/SetNetworkCredentials': grpclib.const.Handler(self.SetNetworkCredentials, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest, provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse), '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials': grpclib.const.Handler(self.SetSmartMachineCredentials, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse), '/viam.provisioning.v1.ProvisioningService/GetNetworkList': grpclib.const.Handler(self.GetNetworkList, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse)}
+        return {'/viam.provisioning.v1.ProvisioningService/GetSmartMachineStatus': grpclib.const.Handler(self.GetSmartMachineStatus, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest, provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse), '/viam.provisioning.v1.ProvisioningService/SetNetworkCredentials': grpclib.const.Handler(self.SetNetworkCredentials, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest, provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse), '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials': grpclib.const.Handler(self.SetSmartMachineCredentials, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse), '/viam.provisioning.v1.ProvisioningService/GetNetworkList': grpclib.const.Handler(self.GetNetworkList, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse), '/viam.provisioning.v1.ProvisioningService/ExitProvisioning': grpclib.const.Handler(self.ExitProvisioning, grpclib.const.Cardinality.UNARY_UNARY, provisioning.v1.provisioning_pb2.ExitProvisioningRequest, provisioning.v1.provisioning_pb2.ExitProvisioningResponse)}
 
 class UnimplementedProvisioningServiceBase(ProvisioningServiceBase):
 
@@ -42,6 +46,9 @@ class UnimplementedProvisioningServiceBase(ProvisioningServiceBase):
     async def GetNetworkList(self, stream: 'grpclib.server.Stream[provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def ExitProvisioning(self, stream: 'grpclib.server.Stream[provisioning.v1.provisioning_pb2.ExitProvisioningRequest, provisioning.v1.provisioning_pb2.ExitProvisioningResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class ProvisioningServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -49,3 +56,4 @@ class ProvisioningServiceStub:
         self.SetNetworkCredentials = grpclib.client.UnaryUnaryMethod(channel, '/viam.provisioning.v1.ProvisioningService/SetNetworkCredentials', provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest, provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse)
         self.SetSmartMachineCredentials = grpclib.client.UnaryUnaryMethod(channel, '/viam.provisioning.v1.ProvisioningService/SetSmartMachineCredentials', provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse)
         self.GetNetworkList = grpclib.client.UnaryUnaryMethod(channel, '/viam.provisioning.v1.ProvisioningService/GetNetworkList', provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse)
+        self.ExitProvisioning = grpclib.client.UnaryUnaryMethod(channel, '/viam.provisioning.v1.ProvisioningService/ExitProvisioning', provisioning.v1.provisioning_pb2.ExitProvisioningRequest, provisioning.v1.provisioning_pb2.ExitProvisioningResponse)

@@ -6,6 +6,8 @@ Do not edit manually!
 from ...gen.provisioning.v1.provisioning_grpc import ProvisioningServiceBase, ProvisioningServiceStub, UnimplementedProvisioningServiceBase
 from ...gen.provisioning.v1.provisioning_pb2 import (
     CloudConfig,
+    ExitProvisioningRequest,
+    ExitProvisioningResponse,
     GetNetworkListRequest,
     GetNetworkListResponse,
     GetSmartMachineStatusRequest,
@@ -23,6 +25,8 @@ __all__ = [
     "ProvisioningServiceStub",
     "UnimplementedProvisioningServiceBase",
     "CloudConfig",
+    "ExitProvisioningRequest",
+    "ExitProvisioningResponse",
     "GetNetworkListRequest",
     "GetNetworkListResponse",
     "GetSmartMachineStatusRequest",

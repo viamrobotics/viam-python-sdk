@@ -153,12 +153,15 @@ class CreateDataPipelineRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     SCHEDULE_FIELD_NUMBER: builtins.int
+    ENABLE_BACKFILL_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The associated Viam organization ID.'
     name: builtins.str
     'A unique identifier at the org level.'
     schedule: builtins.str
     'A cron expression representing the expected execution schedule in UTC (note this also\n    defines the input time window; an hourly schedule would process 1 hour of data at a time).\n    '
+    enable_backfill: builtins.bool
+    "When true, pipeline runs will be scheduled for the organization's past data."
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -166,10 +169,16 @@ class CreateDataPipelineRequest(google.protobuf.message.Message):
         each document is one stage in the pipeline.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=..., enable_backfill: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['mql_binary', b'mql_binary', 'name', b'name', 'organization_id', b'organization_id', 'schedule', b'schedule']) -> None:
+    def HasField(self, field_name: typing.Literal['_enable_backfill', b'_enable_backfill', 'enable_backfill', b'enable_backfill']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_enable_backfill', b'_enable_backfill', 'enable_backfill', b'enable_backfill', 'mql_binary', b'mql_binary', 'name', b'name', 'organization_id', b'organization_id', 'schedule', b'schedule']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_enable_backfill', b'_enable_backfill']) -> typing.Literal['enable_backfill'] | None:
         ...
 global___CreateDataPipelineRequest = CreateDataPipelineRequest
 

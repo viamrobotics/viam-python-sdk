@@ -321,7 +321,7 @@ from viam.proto.provisioning import (
     GetSmartMachineStatusRequest,
     GetSmartMachineStatusResponse,
     NetworkInfo,
-    ProvisioningServiceBase,
+    UnimplementedProvisioningServiceBase,
     SetNetworkCredentialsRequest,
     SetNetworkCredentialsResponse,
     SetSmartMachineCredentialsRequest,
@@ -792,7 +792,7 @@ class MockNavigation(Navigation):
         return {"command": command}
 
 
-class MockProvisioning(ProvisioningServiceBase):
+class MockProvisioning(UnimplementedProvisioningServiceBase):
     def __init__(
         self,
         smart_machine_status: GetSmartMachineStatusResponse,
