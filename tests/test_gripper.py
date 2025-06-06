@@ -92,6 +92,7 @@ class TestGripper:
         assert kd == kinematics
         assert gripper.extra == {"1": "2"}
 
+
 class TestService:
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
@@ -165,6 +166,7 @@ class TestService:
             request = GetKinematicsRequest(name=gripper.name)
             response: GetKinematicsResponse = await client.GetKinematics(request)
             assert (response.format, response.kinematics_data) == kinematics
+
 
 class TestClient:
     async def test_open(self, gripper: MockGripper, service: GripperRPCService):

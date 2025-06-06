@@ -321,11 +321,11 @@ from viam.proto.provisioning import (
     GetSmartMachineStatusRequest,
     GetSmartMachineStatusResponse,
     NetworkInfo,
-    UnimplementedProvisioningServiceBase,
     SetNetworkCredentialsRequest,
     SetNetworkCredentialsResponse,
     SetSmartMachineCredentialsRequest,
     SetSmartMachineCredentialsResponse,
+    UnimplementedProvisioningServiceBase,
 )
 from viam.proto.service.mlmodel import (
     FlatTensor,

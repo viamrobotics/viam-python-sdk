@@ -15,9 +15,9 @@ from viam.proto.component.gripper import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
+from . import KinematicsFileFormat
 from .gripper import Gripper
 
-from . import KinematicsFileFormat
 
 class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
     """
