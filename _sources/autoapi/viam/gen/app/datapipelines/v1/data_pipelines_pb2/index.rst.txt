@@ -96,7 +96,7 @@ Module Contents
 
 .. py:data:: global___DataPipelineRunStatus
 
-.. py:class:: DataPipeline(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: DataPipeline(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enabled: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., data_source_type: viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -137,6 +137,12 @@ Module Contents
       Whether or not the pipeline is enabled.
 
 
+   .. py:attribute:: data_source_type
+      :type:  viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType
+
+      The type of data source for the pipeline. If not specified, default is standard data storage.
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
@@ -156,7 +162,7 @@ Module Contents
       The time the pipeline was last updated.
 
 
-   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'updated_at', b'updated_at']) -> bool
+   .. py:method:: HasField(field_name: Literal['_data_source_type', b'_data_source_type', 'created_on', b'created_on', 'data_source_type', b'data_source_type', 'updated_at', b'updated_at']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -171,6 +177,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_data_source_type', b'_data_source_type']) -> Literal['data_source_type'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -272,7 +294,7 @@ Module Contents
 
 .. py:data:: global___ListDataPipelinesResponse
 
-.. py:class:: CreateDataPipelineRequest(*, organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enable_backfill: bool | None = ...)
+.. py:class:: CreateDataPipelineRequest(*, organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., enable_backfill: bool | None = ..., data_source_type: viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -309,6 +331,12 @@ Module Contents
       When true, pipeline runs will be scheduled for the organization's past data.
 
 
+   .. py:attribute:: data_source_type
+      :type:  viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType
+
+      The type of data source for the pipeline. If not specified, default is standard data storage.
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
@@ -316,7 +344,7 @@ Module Contents
       each document is one stage in the pipeline.
 
 
-   .. py:method:: HasField(field_name: Literal['_enable_backfill', b'_enable_backfill', 'enable_backfill', b'enable_backfill']) -> bool
+   .. py:method:: HasField(field_name: Literal['_data_source_type', b'_data_source_type', '_enable_backfill', b'_enable_backfill', 'data_source_type', b'data_source_type', 'enable_backfill', b'enable_backfill']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -334,7 +362,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_enable_backfill', b'_enable_backfill']) -> Literal['enable_backfill'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_data_source_type', b'_data_source_type']) -> Literal['data_source_type'] | None
+                  WhichOneof(oneof_group: Literal['_enable_backfill', b'_enable_backfill']) -> Literal['enable_backfill'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -372,7 +401,7 @@ Module Contents
 
 .. py:data:: global___CreateDataPipelineResponse
 
-.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ...)
+.. py:class:: UpdateDataPipelineRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., schedule: str = ..., data_source_type: viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -403,11 +432,51 @@ Module Contents
       defines the input time window; an hourly schedule would process 1 hour of data at a time).
 
 
+   .. py:attribute:: data_source_type
+      :type:  viam.gen.app.data.v1.data_pb2.TabularDataSourceType.ValueType
+
+      The type of data source for the pipeline. If not specified, default is standard data storage.
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
       A MongoDB aggregation pipeline as a list of BSON documents, where
       each document is one stage in the pipeline.
+
+
+   .. py:method:: HasField(field_name: Literal['_data_source_type', b'_data_source_type', 'data_source_type', b'data_source_type']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_data_source_type', b'_data_source_type']) -> Literal['data_source_type'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___UpdateDataPipelineRequest
