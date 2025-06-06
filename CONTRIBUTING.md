@@ -13,15 +13,15 @@ If you are reporting a bug, please include:
 - Any details about your local setup that might be helpful in troubleshooting.
 - Detailed steps to reproduce the bug.
 
+[Link to submit](https://viam.atlassian.net/servicedesk/customer/portal/7)
+
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" and "help
-wanted" is open to whoever wants to implement it.
+Look through the [Jira tickets](https://viam.atlassian.net/jira/software/c/projects/RSDK/issues/RSDK-10237?filter=allissues&jql=project%20%3D%20%22RSDK%22%20AND%20component%20%3D%20PythonSDK%20AND%20status%20NOT%20IN%20%28%22Awaiting%20Release%22%2C%20Closed%29%0AORDER%20BY%20created%20DESC) for bug ticket types.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with "enhancement"
-and "help wanted" is open to whoever wants to implement it.
+Look through the [Jira tickets](https://viam.atlassian.net/jira/software/c/projects/RSDK/issues/RSDK-10237?filter=allissues&jql=project%20%3D%20%22RSDK%22%20AND%20component%20%3D%20PythonSDK%20AND%20status%20NOT%20IN%20%28%22Awaiting%20Release%22%2C%20Closed%29%0AORDER%20BY%20created%20DESC) for features which are "task" ticket types.
 
 ### Write Documentation
 
