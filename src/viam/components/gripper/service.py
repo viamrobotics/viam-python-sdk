@@ -6,7 +6,7 @@ from viam.proto.common import (
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
-    GetKinematicsResponse
+    GetKinematicsResponse,
 )
 from viam.proto.component.gripper import (
     GrabRequest,

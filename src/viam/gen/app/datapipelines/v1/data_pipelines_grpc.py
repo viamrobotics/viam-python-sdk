@@ -5,8 +5,8 @@ import grpclib.client
 import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
-import google.protobuf.timestamp_pb2
 from .... import app
+import google.protobuf.timestamp_pb2
 
 class DataPipelinesServiceBase(abc.ABC):
 
