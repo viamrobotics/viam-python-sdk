@@ -44,7 +44,7 @@ from ..components.button import Button  # noqa: F401
 from ..components.camera import Camera  # noqa: F401
 from ..components.encoder import Encoder  # noqa: F401
 from ..components.gantry import Gantry  # noqa: F401
-from ..components.generic import Generic  # noqa: F401
+from ..components.generic import Generic as GenericComponent  # noqa: F401
 from ..components.gripper import Gripper  # noqa: F401
 from ..components.input import Controller  # noqa: F401
 from ..components.motor import Motor  # noqa: F401
@@ -55,7 +55,7 @@ from ..components.sensor import Sensor  # noqa: F401
 from ..components.servo import Servo  # noqa: F401
 from ..components.switch import Switch  # noqa: F401
 from ..services.discovery import Discovery  # noqa: F401
-from ..services.generic import Generic  # noqa: F401
+from ..services.generic import Generic as GenericService  # noqa: F401
 from ..services.mlmodel import MLModel  # noqa: F401
 from ..services.motion import Motion  # noqa: F401
 from ..services.navigation import Navigation  # noqa: F401
