@@ -64,7 +64,7 @@ class Foo(Generic, Reconfigurable):
 
         optional_motor = Motor.get_resource_name(cfg_optional_motor)
         if optional_motor not in dependencies:
-            print(f'could not get optional motor {cfg_optional_motor} from dependencies; continuing')
+            print(f"could not get optional motor {cfg_optional_motor} from dependencies; continuing")
         else:
             self.optional_motor = optional_motor
 
