@@ -532,12 +532,14 @@ global___GetOrganizationResponse = GetOrganizationResponse
 class GetOrganizationNamespaceAvailabilityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     public_namespace: builtins.str
+    organization_id: builtins.str
 
-    def __init__(self, *, public_namespace: builtins.str=...) -> None:
+    def __init__(self, *, public_namespace: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'public_namespace', b'public_namespace']) -> None:
         ...
 global___GetOrganizationNamespaceAvailabilityRequest = GetOrganizationNamespaceAvailabilityRequest
 
