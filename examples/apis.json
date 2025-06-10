@@ -9,6 +9,18 @@
     "args": ["\"16\""],
     "packagePath": "viam.components"
   },
+  "button": {
+	  "func": "push",
+	  "packagePath": "viam.components",
+	  "commented": true
+  },
+  "genericcomponent": {
+	  "func": "do_command",
+	  "args": ["{}"],
+	  "packagePath": "viam.components",
+	  "commented": true,
+	  "importName": "GenericComponent"
+  },
   "camera": {
     "func": "get_image",
     "packagePath": "viam.components"
@@ -81,6 +93,13 @@
     "func": "metadata",
     "packagePath": "viam.services",
     "importName": "MLModelClient"
+  },
+  "genericservice": {
+	  "func": "do_command",
+	  "args": ["{}"],
+	  "packagePath": "viam.services",
+	  "commented": true,
+	  "importName": "GenericService"
   },
   "slam": {
     "func": "get_point_cloud_map",
