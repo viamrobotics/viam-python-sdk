@@ -1466,7 +1466,7 @@ class DataClient:
         """Upload binary sensor data.
 
         Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
-        Binary data can be found on the **DATA** page of the Viam app.
+        Binary data can be found on the **DATA** page.
 
         ::
 
