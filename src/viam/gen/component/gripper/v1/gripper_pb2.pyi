@@ -135,3 +135,45 @@ class IsMovingResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___IsMovingResponse = IsMovingResponse
+
+@typing.final
+class IsHoldingSomethingRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___IsHoldingSomethingRequest = IsHoldingSomethingRequest
+
+@typing.final
+class IsHoldingSomethingResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IS_HOLDING_SOMETHING_FIELD_NUMBER: builtins.int
+    META_FIELD_NUMBER: builtins.int
+    is_holding_something: builtins.bool
+
+    @property
+    def meta(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, is_holding_something: builtins.bool=..., meta: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['meta', b'meta']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['is_holding_something', b'is_holding_something', 'meta', b'meta']) -> None:
+        ...
+global___IsHoldingSomethingResponse = IsHoldingSomethingResponse
