@@ -470,7 +470,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             sql_query (str): The SQL query to run.
 
         Returns:
@@ -506,7 +506,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.
                 Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
                 future, so prefer the dictionary option.
@@ -808,7 +808,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization to delete the data from.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
                 10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
 
@@ -840,7 +840,7 @@ class DataClient:
             filter (~viam.proto.app.data.Filter): Optional, specifies binary data to delete.
                 **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**
                 You must specify an organization ID with ``organization_ids`` when using this option.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             int: The number of items deleted.
@@ -1204,7 +1204,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to connect to.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             str: The hostname of the federated database.
@@ -1228,7 +1228,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to configure a database user for.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             password (str): The password of the user.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser>`_.
@@ -1250,7 +1250,7 @@ class DataClient:
         Args:
             name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             str: The dataset ID of the created dataset.
@@ -1301,7 +1301,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to retrieve datasets from.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
@@ -1874,7 +1874,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the pipelines.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[DataPipeline]: A list of all of the data pipelines for the given organization.
@@ -1897,7 +1897,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that will own the pipeline.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             name (str): The name of the pipeline.
             mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
             schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
