@@ -58,7 +58,7 @@ class ViamClient:
 
     @classmethod
     async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
-        """Create `ViamClient` that establishes a connection to the Viam app.
+        """Create `ViamClient` that establishes a connection to Viam.
 
         ::
 
