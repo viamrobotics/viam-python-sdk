@@ -1893,7 +1893,7 @@ class DataClient:
         name: str,
         mql_binary: List[Dict[str, Any]],
         schedule: str,
-        data_source_type: TabularDataSourceType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
+        data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
     ) -> str:
         """Create a new data pipeline.
 
