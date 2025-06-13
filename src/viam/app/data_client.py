@@ -1883,7 +1883,7 @@ class DataClient:
         response: ListDataPipelinesResponse = await self._data_pipelines_client.ListDataPipelines(request, metadata=self._metadata)
         return [DataClient.DataPipeline.from_proto(pipeline) for pipeline in response.data_pipelines]
 
-    async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str:
+    async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str, enable_backfill: bool) -> str:
         """Create a new data pipeline.
 
         ::
@@ -1902,12 +1902,13 @@ class DataClient:
             mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
             schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
                 defines the input time window; an hourly schedule would process 1 hour of data at a time).
+            enable_backfill (bool):  When true, pipeline runs will be scheduled for the organization's past data.
 
         Returns:
             str: The ID of the newly created pipeline.
         """
         binary: List[bytes] = [bson.encode(query) for query in mql_binary]
-        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule)
+        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, enable_backfill=enable_backfill)
         response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
         return response.id
 
