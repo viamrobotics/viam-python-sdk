@@ -10,7 +10,7 @@ from . import KinematicsFileFormat
 @dataclass
 class HoldingStatus:
     is_holding_something: bool
-    meta: Dict[str, Any] = dict()
+    meta: Optional[Dict[str, Any]] = None
 
 class Gripper(ComponentBase):
     """
