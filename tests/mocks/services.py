@@ -1147,6 +1147,7 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.mql_binary = request.mql_binary
         self.schedule = request.schedule
         self.org_id = request.organization_id
+        self.data_source_type = request.data_source_type
         await stream.send_message(CreateDataPipelineResponse(id=self.create_response))
 
     async def GetDataPipeline(self, stream: Stream[GetDataPipelineRequest, GetDataPipelineResponse]) -> None:
