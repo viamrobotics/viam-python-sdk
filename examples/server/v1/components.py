@@ -24,7 +24,7 @@ from viam.components.board import Board, TickStream
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
-from viam.components.gripper import Gripper
+from viam.components.gripper import Gripper, HoldingStatus
 from viam.components.input import Control, ControlFunction, Controller, Event, EventType
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
@@ -513,17 +513,23 @@ class ExampleGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
+        self.holding_something = False
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         super().__init__(name)
 
     async def open(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.opened = True
         self.is_stopped = False
+        self.holding_something = False
 
     async def grab(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         self.opened = False
         self.is_stopped = False
-        return random.choice([True, False])
+        self.holding_something = random.choice([True, False])
+        return self.holding_something
+
+    async def is_holding_something(self, *, extra: Optional[Dict[str, Any]] = None, **kwargs) -> HoldingStatus:
+        return HoldingStatus(self.holding_something)
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
