@@ -104,6 +104,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.DataPipeline.created_on"><code class="docutils literal notranslate"><span class="pre">DataClient.DataPipeline.created_on</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.DataPipeline.updated_at"><code class="docutils literal notranslate"><span class="pre">DataClient.DataPipeline.updated_at</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.DataPipeline.enabled"><code class="docutils literal notranslate"><span class="pre">DataClient.DataPipeline.enabled</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.DataPipeline.data_source_type"><code class="docutils literal notranslate"><span class="pre">DataClient.DataPipeline.data_source_type</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.DataPipeline.from_proto"><code class="docutils literal notranslate"><span class="pre">DataClient.DataPipeline.from_proto()</span></code></a></li>
 </ul>
 </li>
@@ -468,6 +469,12 @@
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.DataPipeline.enabled">
 <span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.DataPipeline.enabled" title="Permalink to this definition"></a></dt>
 <dd><p>Whether the data pipeline is enabled</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.DataPipeline.data_source_type">
+<span class="sig-name descname"><span class="pre">data_source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.proto.app.data.TabularDataSourceType.ValueType</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.DataPipeline.data_source_type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of data source for the data pipeline</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1826,13 +1833,14 @@ You can obtain your organization ID from the Viam app’s organization settings 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.create_data_pipeline">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_data_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.create_data_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.create_data_pipeline" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_data_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.data.TabularDataSourceType.ValueType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.create_data_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.create_data_pipeline" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new data pipeline.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_pipeline_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_data_pipeline</span><span class="p">(</span>
     <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORGANIZATION-ID&gt;&quot;</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-PIPELINE-NAME&gt;&quot;</span><span class="p">,</span>
     <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">YOUR</span><span class="o">-</span><span class="n">MQL</span><span class="o">-</span><span class="n">PIPELINE</span><span class="o">-</span><span class="n">AGGREGATION</span><span class="o">&gt;</span><span class="p">],</span>
-    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-SCHEDULE&gt;&quot;</span>
+    <span class="n">schedule</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-SCHEDULE&gt;&quot;</span><span class="p">,</span>
+    <span class="n">data_source_type</span><span class="o">=</span><span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">TABULAR_DATA_SOURCE_TYPE_STANDARD</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1845,6 +1853,8 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.</p></li>
 <li><p><strong>schedule</strong> (<em>str</em>) – A cron expression representing the expected execution schedule in UTC (note this also
 defines the input time window; an hourly schedule would process 1 hour of data at a time).</p></li>
+<li><p><strong>data_source_type</strong> (<a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataSourceType" title="viam.gen.app.data.v1.data_pb2.TabularDataSourceType"><em>TabularDataSourceType</em></a>) – The type of data source to use for the pipeline.
+Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

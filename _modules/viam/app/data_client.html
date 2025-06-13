@@ -359,6 +359,9 @@
         <span class="n">enabled</span><span class="p">:</span> <span class="nb">bool</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether the data pipeline is enabled&quot;&quot;&quot;</span>
 
+        <span class="n">data_source_type</span><span class="p">:</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">ValueType</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The type of data source for the data pipeline&quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="DataClient.DataPipeline.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipeline.from_proto">[docs]</a>        <span class="nd">@classmethod</span>
         <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data_pipeline</span><span class="p">:</span> <span class="n">ProtoDataPipeline</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
@@ -370,6 +373,7 @@
                 <span class="n">created_on</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">created_on</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
                 <span class="n">updated_at</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">updated_at</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
                 <span class="n">enabled</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">enabled</span><span class="p">,</span>
+                <span class="n">data_source_type</span><span class="o">=</span><span class="n">data_pipeline</span><span class="o">.</span><span class="n">data_source_type</span><span class="p">,</span>
             <span class="p">)</span></div></div>
 
 <div class="viewcode-block" id="DataClient.DataPipelineRun"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.DataPipelineRun">[docs]</a>    <span class="nd">@dataclass</span>
@@ -1972,7 +1976,14 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelinesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelines</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipeline</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">pipeline</span><span class="p">)</span> <span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data_pipelines</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.create_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_data_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mql_binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">schedule</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.create_data_pipeline"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_data_pipeline">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_data_pipeline</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">mql_binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">schedule</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">data_source_type</span><span class="p">:</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">ValueType</span> <span class="o">=</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">TABULAR_DATA_SOURCE_TYPE_STANDARD</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new data pipeline.</span>
 
 <span class="sd">        ::</span>
@@ -1981,7 +1992,8 @@
 <span class="sd">                organization_id=&quot;&lt;YOUR-ORGANIZATION-ID&gt;&quot;,</span>
 <span class="sd">                name=&quot;&lt;YOUR-PIPELINE-NAME&gt;&quot;,</span>
 <span class="sd">                mql_binary=[&lt;YOUR-MQL-PIPELINE-AGGREGATION&gt;],</span>
-<span class="sd">                schedule=&quot;&lt;YOUR-SCHEDULE&gt;&quot;</span>
+<span class="sd">                schedule=&quot;&lt;YOUR-SCHEDULE&gt;&quot;,</span>
+<span class="sd">                data_source_type=TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -1991,12 +2003,14 @@
 <span class="sd">            mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.</span>
 <span class="sd">            schedule (str): A cron expression representing the expected execution schedule in UTC (note this also</span>
 <span class="sd">                defines the input time window; an hourly schedule would process 1 hour of data at a time).</span>
+<span class="sd">            data_source_type (TabularDataSourceType): The type of data source to use for the pipeline.</span>
+<span class="sd">                Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The ID of the newly created pipeline.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">query</span><span class="p">)</span> <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">mql_binary</span><span class="p">]</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDataPipelineRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDataPipelineRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">,</span> <span class="n">data_source_type</span><span class="o">=</span><span class="n">data_source_type</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDataPipelineResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">CreateDataPipeline</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
