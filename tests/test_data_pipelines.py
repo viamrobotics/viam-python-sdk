@@ -16,7 +16,8 @@ ORG_ID = "org_id"
 SCHEDULE = "0 0 * * *"
 UPDATED_SCHEDULE = "0 1 * * *"
 MQL_BINARY = []
-DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD
+DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
+STANDARD_DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD
 
 TIMESTAMP = datetime.fromtimestamp(0)
 TIMESTAMP_PROTO = datetime_to_timestamp(TIMESTAMP)
@@ -87,7 +88,7 @@ class TestClient:
             assert service.org_id == ORG_ID
             assert service.schedule == SCHEDULE
             assert service.mql_binary == MQL_BINARY
-            assert service.data_source_type == DATA_SOURCE_TYPE
+            assert service.data_source_type == STANDARD_DATA_SOURCE_TYPE
 
     async def test_get_data_pipeline(self, service: MockDataPipelines):
         async with ChannelFor([service]) as channel:
