@@ -79,6 +79,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         holding_status = await gripper.is_holding_something()
         response = IsHoldingSomethingResponse(
             is_holding_something=holding_status.is_holding_something, meta=dict_to_struct(holding_status.meta))
+        await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
