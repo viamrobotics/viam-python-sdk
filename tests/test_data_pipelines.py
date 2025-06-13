@@ -6,6 +6,7 @@ from grpclib.testing import ChannelFor
 from viam.app.data_client import DataClient
 from viam.proto.app.datapipelines import DataPipeline, DataPipelineRun, DataPipelineRunStatus
 from viam.utils import datetime_to_timestamp
+from viam.proto.app.data import TabularDataSourceType
 
 from .mocks.services import MockDataPipelines
 
@@ -16,6 +17,8 @@ SCHEDULE = "0 0 * * *"
 UPDATED_SCHEDULE = "0 1 * * *"
 MQL_BINARY = []
 ENABLE_BACKFILL = True
+DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
+STANDARD_DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD
 
 TIMESTAMP = datetime.fromtimestamp(0)
 TIMESTAMP_PROTO = datetime_to_timestamp(TIMESTAMP)
@@ -29,6 +32,7 @@ PROTO_DATA_PIPELINE = DataPipeline(
     enabled=True,
     created_on=TIMESTAMP_PROTO,
     updated_at=TIMESTAMP_PROTO,
+    data_source_type=DATA_SOURCE_TYPE,
 )
 PROTO_DATA_PIPELINES = [PROTO_DATA_PIPELINE]
 
@@ -86,6 +90,7 @@ class TestClient:
             assert service.schedule == SCHEDULE
             assert service.mql_binary == MQL_BINARY
             assert service.enable_backfill == ENABLE_BACKFILL
+            assert service.data_source_type == STANDARD_DATA_SOURCE_TYPE
 
     async def test_get_data_pipeline(self, service: MockDataPipelines):
         async with ChannelFor([service]) as channel:
