@@ -2,7 +2,7 @@ from viam.proto.common import KinematicsFileFormat
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import GripperClient
-from .gripper import Gripper
+from .gripper import Gripper, HoldingStatus
 from .service import GripperRPCService
 
 __all__ = [

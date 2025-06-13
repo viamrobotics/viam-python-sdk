@@ -18,6 +18,8 @@ from viam.proto.component.gripper import (
     OpenResponse,
     StopRequest,
     StopResponse,
+    IsHoldingSomethingRequest,
+    IsHoldingSomethingResponse
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -68,6 +70,15 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         is_moving = await gripper.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
+
+    async def IsHoldingSomething(self, stream: Stream[IsHoldingSomethingRequest, IsHoldingSomethingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        gripper = self.get_resource(name)
+        holding_status = await gripper.is_holding_something()
+        response = IsHoldingSomethingResponse(
+            is_holding_something=holding_status.is_holding_something, meta=dict_to_struct(holding_status.meta))
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
