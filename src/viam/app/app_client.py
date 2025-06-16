@@ -786,7 +786,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization>`_.
         """
@@ -802,7 +802,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list members of.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
@@ -829,7 +829,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             email (str): The email address to send the invite to.
             authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
                 authorizations to include in the invite. If not provided, full owner permissions will
@@ -887,7 +887,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite is for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             email (str): Email of the user the invite was sent to.
             add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
             remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
@@ -921,7 +921,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to remove the user from.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             user_id (str): The ID of the user to remove.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationmember>`_.
@@ -938,7 +938,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             email (str): The email address the pending invite was sent to.
 
         Raises:
@@ -958,7 +958,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             email (str): The email address associated with the invite.
 
         Raises:
@@ -982,7 +982,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the location under.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             name (str): Name of the location.
             parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
                 location ID is provided.
@@ -1094,7 +1094,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to list locations for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
@@ -1241,7 +1241,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list rover rental robots for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
@@ -1744,7 +1744,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list fragments for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             show_public (bool): Optional boolean specifying whether or not to only show public fragments. If True, only public fragments
                 will return. If False, only private fragments will return. Defaults to True.
 
@@ -1800,7 +1800,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the fragment within.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             name (str): Name of the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be
                 assigned by updating the fragment.
@@ -1942,7 +1942,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the role in.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
@@ -1987,7 +1987,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization the role exists in.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             identity_id (str): ID of the entity the role belongs to (for example, a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
@@ -2290,7 +2290,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the module under.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             name (str): The name of the module. Must be unique within your organization.
 
         Raises:
@@ -2431,7 +2431,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list modules for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[viam.proto.app.Module]: The list of modules.
@@ -2465,7 +2465,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the key for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
                 with the key.
             name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
@@ -2531,7 +2531,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list API keys for.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.
@@ -2570,7 +2570,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization with which the user-defined metadata is associated.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
@@ -2588,7 +2588,7 @@ class AppClient:
 
         Args:
             organization_id (str): The ID of the organization with which to associate the user-defined metadata.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.
         """
         request = UpdateOrganizationMetadataRequest(organization_id=org_id, data=dict_to_struct(metadata))
@@ -2603,7 +2603,7 @@ class AppClient:
 
         Args:
             location_id (str): The ID of the location with which the user-defined metadata is associated.
-                You can obtain your location ID from the Viam app's locations page.
+                You can obtain your location ID from the locations page.
 
         Returns:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2621,7 +2621,7 @@ class AppClient:
 
         Args:
             location_id (str): The ID of the location with which to associate the user-defined metadata.
-                You can obtain your location ID from the Viam app's locations page.
+                You can obtain your location ID from the locations page.
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateLocationMetadataRequest(location_id=location_id, data=dict_to_struct(metadata))
@@ -2636,7 +2636,7 @@ class AppClient:
 
         Args:
             robot_id (str): The ID of the robot with which the user-defined metadata is associated.
-                You can obtain your robot ID from the Viam app's machine page.
+                You can obtain your robot ID from the machine page.
 
         Returns:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2654,7 +2654,7 @@ class AppClient:
 
         Args:
             robot_id (str): The ID of the robot with which to associate the user-defined metadata.
-                You can obtain your robot ID from the Viam app's machine page.
+                You can obtain your robot ID from the machine page.
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateRobotMetadataRequest(id=robot_id, data=dict_to_struct(metadata))
@@ -2669,7 +2669,7 @@ class AppClient:
 
         Args:
             robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.
-                You can obtain your robot part ID from the Viam app's machine page.
+                You can obtain your robot part ID from the machine page.
 
         Returns:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2687,7 +2687,7 @@ class AppClient:
 
         Args:
             robot_id (str): The ID of the robot part with which to associate the user-defined metadata.
-                You can obtain your robot part ID from the Viam app's machine page.
+                You can obtain your robot part ID from the machine page.
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
