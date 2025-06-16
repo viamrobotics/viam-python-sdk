@@ -101,6 +101,20 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAMClient.close"><code class="docutils literal notranslate"><span class="pre">SLAMClient.close()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.services.slam.SLAM"><code class="docutils literal notranslate"><span class="pre">SLAM</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.API"><code class="docutils literal notranslate"><span class="pre">SLAM.API</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.Properties"><code class="docutils literal notranslate"><span class="pre">SLAM.Properties</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_internal_state"><code class="docutils literal notranslate"><span class="pre">SLAM.get_internal_state()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_point_cloud_map"><code class="docutils literal notranslate"><span class="pre">SLAM.get_point_cloud_map()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_position"><code class="docutils literal notranslate"><span class="pre">SLAM.get_position()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_properties"><code class="docutils literal notranslate"><span class="pre">SLAM.get_properties()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.from_robot"><code class="docutils literal notranslate"><span class="pre">SLAM.from_robot()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.do_command"><code class="docutils literal notranslate"><span class="pre">SLAM.do_command()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SLAM.get_resource_name()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.get_operation"><code class="docutils literal notranslate"><span class="pre">SLAM.get_operation()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.slam.SLAM.close"><code class="docutils literal notranslate"><span class="pre">SLAM.close()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -172,6 +186,9 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.services.slam.SLAMClient" title="viam.services.slam.SLAMClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMClient</span></code></a></p></td>
 <td><p>Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.slam.SLAM" title="viam.services.slam.SLAM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAM</span></code></a></p></td>
+<td><p>SLAM represents a SLAM service.</p></td>
 </tr>
 </tbody>
 </table>
@@ -474,6 +491,253 @@ If the <code class="docutils literal notranslate"><span class="pre">Operation</s
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.slam.SLAMClient.close">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.SLAMClient.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+non-Close methods are called.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.slam.</span></span><span class="sig-name descname"><span class="pre">SLAM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">logging.Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/slam/slam.html#SLAM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.SLAM" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a></p>
+<p>SLAM represents a SLAM service.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+arm implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
+overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/services/slam/">SLAM service</a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.API">
+<span class="sig-name descname"><span class="pre">API</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.slam.SLAM.API" title="Permalink to this definition"></a></dt>
+<dd><p>The API of the Resource</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.Properties">
+<span class="sig-name descname"><span class="pre">Properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">GetPropertiesResponse</span></em><a class="headerlink" href="#viam.services.slam.SLAM.Properties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_internal_state">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_internal_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/slam/slam.html#SLAM.get_internal_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.SLAM.get_internal_state" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the internal state of the SLAM algorithm required to continue mapping/localization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the internal state of the SLAM algorithm required to continue mapping/localization.</span>
+<span class="n">internal_state</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam</span><span class="o">.</span><span class="n">get_internal_state</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Chunks of the internal state of the SLAM algorithm</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse" title="viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse">GetInternalStateResponse</a>]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/services/slam/#getinternalstate">SLAM service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_point_cloud_map">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_edited_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/slam/slam.html#SLAM.get_point_cloud_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.SLAM.get_point_cloud_map" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the point cloud map.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the point cloud map in standard PCD format.</span>
+<span class="n">pcd_map</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam_svc</span><span class="o">.</span><span class="n">get_point_cloud_map</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>return_edited_map</strong> (<em>bool</em>) – signal to the SLAM service to return an edited map, if the map package contains one and if
+the SLAM service supports the feature</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
+GetPointCloudMapResponse.point_cloud_pcd_chunk values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse">GetPointCloudMapResponse</a>]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/services/slam/#getpointcloudmap">SLAM service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_position">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.services.slam.Pose" title="viam.services.slam.Pose"><span class="pre">viam.services.slam.Pose</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/services/slam/slam.html#SLAM.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.SLAM.get_position" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get current position of the specified component in the SLAM Map.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current position of the specified source component in the SLAM map as a Pose.</span>
+<span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current position of the specified component</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#viam.services.slam.Pose" title="viam.services.slam.Pose">Pose</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/services/slam/#getposition">SLAM service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_properties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/services/slam/slam.html#SLAM.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.SLAM.get_properties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get information regarding the current SLAM session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the properties of your current SLAM session.</span>
+<span class="n">slam_properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam_svc</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The properties of SLAM</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties">Properties</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/services/slam/#getproperties">SLAM service</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.slam.SLAM.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="c1"># Replace &quot;&lt;MACHINE-URL&gt;&quot; (included brackets) with your machine&#39;s connection URL or FQDN</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s2">&quot;&lt;MACHINE-URL&gt;&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Can be used with any resource, using the motion service as an example</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+    <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.services.slam.SLAM.do_command" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Send/receive arbitrary commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">SERVICE</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;builtin&quot;</span><span class="p">)</span>  <span class="c1"># replace SERVICE with the appropriate class</span>
+
+<span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;cmnd&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;someparameter&quot;</span><span class="p">:</span> <span class="mi">52</span>
+<span class="p">}</span>
+
+<span class="c1"># Can be used with any resource, using the motion service as an example</span>
+<span class="k">await</span> <span class="n">service</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">my_command</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the executed command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.slam.SLAM.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can be used with any resource, using an arm as an example</span>
+<span class="n">my_arm_name</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.slam.SLAM.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.SLAM.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.slam.SLAM.close" title="Permalink to this definition"></a></dt>
 <dd><p>Safely shut down the resource and prevent further use.</p>
 <p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
 If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future

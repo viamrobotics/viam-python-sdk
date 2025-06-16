@@ -124,6 +124,33 @@
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
 
+<span class="c1"># These imports are required to register build-in resources with the registry</span>
+<span class="kn">from</span> <span class="nn">..components.arm</span> <span class="kn">import</span> <span class="n">Arm</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.audio_input</span> <span class="kn">import</span> <span class="n">AudioInput</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.base</span> <span class="kn">import</span> <span class="n">Base</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.board</span> <span class="kn">import</span> <span class="n">Board</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.button</span> <span class="kn">import</span> <span class="n">Button</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.camera</span> <span class="kn">import</span> <span class="n">Camera</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.encoder</span> <span class="kn">import</span> <span class="n">Encoder</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.gantry</span> <span class="kn">import</span> <span class="n">Gantry</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.generic</span> <span class="kn">import</span> <span class="n">Generic</span> <span class="k">as</span> <span class="n">GenericComponent</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.input</span> <span class="kn">import</span> <span class="n">Controller</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.motor</span> <span class="kn">import</span> <span class="n">Motor</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.movement_sensor</span> <span class="kn">import</span> <span class="n">MovementSensor</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.power_sensor</span> <span class="kn">import</span> <span class="n">PowerSensor</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.servo</span> <span class="kn">import</span> <span class="n">Servo</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..components.switch</span> <span class="kn">import</span> <span class="n">Switch</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.discovery</span> <span class="kn">import</span> <span class="n">Discovery</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.generic</span> <span class="kn">import</span> <span class="n">Generic</span> <span class="k">as</span> <span class="n">GenericService</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.mlmodel</span> <span class="kn">import</span> <span class="n">MLModel</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.motion</span> <span class="kn">import</span> <span class="n">Motion</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.navigation</span> <span class="kn">import</span> <span class="n">Navigation</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.slam</span> <span class="kn">import</span> <span class="n">SLAM</span>  <span class="c1"># noqa: F401</span>
+<span class="kn">from</span> <span class="nn">..services.vision</span> <span class="kn">import</span> <span class="n">Vision</span>  <span class="c1"># noqa: F401</span>
+
 <span class="kn">from</span> <span class="nn">.service</span> <span class="kn">import</span> <span class="n">ModuleRPCService</span>
 <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Reconfigurable</span><span class="p">,</span> <span class="n">Stoppable</span>
 
