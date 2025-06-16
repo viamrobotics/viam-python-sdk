@@ -321,11 +321,11 @@ from viam.proto.provisioning import (
     GetSmartMachineStatusRequest,
     GetSmartMachineStatusResponse,
     NetworkInfo,
-    ProvisioningServiceBase,
     SetNetworkCredentialsRequest,
     SetNetworkCredentialsResponse,
     SetSmartMachineCredentialsRequest,
     SetSmartMachineCredentialsResponse,
+    UnimplementedProvisioningServiceBase,
 )
 from viam.proto.service.mlmodel import (
     FlatTensor,
@@ -792,7 +792,7 @@ class MockNavigation(Navigation):
         return {"command": command}
 
 
-class MockProvisioning(ProvisioningServiceBase):
+class MockProvisioning(UnimplementedProvisioningServiceBase):
     def __init__(
         self,
         smart_machine_status: GetSmartMachineStatusResponse,
@@ -1147,6 +1147,7 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.mql_binary = request.mql_binary
         self.schedule = request.schedule
         self.org_id = request.organization_id
+        self.data_source_type = request.data_source_type
         await stream.send_message(CreateDataPipelineResponse(id=self.create_response))
 
     async def GetDataPipeline(self, stream: Stream[GetDataPipelineRequest, GetDataPipelineResponse]) -> None:

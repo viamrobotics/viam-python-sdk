@@ -513,6 +513,7 @@ class ExampleGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         super().__init__(name)
 
     async def open(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
@@ -532,6 +533,9 @@ class ExampleGripper(Gripper):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
+
+    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        return self.kinematics
 
 
 class ExampleMotor(Motor):

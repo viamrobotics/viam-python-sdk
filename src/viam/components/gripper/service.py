@@ -1,6 +1,13 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -74,8 +81,17 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        arm = self.get_resource(request.name)
+        gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await gripper.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)
+
+    async def GetKinematics(self, stream: Stream[GetKinematicsRequest, GetKinematicsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gripper = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        format, kinematics_data = await gripper.get_kinematics(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data)
         await stream.send_message(response)

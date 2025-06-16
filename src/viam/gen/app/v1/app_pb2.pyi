@@ -532,12 +532,14 @@ global___GetOrganizationResponse = GetOrganizationResponse
 class GetOrganizationNamespaceAvailabilityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     public_namespace: builtins.str
+    organization_id: builtins.str
 
-    def __init__(self, *, public_namespace: builtins.str=...) -> None:
+    def __init__(self, *, public_namespace: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'public_namespace', b'public_namespace']) -> None:
         ...
 global___GetOrganizationNamespaceAvailabilityRequest = GetOrganizationNamespaceAvailabilityRequest
 
@@ -886,13 +888,22 @@ class ResendOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     EMAIL_FIELD_NUMBER: builtins.int
+    SEND_EMAIL_INVITE_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
+    send_email_invite: builtins.bool
+    'Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.\n    When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.\n    '
 
-    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., send_email_invite: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_send_email_invite', b'_send_email_invite', 'send_email_invite', b'send_email_invite']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_send_email_invite', b'_send_email_invite', 'email', b'email', 'organization_id', b'organization_id', 'send_email_invite', b'send_email_invite']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_send_email_invite', b'_send_email_invite']) -> typing.Literal['send_email_invite'] | None:
         ...
 global___ResendOrganizationInviteRequest = ResendOrganizationInviteRequest
 
@@ -1868,6 +1879,40 @@ class GetRobotPartResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['config_json', b'config_json', 'part', b'part']) -> None:
         ...
 global___GetRobotPartResponse = GetRobotPartResponse
+
+@typing.final
+class GetRobotPartByNameAndLocationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    location_id: builtins.str
+
+    def __init__(self, *, name: builtins.str=..., location_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'name', b'name']) -> None:
+        ...
+global___GetRobotPartByNameAndLocationRequest = GetRobotPartByNameAndLocationRequest
+
+@typing.final
+class GetRobotPartByNameAndLocationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_FIELD_NUMBER: builtins.int
+
+    @property
+    def part(self) -> global___RobotPart:
+        ...
+
+    def __init__(self, *, part: global___RobotPart | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['part', b'part']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['part', b'part']) -> None:
+        ...
+global___GetRobotPartByNameAndLocationResponse = GetRobotPartByNameAndLocationResponse
 
 @typing.final
 class GetRobotPartLogsRequest(google.protobuf.message.Message):
@@ -2935,12 +2980,17 @@ global___ListMachineFragmentsResponse = ListMachineFragmentsResponse
 class ListMachineSummariesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    FRAGMENT_IDS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=...) -> None:
+    @property
+    def fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional list of fragment IDs to filter machines that use any of these fragments"""
+
+    def __init__(self, *, organization_id: builtins.str=..., fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment_ids', b'fragment_ids', 'organization_id', b'organization_id']) -> None:
         ...
 global___ListMachineSummariesRequest = ListMachineSummariesRequest
 

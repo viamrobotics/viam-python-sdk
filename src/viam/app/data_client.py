@@ -270,6 +270,9 @@ class DataClient:
         enabled: bool
         """Whether the data pipeline is enabled"""
 
+        data_source_type: TabularDataSourceType.ValueType
+        """The type of data source for the data pipeline"""
+
         @classmethod
         def from_proto(cls, data_pipeline: ProtoDataPipeline) -> Self:
             return cls(
@@ -281,6 +284,7 @@ class DataClient:
                 created_on=data_pipeline.created_on.ToDatetime(),
                 updated_at=data_pipeline.updated_at.ToDatetime(),
                 enabled=data_pipeline.enabled,
+                data_source_type=data_pipeline.data_source_type,
             )
 
     @dataclass
@@ -1883,7 +1887,14 @@ class DataClient:
         response: ListDataPipelinesResponse = await self._data_pipelines_client.ListDataPipelines(request, metadata=self._metadata)
         return [DataClient.DataPipeline.from_proto(pipeline) for pipeline in response.data_pipelines]
 
-    async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str) -> str:
+    async def create_data_pipeline(
+        self,
+        organization_id: str,
+        name: str,
+        mql_binary: List[Dict[str, Any]],
+        schedule: str,
+        data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
+    ) -> str:
         """Create a new data pipeline.
 
         ::
@@ -1892,7 +1903,8 @@ class DataClient:
                 organization_id="<YOUR-ORGANIZATION-ID>",
                 name="<YOUR-PIPELINE-NAME>",
                 mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
-                schedule="<YOUR-SCHEDULE>"
+                schedule="<YOUR-SCHEDULE>",
+                data_source_type=TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
             )
 
         Args:
@@ -1902,12 +1914,14 @@ class DataClient:
             mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
             schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
                 defines the input time window; an hourly schedule would process 1 hour of data at a time).
+            data_source_type (TabularDataSourceType): The type of data source to use for the pipeline.
+                Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.
 
         Returns:
             str: The ID of the newly created pipeline.
         """
         binary: List[bytes] = [bson.encode(query) for query in mql_binary]
-        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule)
+        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, data_source_type=data_source_type)
         response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
         return response.id
 

@@ -11,6 +11,22 @@ import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
+class ExitProvisioningRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ExitProvisioningRequest = ExitProvisioningRequest
+
+@typing.final
+class ExitProvisioningResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ExitProvisioningResponse = ExitProvisioningResponse
+
+@typing.final
 class GetSmartMachineStatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -26,8 +42,10 @@ class GetSmartMachineStatusResponse(google.protobuf.message.Message):
     IS_ONLINE_FIELD_NUMBER: builtins.int
     LATEST_CONNECTION_ATTEMPT_FIELD_NUMBER: builtins.int
     ERRORS_FIELD_NUMBER: builtins.int
+    AGENT_VERSION_FIELD_NUMBER: builtins.int
     has_smart_machine_credentials: builtins.bool
     is_online: builtins.bool
+    agent_version: builtins.str
 
     @property
     def provisioning_info(self) -> global___ProvisioningInfo:
@@ -41,13 +59,13 @@ class GetSmartMachineStatusResponse(google.protobuf.message.Message):
     def errors(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, provisioning_info: global___ProvisioningInfo | None=..., has_smart_machine_credentials: builtins.bool=..., is_online: builtins.bool=..., latest_connection_attempt: global___NetworkInfo | None=..., errors: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, provisioning_info: global___ProvisioningInfo | None=..., has_smart_machine_credentials: builtins.bool=..., is_online: builtins.bool=..., latest_connection_attempt: global___NetworkInfo | None=..., errors: collections.abc.Iterable[builtins.str] | None=..., agent_version: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['errors', b'errors', 'has_smart_machine_credentials', b'has_smart_machine_credentials', 'is_online', b'is_online', 'latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['agent_version', b'agent_version', 'errors', b'errors', 'has_smart_machine_credentials', b'has_smart_machine_credentials', 'is_online', b'is_online', 'latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> None:
         ...
 global___GetSmartMachineStatusResponse = GetSmartMachineStatusResponse
 
