@@ -32,7 +32,7 @@ from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import API, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, resource_name_from_string
 from viam.robot.client import RobotClient
-from viam.rpc.dial import DialOptions
+from viam.rpc.dial import DialOptions, _host_port_from_url
 from viam.rpc.server import Server
 
 # These imports are required to register build-in resources with the registry
@@ -73,6 +73,7 @@ def _parse_module_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Start this viam python module")
     p.add_argument("socket_path", help="path where this module will serve a unix socket")
     p.add_argument("--log-level", type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
+    p.add_argument("--tcp-mode", action='store_true')
     return p.parse_args()
 
 
@@ -82,6 +83,7 @@ class Module:
     _ready: bool
     _log_level: int
     _lock: Lock
+    _tcp_mode: bool
     parent: Optional[RobotClient] = None
     server: Server
     logger: pylogging.Logger
@@ -100,7 +102,7 @@ class Module:
             Module: a new Module instance
         """
         args = _parse_module_args()
-        return cls(args.socket_path, log_level=args.log_level)
+        return cls(args.socket_path, log_level=args.log_level, tcp_mode=args.tcp_mode)
 
     @classmethod
     async def run_with_models(cls, *models: ResourceBase):
@@ -132,7 +134,7 @@ class Module:
             module.add_model_from_registry(*key.split("/"))  # pyright: ignore [reportArgumentType]
         await module.start()
 
-    def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
+    def __init__(self, address: str, *, log_level: int = logging.INFO, tcp_mode: bool = False) -> None:
         # When a module is launched by viam-server, its stdout is not connected to a tty.  In
         # response, python disables line buffering, which prevents `print` statements from being
         # immediately flushed to viam-server. This behavior can be confusing, interfere with
@@ -143,6 +145,7 @@ class Module:
         if isinstance(sys.stderr, io.TextIOWrapper):
             sys.stderr.reconfigure(line_buffering=True)
         self._address = address
+        self._tcp_mode = tcp_mode
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
 
@@ -188,7 +191,11 @@ class Module:
     async def start(self):
         """Start the module service and gRPC server"""
         try:
-            await self.server.serve(log_level=self._log_level, path=self._address)
+            if self._tcp_mode:
+                host, port = _host_port_from_url(self._address)
+                await self.server.serve(log_level=self._log_level, host=host, port=port)
+            else:
+                await self.server.serve(log_level=self._log_level, path=self._address)
         finally:
             await self.stop()
 

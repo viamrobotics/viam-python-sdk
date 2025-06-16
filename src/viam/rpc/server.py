@@ -107,12 +107,6 @@ class Server(ResourceManager):
             logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_recvrequest_handler)
 
-        if ':' in path:
-            host_and_port = path.split(':')
-            host = host_and_port[0]
-            port = int(host_and_port[1])
-            path = None
-
         if sys.platform != 'win32':
             with graceful_exit([self._server]):
                 if path:
