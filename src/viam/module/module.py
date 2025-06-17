@@ -74,7 +74,7 @@ def _parse_module_args() -> argparse.Namespace:
     p.add_argument("socket_path", help="path where this module will serve a unix socket")
     p.add_argument("--log-level", type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
     p.add_argument("--tcp-mode", action='store_true')
-    return p.parse_args()
+    return p.parse_known_args()[0]
 
 
 class Module:
