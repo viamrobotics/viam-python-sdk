@@ -7,11 +7,6 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPO
 
 from . import KinematicsFileFormat
 
-@dataclass
-class HoldingStatus:
-    is_holding_something: bool
-    meta: Optional[Dict[str, Any]] = None
-
 class Gripper(ComponentBase):
     """
     Gripper represents a physical robotic gripper.
@@ -30,6 +25,16 @@ class Gripper(ComponentBase):
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper"
     )
+
+    @dataclass
+    class HoldingStatus:
+        """
+        HoldingStatus represents whether the gripper is currently holding onto an object. The
+        additional ``meta`` attribute contains other optional contextual information (i.e. confidence
+        interval, pressure, etc.)
+        """
+        is_holding_something: bool
+        meta: Optional[Dict[str, Any]] = None
 
     @abc.abstractmethod
     async def open(

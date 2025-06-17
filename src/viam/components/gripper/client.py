@@ -18,7 +18,7 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import KinematicsFileFormat
-from .gripper import Gripper, HoldingStatus
+from .gripper import Gripper
 
 
 class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
@@ -71,11 +71,11 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs
-    ) -> HoldingStatus:
+    ) -> Gripper.HoldingStatus:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = IsHoldingSomethingRequest(name=self.name, extra=dict_to_struct(extra))
         response: IsHoldingSomethingResponse = await self.client.IsHoldingSomething(request, timeout=timeout, metadata=md)
-        return HoldingStatus(response.is_holding_something, meta=struct_to_dict(response.meta))
+        return Gripper.HoldingStatus(response.is_holding_something, meta=struct_to_dict(response.meta))
 
     async def is_moving(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
         md = kwargs.get("metadata", self.Metadata()).proto

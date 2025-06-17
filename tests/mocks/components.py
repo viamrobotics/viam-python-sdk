@@ -21,7 +21,7 @@ from viam.components.camera import Camera, DistortionParameters, IntrinsicParame
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
-from viam.components.gripper import Gripper, HoldingStatus
+from viam.components.gripper import Gripper
 from viam.components.input import Control, ControlFunction, Controller, Event, EventType
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
@@ -557,10 +557,10 @@ class MockGripper(Gripper):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs
-    ) -> HoldingStatus:
+    ) -> Gripper.HoldingStatus:
         self.timeout = timeout
         self.extra = extra
-        return HoldingStatus(self.holding_something)
+        return Gripper.HoldingStatus(self.holding_something)
 
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
