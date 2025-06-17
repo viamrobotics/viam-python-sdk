@@ -393,6 +393,7 @@ class OrganizationMember(google.protobuf.message.Message):
     EMAILS_FIELD_NUMBER: builtins.int
     DATE_ADDED_FIELD_NUMBER: builtins.int
     LAST_LOGIN_FIELD_NUMBER: builtins.int
+    LAST_ACCESS_FIELD_NUMBER: builtins.int
     user_id: builtins.str
 
     @property
@@ -407,15 +408,24 @@ class OrganizationMember(google.protobuf.message.Message):
     def last_login(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    @property
+    def last_access(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> builtins.bool:
+    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_last_access', b'_last_access', '_last_login', b'_last_login', 'date_added', b'date_added', 'last_access', b'last_access', 'last_login', b'last_login']) -> builtins.bool:
         ...
 
+    def ClearField(self, field_name: typing.Literal['_last_access', b'_last_access', '_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_access', b'last_access', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_last_access', b'_last_access']) -> typing.Literal['last_access'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_last_login', b'_last_login']) -> typing.Literal['last_login'] | None:
         ...
 global___OrganizationMember = OrganizationMember

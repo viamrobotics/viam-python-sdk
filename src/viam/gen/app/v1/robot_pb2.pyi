@@ -1116,6 +1116,7 @@ class ModuleConfig(google.protobuf.message.Message):
     ENV_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     FIRST_RUN_TIMEOUT_FIELD_NUMBER: builtins.int
+    TCP_MODE_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
@@ -1125,6 +1126,8 @@ class ModuleConfig(google.protobuf.message.Message):
     'type of the module ("local" or "registry")'
     module_id: builtins.str
     'the id of the module if it is a registry module'
+    tcp_mode: builtins.bool
+    'whether we are starting a module in TCP mode'
 
     @property
     def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
@@ -1138,13 +1141,13 @@ class ModuleConfig(google.protobuf.message.Message):
     def first_run_timeout(self) -> google.protobuf.duration_pb2.Duration:
         """timeout for first_run script"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=..., tcp_mode: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'tcp_mode', b'tcp_mode', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 

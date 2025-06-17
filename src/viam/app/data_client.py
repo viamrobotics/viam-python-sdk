@@ -1921,7 +1921,9 @@ class DataClient:
             str: The ID of the newly created pipeline.
         """
         binary: List[bytes] = [bson.encode(query) for query in mql_binary]
-        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, data_source_type=data_source_type)
+        request = CreateDataPipelineRequest(
+            organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, data_source_type=data_source_type
+        )
         response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
         return response.id
 
