@@ -61,7 +61,6 @@ from ..services.motion import Motion  # noqa: F401
 from ..services.navigation import Navigation  # noqa: F401
 from ..services.slam import SLAM  # noqa: F401
 from ..services.vision import Vision  # noqa: F401
-
 from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
@@ -73,7 +72,7 @@ def _parse_module_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Start this viam python module")
     p.add_argument("socket_path", help="path where this module will serve a unix socket")
     p.add_argument("--log-level", type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
-    p.add_argument("--tcp-mode", action='store_true')
+    p.add_argument("--tcp-mode", action="store_true")
     return p.parse_known_args()[0]
 
 
