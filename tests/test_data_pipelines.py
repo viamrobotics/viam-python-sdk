@@ -4,9 +4,9 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
+from viam.proto.app.data import TabularDataSourceType
 from viam.proto.app.datapipelines import DataPipeline, DataPipelineRun, DataPipelineRunStatus
 from viam.utils import datetime_to_timestamp
-from viam.proto.app.data import TabularDataSourceType
 
 from .mocks.services import MockDataPipelines
 

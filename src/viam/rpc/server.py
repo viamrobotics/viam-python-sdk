@@ -1,6 +1,5 @@
-from typing import TYPE_CHECKING, Callable, List, Optional
-
 import sys
+from typing import TYPE_CHECKING, Callable, List, Optional
 
 from grpclib import GRPCError, Status
 from grpclib._typing import IServable
@@ -92,7 +91,6 @@ class Server(ResourceManager):
         *,
         path: Optional[str] = None,
     ):
-
         if path:
             await self._server.start(path=path)
             LOGGER.info(f"Serving on {path}")
@@ -126,7 +124,7 @@ class Server(ResourceManager):
             logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_recvrequest_handler)
 
-        if sys.platform != 'win32':
+        if sys.platform != "win32":
             with graceful_exit([self._server]):
                 await self._serve(host=host, port=port, log_level=log_level, path=path)
         else:
