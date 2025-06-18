@@ -1,5 +1,7 @@
 from typing import TYPE_CHECKING, Callable, List, Optional
 
+import sys
+
 from grpclib import GRPCError, Status
 from grpclib._typing import IServable
 from grpclib.const import Handler
@@ -82,6 +84,25 @@ class Server(ResourceManager):
 
         event.method_func = log_resource_name
 
+    async def _serve(
+        self,
+        host: Optional[str] = "localhost",
+        port: Optional[int] = 9090,
+        log_level: Optional[int] = logging.INFO,
+        *,
+        path: Optional[str] = None,
+    ):
+
+        if path:
+            await self._server.start(path=path)
+            LOGGER.info(f"Serving on {path}")
+        else:
+            await self._server.start(host, port)
+            LOGGER.info(f"Serving on {host}:{port}")
+        await self._server.wait_closed()
+        await self.close()
+        LOGGER.debug("gRPC server closed")
+
     async def serve(
         self,
         host: Optional[str] = "localhost",
@@ -105,16 +126,11 @@ class Server(ResourceManager):
             logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_recvrequest_handler)
 
-        with graceful_exit([self._server]):
-            if path:
-                await self._server.start(path=path)
-                LOGGER.info(f"Serving on {path}")
-            else:
-                await self._server.start(host, port)
-                LOGGER.info(f"Serving on {host}:{port}")
-            await self._server.wait_closed()
-            await self.close()
-            LOGGER.debug("gRPC server closed")
+        if sys.platform != 'win32':
+            with graceful_exit([self._server]):
+                await self._serve(host=host, port=port, log_level=log_level, path=path)
+        else:
+            await self._serve(host=host, port=port, log_level=log_level, path=path)
 
     @classmethod
     async def create_and_serve(
