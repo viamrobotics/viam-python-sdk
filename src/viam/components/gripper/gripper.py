@@ -1,11 +1,11 @@
 import abc
+from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from . import KinematicsFileFormat
-
 
 class Gripper(ComponentBase):
     """
@@ -25,6 +25,16 @@ class Gripper(ComponentBase):
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper"
     )
+
+    @dataclass
+    class HoldingStatus:
+        """
+        HoldingStatus represents whether the gripper is currently holding onto an object. The
+        additional ``meta`` attribute contains other optional contextual information (i.e. confidence
+        interval, pressure, etc.)
+        """
+        is_holding_something: bool
+        meta: Optional[Dict[str, Any]] = None
 
     @abc.abstractmethod
     async def open(
@@ -72,6 +82,33 @@ class Gripper(ComponentBase):
         For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
         """
         ...
+
+    @abc.abstractmethod
+    async def is_holding_something(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> HoldingStatus:
+        """
+        Get information about whether the gripper is currently holding onto an object.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+            # Grab with the gripper.
+            holding_status = await my_gripper.is_holding_something()
+            # get the boolean result
+            is_holding_something = holding_status.is_holding_something
+
+        Returns:
+            HoldingStatus: see documentation on `HoldingStatus` for more information
+
+        For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+
+        """
 
     @abc.abstractmethod
     async def stop(
