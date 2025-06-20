@@ -85,6 +85,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Grab"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.Grab()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.IsMoving()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.IsHoldingSomething"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.IsHoldingSomething()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.GetGeometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.GetKinematics"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.GetKinematics()</span></code></a></li>
@@ -96,6 +97,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.Grab"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.Grab</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.Stop"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.Stop</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.IsMoving"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.IsMoving</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.IsHoldingSomething"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.IsHoldingSomething</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.DoCommand</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.GetGeometries</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub.GetKinematics"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub.GetKinematics</span></code></a></li>
@@ -106,6 +108,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.Grab"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.Grab()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.IsMoving()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.IsHoldingSomething"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.IsHoldingSomething()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.GetGeometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.GetKinematics"><code class="docutils literal notranslate"><span class="pre">UnimplementedGripperServiceBase.GetKinematics()</span></code></a></li>
@@ -121,6 +124,18 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success"><code class="docutils literal notranslate"><span class="pre">GrabResponse.success</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra"><code class="docutils literal notranslate"><span class="pre">GrabResponse.extra</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GrabResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingRequest"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.extra"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.HasField"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingResponse"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.is_holding_something"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingResponse.is_holding_something</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.meta"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingResponse.meta</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.HasField"><code class="docutils literal notranslate"><span class="pre">IsHoldingSomethingResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
@@ -224,6 +239,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse" title="viam.proto.component.gripper.GrabResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GrabResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingRequest" title="viam.proto.component.gripper.IsHoldingSomethingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsHoldingSomethingRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gripper.IsHoldingSomethingResponse" title="viam.proto.component.gripper.IsHoldingSomethingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsHoldingSomethingResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest" title="viam.proto.component.gripper.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -290,6 +311,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceBase.IsHoldingSomething">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsHoldingSomething</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest" title="viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest"><span class="pre">component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse" title="viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse"><span class="pre">component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#GripperServiceBase.IsHoldingSomething"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceBase.IsHoldingSomething" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceBase.DoCommand">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#GripperServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -347,6 +377,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceStub.IsHoldingSomething">
+<span class="sig-name descname"><span class="pre">IsHoldingSomething</span></span><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceStub.IsHoldingSomething" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceStub.DoCommand">
 <span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -387,6 +422,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.UnimplementedGripperServiceBase.IsMoving">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsMoving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest" title="viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest"><span class="pre">component.gripper.v1.gripper_pb2.IsMovingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse" title="viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse"><span class="pre">component.gripper.v1.gripper_pb2.IsMovingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#UnimplementedGripperServiceBase.IsMoving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.IsMoving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.UnimplementedGripperServiceBase.IsHoldingSomething">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsHoldingSomething</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest" title="viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest"><span class="pre">component.gripper.v1.gripper_pb2.IsHoldingSomethingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse" title="viam.gen.component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse"><span class="pre">component.gripper.v1.gripper_pb2.IsHoldingSomethingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#UnimplementedGripperServiceBase.IsHoldingSomething"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.UnimplementedGripperServiceBase.IsHoldingSomething" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -470,6 +510,92 @@ shown below.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GrabResponse.HasField">
 <span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.GrabResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gripper.</span></span><span class="sig-name descname"><span class="pre">IsHoldingSomethingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gripper.</span></span><span class="sig-name descname"><span class="pre">IsHoldingSomethingResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_holding_something</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingResponse.is_holding_something">
+<span class="sig-name descname"><span class="pre">is_holding_something</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.is_holding_something" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingResponse.meta">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">meta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.meta" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsHoldingSomethingResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'meta'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'meta'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.IsHoldingSomethingResponse.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will

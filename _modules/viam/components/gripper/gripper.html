@@ -88,13 +88,13 @@
              
   <h1>Source code for viam.components.gripper.gripper</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">KinematicsFileFormat</span>
-
 
 <div class="viewcode-block" id="Gripper"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper">[docs]</a><span class="k">class</span> <span class="nc">Gripper</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -114,6 +114,16 @@
     <span class="n">API</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;gripper&quot;</span>
     <span class="p">)</span>
+
+<div class="viewcode-block" id="Gripper.HoldingStatus"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper.HoldingStatus">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">HoldingStatus</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        HoldingStatus represents whether the gripper is currently holding onto an object. The</span>
+<span class="sd">        additional ``meta`` attribute contains other optional contextual information (i.e. confidence</span>
+<span class="sd">        interval, pressure, etc.)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">is_holding_something</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="n">meta</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Gripper.open"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper.open">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span>
@@ -161,6 +171,33 @@
 <span class="sd">        For more information, see `Gripper component &lt;https://docs.viam.com/dev/reference/apis/components/gripper/#grab&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Gripper.is_holding_something"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper.is_holding_something">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">is_holding_something</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HoldingStatus</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get information about whether the gripper is currently holding onto an object.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gripper = Gripper.from_robot(robot=machine, name=&quot;my_gripper&quot;)</span>
+
+<span class="sd">            # Grab with the gripper.</span>
+<span class="sd">            holding_status = await my_gripper.is_holding_something()</span>
+<span class="sd">            # get the boolean result</span>
+<span class="sd">            is_holding_something = holding_status.is_holding_something</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            HoldingStatus: see documentation on `HoldingStatus` for more information</span>
+
+<span class="sd">        For more information, see `Gripper component &lt;https://docs.viam.com/dev/reference/apis/components/gripper/#grab&gt;`_.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Gripper.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper.stop">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span>

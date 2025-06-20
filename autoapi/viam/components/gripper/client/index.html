@@ -76,6 +76,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.open"><code class="docutils literal notranslate"><span class="pre">GripperClient.open()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.grab"><code class="docutils literal notranslate"><span class="pre">GripperClient.grab()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.stop"><code class="docutils literal notranslate"><span class="pre">GripperClient.stop()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.is_holding_something"><code class="docutils literal notranslate"><span class="pre">GripperClient.is_holding_something()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.is_moving"><code class="docutils literal notranslate"><span class="pre">GripperClient.is_moving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.do_command"><code class="docutils literal notranslate"><span class="pre">GripperClient.do_command()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.gripper.client.GripperClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">GripperClient.get_geometries()</span></code></a></li>
@@ -221,6 +222,29 @@
 </pre></div>
 </div>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gripper/#stop">Gripper component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient.is_holding_something">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_holding_something</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gripper/index.html#viam.components.gripper.gripper.Gripper.HoldingStatus" title="viam.components.gripper.gripper.Gripper.HoldingStatus"><span class="pre">viam.components.gripper.gripper.Gripper.HoldingStatus</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/client.html#GripperClient.is_holding_something"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.client.GripperClient.is_holding_something" title="Permalink to this definition"></a></dt>
+<dd><p>Get information about whether the gripper is currently holding onto an object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gripper</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+
+<span class="c1"># Grab with the gripper.</span>
+<span class="n">holding_status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gripper</span><span class="o">.</span><span class="n">is_holding_something</span><span class="p">()</span>
+<span class="c1"># get the boolean result</span>
+<span class="n">is_holding_something</span> <span class="o">=</span> <span class="n">holding_status</span><span class="o">.</span><span class="n">is_holding_something</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>see documentation on <cite>HoldingStatus</cite> for more information</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../gripper/index.html#viam.components.gripper.gripper.Gripper.HoldingStatus" title="viam.components.gripper.gripper.Gripper.HoldingStatus">HoldingStatus</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gripper/#grab">Gripper component</a>.</p>
 </dd></dl>
 
 <dl class="py method">

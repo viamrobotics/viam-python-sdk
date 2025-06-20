@@ -39,6 +39,24 @@ Module Contents
       The API of the Resource
 
 
+   .. py:class:: HoldingStatus
+
+      HoldingStatus represents whether the gripper is currently holding onto an object. The
+      additional ``meta`` attribute contains other optional contextual information (i.e. confidence
+      interval, pressure, etc.)
+
+
+      .. py:attribute:: is_holding_something
+         :type:  bool
+
+
+      .. py:attribute:: meta
+         :type:  Optional[Dict[str, Any]]
+         :value: None
+
+
+
+
    .. py:method:: open(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
 
@@ -77,6 +95,31 @@ Module Contents
       :rtype: bool
 
       For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+
+
+
+   .. py:method:: is_holding_something(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> HoldingStatus
+      :abstractmethod:
+
+      :async:
+
+
+      Get information about whether the gripper is currently holding onto an object.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+          # Grab with the gripper.
+          holding_status = await my_gripper.is_holding_something()
+          # get the boolean result
+          is_holding_something = holding_status.is_holding_something
+
+      :returns: see documentation on `HoldingStatus` for more information
+      :rtype: HoldingStatus
+
+      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+
 
 
 

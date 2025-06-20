@@ -83,6 +83,29 @@ Module Contents
 
 
 
+   .. py:method:: is_holding_something(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.gripper.gripper.Gripper.HoldingStatus
+      :async:
+
+
+      Get information about whether the gripper is currently holding onto an object.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=machine, name="my_gripper")
+
+          # Grab with the gripper.
+          holding_status = await my_gripper.is_holding_something()
+          # get the boolean result
+          is_holding_something = holding_status.is_holding_something
+
+      :returns: see documentation on `HoldingStatus` for more information
+      :rtype: HoldingStatus
+
+      For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#grab>`_.
+
+
+
+
    .. py:method:: is_moving(*, timeout: Optional[float] = None, **kwargs) -> bool
       :async:
 
