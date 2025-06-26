@@ -4,7 +4,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 2, '', 'proto/rpc/v1/auth.proto')
+_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 3, '', 'proto/rpc/v1/auth.proto')
 _sym_db = _symbol_database.Default()
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x17proto/rpc/v1/auth.proto\x12\x0cproto.rpc.v1\x1a\x1cgoogle/api/annotations.proto";\n\x0bCredentials\x12\x12\n\x04type\x18\x01 \x01(\tR\x04type\x12\x18\n\x07payload\x18\x02 \x01(\tR\x07payload"j\n\x13AuthenticateRequest\x12\x16\n\x06entity\x18\x01 \x01(\tR\x06entity\x12;\n\x0bcredentials\x18\x02 \x01(\x0b2\x19.proto.rpc.v1.CredentialsR\x0bcredentials"9\n\x14AuthenticateResponse\x12!\n\x0caccess_token\x18\x01 \x01(\tR\x0baccessToken"/\n\x15AuthenticateToRequest\x12\x16\n\x06entity\x18\x01 \x01(\tR\x06entity";\n\x16AuthenticateToResponse\x12!\n\x0caccess_token\x18\x01 \x01(\tR\x0baccessToken2\x82\x01\n\x0bAuthService\x12s\n\x0cAuthenticate\x12!.proto.rpc.v1.AuthenticateRequest\x1a".proto.rpc.v1.AuthenticateResponse"\x1c\x82\xd3\xe4\x93\x02\x16"\x14/rpc/v1/authenticate2\x93\x01\n\x13ExternalAuthService\x12|\n\x0eAuthenticateTo\x12#.proto.rpc.v1.AuthenticateToRequest\x1a$.proto.rpc.v1.AuthenticateToResponse"\x1f\x82\xd3\xe4\x93\x02\x19"\x17/rpc/v1/authenticate_toB Z\x1ego.viam.com/utils/proto/rpc/v1b\x06proto3')
