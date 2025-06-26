@@ -553,10 +553,7 @@ class MockGripper(Gripper):
         return self.holding_something
 
     async def is_holding_something(
-        self, *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Gripper.HoldingStatus:
         self.timeout = timeout
         self.extra = extra
