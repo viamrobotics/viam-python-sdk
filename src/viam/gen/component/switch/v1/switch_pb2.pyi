@@ -3,7 +3,9 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import typing
@@ -99,11 +101,16 @@ global___GetNumberOfPositionsRequest = GetNumberOfPositionsRequest
 class GetNumberOfPositionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NUMBER_OF_POSITIONS_FIELD_NUMBER: builtins.int
+    LABELS_FIELD_NUMBER: builtins.int
     number_of_positions: builtins.int
 
-    def __init__(self, *, number_of_positions: builtins.int=...) -> None:
+    @property
+    def labels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['number_of_positions', b'number_of_positions']) -> None:
+    def __init__(self, *, number_of_positions: builtins.int=..., labels: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['labels', b'labels', 'number_of_positions', b'number_of_positions']) -> None:
         ...
 global___GetNumberOfPositionsResponse = GetNumberOfPositionsResponse

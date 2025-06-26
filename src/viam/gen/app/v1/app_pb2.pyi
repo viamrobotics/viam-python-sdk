@@ -393,6 +393,7 @@ class OrganizationMember(google.protobuf.message.Message):
     EMAILS_FIELD_NUMBER: builtins.int
     DATE_ADDED_FIELD_NUMBER: builtins.int
     LAST_LOGIN_FIELD_NUMBER: builtins.int
+    LAST_ACCESS_FIELD_NUMBER: builtins.int
     user_id: builtins.str
 
     @property
@@ -407,15 +408,24 @@ class OrganizationMember(google.protobuf.message.Message):
     def last_login(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    @property
+    def last_access(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> builtins.bool:
+    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_last_access', b'_last_access', '_last_login', b'_last_login', 'date_added', b'date_added', 'last_access', b'last_access', 'last_login', b'last_login']) -> builtins.bool:
         ...
 
+    def ClearField(self, field_name: typing.Literal['_last_access', b'_last_access', '_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_access', b'last_access', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_last_access', b'_last_access']) -> typing.Literal['last_access'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_last_login', b'_last_login']) -> typing.Literal['last_login'] | None:
         ...
 global___OrganizationMember = OrganizationMember
@@ -2981,16 +2991,30 @@ class ListMachineSummariesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     FRAGMENT_IDS_FIELD_NUMBER: builtins.int
+    LOCATION_IDS_FIELD_NUMBER: builtins.int
+    LIMIT_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
+    limit: builtins.int
+    'Optional max number of machines to return; default to 100 if unset'
 
     @property
     def fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Optional list of fragment IDs to filter machines that use any of these fragments"""
 
-    def __init__(self, *, organization_id: builtins.str=..., fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    @property
+    def location_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional list of location IDs to filter machines that are in any of these locations."""
+
+    def __init__(self, *, organization_id: builtins.str=..., fragment_ids: collections.abc.Iterable[builtins.str] | None=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., limit: builtins.int | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['fragment_ids', b'fragment_ids', 'organization_id', b'organization_id']) -> None:
+    def HasField(self, field_name: typing.Literal['_limit', b'_limit', 'limit', b'limit']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_limit', b'_limit', 'fragment_ids', b'fragment_ids', 'limit', b'limit', 'location_ids', b'location_ids', 'organization_id', b'organization_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_limit', b'_limit']) -> typing.Literal['limit'] | None:
         ...
 global___ListMachineSummariesRequest = ListMachineSummariesRequest
 
@@ -4252,17 +4276,36 @@ class App(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    FRAGMENT_IDS_FIELD_NUMBER: builtins.int
+    LOGO_PATH_FIELD_NUMBER: builtins.int
+    CUSTOMIZATIONS_FIELD_NUMBER: builtins.int
     name: builtins.str
     'The name of the application'
     type: builtins.str
     'The type of the application'
     entrypoint: builtins.str
     'The entrypoint of the application'
+    logo_path: builtins.str
+    'Optional: path to a custom logo for branding'
 
-    def __init__(self, *, name: builtins.str=..., type: builtins.str=..., entrypoint: builtins.str=...) -> None:
+    @property
+    def fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional: fragment IDs to filter machines in the picker"""
+
+    @property
+    def customizations(self) -> global___AppCustomizations:
+        """Optional: structured customizations for the app (e.g., machine picker headings)"""
+
+    def __init__(self, *, name: builtins.str=..., type: builtins.str=..., entrypoint: builtins.str=..., fragment_ids: collections.abc.Iterable[builtins.str] | None=..., logo_path: builtins.str | None=..., customizations: global___AppCustomizations | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'name', b'name', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'customizations', b'customizations', 'logo_path', b'logo_path']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'customizations', b'customizations', 'entrypoint', b'entrypoint', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'name', b'name', 'type', b'type']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_logo_path', b'_logo_path']) -> typing.Literal['logo_path'] | None:
         ...
 global___App = App
 
@@ -5346,3 +5389,138 @@ class OAuthConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['client_authentication', b'client_authentication', 'enabled_grants', b'enabled_grants', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'pkce', b'pkce', 'redirect_uris', b'redirect_uris', 'url_validation', b'url_validation']) -> None:
         ...
 global___OAuthConfig = OAuthConfig
+
+@typing.final
+class GetAppBrandingRequest(google.protobuf.message.Message):
+    """Branding and customization for app machine picker"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    public_namespace: builtins.str
+    name: builtins.str
+
+    def __init__(self, *, public_namespace: builtins.str=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+global___GetAppBrandingRequest = GetAppBrandingRequest
+
+@typing.final
+class TextOverrides(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class FieldsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+
+        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    FIELDS_FIELD_NUMBER: builtins.int
+
+    @property
+    def fields(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+        ...
+
+    def __init__(self, *, fields: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fields', b'fields']) -> None:
+        ...
+global___TextOverrides = TextOverrides
+
+@typing.final
+class GetAppBrandingResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class TextCustomizationsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___TextOverrides:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___TextOverrides | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    LOGO_PATH_FIELD_NUMBER: builtins.int
+    TEXT_CUSTOMIZATIONS_FIELD_NUMBER: builtins.int
+    logo_path: builtins.str
+
+    @property
+    def text_customizations(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___TextOverrides]:
+        ...
+
+    def __init__(self, *, logo_path: builtins.str | None=..., text_customizations: collections.abc.Mapping[builtins.str, global___TextOverrides] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path', 'text_customizations', b'text_customizations']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_logo_path', b'_logo_path']) -> typing.Literal['logo_path'] | None:
+        ...
+global___GetAppBrandingResponse = GetAppBrandingResponse
+
+@typing.final
+class AppCustomizations(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MACHINE_PICKER_FIELD_NUMBER: builtins.int
+
+    @property
+    def machine_picker(self) -> global___MachinePickerCustomizations:
+        ...
+
+    def __init__(self, *, machine_picker: global___MachinePickerCustomizations | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['machine_picker', b'machine_picker']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['machine_picker', b'machine_picker']) -> None:
+        ...
+global___AppCustomizations = AppCustomizations
+
+@typing.final
+class MachinePickerCustomizations(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HEADING_FIELD_NUMBER: builtins.int
+    SUBHEADING_FIELD_NUMBER: builtins.int
+    heading: builtins.str
+    subheading: builtins.str
+
+    def __init__(self, *, heading: builtins.str | None=..., subheading: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_heading', b'_heading', '_subheading', b'_subheading', 'heading', b'heading', 'subheading', b'subheading']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_subheading', b'_subheading', 'heading', b'heading', 'subheading', b'subheading']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_heading', b'_heading']) -> typing.Literal['heading'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_subheading', b'_subheading']) -> typing.Literal['subheading'] | None:
+        ...
+global___MachinePickerCustomizations = MachinePickerCustomizations

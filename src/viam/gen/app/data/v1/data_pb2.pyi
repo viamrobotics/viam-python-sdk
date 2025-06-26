@@ -500,6 +500,7 @@ class ExportTabularDataRequest(google.protobuf.message.Message):
     RESOURCE_SUBTYPE_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
     INTERVAL_FIELD_NUMBER: builtins.int
+    ADDITIONAL_PARAMETERS_FIELD_NUMBER: builtins.int
     part_id: builtins.str
     resource_name: builtins.str
     resource_subtype: builtins.str
@@ -509,13 +510,20 @@ class ExportTabularDataRequest(google.protobuf.message.Message):
     def interval(self) -> global___CaptureInterval:
         ...
 
-    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., resource_subtype: builtins.str=..., method_name: builtins.str=..., interval: global___CaptureInterval | None=...) -> None:
+    @property
+    def additional_parameters(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def HasField(self, field_name: typing.Literal['interval', b'interval']) -> builtins.bool:
+    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., resource_subtype: builtins.str=..., method_name: builtins.str=..., interval: global___CaptureInterval | None=..., additional_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['interval', b'interval', 'method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+    def HasField(self, field_name: typing.Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters', 'interval', b'interval']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters', 'interval', b'interval', 'method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_additional_parameters', b'_additional_parameters']) -> typing.Literal['additional_parameters'] | None:
         ...
 global___ExportTabularDataRequest = ExportTabularDataRequest
 
@@ -580,15 +588,26 @@ class GetLatestTabularDataRequest(google.protobuf.message.Message):
     RESOURCE_NAME_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
     RESOURCE_SUBTYPE_FIELD_NUMBER: builtins.int
+    ADDITIONAL_PARAMETERS_FIELD_NUMBER: builtins.int
     part_id: builtins.str
     resource_name: builtins.str
     method_name: builtins.str
     resource_subtype: builtins.str
 
-    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., method_name: builtins.str=..., resource_subtype: builtins.str=...) -> None:
+    @property
+    def additional_parameters(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing.Literal['method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+    def __init__(self, *, part_id: builtins.str=..., resource_name: builtins.str=..., method_name: builtins.str=..., resource_subtype: builtins.str=..., additional_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters', 'method_name', b'method_name', 'part_id', b'part_id', 'resource_name', b'resource_name', 'resource_subtype', b'resource_subtype']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_additional_parameters', b'_additional_parameters']) -> typing.Literal['additional_parameters'] | None:
         ...
 global___GetLatestTabularDataRequest = GetLatestTabularDataRequest
 

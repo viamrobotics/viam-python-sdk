@@ -7,6 +7,7 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPO
 
 from . import KinematicsFileFormat
 
+
 class Gripper(ComponentBase):
     """
     Gripper represents a physical robotic gripper.
@@ -33,6 +34,7 @@ class Gripper(ComponentBase):
         additional ``meta`` attribute contains other optional contextual information (i.e. confidence
         interval, pressure, etc.)
         """
+
         is_holding_something: bool
         meta: Optional[Dict[str, Any]] = None
 

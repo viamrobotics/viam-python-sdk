@@ -60,6 +60,7 @@ class RobotConfig(google.protobuf.message.Message):
     REVISION_FIELD_NUMBER: builtins.int
     MAINTENANCE_FIELD_NUMBER: builtins.int
     DISABLE_LOG_DEDUPLICATION_FIELD_NUMBER: builtins.int
+    JOBS_FIELD_NUMBER: builtins.int
     debug: builtins.bool
     'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
     disable_partial_start: builtins.bool
@@ -118,13 +119,17 @@ class RobotConfig(google.protobuf.message.Message):
     def maintenance(self) -> global___MaintenanceConfig:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=..., disable_log_deduplication: builtins.bool=...) -> None:
+    @property
+    def jobs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JobConfig]:
+        ...
+
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=..., disable_log_deduplication: builtins.bool=..., jobs: collections.abc.Iterable[global___JobConfig] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_log_deduplication', b'disable_log_deduplication', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
+    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_log_deduplication', b'disable_log_deduplication', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'jobs', b'jobs', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
         ...
 
     @typing.overload
@@ -165,6 +170,39 @@ class LogPatternConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['level', b'level', 'pattern', b'pattern']) -> None:
         ...
 global___LogPatternConfig = LogPatternConfig
+
+@typing.final
+class JobConfig(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    SCHEDULE_FIELD_NUMBER: builtins.int
+    RESOURCE_FIELD_NUMBER: builtins.int
+    METHOD_FIELD_NUMBER: builtins.int
+    COMMAND_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'unique name of the job.'
+    schedule: builtins.str
+    'a unix-cron string or a Golang-parsable duration string,\n    specifies the interval at which the job is run.\n    '
+    resource: builtins.str
+    'the resource associated with this job.'
+    method: builtins.str
+    "the gRPC request of this job's resource."
+
+    @property
+    def command(self) -> google.protobuf.struct_pb2.Struct:
+        """in case method is "DoCommand", specifies the
+        command argument of the gRPC request.
+        """
+
+    def __init__(self, *, name: builtins.str=..., schedule: builtins.str=..., resource: builtins.str=..., method: builtins.str=..., command: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['command', b'command']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['command', b'command', 'method', b'method', 'name', b'name', 'resource', b'resource', 'schedule', b'schedule']) -> None:
+        ...
+global___JobConfig = JobConfig
 
 @typing.final
 class LocationSecret(google.protobuf.message.Message):
@@ -1116,6 +1154,7 @@ class ModuleConfig(google.protobuf.message.Message):
     ENV_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     FIRST_RUN_TIMEOUT_FIELD_NUMBER: builtins.int
+    TCP_MODE_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
@@ -1125,6 +1164,8 @@ class ModuleConfig(google.protobuf.message.Message):
     'type of the module ("local" or "registry")'
     module_id: builtins.str
     'the id of the module if it is a registry module'
+    tcp_mode: builtins.bool
+    'whether we are starting a module in TCP mode'
 
     @property
     def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
@@ -1138,13 +1179,13 @@ class ModuleConfig(google.protobuf.message.Message):
     def first_run_timeout(self) -> google.protobuf.duration_pb2.Duration:
         """timeout for first_run script"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=..., first_run_timeout: google.protobuf.duration_pb2.Duration | None=..., tcp_mode: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['first_run_timeout', b'first_run_timeout', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['env', b'env', 'first_run_timeout', b'first_run_timeout', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'tcp_mode', b'tcp_mode', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
