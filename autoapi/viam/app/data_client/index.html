@@ -647,7 +647,7 @@ Make sure your API key has permissions at the organization level in order to use
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
-To find your organization ID, visit the organization settings page in the Viam app.</p></li>
+To find your organization ID, visit the organization settings page.</p></li>
 <li><p><strong>sql_query</strong> (<em>str</em>) – The SQL query to run.</p></li>
 </ul>
 </dd>
@@ -679,7 +679,7 @@ To find your organization ID, visit the organization settings page in the Viam a
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
-To find your organization ID, visit the organization settings page in the Viam app.</p></li>
+To find your organization ID, visit the organization settings page.</p></li>
 <li><p><strong>query</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>bytes</em><em>]</em><em>, </em><em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em><em>]</em>) – The MQL query to run, as a list of MongoDB aggregation pipeline stages.
 Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
 future, so prefer the dictionary option.</p></li>
@@ -916,7 +916,7 @@ list of strings.</em></p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization to delete the data from.
-To find your organization ID, visit the organization settings page in the Viam app.</p></li>
+To find your organization ID, visit the organization settings page.</p></li>
 <li><p><strong>delete_older_than_days</strong> (<em>int</em>) – Delete data that was captured up to <em>this many</em> days ago. For example, a value of
 10 deletes any data that was captured up to 10 days ago. A value of 0 deletes <em>all</em> existing data.</p></li>
 </ul>
@@ -957,7 +957,7 @@ To find your organization ID, visit the organization settings page in the Viam a
 <dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>Filter</em></a>) – Optional, specifies binary data to delete.
 <strong>CAUTION: Passing an empty</strong> <code class="docutils literal notranslate"><span class="pre">Filter</span></code> <strong>deletes all binary data!</strong>
 You must specify an organization ID with <code class="docutils literal notranslate"><span class="pre">organization_ids</span></code> when using this option.
-To find your organization ID, visit the organization settings page in the Viam app.</p>
+To find your organization ID, visit the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The number of items deleted.</p>
@@ -1291,7 +1291,7 @@ list of strings.</em></p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization you’d like to connect to.
-To find your organization ID, visit the organization settings page in the Viam app.</p>
+To find your organization ID, visit the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The hostname of the federated database.</p>
@@ -1318,7 +1318,7 @@ password of the existing database user.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization you’d like to configure a database user for.
-To find your organization ID, visit the organization settings page in the Viam app.</p></li>
+To find your organization ID, visit the organization settings page.</p></li>
 <li><p><strong>password</strong> (<em>str</em>) – The password of the user.</p></li>
 </ul>
 </dd>
@@ -1342,7 +1342,7 @@ To find your organization ID, visit the organization settings page in the Viam a
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – The name of the dataset being created.</p></li>
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization where the dataset is being created.
-To find your organization ID, visit the organization settings page in the Viam app.</p></li>
+To find your organization ID, visit the organization settings page.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1399,7 +1399,7 @@ To find your organization ID, visit the organization settings page in the Viam a
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization you’d like to retrieve datasets from.
-To find your organization ID, visit the organization settings page in the Viam app.</p>
+To find your organization ID, visit the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of datasets in the organization.</p>
@@ -1552,7 +1552,7 @@ list of strings.</em></p></li>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_capture_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_capture_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_capture_upload" title="Permalink to this definition"></a></dt>
 <dd><p>Upload binary sensor data.</p>
 <p>Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
-Binary data can be found on the <strong>DATA</strong> page of the Viam app.</p>
+Binary data can be found on the <strong>DATA</strong> page.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -1820,7 +1820,7 @@ isn’t provided. Files with a <code class="docutils literal notranslate"><span 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the pipelines.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of all of the data pipelines for the given organization.</p>
@@ -1848,7 +1848,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that will own the pipeline.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the pipeline.</p></li>
 <li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.</p></li>
 <li><p><strong>schedule</strong> (<em>str</em>) – A cron expression representing the expected execution schedule in UTC (note this also

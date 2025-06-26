@@ -953,7 +953,7 @@ characters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization">Fleet Management API</a>.</p>
@@ -969,7 +969,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list members of.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A tuple containing two lists; the first
@@ -993,7 +993,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create an invite for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>email</strong> (<em>str</em>) – The email address to send the invite to.</p></li>
 <li><p><strong>authorizations</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em><em>]</em>) – Specifications of the
 authorizations to include in the invite. If not provided, full owner permissions will
@@ -1046,7 +1046,7 @@ must have at least one authorization overall.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization that the invite is for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>email</strong> (<em>str</em>) – Email of the user the invite was sent to.</p></li>
 <li><p><strong>add_authorizations</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em><em>]</em>) – Optional list of authorizations to add to the invite.</p></li>
 <li><p><strong>remove_authorizations</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em><em>]</em>) – Optional list of authorizations to remove from the invite.</p></li>
@@ -1080,7 +1080,7 @@ authorization to remove when the invite only contains one authorization).</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the org to remove the user from.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>user_id</strong> (<em>str</em>) – The ID of the user to remove.</p></li>
 </ul>
 </dd>
@@ -1099,7 +1099,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization that the invite to delete was for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>email</strong> (<em>str</em>) – The email address the pending invite was sent to.</p></li>
 </ul>
 </dd>
@@ -1121,7 +1121,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization that the invite to resend was for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>email</strong> (<em>str</em>) – The email address associated with the invite.</p></li>
 </ul>
 </dd>
@@ -1149,7 +1149,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the location under.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – Name of the location.</p></li>
 <li><p><strong>parent_location_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional parent location to put the location under. Defaults to a root-level location if no
 location ID is provided.</p></li>
@@ -1270,7 +1270,7 @@ doesn’t change).</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the org to list locations for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of locations.</p>
@@ -1429,7 +1429,7 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list rover rental robots for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of rover rental robots.</p>
@@ -1899,7 +1899,7 @@ location ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list fragments for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>show_public</strong> (<em>bool</em>) – <p>Optional boolean specifying whether or not to only show public fragments. If True, only public fragments
 will return. If False, only private fragments will return. Defaults to True.</p>
 <div class="deprecated">
@@ -1958,7 +1958,7 @@ in the results. If empty, by default only public fragments will be returned.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the fragment within.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – Name of the fragment.</p></li>
 <li><p><strong>config</strong> (<em>Optional</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Optional Dictionary representation of new config to assign to specified fragment. Can be
 assigned by updating the fragment.</p></li>
@@ -2089,7 +2089,7 @@ The default page limit is 10.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the role in.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (for example, a user ID).</p></li>
 <li><p><strong>role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The role to add.</p></li>
 <li><p><strong>resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource to add role to.
@@ -2121,7 +2121,7 @@ Must match <cite>resource_id</cite>.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization the role exists in.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>identity_id</strong> (<em>str</em>) – ID of the entity the role belongs to (for example, a user ID).</p></li>
 <li><p><strong>role</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;owner&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;operator&quot;</em><em>]</em><em>]</em>) – The role to remove.</p></li>
 <li><p><strong>resource_type</strong> (<em>Union</em><em>[</em><em>Literal</em><em>[</em><em>&quot;organization&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;location&quot;</em><em>]</em><em>, </em><em>Literal</em><em>[</em><em>&quot;robot&quot;</em><em>]</em><em>]</em>) – Type of the resource the role is being
@@ -2388,7 +2388,7 @@ would be <cite>viam:csi-cam-pi</cite>. You can also use <cite>org-id:name</cite>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the module under.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the module. Must be unique within your organization.</p></li>
 </ul>
 </dd>
@@ -2520,7 +2520,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list modules for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of modules.</p>
@@ -2555,7 +2555,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to create the key for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>authorizations</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em>) – A list of authorizations to associate
 with the key.</p></li>
 <li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – A name for the key. If None, defaults to the current timestamp.</p></li>
@@ -2621,7 +2621,7 @@ with the key.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization to list API keys for.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The existing API keys and authorizations.</p>
@@ -2664,7 +2664,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>org_id</strong> (<em>str</em>) – The ID of the organization with which the user-defined metadata is associated.
-You can obtain your organization ID from the Viam app’s organization settings page.</p>
+You can obtain your organization ID from the organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary</p>
@@ -2686,7 +2686,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization with which to associate the user-defined metadata.
-You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
+You can obtain your organization ID from the organization settings page.</p></li>
 <li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata to upload as a Python dictionary.</p></li>
 </ul>
 </dd>
@@ -2703,7 +2703,7 @@ You can obtain your organization ID from the Viam app’s organization settings 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>str</em>) – The ID of the location with which the user-defined metadata is associated.
-You can obtain your location ID from the Viam app’s locations page.</p>
+You can obtain your location ID from the locations page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
@@ -2725,7 +2725,7 @@ You can obtain your location ID from the Viam app’s locations page.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>location_id</strong> (<em>str</em>) – The ID of the location with which to associate the user-defined metadata.
-You can obtain your location ID from the Viam app’s locations page.</p></li>
+You can obtain your location ID from the locations page.</p></li>
 <li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
 </ul>
 </dd>
@@ -2742,7 +2742,7 @@ You can obtain your location ID from the Viam app’s locations page.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot with which the user-defined metadata is associated.
-You can obtain your robot ID from the Viam app’s machine page.</p>
+You can obtain your robot ID from the machine page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
@@ -2764,7 +2764,7 @@ You can obtain your robot ID from the Viam app’s machine page.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot with which to associate the user-defined metadata.
-You can obtain your robot ID from the Viam app’s machine page.</p></li>
+You can obtain your robot ID from the machine page.</p></li>
 <li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
 </ul>
 </dd>
@@ -2781,7 +2781,7 @@ You can obtain your robot ID from the Viam app’s machine page.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – The ID of the robot part with which the user-defined metadata is associated.
-You can obtain your robot part ID from the Viam app’s machine page.</p>
+You can obtain your robot part ID from the machine page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The user-defined metadata converted from JSON to a Python dictionary.</p>
@@ -2803,7 +2803,7 @@ You can obtain your robot part ID from the Viam app’s machine page.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot_id</strong> (<em>str</em>) – The ID of the robot part with which to associate the user-defined metadata.
-You can obtain your robot part ID from the Viam app’s machine page.</p></li>
+You can obtain your robot part ID from the machine page.</p></li>
 <li><p><strong>metadata</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The user-defined metadata converted from JSON to a Python dictionary.</p></li>
 </ul>
 </dd>

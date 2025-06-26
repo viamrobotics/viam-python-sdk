@@ -563,7 +563,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 <span class="sd">            sql_query (str): The SQL query to run.</span>
 
 <span class="sd">        Returns:</span>
@@ -599,7 +599,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 <span class="sd">            query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.</span>
 <span class="sd">                Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the</span>
 <span class="sd">                future, so prefer the dictionary option.</span>
@@ -901,7 +901,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization to delete the data from.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 <span class="sd">            delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of</span>
 <span class="sd">                10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.</span>
 
@@ -933,7 +933,7 @@
 <span class="sd">            filter (~viam.proto.app.data.Filter): Optional, specifies binary data to delete.</span>
 <span class="sd">                **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**</span>
 <span class="sd">                You must specify an organization ID with ``organization_ids`` when using this option.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The number of items deleted.</span>
@@ -1297,7 +1297,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization you&#39;d like to connect to.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The hostname of the federated database.</span>
@@ -1321,7 +1321,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization you&#39;d like to configure a database user for.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 <span class="sd">            password (str): The password of the user.</span>
 
 <span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser&gt;`_.</span>
@@ -1343,7 +1343,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): The name of the dataset being created.</span>
 <span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
@@ -1394,7 +1394,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization you&#39;d like to retrieve datasets from.</span>
-<span class="sd">                To find your organization ID, visit the organization settings page in the Viam app.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
@@ -1559,7 +1559,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
 
 <span class="sd">        Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.</span>
-<span class="sd">        Binary data can be found on the **DATA** page of the Viam app.</span>
+<span class="sd">        Binary data can be found on the **DATA** page.</span>
 
 <span class="sd">        ::</span>
 
@@ -1967,7 +1967,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the pipelines.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[DataPipeline]: A list of all of the data pipelines for the given organization.</span>
@@ -1998,7 +1998,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that will own the pipeline.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            name (str): The name of the pipeline.</span>
 <span class="sd">            mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.</span>
 <span class="sd">            schedule (str): A cron expression representing the expected execution schedule in UTC (note this also</span>

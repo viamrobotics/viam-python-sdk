@@ -875,7 +875,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -891,7 +891,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list members of.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first</span>
@@ -918,7 +918,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create an invite for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            email (str): The email address to send the invite to.</span>
 <span class="sd">            authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the</span>
 <span class="sd">                authorizations to include in the invite. If not provided, full owner permissions will</span>
@@ -976,7 +976,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization that the invite is for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            email (str): Email of the user the invite was sent to.</span>
 <span class="sd">            add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.</span>
 <span class="sd">            remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.</span>
@@ -1010,7 +1010,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the org to remove the user from.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            user_id (str): The ID of the user to remove.</span>
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deleteorganizationmember&gt;`_.</span>
@@ -1027,7 +1027,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization that the invite to delete was for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            email (str): The email address the pending invite was sent to.</span>
 
 <span class="sd">        Raises:</span>
@@ -1047,7 +1047,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization that the invite to resend was for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            email (str): The email address associated with the invite.</span>
 
 <span class="sd">        Raises:</span>
@@ -1071,7 +1071,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the location under.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            name (str): Name of the location.</span>
 <span class="sd">            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no</span>
 <span class="sd">                location ID is provided.</span>
@@ -1183,7 +1183,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the org to list locations for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Location]: The list of locations.</span>
@@ -1330,7 +1330,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list rover rental robots for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.</span>
@@ -1833,7 +1833,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list fragments for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            show_public (bool): Optional boolean specifying whether or not to only show public fragments. If True, only public fragments</span>
 <span class="sd">                will return. If False, only private fragments will return. Defaults to True.</span>
 
@@ -1889,7 +1889,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the fragment within.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            name (str): Name of the fragment.</span>
 <span class="sd">            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be</span>
 <span class="sd">                assigned by updating the fragment.</span>
@@ -2031,7 +2031,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the role in.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
 <span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
@@ -2076,7 +2076,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization the role exists in.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (for example, a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to remove.</span>
 <span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource the role is being</span>
@@ -2379,7 +2379,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the module under.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            name (str): The name of the module. Must be unique within your organization.</span>
 
 <span class="sd">        Raises:</span>
@@ -2520,7 +2520,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list modules for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Module]: The list of modules.</span>
@@ -2554,7 +2554,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to create the key for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate</span>
 <span class="sd">                with the key.</span>
 <span class="sd">            name (Optional[str]): A name for the key. If None, defaults to the current timestamp.</span>
@@ -2620,7 +2620,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization to list API keys for.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.</span>
@@ -2659,7 +2659,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): The ID of the organization with which the user-defined metadata is associated.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary</span>
@@ -2677,7 +2677,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization with which to associate the user-defined metadata.</span>
-<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
+<span class="sd">                You can obtain your organization ID from the organization settings page.</span>
 <span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationMetadataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
@@ -2692,7 +2692,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): The ID of the location with which the user-defined metadata is associated.</span>
-<span class="sd">                You can obtain your location ID from the Viam app&#39;s locations page.</span>
+<span class="sd">                You can obtain your location ID from the locations page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
@@ -2710,7 +2710,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): The ID of the location with which to associate the user-defined metadata.</span>
-<span class="sd">                You can obtain your location ID from the Viam app&#39;s locations page.</span>
+<span class="sd">                You can obtain your location ID from the locations page.</span>
 <span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateLocationMetadataRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
@@ -2725,7 +2725,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): The ID of the robot with which the user-defined metadata is associated.</span>
-<span class="sd">                You can obtain your robot ID from the Viam app&#39;s machine page.</span>
+<span class="sd">                You can obtain your robot ID from the machine page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
@@ -2743,7 +2743,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): The ID of the robot with which to associate the user-defined metadata.</span>
-<span class="sd">                You can obtain your robot ID from the Viam app&#39;s machine page.</span>
+<span class="sd">                You can obtain your robot ID from the machine page.</span>
 <span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>
@@ -2758,7 +2758,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): The ID of the robot part with which the user-defined metadata is associated.</span>
-<span class="sd">                You can obtain your robot part ID from the Viam app&#39;s machine page.</span>
+<span class="sd">                You can obtain your robot part ID from the machine page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
@@ -2776,7 +2776,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): The ID of the robot part with which to associate the user-defined metadata.</span>
-<span class="sd">                You can obtain your robot part ID from the Viam app&#39;s machine page.</span>
+<span class="sd">                You can obtain your robot part ID from the machine page.</span>
 <span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartMetadataRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>

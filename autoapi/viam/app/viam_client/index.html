@@ -192,7 +192,7 @@ fields will be overwritten by the values set by a module.</p></li>
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<p>Create <cite>ViamClient</cite> that establishes a connection to the Viam app.</p>
+<p>Create <cite>ViamClient</cite> that establishes a connection to Viam.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
 <span class="n">client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
 </pre></div>

@@ -610,7 +610,7 @@ Module Contents
           await cloud.delete_organization("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deleteorganization>`_.
@@ -628,7 +628,7 @@ Module Contents
           member_list, invite_list = await cloud.list_organization_members("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list members of.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: A tuple containing two lists; the first
@@ -650,7 +650,7 @@ Module Contents
           await cloud.create_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization to create an invite for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param email: The email address to send the invite to.
       :type email: str
@@ -703,7 +703,7 @@ Module Contents
           )
 
       :param org_id: The ID of the organization that the invite is for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param email: Email of the user the invite was sent to.
       :type email: str
@@ -736,7 +736,7 @@ Module Contents
           await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
 
       :param org_id: The ID of the org to remove the user from.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param user_id: The ID of the user to remove.
       :type user_id: str
@@ -756,7 +756,7 @@ Module Contents
           await cloud.delete_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to delete was for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param email: The email address the pending invite was sent to.
       :type email: str
@@ -778,7 +778,7 @@ Module Contents
           org_invite = await cloud.resend_organization_invite("<YOUR-ORG-ID>", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to resend was for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param email: The email address associated with the invite.
       :type email: str
@@ -803,7 +803,7 @@ Module Contents
           my_new_location = await cloud.create_location(org_id="<YOUR-ORG-ID>", name="Robotville", parent_location_id="111ab12345")
 
       :param org_id: The ID of the organization to create the location under.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param name: Name of the location.
       :type name: str
@@ -920,7 +920,7 @@ Module Contents
           locations = await cloud.list_locations("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the org to list locations for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: The list of locations.
@@ -1074,7 +1074,7 @@ Module Contents
           rental_robots = await cloud.get_rover_rental_robots()
 
       :param org_id: The ID of the organization to list rover rental robots for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: The list of rover rental robots.
@@ -1524,7 +1524,7 @@ Module Contents
           fragments_list = await cloud.list_fragments(org_id="org-id", visibilities=[])
 
       :param org_id: The ID of the organization to list fragments for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments
                           will return. If False, only private fragments will return. Defaults to True.
@@ -1579,7 +1579,7 @@ Module Contents
           new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
       :param org_id: The ID of the organization to create the fragment within.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param name: Name of the fragment.
       :type name: str
@@ -1707,7 +1707,7 @@ Module Contents
           )
 
       :param org_id: The ID of the organization to create the role in.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
@@ -1742,7 +1742,7 @@ Module Contents
           )
 
       :param org_id: The ID of the organization the role exists in.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param identity_id: ID of the entity the role belongs to (for example, a user ID).
       :type identity_id: str
@@ -2023,7 +2023,7 @@ Module Contents
           print("Module ID:", new_module[0])
 
       :param org_id: The ID of the organization to create the module under.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param name: The name of the module. Must be unique within your organization.
       :type name: str
@@ -2150,7 +2150,7 @@ Module Contents
           modules_list = await cloud.list_modules("<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list modules for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: The list of modules.
@@ -2183,7 +2183,7 @@ Module Contents
           )
 
       :param org_id: The ID of the organization to create the key for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
       :param authorizations: A list of authorizations to associate
                              with the key.
@@ -2249,7 +2249,7 @@ Module Contents
           keys = await cloud.list_keys(org_id="<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization to list API keys for.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: The existing API keys and authorizations.
@@ -2290,7 +2290,7 @@ Module Contents
           metadata = await cloud.get_organization_metadata(org_id="<YOUR-ORG-ID>")
 
       :param org_id: The ID of the organization with which the user-defined metadata is associated.
-                     You can obtain your organization ID from the Viam app's organization settings page.
+                     You can obtain your organization ID from the organization settings page.
       :type org_id: str
 
       :returns: The user-defined metadata converted from JSON to a Python dictionary
@@ -2309,7 +2309,7 @@ Module Contents
            await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata=)
 
       :param organization_id: The ID of the organization with which to associate the user-defined metadata.
-                              You can obtain your organization ID from the Viam app's organization settings page.
+                              You can obtain your organization ID from the organization settings page.
       :type organization_id: str
       :param metadata: The user-defined metadata to upload as a Python dictionary.
       :type metadata: Mapping[str, Any]
@@ -2327,7 +2327,7 @@ Module Contents
           metadata = await cloud.get_location_metadata(location_id="<YOUR-LOCATION-ID>")
 
       :param location_id: The ID of the location with which the user-defined metadata is associated.
-                          You can obtain your location ID from the Viam app's locations page.
+                          You can obtain your location ID from the locations page.
       :type location_id: str
 
       :returns: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2346,7 +2346,7 @@ Module Contents
            await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
 
       :param location_id: The ID of the location with which to associate the user-defined metadata.
-                          You can obtain your location ID from the Viam app's locations page.
+                          You can obtain your location ID from the locations page.
       :type location_id: str
       :param metadata: The user-defined metadata converted from JSON to a Python dictionary.
       :type metadata: Mapping[str, Any]
@@ -2364,7 +2364,7 @@ Module Contents
           metadata = await cloud.get_robot_metadata(robot_id="<YOUR-ROBOT-ID>")
 
       :param robot_id: The ID of the robot with which the user-defined metadata is associated.
-                       You can obtain your robot ID from the Viam app's machine page.
+                       You can obtain your robot ID from the machine page.
       :type robot_id: str
 
       :returns: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2383,7 +2383,7 @@ Module Contents
            await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata=)
 
       :param robot_id: The ID of the robot with which to associate the user-defined metadata.
-                       You can obtain your robot ID from the Viam app's machine page.
+                       You can obtain your robot ID from the machine page.
       :type robot_id: str
       :param metadata: The user-defined metadata converted from JSON to a Python dictionary.
       :type metadata: Mapping[str, Any]
@@ -2401,7 +2401,7 @@ Module Contents
           metadata = await cloud.get_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>")
 
       :param robot_part_id: The ID of the robot part with which the user-defined metadata is associated.
-                            You can obtain your robot part ID from the Viam app's machine page.
+                            You can obtain your robot part ID from the machine page.
       :type robot_part_id: str
 
       :returns: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2420,7 +2420,7 @@ Module Contents
            await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata=)
 
       :param robot_id: The ID of the robot part with which to associate the user-defined metadata.
-                       You can obtain your robot part ID from the Viam app's machine page.
+                       You can obtain your robot part ID from the machine page.
       :type robot_id: str
       :param metadata: The user-defined metadata converted from JSON to a Python dictionary.
       :type metadata: Mapping[str, Any]
