@@ -845,7 +845,7 @@ Module Contents
 
 .. py:data:: global___TabularDataByMQLResponse
 
-.. py:class:: ExportTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., resource_subtype: str = ..., method_name: str = ..., interval: global___CaptureInterval | None = ...)
+.. py:class:: ExportTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., resource_subtype: str = ..., method_name: str = ..., interval: global___CaptureInterval | None = ..., additional_parameters: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -874,7 +874,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['interval', b'interval']) -> bool
+   .. py:property:: additional_parameters
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters', 'interval', b'interval']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -889,6 +894,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_additional_parameters', b'_additional_parameters']) -> Literal['additional_parameters'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -978,7 +999,7 @@ Module Contents
 
 .. py:data:: global___ExportTabularDataResponse
 
-.. py:class:: GetLatestTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., method_name: str = ..., resource_subtype: str = ...)
+.. py:class:: GetLatestTabularDataRequest(*, part_id: str = ..., resource_name: str = ..., method_name: str = ..., resource_subtype: str = ..., additional_parameters: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1000,6 +1021,45 @@ Module Contents
 
    .. py:attribute:: resource_subtype
       :type:  str
+
+
+   .. py:property:: additional_parameters
+      :type: google.protobuf.struct_pb2.Struct
+
+
+
+   .. py:method:: HasField(field_name: Literal['_additional_parameters', b'_additional_parameters', 'additional_parameters', b'additional_parameters']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_additional_parameters', b'_additional_parameters']) -> Literal['additional_parameters'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___GetLatestTabularDataRequest

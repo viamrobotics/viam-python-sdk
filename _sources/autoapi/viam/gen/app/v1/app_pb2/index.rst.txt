@@ -326,6 +326,11 @@ Attributes
    viam.gen.app.v1.app_pb2.global___ListOAuthAppsRequest
    viam.gen.app.v1.app_pb2.global___ListOAuthAppsResponse
    viam.gen.app.v1.app_pb2.global___OAuthConfig
+   viam.gen.app.v1.app_pb2.global___GetAppBrandingRequest
+   viam.gen.app.v1.app_pb2.global___TextOverrides
+   viam.gen.app.v1.app_pb2.global___GetAppBrandingResponse
+   viam.gen.app.v1.app_pb2.global___AppCustomizations
+   viam.gen.app.v1.app_pb2.global___MachinePickerCustomizations
 
 
 Classes
@@ -605,6 +610,11 @@ Classes
    viam.gen.app.v1.app_pb2.ListOAuthAppsRequest
    viam.gen.app.v1.app_pb2.ListOAuthAppsResponse
    viam.gen.app.v1.app_pb2.OAuthConfig
+   viam.gen.app.v1.app_pb2.GetAppBrandingRequest
+   viam.gen.app.v1.app_pb2.TextOverrides
+   viam.gen.app.v1.app_pb2.GetAppBrandingResponse
+   viam.gen.app.v1.app_pb2.AppCustomizations
+   viam.gen.app.v1.app_pb2.MachinePickerCustomizations
 
 
 Module Contents
@@ -1126,7 +1136,7 @@ Module Contents
 
 .. py:data:: global___Organization
 
-.. py:class:: OrganizationMember(*, user_id: str = ..., emails: collections.abc.Iterable[str] | None = ..., date_added: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_login: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: OrganizationMember(*, user_id: str = ..., emails: collections.abc.Iterable[str] | None = ..., date_added: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_login: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1157,7 +1167,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> bool
+   .. py:property:: last_access
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['_last_access', b'_last_access', '_last_login', b'_last_login', 'date_added', b'date_added', 'last_access', b'last_access', 'last_login', b'last_login']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1175,7 +1190,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_last_login', b'_last_login']) -> Literal['last_login'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_last_access', b'_last_access']) -> Literal['last_access'] | None
+                  WhichOneof(oneof_group: Literal['_last_login', b'_last_login']) -> Literal['last_login'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -5546,7 +5562,7 @@ Module Contents
 
 .. py:data:: global___ListMachineFragmentsResponse
 
-.. py:class:: ListMachineSummariesRequest(*, organization_id: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ...)
+.. py:class:: ListMachineSummariesRequest(*, organization_id: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., location_ids: collections.abc.Iterable[str] | None = ..., limit: int | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5562,10 +5578,56 @@ Module Contents
       :type:  str
 
 
+   .. py:attribute:: limit
+      :type:  int
+
+      Optional max number of machines to return; default to 100 if unset
+
+
    .. py:property:: fragment_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Optional list of fragment IDs to filter machines that use any of these fragments
+
+
+   .. py:property:: location_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Optional list of location IDs to filter machines that are in any of these locations.
+
+
+   .. py:method:: HasField(field_name: Literal['_limit', b'_limit', 'limit', b'limit']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_limit', b'_limit']) -> Literal['limit'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___ListMachineSummariesRequest
@@ -7670,7 +7732,7 @@ Module Contents
 
 .. py:data:: global___UpdateModuleRequest
 
-.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ...)
+.. py:class:: App(*, name: str = ..., type: str = ..., entrypoint: str = ..., fragment_ids: collections.abc.Iterable[str] | None = ..., logo_path: str | None = ..., customizations: global___AppCustomizations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7698,6 +7760,64 @@ Module Contents
       :type:  str
 
       The entrypoint of the application
+
+
+   .. py:attribute:: logo_path
+      :type:  str
+
+      path to a custom logo for branding
+
+      :type: Optional
+
+
+   .. py:property:: fragment_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      fragment IDs to filter machines in the picker
+
+      :type: Optional
+
+
+   .. py:property:: customizations
+      :type: global___AppCustomizations
+
+      structured customizations for the app (e.g., machine picker headings)
+
+      :type: Optional
+
+
+   .. py:method:: HasField(field_name: Literal['_logo_path', b'_logo_path', 'customizations', b'customizations', 'logo_path', b'logo_path']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_logo_path', b'_logo_path']) -> Literal['logo_path'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___App
@@ -9495,4 +9615,253 @@ Module Contents
 
 
 .. py:data:: global___OAuthConfig
+
+.. py:class:: GetAppBrandingRequest(*, public_namespace: str = ..., name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Branding and customization for app machine picker
+
+
+   .. py:attribute:: public_namespace
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+.. py:data:: global___GetAppBrandingRequest
+
+.. py:class:: TextOverrides(*, fields: collections.abc.Mapping[str, str] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: FieldsEntry(*, key: str = ..., value: str = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:attribute:: value
+         :type:  str
+
+
+
+   .. py:property:: fields
+      :type: google.protobuf.internal.containers.ScalarMap[str, str]
+
+
+
+.. py:data:: global___TextOverrides
+
+.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, global___TextOverrides] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:class:: TextCustomizationsEntry(*, key: str = ..., value: global___TextOverrides | None = ...)
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+
+      .. py:attribute:: key
+         :type:  str
+
+
+      .. py:property:: value
+         :type: global___TextOverrides
+
+
+
+      .. py:method:: HasField(field_name: Literal['value', b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+
+   .. py:attribute:: logo_path
+      :type:  str
+
+
+   .. py:property:: text_customizations
+      :type: google.protobuf.internal.containers.MessageMap[str, global___TextOverrides]
+
+
+
+   .. py:method:: HasField(field_name: Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_logo_path', b'_logo_path']) -> Literal['logo_path'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___GetAppBrandingResponse
+
+.. py:class:: AppCustomizations(*, machine_picker: global___MachinePickerCustomizations | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: machine_picker
+      :type: global___MachinePickerCustomizations
+
+
+
+   .. py:method:: HasField(field_name: Literal['machine_picker', b'machine_picker']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___AppCustomizations
+
+.. py:class:: MachinePickerCustomizations(*, heading: str | None = ..., subheading: str | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: heading
+      :type:  str
+
+
+   .. py:attribute:: subheading
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_heading', b'_heading', '_subheading', b'_subheading', 'heading', b'heading', 'subheading', b'subheading']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_heading', b'_heading']) -> Literal['heading'] | None
+                  WhichOneof(oneof_group: Literal['_subheading', b'_subheading']) -> Literal['subheading'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___MachinePickerCustomizations
 

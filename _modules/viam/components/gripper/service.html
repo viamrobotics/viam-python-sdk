@@ -101,14 +101,14 @@
     <span class="n">GrabRequest</span><span class="p">,</span>
     <span class="n">GrabResponse</span><span class="p">,</span>
     <span class="n">GripperServiceBase</span><span class="p">,</span>
+    <span class="n">IsHoldingSomethingRequest</span><span class="p">,</span>
+    <span class="n">IsHoldingSomethingResponse</span><span class="p">,</span>
     <span class="n">IsMovingRequest</span><span class="p">,</span>
     <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">OpenRequest</span><span class="p">,</span>
     <span class="n">OpenResponse</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
     <span class="n">StopResponse</span><span class="p">,</span>
-    <span class="n">IsHoldingSomethingRequest</span><span class="p">,</span>
-    <span class="n">IsHoldingSomethingResponse</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
@@ -167,7 +167,8 @@
         <span class="n">gripper</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="n">holding_status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">gripper</span><span class="o">.</span><span class="n">is_holding_something</span><span class="p">()</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">IsHoldingSomethingResponse</span><span class="p">(</span>
-            <span class="n">is_holding_something</span><span class="o">=</span><span class="n">holding_status</span><span class="o">.</span><span class="n">is_holding_something</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">holding_status</span><span class="o">.</span><span class="n">meta</span><span class="p">))</span>
+            <span class="n">is_holding_something</span><span class="o">=</span><span class="n">holding_status</span><span class="o">.</span><span class="n">is_holding_something</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">holding_status</span><span class="o">.</span><span class="n">meta</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GripperRPCService.DoCommand"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/service/index.html#viam.components.gripper.service.GripperRPCService.DoCommand">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">DoCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

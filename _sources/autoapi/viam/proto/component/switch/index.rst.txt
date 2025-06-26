@@ -151,7 +151,7 @@ Package Contents
 
 
 
-.. py:class:: GetNumberOfPositionsResponse(*, number_of_positions: int = ...)
+.. py:class:: GetNumberOfPositionsResponse(*, number_of_positions: int = ..., labels: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -165,6 +165,11 @@ Package Contents
 
    .. py:attribute:: number_of_positions
       :type:  int
+
+
+   .. py:property:: labels
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)

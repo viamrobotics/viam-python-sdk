@@ -202,7 +202,7 @@ Module Contents
 
 .. py:data:: global___GetNumberOfPositionsRequest
 
-.. py:class:: GetNumberOfPositionsResponse(*, number_of_positions: int = ...)
+.. py:class:: GetNumberOfPositionsResponse(*, number_of_positions: int = ..., labels: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -216,6 +216,11 @@ Module Contents
 
    .. py:attribute:: number_of_positions
       :type:  int
+
+
+   .. py:property:: labels
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
 
 
 .. py:data:: global___GetNumberOfPositionsResponse
