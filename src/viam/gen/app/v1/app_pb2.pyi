@@ -5461,19 +5461,24 @@ class GetAppBrandingResponse(google.protobuf.message.Message):
             ...
     LOGO_PATH_FIELD_NUMBER: builtins.int
     TEXT_CUSTOMIZATIONS_FIELD_NUMBER: builtins.int
+    FRAGMENT_IDS_FIELD_NUMBER: builtins.int
     logo_path: builtins.str
 
     @property
     def text_customizations(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___TextOverrides]:
         ...
 
-    def __init__(self, *, logo_path: builtins.str | None=..., text_customizations: collections.abc.Mapping[builtins.str, global___TextOverrides] | None=...) -> None:
+    @property
+    def fragment_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, logo_path: builtins.str | None=..., text_customizations: collections.abc.Mapping[builtins.str, global___TextOverrides] | None=..., fragment_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'logo_path', b'logo_path', 'text_customizations', b'text_customizations']) -> None:
+    def ClearField(self, field_name: typing.Literal['_logo_path', b'_logo_path', 'fragment_ids', b'fragment_ids', 'logo_path', b'logo_path', 'text_customizations', b'text_customizations']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_logo_path', b'_logo_path']) -> typing.Literal['logo_path'] | None:
