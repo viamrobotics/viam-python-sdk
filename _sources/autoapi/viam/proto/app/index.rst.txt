@@ -4125,7 +4125,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, global___TextOverrides] | None = ...)
+.. py:class:: GetAppBrandingResponse(*, logo_path: str | None = ..., text_customizations: collections.abc.Mapping[str, global___TextOverrides] | None = ..., fragment_ids: collections.abc.Iterable[str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4183,6 +4183,11 @@ Package Contents
 
    .. py:property:: text_customizations
       :type: google.protobuf.internal.containers.MessageMap[str, global___TextOverrides]
+
+
+
+   .. py:property:: fragment_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
