@@ -2874,6 +2874,35 @@ class ListRobotsRequest(google.protobuf.message.Message):
 global___ListRobotsRequest = ListRobotsRequest
 
 @typing.final
+class ListRobotsForLocationsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_IDS_FIELD_NUMBER: builtins.int
+
+    @property
+    def location_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, location_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_ids', b'location_ids']) -> None:
+        ...
+global___ListRobotsForLocationsRequest = ListRobotsForLocationsRequest
+
+@typing.final
+class ListRobotsForOrgRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
+        ...
+global___ListRobotsForOrgRequest = ListRobotsForOrgRequest
+
+@typing.final
 class AdditionalFragment(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_ID_FIELD_NUMBER: builtins.int
@@ -3214,6 +3243,38 @@ class ListRobotsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['robots', b'robots']) -> None:
         ...
 global___ListRobotsResponse = ListRobotsResponse
+
+@typing.final
+class ListRobotsForLocationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def robots(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Robot]:
+        ...
+
+    def __init__(self, *, robots: collections.abc.Iterable[global___Robot] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['robots', b'robots']) -> None:
+        ...
+global___ListRobotsForLocationsResponse = ListRobotsForLocationsResponse
+
+@typing.final
+class ListRobotsForOrgResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def robots(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Robot]:
+        ...
+
+    def __init__(self, *, robots: collections.abc.Iterable[global___Robot] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['robots', b'robots']) -> None:
+        ...
+global___ListRobotsForOrgResponse = ListRobotsForOrgResponse
 
 @typing.final
 class NewRobotRequest(google.protobuf.message.Message):
