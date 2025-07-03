@@ -33,13 +33,12 @@ class _SingletonEventLoopThread:
             with cls._lock:
                 if cls._instance is None:
                     cls._instance = super(_SingletonEventLoopThread, cls).__new__(cls)
-                    cls._instance._loop = None
+                    cls._instance._loop = asyncio.new_event_loop()
                     cls._instance._thread = Thread(target=cls._instance._run)
                     cls._instance._thread.start()
         return cls._instance
 
     def _run(self):
-        self._loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self._loop)
         self._ready_event.set()
         self._loop.run_forever()
