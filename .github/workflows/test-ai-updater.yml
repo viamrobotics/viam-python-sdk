@@ -1,0 +1,14 @@
+name: Test AI Updater Workflow
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [update_protos]
+
+jobs:
+  call-ai-updater:
+    uses: gabegottlob/viam-ai-updater/.github/workflows/ai-updater.yml@main
+    with:
+        target_branch: workflow/update-proto
+    secrets:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
