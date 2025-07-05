@@ -1,4 +1,3 @@
-from token import OP
 import warnings
 from dataclasses import dataclass
 from datetime import datetime

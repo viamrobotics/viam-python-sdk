@@ -2,9 +2,7 @@ from datetime import datetime
 from typing import List
 
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
-from google.protobuf.any_pb2 import Any
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
@@ -20,7 +18,7 @@ from viam.proto.app.data import (
     Filter,
     Order,
 )
-from viam.utils import create_filter, dict_to_any, dict_to_struct, struct_to_dict
+from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
 from .mocks.services import MockData
 
