@@ -1,3 +1,4 @@
+from token import OP
 import warnings
 from dataclasses import dataclass
 from datetime import datetime
@@ -106,7 +107,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
-from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict
+from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict, dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
@@ -536,7 +537,7 @@ class DataClient:
 
     @_alias_param("resource_api", param_alias="resource_subtype")
     async def get_latest_tabular_data(
-        self, part_id: str, resource_name: str, resource_api: str, method_name: str
+        self, part_id: str, resource_name: str, resource_api: str, method_name: str, additional_params: Optional[Mapping[str, ValueTypes]] = None,
     ) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
@@ -546,7 +547,8 @@ class DataClient:
                 part_id="77ae3145-7b91-123a-a234-e567cdca8910",
                 resource_name="camera-1",
                 resource_api="rdk:component:camera",
-                method_name="GetImage"
+                method_name="GetImage",
+                additional_params={"docommand_input": {"test": "test"}}
             )
 
             if tabular_data:
@@ -562,6 +564,7 @@ class DataClient:
             resource_name (str): The name of the requested resource that captured the data. For example, "my-sensor".
             resource_api (str): The API of the requested resource that captured the data. For example, "rdk:component:sensor".
             method_name (str): The data capture method name. For exampe, "Readings".
+            additional_params (dict): Optional collection of additional parameters to be passed to the query.
 
         Returns:
             Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
@@ -577,7 +580,8 @@ class DataClient:
         """
 
         request = GetLatestTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name,
+            additional_parameters=dict_to_struct(additional_params)
         )
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
@@ -593,6 +597,7 @@ class DataClient:
         method_name: str,
         start_time: Optional[datetime] = None,
         end_time: Optional[datetime] = None,
+        additional_params:  Optional[Mapping[str, ValueTypes]] = None,
     ) -> List[TabularDataPoint]:
         """Obtain unified tabular data and metadata from the specified data source.
 
@@ -605,6 +610,7 @@ class DataClient:
                 method_name="<METHOD-NAME>",
                 start_time="<START_TIME>"
                 end_time="<END_TIME>"
+                additional_params="<ADDITIONAL_PARAMETERS>"
             )
 
             print(f"My data: {tabular_data}")
@@ -616,6 +622,7 @@ class DataClient:
             method_name (str): The data capture method name.
             start_time (datetime): Optional start time for requesting a specific range of data.
             end_time (datetime): Optional end time for requesting a specific range of data.
+            additional_params (dict): Optional collection of additional parameters to be passed to the query.
 
         Returns:
             List[TabularDataPoint]: The unified tabular data and metadata.
@@ -625,7 +632,8 @@ class DataClient:
 
         interval = CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
         request = ExportTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name, interval=interval
+            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name, interval=interval,
+            additional_parameters=dict_to_struct(additional_params)
         )
         response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
