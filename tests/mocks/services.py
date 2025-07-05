@@ -840,6 +840,7 @@ class MockData(UnimplementedDataServiceBase):
         tags_response: List[str],
         bbox_labels_response: List[str],
         hostname_response: str,
+        additional_params: Mapping[str, ValueTypes],
     ):
         self.tabular_response = tabular_response
         self.tabular_export_response = tabular_export_response
@@ -851,6 +852,7 @@ class MockData(UnimplementedDataServiceBase):
         self.hostname_response = hostname_response
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
+        self.additional_params = additional_params
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1058,6 +1060,7 @@ class MockData(UnimplementedDataServiceBase):
         self.resource_subtype = request.resource_subtype
         self.method_name = request.method_name
         self.interval = request.interval
+        self.additional_params = request.additional_parameters
         for tabular_data in self.tabular_export_response:
             await stream.send_message(tabular_data)
 

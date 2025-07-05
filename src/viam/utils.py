@@ -6,6 +6,7 @@ import threading
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
+from google.protobuf import any_pb2
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
@@ -151,6 +152,11 @@ def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
     struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct
 
+def dict_to_any(obj: Optional[Mapping[str, ValueTypes]]) -> any_pb2.Any:
+    struct = dict_to_struct(obj)
+    any_msg = any_pb2.Any()
+    any_msg.Pack(struct)
+    return any_msg
 
 def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}

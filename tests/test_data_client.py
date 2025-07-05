@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import List
 
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
@@ -19,7 +18,7 @@ from viam.proto.app.data import (
     Filter,
     Order,
 )
-from viam.utils import create_filter, dict_to_struct
+from viam.utils import create_filter, dict_to_struct, struct_to_dict
 
 from .mocks.services import MockData
 
@@ -69,6 +68,7 @@ FILTER = create_filter(
     dataset_id=DATASET_ID,
 )
 INTERVAL = CaptureInterval(start=START_TS, end=END_TS)
+ADDITIONAL_PARAMS = {"docommand_input": {"test": "test"}}
 
 FILE_ID = "file_id"
 BINARY_ID = BinaryID(file_id=FILE_ID, organization_id=ORG_ID, location_id=LOCATION_ID)
@@ -100,10 +100,12 @@ TABULAR_METADATA = CaptureMetadata(
     component_type=COMPONENT_TYPE,
     component_name=COMPONENT_NAME,
     method_name=METHOD,
-    method_parameters={},
     tags=TAGS,
     mime_type=MIME_TYPE,
 )
+for key, value in ADDITIONAL_PARAMS.items():
+    TABULAR_METADATA.method_parameters[key].Pack(dict_to_struct(value))
+
 BINARY_METADATA = BinaryMetadata(
     id="id",
     binary_data_id=BINARY_DATA_ID,
@@ -117,22 +119,21 @@ BINARY_METADATA = BinaryMetadata(
 )
 
 TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
-TABULAR_EXPORT_RESPONSE = [
-    ExportTabularDataResponse(
-        part_id=TABULAR_METADATA.part_id,
-        resource_name=TABULAR_METADATA.component_name,
-        resource_subtype=TABULAR_METADATA.component_type,
-        time_captured=END_TS,
-        organization_id=TABULAR_METADATA.organization_id,
-        location_id=TABULAR_METADATA.location_id,
-        robot_name=TABULAR_METADATA.robot_name,
-        robot_id=TABULAR_METADATA.robot_id,
-        part_name=TABULAR_METADATA.part_name,
-        method_parameters=Struct(),
-        tags=TABULAR_METADATA.tags,
-        payload=dict_to_struct(TABULAR_DATA),
-    )
-]
+resp = ExportTabularDataResponse(
+    part_id=TABULAR_METADATA.part_id,
+    resource_name=TABULAR_METADATA.component_name,
+    resource_subtype=TABULAR_METADATA.component_type,
+    time_captured=END_TS,
+    organization_id=TABULAR_METADATA.organization_id,
+    location_id=TABULAR_METADATA.location_id,
+    robot_name=TABULAR_METADATA.robot_name,
+    robot_id=TABULAR_METADATA.robot_id,
+    part_name=TABULAR_METADATA.part_name,
+    tags=TABULAR_METADATA.tags,
+    payload=dict_to_struct(TABULAR_DATA),
+    method_parameters=dict_to_struct(ADDITIONAL_PARAMS),
+)
+TABULAR_EXPORT_RESPONSE = [resp]
 TABULAR_QUERY_RESPONSE = [
     {"key1": START_DATETIME, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": END_DATETIME}},
 ]
@@ -156,6 +157,7 @@ def service() -> MockData:
         tags_response=TAGS_RESPONSE,
         bbox_labels_response=BBOX_LABELS,
         hostname_response=HOSTNAME_RESPONSE,
+        additional_params=ADDITIONAL_PARAMS,
     )
 
 
@@ -218,7 +220,15 @@ class TestClient:
     async def test_export_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            tabular_data = await client.export_tabular_data(PART_ID, COMPONENT_NAME, COMPONENT_TYPE, METHOD, START_DATETIME, END_DATETIME)
+            tabular_data = await client.export_tabular_data(
+                PART_ID,
+                COMPONENT_NAME,
+                COMPONENT_TYPE,
+                METHOD,
+                START_DATETIME,
+                END_DATETIME,
+                additional_params=ADDITIONAL_PARAMS,
+            )
             assert tabular_data is not None
             for tabular_datum in tabular_data:
                 assert tabular_datum is not None
@@ -231,7 +241,9 @@ class TestClient:
                 assert tabular_datum.robot_name == TABULAR_METADATA.robot_name
                 assert tabular_datum.robot_id == TABULAR_METADATA.robot_id
                 assert tabular_datum.part_name == TABULAR_METADATA.part_name
-                assert tabular_datum.method_parameters == TABULAR_METADATA.method_parameters
+                # Compare method_parameters directly since both are Structs converted to dicts
+                expected_method_params = struct_to_dict(TABULAR_EXPORT_RESPONSE[0].method_parameters)
+                assert tabular_datum.method_parameters == expected_method_params
                 assert tabular_datum.tags == TABULAR_METADATA.tags
                 assert tabular_datum.payload == TABULAR_DATA
             assert service.part_id == PART_ID
@@ -239,6 +251,7 @@ class TestClient:
             assert service.resource_subtype == COMPONENT_TYPE
             assert service.method_name == METHOD
             assert service.interval == INTERVAL
+            assert service.additional_params == ADDITIONAL_PARAMS
 
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
