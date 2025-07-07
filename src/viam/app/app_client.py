@@ -2603,7 +2603,7 @@ class AppClient:
 
         Args:
             location_id (str): The ID of the location with which the user-defined metadata is associated.
-                You can obtain your location ID from the locations page.
+                You can obtain your location ID from the location's page.
 
         Returns:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2621,7 +2621,7 @@ class AppClient:
 
         Args:
             location_id (str): The ID of the location with which to associate the user-defined metadata.
-                You can obtain your location ID from the locations page.
+                You can obtain your location ID from the location's page.
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateLocationMetadataRequest(location_id=location_id, data=dict_to_struct(metadata))
