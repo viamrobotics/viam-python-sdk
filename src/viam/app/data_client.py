@@ -563,7 +563,7 @@ class DataClient:
             resource_name (str): The name of the requested resource that captured the data. For example, "my-sensor".
             resource_api (str): The API of the requested resource that captured the data. For example, "rdk:component:sensor".
             method_name (str): The data capture method name. For exampe, "Readings".
-            additional_params (dict): Optional collection of additional parameters to be passed to the query.
+            additional_params (dict): Optional additional parameters of the resource that captured the data.
 
         Returns:
             Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
@@ -621,7 +621,7 @@ class DataClient:
             method_name (str): The data capture method name.
             start_time (datetime): Optional start time for requesting a specific range of data.
             end_time (datetime): Optional end time for requesting a specific range of data.
-            additional_params (dict): Optional collection of additional parameters to be passed to the query.
+            additional_params (dict): Optional additional parameters of the resource that captured the data.
 
         Returns:
             List[TabularDataPoint]: The unified tabular data and metadata.

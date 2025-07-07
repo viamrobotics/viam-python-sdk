@@ -152,12 +152,6 @@ def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
     struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct
 
-def dict_to_any(obj: Optional[Mapping[str, ValueTypes]]) -> any_pb2.Any:
-    struct = dict_to_struct(obj)
-    any_msg = any_pb2.Any()
-    any_msg.Pack(struct)
-    return any_msg
-
 def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
 
