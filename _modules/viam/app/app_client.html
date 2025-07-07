@@ -2692,7 +2692,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): The ID of the location with which the user-defined metadata is associated.</span>
-<span class="sd">                You can obtain your location ID from the locations page.</span>
+<span class="sd">                You can obtain your location ID from the location&#39;s page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.</span>
@@ -2710,7 +2710,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): The ID of the location with which to associate the user-defined metadata.</span>
-<span class="sd">                You can obtain your location ID from the locations page.</span>
+<span class="sd">                You can obtain your location ID from the location&#39;s page.</span>
 <span class="sd">            metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateLocationMetadataRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">metadata</span><span class="p">))</span>

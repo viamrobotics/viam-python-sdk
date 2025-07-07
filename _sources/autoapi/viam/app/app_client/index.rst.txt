@@ -2327,7 +2327,7 @@ Module Contents
           metadata = await cloud.get_location_metadata(location_id="<YOUR-LOCATION-ID>")
 
       :param location_id: The ID of the location with which the user-defined metadata is associated.
-                          You can obtain your location ID from the locations page.
+                          You can obtain your location ID from the location's page.
       :type location_id: str
 
       :returns: The user-defined metadata converted from JSON to a Python dictionary.
@@ -2346,7 +2346,7 @@ Module Contents
            await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
 
       :param location_id: The ID of the location with which to associate the user-defined metadata.
-                          You can obtain your location ID from the locations page.
+                          You can obtain your location ID from the location's page.
       :type location_id: str
       :param metadata: The user-defined metadata converted from JSON to a Python dictionary.
       :type metadata: Mapping[str, Any]
