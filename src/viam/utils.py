@@ -151,6 +151,7 @@ def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
     struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct
 
+
 def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
 
