@@ -26,7 +26,7 @@ class _SingletonEventLoopThread:
     # We use a threading.Event instead of an asyncio.Event because the latter are not thread safe,
     # and this is set in a separate thread than it is waited on.
     _ready_event = Event()
-    _loop: Union[asyncio.AbstractEventLoop, None]
+    _loop: asyncio.AbstractEventLoop
     _thread: Thread
 
     def __new__(cls):
