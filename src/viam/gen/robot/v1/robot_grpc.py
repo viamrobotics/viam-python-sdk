@@ -43,18 +43,6 @@ class RobotServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
-    async def FrameSystemConfig(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]') -> None:
-        pass
-
-    @abc.abstractmethod
-    async def TransformPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]') -> None:
-        pass
-
-    @abc.abstractmethod
-    async def TransformPCD(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]') -> None:
-        pass
-
-    @abc.abstractmethod
     async def GetStatus(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]') -> None:
         pass
 
@@ -106,8 +94,24 @@ class RobotServiceBase(abc.ABC):
     async def ListTunnels(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def FrameSystemConfig(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GetPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def TransformPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def TransformPCD(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.robot.v1.RobotService/GetOperations': grpclib.const.Handler(self.GetOperations, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse), '/viam.robot.v1.RobotService/GetSessions': grpclib.const.Handler(self.GetSessions, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse), '/viam.robot.v1.RobotService/ResourceNames': grpclib.const.Handler(self.ResourceNames, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse), '/viam.robot.v1.RobotService/ResourceRPCSubtypes': grpclib.const.Handler(self.ResourceRPCSubtypes, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse), '/viam.robot.v1.RobotService/CancelOperation': grpclib.const.Handler(self.CancelOperation, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse), '/viam.robot.v1.RobotService/BlockForOperation': grpclib.const.Handler(self.BlockForOperation, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse), '/viam.robot.v1.RobotService/GetModelsFromModules': grpclib.const.Handler(self.GetModelsFromModules, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetModelsFromModulesRequest, robot.v1.robot_pb2.GetModelsFromModulesResponse), '/viam.robot.v1.RobotService/FrameSystemConfig': grpclib.const.Handler(self.FrameSystemConfig, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse), '/viam.robot.v1.RobotService/TransformPose': grpclib.const.Handler(self.TransformPose, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse), '/viam.robot.v1.RobotService/TransformPCD': grpclib.const.Handler(self.TransformPCD, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse), '/viam.robot.v1.RobotService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse), '/viam.robot.v1.RobotService/StreamStatus': grpclib.const.Handler(self.StreamStatus, grpclib.const.Cardinality.UNARY_STREAM, robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse), '/viam.robot.v1.RobotService/StopAll': grpclib.const.Handler(self.StopAll, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse), '/viam.robot.v1.RobotService/StartSession': grpclib.const.Handler(self.StartSession, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse), '/viam.robot.v1.RobotService/SendSessionHeartbeat': grpclib.const.Handler(self.SendSessionHeartbeat, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse), '/viam.robot.v1.RobotService/Log': grpclib.const.Handler(self.Log, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse), '/viam.robot.v1.RobotService/GetCloudMetadata': grpclib.const.Handler(self.GetCloudMetadata, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse), '/viam.robot.v1.RobotService/RestartModule': grpclib.const.Handler(self.RestartModule, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse), '/viam.robot.v1.RobotService/Shutdown': grpclib.const.Handler(self.Shutdown, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ShutdownRequest, robot.v1.robot_pb2.ShutdownResponse), '/viam.robot.v1.RobotService/GetMachineStatus': grpclib.const.Handler(self.GetMachineStatus, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetMachineStatusRequest, robot.v1.robot_pb2.GetMachineStatusResponse), '/viam.robot.v1.RobotService/GetVersion': grpclib.const.Handler(self.GetVersion, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetVersionRequest, robot.v1.robot_pb2.GetVersionResponse), '/viam.robot.v1.RobotService/Tunnel': grpclib.const.Handler(self.Tunnel, grpclib.const.Cardinality.STREAM_STREAM, robot.v1.robot_pb2.TunnelRequest, robot.v1.robot_pb2.TunnelResponse), '/viam.robot.v1.RobotService/ListTunnels': grpclib.const.Handler(self.ListTunnels, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse)}
+        return {'/viam.robot.v1.RobotService/GetOperations': grpclib.const.Handler(self.GetOperations, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse), '/viam.robot.v1.RobotService/GetSessions': grpclib.const.Handler(self.GetSessions, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse), '/viam.robot.v1.RobotService/ResourceNames': grpclib.const.Handler(self.ResourceNames, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse), '/viam.robot.v1.RobotService/ResourceRPCSubtypes': grpclib.const.Handler(self.ResourceRPCSubtypes, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse), '/viam.robot.v1.RobotService/CancelOperation': grpclib.const.Handler(self.CancelOperation, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse), '/viam.robot.v1.RobotService/BlockForOperation': grpclib.const.Handler(self.BlockForOperation, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse), '/viam.robot.v1.RobotService/GetModelsFromModules': grpclib.const.Handler(self.GetModelsFromModules, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetModelsFromModulesRequest, robot.v1.robot_pb2.GetModelsFromModulesResponse), '/viam.robot.v1.RobotService/GetStatus': grpclib.const.Handler(self.GetStatus, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse), '/viam.robot.v1.RobotService/StreamStatus': grpclib.const.Handler(self.StreamStatus, grpclib.const.Cardinality.UNARY_STREAM, robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse), '/viam.robot.v1.RobotService/StopAll': grpclib.const.Handler(self.StopAll, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse), '/viam.robot.v1.RobotService/StartSession': grpclib.const.Handler(self.StartSession, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse), '/viam.robot.v1.RobotService/SendSessionHeartbeat': grpclib.const.Handler(self.SendSessionHeartbeat, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse), '/viam.robot.v1.RobotService/Log': grpclib.const.Handler(self.Log, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse), '/viam.robot.v1.RobotService/GetCloudMetadata': grpclib.const.Handler(self.GetCloudMetadata, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse), '/viam.robot.v1.RobotService/RestartModule': grpclib.const.Handler(self.RestartModule, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse), '/viam.robot.v1.RobotService/Shutdown': grpclib.const.Handler(self.Shutdown, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ShutdownRequest, robot.v1.robot_pb2.ShutdownResponse), '/viam.robot.v1.RobotService/GetMachineStatus': grpclib.const.Handler(self.GetMachineStatus, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetMachineStatusRequest, robot.v1.robot_pb2.GetMachineStatusResponse), '/viam.robot.v1.RobotService/GetVersion': grpclib.const.Handler(self.GetVersion, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetVersionRequest, robot.v1.robot_pb2.GetVersionResponse), '/viam.robot.v1.RobotService/Tunnel': grpclib.const.Handler(self.Tunnel, grpclib.const.Cardinality.STREAM_STREAM, robot.v1.robot_pb2.TunnelRequest, robot.v1.robot_pb2.TunnelResponse), '/viam.robot.v1.RobotService/ListTunnels': grpclib.const.Handler(self.ListTunnels, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse), '/viam.robot.v1.RobotService/FrameSystemConfig': grpclib.const.Handler(self.FrameSystemConfig, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse), '/viam.robot.v1.RobotService/GetPose': grpclib.const.Handler(self.GetPose, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse), '/viam.robot.v1.RobotService/TransformPose': grpclib.const.Handler(self.TransformPose, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse), '/viam.robot.v1.RobotService/TransformPCD': grpclib.const.Handler(self.TransformPCD, grpclib.const.Cardinality.UNARY_UNARY, robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse)}
 
 class UnimplementedRobotServiceBase(RobotServiceBase):
 
@@ -132,15 +136,6 @@ class UnimplementedRobotServiceBase(RobotServiceBase):
     async def GetModelsFromModules(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.GetModelsFromModulesRequest, robot.v1.robot_pb2.GetModelsFromModulesResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def FrameSystemConfig(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]') -> None:
-        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def TransformPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]') -> None:
-        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
-    async def TransformPCD(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]') -> None:
-        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
-
     async def GetStatus(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
@@ -180,6 +175,18 @@ class UnimplementedRobotServiceBase(RobotServiceBase):
     async def ListTunnels(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def FrameSystemConfig(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def TransformPose(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def TransformPCD(self, stream: 'grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class RobotServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -190,9 +197,6 @@ class RobotServiceStub:
         self.CancelOperation = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/CancelOperation', robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse)
         self.BlockForOperation = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/BlockForOperation', robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse)
         self.GetModelsFromModules = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/GetModelsFromModules', robot.v1.robot_pb2.GetModelsFromModulesRequest, robot.v1.robot_pb2.GetModelsFromModulesResponse)
-        self.FrameSystemConfig = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/FrameSystemConfig', robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse)
-        self.TransformPose = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/TransformPose', robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse)
-        self.TransformPCD = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/TransformPCD', robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse)
         self.GetStatus = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/GetStatus', robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse)
         self.StreamStatus = grpclib.client.UnaryStreamMethod(channel, '/viam.robot.v1.RobotService/StreamStatus', robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse)
         self.StopAll = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/StopAll', robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse)
@@ -206,3 +210,7 @@ class RobotServiceStub:
         self.GetVersion = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/GetVersion', robot.v1.robot_pb2.GetVersionRequest, robot.v1.robot_pb2.GetVersionResponse)
         self.Tunnel = grpclib.client.StreamStreamMethod(channel, '/viam.robot.v1.RobotService/Tunnel', robot.v1.robot_pb2.TunnelRequest, robot.v1.robot_pb2.TunnelResponse)
         self.ListTunnels = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/ListTunnels', robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse)
+        self.FrameSystemConfig = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/FrameSystemConfig', robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse)
+        self.GetPose = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/GetPose', robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse)
+        self.TransformPose = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/TransformPose', robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse)
+        self.TransformPCD = grpclib.client.UnaryUnaryMethod(channel, '/viam.robot.v1.RobotService/TransformPCD', robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse)
