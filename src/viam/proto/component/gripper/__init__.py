@@ -7,6 +7,8 @@ from ....gen.component.gripper.v1.gripper_grpc import GripperServiceBase, Grippe
 from ....gen.component.gripper.v1.gripper_pb2 import (
     GrabRequest,
     GrabResponse,
+    IsHoldingSomethingRequest,
+    IsHoldingSomethingResponse,
     IsMovingRequest,
     IsMovingResponse,
     OpenRequest,
@@ -21,6 +23,8 @@ __all__ = [
     "UnimplementedGripperServiceBase",
     "GrabRequest",
     "GrabResponse",
+    "IsHoldingSomethingRequest",
+    "IsHoldingSomethingResponse",
     "IsMovingRequest",
     "IsMovingResponse",
     "OpenRequest",

@@ -270,6 +270,9 @@ class DataClient:
         enabled: bool
         """Whether the data pipeline is enabled"""
 
+        data_source_type: TabularDataSourceType.ValueType
+        """The type of data source for the data pipeline"""
+
         @classmethod
         def from_proto(cls, data_pipeline: ProtoDataPipeline) -> Self:
             return cls(
@@ -281,6 +284,7 @@ class DataClient:
                 created_on=data_pipeline.created_on.ToDatetime(),
                 updated_at=data_pipeline.updated_at.ToDatetime(),
                 enabled=data_pipeline.enabled,
+                data_source_type=data_pipeline.data_source_type,
             )
 
     @dataclass
@@ -470,7 +474,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             sql_query (str): The SQL query to run.
 
         Returns:
@@ -506,7 +510,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             query (Union[List[bytes], List[Dict[str, Any]]]): The MQL query to run, as a list of MongoDB aggregation pipeline stages.
                 Each stage can be provided as either a dictionary or raw BSON bytes, but support for bytes will be removed in the
                 future, so prefer the dictionary option.
@@ -808,7 +812,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization to delete the data from.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             delete_older_than_days (int): Delete data that was captured up to *this many* days ago. For example, a value of
                 10 deletes any data that was captured up to 10 days ago. A value of 0 deletes *all* existing data.
 
@@ -840,7 +844,7 @@ class DataClient:
             filter (~viam.proto.app.data.Filter): Optional, specifies binary data to delete.
                 **CAUTION: Passing an empty** ``Filter`` **deletes all binary data!**
                 You must specify an organization ID with ``organization_ids`` when using this option.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             int: The number of items deleted.
@@ -1204,7 +1208,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to connect to.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             str: The hostname of the federated database.
@@ -1228,7 +1232,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to configure a database user for.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
             password (str): The password of the user.
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#configuredatabaseuser>`_.
@@ -1250,7 +1254,7 @@ class DataClient:
         Args:
             name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             str: The dataset ID of the created dataset.
@@ -1301,7 +1305,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization you'd like to retrieve datasets from.
-                To find your organization ID, visit the organization settings page in the Viam app.
+                To find your organization ID, visit the organization settings page.
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
@@ -1466,7 +1470,7 @@ class DataClient:
         """Upload binary sensor data.
 
         Upload binary data collected on a robot through a specific component (for example, a motor), along with the relevant metadata.
-        Binary data can be found on the **DATA** page of the Viam app.
+        Binary data can be found on the **DATA** page.
 
         ::
 
@@ -1874,7 +1878,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the pipelines.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
 
         Returns:
             List[DataPipeline]: A list of all of the data pipelines for the given organization.
@@ -1883,7 +1887,14 @@ class DataClient:
         response: ListDataPipelinesResponse = await self._data_pipelines_client.ListDataPipelines(request, metadata=self._metadata)
         return [DataClient.DataPipeline.from_proto(pipeline) for pipeline in response.data_pipelines]
 
-    async def create_data_pipeline(self, organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str, enable_backfill: bool) -> str:
+    async def create_data_pipeline(
+        self,
+        organization_id: str,
+        name: str,
+        mql_binary: List[Dict[str, Any]],
+        schedule: str, enable_backfill: bool,
+        data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
+    ) -> str:
         """Create a new data pipeline.
 
         ::
@@ -1892,23 +1903,28 @@ class DataClient:
                 organization_id="<YOUR-ORGANIZATION-ID>",
                 name="<YOUR-PIPELINE-NAME>",
                 mql_binary=[<YOUR-MQL-PIPELINE-AGGREGATION>],
-                schedule="<YOUR-SCHEDULE>"
+                schedule="<YOUR-SCHEDULE>",
+                data_source_type=TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
             )
 
         Args:
             organization_id (str): The ID of the organization that will own the pipeline.
-                You can obtain your organization ID from the Viam app's organization settings page.
+                You can obtain your organization ID from the organization settings page.
             name (str): The name of the pipeline.
             mql_binary (List[Dict[str, Any]]):The MQL pipeline to run, as a list of MongoDB aggregation pipeline stages.
             schedule (str): A cron expression representing the expected execution schedule in UTC (note this also
                 defines the input time window; an hourly schedule would process 1 hour of data at a time).
             enable_backfill (bool):  When true, pipeline runs will be scheduled for the organization's past data.
+            data_source_type (TabularDataSourceType): The type of data source to use for the pipeline.
+                Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.
 
         Returns:
             str: The ID of the newly created pipeline.
         """
         binary: List[bytes] = [bson.encode(query) for query in mql_binary]
-        request = CreateDataPipelineRequest(organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, enable_backfill=enable_backfill)
+        request = CreateDataPipelineRequest(
+            organization_id=organization_id, name=name, mql_binary=binary, schedule=schedule, enable_backfill=enable_backfill, data_source_type=data_source_type
+        )
         response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
         return response.id
 
