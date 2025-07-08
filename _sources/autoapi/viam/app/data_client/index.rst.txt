@@ -1595,7 +1595,7 @@ Module Contents
 
 
 
-   .. py:method:: create_data_pipeline(organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str, data_source_type: viam.proto.app.data.TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD) -> str
+   .. py:method:: create_data_pipeline(organization_id: str, name: str, mql_binary: List[Dict[str, Any]], schedule: str, enable_backfill: bool, data_source_type: viam.proto.app.data.TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD) -> str
       :async:
 
 
@@ -1621,6 +1621,8 @@ Module Contents
       :param schedule: A cron expression representing the expected execution schedule in UTC (note this also
                        defines the input time window; an hourly schedule would process 1 hour of data at a time).
       :type schedule: str
+      :param enable_backfill: When true, pipeline runs will be scheduled for the organization's past data.
+      :type enable_backfill: bool
       :param data_source_type: The type of data source to use for the pipeline.
                                Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.
       :type data_source_type: TabularDataSourceType
