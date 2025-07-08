@@ -16,6 +16,7 @@ ORG_ID = "org_id"
 SCHEDULE = "0 0 * * *"
 UPDATED_SCHEDULE = "0 1 * * *"
 MQL_BINARY = []
+ENABLE_BACKFILL = True
 DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
 STANDARD_DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD
 
@@ -82,12 +83,13 @@ class TestClient:
     async def test_create_data_pipeline(self, service: MockDataPipelines):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            id = await client.create_data_pipeline(ORG_ID, NAME, MQL_BINARY, SCHEDULE)
+            id = await client.create_data_pipeline(ORG_ID, NAME, MQL_BINARY, SCHEDULE, ENABLE_BACKFILL)
             assert id == ID
             assert service.name == NAME
             assert service.org_id == ORG_ID
             assert service.schedule == SCHEDULE
             assert service.mql_binary == MQL_BINARY
+            assert service.enable_backfill == ENABLE_BACKFILL
             assert service.data_source_type == STANDARD_DATA_SOURCE_TYPE
 
     async def test_get_data_pipeline(self, service: MockDataPipelines):
