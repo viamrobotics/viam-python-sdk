@@ -475,7 +475,7 @@ Module Contents
 
 
 
-   .. py:method:: get_latest_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str) -> Optional[Tuple[datetime.datetime, datetime.datetime, Dict[str, viam.utils.ValueTypes]]]
+   .. py:method:: get_latest_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str, additional_params: Optional[Mapping[str, viam.utils.ValueTypes]] = None) -> Optional[Tuple[datetime.datetime, datetime.datetime, Dict[str, viam.utils.ValueTypes]]]
       :async:
 
 
@@ -487,7 +487,8 @@ Module Contents
               part_id="77ae3145-7b91-123a-a234-e567cdca8910",
               resource_name="camera-1",
               resource_api="rdk:component:camera",
-              method_name="GetImage"
+              method_name="GetImage",
+              additional_params={"docommand_input": {"test": "test"}}
           )
 
           if tabular_data:
@@ -506,6 +507,8 @@ Module Contents
       :type resource_api: str
       :param method_name: The data capture method name. For exampe, "Readings".
       :type method_name: str
+      :param additional_params: Optional additional parameters of the resource that captured the data.
+      :type additional_params: dict
 
       :returns: A return value of ``None`` means that this data source
                 has not synced data in the last year. Otherwise, the data source has synced some data in the last year, so the returned
@@ -520,7 +523,7 @@ Module Contents
 
 
 
-   .. py:method:: export_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None) -> List[TabularDataPoint]
+   .. py:method:: export_tabular_data(part_id: str, resource_name: str, resource_api: str, method_name: str, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, additional_params: Optional[Mapping[str, viam.utils.ValueTypes]] = None) -> List[TabularDataPoint]
       :async:
 
 
@@ -535,6 +538,7 @@ Module Contents
               method_name="<METHOD-NAME>",
               start_time="<START_TIME>"
               end_time="<END_TIME>"
+              additional_params="<ADDITIONAL_PARAMETERS>"
           )
 
           print(f"My data: {tabular_data}")
@@ -551,6 +555,8 @@ Module Contents
       :type start_time: datetime
       :param end_time: Optional end time for requesting a specific range of data.
       :type end_time: datetime
+      :param additional_params: Optional additional parameters of the resource that captured the data.
+      :type additional_params: dict
 
       :returns: The unified tabular data and metadata.
       :rtype: List[TabularDataPoint]
