@@ -75,27 +75,6 @@ Module Contents
 
 
 
-   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
-   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
-   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
-      :abstractmethod:
-
-      :async:
-
-
-
    .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
       :abstractmethod:
 
@@ -181,6 +160,34 @@ Module Contents
 
 
    .. py:method:: ListTunnels(stream: grpclib.server.Stream[robot.v1.robot_pb2.ListTunnelsRequest, robot.v1.robot_pb2.ListTunnelsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
       :abstractmethod:
 
       :async:
@@ -234,21 +241,6 @@ Module Contents
 
 
 
-   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
-      :async:
-
-
-
    .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
       :async:
 
@@ -314,6 +306,26 @@ Module Contents
 
 
 
+   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetPoseRequest, robot.v1.robot_pb2.GetPoseResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
+      :async:
+
+
+
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetOperations
@@ -335,15 +347,6 @@ Module Contents
 
 
    .. py:attribute:: GetModelsFromModules
-
-
-   .. py:attribute:: FrameSystemConfig
-
-
-   .. py:attribute:: TransformPose
-
-
-   .. py:attribute:: TransformPCD
 
 
    .. py:attribute:: GetStatus
@@ -383,5 +386,17 @@ Module Contents
 
 
    .. py:attribute:: ListTunnels
+
+
+   .. py:attribute:: FrameSystemConfig
+
+
+   .. py:attribute:: GetPose
+
+
+   .. py:attribute:: TransformPose
+
+
+   .. py:attribute:: TransformPCD
 
 
