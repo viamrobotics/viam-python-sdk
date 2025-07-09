@@ -1018,3 +1018,54 @@ class GetVersionResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['api_version', b'api_version', 'platform', b'platform', 'version', b'version']) -> None:
         ...
 global___GetVersionResponse = GetVersionResponse
+
+@typing.final
+class GetPoseRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FRAME_FIELD_NUMBER: builtins.int
+    SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    component_name: builtins.str
+    'the component whose pose is being requested'
+    destination_frame: builtins.str
+    'the reference frame in which the component\'s pose\n    should be provided, if unset this defaults\n    to the "world" reference frame\n    '
+
+    @property
+    def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Transform]:
+        """pose information on any additional reference frames that are needed
+        to compute the component's pose
+        """
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, component_name: builtins.str=..., destination_frame: builtins.str=..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame', 'extra', b'extra', 'supplemental_transforms', b'supplemental_transforms']) -> None:
+        ...
+global___GetPoseRequest = GetPoseRequest
+
+@typing.final
+class GetPoseResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POSE_FIELD_NUMBER: builtins.int
+
+    @property
+    def pose(self) -> common.v1.common_pb2.PoseInFrame:
+        ...
+
+    def __init__(self, *, pose: common.v1.common_pb2.PoseInFrame | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['pose', b'pose']) -> None:
+        ...
+global___GetPoseResponse = GetPoseResponse
