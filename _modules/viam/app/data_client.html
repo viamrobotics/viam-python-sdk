@@ -195,7 +195,7 @@
     <span class="n">StreamingDataCaptureUploadResponse</span><span class="p">,</span>
     <span class="n">UploadMetadata</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">dict_to_struct</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">_alias_param</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -625,7 +625,12 @@
 
 <div class="viewcode-block" id="DataClient.get_latest_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_latest_tabular_data">[docs]</a>    <span class="nd">@_alias_param</span><span class="p">(</span><span class="s2">&quot;resource_api&quot;</span><span class="p">,</span> <span class="n">param_alias</span><span class="o">=</span><span class="s2">&quot;resource_subtype&quot;</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_latest_tabular_data</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_api</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">additional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">resource_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">resource_api</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">additional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.</span>
 
@@ -668,8 +673,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetLatestTabularDataRequest</span><span class="p">(</span>
-            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
-            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">)</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
+            <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetLatestTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetLatestTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">:</span>
@@ -685,7 +693,7 @@
         <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">additional_params</span><span class="p">:</span>  <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">additional_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TabularDataPoint</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata from the specified data source.</span>
 
@@ -720,8 +728,12 @@
 
         <span class="n">interval</span> <span class="o">=</span> <span class="n">CaptureInterval</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">))</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ExportTabularDataRequest</span><span class="p">(</span>
-            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span> <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span> <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span> <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span>
-            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">)</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
+            <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+            <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span>
+            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ExportTabularDataResponse</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ExportTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
