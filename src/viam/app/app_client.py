@@ -2576,7 +2576,7 @@ class AppClient:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary
         """
         request = GetOrganizationMetadataRequest(organization_id=org_id)
-        response: GetOrganizationMetadataResponse = await self._app_client.GetOrganizationMetadata(request)
+        response: GetOrganizationMetadataResponse = await self._app_client.GetOrganizationMetadata(request, metadata=self._metadata)
         return struct_to_dict(response.data)
 
     async def update_organization_metadata(self, org_id: str, metadata: Mapping[str, Any]) -> None:
@@ -2592,7 +2592,7 @@ class AppClient:
             metadata (Mapping[str, Any]): The user-defined metadata to upload as a Python dictionary.
         """
         request = UpdateOrganizationMetadataRequest(organization_id=org_id, data=dict_to_struct(metadata))
-        _: UpdateOrganizationMetadataResponse = await self._app_client.UpdateOrganizationMetadata(request)
+        _: UpdateOrganizationMetadataResponse = await self._app_client.UpdateOrganizationMetadata(request, metadata=self._metadata)
 
     async def get_location_metadata(self, location_id: str) -> Mapping[str, Any]:
         """Get a location's user-defined metadata.
@@ -2609,7 +2609,7 @@ class AppClient:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetLocationMetadataRequest(location_id=location_id)
-        response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request)
+        response: GetLocationMetadataResponse = await self._app_client.GetLocationMetadata(request, metadata=self._metadata)
         return struct_to_dict(response.data)
 
     async def update_location_metadata(self, location_id: str, metadata: Mapping[str, Any]) -> None:
@@ -2625,7 +2625,7 @@ class AppClient:
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateLocationMetadataRequest(location_id=location_id, data=dict_to_struct(metadata))
-        _: UpdateLocationMetadataResponse = await self._app_client.UpdateLocationMetadata(request)
+        _: UpdateLocationMetadataResponse = await self._app_client.UpdateLocationMetadata(request, metadata=self._metadata)
 
     async def get_robot_metadata(self, robot_id: str) -> Mapping[str, Any]:
         """Get a robot's user-defined metadata.
@@ -2642,7 +2642,7 @@ class AppClient:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetRobotMetadataRequest(id=robot_id)
-        response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request)
+        response: GetRobotMetadataResponse = await self._app_client.GetRobotMetadata(request, metadata=self._metadata)
         return struct_to_dict(response.data)
 
     async def update_robot_metadata(self, robot_id: str, metadata: Mapping[str, Any]) -> None:
@@ -2658,7 +2658,7 @@ class AppClient:
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateRobotMetadataRequest(id=robot_id, data=dict_to_struct(metadata))
-        _: UpdateRobotMetadataResponse = await self._app_client.UpdateRobotMetadata(request)
+        _: UpdateRobotMetadataResponse = await self._app_client.UpdateRobotMetadata(request, metadata=self._metadata)
 
     async def get_robot_part_metadata(self, robot_part_id: str) -> Mapping[str, Any]:
         """Get a robot part's user-defined metadata.
@@ -2675,7 +2675,7 @@ class AppClient:
             Mapping[str, Any]: The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = GetRobotPartMetadataRequest(id=robot_part_id)
-        response: GetRobotPartMetadataResponse = await self._app_client.GetRobotPartMetadata(request)
+        response: GetRobotPartMetadataResponse = await self._app_client.GetRobotPartMetadata(request, metadata=self._metadata)
         return struct_to_dict(response.data)
 
     async def update_robot_part_metadata(self, robot_part_id: str, metadata: Mapping[str, Any]) -> None:
@@ -2691,4 +2691,4 @@ class AppClient:
             metadata (Mapping[str, Any]): The user-defined metadata converted from JSON to a Python dictionary.
         """
         request = UpdateRobotPartMetadataRequest(id=robot_part_id, data=dict_to_struct(metadata))
-        _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request)
+        _: UpdateRobotPartMetadataResponse = await self._app_client.UpdateRobotPartMetadata(request, metadata=self._metadata)
