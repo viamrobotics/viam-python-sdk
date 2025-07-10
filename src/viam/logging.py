@@ -4,7 +4,7 @@ import sys
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from threading import Lock, Thread
+from threading import Event, Lock, Thread
 from typing import TYPE_CHECKING, Dict, Iterable, List, Optional, Union
 
 from grpclib.exceptions import StreamTerminatedError
@@ -23,8 +23,10 @@ _MODULE_PARENT: Optional["RobotClient"] = None
 class _SingletonEventLoopThread:
     _instance = None
     _lock = Lock()
-    _ready_event = asyncio.Event()
-    _loop: Union[asyncio.AbstractEventLoop, None]
+    # We use a threading.Event instead of an asyncio.Event because the latter are not thread safe,
+    # and this is set in a separate thread than it is waited on.
+    _ready_event = Event()
+    _loop: asyncio.AbstractEventLoop
     _thread: Thread
 
     def __new__(cls):
@@ -33,13 +35,12 @@ class _SingletonEventLoopThread:
             with cls._lock:
                 if cls._instance is None:
                     cls._instance = super(_SingletonEventLoopThread, cls).__new__(cls)
-                    cls._instance._loop = None
+                    cls._instance._loop = asyncio.new_event_loop()
                     cls._instance._thread = Thread(target=cls._instance._run)
                     cls._instance._thread.start()
         return cls._instance
 
     def _run(self):
-        self._loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self._loop)
         self._ready_event.set()
         self._loop.run_forever()
@@ -54,8 +55,8 @@ class _SingletonEventLoopThread:
             raise RuntimeError("Event loop is None. Did you call .start() and .wait_until_ready()?")
         return self._loop
 
-    async def wait_until_ready(self):
-        await self._ready_event.wait()
+    def wait_until_ready(self):
+        self._ready_event.wait()
 
 
 class _ModuleHandler(logging.Handler):
@@ -101,7 +102,7 @@ class _ModuleHandler(logging.Handler):
             self._logger.log(record.levelno, message)
 
     async def _asynchronously_emit(self, record: logging.LogRecord, name: str, message: str, stack: str, time: datetime):
-        await self._worker.wait_until_ready()
+        self._worker.wait_until_ready()
         task = self._worker.get_loop().create_task(
             self._parent.log(name, record.levelname, time, message, stack),
             name=f"{viam._TASK_PREFIX}-LOG-{record.created}",
