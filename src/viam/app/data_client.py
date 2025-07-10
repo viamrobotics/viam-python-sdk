@@ -106,7 +106,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
-from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, struct_to_dict, dict_to_struct
+from viam.utils import ValueTypes, _alias_param, create_filter, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -536,7 +536,12 @@ class DataClient:
 
     @_alias_param("resource_api", param_alias="resource_subtype")
     async def get_latest_tabular_data(
-        self, part_id: str, resource_name: str, resource_api: str, method_name: str, additional_params: Optional[Mapping[str, ValueTypes]] = None,
+        self,
+        part_id: str,
+        resource_name: str,
+        resource_api: str,
+        method_name: str,
+        additional_params: Optional[Mapping[str, ValueTypes]] = None,
     ) -> Optional[Tuple[datetime, datetime, Dict[str, ValueTypes]]]:
         """Gets the most recent tabular data captured from the specified data source, as long as it was synced within the last year.
 
@@ -579,8 +584,11 @@ class DataClient:
         """
 
         request = GetLatestTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name,
-            additional_parameters=dict_to_struct(additional_params)
+            part_id=part_id,
+            resource_name=resource_name,
+            resource_subtype=resource_api,
+            method_name=method_name,
+            additional_parameters=dict_to_struct(additional_params),
         )
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
@@ -596,7 +604,7 @@ class DataClient:
         method_name: str,
         start_time: Optional[datetime] = None,
         end_time: Optional[datetime] = None,
-        additional_params:  Optional[Mapping[str, ValueTypes]] = None,
+        additional_params: Optional[Mapping[str, ValueTypes]] = None,
     ) -> List[TabularDataPoint]:
         """Obtain unified tabular data and metadata from the specified data source.
 
@@ -631,8 +639,12 @@ class DataClient:
 
         interval = CaptureInterval(start=datetime_to_timestamp(start_time), end=datetime_to_timestamp(end_time))
         request = ExportTabularDataRequest(
-            part_id=part_id, resource_name=resource_name, resource_subtype=resource_api, method_name=method_name, interval=interval,
-            additional_parameters=dict_to_struct(additional_params)
+            part_id=part_id,
+            resource_name=resource_name,
+            resource_subtype=resource_api,
+            method_name=method_name,
+            interval=interval,
+            additional_parameters=dict_to_struct(additional_params),
         )
         response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
 
