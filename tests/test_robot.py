@@ -32,6 +32,8 @@ from viam.proto.robot import (
     GetVersionRequest,
     GetVersionResponse,
     Operation,
+    RestartModuleRequest,
+    RestartModuleResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     ResourceStatus,
@@ -91,6 +93,9 @@ GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
     machine_id="the-machine-id",
     machine_part_id="the-machine-part-id",
 )
+
+MODULE_ID = "id"
+MODULE_NAME = "name"
 
 GET_VERVSION_RESPONSE = GetVersionResponse(
     platform="rdk",
@@ -175,6 +180,13 @@ def service() -> RobotService:
         assert request is not None
         response = ShutdownResponse()
         await stream.send_message(response)
+
+    async def RestartModule(stream: Stream[RestartModuleRequest, RestartModuleResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        assert request.module_name == MODULE_NAME
+        assert request.module_id == MODULE_ID
+        await stream.send_message(RestartModuleResponse())
 
     manager = ResourceManager(resources)
     service = RobotService(manager)
@@ -547,5 +559,16 @@ class TestRobotClient:
 
                 assert shutdown_response == ShutdownResponse()
                 shutdown_mock.assert_called_once()
+
+                await client.close()
+
+    async def test_restart_module(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
+                await client.restart_module(id=MODULE_ID, name=MODULE_NAME)
+                restart_module_mock.assert_called_once()
 
                 await client.close()

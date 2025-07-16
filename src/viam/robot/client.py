@@ -35,6 +35,7 @@ from viam.proto.robot import (
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
+    RestartModuleRequest,
     RobotServiceStub,
     ShutdownRequest,
     StopAllRequest,
@@ -907,3 +908,31 @@ class RobotClient:
 
         request = GetMachineStatusRequest()
         return await self._client.GetMachineStatus(request)
+
+
+    ##################
+    # Restart Module #
+    ##################
+
+    async def restart_module(self, id: Optional[str] = None, name: Optional[str] = None):
+        """
+        Restarts a module running on the machine with the given id or name.
+
+        ::
+
+            await machine.restart_module(id="namespace:module:model", name="my_model")
+
+        Args:
+            id (str): The id matching the module_id field of the registry module in your part configuration.
+            name (str): The name matching the name field of the local/registry module in your part configuration.
+
+        Raises:
+            GRPCError: If a module can't be found matching the provided ID or name.
+
+        For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+        """
+
+        id = id if id else ""
+        name = name if name else ""
+        request = RestartModuleRequest(module_id=id, module_name=name)
+        await self._client.RestartModule(request)
