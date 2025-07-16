@@ -124,6 +124,7 @@
     <span class="n">Operation</span><span class="p">,</span>
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
+    <span class="n">RestartModuleRequest</span><span class="p">,</span>
     <span class="n">RobotServiceStub</span><span class="p">,</span>
     <span class="n">ShutdownRequest</span><span class="p">,</span>
     <span class="n">StopAllRequest</span><span class="p">,</span>
@@ -995,7 +996,35 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetMachineStatusRequest</span><span class="p">()</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetMachineStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetMachineStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+
+    <span class="c1">##################</span>
+    <span class="c1"># Restart Module #</span>
+    <span class="c1">##################</span>
+
+<div class="viewcode-block" id="RobotClient.restart_module"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.restart_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">restart_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Restarts a module running on the machine with the given id or name.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await machine.restart_module(id=&quot;namespace:module:model&quot;, name=&quot;my_model&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The id matching the module_id field of the registry module in your part configuration.</span>
+<span class="sd">            name (str): The name matching the name field of the local/registry module in your part configuration.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If a module can&#39;t be found matching the provided ID or name.</span>
+
+<span class="sd">        For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="k">if</span> <span class="nb">id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RestartModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">module_name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">RestartModule</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

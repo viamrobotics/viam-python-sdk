@@ -96,6 +96,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.shutdown"><code class="docutils literal notranslate"><span class="pre">RobotClient.shutdown()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_version"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_version()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.get_machine_status"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_machine_status()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient.restart_module"><code class="docutils literal notranslate"><span class="pre">RobotClient.restart_module()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -786,6 +787,27 @@ shutting down when response is ready.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetMachineStatusResponse" title="viam.proto.robot.GetMachineStatusResponse">viam.proto.robot.GetMachineStatusResponse</a></p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.restart_module">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">restart_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.restart_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.restart_module" title="Permalink to this definition"></a></dt>
+<dd><p>Restarts a module running on the machine with the given id or name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">machine</span><span class="o">.</span><span class="n">restart_module</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;namespace:module:model&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The id matching the module_id field of the registry module in your part configuration.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name matching the name field of the local/registry module in your part configuration.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>GRPCError</strong> – If a module can’t be found matching the provided ID or name.</p>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/appendix/apis/robot/">Machine Management API</a>.</p>

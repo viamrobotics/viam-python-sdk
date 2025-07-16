@@ -631,3 +631,24 @@ Module Contents
 
 
 
+   .. py:method:: restart_module(id: Optional[str] = None, name: Optional[str] = None)
+      :async:
+
+
+      Restarts a module running on the machine with the given id or name.
+
+      ::
+
+          await machine.restart_module(id="namespace:module:model", name="my_model")
+
+      :param id: The id matching the module_id field of the registry module in your part configuration.
+      :type id: str
+      :param name: The name matching the name field of the local/registry module in your part configuration.
+      :type name: str
+
+      :raises GRPCError: If a module can't be found matching the provided ID or name.
+
+      For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
+
+
+
