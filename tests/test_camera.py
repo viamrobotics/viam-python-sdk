@@ -140,9 +140,9 @@ class TestService:
 
             # Test known mime type
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: GetImageResponse = await client.GetImage(request, timeout=18.2)
+            response: GetImageResponse = await client.GetImage(request, timeout=18.1)
             assert response.image == image.data
-            assert camera.timeout == loose_approx(18.2)
+            assert camera.timeout == loose_approx(18.1)
 
             # Test empty mime type. Empty mime type should default to response mime type
             request = GetImageRequest(name="camera")
@@ -156,12 +156,12 @@ class TestService:
             client = CameraServiceStub(channel)
 
             request = GetImagesRequest(name="camera")
-            response: GetImagesResponse = await client.GetImages(request, timeout=18.2)
+            response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
             raw_img = response.images[0]
             assert raw_img.format == Format.FORMAT_PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
-            assert camera.timeout == loose_approx(18.2)
+            assert camera.timeout == loose_approx(18.1)
 
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
