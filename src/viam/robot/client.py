@@ -36,7 +36,6 @@ from viam.proto.robot import (
     ResourceNamesRequest,
     ResourceNamesResponse,
     RestartModuleRequest,
-    RestartModuleResponse,
     RobotServiceStub,
     ShutdownRequest,
     StopAllRequest,
@@ -936,4 +935,4 @@ class RobotClient:
         id = id if id else ""
         name = name if name else ""
         request = RestartModuleRequest(module_id=id, module_name=name)
-        return await self._client.RestartModule(request)
+        await self._client.RestartModule(request)

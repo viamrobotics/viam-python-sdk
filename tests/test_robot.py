@@ -565,13 +565,10 @@ class TestRobotClient:
     async def test_restart_module(self, service: RobotService):
         async with ChannelFor([service]) as channel:
 
-            async def restart_module_mock(self):
-                return await self._client.RestartModule(RestartModuleRequest(module_id=MODULE_ID, module_name=MODULE_NAME))
-
             client = await RobotClient.with_channel(channel, RobotClient.Options())
 
             with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
-                await restart_module_mock(client)
+                await client.restart_module(id=MODULE_ID, name=MODULE_NAME)
                 restart_module_mock.assert_called_once()
 
                 await client.close()
