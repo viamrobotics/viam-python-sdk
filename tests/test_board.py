@@ -361,8 +361,8 @@ class TestClient:
             client = BoardClient(name=board.name, channel=channel)
             pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
             pm_timedelta = timedelta(minutes=1)
-            await client.set_power_mode(mode=pm_mode, duration=pm_timedelta, timeout=1.1)
-            assert board.timeout == loose_approx(1.1)
+            await client.set_power_mode(mode=pm_mode, duration=pm_timedelta, timeout=1.11)
+            assert board.timeout == loose_approx(1.11)
             assert board.power_mode == pm_mode
             pm_duration = Duration()
             pm_duration.FromTimedelta(pm_timedelta)
