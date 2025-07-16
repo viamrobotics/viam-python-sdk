@@ -933,5 +933,7 @@ class RobotClient:
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
 
+        id = id if id else ""
+        name = name if name else ""
         request = RestartModuleRequest(module_id=id, module_name=name)
         return await self._client.RestartModule(request)
