@@ -909,7 +909,6 @@ class RobotClient:
         request = GetMachineStatusRequest()
         return await self._client.GetMachineStatus(request)
 
-
     ##################
     # Restart Module #
     ##################
