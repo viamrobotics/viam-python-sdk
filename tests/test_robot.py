@@ -32,11 +32,11 @@ from viam.proto.robot import (
     GetVersionRequest,
     GetVersionResponse,
     Operation,
-    RestartModuleRequest,
-    RestartModuleResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     ResourceStatus,
+    RestartModuleRequest,
+    RestartModuleResponse,
     RobotServiceStub,
     ShutdownRequest,
     ShutdownResponse,
@@ -564,7 +564,6 @@ class TestRobotClient:
 
     async def test_restart_module(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-
             client = await RobotClient.with_channel(channel, RobotClient.Options())
 
             with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
