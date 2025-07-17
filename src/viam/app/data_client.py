@@ -588,7 +588,7 @@ class DataClient:
             resource_name=resource_name,
             resource_subtype=resource_api,
             method_name=method_name,
-            additional_parameters=dict_to_struct(additional_params),
+            additional_parameters=dict_to_struct(additional_params) if additional_params is not None else None,
         )
         response: GetLatestTabularDataResponse = await self._data_client.GetLatestTabularData(request, metadata=self._metadata)
         if not response.payload:
@@ -644,7 +644,7 @@ class DataClient:
             resource_subtype=resource_api,
             method_name=method_name,
             interval=interval,
-            additional_parameters=dict_to_struct(additional_params),
+            additional_parameters=dict_to_struct(additional_params) if additional_params is not None else None,
         )
         response: List[ExportTabularDataResponse] = await self._data_client.ExportTabularData(request, metadata=self._metadata)
 

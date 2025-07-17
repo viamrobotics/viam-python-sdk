@@ -132,8 +132,6 @@ def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
 
 
 def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
-    if obj is None:
-        return None
     def _convert(v: ValueTypes) -> Any:
         if isinstance(v, bool):
             return v
@@ -147,6 +145,8 @@ def dict_to_struct(obj: Optional[Mapping[str, ValueTypes]]) -> Struct:
             return {k: _convert(vv) for (k, vv) in v.items()}
         return v
 
+    if obj is None:
+        obj = {}
     struct = Struct()
     struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct
