@@ -677,7 +677,7 @@
             <span class="n">resource_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
             <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span>
             <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
-            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">),</span>
+            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">)</span> <span class="k">if</span> <span class="n">additional_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetLatestTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetLatestTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">payload</span><span class="p">:</span>
@@ -733,7 +733,7 @@
             <span class="n">resource_subtype</span><span class="o">=</span><span class="n">resource_api</span><span class="p">,</span>
             <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
             <span class="n">interval</span><span class="o">=</span><span class="n">interval</span><span class="p">,</span>
-            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">),</span>
+            <span class="n">additional_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">additional_params</span><span class="p">)</span> <span class="k">if</span> <span class="n">additional_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ExportTabularDataResponse</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ExportTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
