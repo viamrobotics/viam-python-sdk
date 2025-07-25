@@ -1,9 +1,10 @@
 name: Test AI Updater Workflow
 
 on:
+  push:
+    branches:
+      - workflow/update-proto
   workflow_dispatch:
-  workflow_run:
-    workflows: [update_protos]
 
 jobs:
   call-ai-updater:
