@@ -1,0 +1,17 @@
+name: AI Updater Workflow
+
+on:
+  push:
+    branches:
+      - workflow/update-proto
+  workflow_dispatch:
+
+jobs:
+  call-ai-updater:
+    uses: gabegottlob/viam-ai-updater/.github/workflows/ai-updater.yml@main
+    with:
+        target_branch: workflow/update-proto
+        sdk: python
+    secrets:
+        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        GIT_ACCESS_TOKEN: ${{ secrets.GIT_ACCESS_TOKEN }}
