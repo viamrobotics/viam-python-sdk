@@ -1,4 +1,4 @@
-name: AI Updater Workflow
+name: AI Updater Workflow (dev branch for testing in fork)
 
 on:
   push:
@@ -8,8 +8,9 @@ on:
 
 jobs:
   call-ai-updater:
-    uses: gabegottlob/viam-ai-updater/.github/workflows/ai-updater.yml@main
+    uses: gabegottlob/viam-ai-updater/.github/workflows/ai-updater-dev.yml@develop
     with:
         target_branch: workflow/update-proto
+        sdk: python
     secrets:
         GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
