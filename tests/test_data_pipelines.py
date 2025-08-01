@@ -15,6 +15,7 @@ NAME = "datapipeline"
 ORG_ID = "org_id"
 SCHEDULE = "0 0 * * *"
 UPDATED_SCHEDULE = "0 1 * * *"
+UPDATED_NAME = "updated_datapipeline_name"
 MQL_BINARY = []
 ENABLE_BACKFILL = True
 DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_UNSPECIFIED
@@ -109,6 +110,13 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             await client.delete_data_pipeline(ID)
             assert service.deleted_id == ID
+
+    async def test_rename_data_pipeline(self, service: MockDataPipelines):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.rename_data_pipeline(ID, UPDATED_NAME)
+            assert service.renamed_id == ID
+            assert service.renamed_name == UPDATED_NAME
 
     async def test_list_data_pipeline_runs(self, service: MockDataPipelines):
         async with ChannelFor([service]) as channel:

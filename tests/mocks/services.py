@@ -260,6 +260,8 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
+    RenameDataPipelineRequest,
+    RenameDataPipelineResponse,
     UpdateDataPipelineRequest,
     UpdateDataPipelineResponse,
 )
@@ -1108,18 +1110,21 @@ class MockDataset(DatasetServiceBase):
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
         self.file_upload_response = file_upload_response
+        self.dataset_ids: Optional[List[str]] = None
 
     async def DataCaptureUpload(self, stream: Stream[DataCaptureUploadRequest, DataCaptureUploadResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.metadata = request.metadata
         self.sensor_contents = request.sensor_contents
+        self.dataset_ids = list(request.metadata.dataset_ids) # Store the dataset_ids
         await stream.send_message(DataCaptureUploadResponse(binary_data_id=self.file_upload_response, file_id=self.file_upload_response))
 
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
         request_metadata = await stream.recv_message()
         assert request_metadata is not None
         self.metadata = request_metadata.metadata
+        self.dataset_ids = list(request_metadata.metadata.dataset_ids) # Store the dataset_ids
         request_file_contents = await stream.recv_message()
         assert request_file_contents is not None
         self.binary_data = request_file_contents.file_contents.data
@@ -1131,6 +1136,7 @@ class MockDataSync(DataSyncServiceBase):
         request_metadata = await stream.recv_message()
         assert request_metadata is not None
         self.metadata = request_metadata.metadata.upload_metadata
+        self.dataset_ids = list(request_metadata.metadata.upload_metadata.dataset_ids) # Store the dataset_ids
         request_data_contents = await stream.recv_message()
         assert request_data_contents is not None
         self.binary_data = request_data_contents.data
@@ -1142,6 +1148,8 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.create_response = create_response
         self.list_response = list_response
         self.runs_response = runs_response
+        self.renamed_id = None
+        self.renamed_name = None
 
     async def CreateDataPipeline(self, stream: Stream[CreateDataPipelineRequest, CreateDataPipelineResponse]) -> None:
         request = await stream.recv_message()
@@ -1166,15 +1174,6 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.org_id = request.organization_id
         await stream.send_message(ListDataPipelinesResponse(data_pipelines=self.list_response))
 
-    async def UpdateDataPipeline(self, stream: Stream[UpdateDataPipelineRequest, UpdateDataPipelineResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.id = request.id
-        self.name = request.name
-        self.mql_binary = request.mql_binary
-        self.schedule = request.schedule
-        await stream.send_message(UpdateDataPipelineResponse())
-
     async def DeleteDataPipeline(self, stream: Stream[DeleteDataPipelineRequest, DeleteDataPipelineResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -1198,6 +1197,13 @@ class MockDataPipelines(DataPipelinesServiceBase):
         assert request is not None
         self.id = request.id
         await stream.send_message(ListDataPipelineRunsResponse(pipeline_id=self.id, runs=self.runs_response))
+
+    async def RenameDataPipeline(self, stream: Stream[RenameDataPipelineRequest, RenameDataPipelineResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.renamed_id = request.id
+        self.renamed_name = request.name
+        await stream.send_message(RenameDataPipelineResponse())
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
