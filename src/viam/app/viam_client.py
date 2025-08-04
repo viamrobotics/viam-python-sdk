@@ -206,7 +206,7 @@ class ViamClient:
         """
         return ProvisioningClient(self._channel, self._metadata)
 
-    def close(self):
+    def close(self) -> None:
         """Close opened channels used for the various service stubs initialized."""
         if self._closed:
             LOGGER.debug("ViamClient is already closed.")
