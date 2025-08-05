@@ -868,12 +868,15 @@ class RemoteConfig(google.protobuf.message.Message):
     RECONNECT_INTERVAL_FIELD_NUMBER: builtins.int
     SERVICE_CONFIGS_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
+    PREFIX_FIELD_NUMBER: builtins.int
     name: builtins.str
     address: builtins.str
     managed_by: builtins.str
     insecure: builtins.bool
     secret: builtins.str
     'Secret is a helper for a robot location secret.'
+    prefix: builtins.str
+    'A string with which to prefix all resource names fetched from this remote.'
 
     @property
     def frame(self) -> global___Frame:
@@ -895,13 +898,13 @@ class RemoteConfig(google.protobuf.message.Message):
     def service_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]:
         ...
 
-    def __init__(self, *, name: builtins.str=..., address: builtins.str=..., frame: global___Frame | None=..., auth: global___RemoteAuth | None=..., managed_by: builtins.str=..., insecure: builtins.bool=..., connection_check_interval: google.protobuf.duration_pb2.Duration | None=..., reconnect_interval: google.protobuf.duration_pb2.Duration | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., secret: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., address: builtins.str=..., frame: global___Frame | None=..., auth: global___RemoteAuth | None=..., managed_by: builtins.str=..., insecure: builtins.bool=..., connection_check_interval: google.protobuf.duration_pb2.Duration | None=..., reconnect_interval: google.protobuf.duration_pb2.Duration | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., secret: builtins.str=..., prefix: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'reconnect_interval', b'reconnect_interval']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['address', b'address', 'auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'insecure', b'insecure', 'managed_by', b'managed_by', 'name', b'name', 'reconnect_interval', b'reconnect_interval', 'secret', b'secret', 'service_configs', b'service_configs']) -> None:
+    def ClearField(self, field_name: typing.Literal['address', b'address', 'auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'insecure', b'insecure', 'managed_by', b'managed_by', 'name', b'name', 'prefix', b'prefix', 'reconnect_interval', b'reconnect_interval', 'secret', b'secret', 'service_configs', b'service_configs']) -> None:
         ...
 global___RemoteConfig = RemoteConfig
 
