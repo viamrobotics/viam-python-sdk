@@ -1586,7 +1586,7 @@ Module Contents
 
 
 
-.. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: global___Frame | None = ..., auth: global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., secret: str = ...)
+.. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: global___Frame | None = ..., auth: global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., secret: str = ..., prefix: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1617,6 +1617,12 @@ Module Contents
       :type:  str
 
       Secret is a helper for a robot location secret.
+
+
+   .. py:attribute:: prefix
+      :type:  str
+
+      A string with which to prefix all resource names fetched from this remote.
 
 
    .. py:property:: frame
