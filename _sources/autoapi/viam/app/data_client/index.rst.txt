@@ -1304,7 +1304,7 @@ Module Contents
 
 
 
-   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
+   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
       :async:
 
 
@@ -1327,7 +1327,8 @@ Module Contents
               tags=["tag_1", "tag_2"],
               data_request_times=[time_requested, time_received],
               file_extension=".jpg",
-              binary_data=b"Encoded image bytes"
+              binary_data=b"Encoded image bytes",
+              dataset_ids=["dataset_1", "dataset_2"]
           )
 
       :param binary_data: The data to be uploaded, represented in bytes.
@@ -1348,6 +1349,8 @@ Module Contents
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
+      :param dataset_ids: Optional list of datasets to add the data to.
+      :type dataset_ids: Optional[List[str]]
       :param data_request_times: Optional tuple containing datetime objects
                                  denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
@@ -1422,7 +1425,7 @@ Module Contents
 
 
 
-   .. py:method:: streaming_data_capture_upload(data: bytes, part_id: str, file_ext: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None, tags: Optional[List[str]] = None) -> str
+   .. py:method:: streaming_data_capture_upload(data: bytes, part_id: str, file_ext: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None) -> str
       :async:
 
 
@@ -1441,7 +1444,8 @@ Module Contents
               component_name='left_motor',
               method_name='IsPowered',
               data_request_times=[time_requested, time_received],
-              tags=["tag_1", "tag_2"]
+              tags=["tag_1", "tag_2"],
+              dataset_ids=["dataset_1", "dataset_2"]
           )
 
       :param data: The data to be uploaded.
@@ -1463,6 +1467,8 @@ Module Contents
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
+      :param dataset_ids: Optional list of datasets to add the data to.
+      :type dataset_ids: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
 
@@ -1473,7 +1479,7 @@ Module Contents
 
 
 
-   .. py:method:: file_upload(part_id: str, data: bytes, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, file_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, file_extension: Optional[str] = None, tags: Optional[List[str]] = None) -> str
+   .. py:method:: file_upload(part_id: str, data: bytes, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, file_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, file_extension: Optional[str] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None) -> str
       :async:
 
 
@@ -1489,7 +1495,8 @@ Module Contents
               part_id="INSERT YOUR PART ID",
               tags=["tag_1", "tag_2"],
               file_name="your-file",
-              file_extension=".txt"
+              file_extension=".txt",
+              dataset_ids=["dataset_1", "dataset_2"]
           )
 
       :param part_id: Part ID of the resource associated with the file.
@@ -1512,6 +1519,8 @@ Module Contents
       :type file_extension: Optional[str]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
+      :param dataset_ids: Optional list of datasets to add the data to.
+      :type dataset_ids: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
 
@@ -1522,7 +1531,7 @@ Module Contents
 
 
 
-   .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None) -> str
+   .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, dataset_ids: Optional[List[str]] = None) -> str
       :async:
 
 
@@ -1536,6 +1545,7 @@ Module Contents
           file_id = await data_client.file_upload_from_path(
               part_id="INSERT YOUR PART ID",
               tags=["tag_1", "tag_2"],
+              dataset_ids=["dataset_1", "dataset_2"],
               filepath="/Users/<your-username>/<your-directory>/<your-file.txt>"
           )
 
@@ -1553,6 +1563,8 @@ Module Contents
       :type method_parameters: Optional[str]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
+      :param dataset_ids: Optional list of datasets to add the data to.
+      :type dataset_ids: Optional[List[str]]
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.

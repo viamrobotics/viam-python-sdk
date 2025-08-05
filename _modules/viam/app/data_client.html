@@ -1573,6 +1573,7 @@
         <span class="n">file_extension</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
@@ -1594,7 +1595,8 @@
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
 <span class="sd">                data_request_times=[time_requested, time_received],</span>
 <span class="sd">                file_extension=&quot;.jpg&quot;,</span>
-<span class="sd">                binary_data=b&quot;Encoded image bytes&quot;</span>
+<span class="sd">                binary_data=b&quot;Encoded image bytes&quot;,</span>
+<span class="sd">                dataset_ids=[&quot;dataset_1&quot;, &quot;dataset_2&quot;]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -1608,6 +1610,7 @@
 <span class="sd">                or ``.png`` extension will appear in the **Images** tab.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
+<span class="sd">            dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.</span>
 <span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects</span>
 <span class="sd">                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.</span>
 
@@ -1639,6 +1642,7 @@
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_BINARY_SENSOR</span><span class="p">,</span>
             <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">file_extension</span><span class="p">:</span>
             <span class="n">metadata</span><span class="o">.</span><span class="n">file_extension</span> <span class="o">=</span> <span class="n">file_extension</span> <span class="k">if</span> <span class="n">file_extension</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1756,6 +1760,7 @@
         <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Uploads the metadata and contents of streaming binary data.</span>
 
@@ -1772,7 +1777,8 @@
 <span class="sd">                component_name=&#39;left_motor&#39;,</span>
 <span class="sd">                method_name=&#39;IsPowered&#39;,</span>
 <span class="sd">                data_request_times=[time_requested, time_received],</span>
-<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;]</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                dataset_ids=[&quot;dataset_1&quot;, &quot;dataset_2&quot;]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -1786,6 +1792,7 @@
 <span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects</span>
 <span class="sd">                denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
+<span class="sd">            dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
@@ -1805,6 +1812,7 @@
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_BINARY_SENSOR</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="n">file_ext</span> <span class="k">if</span> <span class="n">file_ext</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">file_ext</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span>
         <span class="p">)</span>
         <span class="n">sensor_metadata</span> <span class="o">=</span> <span class="n">SensorMetadata</span><span class="p">(</span>
             <span class="n">time_requested</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
@@ -1833,6 +1841,7 @@
         <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">file_extension</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
@@ -1846,7 +1855,8 @@
 <span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
 <span class="sd">                file_name=&quot;your-file&quot;,</span>
-<span class="sd">                file_extension=&quot;.txt&quot;</span>
+<span class="sd">                file_extension=&quot;.txt&quot;,</span>
+<span class="sd">                dataset_ids=[&quot;dataset_1&quot;, &quot;dataset_2&quot;]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
@@ -1861,6 +1871,7 @@
 <span class="sd">            file_extension (Optional[str]): Optional file extension. The empty string ``&quot;&quot;`` will be assigned as the file extension if one</span>
 <span class="sd">                isn&#39;t provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
+<span class="sd">            dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
@@ -1880,6 +1891,7 @@
             <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span> <span class="k">if</span> <span class="n">file_extension</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
@@ -1893,6 +1905,7 @@
         <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
@@ -1904,6 +1917,7 @@
 <span class="sd">            file_id = await data_client.file_upload_from_path(</span>
 <span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                dataset_ids=[&quot;dataset_1&quot;, &quot;dataset_2&quot;],</span>
 <span class="sd">                filepath=&quot;/Users/&lt;your-username&gt;/&lt;your-directory&gt;/&lt;your-file.txt&gt;&quot;</span>
 <span class="sd">            )</span>
 
@@ -1915,7 +1929,7 @@
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
-
+<span class="sd">            dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
@@ -1943,6 +1957,7 @@
             <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span> <span class="k">if</span> <span class="n">file_extension</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+            <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="nb">bytes</span><span class="p">()))</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">binary_data_id</span></div>
