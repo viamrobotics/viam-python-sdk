@@ -163,6 +163,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_data_pipeline"><code class="docutils literal notranslate"><span class="pre">DataClient.get_data_pipeline()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_data_pipelines"><code class="docutils literal notranslate"><span class="pre">DataClient.list_data_pipelines()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_data_pipeline"><code class="docutils literal notranslate"><span class="pre">DataClient.create_data_pipeline()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.rename_data_pipeline"><code class="docutils literal notranslate"><span class="pre">DataClient.rename_data_pipeline()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_data_pipeline"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_data_pipeline()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_data_pipeline_runs"><code class="docutils literal notranslate"><span class="pre">DataClient.list_data_pipeline_runs()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.create_filter()</span></code></a></li>
@@ -1876,6 +1877,23 @@ Defaults to TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD.</p></li>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.rename_data_pipeline">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rename_data_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.rename_data_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.rename_data_pipeline" title="Permalink to this definition"></a></dt>
+<dd><p>Rename a data pipeline by its ID.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">rename_data_pipeline</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-DATA-PIPELINE-ID&gt;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-NEW-NAME&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The ID of the data pipeline to rename.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The new name of the data pipeline.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

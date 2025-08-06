@@ -1651,6 +1651,22 @@ Module Contents
 
 
 
+   .. py:method:: rename_data_pipeline(id: str, name: str) -> None
+      :async:
+
+
+      Rename a data pipeline by its ID.
+      ::
+
+          await data_client.rename_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>", name="<YOUR-NEW-NAME>")
+
+      :param id: The ID of the data pipeline to rename.
+      :type id: str
+      :param name: The new name of the data pipeline.
+      :type name: str
+
+
+
    .. py:method:: delete_data_pipeline(id: str) -> None
       :async:
 
