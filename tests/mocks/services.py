@@ -259,6 +259,7 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
+    RenameDataPipelineResponse,
     UnimplementedDataPipelinesServiceBase,
 )
 from viam.proto.app.dataset import (
