@@ -260,8 +260,8 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
-    UpdateDataPipelineRequest,
-    UpdateDataPipelineResponse,
+    RenameDataPipelineRequest,
+    RenameDataPipelineResponse,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
@@ -1166,14 +1166,7 @@ class MockDataPipelines(DataPipelinesServiceBase):
         self.org_id = request.organization_id
         await stream.send_message(ListDataPipelinesResponse(data_pipelines=self.list_response))
 
-    async def UpdateDataPipeline(self, stream: Stream[UpdateDataPipelineRequest, UpdateDataPipelineResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.id = request.id
-        self.name = request.name
-        self.mql_binary = request.mql_binary
-        self.schedule = request.schedule
-        await stream.send_message(UpdateDataPipelineResponse())
+
 
     async def DeleteDataPipeline(self, stream: Stream[DeleteDataPipelineRequest, DeleteDataPipelineResponse]) -> None:
         request = await stream.recv_message()
@@ -1198,6 +1191,13 @@ class MockDataPipelines(DataPipelinesServiceBase):
         assert request is not None
         self.id = request.id
         await stream.send_message(ListDataPipelineRunsResponse(pipeline_id=self.id, runs=self.runs_response))
+
+    async def RenameDataPipeline(self, stream) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message(RenameDataPipelineResponse())
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):

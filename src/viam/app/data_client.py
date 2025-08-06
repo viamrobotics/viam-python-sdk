@@ -72,6 +72,7 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
+    RenameDataPipelineRequest,
 )
 from viam.proto.app.datapipelines import (
     DataPipeline as ProtoDataPipeline,
@@ -1952,6 +1953,21 @@ class DataClient:
         )
         response: CreateDataPipelineResponse = await self._data_pipelines_client.CreateDataPipeline(request, metadata=self._metadata)
         return response.id
+
+    async def rename_data_pipeline(self, id: str, name: str) -> None:
+        """Rename a data pipeline by its ID.
+        ::
+
+            await data_client.rename_data_pipeline(id="<YOUR-DATA-PIPELINE-ID>", name="<YOUR-NEW-NAME>")
+
+        Args:
+            id (str): The ID of the data pipeline to rename.
+            name (str): The new name of the data pipeline.
+        """
+        if not id or not name:
+            raise ValueError("id and name are required")
+        request = RenameDataPipelineRequest(id=id, name=name)
+        await self._data_pipelines_client.RenameDataPipeline(request, metadata=self._metadata)
 
     async def delete_data_pipeline(self, id: str) -> None:
         """Delete a data pipeline by its ID.
