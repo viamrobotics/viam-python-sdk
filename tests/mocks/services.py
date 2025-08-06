@@ -247,7 +247,6 @@ from viam.proto.app.datapipelines import (
     CreateDataPipelineResponse,
     DataPipeline,
     DataPipelineRun,
-    DataPipelinesServiceBase,
     DeleteDataPipelineRequest,
     DeleteDataPipelineResponse,
     DisableDataPipelineRequest,
@@ -260,8 +259,7 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
-    RenameDataPipelineRequest,
-    RenameDataPipelineResponse,
+    UnimplementedDataPipelinesServiceBase,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
@@ -466,7 +464,7 @@ class MockVision(Vision):
         self.timeout = timeout
         return self.point_clouds
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
 
@@ -491,7 +489,7 @@ class MockDiscovery(Discovery):
         result = ComponentConfig()
         return [result]
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {"cmd": command}
 
@@ -1137,7 +1135,7 @@ class MockDataSync(DataSyncServiceBase):
         await stream.send_message(StreamingDataCaptureUploadResponse(binary_data_id=self.file_upload_response))
 
 
-class MockDataPipelines(DataPipelinesServiceBase):
+class MockDataPipelines(UnimplementedDataPipelinesServiceBase):
     def __init__(self, create_response: str, list_response: Sequence[DataPipeline], runs_response: Sequence[DataPipelineRun]):
         self.create_response = create_response
         self.list_response = list_response
@@ -1165,8 +1163,6 @@ class MockDataPipelines(DataPipelinesServiceBase):
         assert request is not None
         self.org_id = request.organization_id
         await stream.send_message(ListDataPipelinesResponse(data_pipelines=self.list_response))
-
-
 
     async def DeleteDataPipeline(self, stream: Stream[DeleteDataPipelineRequest, DeleteDataPipelineResponse]) -> None:
         request = await stream.recv_message()

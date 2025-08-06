@@ -26,8 +26,8 @@ from ....gen.app.datapipelines.v1.data_pipelines_pb2 import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
-    UpdateDataPipelineRequest,
-    UpdateDataPipelineResponse,
+    RenameDataPipelineRequest,
+    RenameDataPipelineResponse,
 )
 
 __all__ = [
@@ -51,6 +51,6 @@ __all__ = [
     "ListDataPipelineRunsResponse",
     "ListDataPipelinesRequest",
     "ListDataPipelinesResponse",
-    "UpdateDataPipelineRequest",
-    "UpdateDataPipelineResponse",
+    "RenameDataPipelineRequest",
+    "RenameDataPipelineResponse",
 ]

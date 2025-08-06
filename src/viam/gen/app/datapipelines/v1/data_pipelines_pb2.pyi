@@ -212,48 +212,29 @@ class CreateDataPipelineResponse(google.protobuf.message.Message):
 global___CreateDataPipelineResponse = CreateDataPipelineResponse
 
 @typing.final
-class UpdateDataPipelineRequest(google.protobuf.message.Message):
+class RenameDataPipelineRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    MQL_BINARY_FIELD_NUMBER: builtins.int
-    SCHEDULE_FIELD_NUMBER: builtins.int
-    DATA_SOURCE_TYPE_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'The ID of the data pipeline to update.'
+    'The ID of the data pipeline to rename.'
     name: builtins.str
-    'A unique identifier at the org level.'
-    schedule: builtins.str
-    'A cron expression representing the expected execution schedule in UTC (note this also\n    defines the input time window; an hourly schedule would process 1 hour of data at a time).\n    '
-    data_source_type: app.data.v1.data_pb2.TabularDataSourceType.ValueType
-    'The type of data source for the pipeline. If not specified, default is standard data storage.'
+    'A unique identifier at the organization level.'
 
-    @property
-    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
-        """A MongoDB aggregation pipeline as a list of BSON documents, where
-        each document is one stage in the pipeline.
-        """
-
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., schedule: builtins.str=..., data_source_type: app.data.v1.data_pb2.TabularDataSourceType.ValueType | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_data_source_type', b'_data_source_type', 'data_source_type', b'data_source_type']) -> builtins.bool:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
         ...
-
-    def ClearField(self, field_name: typing.Literal['_data_source_type', b'_data_source_type', 'data_source_type', b'data_source_type', 'id', b'id', 'mql_binary', b'mql_binary', 'name', b'name', 'schedule', b'schedule']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing.Literal['_data_source_type', b'_data_source_type']) -> typing.Literal['data_source_type'] | None:
-        ...
-global___UpdateDataPipelineRequest = UpdateDataPipelineRequest
+global___RenameDataPipelineRequest = RenameDataPipelineRequest
 
 @typing.final
-class UpdateDataPipelineResponse(google.protobuf.message.Message):
+class RenameDataPipelineResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
-global___UpdateDataPipelineResponse = UpdateDataPipelineResponse
+global___RenameDataPipelineResponse = RenameDataPipelineResponse
 
 @typing.final
 class DeleteDataPipelineRequest(google.protobuf.message.Message):
