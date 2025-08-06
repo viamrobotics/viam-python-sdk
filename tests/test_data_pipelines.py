@@ -116,3 +116,9 @@ class TestClient:
             runs = await client.list_data_pipeline_runs(ID)
             runs._client = None
             assert runs == DATA_PIPELINE_RUNS_PAGE
+
+    async def test_rename_data_pipeline(self, service: MockDataPipelines):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.rename_data_pipeline(ID, NAME)
+            assert service.name == NAME

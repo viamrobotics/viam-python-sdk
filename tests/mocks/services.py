@@ -259,6 +259,7 @@ from viam.proto.app.datapipelines import (
     ListDataPipelineRunsResponse,
     ListDataPipelinesRequest,
     ListDataPipelinesResponse,
+    RenameDataPipelineResponse,
     UnimplementedDataPipelinesServiceBase,
 )
 from viam.proto.app.dataset import (
@@ -1187,6 +1188,13 @@ class MockDataPipelines(UnimplementedDataPipelinesServiceBase):
         assert request is not None
         self.id = request.id
         await stream.send_message(ListDataPipelineRunsResponse(pipeline_id=self.id, runs=self.runs_response))
+
+    async def RenameDataPipeline(self, stream) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message(RenameDataPipelineResponse())
 
 
 class MockMLTraining(UnimplementedMLTrainingServiceBase):
