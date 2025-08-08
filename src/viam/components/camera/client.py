@@ -46,11 +46,12 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     async def get_images(
         self,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImagesRequest(name=self.name)
+        request = GetImagesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
