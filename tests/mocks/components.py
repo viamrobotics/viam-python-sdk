@@ -377,8 +377,11 @@ class MockCamera(Camera):
         self.timeout = timeout
         return self.image
 
-    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[List[NamedImage], ResponseMetadata]:
         self.timeout = timeout
+        self.extra = extra # Add this line to store the extra parameter
         return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
 
     async def get_point_cloud(

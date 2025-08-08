@@ -99,6 +99,10 @@ class TestCamera:
         assert imgs[0].data == image.data
         assert md == metadata
 
+        # Add this block to test the 'extra' parameter
+        await camera.get_images(extra={"1": 1})
+        assert camera.extra == {"1": 1}
+
     async def test_get_point_cloud(self, camera: MockCamera, point_cloud: bytes):
         pc, _ = await camera.get_point_cloud()
         assert pc == point_cloud
@@ -162,6 +166,11 @@ class TestService:
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
+
+            # Add this block to test the 'extra' parameter
+            request_with_extra = GetImagesRequest(name="camera", extra=dict_to_struct({"2": 2}))
+            await client.GetImages(request_with_extra)
+            assert camera.extra == {"2": 2}
 
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
@@ -232,6 +241,10 @@ class TestClient:
             assert imgs[0].data == image.data
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)
+
+            # Add this block to test the 'extra' parameter
+            await client.get_images(extra={"3": 3})
+            assert camera.extra == {"3": 3}
 
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
