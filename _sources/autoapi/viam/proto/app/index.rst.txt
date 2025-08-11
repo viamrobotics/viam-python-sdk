@@ -54,6 +54,7 @@ Classes
    viam.proto.app.APIKeyWithAuthorizations
    viam.proto.app.App
    viam.proto.app.AppCustomizations
+   viam.proto.app.AppType
    viam.proto.app.AuthenticationType
    viam.proto.app.AuthenticatorInfo
    viam.proto.app.Authorization
@@ -2306,6 +2307,11 @@ Package Contents
 
 
 
+.. py:class:: AppType
+
+   Bases: :py:obj:`_AppType`
+
+
 .. py:class:: AuthenticationType
 
    Bases: :py:obj:`_AuthenticationType`
@@ -4279,7 +4285,7 @@ Package Contents
       :type:  str
 
 
-.. py:class:: GetAppContentResponse(*, blob_path: str = ..., entrypoint: str = ...)
+.. py:class:: GetAppContentResponse(*, blob_path: str = ..., entrypoint: str = ..., app_type: global___AppType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4297,6 +4303,10 @@ Package Contents
 
    .. py:attribute:: entrypoint
       :type:  str
+
+
+   .. py:attribute:: app_type
+      :type:  global___AppType
 
 
 .. py:class:: GetBillingServiceConfigRequest(*, org_id: str = ...)

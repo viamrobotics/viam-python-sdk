@@ -42,6 +42,10 @@ Attributes
    viam.gen.app.v1.app_pb2.VISIBILITY_PUBLIC
    viam.gen.app.v1.app_pb2.VISIBILITY_PUBLIC_UNLISTED
    viam.gen.app.v1.app_pb2.global___Visibility
+   viam.gen.app.v1.app_pb2.APP_TYPE_UNSPECIFIED
+   viam.gen.app.v1.app_pb2.APP_TYPE_SINGLE_MACHINE
+   viam.gen.app.v1.app_pb2.APP_TYPE_MULTI_MACHINE
+   viam.gen.app.v1.app_pb2.global___AppType
    viam.gen.app.v1.app_pb2.CLIENT_AUTHENTICATION_UNSPECIFIED
    viam.gen.app.v1.app_pb2.CLIENT_AUTHENTICATION_REQUIRED
    viam.gen.app.v1.app_pb2.CLIENT_AUTHENTICATION_NOT_REQUIRED
@@ -347,6 +351,7 @@ Classes
    viam.gen.app.v1.app_pb2.FragmentErrorType
    viam.gen.app.v1.app_pb2.RegistryItemStatus
    viam.gen.app.v1.app_pb2.Visibility
+   viam.gen.app.v1.app_pb2.AppType
    viam.gen.app.v1.app_pb2.ClientAuthentication
    viam.gen.app.v1.app_pb2.PKCE
    viam.gen.app.v1.app_pb2.URLValidation
@@ -734,6 +739,22 @@ Module Contents
    Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private
 
 .. py:data:: global___Visibility
+
+.. py:class:: AppType
+
+   Bases: :py:obj:`_AppType`
+
+
+.. py:data:: APP_TYPE_UNSPECIFIED
+   :type:  AppType
+
+.. py:data:: APP_TYPE_SINGLE_MACHINE
+   :type:  AppType
+
+.. py:data:: APP_TYPE_MULTI_MACHINE
+   :type:  AppType
+
+.. py:data:: global___AppType
 
 .. py:class:: ClientAuthentication
 
@@ -9226,7 +9247,7 @@ Module Contents
 
 .. py:data:: global___GetAppContentRequest
 
-.. py:class:: GetAppContentResponse(*, blob_path: str = ..., entrypoint: str = ...)
+.. py:class:: GetAppContentResponse(*, blob_path: str = ..., entrypoint: str = ..., app_type: global___AppType = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -9244,6 +9265,10 @@ Module Contents
 
    .. py:attribute:: entrypoint
       :type:  str
+
+
+   .. py:attribute:: app_type
+      :type:  global___AppType
 
 
 .. py:data:: global___GetAppContentResponse
