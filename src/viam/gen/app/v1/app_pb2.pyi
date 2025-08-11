@@ -123,6 +123,23 @@ VISIBILITY_PUBLIC_UNLISTED: Visibility.ValueType
 "Public Unlisted registry items are usable in everyone's robot but are hidden from the registry page as if they are private"
 global___Visibility = Visibility
 
+class _AppType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _AppTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_AppType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    APP_TYPE_UNSPECIFIED: _AppType.ValueType
+    APP_TYPE_SINGLE_MACHINE: _AppType.ValueType
+    APP_TYPE_MULTI_MACHINE: _AppType.ValueType
+
+class AppType(_AppType, metaclass=_AppTypeEnumTypeWrapper):
+    ...
+APP_TYPE_UNSPECIFIED: AppType.ValueType
+APP_TYPE_SINGLE_MACHINE: AppType.ValueType
+APP_TYPE_MULTI_MACHINE: AppType.ValueType
+global___AppType = AppType
+
 class _ClientAuthentication:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -5155,13 +5172,15 @@ class GetAppContentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BLOB_PATH_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    APP_TYPE_FIELD_NUMBER: builtins.int
     blob_path: builtins.str
     entrypoint: builtins.str
+    app_type: global___AppType.ValueType
 
-    def __init__(self, *, blob_path: builtins.str=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, blob_path: builtins.str=..., entrypoint: builtins.str=..., app_type: global___AppType.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['blob_path', b'blob_path', 'entrypoint', b'entrypoint']) -> None:
+    def ClearField(self, field_name: typing.Literal['app_type', b'app_type', 'blob_path', b'blob_path', 'entrypoint', b'entrypoint']) -> None:
         ...
 global___GetAppContentResponse = GetAppContentResponse
 
