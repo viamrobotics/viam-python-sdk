@@ -574,8 +574,9 @@ class TestClient:
     async def test_get_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragment = await client.get_fragment(fragment_id=ID)
+            fragment = await client.get_fragment(fragment_id=ID, version=VERSION)
             assert service.fragment_id == ID
+            assert service.version == VERSION
             assert fragment.proto == FRAGMENT
 
     async def test_create_fragment(self, service: MockApp):
