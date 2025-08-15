@@ -1766,7 +1766,7 @@ class AppClient:
         response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
-    async def get_fragment(self, fragment_id: str) -> Fragment:
+    async def get_fragment(self, fragment_id: str, version: Optional[str] = None) -> Fragment:
         """Get a fragment.
 
         ::
@@ -1778,6 +1778,7 @@ class AppClient:
 
         Args:
             fragment_id (str): ID of the fragment to get.
+            version (str): Optional specification of the fragment version to get (revision or tag).
 
         Raises:
             GRPCError: If an invalid fragment ID is passed.
@@ -1787,7 +1788,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getfragment>`_.
         """
-        request = GetFragmentRequest(id=fragment_id)
+        request = GetFragmentRequest(id=fragment_id, version=version)
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 

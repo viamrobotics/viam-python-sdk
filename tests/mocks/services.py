@@ -1627,6 +1627,7 @@ class MockApp(UnimplementedAppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.fragment_id = request.id
+        self.version = request.version
         await stream.send_message(GetFragmentResponse(fragment=self.fragment))
 
     async def GetFragmentHistory(self, stream: Stream[GetFragmentHistoryRequest, GetFragmentHistoryResponse]) -> None:
