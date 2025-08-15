@@ -177,3 +177,38 @@ class ListDatasetsByIDsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['datasets', b'datasets']) -> None:
         ...
 global___ListDatasetsByIDsResponse = ListDatasetsByIDsResponse
+
+@typing.final
+class MergeDatasetsRequest(google.protobuf.message.Message):
+    """MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATASET_IDS_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    organization_id: builtins.str
+
+    @property
+    def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, dataset_ids: collections.abc.Iterable[builtins.str] | None=..., name: builtins.str=..., organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['dataset_ids', b'dataset_ids', 'name', b'name', 'organization_id', b'organization_id']) -> None:
+        ...
+global___MergeDatasetsRequest = MergeDatasetsRequest
+
+@typing.final
+class MergeDatasetsResponse(google.protobuf.message.Message):
+    """MergeDatasetsResponse returns the dataset ID of the newly created merged dataset."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: builtins.int
+    dataset_id: builtins.str
+
+    def __init__(self, *, dataset_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['dataset_id', b'dataset_id']) -> None:
+        ...
+global___MergeDatasetsResponse = MergeDatasetsResponse

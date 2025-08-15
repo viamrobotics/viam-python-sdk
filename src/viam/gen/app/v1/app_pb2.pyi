@@ -3040,6 +3040,7 @@ class ListMachineSummariesRequest(google.protobuf.message.Message):
     LOCATION_IDS_FIELD_NUMBER: builtins.int
     LIMIT_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
+    'Optional organization ID. If no value is set it will search among all the organanizations the caller has access to'
     limit: builtins.int
     'Optional max number of machines to return; default to 100 if unset'
 

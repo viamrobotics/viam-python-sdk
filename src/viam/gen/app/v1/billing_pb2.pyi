@@ -463,3 +463,41 @@ class UpdateOrganizationBillingTierResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___UpdateOrganizationBillingTierResponse = UpdateOrganizationBillingTierResponse
+
+@typing.final
+class CreateInvoiceAndChargeImmediatelyRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_TO_CHARGE_FIELD_NUMBER: builtins.int
+    AMOUNT_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
+    ORG_ID_FOR_BRANDING_FIELD_NUMBER: builtins.int
+    org_id_to_charge: builtins.str
+    amount: builtins.float
+    description: builtins.str
+    org_id_for_branding: builtins.str
+
+    def __init__(self, *, org_id_to_charge: builtins.str=..., amount: builtins.float=..., description: builtins.str | None=..., org_id_for_branding: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'amount', b'amount', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_description', b'_description']) -> typing.Literal['description'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_org_id_for_branding', b'_org_id_for_branding']) -> typing.Literal['org_id_for_branding'] | None:
+        ...
+global___CreateInvoiceAndChargeImmediatelyRequest = CreateInvoiceAndChargeImmediatelyRequest
+
+@typing.final
+class CreateInvoiceAndChargeImmediatelyResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___CreateInvoiceAndChargeImmediatelyResponse = CreateInvoiceAndChargeImmediatelyResponse
