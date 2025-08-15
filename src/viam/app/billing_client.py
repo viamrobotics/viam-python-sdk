@@ -146,7 +146,8 @@ class BillingClient:
 
     async def create_invoice_and_charge_immediately(self, org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None, timeout: Optional[float] = None) -> None:
         """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
-
+        This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation. Avoid using a
+        timeout with this function.
 
         ::
 
