@@ -90,6 +90,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
 )
 from viam.proto.app.datasync import (
@@ -1475,6 +1477,32 @@ class DataClient:
             request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=bin_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
 
+    async def merge_datasets(self, dataset_ids: List[str], name: str, organization_id: str) -> str:
+        """Merge multiple datasets specified by their dataset IDs into a new dataset.
+        ::
+
+            dataset_id = await data_client.merge_datasets(
+                dataset_ids=["<DATASET-ID-1>", "<DATASET-ID-2>"],
+                name="<NEW-DATASET-NAME>",
+                organization_id="<YOUR-ORG-ID>"
+            )
+            print(dataset_id)
+
+        Args:
+            dataset_ids (List[str]): The IDs of the datasets to merge.
+            name (str): The name of the new merged dataset.
+            organization_id (str): The ID of the organization where the new dataset is being created.
+                To find your organization ID, visit the organization settings page.
+
+        Returns:
+            str: The dataset ID of the newly created merged dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+        """
+        request = MergeDatasetsRequest(dataset_ids=dataset_ids, name=name, organization_id=organization_id)
+        response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
+        return response.dataset_id
+
     async def binary_data_capture_upload(
         self,
         binary_data: bytes,
@@ -1635,7 +1663,7 @@ class DataClient:
                             time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times else None,
                             time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times else None,
                         )
-                        if data_request_times[idx]
+                        if data_request_times
                         else None
                     )
                     if data_request_times

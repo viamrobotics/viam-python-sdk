@@ -75,6 +75,10 @@ def service() -> MockBilling:
         curr_month_usage=CURR_MONTH_USAGE,
         invoices_summary=INVOICES_SUMMARY,
         billing_info=ORG_BILLING_INFO,
+        org_id_to_charge="",
+        amount=0.0,
+        description="",
+        org_id_for_branding="",
     )
 
 
@@ -105,3 +109,21 @@ class TestClient:
             org_billing_info = await client.get_org_billing_information(org_id=org_id)
             assert org_billing_info == ORG_BILLING_INFO
             assert service.org_id == org_id
+
+    async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            org_id_to_charge = "org_to_charge"
+            amount = 123.45
+            description = "test invoice"
+            org_id_for_branding = "branding_org"
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            await client.create_invoice_and_charge_immediately(
+                org_id_to_charge=org_id_to_charge,
+                amount=amount,
+                description=description,
+                org_id_for_branding=org_id_for_branding,
+            )
+            assert service.org_id_to_charge == org_id_to_charge
+            assert service.amount == amount
+            assert service.description == description
+            assert service.org_id_for_branding == org_id_for_branding

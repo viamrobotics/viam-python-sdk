@@ -93,11 +93,12 @@ class TestCamera:
         assert camera.extra == {"1": 1}
 
     async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
-        imgs, md = await camera.get_images()
+        imgs, md = await camera.get_images(filter_source_names=["cam1"])
         assert isinstance(imgs[0], NamedImage)
         assert imgs[0].name == camera.name
         assert imgs[0].data == image.data
         assert md == metadata
+        assert camera.filter_source_names == ["cam1"]
 
     async def test_get_point_cloud(self, camera: MockCamera, point_cloud: bytes):
         pc, _ = await camera.get_point_cloud()
@@ -155,13 +156,15 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
 
-            request = GetImagesRequest(name="camera")
+            request = GetImagesRequest(name="camera", filter_source_names=["cam1"])
             response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
             raw_img = response.images[0]
             assert raw_img.format == Format.FORMAT_PNG
             assert raw_img.source_name == camera.name
+            assert raw_img.mime_type == image.mime_type.value
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
+            assert camera.filter_source_names == ["cam1"]
 
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
@@ -226,12 +229,13 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
-            imgs, md = await client.get_images(timeout=1.82)
+            imgs, md = await client.get_images(timeout=1.82, filter_source_names=["cam1"])
             assert isinstance(imgs[0], NamedImage)
             assert imgs[0].name == camera.name
             assert imgs[0].data == image.data
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)
+            assert camera.filter_source_names == ["cam1"]
 
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
