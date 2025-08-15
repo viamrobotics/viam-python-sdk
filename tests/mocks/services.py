@@ -275,6 +275,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByOrganizationIDResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -1065,9 +1067,12 @@ class MockData(UnimplementedDataServiceBase):
 
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset], merged_dataset_ids: List[str], merged_name: str, merged_organization_id: str):
         self.create_response = create_response
         self.datasets_response = datasets_response
+        self.merged_dataset_ids = merged_dataset_ids
+        self.merged_name = merged_name
+        self.merged_organization_id = merged_organization_id
 
     async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
         request = await stream.recv_message()
@@ -1102,6 +1107,14 @@ class MockDataset(DatasetServiceBase):
         self.id = request.id
         self.name = request.name
         await stream.send_message((RenameDatasetResponse()))
+
+    async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.merged_dataset_ids = request.dataset_ids
+        self.merged_name = request.name
+        self.merged_organization_id = request.organization_id
+        await stream.send_message(MergeDatasetsResponse(dataset_id="MERGED_DATASET_ID"))
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -1258,11 +1271,19 @@ class MockBilling(UnimplementedBillingServiceBase):
         curr_month_usage: GetCurrentMonthUsageResponse,
         invoices_summary: GetInvoicesSummaryResponse,
         billing_info: GetOrgBillingInformationResponse,
+        org_id_to_charge: str,
+        amount: float,
+        description: str,
+        org_id_for_branding: str,
     ):
         self.pdf = pdf
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
+        self.org_id_to_charge = org_id_to_charge
+        self.amount = amount
+        self.description = description
+        self.org_id_for_branding = org_id_for_branding
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1289,6 +1310,15 @@ class MockBilling(UnimplementedBillingServiceBase):
         assert request is not None
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
+
+    async def CreateInvoiceAndChargeImmediately(self, stream: Stream[CreateInvoiceAndChargeImmediatelyRequest, CreateInvoiceAndChargeImmediatelyResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id_to_charge = request.org_id_to_charge
+        self.amount = request.amount
+        self.description = request.description
+        self.org_id_for_branding = request.org_id_for_branding
+        await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 
 class MockApp(UnimplementedAppServiceBase):

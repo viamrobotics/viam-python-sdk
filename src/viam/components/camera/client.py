@@ -44,17 +44,14 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
 
     async def get_images(
-        self,
-        *,
-        timeout: Optional[float] = None,
-        **kwargs,
+        self, *, filter_source_names: Optional[List[str]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImagesRequest(name=self.name)
+        request = GetImagesRequest(name=self.name, filter_source_names=filter_source_names)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
-            mime_type = CameraMimeType.from_proto(img_data.format)
+            mime_type = CameraMimeType.from_string(img_data.mime_type) if img_data.mime_type else CameraMimeType.from_proto(img_data.format)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata

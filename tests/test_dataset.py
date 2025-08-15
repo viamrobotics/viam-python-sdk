@@ -22,7 +22,7 @@ DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
 @pytest.fixture(scope="function")
 def service() -> MockDataset:
-    return MockDataset(CREATED_ID, DATASETS)
+    return MockDataset(CREATED_ID, DATASETS, [], "", "")
 
 
 class TestClient:
@@ -60,3 +60,15 @@ class TestClient:
             await client.rename_dataset(ID, NAME)
             assert service.id == ID
             assert service.name == NAME
+
+    async def test_merge_datasets(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            dataset_ids = ["id1", "id2"]
+            name = "merged_dataset"
+            organization_id = "org_id_merge"
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            merged_id = await client.merge_datasets(dataset_ids, name, organization_id)
+            assert service.merged_dataset_ids == dataset_ids
+            assert service.merged_name == name
+            assert service.merged_organization_id == organization_id
+            assert merged_id == "MERGED_DATASET_ID"

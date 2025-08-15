@@ -5,6 +5,8 @@ from grpclib.client import Channel, Stream
 from viam import logging
 from viam.proto.app.billing import (
     BillingServiceStub,
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -141,3 +143,25 @@ class BillingClient:
         """
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
+
+    async def create_invoice_and_charge_immediately(self, org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None, timeout: Optional[float] = None,) -> None:
+        """Create an invoice and charge immediately.
+
+        ::
+
+            await billing_client.create_invoice_and_charge_immediately(
+                org_id_to_charge="<ORG-ID-TO-CHARGE>",
+                amount=100.0,
+                description="One-time charge for services",
+                org_id_for_branding="<ORG-ID-FOR-BRANDING>"
+            )
+
+        Args:
+            org_id_to_charge (str): The organization ID to charge.
+            amount (float): The amount to charge.
+            description (Optional[str]): Optional description for the invoice.
+            org_id_for_branding (Optional[str]): Optional organization ID for branding.
+            timeout (Optional[float]): The amount of time to wait for the method to complete.
+        """
+        request = CreateInvoiceAndChargeImmediatelyRequest(org_id_to_charge=org_id_to_charge, amount=amount, description=description, org_id_for_branding=org_id_for_branding,)
+        await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata, timeout=timeout)
