@@ -1855,7 +1855,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListFragmentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListFragments</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">fragment</span><span class="p">)</span> <span class="k">for</span> <span class="n">fragment</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">fragments</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="AppClient.get_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.get_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a fragment.</span>
 
 <span class="sd">        ::</span>
@@ -1867,6 +1867,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            fragment_id (str): ID of the fragment to get.</span>
+<span class="sd">            version (str): Optional specification of the fragment version to get (revision or tag).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid fragment ID is passed.</span>
@@ -1876,7 +1877,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getfragment&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 

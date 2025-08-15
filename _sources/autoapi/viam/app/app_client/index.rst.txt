@@ -1543,7 +1543,7 @@ Module Contents
 
 
 
-   .. py:method:: get_fragment(fragment_id: str) -> Fragment
+   .. py:method:: get_fragment(fragment_id: str, version: Optional[str] = None) -> Fragment
       :async:
 
 
@@ -1558,6 +1558,8 @@ Module Contents
 
       :param fragment_id: ID of the fragment to get.
       :type fragment_id: str
+      :param version: Optional specification of the fragment version to get (revision or tag).
+      :type version: str
 
       :raises GRPCError: If an invalid fragment ID is passed.
 
