@@ -191,6 +191,8 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     UnimplementedBillingServiceBase,
 )
 from viam.proto.app.data import (
@@ -1297,6 +1299,14 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
 
+    async def CreateInvoiceAndChargeImmediately(self, stream: Stream[CreateInvoiceAndChargeImmediatelyRequest, CreateInvoiceAndChargeImmediatelyResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id_to_charge = request.org_id_to_charge
+        self.amount = request.amount
+        self.description = request.description
+        self.org_id_for_branding = request.org_id_for_branding
+        await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 class MockApp(UnimplementedAppServiceBase):
     def __init__(

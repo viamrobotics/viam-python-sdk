@@ -8,6 +8,7 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
+    CreateInvoiceAndChargeImmediatelyResponse,
 )
 
 from .mocks.services import MockBilling
@@ -105,3 +106,12 @@ class TestClient:
             org_billing_info = await client.get_org_billing_information(org_id=org_id)
             assert org_billing_info == ORG_BILLING_INFO
             assert service.org_id == org_id
+
+    async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            _: CreateInvoiceAndChargeImmediatelyResponse = await client.create_invoice_and_charge_immediately(
+                org_id_to_charge="foo",
+                amount=42.42,
+                description="A short description.",
+                org_id_for_branding="bar")
