@@ -155,8 +155,8 @@ class BillingClient:
 
         Args:
             org_id_to_charge (str): the organization to charge
-            amount (float): the amount of the charge
-            description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or fewer)
+            amount (float): the amount to charge in dollars
+            description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)
             org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email
         """
         request = CreateInvoiceAndChargeImmediatelyRequest(org_id_to_charge=org_id_to_charge, amount=amount, description=description, org_id_for_branding=org_id_for_branding)
