@@ -124,7 +124,7 @@ class TestMotionService:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
                 resource_name = Arm.get_resource_name("arm")
                 destination = PoseInFrame(reference_frame="refframe")
-                world_state = WorldState(transforms=[Transform(reference_frame="ws_tfrm_rf")])
+                world_state = WorldState(transforms=[Transform(name="ws_tfrm_rf")])
                 constraints = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
                 extra = {"foo": "bar"}
                 timeout = 2
@@ -153,7 +153,7 @@ class TestMotionService:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
                 rn = Arm.get_resource_name("arm")
                 destination_frame = "x"
-                transforms = [Transform(reference_frame="y")]
+                transforms = [Transform(name="y")]
                 extra = {"foo": "bar"}
                 timeout = 4
                 pose = await client.get_pose(rn, destination_frame, transforms, extra=extra, timeout=timeout)

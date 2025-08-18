@@ -68,14 +68,16 @@ RESOURCE_NAMES = [
 CONFIG_RESPONSE = [
     FrameSystemConfig(
         frame=Transform(
-            reference_frame="frame0",
-            pose_in_observer_frame=PoseInFrame(reference_frame="reference0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
+            name="frame0",
+            parent="reference0",
+            pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         )
     ),
     FrameSystemConfig(
         frame=Transform(
-            reference_frame="frame1",
-            pose_in_observer_frame=PoseInFrame(reference_frame="reference1", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
+            name="frame1",
+            parent="reference1",
+            pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21),
         )
     ),
 ]
