@@ -273,6 +273,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
 )
@@ -1095,6 +1097,11 @@ class MockDataset(DatasetServiceBase):
         assert request is not None
         self.org_id = request.organization_id
         await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
+
+    async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(MergeDatasetsResponse())
 
     async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
         request = await stream.recv_message()
