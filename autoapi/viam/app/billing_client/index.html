@@ -70,6 +70,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.billing_client.BillingClient.get_invoice_pdf"><code class="docutils literal notranslate"><span class="pre">BillingClient.get_invoice_pdf()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.billing_client.BillingClient.get_invoices_summary"><code class="docutils literal notranslate"><span class="pre">BillingClient.get_invoices_summary()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.billing_client.BillingClient.get_org_billing_information"><code class="docutils literal notranslate"><span class="pre">BillingClient.get_org_billing_information()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.billing_client.BillingClient.create_invoice_and_charge_immediately"><code class="docutils literal notranslate"><span class="pre">BillingClient.create_invoice_and_charge_immediately()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -257,6 +258,26 @@
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/billing-client/#getorgbillinginformation">Billing Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.billing_client.BillingClient.create_invoice_and_charge_immediately">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_invoice_and_charge_immediately</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">org_id_to_charge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id_for_branding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/billing_client.html#BillingClient.create_invoice_and_charge_immediately"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.billing_client.BillingClient.create_invoice_and_charge_immediately" title="Permalink to this definition"></a></dt>
+<dd><p>Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
+This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">billing_client</span><span class="o">.</span><span class="n">create_invoice_and_charge_immediately</span><span class="p">(</span><span class="s2">&quot;&lt;ORG-ID-TO-CHARGE&gt;&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">AMOUNT</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">DESCRIPTION</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">&quot;&lt;ORG-ID-FOR-BRANDING&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>org_id_to_charge</strong> (<em>str</em>) – the organization to charge</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – the amount to charge in dollars</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – a short description of the charge to display on the invoice PDF (must be 100 characters or less)</p></li>
+<li><p><strong>org_id_for_branding</strong> (<em>str</em>) – the organization whose branding to use in the invoice confirmation email</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

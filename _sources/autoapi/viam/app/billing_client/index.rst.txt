@@ -141,3 +141,25 @@ Module Contents
 
 
 
+   .. py:method:: create_invoice_and_charge_immediately(org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None) -> None
+      :async:
+
+
+      Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
+      This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.
+
+      ::
+
+          await billing_client.create_invoice_and_charge_immediately("<ORG-ID-TO-CHARGE>", <AMOUNT>, <DESCRIPTION>, "<ORG-ID-FOR-BRANDING>")
+
+      :param org_id_to_charge: the organization to charge
+      :type org_id_to_charge: str
+      :param amount: the amount to charge in dollars
+      :type amount: float
+      :param description: a short description of the charge to display on the invoice PDF (must be 100 characters or less)
+      :type description: str
+      :param org_id_for_branding: the organization whose branding to use in the invoice confirmation email
+      :type org_id_for_branding: str
+
+
+
