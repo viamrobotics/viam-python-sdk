@@ -814,19 +814,21 @@ global___BoundingBox = BoundingBox
 class Classification(google.protobuf.message.Message):
     """Classification represents a confidence score with a label."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
     CONFIDENCE_FIELD_NUMBER: builtins.int
+    id: builtins.str
     label: builtins.str
     confidence: builtins.float
     'confidence is an optional range from 0 - 1'
 
-    def __init__(self, *, label: builtins.str=..., confidence: builtins.float | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., label: builtins.str=..., confidence: builtins.float | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence', 'label', b'label']) -> None:
+    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', 'confidence', b'confidence', 'id', b'id', 'label', b'label']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_confidence', b'_confidence']) -> typing.Literal['confidence'] | None:

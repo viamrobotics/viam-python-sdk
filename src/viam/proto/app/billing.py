@@ -5,6 +5,8 @@ Do not edit manually!
 
 from ...gen.app.v1.billing_grpc import BillingServiceBase, BillingServiceStub, UnimplementedBillingServiceBase
 from ...gen.app.v1.billing_pb2 import (
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetAvailableBillingTiersRequest,
     GetAvailableBillingTiersResponse,
     GetCurrentMonthUsageRequest,
@@ -33,6 +35,8 @@ __all__ = [
     "BillingServiceBase",
     "BillingServiceStub",
     "UnimplementedBillingServiceBase",
+    "CreateInvoiceAndChargeImmediatelyRequest",
+    "CreateInvoiceAndChargeImmediatelyResponse",
     "GetAvailableBillingTiersRequest",
     "GetAvailableBillingTiersResponse",
     "GetCurrentMonthUsageRequest",

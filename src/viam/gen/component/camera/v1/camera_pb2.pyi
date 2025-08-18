@@ -85,21 +85,28 @@ global___GetImageResponse = GetImageResponse
 class GetImagesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    FILTER_SOURCE_NAMES_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of a camera'
 
     @property
+    def filter_source_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """The names of the sensors to retrieve images from. If this is not provided,
+        all images from all sensors will be returned.
+        """
+
+    @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., filter_source_names: collections.abc.Iterable[builtins.str] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'filter_source_names', b'filter_source_names', 'name', b'name']) -> None:
         ...
 global___GetImagesRequest = GetImagesRequest
 
@@ -133,17 +140,20 @@ class Image(google.protobuf.message.Message):
     SOURCE_NAME_FIELD_NUMBER: builtins.int
     FORMAT_FIELD_NUMBER: builtins.int
     IMAGE_FIELD_NUMBER: builtins.int
+    MIME_TYPE_FIELD_NUMBER: builtins.int
     source_name: builtins.str
     'the name of the sensor where the image came from'
     format: global___Format.ValueType
     'format of the response image bytes'
     image: builtins.bytes
     'image in bytes'
+    mime_type: builtins.str
+    'The mime type of the image'
 
-    def __init__(self, *, source_name: builtins.str=..., format: global___Format.ValueType=..., image: builtins.bytes=...) -> None:
+    def __init__(self, *, source_name: builtins.str=..., format: global___Format.ValueType=..., image: builtins.bytes=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['format', b'format', 'image', b'image', 'source_name', b'source_name']) -> None:
+    def ClearField(self, field_name: typing.Literal['format', b'format', 'image', b'image', 'mime_type', b'mime_type', 'source_name', b'source_name']) -> None:
         ...
 global___Image = Image
 

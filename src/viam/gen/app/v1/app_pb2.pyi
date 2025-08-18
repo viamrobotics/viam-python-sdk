@@ -3040,6 +3040,7 @@ class ListMachineSummariesRequest(google.protobuf.message.Message):
     LOCATION_IDS_FIELD_NUMBER: builtins.int
     LIMIT_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
+    'Optional organization ID. If no value is set it will search among all the organanizations the caller has access to'
     limit: builtins.int
     'Optional max number of machines to return; default to 100 if unset'
 
@@ -3182,18 +3183,22 @@ class PartSummary(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
     PART_NAME_FIELD_NUMBER: builtins.int
+    IS_MAIN_PART_FIELD_NUMBER: builtins.int
     LAST_ONLINE_FIELD_NUMBER: builtins.int
     VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
     VIAM_AGENT_VERSION_FIELD_NUMBER: builtins.int
     OS_FIELD_NUMBER: builtins.int
     PLATFORM_FIELD_NUMBER: builtins.int
     PUBLIC_IP_ADDRESS_FIELD_NUMBER: builtins.int
+    DNS_NAME_FIELD_NUMBER: builtins.int
     FRAGMENTS_FIELD_NUMBER: builtins.int
     part_id: builtins.str
     part_name: builtins.str
+    is_main_part: builtins.bool
     os: builtins.str
     platform: builtins.str
     public_ip_address: builtins.str
+    dns_name: builtins.str
 
     @property
     def last_online(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -3211,13 +3216,17 @@ class PartSummary(google.protobuf.message.Message):
     def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentSummary]:
         ...
 
-    def __init__(self, *, part_id: builtins.str=..., part_name: builtins.str=..., last_online: google.protobuf.timestamp_pb2.Timestamp | None=..., viam_server_version: global___ViamServerVersion | None=..., viam_agent_version: global___ViamAgentVersion | None=..., os: builtins.str | None=..., platform: builtins.str | None=..., public_ip_address: builtins.str | None=..., fragments: collections.abc.Iterable[global___FragmentSummary] | None=...) -> None:
+    def __init__(self, *, part_id: builtins.str=..., part_name: builtins.str=..., is_main_part: builtins.bool=..., last_online: google.protobuf.timestamp_pb2.Timestamp | None=..., viam_server_version: global___ViamServerVersion | None=..., viam_agent_version: global___ViamAgentVersion | None=..., os: builtins.str | None=..., platform: builtins.str | None=..., public_ip_address: builtins.str | None=..., dns_name: builtins.str | None=..., fragments: collections.abc.Iterable[global___FragmentSummary] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'fragments', b'fragments', 'last_online', b'last_online', 'os', b'os', 'part_id', b'part_id', 'part_name', b'part_name', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'fragments', b'fragments', 'is_main_part', b'is_main_part', 'last_online', b'last_online', 'os', b'os', 'part_id', b'part_id', 'part_name', b'part_name', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_dns_name', b'_dns_name']) -> typing.Literal['dns_name'] | None:
         ...
 
     @typing.overload
