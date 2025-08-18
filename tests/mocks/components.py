@@ -368,6 +368,7 @@ class MockCamera(Camera):
         ts = Timestamp()
         ts.FromDatetime(datetime(1970, 1, 1))
         self.metadata = ResponseMetadata(captured_at=ts)
+        self.filter_source_names: Optional[List[str]] = None
         super().__init__(name)
 
     async def get_image(
@@ -377,7 +378,8 @@ class MockCamera(Camera):
         self.timeout = timeout
         return self.image
 
-    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(self, filter_source_names: Optional[List[str]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+        self.filter_source_names = filter_source_names
         self.timeout = timeout
         return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
 

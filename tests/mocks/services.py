@@ -111,6 +111,7 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
+    ListOrganizationsWithAccessToLocationResponse,
     ListOrganizationsByUserRequest,
     ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
@@ -183,6 +184,8 @@ from viam.proto.app import (
     UploadModuleFileResponse,
 )
 from viam.proto.app.billing import (
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -273,6 +276,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
 )
@@ -1068,6 +1073,9 @@ class MockDataset(DatasetServiceBase):
     def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
         self.create_response = create_response
         self.datasets_response = datasets_response
+        self.merge_dataset_ids: Optional[List[str]] = None
+        self.merge_name: Optional[str] = None
+        self.merge_org_id: Optional[str] = None
 
     async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
         request = await stream.recv_message()
@@ -1102,6 +1110,14 @@ class MockDataset(DatasetServiceBase):
         self.id = request.id
         self.name = request.name
         await stream.send_message((RenameDatasetResponse()))
+
+    async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.merge_dataset_ids = request.dataset_ids
+        self.merge_name = request.name
+        self.merge_org_id = request.organization_id
+        await stream.send_message(MergeDatasetsResponse(dataset_id="new_merged_dataset_id"))
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -1263,6 +1279,10 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
+        self.org_id_to_charge: Optional[str] = None
+        self.amount: Optional[float] = None
+        self.description: Optional[str] = None
+        self.org_id_for_branding: Optional[str] = None
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1289,6 +1309,17 @@ class MockBilling(UnimplementedBillingServiceBase):
         assert request is not None
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
+
+    async def CreateInvoiceAndChargeImmediately(
+        self, stream: Stream[CreateInvoiceAndChargeImmediatelyRequest, CreateInvoiceAndChargeImmediatelyResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id_to_charge = request.org_id_to_charge
+        self.amount = request.amount
+        self.description = request.description
+        self.org_id_for_branding = request.org_id_for_branding
+        await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 
 class MockApp(UnimplementedAppServiceBase):

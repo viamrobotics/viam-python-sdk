@@ -23,6 +23,8 @@ STANDARD_DATA_SOURCE_TYPE = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STAND
 TIMESTAMP = datetime.fromtimestamp(0)
 TIMESTAMP_PROTO = datetime_to_timestamp(TIMESTAMP)
 
+ERROR_MESSAGE = "pipeline failed"
+
 PROTO_DATA_PIPELINE = DataPipeline(
     id=ID,
     name=NAME,
@@ -48,6 +50,7 @@ PROTO_DATA_PIPELINE_RUN = DataPipelineRun(
     end_time=TIMESTAMP_PROTO,
     data_start_time=TIMESTAMP_PROTO,
     data_end_time=TIMESTAMP_PROTO,
+    error_message=ERROR_MESSAGE,
 )
 PROTO_DATA_PIPELINE_RUNS = [PROTO_DATA_PIPELINE_RUN]
 
@@ -59,6 +62,7 @@ DATA_PIPELINE_RUNS = [
         end_time=TIMESTAMP,
         data_start_time=TIMESTAMP,
         data_end_time=TIMESTAMP,
+        error_message=ERROR_MESSAGE,
     )
 ]
 

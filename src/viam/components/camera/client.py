@@ -13,6 +13,7 @@ from viam.proto.component.camera import (
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
+    Image,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -45,16 +46,17 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
 
     async def get_images(
         self,
+        filter_source_names: Optional[List[str]] = None,
         *,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImagesRequest(name=self.name)
+        request = GetImagesRequest(name=self.name, filter_source_names=filter_source_names)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
-            mime_type = CameraMimeType.from_proto(img_data.format)
+            mime_type = CameraMimeType.from_string(img_data.mime_type)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata

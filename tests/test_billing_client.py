@@ -8,6 +8,8 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
 )
 
 from .mocks.services import MockBilling
@@ -67,6 +69,11 @@ ORG_BILLING_INFO = GetOrgBillingInformationResponse(
 AUTH_TOKEN = "auth_token"
 BILLING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
+ORG_ID_TO_CHARGE = "org_id_to_charge"
+AMOUNT = 10000
+DESCRIPTION = "test description"
+ORG_ID_FOR_BRANDING = "org_id_for_branding"
+
 
 @pytest.fixture(scope="function")
 def service() -> MockBilling:
@@ -105,3 +112,18 @@ class TestClient:
             org_billing_info = await client.get_org_billing_information(org_id=org_id)
             assert org_billing_info == ORG_BILLING_INFO
             assert service.org_id == org_id
+
+    async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            response = await client.create_invoice_and_charge_immediately(
+                org_id=ORG_ID_TO_CHARGE,
+                amount=AMOUNT,
+                description=DESCRIPTION,
+                org_id_for_branding=ORG_ID_FOR_BRANDING,
+            )
+            assert response == CreateInvoiceAndChargeImmediatelyResponse()
+            assert service.org_id_to_charge == ORG_ID_TO_CHARGE
+            assert service.amount == AMOUNT
+            assert service.description == DESCRIPTION
+            assert service.org_id_for_branding == ORG_ID_FOR_BRANDING

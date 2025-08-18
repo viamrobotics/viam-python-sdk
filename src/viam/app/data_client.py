@@ -90,6 +90,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
 )
 from viam.proto.app.datasync import (
@@ -308,6 +310,8 @@ class DataClient:
         """The start time of the data that was processed in the run."""
         data_end_time: datetime
         """The end time of the data that was processed in the run."""
+        error_message: str
+        """The error message, if the run failed."""
 
         @classmethod
         def from_proto(cls, data_pipeline_run: ProtoDataPipelineRun) -> Self:
@@ -318,6 +322,7 @@ class DataClient:
                 end_time=data_pipeline_run.end_time.ToDatetime(),
                 data_start_time=data_pipeline_run.data_start_time.ToDatetime(),
                 data_end_time=data_pipeline_run.data_end_time.ToDatetime(),
+                error_message=data_pipeline_run.error_message,
             )
 
     @dataclass
@@ -2030,6 +2035,29 @@ class DataClient:
         request = ListDataPipelineRunsRequest(id=id, page_size=page_size, page_token=page_token)
         response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(request, metadata=self._metadata)
         return DataClient.DataPipelineRunsPage.from_proto(response, self, page_size)
+
+    async def merge_datasets(self, dataset_ids: List[str], name: str, organization_id: str) -> str:
+        """Merge multiple datasets into a new dataset.
+
+        ::
+
+            new_dataset_id = await data_client.merge_datasets(
+                dataset_ids=["<DATASET-ID-1>", "<DATASET-ID-2>"],
+                name="MergedDataset",
+                organization_id="<YOUR-ORG-ID>"
+            )
+
+        Args:
+            dataset_ids (List[str]): The IDs of the datasets to merge.
+            name (str): The name of the new dataset.
+            organization_id (str): The ID of the organization where the new dataset is being created.
+
+        Returns:
+            str: The ID of the newly created merged dataset.
+        """
+        request = MergeDatasetsRequest(dataset_ids=dataset_ids, name=name, organization_id=organization_id)
+        response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
+        return response.dataset_id
 
     @staticmethod
     def create_filter(

@@ -5,6 +5,8 @@ from grpclib.client import Channel, Stream
 from viam import logging
 from viam.proto.app.billing import (
     BillingServiceStub,
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -141,3 +143,39 @@ class BillingClient:
         """
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
+
+    async def create_invoice_and_charge_immediately(
+        self,
+        org_id_to_charge: str,
+        amount: float,
+        description: Optional[str] = None,
+        org_id_for_branding: Optional[str] = None,
+        timeout: Optional[float] = None,
+    ) -> None:
+        """Create an invoice and charge the organization immediately.
+
+        ::
+
+            await billing_client.create_invoice_and_charge_immediately(
+                org_id_to_charge="<ORG-ID>",
+                amount=10.50,
+                description="Test invoice",
+                org_id_for_branding="<ORG-ID-FOR-BRANDING>"
+            )
+
+        Args:
+            org_id_to_charge (str): The organization ID to charge.
+            amount (float): The amount to charge in cents.
+            description (Optional[str], optional): A description for the invoice. Defaults to None.
+            org_id_for_branding (Optional[str], optional): The organization ID to use for branding. Defaults to None.
+            timeout (Optional[float], optional): The timeout in seconds for the request. Defaults to None.
+
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#createinvoiceandchargeimmediately>`_.
+        """
+        request = CreateInvoiceAndChargeImmediatelyRequest(
+            org_id_to_charge=org_id_to_charge,
+            amount_cents=int(amount * 100),  # Assuming amount is in dollars, convert to cents
+            description=description,
+            org_id_for_branding=org_id_for_branding,
+        )
+        await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata, timeout=timeout)

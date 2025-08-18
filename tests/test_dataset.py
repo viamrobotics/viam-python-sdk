@@ -3,7 +3,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.dataset import Dataset
+from viam.proto.app.dataset import Dataset, MergeDatasetsRequest, MergeDatasetsResponse
 
 from .mocks.services import MockDataset
 
@@ -18,6 +18,11 @@ DATASET = Dataset(id=ID, name=NAME, organization_id=ORG_ID, time_created=TIME)
 DATASETS = [DATASET]
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
+
+MERGE_DATASET_IDS = ["dataset_1", "dataset_2"]
+MERGE_NAME = "merged_dataset"
+MERGE_ORG_ID = "merged_org_id"
+MERGED_DATASET_ID = "merged_dataset_id"
 
 
 @pytest.fixture(scope="function")
@@ -60,3 +65,12 @@ class TestClient:
             await client.rename_dataset(ID, NAME)
             assert service.id == ID
             assert service.name == NAME
+
+    async def test_merge_datasets(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            merged_id = await client.merge_datasets(MERGE_DATASET_IDS, MERGE_NAME, MERGE_ORG_ID)
+            assert service.merge_dataset_ids == MERGE_DATASET_IDS
+            assert service.merge_name == MERGE_NAME
+            assert service.merge_org_id == MERGE_ORG_ID
+            assert merged_id == MERGED_DATASET_ID
