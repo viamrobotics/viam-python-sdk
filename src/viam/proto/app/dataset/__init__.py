@@ -14,6 +14,8 @@ from ....gen.app.dataset.v1.dataset_pb2 import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
     RenameDatasetResponse,
 )
@@ -31,6 +33,8 @@ __all__ = [
     "ListDatasetsByIDsResponse",
     "ListDatasetsByOrganizationIDRequest",
     "ListDatasetsByOrganizationIDResponse",
+    "MergeDatasetsRequest",
+    "MergeDatasetsResponse",
     "RenameDatasetRequest",
     "RenameDatasetResponse",
 ]

@@ -352,10 +352,13 @@ class DataPipelineRun(google.protobuf.message.Message):
     DATA_START_TIME_FIELD_NUMBER: builtins.int
     DATA_END_TIME_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
+    ERROR_MESSAGE_FIELD_NUMBER: builtins.int
     id: builtins.str
     'The ID of the run.'
     status: global___DataPipelineRunStatus.ValueType
     'The status of the run.'
+    error_message: builtins.str
+    'The error message if the run failed.'
 
     @property
     def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -373,12 +376,12 @@ class DataPipelineRun(google.protobuf.message.Message):
     def data_end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The end time of the data that was processed in the run."""
 
-    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___DataPipelineRunStatus.ValueType=...) -> None:
+    def __init__(self, *, id: builtins.str=..., start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., data_end_time: google.protobuf.timestamp_pb2.Timestamp | None=..., status: global___DataPipelineRunStatus.ValueType=..., error_message: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'start_time', b'start_time']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'id', b'id', 'start_time', b'start_time', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing.Literal['data_end_time', b'data_end_time', 'data_start_time', b'data_start_time', 'end_time', b'end_time', 'error_message', b'error_message', 'id', b'id', 'start_time', b'start_time', 'status', b'status']) -> None:
         ...
 global___DataPipelineRun = DataPipelineRun
