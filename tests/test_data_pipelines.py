@@ -59,6 +59,7 @@ DATA_PIPELINE_RUNS = [
         end_time=TIMESTAMP,
         data_start_time=TIMESTAMP,
         data_end_time=TIMESTAMP,
+        error_message="",
     )
 ]
 
