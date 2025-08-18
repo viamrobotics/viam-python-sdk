@@ -166,7 +166,7 @@ Module Contents
 
 .. py:data:: global___GetImageResponse
 
-.. py:class:: GetImagesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetImagesRequest(*, name: str = ..., filter_source_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -182,6 +182,13 @@ Module Contents
       :type:  str
 
       Name of a camera
+
+
+   .. py:property:: filter_source_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      The names of the sensors to retrieve images from. If this is not provided,
+      all images from all sensors will be returned.
 
 
    .. py:property:: extra
@@ -254,7 +261,7 @@ Module Contents
 
 .. py:data:: global___GetImagesResponse
 
-.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ...)
+.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ..., mime_type: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -282,6 +289,12 @@ Module Contents
       :type:  bytes
 
       image in bytes
+
+
+   .. py:attribute:: mime_type
+      :type:  str
+
+      The mime type of the image
 
 
 .. py:data:: global___Image

@@ -27,6 +27,8 @@ Classes
    viam.proto.app.dataset.ListDatasetsByIDsResponse
    viam.proto.app.dataset.ListDatasetsByOrganizationIDRequest
    viam.proto.app.dataset.ListDatasetsByOrganizationIDResponse
+   viam.proto.app.dataset.MergeDatasetsRequest
+   viam.proto.app.dataset.MergeDatasetsResponse
    viam.proto.app.dataset.RenameDatasetRequest
    viam.proto.app.dataset.RenameDatasetResponse
 
@@ -78,6 +80,13 @@ Package Contents
 
 
 
+   .. py:method:: MergeDatasets(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -96,6 +105,9 @@ Package Contents
 
 
    .. py:attribute:: ListDatasetsByIDs
+
+
+   .. py:attribute:: MergeDatasets
 
 
 .. py:class:: UnimplementedDatasetServiceBase
@@ -128,6 +140,11 @@ Package Contents
 
 
    .. py:method:: ListDatasetsByIDs(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest, app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: MergeDatasets(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]) -> None
       :async:
 
 
@@ -276,6 +293,39 @@ Package Contents
    .. py:property:: datasets
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Dataset]
 
+
+
+.. py:class:: MergeDatasetsRequest(*, dataset_ids: collections.abc.Iterable[str] | None = ..., name: str = ..., organization_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:property:: dataset_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+.. py:class:: MergeDatasetsResponse(*, dataset_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.
+
+
+   .. py:attribute:: dataset_id
+      :type:  str
 
 
 .. py:class:: RenameDatasetRequest(*, id: str = ..., name: str = ...)

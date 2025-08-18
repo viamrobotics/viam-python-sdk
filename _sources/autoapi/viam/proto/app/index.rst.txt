@@ -5824,6 +5824,8 @@ Package Contents
    .. py:attribute:: organization_id
       :type:  str
 
+      Optional organization ID. If no value is set it will search among all the organanizations the caller has access to
+
 
    .. py:attribute:: limit
       :type:  int
@@ -7812,7 +7814,7 @@ Package Contents
 
 
 
-.. py:class:: PartSummary(*, part_id: str = ..., part_name: str = ..., last_online: google.protobuf.timestamp_pb2.Timestamp | None = ..., viam_server_version: global___ViamServerVersion | None = ..., viam_agent_version: global___ViamAgentVersion | None = ..., os: str | None = ..., platform: str | None = ..., public_ip_address: str | None = ..., fragments: collections.abc.Iterable[global___FragmentSummary] | None = ...)
+.. py:class:: PartSummary(*, part_id: str = ..., part_name: str = ..., is_main_part: bool = ..., last_online: google.protobuf.timestamp_pb2.Timestamp | None = ..., viam_server_version: global___ViamServerVersion | None = ..., viam_agent_version: global___ViamAgentVersion | None = ..., os: str | None = ..., platform: str | None = ..., public_ip_address: str | None = ..., dns_name: str | None = ..., fragments: collections.abc.Iterable[global___FragmentSummary] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7832,6 +7834,10 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: is_main_part
+      :type:  bool
+
+
    .. py:attribute:: os
       :type:  str
 
@@ -7841,6 +7847,10 @@ Package Contents
 
 
    .. py:attribute:: public_ip_address
+      :type:  str
+
+
+   .. py:attribute:: dns_name
       :type:  str
 
 
@@ -7864,7 +7874,7 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> bool
+   .. py:method:: HasField(field_name: Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7882,7 +7892,8 @@ Package Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_last_online', b'_last_online']) -> Literal['last_online'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_dns_name', b'_dns_name']) -> Literal['dns_name'] | None
+                  WhichOneof(oneof_group: Literal['_last_online', b'_last_online']) -> Literal['last_online'] | None
                   WhichOneof(oneof_group: Literal['_os', b'_os']) -> Literal['os'] | None
                   WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
                   WhichOneof(oneof_group: Literal['_public_ip_address', b'_public_ip_address']) -> Literal['public_ip_address'] | None

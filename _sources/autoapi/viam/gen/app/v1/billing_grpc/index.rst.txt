@@ -75,6 +75,13 @@ Module Contents
 
 
 
+   .. py:method:: CreateInvoiceAndChargeImmediately(stream: grpclib.server.Stream[app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest, app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -122,6 +129,11 @@ Module Contents
 
 
 
+   .. py:method:: CreateInvoiceAndChargeImmediately(stream: grpclib.server.Stream[app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest, app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse]) -> None
+      :async:
+
+
+
 .. py:class:: BillingServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetCurrentMonthUsage
@@ -143,5 +155,8 @@ Module Contents
 
 
    .. py:attribute:: UpdateOrganizationBillingTier
+
+
+   .. py:attribute:: CreateInvoiceAndChargeImmediately
 
 

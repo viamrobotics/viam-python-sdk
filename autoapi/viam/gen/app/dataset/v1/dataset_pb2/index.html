@@ -131,6 +131,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse" title="viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListDatasetsByIDsResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest" title="viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MergeDatasetsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse" title="viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MergeDatasetsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -170,6 +176,12 @@ isort:skip_file</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse" title="viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListDatasetsByIDsResponse</span></code></a></p></td>
 <td><p>ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest" title="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeDatasetsRequest</span></code></a></p></td>
+<td><p>MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse" title="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeDatasetsResponse</span></code></a></p></td>
+<td><p>MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.</p></td>
 </tr>
 </tbody>
 </table>
@@ -410,6 +422,50 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListDatasetsByIDsResponse</span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">MergeDatasetsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.dataset_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest.dataset_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MergeDatasetsRequest</span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">MergeDatasetsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse.dataset_id">
+<span class="sig-name descname"><span class="pre">dataset_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse.dataset_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.dataset.v1.dataset_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MergeDatasetsResponse</span></span><a class="headerlink" href="#viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

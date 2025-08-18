@@ -61,6 +61,13 @@ Module Contents
 
 
 
+   .. py:method:: MergeDatasets(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -98,6 +105,11 @@ Module Contents
 
 
 
+   .. py:method:: MergeDatasets(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.MergeDatasetsRequest, app.dataset.v1.dataset_pb2.MergeDatasetsResponse]) -> None
+      :async:
+
+
+
 .. py:class:: DatasetServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: CreateDataset
@@ -113,5 +125,8 @@ Module Contents
 
 
    .. py:attribute:: ListDatasetsByIDs
+
+
+   .. py:attribute:: MergeDatasets
 
 

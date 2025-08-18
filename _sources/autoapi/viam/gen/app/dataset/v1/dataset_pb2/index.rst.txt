@@ -27,6 +27,8 @@ Attributes
    viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByOrganizationIDResponse
    viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsRequest
    viam.gen.app.dataset.v1.dataset_pb2.global___ListDatasetsByIDsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsRequest
+   viam.gen.app.dataset.v1.dataset_pb2.global___MergeDatasetsResponse
 
 
 Classes
@@ -45,6 +47,8 @@ Classes
    viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse
    viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest
    viam.gen.app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse
+   viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsRequest
+   viam.gen.app.dataset.v1.dataset_pb2.MergeDatasetsResponse
 
 
 Module Contents
@@ -248,4 +252,41 @@ Module Contents
 
 
 .. py:data:: global___ListDatasetsByIDsResponse
+
+.. py:class:: MergeDatasetsRequest(*, dataset_ids: collections.abc.Iterable[str] | None = ..., name: str = ..., organization_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   MergeDatasetsRequest merges multiple datasets specified by their dataset IDs into a new dataset.
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:property:: dataset_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+
+.. py:data:: global___MergeDatasetsRequest
+
+.. py:class:: MergeDatasetsResponse(*, dataset_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   MergeDatasetsResponse returns the dataset ID of the newly created merged dataset.
+
+
+   .. py:attribute:: dataset_id
+      :type:  str
+
+
+.. py:data:: global___MergeDatasetsResponse
 
