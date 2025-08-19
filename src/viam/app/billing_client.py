@@ -5,6 +5,8 @@ from grpclib.client import Channel, Stream
 from viam import logging
 from viam.proto.app.billing import (
     BillingServiceStub,
+    CreateInvoiceAndChargeImmediatelyRequest,
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -13,8 +15,6 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
-    CreateInvoiceAndChargeImmediatelyRequest,
-    CreateInvoiceAndChargeImmediatelyResponse,
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -144,7 +144,9 @@ class BillingClient:
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
 
-    async def create_invoice_and_charge_immediately(self, org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None) -> None:
+    async def create_invoice_and_charge_immediately(
+        self, org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None
+    ) -> None:
         """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
         This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.
 
@@ -158,5 +160,9 @@ class BillingClient:
             description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)
             org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email
         """
-        request = CreateInvoiceAndChargeImmediatelyRequest(org_id_to_charge=org_id_to_charge, amount=amount, description=description, org_id_for_branding=org_id_for_branding)
-        _: CreateInvoiceAndChargeImmediatelyResponse = await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata)
+        request = CreateInvoiceAndChargeImmediatelyRequest(
+            org_id_to_charge=org_id_to_charge, amount=amount, description=description, org_id_for_branding=org_id_for_branding
+        )
+        _: CreateInvoiceAndChargeImmediatelyResponse = await self._billing_client.CreateInvoiceAndChargeImmediately(
+            request, metadata=self._metadata
+        )
