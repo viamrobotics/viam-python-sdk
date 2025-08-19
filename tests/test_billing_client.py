@@ -120,6 +120,6 @@ class TestClient:
                 org_id_for_branding=org_id_for_branding,
             )
             assert service.org_id_to_charge == org_id
-            assert service.description == "description"
+            assert service.description == description
             assert service.org_id_for_branding == org_id_for_branding
             assert service.amount == OUTSTANDING_BALANCE
