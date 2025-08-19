@@ -110,8 +110,16 @@ class TestClient:
     async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
         async with ChannelFor([service]) as channel:
             client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            org_id = "foo"
+            description = "A short description"
+            org_id_for_branding = "bar"
             _: CreateInvoiceAndChargeImmediatelyResponse = await client.create_invoice_and_charge_immediately(
-                org_id_to_charge="foo",
-                amount=42.42,
-                description="A short description.",
-                org_id_for_branding="bar")
+                org_id_to_charge=org_id,
+                amount=OUTSTANDING_BALANCE,
+                description=description,
+                org_id_for_branding=org_id_for_branding,
+            )
+            assert service.org_id_to_charge == org_id
+            assert service.description == description
+            assert service.org_id_for_branding == org_id_for_branding
+            assert service.amount == OUTSTANDING_BALANCE
