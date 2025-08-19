@@ -4,11 +4,11 @@ from grpclib.testing import ChannelFor
 
 from viam.app.billing_client import BillingClient
 from viam.proto.app.billing import (
+    CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageResponse,
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
-    CreateInvoiceAndChargeImmediatelyResponse,
 )
 
 from .mocks.services import MockBilling
