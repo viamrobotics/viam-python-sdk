@@ -5,6 +5,7 @@ import grpclib.client
 import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
+from .... import app
 from .... import common
 import google.api.annotations_pb2
 import google.protobuf.struct_pb2
@@ -20,8 +21,12 @@ class DataManagerServiceBase(abc.ABC):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def UploadBinaryDataToDatasets(self, stream: 'grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest, service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.datamanager.v1.DataManagerService/Sync': grpclib.const.Handler(self.Sync, grpclib.const.Cardinality.UNARY_UNARY, service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse), '/viam.service.datamanager.v1.DataManagerService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
+        return {'/viam.service.datamanager.v1.DataManagerService/Sync': grpclib.const.Handler(self.Sync, grpclib.const.Cardinality.UNARY_UNARY, service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse), '/viam.service.datamanager.v1.DataManagerService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDatasets': grpclib.const.Handler(self.UploadBinaryDataToDatasets, grpclib.const.Cardinality.UNARY_UNARY, service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest, service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse)}
 
 class UnimplementedDataManagerServiceBase(DataManagerServiceBase):
 
@@ -31,8 +36,12 @@ class UnimplementedDataManagerServiceBase(DataManagerServiceBase):
     async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
         raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def UploadBinaryDataToDatasets(self, stream: 'grpclib.server.Stream[service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest, service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class DataManagerServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.Sync = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.datamanager.v1.DataManagerService/Sync', service.datamanager.v1.data_manager_pb2.SyncRequest, service.datamanager.v1.data_manager_pb2.SyncResponse)
         self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.datamanager.v1.DataManagerService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)
+        self.UploadBinaryDataToDatasets = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.datamanager.v1.DataManagerService/UploadBinaryDataToDatasets', service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest, service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse)

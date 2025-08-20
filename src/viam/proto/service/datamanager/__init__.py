@@ -8,7 +8,12 @@ from ....gen.service.datamanager.v1.data_manager_grpc import (
     DataManagerServiceStub,
     UnimplementedDataManagerServiceBase,
 )
-from ....gen.service.datamanager.v1.data_manager_pb2 import SyncRequest, SyncResponse
+from ....gen.service.datamanager.v1.data_manager_pb2 import (
+    SyncRequest,
+    SyncResponse,
+    UploadBinaryDataToDatasetsRequest,
+    UploadBinaryDataToDatasetsResponse,
+)
 
 __all__ = [
     "DataManagerServiceBase",
@@ -16,4 +21,6 @@ __all__ = [
     "UnimplementedDataManagerServiceBase",
     "SyncRequest",
     "SyncResponse",
+    "UploadBinaryDataToDatasetsRequest",
+    "UploadBinaryDataToDatasetsResponse",
 ]
