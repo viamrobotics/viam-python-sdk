@@ -302,6 +302,12 @@ Module Contents
          The end time of the data that was processed in the run.
 
 
+      .. py:attribute:: error_message
+         :type:  str
+
+         The error message of the data pipeline run. Only set if the run failed.
+
+
       .. py:method:: from_proto(data_pipeline_run: viam.proto.app.datapipelines.DataPipelineRun) -> typing_extensions.Self
          :classmethod:
 
