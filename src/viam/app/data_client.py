@@ -309,6 +309,9 @@ class DataClient:
         data_end_time: datetime
         """The end time of the data that was processed in the run."""
 
+        error_message: str
+        """The error message of the data pipeline run. Only set if the run failed."""
+
         @classmethod
         def from_proto(cls, data_pipeline_run: ProtoDataPipelineRun) -> Self:
             return cls(
@@ -318,6 +321,7 @@ class DataClient:
                 end_time=data_pipeline_run.end_time.ToDatetime(),
                 data_start_time=data_pipeline_run.data_start_time.ToDatetime(),
                 data_end_time=data_pipeline_run.data_end_time.ToDatetime(),
+                error_message=data_pipeline_run.error_message,
             )
 
     @dataclass
