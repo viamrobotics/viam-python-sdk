@@ -13,7 +13,6 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometries
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
-    Format,
     GetImageRequest,
     GetImageResponse,
     GetImagesRequest,
@@ -142,6 +141,7 @@ class TestService:
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
             response: GetImageResponse = await client.GetImage(request, timeout=18.1)
             assert response.image == image.data
+            assert response.mime_type == CameraMimeType.PNG
             assert camera.timeout == loose_approx(18.1)
 
             # Test empty mime type. Empty mime type should default to response mime type
@@ -158,7 +158,7 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
             raw_img = response.images[0]
-            assert raw_img.format == Format.FORMAT_PNG
+            assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
