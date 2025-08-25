@@ -1,6 +1,7 @@
 from array import array
 from enum import Enum
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple
+from typing_extensions import Self
 
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
@@ -16,7 +17,7 @@ class CameraMimeType(str, Enum):
     PCD = "pointcloud/pcd"
 
     @classmethod
-    def from_string(cls, value: str) -> Union["CameraMimeType", str]:
+    def from_string(cls, value: str) -> Self:
         """Return the mimetype from a string.
 
         Args:
@@ -29,7 +30,7 @@ class CameraMimeType(str, Enum):
         try:
             return cls(value_mime)
         except ValueError:
-            return value_mime
+            raise ValueError(f"Invalid mimetype: {value}")
 
     @classmethod
     def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":

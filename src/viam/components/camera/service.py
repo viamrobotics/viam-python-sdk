@@ -58,10 +58,11 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         )
         img_bytes_lst = []
         for img in images:
-            mime_type = CameraMimeType.from_string(img.mime_type)
-            if isinstance(mime_type, CameraMimeType):
+            try:
+                mime_type = CameraMimeType.from_string(img.mime_type)  # this can ValueError if the mime_type is not a CameraMimeType
                 fmt = mime_type.to_proto()
-            else:
+            except ValueError:
+                # TODO(RSDK-11728): remove this once we deleted the format field
                 fmt = Format.FORMAT_UNSPECIFIED
 
             img_bytes = img.data
