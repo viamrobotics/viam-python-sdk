@@ -141,8 +141,8 @@ class Navigation(ServiceBase):
             await my_nav.add_waypoint(point=location)
 
         Args:
-            point (navigation.GeoPoint): The current location of the robot in the navigation service,
-                represented in a GeoPoint with latitude and longitude values.
+            point (navigation.GeoPoint): A waypoint represented in a GeoPoint with
+                latitude and longitude values.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
 
