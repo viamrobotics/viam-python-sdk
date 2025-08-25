@@ -59,7 +59,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
             if img_data.mime_type:
                 mime_type = CameraMimeType.from_string(img_data.mime_type)
             else:
-                # TODO: remove this once we deleted the format field
+                # TODO(RSDK-11728): remove this once we deleted the format field
                 mime_type = CameraMimeType.from_proto(img_data.format)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
