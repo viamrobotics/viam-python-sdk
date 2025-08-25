@@ -46,8 +46,8 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     async def get_images(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
         filter_source_names: Optional[List[str]] = None,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
