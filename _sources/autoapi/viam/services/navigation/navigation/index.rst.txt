@@ -168,8 +168,8 @@ Module Contents
           # Add your waypoint to the service's data storage
           await my_nav.add_waypoint(point=location)
 
-      :param point: The current location of the robot in the navigation service,
-                    represented in a GeoPoint with latitude and longitude values.
+      :param point: A waypoint represented in a GeoPoint with
+                    latitude and longitude values.
       :type point: navigation.GeoPoint
       :param timeout: An option to set how long to wait (in seconds)
                       before calling a time-out and closing the underlying RPC call.
