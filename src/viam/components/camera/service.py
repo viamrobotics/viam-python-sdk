@@ -48,7 +48,12 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         camera = self.get_resource(name)
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        images, metadata = await camera.get_images(timeout=timeout, metadata=stream.metadata, extra=struct_to_dict(request.extra), filter_source_names=request.filter_source_names)
+        images, metadata = await camera.get_images(
+            timeout=timeout,
+            metadata=stream.metadata,
+            extra=struct_to_dict(request.extra),
+            filter_source_names=list(request.filter_source_names),
+        )
         img_bytes_lst = []
         for img in images:
             img_bytes = img.data
