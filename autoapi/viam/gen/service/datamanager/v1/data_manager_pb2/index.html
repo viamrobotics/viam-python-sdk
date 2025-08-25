@@ -104,6 +104,12 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse" title="viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SyncResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsRequest" title="viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___UploadBinaryDataToDatasetsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsResponse" title="viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___UploadBinaryDataToDatasetsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -115,6 +121,12 @@ isort:skip_file</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.SyncResponse" title="viam.gen.service.datamanager.v1.data_manager_pb2.SyncResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest" title="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadBinaryDataToDatasetsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse" title="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadBinaryDataToDatasetsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -189,6 +201,90 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.service.datamanager.v1.data_manager_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SyncResponse</span></span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___SyncResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.datamanager.v1.data_manager_pb2.</span></span><span class="sig-name descname"><span class="pre">UploadBinaryDataToDatasetsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.binary_data">
+<span class="sig-name descname"><span class="pre">binary_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.binary_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">viam.gen.app.datasync.v1.data_sync_pb2.MimeType.ValueType</span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.mime_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.tags">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.dataset_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataset_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.dataset_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.datamanager.v1.data_manager_pb2.</span></span><span class="sig-name descname"><span class="pre">global___UploadBinaryDataToDatasetsRequest</span></span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.datamanager.v1.data_manager_pb2.</span></span><span class="sig-name descname"><span class="pre">UploadBinaryDataToDatasetsResponse</span></span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.UploadBinaryDataToDatasetsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.datamanager.v1.data_manager_pb2.</span></span><span class="sig-name descname"><span class="pre">global___UploadBinaryDataToDatasetsResponse</span></span><a class="headerlink" href="#viam.gen.service.datamanager.v1.data_manager_pb2.global___UploadBinaryDataToDatasetsResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
