@@ -16,7 +16,7 @@ class TestViamImage:
         b = BytesIO()
         i.save(b, "PNG")
         img = ViamImage(b.getvalue(), CameraMimeType.PNG)
-        assert img._mime_type == CameraMimeType.PNG
+        assert img._mime_type == "image/png"
         pil_img = viam_to_pil_image(img)
         assert pil_img.tobytes() == i.tobytes()
 
@@ -73,7 +73,7 @@ def test_image_conversion():
 
     v_img = pil_to_viam_image(i, CameraMimeType.JPEG)
     assert isinstance(v_img, ViamImage)
-    assert v_img.mime_type == CameraMimeType.JPEG
+    assert v_img.mime_type == "image/jpeg"
 
     pil_img = viam_to_pil_image(v_img)
     v_img2 = pil_to_viam_image(pil_img, CameraMimeType.JPEG)

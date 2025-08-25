@@ -46,15 +46,21 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     async def get_images(
         self,
         *,
+        extra: Optional[Dict[str, Any]] = None,
+        filter_source_names: Optional[List[str]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImagesRequest(name=self.name)
+        request = GetImagesRequest(name=self.name, extra=dict_to_struct(extra), filter_source_names=filter_source_names)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
-            mime_type = CameraMimeType.from_proto(img_data.format)
+            if img_data.mime_type:
+                mime_type = CameraMimeType.from_string(img_data.mime_type)
+            else:
+                # TODO: remove this once we deleted the format field
+                mime_type = CameraMimeType.from_proto(img_data.format)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata
