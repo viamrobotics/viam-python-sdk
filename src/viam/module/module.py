@@ -35,7 +35,7 @@ from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions, _host_port_from_url
 from viam.rpc.server import Server
 
-# These imports are required to register build-in resources with the registry
+# These imports are required to register built-in resources with the registry
 from ..components.arm import Arm  # noqa: F401
 from ..components.audio_input import AudioInput  # noqa: F401
 from ..components.base import Base  # noqa: F401
