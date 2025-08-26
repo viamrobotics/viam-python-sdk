@@ -8,7 +8,7 @@ else:
     from typing_extensions import TypeAlias
 
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
-from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID
+from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID, PseudolinearConstraint
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
 
@@ -75,7 +75,15 @@ class Motion(ServiceBase):
             world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints
                 expressed in the WorldState message.
             constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any
-                specified constraints.
+                specified constraints. These can include:
+                - LinearConstraint: Specifies that the component being moved should move linearly relative to its goal.
+                - OrientationConstraint: Specifies that the component being moved will not deviate its orientation beyond some threshold
+                  relative to the goal.
+                - CollisionSpecification: Used to selectively apply obstacle avoidance to specific parts of the robot.
+                - PseudolinearConstraint: Specifies that the component being moved should not deviate from the straight-line path to their
+                  goal by more than a factor proportional to the distance from start to goal. For example, if a component is moving 100mm,
+                  then a LineToleranceFactor of 1.0 means that the component will remain within a 100mm radius of the straight-line
+                  start-goal path.
 
         Returns:
             bool: Whether the move was successful.

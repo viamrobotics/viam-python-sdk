@@ -21,7 +21,7 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PlanWithStatus,
 )
 from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
-from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
+from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration, PseudolinearConstraint
 from viam.resource.manager import ResourceManager
 from viam.services.motion import MotionClient
 from viam.services.motion.motion import Motion
@@ -125,7 +125,7 @@ class TestMotionService:
                 resource_name = Arm.get_resource_name("arm")
                 destination = PoseInFrame(reference_frame="refframe")
                 world_state = WorldState(transforms=[Transform(reference_frame="ws_tfrm_rf")])
-                constraints = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
+                constraints = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)], pseudolinear_constraint=[PseudolinearConstraint(line_tolerance_factor=1.0, orientation_tolerance_factor=0.5)])
                 extra = {"foo": "bar"}
                 timeout = 2
                 success = await client.move(
