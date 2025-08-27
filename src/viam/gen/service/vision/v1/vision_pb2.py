@@ -4,7 +4,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 2, '', 'service/vision/v1/vision.proto')
+_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 3, '', 'service/vision/v1/vision.proto')
 _sym_db = _symbol_database.Default()
 from ....common.v1 import common_pb2 as common_dot_v1_dot_common__pb2
 from ....component.camera.v1 import camera_pb2 as component_dot_camera_dot_v1_dot_camera__pb2
