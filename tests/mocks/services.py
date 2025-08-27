@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union, AsyncIterator
 
 import bson
 import numpy as np
@@ -317,6 +317,7 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     ResourceName,
+    Transform,
 )
 from viam.proto.provisioning import (
     GetNetworkListRequest,
@@ -372,6 +373,7 @@ from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_fl
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import CaptureAllResult, Vision
+from viam.services.worldstatestore import WorldStateStore, StreamTransformChangesResponse, TransformChangeType
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -1883,3 +1885,63 @@ class MockGenericService(GenericService):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {key: True for key in command.keys()}
+
+
+class MockWorldStateStore(WorldStateStore):
+    def __init__(self, name: str):
+        self.extra: Optional[Mapping[str, Any]] = None
+        self.timeout: Optional[float] = None
+        self.uuid: Optional[bytes] = None
+        super().__init__(name)
+
+    async def list_uuids(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> list[bytes]:
+        self.extra = extra
+        self.timeout = timeout
+        return [b"uuid1", b"uuid2", b"uuid3"]
+
+    async def get_transform(
+        self,
+        uuid: bytes,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> "Transform":
+        self.uuid = uuid
+        self.extra = extra
+        self.timeout = timeout
+        return Transform(
+            reference_frame="test_frame",
+            pose_in_observer_frame=PoseInFrame(
+                reference_frame="observer_frame",
+                pose=Pose(x=1.0, y=2.0, z=3.0, o_x=0.0, o_y=0.0, o_z=1.0, theta=0.0)
+            ),
+            uuid=uuid
+        )
+
+    async def stream_transform_changes(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> AsyncIterator["StreamTransformChangesResponse"]:
+        self.extra = extra
+        self.timeout = timeout
+
+        changes = [
+            StreamTransformChangesResponse(
+                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_ADDED,
+                transform=Transform(uuid=b"uuid1")
+            ),
+            StreamTransformChangesResponse(
+                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_UPDATED,
+                transform=Transform(uuid=b"uuid2")
+            )
+        ]
+
+        for change in changes:
+            yield change
