@@ -13,7 +13,6 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PLAN_STATE_SUCCEEDED,
     ComponentState,
     GetPlanResponse,
-    ListPlanStatusesResponse,
     Plan,
     PlanStatus,
     PlanStatusWithID,
@@ -94,7 +93,7 @@ def motion():
 
         async def list_plan_statuses(
             self, only_active_plans: bool = False, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None
-        ) -> ListPlanStatusesResponse:
+        ) -> Sequence[PlanStatusWithID]:
             raise NotImplementedError
 
         async def get_pose(

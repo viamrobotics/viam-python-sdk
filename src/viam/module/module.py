@@ -258,10 +258,13 @@ class Module:
         rn = resource_name_from_string(request.name)
         resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Stoppable):
-            if iscoroutinefunction(resource.stop):
-                await resource.stop()
-            else:
-                resource.stop()
+            try:
+                if iscoroutinefunction(resource.stop):
+                    await resource.stop()
+                else:
+                    resource.stop()
+            except Exception as e:
+                self.logger.warning(f"Could not remove resource named {resource.name}", exc_info=e)
         await self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:

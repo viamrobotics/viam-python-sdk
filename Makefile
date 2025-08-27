@@ -9,7 +9,7 @@ lint:
 .PHONY: format
 format:
 	ruff format ./src ./tests
-	ruff check --select I --fix ./src ./tests
+	ruff check --extend-select I --fix ./src ./tests
 
 .PHONY: buf
 buf: clean
