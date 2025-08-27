@@ -29,7 +29,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
+.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[global___PseudolinearConstraint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -50,6 +50,11 @@ Package Contents
 
    .. py:property:: collision_specification
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+
+
+
+   .. py:property:: pseudolinear_constraint
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PseudolinearConstraint]
 
       Arc constraint, Time constraint, and others will be added here when they are supported
 

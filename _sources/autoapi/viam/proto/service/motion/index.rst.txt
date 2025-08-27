@@ -43,6 +43,7 @@ Classes
    viam.proto.service.motion.PlanStatusWithID
    viam.proto.service.motion.PlanStep
    viam.proto.service.motion.PlanWithStatus
+   viam.proto.service.motion.PseudolinearConstraint
    viam.proto.service.motion.StopPlanRequest
    viam.proto.service.motion.StopPlanResponse
 
@@ -259,7 +260,7 @@ Package Contents
 
 
 
-.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
+.. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ..., pseudolinear_constraint: collections.abc.Iterable[global___PseudolinearConstraint] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -280,6 +281,11 @@ Package Contents
 
    .. py:property:: collision_specification
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]
+
+
+
+   .. py:property:: pseudolinear_constraint
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PseudolinearConstraint]
 
       Arc constraint, Time constraint, and others will be added here when they are supported
 
@@ -1408,6 +1414,60 @@ Package Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: PseudolinearConstraint(*, line_tolerance_factor: float | None = ..., orientation_tolerance_factor: float | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   PseudolinearConstraint specifies that the component being moved should not deviate from the straight-line path to their goal by
+   more than a factor proportional to the distance from start to goal.
+   For example, if a component is moving 100mm, then a LineToleranceFactor of 1.0 means that the component will remain within a 100mm
+   radius of the straight-line start-goal path.
+
+
+   .. py:attribute:: line_tolerance_factor
+      :type:  float
+
+
+   .. py:attribute:: orientation_tolerance_factor
+      :type:  float
+
+
+   .. py:method:: HasField(field_name: Literal['_line_tolerance_factor', b'_line_tolerance_factor', '_orientation_tolerance_factor', b'_orientation_tolerance_factor', 'line_tolerance_factor', b'line_tolerance_factor', 'orientation_tolerance_factor', b'orientation_tolerance_factor']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_line_tolerance_factor', b'_line_tolerance_factor']) -> Literal['line_tolerance_factor'] | None
+                  WhichOneof(oneof_group: Literal['_orientation_tolerance_factor', b'_orientation_tolerance_factor']) -> Literal['orientation_tolerance_factor'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
