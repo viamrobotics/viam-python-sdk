@@ -30,6 +30,7 @@ from ....gen.service.motion.v1.motion_pb2 import (
     PlanStatusWithID,
     PlanStep,
     PlanWithStatus,
+    PseudolinearConstraint,
     StopPlanRequest,
     StopPlanResponse,
 )
@@ -63,6 +64,7 @@ __all__ = [
     "PlanStatusWithID",
     "PlanStep",
     "PlanWithStatus",
+    "PseudolinearConstraint",
     "StopPlanRequest",
     "StopPlanResponse",
 ]

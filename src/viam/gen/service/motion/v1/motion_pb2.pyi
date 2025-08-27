@@ -536,6 +536,7 @@ class Constraints(google.protobuf.message.Message):
     LINEAR_CONSTRAINT_FIELD_NUMBER: builtins.int
     ORIENTATION_CONSTRAINT_FIELD_NUMBER: builtins.int
     COLLISION_SPECIFICATION_FIELD_NUMBER: builtins.int
+    PSEUDOLINEAR_CONSTRAINT_FIELD_NUMBER: builtins.int
 
     @property
     def linear_constraint(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LinearConstraint]:
@@ -547,12 +548,16 @@ class Constraints(google.protobuf.message.Message):
 
     @property
     def collision_specification(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CollisionSpecification]:
-        """Arc constraint, Time constraint, and others will be added here when they are supported"""
-
-    def __init__(self, *, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None=..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None=..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['collision_specification', b'collision_specification', 'linear_constraint', b'linear_constraint', 'orientation_constraint', b'orientation_constraint']) -> None:
+    @property
+    def pseudolinear_constraint(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PseudolinearConstraint]:
+        """Arc constraint, Time constraint, and others will be added here when they are supported"""
+
+    def __init__(self, *, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None=..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None=..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None=..., pseudolinear_constraint: collections.abc.Iterable[global___PseudolinearConstraint] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['collision_specification', b'collision_specification', 'linear_constraint', b'linear_constraint', 'orientation_constraint', b'orientation_constraint', 'pseudolinear_constraint', b'pseudolinear_constraint']) -> None:
         ...
 global___Constraints = Constraints
 
@@ -586,6 +591,37 @@ class LinearConstraint(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> typing.Literal['orientation_tolerance_degs'] | None:
         ...
 global___LinearConstraint = LinearConstraint
+
+@typing.final
+class PseudolinearConstraint(google.protobuf.message.Message):
+    """PseudolinearConstraint specifies that the component being moved should not deviate from the straight-line path to their goal by
+    more than a factor proportional to the distance from start to goal.
+    For example, if a component is moving 100mm, then a LineToleranceFactor of 1.0 means that the component will remain within a 100mm
+    radius of the straight-line start-goal path.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LINE_TOLERANCE_FACTOR_FIELD_NUMBER: builtins.int
+    ORIENTATION_TOLERANCE_FACTOR_FIELD_NUMBER: builtins.int
+    line_tolerance_factor: builtins.float
+    orientation_tolerance_factor: builtins.float
+
+    def __init__(self, *, line_tolerance_factor: builtins.float | None=..., orientation_tolerance_factor: builtins.float | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_line_tolerance_factor', b'_line_tolerance_factor', '_orientation_tolerance_factor', b'_orientation_tolerance_factor', 'line_tolerance_factor', b'line_tolerance_factor', 'orientation_tolerance_factor', b'orientation_tolerance_factor']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_line_tolerance_factor', b'_line_tolerance_factor', '_orientation_tolerance_factor', b'_orientation_tolerance_factor', 'line_tolerance_factor', b'line_tolerance_factor', 'orientation_tolerance_factor', b'orientation_tolerance_factor']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_line_tolerance_factor', b'_line_tolerance_factor']) -> typing.Literal['line_tolerance_factor'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_orientation_tolerance_factor', b'_orientation_tolerance_factor']) -> typing.Literal['orientation_tolerance_factor'] | None:
+        ...
+global___PseudolinearConstraint = PseudolinearConstraint
 
 @typing.final
 class OrientationConstraint(google.protobuf.message.Message):
