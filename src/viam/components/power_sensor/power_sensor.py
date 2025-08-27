@@ -97,7 +97,7 @@ class PowerSensor(ComponentBase):
 
         Returns:
             Mapping[str, Any]: The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
-                amperes (float), is_ac (bool), and power in watts (float).
+            amperes (float), is_ac (bool), and power in watts (float).
 
         For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getreadings>`_.
         """
