@@ -125,7 +125,10 @@ class TestMotionService:
                 resource_name = Arm.get_resource_name("arm")
                 destination = PoseInFrame(reference_frame="refframe")
                 world_state = WorldState(transforms=[Transform(reference_frame="ws_tfrm_rf")])
-                constraints = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)], pseudolinear_constraint=[PseudolinearConstraint(line_tolerance_factor=1.0, orientation_tolerance_factor=0.5)])
+                constraints = Constraints(
+                    linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)],
+                    pseudolinear_constraint=[PseudolinearConstraint(line_tolerance_factor=1.0, orientation_tolerance_factor=0.5)],
+                )
                 extra = {"foo": "bar"}
                 timeout = 2
                 success = await client.move(

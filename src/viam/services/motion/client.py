@@ -31,7 +31,6 @@ from viam.proto.service.motion import (
     MoveRequest,
     MoveResponse,
     PlanStatusWithID,
-    PseudolinearConstraint,
     StopPlanRequest,
     StopPlanResponse,
 )

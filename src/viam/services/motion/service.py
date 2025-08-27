@@ -14,7 +14,6 @@ from viam.proto.service.motion import (
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
-    PseudolinearConstraint,
     StopPlanRequest,
     StopPlanResponse,
     UnimplementedMotionServiceBase,
