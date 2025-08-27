@@ -274,7 +274,7 @@ class Motor(ComponentBase):
 
         Returns:
             Tuple[bool, float]: A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and
-                the second [1] value indicates the current power percentage of the motor.
+            the second [1] value indicates the current power percentage of the motor.
 
         For more information, see `Motor component <https://docs.viam.com/dev/reference/apis/components/motor/#ispowered>`_.
         """
