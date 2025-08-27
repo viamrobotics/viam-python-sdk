@@ -103,10 +103,11 @@ class ResourceManager:
             try:
                 resource = self.resources[name]
                 await resource.close()
-            except Exception as e:
-                raise e
             finally:
-                del self.resources[name]
+                try:
+                    del self.resources[name]
+                except KeyError:
+                    pass
 
     async def close(self):
         """Close the resourcce manager by removing all resources.
