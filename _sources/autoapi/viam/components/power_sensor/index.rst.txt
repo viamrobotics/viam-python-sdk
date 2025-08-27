@@ -134,10 +134,8 @@ Package Contents
           # Get the readings provided by the sensor.
           readings = await my_power_sensor.get_readings()
 
-      :returns:
-
-                The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
-                    amperes (float), is_ac (bool), and power in watts (float).
+      :returns: The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
+                amperes (float), is_ac (bool), and power in watts (float).
       :rtype: Mapping[str, Any]
 
       For more information, see `Power Sensor component <https://docs.viam.com/dev/reference/apis/components/power-sensor/#getreadings>`_.
