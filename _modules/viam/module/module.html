@@ -347,10 +347,13 @@
         <span class="n">rn</span> <span class="o">=</span> <span class="n">resource_name_from_string</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">resource</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">rn</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Stoppable</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
-                <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not remove resource named </span><span class="si">{</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Module.ready"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.ready">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReadyRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReadyResponse</span><span class="p">:</span>
