@@ -1,6 +1,7 @@
 from array import array
 from enum import Enum
 from typing import List, Optional, Tuple
+
 from typing_extensions import Self
 
 from viam.errors import NotSupportedError
