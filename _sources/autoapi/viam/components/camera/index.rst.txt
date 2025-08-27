@@ -29,7 +29,7 @@ Classes
 Package Contents
 ----------------
 
-.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+.. py:class:: ViamImage(data: bytes, mime_type: str)
 
    A native implementation of an image.
 
@@ -43,7 +43,7 @@ Package Contents
 
 
    .. py:property:: mime_type
-      :type: CameraMimeType
+      :type: str
 
       The mime type of the image
 
@@ -186,7 +186,7 @@ Package Contents
 
 
 
-   .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+   .. py:method:: get_images(*, filter_source_names: Optional[List[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :abstractmethod:
 
       :async:

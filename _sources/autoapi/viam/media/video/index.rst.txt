@@ -96,7 +96,7 @@ Module Contents
 
 
 
-.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+.. py:class:: ViamImage(data: bytes, mime_type: str)
 
    A native implementation of an image.
 
@@ -110,7 +110,7 @@ Module Contents
 
 
    .. py:property:: mime_type
-      :type: CameraMimeType
+      :type: str
 
       The mime type of the image
 
@@ -138,7 +138,7 @@ Module Contents
 
 
 
-.. py:class:: NamedImage(name: str, data: bytes, mime_type: CameraMimeType)
+.. py:class:: NamedImage(name: str, data: bytes, mime_type: str)
 
    Bases: :py:obj:`ViamImage`
 
