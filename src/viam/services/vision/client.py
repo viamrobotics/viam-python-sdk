@@ -106,7 +106,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         **kwargs,
     ) -> List[Detection]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        mime_type = CameraMimeType.JPEG.value
+        mime_type = CameraMimeType.JPEG
 
         if image.width is None or image.height is None:
             raise ViamError(f"image {image} needs to have a specified width and height")
@@ -149,7 +149,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Classification]:
         md = kwargs.get("metadata", self.Metadata()).proto
 
-        mime_type = CameraMimeType.JPEG.value
+        mime_type = CameraMimeType.JPEG
         if image.width is None or image.height is None:
             raise ViamError(f"image {image} needs to have a specified width and height")
         request = GetClassificationsRequest(
@@ -176,7 +176,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         request = GetObjectPointCloudsRequest(
             name=self.name,
             camera_name=camera_name,
-            mime_type=CameraMimeType.PCD.value,
+            mime_type=CameraMimeType.PCD,
             extra=dict_to_struct(extra),
         )
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout, metadata=md)
