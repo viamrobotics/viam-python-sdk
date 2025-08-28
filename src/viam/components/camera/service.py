@@ -3,7 +3,6 @@
 from google.api.httpbody_pb2 import HttpBody  # type: ignore
 from grpclib.server import Stream
 
-from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
