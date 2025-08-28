@@ -57,9 +57,6 @@ class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
         """
         return cls.from_string(mime_type)
 
-    def __str__(self) -> str:
-        return self.value
-
     @classmethod
     def from_string(cls, value: str) -> Self:
         """Return the mimetype from a string.
