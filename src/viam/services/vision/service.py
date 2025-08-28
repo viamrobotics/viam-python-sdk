@@ -123,7 +123,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.get_object_point_clouds(request.camera_name, extra=extra, timeout=timeout)
-        response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=result)
+        response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD, objects=result)
         await stream.send_message(response)
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:

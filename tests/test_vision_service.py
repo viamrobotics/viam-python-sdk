@@ -41,7 +41,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .mocks.services import MockVision
 
 i = Image.new("RGBA", (100, 100), "#AABBCCDD")
-IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG.value)
+IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG)
 DETECTORS = [
     "detector-0",
     "detector-1",
@@ -244,7 +244,7 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG.value,
+                mime_type=CameraMimeType.JPEG,
                 extra=dict_to_struct(extra),
             )
             response: GetDetectionsResponse = await client.GetDetections(request)
@@ -269,7 +269,7 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG.value,
+                mime_type=CameraMimeType.JPEG,
                 n=1,
                 extra=dict_to_struct(extra),
             )
@@ -284,7 +284,7 @@ class TestService:
             request = GetObjectPointCloudsRequest(
                 name=vision.name,
                 camera_name="camera",
-                mime_type=CameraMimeType.PCD.value,
+                mime_type=CameraMimeType.PCD,
                 extra=dict_to_struct(extra),
             )
             response: GetObjectPointCloudsResponse = await client.GetObjectPointClouds(request)
