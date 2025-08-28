@@ -41,7 +41,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .mocks.services import MockVision
 
 i = Image.new("RGBA", (100, 100), "#AABBCCDD")
-IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG)
+IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG.value)
 DETECTORS = [
     "detector-0",
     "detector-1",
@@ -84,7 +84,12 @@ POINT_CLOUDS = [
             reference_frame="depth1",
             geometries=[
                 Geometry(
-                    center=Pose(x=282.45238095238096, y=241.66666666666666, z=902.8809523809524, o_z=1.0),
+                    center=Pose(
+                        x=282.45238095238096,
+                        y=241.66666666666666,
+                        z=902.8809523809524,
+                        o_z=1.0,
+                    ),
                     box=RectangularPrism(dims_mm=Vector3(x=13, y=7, z=11)),
                 )
             ],
@@ -96,7 +101,12 @@ POINT_CLOUDS = [
             reference_frame="depth1",
             geometries=[
                 Geometry(
-                    center=Pose(x=-129.84615384615384, y=165.53846153846155, z=511.46153846153845, o_z=1.0),
+                    center=Pose(
+                        x=-129.84615384615384,
+                        y=165.53846153846155,
+                        z=511.46153846153845,
+                        o_z=1.0,
+                    ),
                     box=RectangularPrism(dims_mm=Vector3(x=5.0, y=4.0, z=7.0)),
                 )
             ],
@@ -104,7 +114,8 @@ POINT_CLOUDS = [
     ),
 ]
 
-VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG)
+# Cast to string because ViamImage accepts a string mime type in the worst case.
+VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG.value)
 
 PROPERTIES = Vision.Properties(
     classifications_supported=True,
@@ -174,7 +185,9 @@ class TestVision:
 
     async def test_get_classifications_from_camera(self, vision: MockVision):
         extra = {"foo": "get_classifications_from_camera"}
-        response = await vision.get_classifications_from_camera("fake-camera", 1, extra=extra)
+        response = await vision.get_classifications_from_camera(
+            "fake-camera", 1, extra=extra
+        )
         assert response == CLASSIFICATIONS
         assert vision.extra == extra
 
@@ -197,16 +210,25 @@ class TestVision:
 
 
 class TestService:
-    async def test_capture_all_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_capture_all_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "capture_all_from_camera"}
             request = CaptureAllFromCameraRequest(
-                name=vision.name, camera_name="fake-camera", return_image=True, return_classifications=True, extra=dict_to_struct(extra)
+                name=vision.name,
+                camera_name="fake-camera",
+                return_image=True,
+                return_classifications=True,
+                extra=dict_to_struct(extra),
             )
-            response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
+            response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(
+                request
+            )
             assert response.image.image == VISION_IMAGE.data
             assert response.image.mime_type == VISION_IMAGE.mime_type
+            # TODO(RSDK-11728): remove this once we deleted the format field
             assert response.image.format == VISION_IMAGE.mime_type.to_proto()
             assert response.classifications == CLASSIFICATIONS
             assert response.detections == []
@@ -217,19 +239,33 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "get_properties"}
-            request = GetPropertiesRequest(name=vision.name, extra=dict_to_struct(extra))
+            request = GetPropertiesRequest(
+                name=vision.name, extra=dict_to_struct(extra)
+            )
             response: GetPropertiesResponse = await client.GetProperties(request)
-            assert response.classifications_supported == PROPERTIES.classifications_supported
+            assert (
+                response.classifications_supported
+                == PROPERTIES.classifications_supported
+            )
             assert response.detections_supported == PROPERTIES.detections_supported
-            assert response.object_point_clouds_supported == PROPERTIES.object_point_clouds_supported
+            assert (
+                response.object_point_clouds_supported
+                == PROPERTIES.object_point_clouds_supported
+            )
             assert vision.extra == extra
 
-    async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_detections_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "get_detections_from_camera"}
-            request = GetDetectionsFromCameraRequest(name=vision.name, camera_name="fake-camera", extra=dict_to_struct(extra))
-            response: GetDetectionsFromCameraResponse = await client.GetDetectionsFromCamera(request)
+            request = GetDetectionsFromCameraRequest(
+                name=vision.name, camera_name="fake-camera", extra=dict_to_struct(extra)
+            )
+            response: GetDetectionsFromCameraResponse = (
+                await client.GetDetectionsFromCamera(request)
+            )
             assert response.detections == DETECTIONS
             assert vision.extra == extra
 
@@ -242,23 +278,34 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG,
+                mime_type=CameraMimeType.JPEG.value,
                 extra=dict_to_struct(extra),
             )
             response: GetDetectionsResponse = await client.GetDetections(request)
             assert response.detections == DETECTIONS
             assert vision.extra == extra
 
-    async def test_get_classifications_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_classifications_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "get_classifications_from_camera"}
-            request = GetClassificationsFromCameraRequest(name=vision.name, camera_name="fake-camera", n=1, extra=dict_to_struct(extra))
-            response: GetClassificationsFromCameraResponse = await client.GetClassificationsFromCamera(request)
+            request = GetClassificationsFromCameraRequest(
+                name=vision.name,
+                camera_name="fake-camera",
+                n=1,
+                extra=dict_to_struct(extra),
+            )
+            response: GetClassificationsFromCameraResponse = (
+                await client.GetClassificationsFromCamera(request)
+            )
             assert response.classifications == CLASSIFICATIONS
             assert vision.extra == extra
 
-    async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_classifications(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "get_classifications"}
@@ -267,25 +314,31 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG,
+                mime_type=CameraMimeType.JPEG.value,
                 n=1,
                 extra=dict_to_struct(extra),
             )
-            response: GetClassificationsResponse = await client.GetClassifications(request)
+            response: GetClassificationsResponse = await client.GetClassifications(
+                request
+            )
             assert response.classifications == CLASSIFICATIONS
             assert vision.extra == extra
 
-    async def test_get_object_point_clouds(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_object_point_clouds(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             extra = {"foo": "get_object_point_clouds"}
             request = GetObjectPointCloudsRequest(
                 name=vision.name,
                 camera_name="camera",
-                mime_type=CameraMimeType.PCD,
+                mime_type=CameraMimeType.PCD.value,
                 extra=dict_to_struct(extra),
             )
-            response: GetObjectPointCloudsResponse = await client.GetObjectPointClouds(request)
+            response: GetObjectPointCloudsResponse = await client.GetObjectPointClouds(
+                request
+            )
             assert response.objects == POINT_CLOUDS
             assert vision.extra == extra
 
@@ -293,7 +346,9 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
             command = {"command": "args"}
-            request = DoCommandRequest(name=vision.name, command=dict_to_struct(command))
+            request = DoCommandRequest(
+                name=vision.name, command=dict_to_struct(command)
+            )
             response: DoCommandResponse = await client.DoCommand(request)
             assert struct_to_dict(response.result)["cmd"] == command
 
@@ -307,7 +362,9 @@ class TestClient:
             assert response == PROPERTIES
             assert vision.extra == extra
 
-    async def test_capture_all_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_capture_all_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "capture_all_from_camera"}
@@ -325,11 +382,15 @@ class TestClient:
             assert response.objects == POINT_CLOUDS
             assert vision.extra == extra
 
-    async def test_get_detections_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_detections_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_detections_from_camera"}
-            response = await client.get_detections_from_camera("fake-camera", extra=extra)
+            response = await client.get_detections_from_camera(
+                "fake-camera", extra=extra
+            )
             assert response == DETECTIONS
             assert vision.extra == extra
 
@@ -341,15 +402,21 @@ class TestClient:
             assert response == DETECTIONS
             assert vision.extra == extra
 
-    async def test_get_classifications_from_camera(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_classifications_from_camera(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_classifications_from_camera"}
-            response = await client.get_classifications_from_camera("fake-camera", 1, extra=extra)
+            response = await client.get_classifications_from_camera(
+                "fake-camera", 1, extra=extra
+            )
             assert response == CLASSIFICATIONS
             assert vision.extra == extra
 
-    async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_classifications(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_classifications"}
@@ -357,7 +424,9 @@ class TestClient:
             assert response == CLASSIFICATIONS
             assert vision.extra == extra
 
-    async def test_get_object_point_clouds(self, vision: MockVision, service: VisionRPCService):
+    async def test_get_object_point_clouds(
+        self, vision: MockVision, service: VisionRPCService
+    ):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_object_point_clouds"}

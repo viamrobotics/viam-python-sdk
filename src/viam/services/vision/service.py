@@ -2,7 +2,7 @@ from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.component.camera import Image
+from viam.proto.component.camera import Format, Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,
@@ -36,7 +36,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
     async def CaptureAllFromCamera(self, stream: Stream[CaptureAllFromCameraRequest, CaptureAllFromCameraResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        vision = self.get_resource(request.name)
+        vision: Vision = self.get_resource(request.name)
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.capture_all_from_camera(

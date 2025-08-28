@@ -322,7 +322,7 @@ class ExampleCamera(Camera):
         img = Image.open(p.parent.absolute().joinpath("viam.jpeg"))
         buf = BytesIO()
         img.copy().save(buf, format="JPEG")
-        self.image = ViamImage(buf.getvalue(), CameraMimeType.JPEG)
+        self.image = ViamImage(buf.getvalue(), CameraMimeType.JPEG.value)
         img.close()
         super().__init__(name)
 

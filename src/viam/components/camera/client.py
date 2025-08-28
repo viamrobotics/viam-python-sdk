@@ -74,7 +74,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         **kwargs,
     ) -> Tuple[bytes, str]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD, extra=dict_to_struct(extra))
+        request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD.value, extra=dict_to_struct(extra))
         response: GetPointCloudResponse = await self.client.GetPointCloud(request, timeout=timeout, metadata=md)
         return (response.point_cloud, response.mime_type)
 

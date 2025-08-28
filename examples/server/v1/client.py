@@ -34,7 +34,7 @@ async def client():
 
         print("\n#### CAMERA ####")
         camera = Camera.from_robot(robot, "camera0")
-        img = await camera.get_image(mime_type=CameraMimeType.PNG)
+        img = await camera.get_image(mime_type=CameraMimeType.PNG.value)
         assert isinstance(img, Image)
         img.show()
         await asyncio.sleep(1)

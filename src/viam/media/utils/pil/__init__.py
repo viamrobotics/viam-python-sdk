@@ -25,7 +25,7 @@ def viam_to_pil_image(image: ViamImage) -> Image.Image:
     return Image.open(BytesIO(image.data), formats=LIBRARY_SUPPORTED_FORMATS)
 
 
-def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImage:
+def pil_to_viam_image(image: Image.Image, mime_type: str) -> ViamImage:
     """
     Convert a PIL.Image to a ViamImage.
 
@@ -34,7 +34,7 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
 
     Args:
         image (Image.Image): The image to convert.
-        mime_type (CameraMimeType): The mime type to convert the image to.
+        mime_type (str): The mime type to convert the image to. Must be of type `CameraMimeType`.
 
     Returns:
         ViamImage: The resulting ViamImage
@@ -52,4 +52,4 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
     else:
         raise ValueError(f"Cannot encode to unsupported mimetype: {mime_type}")
 
-    return ViamImage(data, mime_type)
+    return ViamImage(data, mime_type.value)
