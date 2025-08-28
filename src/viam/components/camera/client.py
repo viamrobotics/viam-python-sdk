@@ -41,26 +41,20 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
         response: GetImageResponse = await self.client.GetImage(request, timeout=timeout, metadata=md)
-        return ViamImage(response.image, response.mime_type)
+        return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
 
     async def get_images(
         self,
         *,
-        filter_source_names: Optional[List[str]] = None,
-        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImagesRequest(name=self.name, extra=dict_to_struct(extra), filter_source_names=filter_source_names)
+        request = GetImagesRequest(name=self.name)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
-            if img_data.mime_type:
-                mime_type = img_data.mime_type
-            else:
-                # TODO(RSDK-11728): remove this once we deleted the format field
-                mime_type = str(CameraMimeType.from_proto(img_data.format))
+            mime_type = CameraMimeType.from_proto(img_data.format)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata
