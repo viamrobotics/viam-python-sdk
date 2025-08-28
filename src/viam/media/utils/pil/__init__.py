@@ -39,6 +39,7 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
     Returns:
         ViamImage: The resulting ViamImage
     """
+    # Make sure at runtime the mime_type string is actually a CameraMimeType
     if not isinstance(mime_type, CameraMimeType):
         raise ValueError(f"Unsupported mimetype str: {mime_type}")
 

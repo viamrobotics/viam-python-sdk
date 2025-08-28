@@ -34,7 +34,7 @@ class TestViamImage:
         assert img2.width == WIDTH
         assert img2.height == HEIGHT
 
-        img3 = pil_to_viam_image(i, CameraMimeType.VIAM_RGBA.value)
+        img3 = pil_to_viam_image(i, CameraMimeType.VIAM_RGBA)
         assert img3.width == WIDTH
         assert img3.height == HEIGHT
 
