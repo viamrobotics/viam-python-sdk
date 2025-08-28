@@ -114,7 +114,8 @@ POINT_CLOUDS = [
     ),
 ]
 
-# Cast to string because ViamImage accepts a string mime type in the worst case.
+# Use string value of CameraMimeType because ViamImage accepts a string mime type in the worst case
+# and it may not have the expected CameraMimeType methods defined on it.
 VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG.value)
 
 PROPERTIES = Vision.Properties(
