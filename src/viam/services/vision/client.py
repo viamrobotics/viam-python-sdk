@@ -69,7 +69,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
         if return_image:
-            mime_type = CameraMimeType.from_proto(response.image.format)
+            # TODO(RSDK-11728): remove this branching logic once we deleted the format field
+            if response.image.mime_type:
+                mime_type = response.image.mime_type
+            else:
+                mime_type = CameraMimeType.from_proto(response.image.format).value
             img = ViamImage(response.image.image, mime_type)
             result.image = img
         if return_classifications:
@@ -102,7 +106,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         **kwargs,
     ) -> List[Detection]:
         md = kwargs.get("metadata", self.Metadata()).proto
-        mime_type = CameraMimeType.JPEG
+        mime_type = CameraMimeType.JPEG.value
 
         if image.width is None or image.height is None:
             raise ViamError(f"image {image} needs to have a specified width and height")
@@ -145,7 +149,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Classification]:
         md = kwargs.get("metadata", self.Metadata()).proto
 
-        mime_type = CameraMimeType.JPEG
+        mime_type = CameraMimeType.JPEG.value
         if image.width is None or image.height is None:
             raise ViamError(f"image {image} needs to have a specified width and height")
         request = GetClassificationsRequest(
@@ -172,7 +176,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         request = GetObjectPointCloudsRequest(
             name=self.name,
             camera_name=camera_name,
-            mime_type=CameraMimeType.PCD,
+            mime_type=CameraMimeType.PCD.value,
             extra=dict_to_struct(extra),
         )
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout, metadata=md)

@@ -353,7 +353,7 @@ class MockBoard(Board):
 
 class MockCamera(Camera):
     def __init__(self, name: str):
-        self.image = ViamImage(b"data", CameraMimeType.PNG)
+        self.image = ViamImage(b"data", CameraMimeType.PNG.value)
         self.geometries = GEOMETRIES
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.extra = None
@@ -361,7 +361,7 @@ class MockCamera(Camera):
             supports_pcd=False,
             intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
             distortion_parameters=DistortionParameters(model="no_distortion"),
-            mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
+            mime_types=[CameraMimeType.PNG.value, CameraMimeType.JPEG.value],
             frame_rate=10.0,
         )
         self.timeout: Optional[float] = None
@@ -386,7 +386,7 @@ class MockCamera(Camera):
     ) -> Tuple[bytes, str]:
         self.extra = extra
         self.timeout = timeout
-        return self.point_cloud, CameraMimeType.PCD
+        return self.point_cloud, CameraMimeType.PCD.value
 
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
         self.timeout = timeout

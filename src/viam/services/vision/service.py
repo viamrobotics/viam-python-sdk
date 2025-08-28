@@ -2,7 +2,7 @@ from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.component.camera import Image
+from viam.proto.component.camera import Format, Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,
@@ -36,7 +36,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
     async def CaptureAllFromCamera(self, stream: Stream[CaptureAllFromCameraRequest, CaptureAllFromCameraResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        vision = self.get_resource(request.name)
+        vision: Vision = self.get_resource(request.name)
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.capture_all_from_camera(
@@ -50,9 +50,15 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         )
         img = None
         if result.image is not None:
-            fmt = result.image.mime_type.to_proto()
+            # TODO(RSDK-11728): remove this try except logic once we deleted the format field
+            try:
+                mime_type = CameraMimeType.from_string(result.image.mime_type)  # this can ValueError if mime_type is not a CameraMimeType
+                fmt = mime_type.to_proto()
+            except ValueError:
+                mime_type = result.image.mime_type
+                fmt = Format.FORMAT_UNSPECIFIED
             img_bytes = result.image.data
-            img = Image(source_name=request.camera_name, format=fmt, image=img_bytes)
+            img = Image(source_name=request.camera_name, mime_type=result.image.mime_type, format=fmt, image=img_bytes)
         response = CaptureAllFromCameraResponse(
             image=img,
             detections=result.detections,

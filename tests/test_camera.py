@@ -11,6 +11,7 @@ from viam.components.generic.service import GenericRPCService
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, ResponseMetadata
 from viam.proto.component.camera import (
+    Format,
     CameraServiceStub,
     DistortionParameters,
     GetImageRequest,
@@ -39,7 +40,7 @@ from .mocks.components import GEOMETRIES, MockCamera
 
 @pytest.fixture(scope="function")
 def image() -> ViamImage:
-    return ViamImage(b"data", CameraMimeType.PNG)
+    return ViamImage(b"data", CameraMimeType.PNG.value)
 
 
 @pytest.fixture(scope="function")
@@ -60,7 +61,7 @@ def properties() -> Camera.Properties:
         supports_pcd=False,
         intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
         distortion_parameters=DistortionParameters(model="no_distortion"),
-        mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
+        mime_types=[CameraMimeType.PNG.value, CameraMimeType.JPEG.value],
         frame_rate=10.0,
     )
 
@@ -84,11 +85,11 @@ def generic_service(camera: Camera) -> GenericRPCService:
 
 class TestCamera:
     async def test_get_image(self, camera: MockCamera, image: ViamImage):
-        img = await camera.get_image(CameraMimeType.PNG)
+        img = await camera.get_image(CameraMimeType.PNG.value)
         assert img.data == image.data
         assert img.mime_type == image.mime_type
 
-        img = await camera.get_image(CameraMimeType.PNG, {"1": 1})
+        img = await camera.get_image(CameraMimeType.PNG.value, {"1": 1})
         assert camera.extra == {"1": 1}
 
     async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
@@ -138,10 +139,10 @@ class TestService:
             client = CameraServiceStub(channel)
 
             # Test known mime type
-            request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
+            request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG.value)
             response: GetImageResponse = await client.GetImage(request, timeout=18.1)
             assert response.image == image.data
-            assert response.mime_type == CameraMimeType.PNG
+            assert response.mime_type == CameraMimeType.PNG.value
             assert camera.timeout == loose_approx(18.1)
 
             # Test empty mime type. Empty mime type should default to response mime type
@@ -158,7 +159,8 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
             raw_img = response.images[0]
-            assert raw_img.mime_type == CameraMimeType.PNG
+            assert raw_img.format == Format.FORMAT_PNG
+            assert raw_img.mime_type == CameraMimeType.PNG.value
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
@@ -167,9 +169,9 @@ class TestService:
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
+            request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG.value)
             response: HttpBody = await client.RenderFrame(request, timeout=4.4)
-            assert response.content_type == CameraMimeType.PNG
+            assert response.content_type == CameraMimeType.PNG.value
             assert response.data == image.data
             assert camera.timeout == loose_approx(4.4)
 
@@ -177,7 +179,7 @@ class TestService:
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
+            request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD.value)
             response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=7.86)
             assert response.point_cloud == point_cloud
             assert camera.timeout == loose_approx(7.86)
@@ -217,7 +219,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
-            img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
+            img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG.value)
             assert img.data == image.data
             assert img.mime_type == image.mime_type
 

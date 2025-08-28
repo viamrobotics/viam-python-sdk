@@ -74,6 +74,9 @@ class Camera(ComponentBase):
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
 
+        The extra parameter can be used to pass additional options to the camera resource. The filter_source_names parameter can be used to filter
+        only the images from the specified source names. When unspecified, all images are returned.
+
         ::
 
             my_camera = Camera.from_robot(robot=machine, name="my_camera")

@@ -22,6 +22,8 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
+from viam.media.video import CameraMimeType
+
 from . import Camera
 
 
@@ -58,15 +60,16 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         )
         img_bytes_lst = []
         for img in images:
+            # TODO(RSDK-11728): remove this try except logic once we deleted the format field
             try:
                 mime_type = CameraMimeType.from_string(img.mime_type)  # this can ValueError if the mime_type is not a CameraMimeType
                 fmt = mime_type.to_proto()
             except ValueError:
-                # TODO(RSDK-11728): remove this once we deleted the format field
+                mime_type = img.mime_type
                 fmt = Format.FORMAT_UNSPECIFIED
 
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=name, format=fmt, mime_type=img.mime_type, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 

@@ -25,7 +25,7 @@ def viam_to_pil_image(image: ViamImage) -> Image.Image:
     return Image.open(BytesIO(image.data), formats=LIBRARY_SUPPORTED_FORMATS)
 
 
-def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImage:
+def pil_to_viam_image(image: Image.Image, mime_type: str) -> ViamImage:
     """
     Convert a PIL.Image to a ViamImage.
 
@@ -34,11 +34,16 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
 
     Args:
         image (Image.Image): The image to convert.
-        mime_type (CameraMimeType): The mime type to convert the image to.
+        mime_type (str): The mime type to convert the image to. Must be of type `CameraMimeType`.
 
     Returns:
         ViamImage: The resulting ViamImage
     """
+    try:
+        mime_type = CameraMimeType.from_string(mime_type)
+    except ValueError as e:
+        raise ValueError(f"Unsupported mimetype str: {mime_type}") from e
+
     if mime_type.name in LIBRARY_SUPPORTED_FORMATS:
         buf = BytesIO()
         if image.mode == "RGBA" and mime_type == CameraMimeType.JPEG:
@@ -48,4 +53,4 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
     else:
         raise ValueError(f"Cannot encode image to {mime_type}")
 
-    return ViamImage(data, mime_type)
+    return ViamImage(data, mime_type.value)

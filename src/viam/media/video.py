@@ -17,6 +17,9 @@ class CameraMimeType(str, Enum):
     PNG = "image/png"
     PCD = "pointcloud/pcd"
 
+    def __str__(self) -> str:
+        return self.value
+
     @classmethod
     def from_string(cls, value: str) -> Self:
         """Return the mimetype from a string.

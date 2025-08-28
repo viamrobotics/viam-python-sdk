@@ -41,7 +41,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .mocks.services import MockVision
 
 i = Image.new("RGBA", (100, 100), "#AABBCCDD")
-IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG)
+IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG.value)
 DETECTORS = [
     "detector-0",
     "detector-1",
@@ -104,7 +104,8 @@ POINT_CLOUDS = [
     ),
 ]
 
-VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG)
+# Cast to string because ViamImage accepts a string mime type in the worst case.
+VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG.value)
 
 PROPERTIES = Vision.Properties(
     classifications_supported=True,
@@ -206,7 +207,9 @@ class TestService:
             )
             response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
             assert response.image.image == VISION_IMAGE.data
-            assert response.image.format == VISION_IMAGE.mime_type.to_proto()
+            assert response.image.mime_type == VISION_IMAGE.mime_type
+            # TODO(RSDK-11728): remove this once we deleted the format field
+            assert response.image.format == (CameraMimeType.from_string(VISION_IMAGE.mime_type)).to_proto()
             assert response.classifications == CLASSIFICATIONS
             assert response.detections == []
             assert response.objects == []
@@ -241,7 +244,7 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG,
+                mime_type=CameraMimeType.JPEG.value,
                 extra=dict_to_struct(extra),
             )
             response: GetDetectionsResponse = await client.GetDetections(request)
@@ -266,7 +269,7 @@ class TestService:
                 image=IMAGE.data,
                 width=100,
                 height=100,
-                mime_type=CameraMimeType.JPEG,
+                mime_type=CameraMimeType.JPEG.value,
                 n=1,
                 extra=dict_to_struct(extra),
             )
@@ -281,7 +284,7 @@ class TestService:
             request = GetObjectPointCloudsRequest(
                 name=vision.name,
                 camera_name="camera",
-                mime_type=CameraMimeType.PCD,
+                mime_type=CameraMimeType.PCD.value,
                 extra=dict_to_struct(extra),
             )
             response: GetObjectPointCloudsResponse = await client.GetObjectPointClouds(request)
