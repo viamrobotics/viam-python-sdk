@@ -34,7 +34,7 @@ def pil_to_viam_image(image: Image.Image, mime_type: str) -> ViamImage:
 
     Args:
         image (Image.Image): The image to convert.
-        mime_type (str): The mime type to convert the image to. Must be of type `CameraMimeType`.
+        mime_type (str): The mime type to convert the image to. Must be one of the `CameraMimeType` enum string literals.
 
     Returns:
         ViamImage: The resulting ViamImage
