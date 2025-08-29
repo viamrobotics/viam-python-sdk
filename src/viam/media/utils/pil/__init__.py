@@ -39,6 +39,10 @@ def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImag
     Returns:
         ViamImage: The resulting ViamImage
     """
+    # Make sure at runtime the mime_type string is actually a CameraMimeType
+    if not isinstance(mime_type, CameraMimeType):
+        raise ValueError(f"Unsupported mimetype str: {mime_type}")
+
     if mime_type.name in LIBRARY_SUPPORTED_FORMATS:
         buf = BytesIO()
         if image.mode == "RGBA" and mime_type == CameraMimeType.JPEG:

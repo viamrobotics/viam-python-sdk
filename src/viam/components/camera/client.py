@@ -60,7 +60,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
                 mime_type = img_data.mime_type
             else:
                 # TODO(RSDK-11728): remove this once we deleted the format field
-                mime_type = str(CameraMimeType.from_proto(img_data.format))
+                mime_type = CameraMimeType.from_proto(img_data.format)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata

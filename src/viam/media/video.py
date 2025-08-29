@@ -31,7 +31,7 @@ class CameraMimeType(str, Enum):
         try:
             return cls(value_mime)
         except ValueError:
-            raise ValueError(f"Invalid mimetype: {value}")
+            raise ValueError(f"Unsupported mimetype: {value}")
 
     @classmethod
     def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":

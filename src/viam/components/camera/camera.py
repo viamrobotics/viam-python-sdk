@@ -82,6 +82,10 @@ class Camera(ComponentBase):
             first_image = images[0]
             timestamp = metadata.captured_at
 
+        Args:
+            filter_source_names (List[str]): The filter_source_names parameter can be used to filter only the images from the specified
+            source names. When unspecified, all images are returned.
+
         Returns:
             Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
             returned from the camera system, and the second [1] the metadata associated with this response.
