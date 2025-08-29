@@ -36,7 +36,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
     async def CaptureAllFromCamera(self, stream: Stream[CaptureAllFromCameraRequest, CaptureAllFromCameraResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        vision: Vision = self.get_resource(request.name)
+        vision = self.get_resource(request.name)
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.capture_all_from_camera(
