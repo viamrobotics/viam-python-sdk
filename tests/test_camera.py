@@ -14,7 +14,6 @@ from viam.proto.component.camera import (
     Format,
     CameraServiceStub,
     DistortionParameters,
-    Format,
     GetImageRequest,
     GetImageResponse,
     GetImagesRequest,

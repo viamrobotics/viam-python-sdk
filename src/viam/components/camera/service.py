@@ -62,7 +62,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
 
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=name, format=fmt, mime_type=img.mime_type, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=name, mime_type=img.mime_type, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 

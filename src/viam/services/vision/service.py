@@ -2,7 +2,7 @@ from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.component.camera import Format, Image
+from viam.proto.component.camera import Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,

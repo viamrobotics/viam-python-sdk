@@ -9,8 +9,6 @@ from viam.errors import NotSupportedError
 from viam.media.utils.pil import pil_to_viam_image, viam_to_pil_image
 from viam.media.video import CameraMimeType, Format, NamedImage, ViamImage
 
-UNSUPPORTED_MIME_TYPE = "unsupported_string_mime_type"
-
 
 class TestViamImage:
     UNSUPPORTED_MIME_TYPE = "unsupported_string_mime_type"
@@ -173,8 +171,5 @@ def test_image_conversion():
     v_img2 = pil_to_viam_image(pil_img, CameraMimeType.JPEG)
     assert v_img2.data == v_img.data
 
-    with pytest.raises(
-        ValueError,
-        match=f"Cannot encode to unsupported mimetype: {TestViamImage.UNSUPPORTED_MIME_TYPE}",
-    ):
+    with pytest.raises(ValueError, match=f"Cannot encode to unsupported mimetype: {TestViamImage.UNSUPPORTED_MIME_TYPE}"):
         pil_to_viam_image(i, CameraMimeType.CUSTOM(TestViamImage.UNSUPPORTED_MIME_TYPE))

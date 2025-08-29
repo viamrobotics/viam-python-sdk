@@ -84,12 +84,7 @@ POINT_CLOUDS = [
             reference_frame="depth1",
             geometries=[
                 Geometry(
-                    center=Pose(
-                        x=282.45238095238096,
-                        y=241.66666666666666,
-                        z=902.8809523809524,
-                        o_z=1.0,
-                    ),
+                    center=Pose(x=282.45238095238096, y=241.66666666666666, z=902.8809523809524, o_z=1.0),
                     box=RectangularPrism(dims_mm=Vector3(x=13, y=7, z=11)),
                 )
             ],
@@ -101,12 +96,7 @@ POINT_CLOUDS = [
             reference_frame="depth1",
             geometries=[
                 Geometry(
-                    center=Pose(
-                        x=-129.84615384615384,
-                        y=165.53846153846155,
-                        z=511.46153846153845,
-                        o_z=1.0,
-                    ),
+                    center=Pose(x=-129.84615384615384, y=165.53846153846155, z=511.46153846153845, o_z=1.0),
                     box=RectangularPrism(dims_mm=Vector3(x=5.0, y=4.0, z=7.0)),
                 )
             ],
