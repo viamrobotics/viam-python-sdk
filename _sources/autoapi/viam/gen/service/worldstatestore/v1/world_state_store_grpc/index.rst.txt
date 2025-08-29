@@ -1,0 +1,102 @@
+viam.gen.service.worldstatestore.v1.world_state_store_grpc
+==========================================================
+
+.. py:module:: viam.gen.service.worldstatestore.v1.world_state_store_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.service.worldstatestore.v1.world_state_store_grpc.WorldStateStoreServiceBase
+   viam.gen.service.worldstatestore.v1.world_state_store_grpc.UnimplementedWorldStateStoreServiceBase
+   viam.gen.service.worldstatestore.v1.world_state_store_grpc.WorldStateStoreServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: WorldStateStoreServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: ListUUIDs(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.ListUUIDsRequest, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetTransform(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.GetTransformRequest, service.worldstatestore.v1.world_state_store_pb2.GetTransformResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: StreamTransformChanges(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesRequest, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedWorldStateStoreServiceBase
+
+   Bases: :py:obj:`WorldStateStoreServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: ListUUIDs(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.ListUUIDsRequest, service.worldstatestore.v1.world_state_store_pb2.ListUUIDsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetTransform(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.GetTransformRequest, service.worldstatestore.v1.world_state_store_pb2.GetTransformResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StreamTransformChanges(stream: grpclib.server.Stream[service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesRequest, service.worldstatestore.v1.world_state_store_pb2.StreamTransformChangesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+.. py:class:: WorldStateStoreServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: ListUUIDs
+
+
+   .. py:attribute:: GetTransform
+
+
+   .. py:attribute:: StreamTransformChanges
+
+
+   .. py:attribute:: DoCommand
+
+
