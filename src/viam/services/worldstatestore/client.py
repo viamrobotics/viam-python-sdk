@@ -1,4 +1,4 @@
-from typing import Any, AsyncIterator, Mapping, Optional
+from typing import Any, AsyncGenerator, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -68,7 +68,7 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> AsyncIterator[StreamTransformChangesResponse]:
+    ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = StreamTransformChangesRequest(
             name=self.name,
