@@ -1,4 +1,4 @@
-from typing import Any, AsyncGenerator, Mapping, Optional
+from typing import Any, AsyncGenerator, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -36,7 +36,7 @@ class WorldStateStoreClient(WorldStateStore, ReconfigurableResourceRPCClientBase
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> list[bytes]:
+    ) -> List[bytes]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = ListUUIDsRequest(
             name=self.name,

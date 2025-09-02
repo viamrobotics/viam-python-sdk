@@ -1899,7 +1899,7 @@ class MockWorldStateStore(WorldStateStore):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
-    ) -> list[bytes]:
+    ) -> List[bytes]:
         self.extra = extra
         self.timeout = timeout
         return [b"uuid1", b"uuid2", b"uuid3"]

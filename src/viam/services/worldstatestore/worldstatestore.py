@@ -1,5 +1,5 @@
 import abc
-from typing import Any, AsyncGenerator, Final, Mapping, Optional
+from typing import Any, AsyncGenerator, Final, List, Mapping, Optional
 
 from viam.proto.common import Transform
 from viam.proto.service.worldstatestore import (
@@ -30,7 +30,7 @@ class WorldStateStore(ServiceBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
-    ) -> list[bytes]:
+    ) -> List[bytes]:
         """List all world state transform UUIDs.
 
         ::
@@ -40,7 +40,7 @@ class WorldStateStore(ServiceBase):
             uuids = await worldstatestore.list_uuids()
 
         Returns:
-            list[bytes]: A list of transform UUIDs
+            List[bytes]: A list of transform UUIDs
         """
         ...
 
