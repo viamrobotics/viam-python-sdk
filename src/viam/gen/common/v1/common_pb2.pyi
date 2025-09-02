@@ -234,6 +234,19 @@ class Mesh(google.protobuf.message.Message):
 global___Mesh = Mesh
 
 @typing.final
+class PointCloud(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POINT_CLOUD_FIELD_NUMBER: builtins.int
+    point_cloud: builtins.bytes
+
+    def __init__(self, *, point_cloud: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['point_cloud', b'point_cloud']) -> None:
+        ...
+global___PointCloud = PointCloud
+
+@typing.final
 class Geometry(google.protobuf.message.Message):
     """Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -242,6 +255,7 @@ class Geometry(google.protobuf.message.Message):
     BOX_FIELD_NUMBER: builtins.int
     CAPSULE_FIELD_NUMBER: builtins.int
     MESH_FIELD_NUMBER: builtins.int
+    POINTCLOUD_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
     label: builtins.str
     'Label of the geometry. If none supplied, will be an empty string.'
@@ -266,16 +280,20 @@ class Geometry(google.protobuf.message.Message):
     def mesh(self) -> global___Mesh:
         ...
 
-    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., capsule: global___Capsule | None=..., mesh: global___Mesh | None=..., label: builtins.str=...) -> None:
+    @property
+    def pointcloud(self) -> global___PointCloud:
         ...
 
-    def HasField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'mesh', b'mesh', 'sphere', b'sphere']) -> builtins.bool:
+    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., capsule: global___Capsule | None=..., mesh: global___Mesh | None=..., pointcloud: global___PointCloud | None=..., label: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'mesh', b'mesh', 'sphere', b'sphere']) -> None:
+    def HasField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']) -> builtins.bool:
         ...
 
-    def WhichOneof(self, oneof_group: typing.Literal['geometry_type', b'geometry_type']) -> typing.Literal['sphere', 'box', 'capsule', 'mesh'] | None:
+    def ClearField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'mesh', b'mesh', 'pointcloud', b'pointcloud', 'sphere', b'sphere']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['geometry_type', b'geometry_type']) -> typing.Literal['sphere', 'box', 'capsule', 'mesh', 'pointcloud'] | None:
         ...
 global___Geometry = Geometry
 
@@ -376,8 +394,12 @@ class Transform(google.protobuf.message.Message):
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_IN_OBSERVER_FRAME_FIELD_NUMBER: builtins.int
     PHYSICAL_OBJECT_FIELD_NUMBER: builtins.int
+    UUID_FIELD_NUMBER: builtins.int
+    METADATA_FIELD_NUMBER: builtins.int
     reference_frame: builtins.str
     'the name of a given reference frame'
+    uuid: builtins.bytes
+    'The UUID of the transform'
 
     @property
     def pose_in_observer_frame(self) -> global___PoseInFrame:
@@ -387,15 +409,24 @@ class Transform(google.protobuf.message.Message):
     def physical_object(self) -> global___Geometry:
         ...
 
-    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=..., physical_object: global___Geometry | None=...) -> None:
+    @property
+    def metadata(self) -> google.protobuf.struct_pb2.Struct:
+        """Can hold information like color, opacity, points colors, collision_allowed, etc..."""
+
+    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=..., physical_object: global___Geometry | None=..., uuid: builtins.bytes=..., metadata: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_metadata', b'_metadata', '_physical_object', b'_physical_object', 'metadata', b'metadata', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+    def ClearField(self, field_name: typing.Literal['_metadata', b'_metadata', '_physical_object', b'_physical_object', 'metadata', b'metadata', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame', 'uuid', b'uuid']) -> None:
         ...
 
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_metadata', b'_metadata']) -> typing.Literal['metadata'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_physical_object', b'_physical_object']) -> typing.Literal['physical_object'] | None:
         ...
 global___Transform = Transform

@@ -2548,7 +2548,7 @@ class AppClient:
 
         ::
 
-            id, key = await cloud.rotate_key("key-id")
+            key, id = await cloud.rotate_key("key-id")
 
         Args:
             id (str): The ID of the key to be rotated.
