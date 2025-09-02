@@ -21,7 +21,7 @@ class WorldStateStore(ServiceBase):
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
-        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "worldstatestore"
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "world_state_store"
     )
 
     @abc.abstractmethod
