@@ -1940,3 +1940,7 @@ class MockWorldStateStore(WorldStateStore):
 
         for change in changes:
             yield change
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {"cmd": command}

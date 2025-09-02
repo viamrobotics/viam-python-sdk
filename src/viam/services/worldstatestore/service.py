@@ -49,7 +49,7 @@ class WorldStateStoreService(UnimplementedWorldStateStoreServiceBase, ResourceRP
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        vision = self.get_resource(request.name)
+        worldstatestore = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await vision.do_command(struct_to_dict(request.command), timeout=timeout)
+        result = await worldstatestore.do_command(struct_to_dict(request.command), timeout=timeout)
         await stream.send_message(DoCommandResponse(result=dict_to_struct(result)))
