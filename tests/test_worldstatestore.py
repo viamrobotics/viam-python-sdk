@@ -1,15 +1,13 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-
 from viam.proto.service.worldstatestore import (
-    ListUUIDsRequest,
     GetTransformRequest,
-    ListUUIDsResponse,
     GetTransformResponse,
-    WorldStateStoreServiceStub
+    ListUUIDsRequest,
+    ListUUIDsResponse,
+    WorldStateStoreServiceStub,
 )
 from viam.resource.manager import ResourceManager
 from viam.services.worldstatestore import WorldStateStoreClient

@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union, AsyncIterator
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Sequence, Union
 
 import bson
 import numpy as np
@@ -373,7 +373,7 @@ from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_fl
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import CaptureAllResult, Vision
-from viam.services.worldstatestore import WorldStateStore, StreamTransformChangesResponse, TransformChangeType
+from viam.services.worldstatestore import StreamTransformChangesResponse, TransformChangeType, WorldStateStore
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -1917,10 +1917,9 @@ class MockWorldStateStore(WorldStateStore):
         return Transform(
             reference_frame="test_frame",
             pose_in_observer_frame=PoseInFrame(
-                reference_frame="observer_frame",
-                pose=Pose(x=1.0, y=2.0, z=3.0, o_x=0.0, o_y=0.0, o_z=1.0, theta=0.0)
+                reference_frame="observer_frame", pose=Pose(x=1.0, y=2.0, z=3.0, o_x=0.0, o_y=0.0, o_z=1.0, theta=0.0)
             ),
-            uuid=uuid
+            uuid=uuid,
         )
 
     async def stream_transform_changes(
@@ -1933,14 +1932,10 @@ class MockWorldStateStore(WorldStateStore):
         self.timeout = timeout
 
         changes = [
+            StreamTransformChangesResponse(change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_ADDED, transform=Transform(uuid=b"uuid1")),
             StreamTransformChangesResponse(
-                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_ADDED,
-                transform=Transform(uuid=b"uuid1")
+                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_UPDATED, transform=Transform(uuid=b"uuid2")
             ),
-            StreamTransformChangesResponse(
-                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_UPDATED,
-                transform=Transform(uuid=b"uuid2")
-            )
         ]
 
         for change in changes:

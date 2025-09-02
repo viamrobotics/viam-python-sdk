@@ -2,10 +2,10 @@ from grpclib.server import Stream
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.worldstatestore import (
-    ListUUIDsRequest,
-    ListUUIDsResponse,
     GetTransformRequest,
     GetTransformResponse,
+    ListUUIDsRequest,
+    ListUUIDsResponse,
     StreamTransformChangesRequest,
     StreamTransformChangesResponse,
     UnimplementedWorldStateStoreServiceBase,

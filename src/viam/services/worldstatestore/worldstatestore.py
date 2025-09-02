@@ -9,6 +9,7 @@ from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVI
 
 from ..service_base import ServiceBase
 
+
 class WorldStateStore(ServiceBase):
     """WorldStateStore is a Viam service that manages world state transforms.
 
@@ -87,5 +88,3 @@ class WorldStateStore(ServiceBase):
             AsyncIterator[StreamTransformChangesResponse]: A stream of transform changes
         """
         ...
-
-

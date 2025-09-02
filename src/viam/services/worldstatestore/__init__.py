@@ -1,7 +1,8 @@
 from viam.resource.registry import Registry, ResourceRegistration
-from .worldstatestore import WorldStateStore
+
 from .client import WorldStateStoreClient
 from .service import WorldStateStoreService
+from .worldstatestore import WorldStateStore
 
 __all__ = [
     "WorldStateStore",
@@ -9,4 +10,6 @@ __all__ = [
     "WorldStateStoreService",
 ]
 
-Registry.register_api(ResourceRegistration(WorldStateStore, WorldStateStoreService, lambda name, channel: WorldStateStoreClient(name, channel)))
+Registry.register_api(
+    ResourceRegistration(WorldStateStore, WorldStateStoreService, lambda name, channel: WorldStateStoreClient(name, channel))
+)
