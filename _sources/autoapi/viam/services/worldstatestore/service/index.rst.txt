@@ -1,0 +1,49 @@
+viam.services.worldstatestore.service
+=====================================
+
+.. py:module:: viam.services.worldstatestore.service
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.services.worldstatestore.service.WorldStateStoreService
+
+
+Module Contents
+---------------
+
+.. py:class:: WorldStateStoreService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.service.worldstatestore.UnimplementedWorldStateStoreServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.services.worldstatestore.worldstatestore.WorldStateStore`\ ]
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: RESOURCE_TYPE
+
+
+   .. py:method:: ListUUIDs(stream: grpclib.server.Stream[viam.proto.service.worldstatestore.ListUUIDsRequest, viam.proto.service.worldstatestore.ListUUIDsResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetTransform(stream: grpclib.server.Stream[viam.proto.service.worldstatestore.GetTransformRequest, viam.proto.service.worldstatestore.GetTransformResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: StreamTransformChanges(stream: grpclib.server.Stream[viam.proto.service.worldstatestore.StreamTransformChangesRequest, viam.proto.service.worldstatestore.StreamTransformChangesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+

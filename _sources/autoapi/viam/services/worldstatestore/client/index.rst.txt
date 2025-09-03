@@ -1,0 +1,197 @@
+viam.services.worldstatestore.client
+====================================
+
+.. py:module:: viam.services.worldstatestore.client
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.services.worldstatestore.client.WorldStateStoreClient
+
+
+Module Contents
+---------------
+
+.. py:class:: WorldStateStoreClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.services.worldstatestore.worldstatestore.WorldStateStore`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+
+   gRPC client for the WorldStateStore service.
+
+
+   .. py:attribute:: client
+      :type:  viam.proto.service.worldstatestore.WorldStateStoreServiceStub
+
+
+   .. py:attribute:: channel
+
+
+   .. py:method:: list_uuids(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[bytes]
+      :async:
+
+
+      List all world state transform UUIDs.
+
+      ::
+
+          worldstatestore = WorldStateStoreClient.from_robot(robot=machine, name="builtin")
+
+          uuids = await worldstatestore.list_uuids()
+
+      :returns: A list of transform UUIDs
+      :rtype: List[bytes]
+
+
+
+   .. py:method:: get_transform(uuid: bytes, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Transform
+      :async:
+
+
+      Get a world state transform by UUID.
+
+      ::
+
+          worldstatestore = WorldStateStoreClient.from_robot(robot=machine, name="builtin")
+
+          transform = await worldstatestore.get_transform(uuid=b"some-uuid")
+
+      :param uuid: The UUID of the transform to retrieve
+      :type uuid: bytes
+
+      :returns: The requested transform
+      :rtype: Transform
+
+
+
+   .. py:method:: stream_transform_changes(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> AsyncGenerator[viam.proto.service.worldstatestore.StreamTransformChangesResponse, None]
+      :async:
+
+
+      Stream changes to world state transforms.
+
+      ::
+
+          worldstatestore = WorldStateStoreClient.from_robot(robot=machine, name="builtin")
+
+          async for change in worldstatestore.stream_transform_changes():
+              print(f"Transform {change.transform.uuid} {change.change_type}")
+
+      :returns: A stream of transform changes
+      :rtype: AsyncIterator[StreamTransformChangesResponse]
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          service = SERVICE.from_robot(robot=machine, "builtin")  # replace SERVICE with the appropriate class
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await service.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> RobotClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              options = RobotClient.Options.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              # Replace "<MACHINE-URL>" (included brackets) with your machine's connection URL or FQDN
+              return await RobotClient.at_address("<MACHINE-URL>", options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=machine, name="builtin")
+
+              robot.close()
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = Arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+
