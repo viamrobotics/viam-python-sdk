@@ -1,6 +1,5 @@
 from array import array
-from enum import Enum
-from typing import List, Optional, Tuple
+from typing import Any, List, Optional, Tuple
 
 from typing_extensions import Self
 
@@ -10,12 +9,47 @@ from viam.proto.component.camera import Format
 from .viam_rgba import RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 
-class CameraMimeType(str, Enum):
-    VIAM_RGBA = "image/vnd.viam.rgba"
-    VIAM_RAW_DEPTH = "image/vnd.viam.dep"
-    JPEG = "image/jpeg"
-    PNG = "image/png"
-    PCD = "pointcloud/pcd"
+class _FrozenClassAttributesMeta(type):
+    """
+    A metaclass that prevents the reassignment of existing class attributes.
+    """
+
+    def __setattr__(cls, name: str, value: Any):
+        # Check if the attribute `name` already exists on the class
+        if name in cls.__dict__:
+            # If it exists, raise an error to prevent overwriting
+            raise AttributeError(f"Cannot reassign constant '{name}'")
+        # If it's a new attribute, allow it to be set
+        super().__setattr__(name, value)
+
+
+class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
+    VIAM_RGBA: Self
+    VIAM_RAW_DEPTH: Self
+    JPEG: Self
+    PNG: Self
+    PCD: Self
+
+    @property
+    def name(self) -> str:
+        for key, value in self.__class__.__dict__.items():
+            if value == self:
+                return key
+        return "CUSTOM"
+
+    @property
+    def value(self) -> str:
+        return self
+
+    @classmethod
+    def CUSTOM(cls, mime_type: str) -> Self:
+        """
+        Create a custom mime type.
+
+        Args:
+            mime_type (str): The mimetype as a string
+        """
+        return cls.from_string(mime_type)
 
     @classmethod
     def from_string(cls, value: str) -> Self:
@@ -28,13 +62,10 @@ class CameraMimeType(str, Enum):
             Self: The mimetype
         """
         value_mime = value[:-5] if value.endswith("+lazy") else value  # ViamImage lazy encodes by default
-        try:
-            return cls(value_mime)
-        except ValueError:
-            raise ValueError(f"Invalid mimetype: {value}")
+        return cls(value_mime)
 
     @classmethod
-    def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":
+    def from_proto(cls, format: Format.ValueType) -> Self:
         """Returns the mimetype from a proto enum.
 
         Args:
@@ -44,12 +75,12 @@ class CameraMimeType(str, Enum):
             Self: The mimetype.
         """
         mimetypes = {
-            Format.FORMAT_RAW_RGBA: CameraMimeType.VIAM_RGBA,
-            Format.FORMAT_RAW_DEPTH: CameraMimeType.VIAM_RAW_DEPTH,
-            Format.FORMAT_JPEG: CameraMimeType.JPEG,
-            Format.FORMAT_PNG: CameraMimeType.PNG,
+            Format.FORMAT_RAW_RGBA: cls.VIAM_RGBA,
+            Format.FORMAT_RAW_DEPTH: cls.VIAM_RAW_DEPTH,
+            Format.FORMAT_JPEG: cls.JPEG,
+            Format.FORMAT_PNG: cls.PNG,
         }
-        return mimetypes.get(format, CameraMimeType.JPEG)
+        return cls(mimetypes.get(format, cls.JPEG))
 
     def to_proto(self) -> Format.ValueType:
         """Returns the mimetype in a proto enum.
@@ -66,6 +97,13 @@ class CameraMimeType(str, Enum):
         return formats.get(self, Format.FORMAT_UNSPECIFIED)
 
 
+CameraMimeType.VIAM_RGBA = CameraMimeType.from_string("image/vnd.viam.rgba")
+CameraMimeType.VIAM_RAW_DEPTH = CameraMimeType.from_string("image/vnd.viam.dep")
+CameraMimeType.JPEG = CameraMimeType.from_string("image/jpeg")
+CameraMimeType.PNG = CameraMimeType.from_string("image/png")
+CameraMimeType.PCD = CameraMimeType.from_string("pointcloud/pcd")
+
+
 class ViamImage:
     """A native implementation of an image.
 
@@ -73,11 +111,11 @@ class ViamImage:
     """
 
     _data: bytes
-    _mime_type: str
+    _mime_type: CameraMimeType
     _height: Optional[int] = None
     _width: Optional[int] = None
 
-    def __init__(self, data: bytes, mime_type: str) -> None:
+    def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
         self._mime_type = mime_type
         self._width, self._height = _getDimensions(data, mime_type)
@@ -88,7 +126,7 @@ class ViamImage:
         return self._data
 
     @property
-    def mime_type(self) -> str:
+    def mime_type(self) -> CameraMimeType:
         """The mime type of the image"""
         return self._mime_type
 
@@ -131,12 +169,12 @@ class NamedImage(ViamImage):
     """The name of the image
     """
 
-    def __init__(self, name: str, data: bytes, mime_type: str) -> None:
+    def __init__(self, name: str, data: bytes, mime_type: CameraMimeType) -> None:
         self.name = name
         super().__init__(data, mime_type)
 
 
-def _getDimensions(image: bytes, mime_type: str) -> Tuple[Optional[int], Optional[int]]:
+def _getDimensions(image: bytes, mime_type: CameraMimeType) -> Tuple[Optional[int], Optional[int]]:
     try:
         if mime_type == CameraMimeType.JPEG:
             return _getDimensionsFromJPEG(image)

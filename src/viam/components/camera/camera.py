@@ -1,6 +1,6 @@
 import abc
 import sys
-from typing import Any, Dict, Final, List, Optional, Tuple
+from typing import Any, Dict, Final, Optional, Sequence, Tuple
 
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
@@ -66,11 +66,11 @@ class Camera(ComponentBase):
     async def get_images(
         self,
         *,
-        filter_source_names: Optional[List[str]] = None,
+        filter_source_names: Optional[Sequence[str]] = None,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[List[NamedImage], ResponseMetadata]:
+    ) -> Tuple[Sequence[NamedImage], ResponseMetadata]:
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
 
@@ -82,9 +82,13 @@ class Camera(ComponentBase):
             first_image = images[0]
             timestamp = metadata.captured_at
 
+        Args:
+            filter_source_names (List[str]): The filter_source_names parameter can be used to filter only the images from the specified
+                source names. When unspecified, all images are returned.
+
         Returns:
-            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
-            returned from the camera system, and the second [1] the metadata associated with this response.
+            Tuple[Sequence[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
+                returned from the camera system, and the second [1] the metadata associated with this response.
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.
         """
