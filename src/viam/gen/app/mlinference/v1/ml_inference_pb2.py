@@ -4,7 +4,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 2, '', 'app/mlinference/v1/ml_inference.proto')
+_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 3, '', 'app/mlinference/v1/ml_inference.proto')
 _sym_db = _symbol_database.Default()
 from ....app.data.v1 import data_pb2 as app_dot_data_dot_v1_dot_data__pb2
 from ....service.mlmodel.v1 import mlmodel_pb2 as service_dot_mlmodel_dot_v1_dot_mlmodel__pb2
