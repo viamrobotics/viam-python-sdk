@@ -28,10 +28,7 @@ class CameraMimeType(str, Enum):
             Self: The mimetype
         """
         value_mime = value[:-5] if value.endswith("+lazy") else value  # ViamImage lazy encodes by default
-        try:
-            return cls(value_mime)
-        except ValueError:
-            raise ValueError(f"Invalid mimetype: {value}")
+        return cls(value_mime)
 
     @classmethod
     def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":
@@ -73,11 +70,11 @@ class ViamImage:
     """
 
     _data: bytes
-    _mime_type: str
+    _mime_type: CameraMimeType
     _height: Optional[int] = None
     _width: Optional[int] = None
 
-    def __init__(self, data: bytes, mime_type: str) -> None:
+    def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
         self._mime_type = mime_type
         self._width, self._height = _getDimensions(data, mime_type)
@@ -88,7 +85,7 @@ class ViamImage:
         return self._data
 
     @property
-    def mime_type(self) -> str:
+    def mime_type(self) -> CameraMimeType:
         """The mime type of the image"""
         return self._mime_type
 
@@ -131,12 +128,12 @@ class NamedImage(ViamImage):
     """The name of the image
     """
 
-    def __init__(self, name: str, data: bytes, mime_type: str) -> None:
+    def __init__(self, name: str, data: bytes, mime_type: CameraMimeType) -> None:
         self.name = name
         super().__init__(data, mime_type)
 
 
-def _getDimensions(image: bytes, mime_type: str) -> Tuple[Optional[int], Optional[int]]:
+def _getDimensions(image: bytes, mime_type: CameraMimeType) -> Tuple[Optional[int], Optional[int]]:
     try:
         if mime_type == CameraMimeType.JPEG:
             return _getDimensionsFromJPEG(image)
