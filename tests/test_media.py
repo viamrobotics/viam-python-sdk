@@ -9,6 +9,7 @@ from viam.errors import NotSupportedError
 from viam.media.utils.pil import pil_to_viam_image, viam_to_pil_image
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
+UNSUPPORTED_MIME_TYPE = "unsupported_string_mime_type"
 
 class TestViamImage:
     def test_supported_image(self):
@@ -40,6 +41,10 @@ class TestViamImage:
         img4 = ViamImage(b"data", CameraMimeType.PCD)
         assert img4.width is None
         assert img4.height is None
+
+        img5 = ViamImage(b"data", UNSUPPORTED_MIME_TYPE)
+        assert img5.width is None
+        assert img5.height is None
 
     def test_bytes_to_depth_array(self):
         with open(f"{os.path.dirname(__file__)}/data/fakeDM.vnd.viam.dep", "rb") as depth_map:
@@ -78,3 +83,6 @@ def test_image_conversion():
     pil_img = viam_to_pil_image(v_img)
     v_img2 = pil_to_viam_image(pil_img, CameraMimeType.JPEG)
     assert v_img2.data == v_img.data
+
+    with pytest.raises(ValueError, match=f"Unsupported mimetype str: {UNSUPPORTED_MIME_TYPE}"):
+        pil_to_viam_image(i, UNSUPPORTED_MIME_TYPE)

@@ -104,7 +104,9 @@ POINT_CLOUDS = [
     ),
 ]
 
-VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG)
+# Use string value of CameraMimeType because ViamImage accepts a string mime type in the worst case
+# and it may not have the expected CameraMimeType methods defined on it.
+VISION_IMAGE = ViamImage(bytes([0, 100]), CameraMimeType.JPEG.value)
 
 PROPERTIES = Vision.Properties(
     classifications_supported=True,
@@ -206,7 +208,9 @@ class TestService:
             )
             response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
             assert response.image.image == VISION_IMAGE.data
-            assert response.image.format == VISION_IMAGE.mime_type.to_proto()
+            assert response.image.mime_type == VISION_IMAGE.mime_type
+            # TODO(RSDK-11728): remove this once we deleted the format field
+            assert response.image.format == (CameraMimeType.from_string(VISION_IMAGE.mime_type)).to_proto()
             assert response.classifications == CLASSIFICATIONS
             assert response.detections == []
             assert response.objects == []
