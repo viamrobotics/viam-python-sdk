@@ -83,7 +83,7 @@ class Camera(ComponentBase):
             timestamp = metadata.captured_at
 
         Args:
-            filter_source_names (List[str]): The filter_source_names parameter can be used to filter only the images from the specified
+            filter_source_names (Sequence[str]): The filter_source_names parameter can be used to filter only the images from the specified
                 source names. When unspecified, all images are returned.
 
         Returns:

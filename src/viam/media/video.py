@@ -1,7 +1,7 @@
 from array import array
 from typing import Any, List, Optional, Tuple
 
-from typing_extensions import Self
+from typing_extensions import Self, ClassVar
 
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
@@ -24,11 +24,11 @@ class _FrozenClassAttributesMeta(type):
 
 
 class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
-    VIAM_RGBA: Self
-    VIAM_RAW_DEPTH: Self
-    JPEG: Self
-    PNG: Self
-    PCD: Self
+    VIAM_RGBA: ClassVar[Self]
+    VIAM_RAW_DEPTH: ClassVar[Self]
+    JPEG: ClassVar[Self]
+    PNG: ClassVar[Self]
+    PCD: ClassVar[Self]
 
     @property
     def name(self) -> str:
