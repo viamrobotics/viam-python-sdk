@@ -7,7 +7,7 @@ from PIL import Image
 
 from viam.errors import NotSupportedError
 from viam.media.utils.pil import pil_to_viam_image, viam_to_pil_image
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, Format, NamedImage, ViamImage
 
 
 class TestViamImage:
@@ -112,6 +112,52 @@ class TestCameraMimeType:
 
         mime_type = CameraMimeType.CUSTOM("SOME CUSTOM MIME TYPE")
         assert mime_type.value == "SOME CUSTOM MIME TYPE"
+
+    def test_from_proto(self):
+        format = Format.FORMAT_RAW_RGBA
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.VIAM_RGBA
+
+        format = Format.FORMAT_RAW_DEPTH
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.VIAM_RAW_DEPTH
+
+        format = Format.FORMAT_JPEG
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.JPEG
+
+        format = Format.FORMAT_PNG
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.PNG
+
+        format = Format.FORMAT_UNSPECIFIED
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.JPEG  # unspecified defaults to jpeg
+
+    def test_to_proto(self):
+        mime_type = CameraMimeType.VIAM_RGBA
+        format = mime_type.proto
+        assert format == Format.FORMAT_RAW_RGBA
+
+        mime_type = CameraMimeType.VIAM_RAW_DEPTH
+        format = mime_type.proto
+        assert format == Format.FORMAT_RAW_DEPTH
+
+        mime_type = CameraMimeType.JPEG
+        format = mime_type.proto
+        assert format == Format.FORMAT_JPEG
+
+        mime_type = CameraMimeType.PNG
+        format = mime_type.proto
+        assert format == Format.FORMAT_PNG
+
+        mime_type = CameraMimeType.PCD
+        format = mime_type.proto
+        assert format == Format.FORMAT_UNSPECIFIED
+
+        mime_type = CameraMimeType.CUSTOM("some custom mime")
+        format = mime_type.proto
+        assert format == Format.FORMAT_UNSPECIFIED
 
 
 def test_image_conversion():

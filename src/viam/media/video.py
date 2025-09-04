@@ -1,7 +1,7 @@
 from array import array
 from typing import Any, List, Optional, Tuple
 
-from typing_extensions import Self, ClassVar
+from typing_extensions import ClassVar, Self
 
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
@@ -24,6 +24,12 @@ class _FrozenClassAttributesMeta(type):
 
 
 class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
+    """
+    The compatible mime-types for cameras and vision services.
+
+    You can use the `CameraMimeType.CUSTOM(...)` method to use an unlisted mime-type.
+    """
+
     VIAM_RGBA: ClassVar[Self]
     VIAM_RAW_DEPTH: ClassVar[Self]
     JPEG: ClassVar[Self]
@@ -82,7 +88,8 @@ class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
         }
         return cls(mimetypes.get(format, cls.JPEG))
 
-    def to_proto(self) -> Format.ValueType:
+    @property
+    def proto(self) -> Format.ValueType:
         """Returns the mimetype in a proto enum.
 
         Returns:
@@ -95,6 +102,12 @@ class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
             self.PNG: Format.FORMAT_PNG,
         }
         return formats.get(self, Format.FORMAT_UNSPECIFIED)
+
+    def to_proto(self) -> Format.ValueType:
+        """
+        DEPRECATED: Use `CameraMimeType.proto`
+        """
+        return self.proto
 
 
 CameraMimeType.VIAM_RGBA = CameraMimeType.from_string("image/vnd.viam.rgba")
