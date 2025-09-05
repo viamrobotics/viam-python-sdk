@@ -19,43 +19,52 @@ Module Contents
 
 .. py:class:: CameraMimeType
 
-   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+   Bases: :py:obj:`str`
 
 
-   str(object='') -> str
-   str(bytes_or_buffer[, encoding[, errors]]) -> str
+   The compatible mime-types for cameras and vision services.
 
-   Create a new string object from the given object. If encoding or
-   errors is specified, then the object must expose a data buffer
-   that will be decoded using the given encoding and error handler.
-   Otherwise, returns the result of object.__str__() (if defined)
-   or repr(object).
-   encoding defaults to sys.getdefaultencoding().
-   errors defaults to 'strict'.
+   You can use the `CameraMimeType.CUSTOM(...)` method to use an unlisted mime-type.
 
 
    .. py:attribute:: VIAM_RGBA
-      :value: 'image/vnd.viam.rgba'
-
+      :type:  typing_extensions.ClassVar[typing_extensions.Self]
 
 
    .. py:attribute:: VIAM_RAW_DEPTH
-      :value: 'image/vnd.viam.dep'
-
+      :type:  typing_extensions.ClassVar[typing_extensions.Self]
 
 
    .. py:attribute:: JPEG
-      :value: 'image/jpeg'
-
+      :type:  typing_extensions.ClassVar[typing_extensions.Self]
 
 
    .. py:attribute:: PNG
-      :value: 'image/png'
-
+      :type:  typing_extensions.ClassVar[typing_extensions.Self]
 
 
    .. py:attribute:: PCD
-      :value: 'pointcloud/pcd'
+      :type:  typing_extensions.ClassVar[typing_extensions.Self]
+
+
+   .. py:property:: name
+      :type: str
+
+
+
+   .. py:property:: value
+      :type: str
+
+
+
+   .. py:method:: CUSTOM(mime_type: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Create a custom mime type.
+
+      :param mime_type: The mimetype as a string
+      :type mime_type: str
 
 
 
@@ -73,7 +82,7 @@ Module Contents
 
 
 
-   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
+   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> typing_extensions.Self
       :classmethod:
 
 
@@ -87,7 +96,8 @@ Module Contents
 
 
 
-   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
+   .. py:property:: proto
+      :type: viam.proto.component.camera.Format.ValueType
 
       Returns the mimetype in a proto enum.
 
@@ -95,8 +105,13 @@ Module Contents
       :rtype: Format.ValueType
 
 
+   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
 
-.. py:class:: ViamImage(data: bytes, mime_type: str)
+      DEPRECATED: Use `CameraMimeType.proto`
+
+
+
+.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
 
    A native implementation of an image.
 
@@ -110,7 +125,7 @@ Module Contents
 
 
    .. py:property:: mime_type
-      :type: str
+      :type: CameraMimeType
 
       The mime type of the image
 
@@ -138,7 +153,7 @@ Module Contents
 
 
 
-.. py:class:: NamedImage(name: str, data: bytes, mime_type: str)
+.. py:class:: NamedImage(name: str, data: bytes, mime_type: CameraMimeType)
 
    Bases: :py:obj:`ViamImage`
 

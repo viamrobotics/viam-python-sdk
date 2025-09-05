@@ -73,7 +73,7 @@ Module Contents
 
 
 
-   .. py:method:: get_images(*, filter_source_names: Optional[List[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+   .. py:method:: get_images(*, filter_source_names: Optional[Sequence[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[Sequence[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :abstractmethod:
 
       :async:
@@ -90,9 +90,15 @@ Module Contents
           first_image = images[0]
           timestamp = metadata.captured_at
 
-      :returns: A tuple containing two values; the first [0] a list of images
-                returned from the camera system, and the second [1] the metadata associated with this response.
-      :rtype: Tuple[List[NamedImage], ResponseMetadata]
+      :param filter_source_names: The filter_source_names parameter can be used to filter only the images from the specified
+                                  source names. When unspecified, all images are returned.
+      :type filter_source_names: Sequence[str]
+
+      :returns:
+
+                A tuple containing two values; the first [0] a list of images
+                    returned from the camera system, and the second [1] the metadata associated with this response.
+      :rtype: Tuple[Sequence[NamedImage], ResponseMetadata]
 
       For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.
 
@@ -195,7 +201,7 @@ Module Contents
 
 
 
-   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Sequence[viam.proto.common.Geometry]
       :async:
 
 

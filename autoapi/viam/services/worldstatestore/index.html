@@ -73,6 +73,14 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.change_type"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.change_type</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.transform"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.transform</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.updated_fields</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.services.worldstatestore.TransformChangeType"><code class="docutils literal notranslate"><span class="pre">TransformChangeType</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStoreClient"><code class="docutils literal notranslate"><span class="pre">WorldStateStoreClient</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStoreClient.client"><code class="docutils literal notranslate"><span class="pre">WorldStateStoreClient.client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStoreClient.channel"><code class="docutils literal notranslate"><span class="pre">WorldStateStoreClient.channel</span></code></a></li>
@@ -106,14 +114,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStore.close"><code class="docutils literal notranslate"><span class="pre">WorldStateStore.close()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.change_type"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.change_type</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.transform"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.transform</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.updated_fields</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StreamTransformChangesResponse.HasField()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.worldstatestore.TransformChangeType"><code class="docutils literal notranslate"><span class="pre">TransformChangeType</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -173,6 +173,12 @@
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse" title="viam.services.worldstatestore.StreamTransformChangesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTransformChangesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.worldstatestore.TransformChangeType" title="viam.services.worldstatestore.TransformChangeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformChangeType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStoreClient" title="viam.services.worldstatestore.WorldStateStoreClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldStateStoreClient</span></code></a></p></td>
 <td><p>gRPC client for the WorldStateStore service.</p></td>
 </tr>
@@ -182,17 +188,68 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.worldstatestore.WorldStateStore" title="viam.services.worldstatestore.WorldStateStore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldStateStore</span></code></a></p></td>
 <td><p>WorldStateStore is a Viam service that manages world state transforms.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.worldstatestore.StreamTransformChangesResponse" title="viam.services.worldstatestore.StreamTransformChangesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTransformChangesResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.worldstatestore.TransformChangeType" title="viam.services.worldstatestore.TransformChangeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformChangeType</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 </section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.worldstatestore.</span></span><span class="sig-name descname"><span class="pre">StreamTransformChangesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TransformChangeType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.field_mask_pb2.FieldMask</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.change_type">
+<span class="sig-name descname"><span class="pre">change_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TransformChangeType</span></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.change_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.transform">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.transform" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">updated_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.field_mask_pb2.FieldMask</span></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields" title="Permalink to this definition"></a></dt>
+<dd><p>The field mask of the transform that has changed, if any. For added transforms, this will be empty. For updated
+transforms, this will be the fields that have changed. For removed transforms, this will be the transform’s UUID
+path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'transform'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'transform'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'updated_fields'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'updated_fields'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.worldstatestore.TransformChangeType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.worldstatestore.</span></span><span class="sig-name descname"><span class="pre">TransformChangeType</span></span><a class="headerlink" href="#viam.services.worldstatestore.TransformChangeType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TransformChangeType</span></code></p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.worldstatestore.WorldStateStoreClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.worldstatestore.</span></span><span class="sig-name descname"><span class="pre">WorldStateStoreClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/worldstatestore/client.html#WorldStateStoreClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.worldstatestore.WorldStateStoreClient" title="Permalink to this definition"></a></dt>
@@ -628,63 +685,6 @@ non-Close methods are called.</p>
 </div>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.worldstatestore.</span></span><span class="sig-name descname"><span class="pre">StreamTransformChangesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TransformChangeType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.field_mask_pb2.FieldMask</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.change_type">
-<span class="sig-name descname"><span class="pre">change_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___TransformChangeType</span></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.change_type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.transform">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.transform" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">updated_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.field_mask_pb2.FieldMask</span></em><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.updated_fields" title="Permalink to this definition"></a></dt>
-<dd><p>The field mask of the transform that has changed, if any. For added transforms, this will be empty. For updated
-transforms, this will be the fields that have changed. For removed transforms, this will be the transform’s UUID
-path.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.StreamTransformChangesResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'transform'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'transform'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'updated_fields'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'updated_fields'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.worldstatestore.StreamTransformChangesResponse.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.services.worldstatestore.TransformChangeType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.worldstatestore.</span></span><span class="sig-name descname"><span class="pre">TransformChangeType</span></span><a class="headerlink" href="#viam.services.worldstatestore.TransformChangeType" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TransformChangeType</span></code></p>
 </dd></dl>
 
 </section>

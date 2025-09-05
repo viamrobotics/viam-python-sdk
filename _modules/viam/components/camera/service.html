@@ -96,7 +96,6 @@
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.camera</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CameraServiceBase</span><span class="p">,</span>
-    <span class="n">Format</span><span class="p">,</span>
     <span class="n">GetImageRequest</span><span class="p">,</span>
     <span class="n">GetImageResponse</span><span class="p">,</span>
     <span class="n">GetImagesRequest</span><span class="p">,</span>
@@ -143,16 +142,13 @@
             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
             <span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">),</span>
-            <span class="n">filter_source_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">filter_source_names</span><span class="p">),</span>
+            <span class="n">filter_source_names</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">filter_source_names</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">img_bytes_lst</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>  <span class="c1"># this can ValueError if the mime_type is not a CameraMimeType</span>
-                <span class="n">fmt</span> <span class="o">=</span> <span class="n">mime_type</span><span class="o">.</span><span class="n">to_proto</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="c1"># TODO(RSDK-11728): remove this once we deleted the format field</span>
-                <span class="n">fmt</span> <span class="o">=</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span>
+            <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
+            <span class="c1"># TODO(RSDK-11728): remove this fmt logic once we deleted the format field</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="n">mime_type</span><span class="o">.</span><span class="n">to_proto</span><span class="p">()</span>  <span class="c1"># Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set</span>
 
             <span class="n">img_bytes</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">data</span>
             <span class="n">img_bytes_lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">source_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">img_bytes</span><span class="p">))</span>

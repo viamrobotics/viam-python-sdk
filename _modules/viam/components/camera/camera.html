@@ -89,7 +89,7 @@
   <h1>Source code for viam.components.camera.camera</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">NamedImage</span><span class="p">,</span> <span class="n">ViamImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResponseMetadata</span>
@@ -155,11 +155,11 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_images</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
-        <span class="n">filter_source_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">filter_source_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NamedImage</span><span class="p">],</span> <span class="n">ResponseMetadata</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">NamedImage</span><span class="p">],</span> <span class="n">ResponseMetadata</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get simultaneous images from different imagers, along with associated metadata.</span>
 <span class="sd">        This should not be used for getting a time series of images from the same imager.</span>
 
@@ -171,9 +171,13 @@
 <span class="sd">            first_image = images[0]</span>
 <span class="sd">            timestamp = metadata.captured_at</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            filter_source_names (Sequence[str]): The filter_source_names parameter can be used to filter only the images from the specified</span>
+<span class="sd">                source names. When unspecified, all images are returned.</span>
+
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images</span>
-<span class="sd">            returned from the camera system, and the second [1] the metadata associated with this response.</span>
+<span class="sd">            Tuple[Sequence[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images</span>
+<span class="sd">                returned from the camera system, and the second [1] the metadata associated with this response.</span>
 
 <span class="sd">        For more information, see `Camera component &lt;https://docs.viam.com/dev/reference/apis/components/camera/#getimages&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
