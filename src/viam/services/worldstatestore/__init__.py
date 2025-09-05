@@ -1,9 +1,9 @@
+from viam.proto.service.worldstatestore import StreamTransformChangesResponse, TransformChangeType
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import WorldStateStoreClient
 from .service import WorldStateStoreService
 from .worldstatestore import WorldStateStore
-from viam.proto.service.worldstatestore import StreamTransformChangesResponse, TransformChangeType
 
 __all__ = [
     "WorldStateStore",

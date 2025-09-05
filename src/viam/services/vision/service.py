@@ -26,7 +26,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .vision import Vision
 
 
-class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
+class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vision]):
     """
     gRPC service for a Vision service
     """
@@ -50,9 +50,11 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         )
         img = None
         if result.image is not None:
-            fmt = result.image.mime_type.to_proto()
+            mime_type = CameraMimeType.from_string(result.image.mime_type)
+            # TODO(RSDK-11728): remove this fmt logic once we deleted the format field
+            fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
             img_bytes = result.image.data
-            img = Image(source_name=request.camera_name, format=fmt, image=img_bytes)
+            img = Image(source_name=request.camera_name, mime_type=mime_type, format=fmt, image=img_bytes)
         response = CaptureAllFromCameraResponse(
             image=img,
             detections=result.detections,
@@ -79,7 +81,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        image = ViamImage(request.image, request.mime_type)
+        image = ViamImage(request.image, CameraMimeType.from_string(request.mime_type))
 
         result = await vision.get_detections(image, extra=extra, timeout=timeout)
         response = GetDetectionsResponse(detections=result)
@@ -104,7 +106,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        image = ViamImage(request.image, request.mime_type)
+        image = ViamImage(request.image, CameraMimeType.from_string(request.mime_type))
 
         result = await vision.get_classifications(image, request.n, extra=extra, timeout=timeout)
         response = GetClassificationsResponse(classifications=result)
@@ -117,7 +119,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.get_object_point_clouds(request.camera_name, extra=extra, timeout=timeout)
-        response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=result)
+        response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD, objects=result)
         await stream.send_message(response)
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:

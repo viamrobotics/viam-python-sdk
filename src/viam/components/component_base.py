@@ -1,6 +1,6 @@
 import abc
 from logging import Logger
-from typing import TYPE_CHECKING, Any, ClassVar, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Union, cast
+from typing import TYPE_CHECKING, Any, ClassVar, Dict, List, Mapping, Optional, Sequence, SupportsBytes, SupportsFloat, Union, cast
 
 from typing_extensions import Self
 
@@ -46,7 +46,7 @@ class ComponentBase(abc.ABC, ResourceBase):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Sequence[Geometry]:
         """
         Get all geometries associated with the component, in their current configuration, in the
         `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
