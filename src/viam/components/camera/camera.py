@@ -88,7 +88,7 @@ class Camera(ComponentBase):
 
         Returns:
             Tuple[Sequence[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
-                returned from the camera system, and the second [1] the metadata associated with this response.
+            returned from the camera system, and the second [1] the metadata associated with this response.
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.
         """
