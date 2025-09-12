@@ -45,8 +45,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
+        camera = self.get_resource(request.name)
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         images, metadata = await camera.get_images(
@@ -62,7 +61,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
 
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
