@@ -17,7 +17,7 @@ class WorldStateStore(ServiceBase):
     changes to world state transforms, which represent the pose of objects in different
     reference frames. This functionality can be used to create custom visualizations of the world state.
 
-    For more information, see `WorldStateStore service <https://docs.viam.com/dev/reference/apis/services/worldstatestore/>`_.
+    For more information, see `WorldStateStore service <https://docs.viam.com/dev/reference/apis/services/world-state-store/>`_.
     """
 
     API: Final = API(  # pyright: ignore [reportIncompatibleVariableOverride]
