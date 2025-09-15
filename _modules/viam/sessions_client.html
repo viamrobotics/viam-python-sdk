@@ -96,6 +96,8 @@
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span><span class="p">,</span> <span class="n">Thread</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">MutableMapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">asynccontextmanager</span>
 
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
@@ -135,6 +137,7 @@
     <span class="n">_heartbeat_interval</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">timedelta</span><span class="p">]</span>
     <span class="n">_supported</span><span class="p">:</span> <span class="n">_SupportedState</span>
     <span class="n">_thread</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Thread</span><span class="p">]</span>
+    <span class="n">_pool</span><span class="p">:</span> <span class="n">ThreadPoolExecutor</span>
 
     <span class="n">_HEARTBEAT_MONITORED_METHODS</span><span class="p">:</span> <span class="n">MutableMapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -160,6 +163,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">UNKNOWN</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span>
 
         <span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="n">SendRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">)</span>
         <span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="n">RecvTrailingMetadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv_trailers</span><span class="p">)</span>
@@ -193,40 +197,45 @@
         <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">status_message</span> <span class="o">==</span> <span class="s2">&quot;SESSION_EXPIRED&quot;</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Session expired&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="nd">@asynccontextmanager</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_acquire_lock_async</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pool</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_MetadataLike</span><span class="p">:</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acquire_lock_async</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_disabled</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">!=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
 
-        <span class="n">request</span> <span class="o">=</span> <span class="n">StartSessionRequest</span><span class="p">(</span><span class="n">resume</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span><span class="p">:</span> <span class="n">StartSessionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">StartSession</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">:</span>
-                <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">FALSE</span>
-                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">StartSessionRequest</span><span class="p">(</span><span class="n">resume</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span><span class="p">:</span> <span class="n">StartSessionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">StartSession</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">FALSE</span>
+                        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">raise</span>
 
-        <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Expected response to start session&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Expected response to start session&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">heartbeat_window</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Expected heartbeat window in response to start session&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">heartbeat_window</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Expected heartbeat window in response to start session&quot;</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">heartbeat_window</span><span class="o">.</span><span class="n">ToTimedelta</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span>
 
-        <span class="c1"># tick once to ensure heartbeats are supported</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)</span>
+            <span class="c1"># tick once to ensure heartbeats are supported</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)</span>
 
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">==</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span><span class="p">:</span>
@@ -245,17 +254,16 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_heartbeat_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">RobotServiceStub</span><span class="p">):</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Failed to send heartbeat, session client reset&quot;</span><span class="p">)</span>
-                <span class="k">return</span>
-            <span class="n">request</span> <span class="o">=</span> <span class="n">SendSessionHeartbeatRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Failed to send heartbeat, session client reset&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SendSessionHeartbeatRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">SendSessionHeartbeat</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">except</span> <span class="p">(</span><span class="n">GRPCError</span><span class="p">,</span> <span class="n">StreamTerminatedError</span><span class="p">):</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Heartbeat terminated&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sent heartbeat successfully&quot;</span><span class="p">)</span>
 
@@ -274,10 +282,10 @@
         <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="p">)</span>
         <span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acquire_lock_async</span><span class="p">():</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">!=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span><span class="p">:</span>
                     <span class="k">return</span>
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
             <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
 
     <span class="nd">@property</span>
