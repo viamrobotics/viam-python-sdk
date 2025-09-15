@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 import pytest
 from google.api.httpbody_pb2 import HttpBody
@@ -164,6 +165,26 @@ class TestService:
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
+
+    async def test_get_images_uses_source_name_not_resource_name(self):
+        class MockCameraWithCustomSource(MockCamera):
+            def __init__(self, name: str, source_name: str):
+                super().__init__(name)
+                self._source_name = source_name
+
+            async def get_images(self, timeout: Optional[float] = None, **kwargs):
+                self.timeout = timeout
+                return [NamedImage(self._source_name, self.image.data, self.image.mime_type)], self.metadata
+
+        custom_camera = MockCameraWithCustomSource("camera", "the_source")
+        rm = ResourceManager([custom_camera])
+        service = CameraRPCService(rm)
+
+        async with ChannelFor([service]) as channel:
+            client = CameraServiceStub(channel)
+            request = GetImagesRequest(name="camera")
+            response: GetImagesResponse = await client.GetImages(request)
+            assert response.images[0].source_name == "the_source"
 
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
