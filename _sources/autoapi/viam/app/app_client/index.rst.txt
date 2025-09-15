@@ -2308,7 +2308,9 @@ Module Contents
 
       ::
 
-           await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata=)
+           await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata={
+               "TEST_API_KEY": "ABC123",
+           })
 
       :param organization_id: The ID of the organization with which to associate the user-defined metadata.
                               You can obtain your organization ID from the organization settings page.
@@ -2345,7 +2347,9 @@ Module Contents
 
       ::
 
-           await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
+           await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata={
+               "TEST_API_KEY": "ABC123",
+           })
 
       :param location_id: The ID of the location with which to associate the user-defined metadata.
                           You can obtain your location ID from the location's page.
@@ -2382,7 +2386,9 @@ Module Contents
 
       ::
 
-           await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata=)
+           await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata={
+               "TEST_API_KEY": "ABC123",
+           })
 
       :param robot_id: The ID of the robot with which to associate the user-defined metadata.
                        You can obtain your robot ID from the machine page.
@@ -2419,7 +2425,9 @@ Module Contents
 
       ::
 
-           await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata=)
+           await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata={
+               "TEST_API_KEY": "ABC123",
+           })
 
       :param robot_id: The ID of the robot part with which to associate the user-defined metadata.
                        You can obtain your robot part ID from the machine page.
