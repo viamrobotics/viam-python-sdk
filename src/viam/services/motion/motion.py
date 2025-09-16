@@ -7,7 +7,7 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import TypeAlias
 
-from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
+from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, Transform, WorldState
 from viam.proto.service.motion import Constraints, GetPlanResponse, MotionConfiguration, PlanStatusWithID
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE
 from viam.utils import ValueTypes
@@ -33,7 +33,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
         constraints: Optional[Constraints] = None,
@@ -44,18 +44,17 @@ class Motion(ServiceBase):
         """Plan and execute a movement to move the component specified to its goal destination.
 
         Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This
-        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with
-        originating ReferenceFrame's name. Then pass in the resource name into ``component_name``. Ex::
+        technique allows for planning and moving the frame itself to the ``destination``.
+        To do so, simply pass in a string into ``component_name``. Ex::
 
-            resource_name = Gripper.get_resource_name("externalFrame")
-            success = await MotionServiceClient.move(resource_name, ...)
+            success = await MotionServiceClient.move("externalFrame", ...)
 
         ::
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-            # Assumes a gripper configured with name "my_gripper" on the machine
-            gripper_name = Gripper.get_resource_name("my_gripper")
+            # Assumes "my_gripper" on the machine
+            gripper_name = "my_gripper"
             my_frame = "my_gripper_offset"
 
             goal_pose = Pose(x=0, y=0, z=300, o_x=0, o_y=0, o_z=1, theta=0)
@@ -69,7 +68,7 @@ class Motion(ServiceBase):
                                   extra={})
 
         Args:
-            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
+            component_name (str): Name of a component on a given robot.
             destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
                 observed.
             world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints
@@ -95,9 +94,9 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move_on_globe(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: GeoPoint,
-        movement_sensor_name: ResourceName,
+        movement_sensor_name: str,
         obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
@@ -120,24 +119,23 @@ class Motion(ServiceBase):
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-            # Get the ResourceNames of the base and movement sensor
-            my_base_resource_name = Base.get_resource_name("my_base")
-            mvmnt_sensor_resource_name = MovementSensor.get_resource_name(
-                "my_movement_sensor")
+            # Get the names of the base and movement sensor
+            my_base_name = "my_base"
+            mvmnt_sensor_name = "my_movement_sensor"
             #  Define a destination GeoPoint at the GPS coordinates [0, 0]
             my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
 
             # Move the base component to the designated geographic location, as reported by the movement sensor
             execution_id = await motion.move_on_globe(
-                component_name=my_base_resource_name,
+                component_name=my_base_name,
                 destination=my_destination,
-                movement_sensor_name=mvmnt_sensor_resource_name)
+                movement_sensor_name=mvmnt_sensor_name)
 
         Args:
-            component_name (ResourceName): The ResourceName of the base to move.
+            component_name (str): The name of the base to move.
             destination (GeoPoint): The location of the component's destination, represented in geographic notation as a
                 GeoPoint (lat, lng).
-            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
+            movement_sensor_name (str): The name of the movement sensor that you want to use to check
                 the machine's location.
             obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
                 with each represented as a GeoGeometry. Default: None
@@ -170,9 +168,9 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move_on_map(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: Pose,
-        slam_service_name: ResourceName,
+        slam_service_name: str,
         configuration: Optional[MotionConfiguration] = None,
         obstacles: Optional[Sequence[Geometry]] = None,
         *,
@@ -194,23 +192,23 @@ class Motion(ServiceBase):
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-            # Get the ResourceNames of the base component and SLAM service
-            my_base_resource_name = Base.get_resource_name("my_base")
-            my_slam_service_name = SLAMClient.get_resource_name("my_slam_service")
+            # Get the names of the base component and SLAM service
+            my_base_name = "my_base"
+            my_slam_service_name = "my_slam_service"
 
             # Define a destination pose with respect to the origin of the map from the SLAM service "my_slam_service"
             my_pose = Pose(y=10)
 
             # Move the base component to the destination pose of Y=10, a location of
             # (0, 10, 0) in respect to the origin of the map
-            execution_id = await motion.move_on_map(component_name=my_base_resource_name,
+            execution_id = await motion.move_on_map(component_name=my_base_name,
                                                     destination=my_pose,
                                                     slam_service_name=my_slam_service_name)
 
         Args:
-            component_name (ResourceName): The ResourceName of the base to move.
+            component_name (str): The name of the base to move.
             destination (Pose): The destination, which can be any Pose with respect to the SLAM map's origin.
-            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
+            slam_service_name (str): The name of the SLAM service from which the SLAM map is requested.
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
                 This parameter and each of its fields are optional.
 
@@ -237,7 +235,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def stop_plan(
         self,
-        component_name: ResourceName,
+        component_name: str,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -251,11 +249,11 @@ class Motion(ServiceBase):
             # Assuming a `move_on_globe()` started the execution
             # Stop the base component which was instructed to move by `move_on_globe()`
             # or `move_on_map()`
-            my_base_resource_name = Base.get_resource_name("my_base")
+            my_base_name = "my_base"
             await motion.stop_plan(component_name=mvmnt_sensor)
 
         Args:
-            component_name (ResourceName): The component to stop
+            component_name (str): The component to stop
 
         For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#stopplan>`_.
         """
@@ -264,7 +262,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def get_plan(
         self,
-        component_name: ResourceName,
+        component_name: str,
         last_plan_only: bool = False,
         execution_id: Optional[str] = None,
         *,
@@ -291,12 +289,12 @@ class Motion(ServiceBase):
         ::
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
-            my_base_resource_name = Base.get_resource_name("my_base")
+            my_base_name = "my_base"
             # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
-            resp = await motion.get_plan(component_name=my_base_resource_name)
+            resp = await motion.get_plan(component_name=my_base_name)
 
         Args:
-            component_name (ResourceName): The component to stop
+            component_name (str): The component to stop
             last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution.
             execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id.
 
@@ -343,7 +341,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def get_pose(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination_frame: str,
         supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
@@ -359,7 +357,7 @@ class Motion(ServiceBase):
             # (``Arm``, ``Base``, etc).
 
             # Create a `component_name`:
-            component_name = Gripper.get_resource_name("my_gripper")
+            component_name = "my_gripper"
 
             from viam.components.gripper import Gripper
             from viam.services.motion import MotionClient
@@ -368,12 +366,12 @@ class Motion(ServiceBase):
             robot = await connect()
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
-            gripperName = Gripper.get_resource_name("my_gripper")
+            gripperName = "my_gripper"
             gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
                                                     destination_frame="world")
 
         Args:
-            component_name (viam.proto.common.ResourceName): Name of a component on a robot.
+            component_name (str): Name of a component on a robot.
             destination_frame (str): Name of the desired reference frame.
             supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the robot's frame while
                 calculating pose.
