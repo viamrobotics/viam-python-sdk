@@ -33,7 +33,7 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.move(
-            request.component_name,
+            request.component_name if request.component_name else request.component_name_deprecated.name,
             request.destination,
             request.world_state,
             request.constraints,
@@ -49,9 +49,9 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.move_on_map(
-            request.component_name,
+            request.component_name if request.component_name else request.component_name_deprecated.name,
             request.destination,
-            request.slam_service_name,
+            request.slam_service_name if request.slam_service_name else request.slam_service_name_deprecated.name,
             request.motion_configuration,
             request.obstacles,
             extra=struct_to_dict(request.extra),
@@ -66,9 +66,9 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.move_on_globe(
-            request.component_name,
+            request.component_name if request.component_name else request.component_name_deprecated.name,
             request.destination,
-            request.movement_sensor_name,
+            request.movement_sensor_name if request.movement_sensor_name else request.movement_sensor_name_deprecated.name,
             request.obstacles,
             request.heading,
             request.motion_configuration,
@@ -85,7 +85,7 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.get_pose(
-            request.component_name,
+            request.component_name if request.component_name else request.component_name_deprecated.name,
             request.destination_frame,
             request.supplemental_transforms,
             extra=struct_to_dict(request.extra),
@@ -99,7 +99,7 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         assert request is not None
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await service.stop_plan(request.component_name, extra=struct_to_dict(request.extra), timeout=timeout)
+        await service.stop_plan(request.component_name if request.component_name else request.component_name_deprecated.name, extra=struct_to_dict(request.extra), timeout=timeout)
         response = StopPlanResponse()
         await stream.send_message(response)
 
@@ -118,7 +118,7 @@ class MotionRPCService(UnimplementedMotionServiceBase, ResourceRPCServiceBase[Mo
         service = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await service.get_plan(
-            request.component_name, request.last_plan_only, request.execution_id, extra=struct_to_dict(request.extra), timeout=timeout
+            request.component_name if request.component_name else request.component_name_deprecated.name, request.last_plan_only, request.execution_id, extra=struct_to_dict(request.extra), timeout=timeout
         )
         await stream.send_message(result)
 

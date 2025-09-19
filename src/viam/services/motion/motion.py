@@ -1,6 +1,6 @@
 import abc
 import sys
-from typing import Any, Final, Mapping, Optional, Sequence
+from typing import Any, Final, Mapping, Optional, Sequence, Union
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -33,7 +33,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
         constraints: Optional[Constraints] = None,
@@ -69,7 +69,7 @@ class Motion(ServiceBase):
                                   extra={})
 
         Args:
-            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
+            component_name (Union[ResourceName, str]): Name of a component on a given robot.
             destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
                 observed.
             world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints
@@ -95,9 +95,9 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move_on_globe(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         destination: GeoPoint,
-        movement_sensor_name: ResourceName,
+        movement_sensor_name: Union[ResourceName, str],
         obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
@@ -134,10 +134,10 @@ class Motion(ServiceBase):
                 movement_sensor_name=mvmnt_sensor_resource_name)
 
         Args:
-            component_name (ResourceName): The ResourceName of the base to move.
+            component_name (Union[ResourceName, str]): The ResourceName of the base to move.
             destination (GeoPoint): The location of the component's destination, represented in geographic notation as a
                 GeoPoint (lat, lng).
-            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
+            movement_sensor_name (Union[ResourceName, str]): The ResourceName of the movement sensor that you want to use to check
                 the machine's location.
             obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
                 with each represented as a GeoGeometry. Default: None
@@ -170,9 +170,9 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def move_on_map(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         destination: Pose,
-        slam_service_name: ResourceName,
+        slam_service_name: Union[ResourceName, str],
         configuration: Optional[MotionConfiguration] = None,
         obstacles: Optional[Sequence[Geometry]] = None,
         *,
@@ -208,9 +208,9 @@ class Motion(ServiceBase):
                                                     slam_service_name=my_slam_service_name)
 
         Args:
-            component_name (ResourceName): The ResourceName of the base to move.
+            component_name (Union[ResourceName, str]): The ResourceName of the base to move.
             destination (Pose): The destination, which can be any Pose with respect to the SLAM map's origin.
-            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
+            slam_service_name (Union[ResourceName, str]): The ResourceName of the SLAM service from which the SLAM map is requested.
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
                 This parameter and each of its fields are optional.
 
@@ -237,7 +237,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def stop_plan(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -255,7 +255,7 @@ class Motion(ServiceBase):
             await motion.stop_plan(component_name=mvmnt_sensor)
 
         Args:
-            component_name (ResourceName): The component to stop
+            component_name (Union[ResourceName, str]): The component to stop
 
         For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#stopplan>`_.
         """
@@ -264,7 +264,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def get_plan(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         last_plan_only: bool = False,
         execution_id: Optional[str] = None,
         *,
@@ -296,7 +296,7 @@ class Motion(ServiceBase):
             resp = await motion.get_plan(component_name=my_base_resource_name)
 
         Args:
-            component_name (ResourceName): The component to stop
+            component_name (Union[ResourceName, str]): The component to stop
             last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution.
             execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id.
 
@@ -343,7 +343,7 @@ class Motion(ServiceBase):
     @abc.abstractmethod
     async def get_pose(
         self,
-        component_name: ResourceName,
+        component_name: Union[ResourceName, str],
         destination_frame: str,
         supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
@@ -373,7 +373,7 @@ class Motion(ServiceBase):
                                                     destination_frame="world")
 
         Args:
-            component_name (viam.proto.common.ResourceName): Name of a component on a robot.
+            component_name (Union[ResourceName, str]): Name of a component on a robot.
             destination_frame (str): Name of the desired reference frame.
             supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the robot's frame while
                 calculating pose.

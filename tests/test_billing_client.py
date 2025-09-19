@@ -9,6 +9,10 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
+    PaymentMethodCard,
+    PaymentMethodUSBankAccount,
+    VerificationInfo,
+    PaymentMethodType,
 )
 
 from .mocks.services import MockBilling
@@ -34,7 +38,7 @@ PAID_DATE_TS = Timestamp(seconds=SECONDS_PAID, nanos=NANOS_PAID)
 END_TS = Timestamp(seconds=SECONDS_END, nanos=NANOS_END)
 INVOICE_ID = "invoice"
 STATUS = "status"
-PAYMENT_TYPE = 1
+PAYMENT_TYPE_CARD = PaymentMethodType.PAYMENT_METHOD_TYPE_CARD
 EMAIL = "email@fake.com"
 BILLING_TIER = "tier"
 INVOICE = InvoiceSummary(
@@ -59,10 +63,29 @@ CURR_MONTH_USAGE = GetCurrentMonthUsageResponse(
     total_usage_without_discount=TOTAL_USAGE_WITHOUT_DISCOUNT,
 )
 INVOICES_SUMMARY = GetInvoicesSummaryResponse(outstanding_balance=OUTSTANDING_BALANCE, invoices=INVOICES)
+
+BANK_NAME = "bank_name"
+LAST_FOUR_DIGITS_ACCOUNT_NUMBER = "1234"
+ROUTING_NUMBER = "567890"
+ACCOUNT_TYPE = "checking"
+ARRIVAL_DATE = 1678886400
+HOSTED_VERIFICATION_PAGE_URL = "https://example.com/verify"
+VERIFICATION_INFO = VerificationInfo(arrival_date=ARRIVAL_DATE, hosted_verification_page_url=HOSTED_VERIFICATION_PAGE_URL)
+PAYMENT_METHOD_US_BANK_ACCOUNT = PaymentMethodUSBankAccount(bank_name=BANK_NAME, last_four_digits_account_number=LAST_FOUR_DIGITS_ACCOUNT_NUMBER, routing_number=ROUTING_NUMBER, account_type=ACCOUNT_TYPE, verification_info=VERIFICATION_INFO)
+PAYMENT_TYPE_USBANKACCOUNT = PaymentMethodType.PAYMENT_METHOD_TYPE_USBANKACCOUNT
+
 ORG_BILLING_INFO = GetOrgBillingInformationResponse(
-    type=PAYMENT_TYPE,
+    type=PAYMENT_TYPE_CARD,
     billing_email=EMAIL,
     billing_tier=BILLING_TIER,
+    method_card=PaymentMethodCard(brand="Visa", last_four_digits="1111")
+)
+
+ORG_BILLING_INFO_USBANKACCOUNT = GetOrgBillingInformationResponse(
+    type=PAYMENT_TYPE_USBANKACCOUNT,
+    billing_email=EMAIL,
+    billing_tier=BILLING_TIER,
+    method_us_bank_account=PAYMENT_METHOD_US_BANK_ACCOUNT
 )
 
 AUTH_TOKEN = "auth_token"
@@ -105,6 +128,14 @@ class TestClient:
             client = BillingClient(channel, BILLING_SERVICE_METADATA)
             org_billing_info = await client.get_org_billing_information(org_id=org_id)
             assert org_billing_info == ORG_BILLING_INFO
+            assert service.org_id == org_id
+
+    async def test_get_org_billing_information_us_bank_account(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            org_id = "baz"
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            org_billing_info = await client.get_org_billing_information(org_id=org_id)
+            assert org_billing_info == ORG_BILLING_INFO_USBANKACCOUNT
             assert service.org_id == org_id
 
     async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
