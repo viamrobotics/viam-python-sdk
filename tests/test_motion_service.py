@@ -5,8 +5,6 @@ import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import Arm
-from viam.components.base import Base
 from viam.gen.service.motion.v1.motion_pb2 import (
     PLAN_STATE_FAILED,
     PLAN_STATE_IN_PROGRESS,
@@ -19,7 +17,7 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PlanStep,
     PlanWithStatus,
 )
-from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, ResourceName, Transform, WorldState
+from viam.proto.common import GeoGeometry, Geometry, GeoPoint, Pose, PoseInFrame, Transform, WorldState
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
 from viam.resource.manager import ResourceManager
 from viam.services.motion import MotionClient
@@ -37,7 +35,7 @@ def motion():
     class MockMotion(Motion):
         async def move(
             self,
-            component_name: ResourceName,
+            component_name: str,
             destination: PoseInFrame,
             world_state: Optional[WorldState] = None,
             constraints: Optional[Constraints] = None,
@@ -49,9 +47,9 @@ def motion():
 
         async def move_on_globe(
             self,
-            component_name: ResourceName,
+            component_name: str,
             destination: GeoPoint,
-            movement_sensor_name: ResourceName,
+            movement_sensor_name: str,
             obstacles: Optional[Sequence[GeoGeometry]] = None,
             heading: Optional[float] = None,
             configuration: Optional[MotionConfiguration] = None,
@@ -64,9 +62,9 @@ def motion():
 
         async def move_on_map(
             self,
-            component_name: ResourceName,
+            component_name: str,
             destination: Pose,
-            slam_service_name: ResourceName,
+            slam_service_name: str,
             configuration: Optional[MotionConfiguration] = None,
             obstacles: Optional[Sequence[Geometry]] = None,
             *,
@@ -76,13 +74,13 @@ def motion():
             raise NotImplementedError
 
         async def stop_plan(
-            self, component_name: ResourceName, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None
+            self, component_name: str, *, extra: Optional[Mapping[str, ValueTypes]] = None, timeout: Optional[float] = None
         ):
             raise NotImplementedError
 
         async def get_plan(
             self,
-            component_name: ResourceName,
+            component_name: str,
             last_plan_only: bool = False,
             execution_id: Optional[str] = None,
             *,
@@ -98,7 +96,7 @@ def motion():
 
         async def get_pose(
             self,
-            component_name: ResourceName,
+            component_name: str,
             destination_frame: str,
             supplemental_transforms: Optional[Sequence[Transform]] = None,
             *,
@@ -121,7 +119,7 @@ class TestMotionService:
             patched_method.return_value = True
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                resource_name = Arm.get_resource_name("arm")
+                resource_name = "arm"
                 destination = PoseInFrame(reference_frame="refframe")
                 world_state = WorldState(transforms=[Transform(reference_frame="ws_tfrm_rf")])
                 constraints = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
@@ -150,7 +148,7 @@ class TestMotionService:
             patched_method.return_value = response
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                rn = Arm.get_resource_name("arm")
+                rn = "arm"
                 destination_frame = "x"
                 transforms = [Transform(reference_frame="y")]
                 extra = {"foo": "bar"}
@@ -170,9 +168,9 @@ class TestMotionService:
             patched_method.return_value = resopnse
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                component_rn = Base.get_resource_name("move_on_globe_base")
+                component_rn = "move_on_globe_base"
                 destination = Pose(x=1, y=2, z=3, theta=4)
-                slam_rn = ResourceName(namespace="rdk", type="service", subtype="slam", name="move_on_map_slam")
+                slam_rn = "move_on_map_slam"
                 configuration = MotionConfiguration(position_polling_frequency_hz=4.44)
                 obstacles = [Geometry(center=Pose(x=9, y=8, z=7, theta=6))]
                 extra = {"foo": "bar"}
@@ -202,9 +200,9 @@ class TestMotionService:
             patched_method.return_value = response
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                component_rn = Base.get_resource_name("move_on_globe_base")
+                component_rn = "move_on_globe_base"
                 destination = GeoPoint(latitude=123, longitude=456)
-                movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
+                movement_rn = "move_on_globe_ms"
                 obstacles = [GeoGeometry(location=GeoPoint(latitude=44, longitude=786))]
                 heading = 5.55
                 configuration = MotionConfiguration(position_polling_frequency_hz=4.44)
@@ -238,7 +236,7 @@ class TestMotionService:
         with patch.object(motion, "stop_plan") as patched_method:
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                component_rn = Base.get_resource_name("stop_plan_base")
+                component_rn = "stop_plan_base"
                 extra = {"foo": "bar"}
                 timeout = 4
                 await client.stop_plan(component_rn, extra=extra, timeout=timeout)
@@ -253,7 +251,7 @@ class TestMotionService:
                 current_plan_with_status=PlanWithStatus(
                     plan=Plan(
                         id="plan_id2",
-                        component_name=Base.get_resource_name("get_plan_base"),
+                        component_name="get_plan_base",
                         execution_id="execution_id",
                         steps=[
                             PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21))}),
@@ -267,7 +265,7 @@ class TestMotionService:
                     PlanWithStatus(
                         plan=Plan(
                             id="plan_id1",
-                            component_name=Base.get_resource_name("get_plan_base"),
+                            component_name="get_plan_base",
                             execution_id="execution_id",
                             steps=[
                                 PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=1, y=1, z=1, o_x=1, o_y=1, o_z=1, theta=20))}),
@@ -283,7 +281,7 @@ class TestMotionService:
             patched_method.return_value = response
             async with ChannelFor([service]) as channel:
                 client = MotionClient(MOTION_SERVICE_NAME, channel)
-                component_rn = Base.get_resource_name("get_plan_base")
+                component_rn = "get_plan_base"
                 last_plan_only = True
                 execution_id = "ex_id"
                 extra = {"foo": "bar"}

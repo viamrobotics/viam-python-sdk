@@ -10,7 +10,6 @@ from viam.proto.common import (
     GeoPoint,
     Pose,
     PoseInFrame,
-    ResourceName,
     Transform,
     WorldState,
 )
@@ -54,7 +53,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
         constraints: Optional[Constraints] = None,
@@ -77,9 +76,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move_on_globe(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: GeoPoint,
-        movement_sensor_name: ResourceName,
+        movement_sensor_name: str,
         obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
@@ -106,9 +105,9 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def move_on_map(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination: Pose,
-        slam_service_name: ResourceName,
+        slam_service_name: str,
         configuration: Optional[MotionConfiguration] = None,
         obstacles: Optional[Sequence[Geometry]] = None,
         *,
@@ -131,7 +130,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def stop_plan(
         self,
-        component_name: ResourceName,
+        component_name: str,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -149,7 +148,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def get_plan(
         self,
-        component_name: ResourceName,
+        component_name: str,
         last_plan_only: bool = False,
         execution_id: Optional[str] = None,
         *,
@@ -189,7 +188,7 @@ class MotionClient(Motion, ReconfigurableResourceRPCClientBase):
 
     async def get_pose(
         self,
-        component_name: ResourceName,
+        component_name: str,
         destination_frame: str,
         supplemental_transforms: Optional[Sequence[Transform]] = None,
         *,
