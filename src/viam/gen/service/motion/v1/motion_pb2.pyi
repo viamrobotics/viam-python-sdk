@@ -51,20 +51,23 @@ class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
     CONSTRAINTS_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
+    component_name: builtins.str
+    'Component on the robot to move to the specified destination'
 
     @property
     def destination(self) -> common.v1.common_pb2.PoseInFrame:
         """Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system"""
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """Component on the robot to move to the specified destination"""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def world_state(self) -> common.v1.common_pb2.WorldState:
@@ -80,13 +83,13 @@ class MoveRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., component_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name_deprecated', b'component_name_deprecated', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
+    def ClearField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
         ...
 
     @typing.overload
@@ -116,25 +119,31 @@ class MoveOnMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
+    SLAM_SERVICE_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
     OBSTACLES_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
+    component_name: builtins.str
+    'Component on the robot to move to the specified destination'
+    slam_service_name: builtins.str
+    'Name of the slam service from which the SLAM map is requested'
 
     @property
     def destination(self) -> common.v1.common_pb2.Pose:
         """Specify a destination to, which can be any pose with respect to the SLAM map's origin"""
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """Component on the robot to move to the specified destination"""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
-    def slam_service_name(self) -> common.v1.common_pb2.ResourceName:
-        """Name of the slam service from which the SLAM map is requested"""
+    def slam_service_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use slam_service_name field."""
 
     @property
     def motion_configuration(self) -> global___MotionConfiguration:
@@ -148,13 +157,13 @@ class MoveOnMapRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., motion_configuration: global___MotionConfiguration | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.Geometry] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., slam_service_name_deprecated: common.v1.common_pb2.ResourceName | None=..., motion_configuration: global___MotionConfiguration | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.Geometry] | None=..., component_name: builtins.str=..., slam_service_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name_deprecated', b'slam_service_name_deprecated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'obstacles', b'obstacles', 'slam_service_name', b'slam_service_name']) -> None:
+    def ClearField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'obstacles', b'obstacles', 'slam_service_name', b'slam_service_name', 'slam_service_name_deprecated', b'slam_service_name_deprecated']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_motion_configuration', b'_motion_configuration']) -> typing.Literal['motion_configuration'] | None:
@@ -179,24 +188,28 @@ global___MoveOnMapResponse = MoveOnMapResponse
 class ObstacleDetector(google.protobuf.message.Message):
     """Pairs a vision service with a camera, informing the service about which camera it may use"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VISION_SERVICE_DEPRECATED_FIELD_NUMBER: builtins.int
+    CAMERA_DEPRECATED_FIELD_NUMBER: builtins.int
     VISION_SERVICE_FIELD_NUMBER: builtins.int
     CAMERA_FIELD_NUMBER: builtins.int
+    vision_service: builtins.str
+    camera: builtins.str
 
     @property
-    def vision_service(self) -> common.v1.common_pb2.ResourceName:
+    def vision_service_deprecated(self) -> common.v1.common_pb2.ResourceName:
         ...
 
     @property
-    def camera(self) -> common.v1.common_pb2.ResourceName:
+    def camera_deprecated(self) -> common.v1.common_pb2.ResourceName:
         ...
 
-    def __init__(self, *, vision_service: common.v1.common_pb2.ResourceName | None=..., camera: common.v1.common_pb2.ResourceName | None=...) -> None:
+    def __init__(self, *, vision_service_deprecated: common.v1.common_pb2.ResourceName | None=..., camera_deprecated: common.v1.common_pb2.ResourceName | None=..., vision_service: builtins.str=..., camera: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['camera_deprecated', b'camera_deprecated', 'vision_service_deprecated', b'vision_service_deprecated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> None:
+    def ClearField(self, field_name: typing.Literal['camera', b'camera', 'camera_deprecated', b'camera_deprecated', 'vision_service', b'vision_service', 'vision_service_deprecated', b'vision_service_deprecated']) -> None:
         ...
 global___ObstacleDetector = ObstacleDetector
 
@@ -260,28 +273,34 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
     HEADING_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
+    MOVEMENT_SENSOR_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     OBSTACLES_FIELD_NUMBER: builtins.int
     MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
     BOUNDING_REGIONS_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
     heading: builtins.float
     'Optional compass heading to achieve at the destination, in degrees [0-360)'
+    component_name: builtins.str
+    'Component on the robot to move to the specified destination'
+    movement_sensor_name: builtins.str
+    'Name of the movement sensor which will be used to check robot location'
 
     @property
     def destination(self) -> common.v1.common_pb2.GeoPoint:
         """Destination, encoded as a GeoPoint"""
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """Component on the robot to move to the specified destination"""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
-    def movement_sensor_name(self) -> common.v1.common_pb2.ResourceName:
-        """Name of the movement sensor which will be used to check robot location"""
+    def movement_sensor_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use movement_sensor_name field."""
 
     @property
     def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]:
@@ -299,13 +318,13 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., motion_configuration: global___MotionConfiguration | None=..., bounding_regions: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name_deprecated: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., motion_configuration: global___MotionConfiguration | None=..., bounding_regions: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., component_name: builtins.str=..., movement_sensor_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name_deprecated', b'movement_sensor_name_deprecated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'bounding_regions', b'bounding_regions', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
+    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'bounding_regions', b'bounding_regions', 'component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'movement_sensor_name_deprecated', b'movement_sensor_name_deprecated', 'name', b'name', 'obstacles', b'obstacles']) -> None:
         ...
 
     @typing.overload
@@ -335,17 +354,20 @@ global___MoveOnGlobeResponse = MoveOnGlobeResponse
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     DESTINATION_FRAME_FIELD_NUMBER: builtins.int
     SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     destination_frame: builtins.str
     'the reference frame in which the component\'s pose\n    should be provided, if unset this defaults\n    to the "world" reference frame\n    '
+    component_name: builtins.str
+    'the component whose pose is being requested'
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """the component whose pose is being requested"""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Transform]:
@@ -357,13 +379,13 @@ class GetPoseRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., destination_frame: builtins.str=..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., destination_frame: builtins.str=..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None=..., component_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame', 'extra', b'extra', 'name', b'name', 'supplemental_transforms', b'supplemental_transforms']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'destination_frame', b'destination_frame', 'extra', b'extra', 'name', b'name', 'supplemental_transforms', b'supplemental_transforms']) -> None:
         ...
 global___GetPoseRequest = GetPoseRequest
 
@@ -390,26 +412,29 @@ global___GetPoseResponse = GetPoseResponse
 class StopPlanRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'The name of the motion service'
+    component_name: builtins.str
+    'The component of the currently executing plan to stop'
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The component of the currently executing plan to stop"""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., component_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StopPlanRequest = StopPlanRequest
 
@@ -469,9 +494,10 @@ global___ListPlanStatusesResponse = ListPlanStatusesResponse
 class GetPlanRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     LAST_PLAN_ONLY_FIELD_NUMBER: builtins.int
     EXECUTION_ID_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'The name of the motion service'
@@ -479,22 +505,24 @@ class GetPlanRequest(google.protobuf.message.Message):
     'If supplied, the response will only return\n    the the last plan for the component / execution\n    '
     execution_id: builtins.str
     'If you want to know about the plans of a previous execution'
+    component_name: builtins.str
+    'The name of the component which was requested to be moved.'
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The name of the component which was requested to be moved."""
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., last_plan_only: builtins.bool=..., execution_id: builtins.str | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., last_plan_only: builtins.bool=..., execution_id: builtins.str | None=..., component_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra', 'last_plan_only', b'last_plan_only', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'extra', b'extra', 'last_plan_only', b'last_plan_only', 'name', b'name']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing.Literal['_execution_id', b'_execution_id']) -> typing.Literal['execution_id'] | None:
@@ -717,33 +745,32 @@ class PlanStatusWithID(google.protobuf.message.Message):
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PLAN_ID_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     EXECUTION_ID_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     plan_id: builtins.str
     'The unique ID of the plan'
     execution_id: builtins.str
     'The unique ID which identifies the plan execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
+    component_name: builtins.str
+    'The component to be moved.\n    Used for tracking & stopping.\n    NOTE: A plan may move more components than just the\n    component_name.\n    '
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The component to be moved.
-        Used for tracking & stopping.
-        NOTE: A plan may move more components than just the
-        component_name.
-        """
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def status(self) -> global___PlanStatus:
         ...
 
-    def __init__(self, *, plan_id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., status: global___PlanStatus | None=...) -> None:
+    def __init__(self, *, plan_id: builtins.str=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., status: global___PlanStatus | None=..., component_name: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name_deprecated', b'component_name_deprecated', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'plan_id', b'plan_id', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'plan_id', b'plan_id', 'status', b'status']) -> None:
         ...
 global___PlanStatusWithID = PlanStatusWithID
 
@@ -783,33 +810,32 @@ class Plan(google.protobuf.message.Message):
     """A plan describes a motion plan"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_DEPRECATED_FIELD_NUMBER: builtins.int
     EXECUTION_ID_FIELD_NUMBER: builtins.int
     STEPS_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     id: builtins.str
     "The plan's unique ID"
     execution_id: builtins.str
     'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning\n    '
+    component_name: builtins.str
+    'The component requested to be moved.\n    Used for tracking & stopping.\n    NOTE: A plan may move more components than just the\n    root component.\n    '
 
     @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The component requested to be moved.
-        Used for tracking & stopping.
-        NOTE: A plan may move more components than just the
-        root component.
-        """
+    def component_name_deprecated(self) -> common.v1.common_pb2.ResourceName:
+        """Deprecated, use component_name field."""
 
     @property
     def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]:
         """The steps of a plan is an ordered list of plan steps"""
 
-    def __init__(self, *, id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., steps: collections.abc.Iterable[global___PlanStep] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., component_name_deprecated: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., steps: collections.abc.Iterable[global___PlanStep] | None=..., component_name: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['component_name', b'component_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name_deprecated', b'component_name_deprecated']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'id', b'id', 'steps', b'steps']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'id', b'id', 'steps', b'steps']) -> None:
         ...
 global___Plan = Plan
 

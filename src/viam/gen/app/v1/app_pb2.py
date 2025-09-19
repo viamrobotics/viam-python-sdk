@@ -4,7 +4,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 3, '', 'app/v1/app.proto')
+_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 2, '', 'app/v1/app.proto')
 _sym_db = _symbol_database.Default()
 from ...app.mltraining.v1 import ml_training_pb2 as app_dot_mltraining_dot_v1_dot_ml__training__pb2
 from ...app.packages.v1 import packages_pb2 as app_dot_packages_dot_v1_dot_packages__pb2
