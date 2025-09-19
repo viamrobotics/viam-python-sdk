@@ -2,13 +2,13 @@ import asyncio
 import importlib
 import pkgutil
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import asynccontextmanager
 from copy import deepcopy
 from datetime import timedelta
 from enum import IntEnum
 from threading import Lock, Thread
 from typing import MutableMapping, Optional
-from concurrent.futures import ThreadPoolExecutor
-from contextlib import asynccontextmanager
 
 from grpclib import Status
 from grpclib.client import Channel
@@ -108,6 +108,7 @@ class SessionsClient:
         if event.status == Status.INVALID_ARGUMENT and event.status_message == "SESSION_EXPIRED":
             LOGGER.debug("Session expired")
             self.reset()
+
     @asynccontextmanager
     async def _acquire_lock_async(self):
         loop = asyncio.get_event_loop()
@@ -128,9 +129,9 @@ class SessionsClient:
                 response: StartSessionResponse = await self.client.StartSession(request)
             except GRPCError as error:
                 if error.status == Status.UNIMPLEMENTED:
-                        self._reset()
-                        self._supported = _SupportedState.FALSE
-                        return self._metadata
+                    self._reset()
+                    self._supported = _SupportedState.FALSE
+                    return self._metadata
                 else:
                     raise
 

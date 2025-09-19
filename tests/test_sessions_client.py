@@ -109,7 +109,7 @@ async def test_sessions_heartbeat_thread_blocked():
     t1 = asyncio.create_task(client.metadata)
     t2 = asyncio.create_task(client.metadata)
 
-    await asyncio.gather(t1,t2)
+    await asyncio.gather(t1, t2)
     assert t1.result() == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
     assert t2.result() == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
 
