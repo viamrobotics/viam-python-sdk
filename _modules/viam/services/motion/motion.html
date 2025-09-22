@@ -96,7 +96,7 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">GeoGeometry</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">WorldState</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">GeoGeometry</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">WorldState</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="n">Constraints</span><span class="p">,</span> <span class="n">GetPlanResponse</span><span class="p">,</span> <span class="n">MotionConfiguration</span><span class="p">,</span> <span class="n">PlanStatusWithID</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span>
@@ -122,7 +122,7 @@
 <div class="viewcode-block" id="Motion.move"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.move">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
         <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Constraints</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -133,18 +133,17 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plan and execute a movement to move the component specified to its goal destination.</span>
 
 <span class="sd">        Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This</span>
-<span class="sd">        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with</span>
-<span class="sd">        originating ReferenceFrame&#39;s name. Then pass in the resource name into ``component_name``. Ex::</span>
+<span class="sd">        technique allows for planning and moving the frame itself to the ``destination``.</span>
+<span class="sd">        To do so, simply pass in a string into ``component_name``. Ex::</span>
 
-<span class="sd">            resource_name = Gripper.get_resource_name(&quot;externalFrame&quot;)</span>
-<span class="sd">            success = await MotionServiceClient.move(resource_name, ...)</span>
+<span class="sd">            success = await MotionServiceClient.move(&quot;externalFrame&quot;, ...)</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
-<span class="sd">            # Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
-<span class="sd">            gripper_name = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
+<span class="sd">            # Assumes &quot;my_gripper&quot; on the machine</span>
+<span class="sd">            gripper_name = &quot;my_gripper&quot;</span>
 <span class="sd">            my_frame = &quot;my_gripper_offset&quot;</span>
 
 <span class="sd">            goal_pose = Pose(x=0, y=0, z=300, o_x=0, o_y=0, o_z=1, theta=0)</span>
@@ -158,7 +157,7 @@
 <span class="sd">                                  extra={})</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.</span>
+<span class="sd">            component_name (str): Name of a component on a given robot.</span>
 <span class="sd">            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was</span>
 <span class="sd">                observed.</span>
 <span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints</span>
@@ -184,9 +183,9 @@
 <div class="viewcode-block" id="Motion.move_on_globe"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.move_on_globe">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_globe</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span>
-        <span class="n">movement_sensor_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">movement_sensor_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoGeometry</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">heading</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">configuration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MotionConfiguration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -209,24 +208,23 @@
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
-<span class="sd">            # Get the ResourceNames of the base and movement sensor</span>
-<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
-<span class="sd">            mvmnt_sensor_resource_name = MovementSensor.get_resource_name(</span>
-<span class="sd">                &quot;my_movement_sensor&quot;)</span>
+<span class="sd">            # Get the names of the base and movement sensor</span>
+<span class="sd">            my_base_name = &quot;my_base&quot;</span>
+<span class="sd">            mvmnt_sensor_name = &quot;my_movement_sensor&quot;</span>
 <span class="sd">            #  Define a destination GeoPoint at the GPS coordinates [0, 0]</span>
 <span class="sd">            my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)</span>
 
 <span class="sd">            # Move the base component to the designated geographic location, as reported by the movement sensor</span>
 <span class="sd">            execution_id = await motion.move_on_globe(</span>
-<span class="sd">                component_name=my_base_resource_name,</span>
+<span class="sd">                component_name=my_base_name,</span>
 <span class="sd">                destination=my_destination,</span>
-<span class="sd">                movement_sensor_name=mvmnt_sensor_resource_name)</span>
+<span class="sd">                movement_sensor_name=mvmnt_sensor_name)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): The ResourceName of the base to move.</span>
+<span class="sd">            component_name (str): The name of the base to move.</span>
 <span class="sd">            destination (GeoPoint): The location of the component&#39;s destination, represented in geographic notation as a</span>
 <span class="sd">                GeoPoint (lat, lng).</span>
-<span class="sd">            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check</span>
+<span class="sd">            movement_sensor_name (str): The name of the movement sensor that you want to use to check</span>
 <span class="sd">                the machine&#39;s location.</span>
 <span class="sd">            obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,</span>
 <span class="sd">                with each represented as a GeoGeometry. Default: None</span>
@@ -259,9 +257,9 @@
 <div class="viewcode-block" id="Motion.move_on_map"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.move_on_map">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_map</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">slam_service_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">slam_service_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">configuration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MotionConfiguration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -283,23 +281,23 @@
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 
-<span class="sd">            # Get the ResourceNames of the base component and SLAM service</span>
-<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
-<span class="sd">            my_slam_service_name = SLAMClient.get_resource_name(&quot;my_slam_service&quot;)</span>
+<span class="sd">            # Get the names of the base component and SLAM service</span>
+<span class="sd">            my_base_name = &quot;my_base&quot;</span>
+<span class="sd">            my_slam_service_name = &quot;my_slam_service&quot;</span>
 
 <span class="sd">            # Define a destination pose with respect to the origin of the map from the SLAM service &quot;my_slam_service&quot;</span>
 <span class="sd">            my_pose = Pose(y=10)</span>
 
 <span class="sd">            # Move the base component to the destination pose of Y=10, a location of</span>
 <span class="sd">            # (0, 10, 0) in respect to the origin of the map</span>
-<span class="sd">            execution_id = await motion.move_on_map(component_name=my_base_resource_name,</span>
+<span class="sd">            execution_id = await motion.move_on_map(component_name=my_base_name,</span>
 <span class="sd">                                                    destination=my_pose,</span>
 <span class="sd">                                                    slam_service_name=my_slam_service_name)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): The ResourceName of the base to move.</span>
+<span class="sd">            component_name (str): The name of the base to move.</span>
 <span class="sd">            destination (Pose): The destination, which can be any Pose with respect to the SLAM map&#39;s origin.</span>
-<span class="sd">            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.</span>
+<span class="sd">            slam_service_name (str): The name of the SLAM service from which the SLAM map is requested.</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.</span>
 <span class="sd">                This parameter and each of its fields are optional.</span>
 
@@ -326,7 +324,7 @@
 <div class="viewcode-block" id="Motion.stop_plan"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.stop_plan">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_plan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -340,11 +338,11 @@
 <span class="sd">            # Assuming a `move_on_globe()` started the execution</span>
 <span class="sd">            # Stop the base component which was instructed to move by `move_on_globe()`</span>
 <span class="sd">            # or `move_on_map()`</span>
-<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            my_base_name = &quot;my_base&quot;</span>
 <span class="sd">            await motion.stop_plan(component_name=mvmnt_sensor)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): The component to stop</span>
+<span class="sd">            component_name (str): The component to stop</span>
 
 <span class="sd">        For more information, see `Motion service &lt;https://docs.viam.com/dev/reference/apis/services/motion/#stopplan&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -353,7 +351,7 @@
 <div class="viewcode-block" id="Motion.get_plan"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.get_plan">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">last_plan_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">execution_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -380,12 +378,12 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
-<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            my_base_name = &quot;my_base&quot;</span>
 <span class="sd">            # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
-<span class="sd">            resp = await motion.get_plan(component_name=my_base_resource_name)</span>
+<span class="sd">            resp = await motion.get_plan(component_name=my_base_name)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): The component to stop</span>
+<span class="sd">            component_name (str): The component to stop</span>
 <span class="sd">            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution.</span>
 <span class="sd">            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id.</span>
 
@@ -432,7 +430,7 @@
 <div class="viewcode-block" id="Motion.get_pose"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/motion/index.html#viam.services.motion.Motion.get_pose">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">destination_frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">supplemental_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
@@ -448,7 +446,7 @@
 <span class="sd">            # (``Arm``, ``Base``, etc).</span>
 
 <span class="sd">            # Create a `component_name`:</span>
-<span class="sd">            component_name = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
+<span class="sd">            component_name = &quot;my_gripper&quot;</span>
 
 <span class="sd">            from viam.components.gripper import Gripper</span>
 <span class="sd">            from viam.services.motion import MotionClient</span>
@@ -457,12 +455,12 @@
 <span class="sd">            robot = await connect()</span>
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
-<span class="sd">            gripperName = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
+<span class="sd">            gripperName = &quot;my_gripper&quot;</span>
 <span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,</span>
 <span class="sd">                                                    destination_frame=&quot;world&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a robot.</span>
+<span class="sd">            component_name (str): Name of a component on a robot.</span>
 <span class="sd">            destination_frame (str): Name of the desired reference frame.</span>
 <span class="sd">            supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the robot&#39;s frame while</span>
 <span class="sd">                calculating pose.</span>

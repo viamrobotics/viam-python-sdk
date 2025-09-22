@@ -40,7 +40,7 @@ Module Contents
       The API of the Resource
 
 
-   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: move(component_name: str, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
       :abstractmethod:
 
       :async:
@@ -49,18 +49,17 @@ Module Contents
       Plan and execute a movement to move the component specified to its goal destination.
 
       Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This
-      technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with
-      originating ReferenceFrame's name. Then pass in the resource name into ``component_name``. Ex::
+      technique allows for planning and moving the frame itself to the ``destination``.
+      To do so, simply pass in a string into ``component_name``. Ex::
 
-          resource_name = Gripper.get_resource_name("externalFrame")
-          success = await MotionServiceClient.move(resource_name, ...)
+          success = await MotionServiceClient.move("externalFrame", ...)
 
       ::
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-          # Assumes a gripper configured with name "my_gripper" on the machine
-          gripper_name = Gripper.get_resource_name("my_gripper")
+          # Assumes "my_gripper" on the machine
+          gripper_name = "my_gripper"
           my_frame = "my_gripper_offset"
 
           goal_pose = Pose(x=0, y=0, z=300, o_x=0, o_y=0, o_z=1, theta=0)
@@ -74,7 +73,7 @@ Module Contents
                                 extra={})
 
       :param component_name: Name of a component on a given robot.
-      :type component_name: viam.proto.common.ResourceName
+      :type component_name: str
       :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was
                           observed.
       :type destination: viam.proto.common.PoseInFrame
@@ -100,7 +99,7 @@ Module Contents
 
 
 
-   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_globe(component_name: str, destination: viam.proto.common.GeoPoint, movement_sensor_name: str, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :abstractmethod:
 
       :async:
@@ -120,27 +119,26 @@ Module Contents
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-          # Get the ResourceNames of the base and movement sensor
-          my_base_resource_name = Base.get_resource_name("my_base")
-          mvmnt_sensor_resource_name = MovementSensor.get_resource_name(
-              "my_movement_sensor")
+          # Get the names of the base and movement sensor
+          my_base_name = "my_base"
+          mvmnt_sensor_name = "my_movement_sensor"
           #  Define a destination GeoPoint at the GPS coordinates [0, 0]
           my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
 
           # Move the base component to the designated geographic location, as reported by the movement sensor
           execution_id = await motion.move_on_globe(
-              component_name=my_base_resource_name,
+              component_name=my_base_name,
               destination=my_destination,
-              movement_sensor_name=mvmnt_sensor_resource_name)
+              movement_sensor_name=mvmnt_sensor_name)
 
-      :param component_name: The ResourceName of the base to move.
-      :type component_name: ResourceName
+      :param component_name: The name of the base to move.
+      :type component_name: str
       :param destination: The location of the component's destination, represented in geographic notation as a
                           GeoPoint (lat, lng).
       :type destination: GeoPoint
-      :param movement_sensor_name: The ResourceName of the movement sensor that you want to use to check
+      :param movement_sensor_name: The name of the movement sensor that you want to use to check
                                    the machine's location.
-      :type movement_sensor_name: ResourceName
+      :type movement_sensor_name: str
       :param obstacles: Obstacles to consider when planning the motion of the component,
                         with each represented as a GeoGeometry. Default: None
       :type obstacles: Optional[Sequence[GeoGeometry]]
@@ -174,7 +172,7 @@ Module Contents
 
 
 
-   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Sequence[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_map(component_name: str, destination: viam.proto.common.Pose, slam_service_name: str, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Sequence[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :abstractmethod:
 
       :async:
@@ -194,25 +192,25 @@ Module Contents
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
 
-          # Get the ResourceNames of the base component and SLAM service
-          my_base_resource_name = Base.get_resource_name("my_base")
-          my_slam_service_name = SLAMClient.get_resource_name("my_slam_service")
+          # Get the names of the base component and SLAM service
+          my_base_name = "my_base"
+          my_slam_service_name = "my_slam_service"
 
           # Define a destination pose with respect to the origin of the map from the SLAM service "my_slam_service"
           my_pose = Pose(y=10)
 
           # Move the base component to the destination pose of Y=10, a location of
           # (0, 10, 0) in respect to the origin of the map
-          execution_id = await motion.move_on_map(component_name=my_base_resource_name,
+          execution_id = await motion.move_on_map(component_name=my_base_name,
                                                   destination=my_pose,
                                                   slam_service_name=my_slam_service_name)
 
-      :param component_name: The ResourceName of the base to move.
-      :type component_name: ResourceName
+      :param component_name: The name of the base to move.
+      :type component_name: str
       :param destination: The destination, which can be any Pose with respect to the SLAM map's origin.
       :type destination: Pose
-      :param slam_service_name: The ResourceName of the SLAM service from which the SLAM map is requested.
-      :type slam_service_name: ResourceName
+      :param slam_service_name: The name of the SLAM service from which the SLAM map is requested.
+      :type slam_service_name: str
       :param configuration: The configuration you want to set across this machine for this motion service.
                             This parameter and each of its fields are optional.
 
@@ -240,7 +238,7 @@ Module Contents
 
 
 
-   .. py:method:: stop_plan(component_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop_plan(component_name: str, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None)
       :abstractmethod:
 
       :async:
@@ -255,17 +253,17 @@ Module Contents
           # Assuming a `move_on_globe()` started the execution
           # Stop the base component which was instructed to move by `move_on_globe()`
           # or `move_on_map()`
-          my_base_resource_name = Base.get_resource_name("my_base")
+          my_base_name = "my_base"
           await motion.stop_plan(component_name=mvmnt_sensor)
 
       :param component_name: The component to stop
-      :type component_name: ResourceName
+      :type component_name: str
 
       For more information, see `Motion service <https://docs.viam.com/dev/reference/apis/services/motion/#stopplan>`_.
 
 
 
-   .. py:method:: get_plan(component_name: viam.proto.common.ResourceName, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Plan
+   .. py:method:: get_plan(component_name: str, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> Plan
       :abstractmethod:
 
       :async:
@@ -291,12 +289,12 @@ Module Contents
       ::
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
-          my_base_resource_name = Base.get_resource_name("my_base")
+          my_base_name = "my_base"
           # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
-          resp = await motion.get_plan(component_name=my_base_resource_name)
+          resp = await motion.get_plan(component_name=my_base_name)
 
       :param component_name: The component to stop
-      :type component_name: ResourceName
+      :type component_name: str
       :param last_plan_only: If supplied, the response will only return the last plan for the component / execution.
       :type last_plan_only: Optional[bool]
       :param execution_id: If supplied, the response will only return plans with the provided execution_id.
@@ -340,7 +338,7 @@ Module Contents
 
 
 
-   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[Sequence[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
+   .. py:method:: get_pose(component_name: str, destination_frame: str, supplemental_transforms: Optional[Sequence[viam.proto.common.Transform]] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
       :abstractmethod:
 
       :async:
@@ -354,7 +352,7 @@ Module Contents
           # (``Arm``, ``Base``, etc).
 
           # Create a `component_name`:
-          component_name = Gripper.get_resource_name("my_gripper")
+          component_name = "my_gripper"
 
           from viam.components.gripper import Gripper
           from viam.services.motion import MotionClient
@@ -363,12 +361,12 @@ Module Contents
           robot = await connect()
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
-          gripperName = Gripper.get_resource_name("my_gripper")
+          gripperName = "my_gripper"
           gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
                                                   destination_frame="world")
 
       :param component_name: Name of a component on a robot.
-      :type component_name: viam.proto.common.ResourceName
+      :type component_name: str
       :param destination_frame: Name of the desired reference frame.
       :type destination_frame: str
       :param supplemental_transforms: Transforms used to augment the robot's frame while
