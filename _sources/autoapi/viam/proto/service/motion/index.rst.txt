@@ -290,7 +290,7 @@ Package Contents
       Arc constraint, Time constraint, and others will be added here when they are supported
 
 
-.. py:class:: GetPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPlanRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -321,10 +321,16 @@ Package Contents
       If you want to know about the plans of a previous execution
 
 
-   .. py:property:: component_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:attribute:: component_name
+      :type:  str
 
       The name of the component which was requested to be moved.
+
+
+   .. py:property:: component_name_deprecated
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Deprecated, use component_name field.
 
 
    .. py:property:: extra
@@ -333,7 +339,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['_execution_id', b'_execution_id', 'component_name_deprecated', b'component_name_deprecated', 'execution_id', b'execution_id', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -412,7 +418,7 @@ Package Contents
 
 
 
-.. py:class:: GetPoseRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPoseRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -436,10 +442,16 @@ Package Contents
       to the "world" reference frame
 
 
-   .. py:property:: component_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:attribute:: component_name
+      :type:  str
 
       the component whose pose is being requested
+
+
+   .. py:property:: component_name_deprecated
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Deprecated, use component_name field.
 
 
    .. py:property:: supplemental_transforms
@@ -455,7 +467,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -714,7 +726,7 @@ Package Contents
 
 
 
-.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., component_name: str = ..., movement_sensor_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -738,22 +750,34 @@ Package Contents
       Optional compass heading to achieve at the destination, in degrees [0-360)
 
 
+   .. py:attribute:: component_name
+      :type:  str
+
+      Component on the robot to move to the specified destination
+
+
+   .. py:attribute:: movement_sensor_name
+      :type:  str
+
+      Name of the movement sensor which will be used to check robot location
+
+
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
       Destination, encoded as a GeoPoint
 
 
-   .. py:property:: component_name
+   .. py:property:: component_name_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
-      Component on the robot to move to the specified destination
+      Deprecated, use component_name field.
 
 
-   .. py:property:: movement_sensor_name
+   .. py:property:: movement_sensor_name_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
-      Name of the movement sensor which will be used to check robot location
+      Deprecated, use movement_sensor_name field.
 
 
    .. py:property:: obstacles
@@ -780,7 +804,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name_deprecated', b'movement_sensor_name_deprecated']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -835,7 +859,7 @@ Package Contents
       generated due to replanning.
 
 
-.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., motion_configuration: global___MotionConfiguration | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Geometry] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., motion_configuration: global___MotionConfiguration | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Geometry] | None = ..., component_name: str = ..., slam_service_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -853,22 +877,34 @@ Package Contents
       Name of the motion service
 
 
+   .. py:attribute:: component_name
+      :type:  str
+
+      Component on the robot to move to the specified destination
+
+
+   .. py:attribute:: slam_service_name
+      :type:  str
+
+      Name of the slam service from which the SLAM map is requested
+
+
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.Pose
 
       Specify a destination to, which can be any pose with respect to the SLAM map's origin
 
 
-   .. py:property:: component_name
+   .. py:property:: component_name_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
-      Component on the robot to move to the specified destination
+      Deprecated, use component_name field.
 
 
-   .. py:property:: slam_service_name
+   .. py:property:: slam_service_name_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
-      Name of the slam service from which the SLAM map is requested
+      Deprecated, use slam_service_name field.
 
 
    .. py:property:: motion_configuration
@@ -889,7 +925,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['_motion_configuration', b'_motion_configuration', 'component_name_deprecated', b'component_name_deprecated', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name_deprecated', b'slam_service_name_deprecated']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -943,7 +979,7 @@ Package Contents
       generated due to replanning.
 
 
-.. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -957,16 +993,22 @@ Package Contents
       Name of the motion service
 
 
+   .. py:attribute:: component_name
+      :type:  str
+
+      Component on the robot to move to the specified destination
+
+
    .. py:property:: destination
       :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
       Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system
 
 
-   .. py:property:: component_name
+   .. py:property:: component_name_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
-      Component on the robot to move to the specified destination
+      Deprecated, use component_name field.
 
 
    .. py:property:: world_state
@@ -988,7 +1030,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> bool
+   .. py:method:: HasField(field_name: Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name_deprecated', b'component_name_deprecated', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1039,7 +1081,7 @@ Package Contents
       :type:  bool
 
 
-.. py:class:: ObstacleDetector(*, vision_service: viam.gen.common.v1.common_pb2.ResourceName | None = ..., camera: viam.gen.common.v1.common_pb2.ResourceName | None = ...)
+.. py:class:: ObstacleDetector(*, vision_service_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., camera_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., vision_service: str = ..., camera: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1047,17 +1089,25 @@ Package Contents
    Pairs a vision service with a camera, informing the service about which camera it may use
 
 
-   .. py:property:: vision_service
+   .. py:attribute:: vision_service
+      :type:  str
+
+
+   .. py:attribute:: camera
+      :type:  str
+
+
+   .. py:property:: vision_service_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
 
-   .. py:property:: camera
+   .. py:property:: camera_deprecated
       :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
 
-   .. py:method:: HasField(field_name: Literal['camera', b'camera', 'vision_service', b'vision_service']) -> bool
+   .. py:method:: HasField(field_name: Literal['camera_deprecated', b'camera_deprecated', 'vision_service_deprecated', b'vision_service_deprecated']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1124,7 +1174,7 @@ Package Contents
 
 
 
-.. py:class:: Plan(*, id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[global___PlanStep] | None = ...)
+.. py:class:: Plan(*, id: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[global___PlanStep] | None = ..., component_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1146,13 +1196,19 @@ Package Contents
       generated due to replanning
 
 
-   .. py:property:: component_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:attribute:: component_name
+      :type:  str
 
       The component requested to be moved.
       Used for tracking & stopping.
       NOTE: A plan may move more components than just the
       root component.
+
+
+   .. py:property:: component_name_deprecated
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Deprecated, use component_name field.
 
 
    .. py:property:: steps
@@ -1161,7 +1217,7 @@ Package Contents
       The steps of a plan is an ordered list of plan steps
 
 
-   .. py:method:: HasField(field_name: Literal['component_name', b'component_name']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1255,7 +1311,7 @@ Package Contents
 
 
 
-.. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: global___PlanStatus | None = ...)
+.. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: global___PlanStatus | None = ..., component_name: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1279,8 +1335,8 @@ Package Contents
       generated due to replanning.
 
 
-   .. py:property:: component_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:attribute:: component_name
+      :type:  str
 
       The component to be moved.
       Used for tracking & stopping.
@@ -1288,12 +1344,18 @@ Package Contents
       component_name.
 
 
+   .. py:property:: component_name_deprecated
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Deprecated, use component_name field.
+
+
    .. py:property:: status
       :type: global___PlanStatus
 
 
 
-   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'status', b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'status', b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1471,7 +1533,7 @@ Package Contents
 
 
 
-.. py:class:: StopPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: StopPlanRequest(*, name: str = ..., component_name_deprecated: viam.gen.common.v1.common_pb2.ResourceName | None = ..., component_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1489,10 +1551,16 @@ Package Contents
       The name of the motion service
 
 
-   .. py:property:: component_name
-      :type: viam.gen.common.v1.common_pb2.ResourceName
+   .. py:attribute:: component_name
+      :type:  str
 
       The component of the currently executing plan to stop
+
+
+   .. py:property:: component_name_deprecated
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Deprecated, use component_name field.
 
 
    .. py:property:: extra
@@ -1501,7 +1569,7 @@ Package Contents
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: Literal['component_name', b'component_name', 'extra', b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal['component_name_deprecated', b'component_name_deprecated', 'extra', b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

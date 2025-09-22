@@ -169,6 +169,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.billing_email"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.billing_email</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.billing_tier"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.billing_tier</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.method"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.method</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.method_us_bank_account"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.method_us_bank_account</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.HasField()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse.WhichOneof()</span></code></a></li>
 </ul>
@@ -189,6 +190,16 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType"><code class="docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.bank_name"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.bank_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.last_four_digits_account_number"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.last_four_digits_account_number</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.routing_number"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.routing_number</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.account_type"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.account_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.verification_info"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.verification_info</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.HasField"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.discount"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.discount</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts.total_with_discount"><code class="docutils literal notranslate"><span class="pre">ResourceUsageCosts.total_with_discount</span></code></a></li>
@@ -222,6 +233,11 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UsageCostType"><code class="docutils literal notranslate"><span class="pre">UsageCostType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.VerificationInfo"><code class="docutils literal notranslate"><span class="pre">VerificationInfo</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.VerificationInfo.arrival_date"><code class="docutils literal notranslate"><span class="pre">VerificationInfo.arrival_date</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.VerificationInfo.hosted_verification_page_url"><code class="docutils literal notranslate"><span class="pre">VerificationInfo.hosted_verification_page_url</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -337,32 +353,38 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType" title="viam.proto.app.billing.PaymentMethodType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts" title="viam.proto.app.billing.ResourceUsageCosts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCosts</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodUSBankAccount" title="viam.proto.app.billing.PaymentMethodUSBankAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodUSBankAccount</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource" title="viam.proto.app.billing.ResourceUsageCostsBySource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCosts" title="viam.proto.app.billing.ResourceUsageCosts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCosts</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest" title="viam.proto.app.billing.SendPaymentRequiredEmailRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.ResourceUsageCostsBySource" title="viam.proto.app.billing.ResourceUsageCostsBySource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceUsageCostsBySource</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailResponse" title="viam.proto.app.billing.SendPaymentRequiredEmailResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailRequest" title="viam.proto.app.billing.SendPaymentRequiredEmailRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.SourceType" title="viam.proto.app.billing.SourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SourceType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailResponse" title="viam.proto.app.billing.SendPaymentRequiredEmailResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.SourceType" title="viam.proto.app.billing.SourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SourceType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest" title="viam.proto.app.billing.UpdateOrganizationBillingTierRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest" title="viam.proto.app.billing.UpdateOrganizationBillingTierRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierResponse" title="viam.proto.app.billing.UpdateOrganizationBillingTierResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierResponse" title="viam.proto.app.billing.UpdateOrganizationBillingTierResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCost" title="viam.proto.app.billing.UsageCost"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCost</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCost" title="viam.proto.app.billing.UsageCost"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCost</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCostType" title="viam.proto.app.billing.UsageCostType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCostType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UsageCostType" title="viam.proto.app.billing.UsageCostType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UsageCostType</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.VerificationInfo" title="viam.proto.app.billing.VerificationInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VerificationInfo</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
 </table>
@@ -871,7 +893,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetOrgBillingInformationResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetOrgBillingInformationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PaymentMethodType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PaymentMethodCard</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_tier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetOrgBillingInformationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PaymentMethodType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PaymentMethodCard</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_tier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_us_bank_account</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PaymentMethodUSBankAccount</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -899,9 +921,15 @@ shown below.</p>
 <dd><p>defined if type is PAYMENT_METHOD_TYPE_CARD</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetOrgBillingInformationResponse.method_us_bank_account">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method_us_bank_account</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PaymentMethodUSBankAccount</span></em><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.method_us_bank_account" title="Permalink to this definition"></a></dt>
+<dd><p>defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.billing.GetOrgBillingInformationResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_billing_tier'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_billing_tier'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_method'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_method'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'billing_tier'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'billing_tier'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'method'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'method'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_billing_tier'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_billing_tier'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_method'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_method'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_method_us_bank_account'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_method_us_bank_account'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'billing_tier'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'billing_tier'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'method'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'method'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'method_us_bank_account'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'method_us_bank_account'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -927,6 +955,8 @@ be raised.</p>
 <span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_billing_tier'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_billing_tier'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'billing_tier'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.billing.GetOrgBillingInformationResponse.WhichOneof" title="Permalink to this definition"></a></dt>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_method'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_method'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'method'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_method_us_bank_account'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_method_us_bank_account'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'method_us_bank_account'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
@@ -1034,6 +1064,86 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">PaymentMethodType</span></span><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_PaymentMethodType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">PaymentMethodUSBankAccount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bank_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_four_digits_account_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routing_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">account_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verification_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___VerificationInfo</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.bank_name">
+<span class="sig-name descname"><span class="pre">bank_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.bank_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.last_four_digits_account_number">
+<span class="sig-name descname"><span class="pre">last_four_digits_account_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.last_four_digits_account_number" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.routing_number">
+<span class="sig-name descname"><span class="pre">routing_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.routing_number" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.account_type">
+<span class="sig-name descname"><span class="pre">account_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.account_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.verification_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verification_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___VerificationInfo</span></em><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.verification_info" title="Permalink to this definition"></a></dt>
+<dd><p>this is only set if the account is not verified</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_verification_info'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_verification_info'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'verification_info'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'verification_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.PaymentMethodUSBankAccount.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_verification_info'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_verification_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'verification_info'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.billing.PaymentMethodUSBankAccount.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1204,6 +1314,26 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.UsageCostType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UsageCostType</span></span><a class="headerlink" href="#viam.proto.app.billing.UsageCostType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_UsageCostType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.VerificationInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">VerificationInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrival_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hosted_verification_page_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.VerificationInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.VerificationInfo.arrival_date">
+<span class="sig-name descname"><span class="pre">arrival_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.billing.VerificationInfo.arrival_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.VerificationInfo.hosted_verification_page_url">
+<span class="sig-name descname"><span class="pre">hosted_verification_page_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.VerificationInfo.hosted_verification_page_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
