@@ -20,6 +20,7 @@ from ...gen.app.v1.billing_pb2 import (
     InvoiceSummary,
     PaymentMethodCard,
     PaymentMethodType,
+    PaymentMethodUSBankAccount,
     ResourceUsageCosts,
     ResourceUsageCostsBySource,
     SendPaymentRequiredEmailRequest,
@@ -29,6 +30,7 @@ from ...gen.app.v1.billing_pb2 import (
     UpdateOrganizationBillingTierResponse,
     UsageCost,
     UsageCostType,
+    VerificationInfo,
 )
 
 __all__ = [
@@ -50,6 +52,7 @@ __all__ = [
     "InvoiceSummary",
     "PaymentMethodCard",
     "PaymentMethodType",
+    "PaymentMethodUSBankAccount",
     "ResourceUsageCosts",
     "ResourceUsageCostsBySource",
     "SendPaymentRequiredEmailRequest",
@@ -59,4 +62,5 @@ __all__ = [
     "UpdateOrganizationBillingTierResponse",
     "UsageCost",
     "UsageCostType",
+    "VerificationInfo",
 ]

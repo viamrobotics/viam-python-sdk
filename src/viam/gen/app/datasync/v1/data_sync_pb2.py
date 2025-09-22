@@ -4,7 +4,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
-_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 3, '', 'app/datasync/v1/data_sync.proto')
+_runtime_version.ValidateProtobufRuntimeVersion(_runtime_version.Domain.PUBLIC, 5, 29, 2, '', 'app/datasync/v1/data_sync.proto')
 _sym_db = _symbol_database.Default()
 from ....app.data.v1 import data_pb2 as app_dot_data_dot_v1_dot_data__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
