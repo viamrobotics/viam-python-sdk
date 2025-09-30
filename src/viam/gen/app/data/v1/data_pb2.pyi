@@ -86,6 +86,40 @@ TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK: TabularDataSourceType.ValueType
 'TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK indicates reading the output data of\na data pipeline. When using this, a pipeline ID needs to be specified.\n'
 global___TabularDataSourceType = TabularDataSourceType
 
+class _IndexableCollection:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _IndexableCollectionEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_IndexableCollection.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    INDEXABLE_COLLECTION_UNSPECIFIED: _IndexableCollection.ValueType
+    INDEXABLE_COLLECTION_HOT_STORE: _IndexableCollection.ValueType
+    INDEXABLE_COLLECTION_PIPELINE_SINK: _IndexableCollection.ValueType
+
+class IndexableCollection(_IndexableCollection, metaclass=_IndexableCollectionEnumTypeWrapper):
+    """IndexableCollection specifies the types of collections available for custom indexes"""
+INDEXABLE_COLLECTION_UNSPECIFIED: IndexableCollection.ValueType
+INDEXABLE_COLLECTION_HOT_STORE: IndexableCollection.ValueType
+INDEXABLE_COLLECTION_PIPELINE_SINK: IndexableCollection.ValueType
+global___IndexableCollection = IndexableCollection
+
+class _IndexCreator:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _IndexCreatorEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_IndexCreator.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    INDEX_CREATOR_UNSPECIFIED: _IndexCreator.ValueType
+    INDEX_CREATOR_VIAM: _IndexCreator.ValueType
+    INDEX_CREATOR_CUSTOMER: _IndexCreator.ValueType
+
+class IndexCreator(_IndexCreator, metaclass=_IndexCreatorEnumTypeWrapper):
+    """IndexCreator specifies the entity that originally created the index"""
+INDEX_CREATOR_UNSPECIFIED: IndexCreator.ValueType
+INDEX_CREATOR_VIAM: IndexCreator.ValueType
+INDEX_CREATOR_CUSTOMER: IndexCreator.ValueType
+global___IndexCreator = IndexCreator
+
 @typing.final
 class DataRequest(google.protobuf.message.Message):
     """DataRequest encapsulates the filter for the data, a limit on the maximum results returned,
@@ -439,9 +473,12 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
     MQL_BINARY_FIELD_NUMBER: builtins.int
     USE_RECENT_DATA_FIELD_NUMBER: builtins.int
     DATA_SOURCE_FIELD_NUMBER: builtins.int
+    QUERY_PREFIX_NAME_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     use_recent_data: builtins.bool
     'Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.'
+    query_prefix_name: builtins.str
+    'query_prefix_name is an optional field that can be used to specify a saved query to run'
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -456,17 +493,21 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
         If not specified, the query will run on "standard" storage.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=..., data_source: global___TabularDataSource | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., use_recent_data: builtins.bool | None=..., data_source: global___TabularDataSource | None=..., query_prefix_name: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_data_source', b'_data_source', '_query_prefix_name', b'_query_prefix_name', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'query_prefix_name', b'query_prefix_name', 'use_recent_data', b'use_recent_data']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'use_recent_data', b'use_recent_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['_data_source', b'_data_source', '_query_prefix_name', b'_query_prefix_name', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'mql_binary', b'mql_binary', 'organization_id', b'organization_id', 'query_prefix_name', b'query_prefix_name', 'use_recent_data', b'use_recent_data']) -> None:
         ...
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_data_source', b'_data_source']) -> typing.Literal['data_source'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_query_prefix_name', b'_query_prefix_name']) -> typing.Literal['query_prefix_name'] | None:
         ...
 
     @typing.overload
@@ -1504,3 +1545,144 @@ class RemoveBinaryDataFromDatasetByIDsResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___RemoveBinaryDataFromDatasetByIDsResponse = RemoveBinaryDataFromDatasetByIDsResponse
+
+@typing.final
+class CreateIndexRequest(google.protobuf.message.Message):
+    """CreateIndexRequest starts a custom index build"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    COLLECTION_TYPE_FIELD_NUMBER: builtins.int
+    PIPELINE_NAME_FIELD_NUMBER: builtins.int
+    INDEX_SPEC_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    collection_type: global___IndexableCollection.ValueType
+    pipeline_name: builtins.str
+
+    @property
+    def index_spec(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        """index_spec accepts a MongoDB index specification defined in JSON format"""
+
+    def __init__(self, *, organization_id: builtins.str=..., collection_type: global___IndexableCollection.ValueType=..., pipeline_name: builtins.str | None=..., index_spec: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'collection_type', b'collection_type', 'index_spec', b'index_spec', 'organization_id', b'organization_id', 'pipeline_name', b'pipeline_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_pipeline_name', b'_pipeline_name']) -> typing.Literal['pipeline_name'] | None:
+        ...
+global___CreateIndexRequest = CreateIndexRequest
+
+@typing.final
+class CreateIndexResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___CreateIndexResponse = CreateIndexResponse
+
+@typing.final
+class DeleteIndexRequest(google.protobuf.message.Message):
+    """DeleteIndexRequest drops the specified custom index from a collection"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    COLLECTION_TYPE_FIELD_NUMBER: builtins.int
+    PIPELINE_NAME_FIELD_NUMBER: builtins.int
+    INDEX_NAME_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    collection_type: global___IndexableCollection.ValueType
+    pipeline_name: builtins.str
+    index_name: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=..., collection_type: global___IndexableCollection.ValueType=..., pipeline_name: builtins.str | None=..., index_name: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'collection_type', b'collection_type', 'index_name', b'index_name', 'organization_id', b'organization_id', 'pipeline_name', b'pipeline_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_pipeline_name', b'_pipeline_name']) -> typing.Literal['pipeline_name'] | None:
+        ...
+global___DeleteIndexRequest = DeleteIndexRequest
+
+@typing.final
+class DeleteIndexResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteIndexResponse = DeleteIndexResponse
+
+@typing.final
+class ListIndexesRequest(google.protobuf.message.Message):
+    """ListIndexesRequest returns all the indexes for a given collection"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    COLLECTION_TYPE_FIELD_NUMBER: builtins.int
+    PIPELINE_NAME_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    collection_type: global___IndexableCollection.ValueType
+    pipeline_name: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=..., collection_type: global___IndexableCollection.ValueType=..., pipeline_name: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'collection_type', b'collection_type', 'organization_id', b'organization_id', 'pipeline_name', b'pipeline_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_pipeline_name', b'_pipeline_name']) -> typing.Literal['pipeline_name'] | None:
+        ...
+global___ListIndexesRequest = ListIndexesRequest
+
+@typing.final
+class ListIndexesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INDEXES_FIELD_NUMBER: builtins.int
+
+    @property
+    def indexes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Index]:
+        ...
+
+    def __init__(self, *, indexes: collections.abc.Iterable[global___Index] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['indexes', b'indexes']) -> None:
+        ...
+global___ListIndexesResponse = ListIndexesResponse
+
+@typing.final
+class Index(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    COLLECTION_TYPE_FIELD_NUMBER: builtins.int
+    PIPELINE_NAME_FIELD_NUMBER: builtins.int
+    INDEX_NAME_FIELD_NUMBER: builtins.int
+    INDEX_SPEC_FIELD_NUMBER: builtins.int
+    CREATED_BY_FIELD_NUMBER: builtins.int
+    collection_type: global___IndexableCollection.ValueType
+    pipeline_name: builtins.str
+    index_name: builtins.str
+    created_by: global___IndexCreator.ValueType
+
+    @property
+    def index_spec(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        """index_spec defines a MongoDB index in JSON format"""
+
+    def __init__(self, *, collection_type: global___IndexableCollection.ValueType=..., pipeline_name: builtins.str | None=..., index_name: builtins.str=..., index_spec: collections.abc.Iterable[builtins.bytes] | None=..., created_by: global___IndexCreator.ValueType=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_pipeline_name', b'_pipeline_name', 'collection_type', b'collection_type', 'created_by', b'created_by', 'index_name', b'index_name', 'index_spec', b'index_spec', 'pipeline_name', b'pipeline_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_pipeline_name', b'_pipeline_name']) -> typing.Literal['pipeline_name'] | None:
+        ...
+global___Index = Index
