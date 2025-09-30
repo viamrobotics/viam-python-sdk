@@ -59,6 +59,15 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    CreateIndexRequest,
+    CreateIndexResponse,
+    DeleteIndexRequest,
+    DeleteIndexResponse,
+    Index as ProtoIndex,
+    IndexableCollection,
+    IndexCreator,
+    ListIndexesRequest,
+    ListIndexesResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -366,6 +375,35 @@ class DataClient:
                 next_page_token=data_pipeline_runs_page.next_page_token,
             )
 
+    @dataclass
+    class Index:
+        """Represents a custom index."""
+
+        collection_type: IndexableCollection.ValueType
+        """The type of collection the index is on."""
+
+        pipeline_name: Optional[str]
+        """The name of the pipeline if the collection type is PIPELINE_SINK."""
+
+        index_name: str
+        """The name of the index."""
+
+        index_spec: List[bytes]
+        """The MongoDB index specification in JSON format."""
+
+        created_by: IndexCreator.ValueType
+        """The entity that created the index."""
+
+        @classmethod
+        def from_proto(cls, proto_index: ProtoIndex) -> Self:
+            return cls(
+                collection_type=proto_index.collection_type,
+                pipeline_name=proto_index.pipeline_name if proto_index.HasField("pipeline_name") else None,
+                index_name=proto_index.index_name,
+                index_spec=list(proto_index.index_spec),
+                created_by=proto_index.created_by,
+            )
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a :class:`DataClient` that maintains a connection to app.
 
@@ -499,6 +537,7 @@ class DataClient:
         use_recent_data: Optional[bool] = None,
         tabular_data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
         pipeline_id: Optional[str] = None,
+        query_prefix_name: Optional[str] = None,
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -525,6 +564,7 @@ class DataClient:
                 Defaults to `TABULAR_DATA_SOURCE_TYPE_STANDARD`.
             pipeline_id (str): The ID of the data pipeline to query. Defaults to `None`.
                 Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.
+            query_prefix_name (str): Optional field that can be used to specify a saved query to run.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
@@ -535,7 +575,12 @@ class DataClient:
         data_source = TabularDataSource(type=tabular_data_source_type, pipeline_id=pipeline_id)
         if use_recent_data:
             data_source.type = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary, data_source=data_source)
+        request = TabularDataByMQLRequest(
+            organization_id=organization_id,
+            mql_binary=binary,
+            data_source=data_source,
+            query_prefix_name=query_prefix_name,
+        )
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
@@ -1131,8 +1176,8 @@ class DataClient:
 
         Args:
             binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding
-                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data
-                IDs as a list of strings.*
+                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
             label (str): A label for the bounding box.
             x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
             y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
@@ -2034,6 +2079,86 @@ class DataClient:
         request = ListDataPipelineRunsRequest(id=id, page_size=page_size, page_token=page_token)
         response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(request, metadata=self._metadata)
         return DataClient.DataPipelineRunsPage.from_proto(response, self, page_size)
+
+    async def create_index(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        index_spec: List[Dict[str, Any]],
+        pipeline_name: Optional[str] = None,
+    ) -> None:
+        """Starts a custom index build.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            index_spec (List[Dict[str, Any]]): The MongoDB index specification defined in JSON format.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
+        """
+        index_spec_bytes = [bson.encode(spec) for spec in index_spec]
+        request = CreateIndexRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            index_spec=index_spec_bytes,
+            pipeline_name=pipeline_name,
+        )
+        await self._data_client.CreateIndex(request, metadata=self._metadata)
+
+    async def list_indexes(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        pipeline_name: Optional[str] = None,
+    ) -> List[Index]:
+        """Returns all the indexes for a given collection.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        Returns:
+            List[Index]: A list of indexes.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listindexes>`_.
+        """
+        request = ListIndexesRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            pipeline_name=pipeline_name,
+        )
+        response: ListIndexesResponse = await self._data_client.ListIndexes(request, metadata=self._metadata)
+        return [DataClient.Index.from_proto(idx) for idx in response.indexes]
+
+    async def delete_index(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        index_name: str,
+        pipeline_name: Optional[str] = None,
+    ) -> None:
+        """Drops the specified custom index from a collection.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            index_name (str): The name of the index to delete.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deleteindex>`_.
+        """
+        request = DeleteIndexRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            index_name=index_name,
+            pipeline_name=pipeline_name,
+        )
+        await self._data_client.DeleteIndex(request, metadata=self._metadata)
 
     @staticmethod
     def create_filter(

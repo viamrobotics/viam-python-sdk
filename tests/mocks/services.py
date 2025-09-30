@@ -213,18 +213,29 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterResponse,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
+    CreateIndexRequest,
+    CreateIndexResponse,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteIndexRequest,
+    DeleteIndexResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
     ExportTabularDataResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    GetIndexRequest,
+    GetIndexResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    Index,
+    IndexableCollection,
+    IndexCreator,
+    ListIndexesRequest,
+    ListIndexesResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -380,7 +391,6 @@ from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct
 class MockVision(Vision):
     def __init__(
         self,
-        name: str,
         detectors: List[str],
         detections: List[Detection],
         classifiers: List[str],
@@ -400,7 +410,7 @@ class MockVision(Vision):
         self.properties = properties
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
-        super().__init__(name)
+        super().__init__("mock-vision")
 
     async def get_properties(
         self,
@@ -846,6 +856,7 @@ class MockData(UnimplementedDataServiceBase):
         bbox_labels_response: List[str],
         hostname_response: str,
         additional_params: Mapping[str, ValueTypes],
+        list_indexes_response: List[Index],
     ):
         self.tabular_response = tabular_response
         self.tabular_export_response = tabular_export_response
@@ -858,6 +869,12 @@ class MockData(UnimplementedDataServiceBase):
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
         self.additional_params = additional_params
+        self.list_indexes_response = list_indexes_response
+        self.collection_type: Optional[IndexableCollection.ValueType] = None
+        self.index_spec: Optional[List[bytes]] = None
+        self.index_name: Optional[str] = None
+        self.pipeline_name: Optional[str] = None
+        self.query_prefix_name: Optional[str] = None
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1044,6 +1061,7 @@ class MockData(UnimplementedDataServiceBase):
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.query_prefix_name = request.query_prefix_name if request.HasField("query_prefix_name") else None
         await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
     async def GetLatestTabularData(self, stream: Stream[GetLatestTabularDataRequest, GetLatestTabularDataResponse]) -> None:
@@ -1068,6 +1086,32 @@ class MockData(UnimplementedDataServiceBase):
         self.additional_params = request.additional_parameters
         for tabular_data in self.tabular_export_response:
             await stream.send_message(tabular_data)
+
+    async def CreateIndex(self, stream: Stream[CreateIndexRequest, CreateIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.collection_type = request.collection_type
+        self.index_spec = list(request.index_spec)
+        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        await stream.send_message(CreateIndexResponse())
+
+    async def ListIndexes(self, stream: Stream[ListIndexesRequest, ListIndexesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.collection_type = request.collection_type
+        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        await stream.send_message(ListIndexesResponse(indexes=self.list_indexes_response))
+
+    async def DeleteIndex(self, stream: Stream[DeleteIndexRequest, DeleteIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.collection_type = request.collection_type
+        self.index_name = request.index_name
+        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        await stream.send_message(DeleteIndexResponse())
 
 
 class MockDataset(DatasetServiceBase):

@@ -14,11 +14,22 @@ from viam.proto.app.data import (
     BoundingBox,
     CaptureInterval,
     CaptureMetadata,
+    CreateIndexRequest,
+    CreateIndexResponse,
+    DataClient.TabularData,
+    DeleteIndexRequest,
+    DeleteIndexResponse,
     ExportTabularDataResponse,
     Filter,
+    Index,
+    IndexableCollection,
+    IndexCreator,
+    ListIndexesRequest,
+    ListIndexesResponse,
     Order,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
+import bson
 
 from .mocks.services import MockData
 
@@ -142,6 +153,23 @@ DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
 HOSTNAME_RESPONSE = "host"
 
+INDEX_NAME = "my_index"
+INDEX_SPEC = [{"key": 1}]
+INDEX_SPEC_BYTES = [bson.encode(spec) for spec in INDEX_SPEC]
+COLLECTION_TYPE = IndexableCollection.INDEXABLE_COLLECTION_HOT_STORE
+PIPELINE_NAME = "my_pipeline"
+INDEX_CREATED_BY = IndexCreator.INDEX_CREATOR_CUSTOMER
+LIST_INDEXES_RESPONSE = [
+    Index(
+        collection_type=COLLECTION_TYPE,
+        pipeline_name=PIPELINE_NAME,
+        index_name=INDEX_NAME,
+        index_spec=INDEX_SPEC_BYTES,
+        created_by=INDEX_CREATED_BY,
+    )
+]
+QUERY_PREFIX_NAME = "my_saved_query"
+
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
@@ -158,6 +186,7 @@ def service() -> MockData:
         bbox_labels_response=BBOX_LABELS,
         hostname_response=HOSTNAME_RESPONSE,
         additional_params=ADDITIONAL_PARAMS,
+        list_indexes_response=LIST_INDEXES_RESPONSE,
     )
 
 
@@ -195,9 +224,10 @@ class TestClient:
     async def test_tabular_data_by_mql(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
+            response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY, query_prefix_name=QUERY_PREFIX_NAME)
             assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
+            assert service.query_prefix_name == QUERY_PREFIX_NAME
             response = await client.tabular_data_by_mql(ORG_ID, mql_binary=[b"mql_binary"])
             assert isinstance(response[0]["key1"], datetime)
             assert response == TABULAR_QUERY_RESPONSE
@@ -428,6 +458,54 @@ class TestClient:
             await client.remove_binary_data_from_dataset_by_ids(binary_ids=BINARY_DATA_IDS, dataset_id=DATASET_ID)
             assert service.removed_binary_data_ids == BINARY_DATA_IDS
             assert service.dataset_id == DATASET_ID
+
+    async def test_create_index(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.create_index(
+                organization_id=ORG_ID,
+                collection_type=COLLECTION_TYPE,
+                index_spec=INDEX_SPEC,
+                pipeline_name=PIPELINE_NAME,
+            )
+            assert service.organization_id == ORG_ID
+            assert service.collection_type == COLLECTION_TYPE
+            assert service.index_spec == INDEX_SPEC_BYTES
+            assert service.pipeline_name == PIPELINE_NAME
+
+    async def test_list_indexes(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            indexes = await client.list_indexes(
+                organization_id=ORG_ID,
+                collection_type=COLLECTION_TYPE,
+                pipeline_name=PIPELINE_NAME,
+            )
+            assert service.organization_id == ORG_ID
+            assert service.collection_type == COLLECTION_TYPE
+            assert service.pipeline_name == PIPELINE_NAME
+            assert len(indexes) == len(LIST_INDEXES_RESPONSE)
+            for i, index in enumerate(indexes):
+                expected_index = LIST_INDEXES_RESPONSE[i]
+                assert index.collection_type == expected_index.collection_type
+                assert index.pipeline_name == expected_index.pipeline_name
+                assert index.index_name == expected_index.index_name
+                assert index.index_spec == expected_index.index_spec
+                assert index.created_by == expected_index.created_by
+
+    async def test_delete_index(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.delete_index(
+                organization_id=ORG_ID,
+                collection_type=COLLECTION_TYPE,
+                index_name=INDEX_NAME,
+                pipeline_name=PIPELINE_NAME,
+            )
+            assert service.organization_id == ORG_ID
+            assert service.collection_type == COLLECTION_TYPE
+            assert service.index_name == INDEX_NAME
+            assert service.pipeline_name == PIPELINE_NAME
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
