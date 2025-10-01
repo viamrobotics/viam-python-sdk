@@ -95,6 +95,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.RemoveBinaryDataFromDatasetByIDs()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.CreateIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.CreateIndex()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ListIndexes"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ListIndexes()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteIndex()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -122,6 +125,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ConfigureDatabaseUser</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.AddBinaryDataToDatasetByIDs</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.RemoveBinaryDataFromDatasetByIDs</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.CreateIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.CreateIndex</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.ListIndexes"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.ListIndexes</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceStub.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">DataServiceStub.DeleteIndex</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase</span></code></a><ul>
@@ -148,6 +154,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.AddBinaryDataToDatasetByIDs()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.CreateIndex()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.ListIndexes"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.ListIndexes()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.UnimplementedDataServiceBase.DeleteIndex"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataServiceBase.DeleteIndex()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.AddBinaryDataToDatasetByIDsRequest"><code class="docutils literal notranslate"><span class="pre">AddBinaryDataToDatasetByIDsRequest</span></code></a><ul>
@@ -305,6 +314,16 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.organization_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.collection_type"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.collection_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.pipeline_name"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.pipeline_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.index_spec"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.index_spec</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.HasField"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">CreateIndexRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.CreateIndexResponse"><code class="docutils literal notranslate"><span class="pre">CreateIndexResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DataRequest"><code class="docutils literal notranslate"><span class="pre">DataRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataRequest.limit"><code class="docutils literal notranslate"><span class="pre">DataRequest.limit</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataRequest.last"><code class="docutils literal notranslate"><span class="pre">DataRequest.last</span></code></a></li>
@@ -332,6 +351,16 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsResponse.deleted_count"><code class="docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse.deleted_count</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.organization_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.collection_type"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.collection_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.pipeline_name"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.pipeline_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.index_name"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.index_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">DeleteIndexRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteIndexResponse"><code class="docutils literal notranslate"><span class="pre">DeleteIndexResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.organization_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.delete_older_than_days</span></code></a></li>
@@ -414,6 +443,30 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetLatestTabularDataResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.Index"><code class="docutils literal notranslate"><span class="pre">Index</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.collection_type"><code class="docutils literal notranslate"><span class="pre">Index.collection_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.pipeline_name"><code class="docutils literal notranslate"><span class="pre">Index.pipeline_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.index_name"><code class="docutils literal notranslate"><span class="pre">Index.index_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.created_by"><code class="docutils literal notranslate"><span class="pre">Index.created_by</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.index_spec"><code class="docutils literal notranslate"><span class="pre">Index.index_spec</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.HasField"><code class="docutils literal notranslate"><span class="pre">Index.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Index.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Index.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.IndexableCollection"><code class="docutils literal notranslate"><span class="pre">IndexableCollection</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.IndexCreator"><code class="docutils literal notranslate"><span class="pre">IndexCreator</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest.organization_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest.collection_type"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest.collection_type</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest.pipeline_name"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest.pipeline_name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">ListIndexesRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.ListIndexesResponse"><code class="docutils literal notranslate"><span class="pre">ListIndexesResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ListIndexesResponse.indexes"><code class="docutils literal notranslate"><span class="pre">ListIndexesResponse.indexes</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest.dataset_id"><code class="docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest.dataset_id</span></code></a></li>
@@ -476,6 +529,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.organization_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.use_recent_data"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.use_recent_data</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.query_prefix_name"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.query_prefix_name</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_binary"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_binary</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.data_source"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.data_source</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.HasField()</span></code></a></li>
@@ -679,6 +733,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse" title="viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.CreateIndexRequest" title="viam.proto.app.data.CreateIndexRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateIndexRequest</span></code></a></p></td>
+<td><p>CreateIndexRequest starts a custom index build</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.CreateIndexResponse" title="viam.proto.app.data.CreateIndexResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateIndexResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DataRequest" title="viam.proto.app.data.DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataRequest</span></code></a></p></td>
 <td><p>DataRequest encapsulates the filter for the data, a limit on the maximum results returned,</p></td>
 </tr>
@@ -693,6 +753,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByIDsResponse" title="viam.proto.app.data.DeleteBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteIndexRequest" title="viam.proto.app.data.DeleteIndexRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteIndexRequest</span></code></a></p></td>
+<td><p>DeleteIndexRequest drops the specified custom index from a collection</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteIndexResponse" title="viam.proto.app.data.DeleteIndexResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteIndexResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest" title="viam.proto.app.data.DeleteTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a></p></td>
 <td><p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite></p></td>
@@ -721,76 +787,91 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetLatestTabularDataResponse" title="viam.proto.app.data.GetLatestTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLatestTabularDataResponse</span></code></a></p></td>
 <td><p>GetLatestTabularDataResponse provides the data, time synced, and time captured of the most recent tabular data captured</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Index" title="viam.proto.app.data.Index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Index</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexableCollection" title="viam.proto.app.data.IndexableCollection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexableCollection</span></code></a></p></td>
+<td><p>IndexableCollection specifies the types of collections available for custom indexes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.IndexCreator" title="viam.proto.app.data.IndexCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IndexCreator</span></code></a></p></td>
+<td><p>IndexCreator specifies the entity that originally created the index</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesRequest" title="viam.proto.app.data.ListIndexesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesRequest</span></code></a></p></td>
+<td><p>ListIndexesRequest returns all the indexes for a given collection</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ListIndexesResponse" title="viam.proto.app.data.ListIndexesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListIndexesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p>Order specifies the order in which data is returned.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsRequest</span></code></a></p></td>
 <td><p>RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBinaryDataFromDatasetByIDsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
 <td><p>RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse" title="viam.proto.app.data.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse" title="viam.proto.app.data.RemoveTagsFromBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularData" title="viam.proto.app.data.TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularData</span></code></a></p></td>
 <td><p>TabularData contains data and metadata associated with tabular data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest" title="viam.proto.app.data.TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a></p></td>
 <td><p>TabularDataByFilterRequest requests tabular data based on filter values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
 <td><p>TabularDataByFilterResponse provides the data and metadata of tabular data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
 <td><p>TabularDataByMQLRequest requests tabular data using an MQL query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
 <td><p>TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
 <td><p>TabularDataBySQLRequest requests tabular data using a SQL query.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
 <td><p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSource" title="viam.proto.app.data.TabularDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSource" title="viam.proto.app.data.TabularDataSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSource</span></code></a></p></td>
 <td><p>TabularDataSource specifies the data source for user queries to execute on.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType" title="viam.proto.app.data.TabularDataSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataSourceType" title="viam.proto.app.data.TabularDataSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataSourceType</span></code></a></p></td>
 <td><p>TabularDataSourceType specifies the data source type for TabularDataByMQL queries.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterResponse" title="viam.proto.app.data.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
 <td><p>TagsByFilterResponse returns the unique tags from data based on given filter.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilter" title="viam.proto.app.data.TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilter</span></code></a></p></td>
 <td><p>TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsFilterType" title="viam.proto.app.data.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
 <td><p>TagsFilterType specifies how data can be filtered based on tags.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxRequest" title="viam.proto.app.data.UpdateBoundingBoxRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxRequest</span></code></a></p></td>
 <td><p>UpdateBoundingBoxRequest updates the bounding box with specified bounding box ID for the file represented by the binary ID.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.UpdateBoundingBoxResponse" title="viam.proto.app.data.UpdateBoundingBoxResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateBoundingBoxResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -1012,6 +1093,33 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.CreateIndex">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexRequest" title="viam.gen.app.data.v1.data_pb2.CreateIndexRequest"><span class="pre">app.data.v1.data_pb2.CreateIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexResponse" title="viam.gen.app.data.v1.data_pb2.CreateIndexResponse"><span class="pre">app.data.v1.data_pb2.CreateIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.CreateIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.CreateIndex" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.ListIndexes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListIndexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListIndexesRequest" title="viam.gen.app.data.v1.data_pb2.ListIndexesRequest"><span class="pre">app.data.v1.data_pb2.ListIndexesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListIndexesResponse" title="viam.gen.app.data.v1.data_pb2.ListIndexesResponse"><span class="pre">app.data.v1.data_pb2.ListIndexesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.ListIndexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.ListIndexes" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.DeleteIndex">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteIndexRequest" title="viam.gen.app.data.v1.data_pb2.DeleteIndexRequest"><span class="pre">app.data.v1.data_pb2.DeleteIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteIndexResponse" title="viam.gen.app.data.v1.data_pb2.DeleteIndexResponse"><span class="pre">app.data.v1.data_pb2.DeleteIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.DeleteIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.DeleteIndex" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1136,6 +1244,21 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">RemoveBinaryDataFromDatasetByIDs</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.RemoveBinaryDataFromDatasetByIDs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.CreateIndex">
+<span class="sig-name descname"><span class="pre">CreateIndex</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.CreateIndex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.ListIndexes">
+<span class="sig-name descname"><span class="pre">ListIndexes</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.ListIndexes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceStub.DeleteIndex">
+<span class="sig-name descname"><span class="pre">DeleteIndex</span></span><a class="headerlink" href="#viam.proto.app.data.DataServiceStub.DeleteIndex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1257,6 +1380,21 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveBinaryDataFromDatasetByIDs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest" title="viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest"><span class="pre">app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse" title="viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse"><span class="pre">app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.RemoveBinaryDataFromDatasetByIDs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexRequest" title="viam.gen.app.data.v1.data_pb2.CreateIndexRequest"><span class="pre">app.data.v1.data_pb2.CreateIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CreateIndexResponse" title="viam.gen.app.data.v1.data_pb2.CreateIndexResponse"><span class="pre">app.data.v1.data_pb2.CreateIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.CreateIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.CreateIndex" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.ListIndexes">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListIndexes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListIndexesRequest" title="viam.gen.app.data.v1.data_pb2.ListIndexesRequest"><span class="pre">app.data.v1.data_pb2.ListIndexesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ListIndexesResponse" title="viam.gen.app.data.v1.data_pb2.ListIndexesResponse"><span class="pre">app.data.v1.data_pb2.ListIndexesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.ListIndexes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.ListIndexes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.UnimplementedDataServiceBase.DeleteIndex">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteIndexRequest" title="viam.gen.app.data.v1.data_pb2.DeleteIndexRequest"><span class="pre">app.data.v1.data_pb2.DeleteIndexRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteIndexResponse" title="viam.gen.app.data.v1.data_pb2.DeleteIndexResponse"><span class="pre">app.data.v1.data_pb2.DeleteIndexResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#UnimplementedDataServiceBase.DeleteIndex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.UnimplementedDataServiceBase.DeleteIndex" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2110,6 +2248,88 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">CreateIndexRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IndexableCollection</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>CreateIndexRequest starts a custom index build</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.collection_type">
+<span class="sig-name descname"><span class="pre">collection_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IndexableCollection</span></em><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.collection_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.pipeline_name">
+<span class="sig-name descname"><span class="pre">pipeline_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.pipeline_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.index_spec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.index_spec" title="Permalink to this definition"></a></dt>
+<dd><p>index_spec accepts a MongoDB index specification defined in JSON format</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.CreateIndexRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.CreateIndexResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">CreateIndexResponse</span></span><a class="headerlink" href="#viam.proto.app.data.CreateIndexResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Filter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Order</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DataRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -2243,6 +2463,87 @@ be raised.</p>
 <span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteBinaryDataByIDsResponse.deleted_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteIndexRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IndexableCollection</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DeleteIndexRequest drops the specified custom index from a collection</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.collection_type">
+<span class="sig-name descname"><span class="pre">collection_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IndexableCollection</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.collection_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.pipeline_name">
+<span class="sig-name descname"><span class="pre">pipeline_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.pipeline_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.index_name">
+<span class="sig-name descname"><span class="pre">index_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.index_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.DeleteIndexRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteIndexResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteIndexResponse</span></span><a class="headerlink" href="#viam.proto.app.data.DeleteIndexResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -2719,6 +3020,181 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IndexableCollection</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IndexCreator</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Index" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.collection_type">
+<span class="sig-name descname"><span class="pre">collection_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IndexableCollection</span></em><a class="headerlink" href="#viam.proto.app.data.Index.collection_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.pipeline_name">
+<span class="sig-name descname"><span class="pre">pipeline_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.Index.pipeline_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.index_name">
+<span class="sig-name descname"><span class="pre">index_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.Index.index_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.created_by">
+<span class="sig-name descname"><span class="pre">created_by</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IndexCreator</span></em><a class="headerlink" href="#viam.proto.app.data.Index.created_by" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.index_spec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">index_spec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.Index.index_spec" title="Permalink to this definition"></a></dt>
+<dd><p>index_spec defines a MongoDB index in JSON format</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.Index.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.Index.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.Index.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.IndexableCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">IndexableCollection</span></span><a class="headerlink" href="#viam.proto.app.data.IndexableCollection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_IndexableCollection</span></code></p>
+<p>IndexableCollection specifies the types of collections available for custom indexes</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.IndexCreator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">IndexCreator</span></span><a class="headerlink" href="#viam.proto.app.data.IndexCreator" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_IndexCreator</span></code></p>
+<p>IndexCreator specifies the entity that originally created the index</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">ListIndexesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IndexableCollection</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ListIndexesRequest returns all the indexes for a given collection</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest.collection_type">
+<span class="sig-name descname"><span class="pre">collection_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IndexableCollection</span></em><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest.collection_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest.pipeline_name">
+<span class="sig-name descname"><span class="pre">pipeline_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest.pipeline_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_pipeline_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_pipeline_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pipeline_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.ListIndexesRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">ListIndexesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Index</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.ListIndexesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.ListIndexesResponse.indexes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">indexes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Index</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.ListIndexesResponse.indexes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.Order">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><a class="headerlink" href="#viam.proto.app.data.Order" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_Order</span></code></p>
@@ -3027,7 +3503,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_recent_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TabularDataSource</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_recent_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TabularDataSource</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query_prefix_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>TabularDataByMQLRequest requests tabular data using an MQL query.</p>
 <dl class="py attribute">
@@ -3039,6 +3515,12 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.use_recent_data">
 <span class="sig-name descname"><span class="pre">use_recent_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.use_recent_data" title="Permalink to this definition"></a></dt>
 <dd><p>Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.query_prefix_name">
+<span class="sig-name descname"><span class="pre">query_prefix_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.query_prefix_name" title="Permalink to this definition"></a></dt>
+<dd><p>query_prefix_name is an optional field that can be used to specify a saved query to run</p>
 </dd></dl>
 
 <dl class="py property">
@@ -3058,7 +3540,7 @@ If not specified, the query will run on “standard” storage.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_query_prefix_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_query_prefix_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data_source'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'query_prefix_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'query_prefix_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -3082,6 +3564,8 @@ be raised.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.WhichOneof">
 <span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_data_source'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_data_source'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'data_source'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_query_prefix_name'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_query_prefix_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'query_prefix_name'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_use_recent_data'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_use_recent_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'use_recent_data'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>

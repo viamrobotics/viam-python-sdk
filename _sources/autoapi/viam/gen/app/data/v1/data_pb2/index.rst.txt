@@ -30,6 +30,14 @@ Attributes
    viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
    viam.gen.app.data.v1.data_pb2.TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK
    viam.gen.app.data.v1.data_pb2.global___TabularDataSourceType
+   viam.gen.app.data.v1.data_pb2.INDEXABLE_COLLECTION_UNSPECIFIED
+   viam.gen.app.data.v1.data_pb2.INDEXABLE_COLLECTION_HOT_STORE
+   viam.gen.app.data.v1.data_pb2.INDEXABLE_COLLECTION_PIPELINE_SINK
+   viam.gen.app.data.v1.data_pb2.global___IndexableCollection
+   viam.gen.app.data.v1.data_pb2.INDEX_CREATOR_UNSPECIFIED
+   viam.gen.app.data.v1.data_pb2.INDEX_CREATOR_VIAM
+   viam.gen.app.data.v1.data_pb2.INDEX_CREATOR_CUSTOMER
+   viam.gen.app.data.v1.data_pb2.global___IndexCreator
    viam.gen.app.data.v1.data_pb2.global___DataRequest
    viam.gen.app.data.v1.data_pb2.global___Filter
    viam.gen.app.data.v1.data_pb2.global___TagsFilter
@@ -89,6 +97,13 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___AddBinaryDataToDatasetByIDsResponse
    viam.gen.app.data.v1.data_pb2.global___RemoveBinaryDataFromDatasetByIDsRequest
    viam.gen.app.data.v1.data_pb2.global___RemoveBinaryDataFromDatasetByIDsResponse
+   viam.gen.app.data.v1.data_pb2.global___CreateIndexRequest
+   viam.gen.app.data.v1.data_pb2.global___CreateIndexResponse
+   viam.gen.app.data.v1.data_pb2.global___DeleteIndexRequest
+   viam.gen.app.data.v1.data_pb2.global___DeleteIndexResponse
+   viam.gen.app.data.v1.data_pb2.global___ListIndexesRequest
+   viam.gen.app.data.v1.data_pb2.global___ListIndexesResponse
+   viam.gen.app.data.v1.data_pb2.global___Index
 
 
 Classes
@@ -99,6 +114,8 @@ Classes
    viam.gen.app.data.v1.data_pb2.Order
    viam.gen.app.data.v1.data_pb2.TagsFilterType
    viam.gen.app.data.v1.data_pb2.TabularDataSourceType
+   viam.gen.app.data.v1.data_pb2.IndexableCollection
+   viam.gen.app.data.v1.data_pb2.IndexCreator
    viam.gen.app.data.v1.data_pb2.DataRequest
    viam.gen.app.data.v1.data_pb2.Filter
    viam.gen.app.data.v1.data_pb2.TagsFilter
@@ -158,6 +175,13 @@ Classes
    viam.gen.app.data.v1.data_pb2.AddBinaryDataToDatasetByIDsResponse
    viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest
    viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse
+   viam.gen.app.data.v1.data_pb2.CreateIndexRequest
+   viam.gen.app.data.v1.data_pb2.CreateIndexResponse
+   viam.gen.app.data.v1.data_pb2.DeleteIndexRequest
+   viam.gen.app.data.v1.data_pb2.DeleteIndexResponse
+   viam.gen.app.data.v1.data_pb2.ListIndexesRequest
+   viam.gen.app.data.v1.data_pb2.ListIndexesResponse
+   viam.gen.app.data.v1.data_pb2.Index
 
 
 Module Contents
@@ -244,6 +268,44 @@ Module Contents
    a data pipeline. When using this, a pipeline ID needs to be specified.
 
 .. py:data:: global___TabularDataSourceType
+
+.. py:class:: IndexableCollection
+
+   Bases: :py:obj:`_IndexableCollection`
+
+
+   IndexableCollection specifies the types of collections available for custom indexes
+
+
+.. py:data:: INDEXABLE_COLLECTION_UNSPECIFIED
+   :type:  IndexableCollection
+
+.. py:data:: INDEXABLE_COLLECTION_HOT_STORE
+   :type:  IndexableCollection
+
+.. py:data:: INDEXABLE_COLLECTION_PIPELINE_SINK
+   :type:  IndexableCollection
+
+.. py:data:: global___IndexableCollection
+
+.. py:class:: IndexCreator
+
+   Bases: :py:obj:`_IndexCreator`
+
+
+   IndexCreator specifies the entity that originally created the index
+
+
+.. py:data:: INDEX_CREATOR_UNSPECIFIED
+   :type:  IndexCreator
+
+.. py:data:: INDEX_CREATOR_VIAM
+   :type:  IndexCreator
+
+.. py:data:: INDEX_CREATOR_CUSTOMER
+   :type:  IndexCreator
+
+.. py:data:: global___IndexCreator
 
 .. py:class:: DataRequest(*, filter: global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: global___Order = ...)
 
@@ -760,7 +822,7 @@ Module Contents
 
 .. py:data:: global___TabularDataSource
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: global___TabularDataSource | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., use_recent_data: bool | None = ..., data_source: global___TabularDataSource | None = ..., query_prefix_name: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -778,6 +840,12 @@ Module Contents
       Deprecated, please use TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE instead.
 
 
+   .. py:attribute:: query_prefix_name
+      :type:  str
+
+      query_prefix_name is an optional field that can be used to specify a saved query to run
+
+
    .. py:property:: mql_binary
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
 
@@ -793,7 +861,7 @@ Module Contents
       If not specified, the query will run on "standard" storage.
 
 
-   .. py:method:: HasField(field_name: Literal['_data_source', b'_data_source', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'use_recent_data', b'use_recent_data']) -> bool
+   .. py:method:: HasField(field_name: Literal['_data_source', b'_data_source', '_query_prefix_name', b'_query_prefix_name', '_use_recent_data', b'_use_recent_data', 'data_source', b'data_source', 'query_prefix_name', b'query_prefix_name', 'use_recent_data', b'use_recent_data']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -812,6 +880,7 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_data_source', b'_data_source']) -> Literal['data_source'] | None
+                  WhichOneof(oneof_group: Literal['_query_prefix_name', b'_query_prefix_name']) -> Literal['query_prefix_name'] | None
                   WhichOneof(oneof_group: Literal['_use_recent_data', b'_use_recent_data']) -> Literal['use_recent_data'] | None
 
       Returns the name of the field that is set inside a oneof group.
@@ -2277,4 +2346,299 @@ Module Contents
 
 
 .. py:data:: global___RemoveBinaryDataFromDatasetByIDsResponse
+
+.. py:class:: CreateIndexRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_spec: collections.abc.Iterable[bytes] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CreateIndexRequest starts a custom index build
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: collection_type
+      :type:  global___IndexableCollection
+
+
+   .. py:attribute:: pipeline_name
+      :type:  str
+
+
+   .. py:property:: index_spec
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+      index_spec accepts a MongoDB index specification defined in JSON format
+
+
+   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___CreateIndexRequest
+
+.. py:class:: CreateIndexResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___CreateIndexResponse
+
+.. py:class:: DeleteIndexRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DeleteIndexRequest drops the specified custom index from a collection
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: collection_type
+      :type:  global___IndexableCollection
+
+
+   .. py:attribute:: pipeline_name
+      :type:  str
+
+
+   .. py:attribute:: index_name
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___DeleteIndexRequest
+
+.. py:class:: DeleteIndexResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___DeleteIndexResponse
+
+.. py:class:: ListIndexesRequest(*, organization_id: str = ..., collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ListIndexesRequest returns all the indexes for a given collection
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: collection_type
+      :type:  global___IndexableCollection
+
+
+   .. py:attribute:: pipeline_name
+      :type:  str
+
+
+   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___ListIndexesRequest
+
+.. py:class:: ListIndexesResponse(*, indexes: collections.abc.Iterable[global___Index] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: indexes
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Index]
+
+
+
+.. py:data:: global___ListIndexesResponse
+
+.. py:class:: Index(*, collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ..., index_spec: collections.abc.Iterable[bytes] | None = ..., created_by: global___IndexCreator = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: collection_type
+      :type:  global___IndexableCollection
+
+
+   .. py:attribute:: pipeline_name
+      :type:  str
+
+
+   .. py:attribute:: index_name
+      :type:  str
+
+
+   .. py:attribute:: created_by
+      :type:  global___IndexCreator
+
+
+   .. py:property:: index_spec
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+      index_spec defines a MongoDB index in JSON format
+
+
+   .. py:method:: HasField(field_name: Literal['_pipeline_name', b'_pipeline_name', 'pipeline_name', b'pipeline_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_pipeline_name', b'_pipeline_name']) -> Literal['pipeline_name'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___Index
 

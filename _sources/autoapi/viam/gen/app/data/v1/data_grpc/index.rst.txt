@@ -187,6 +187,27 @@ Module Contents
 
 
 
+   .. py:method:: CreateIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateIndexRequest, app.data.v1.data_pb2.CreateIndexResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListIndexes(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListIndexesRequest, app.data.v1.data_pb2.ListIndexesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteIndexRequest, app.data.v1.data_pb2.DeleteIndexResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -314,6 +335,21 @@ Module Contents
 
 
 
+   .. py:method:: CreateIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateIndexRequest, app.data.v1.data_pb2.CreateIndexResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListIndexes(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListIndexesRequest, app.data.v1.data_pb2.ListIndexesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteIndexRequest, app.data.v1.data_pb2.DeleteIndexResponse]) -> None
+      :async:
+
+
+
 .. py:class:: DataServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: TabularDataByFilter
@@ -383,5 +419,14 @@ Module Contents
 
 
    .. py:attribute:: RemoveBinaryDataFromDatasetByIDs
+
+
+   .. py:attribute:: CreateIndex
+
+
+   .. py:attribute:: ListIndexes
+
+
+   .. py:attribute:: DeleteIndex
 
 
