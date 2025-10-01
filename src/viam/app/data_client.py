@@ -1300,7 +1300,7 @@ class DataClient:
             dataset_id = await data_client.merge_datasets(
                 name="<DATASET-NAME>",
                 organization_id="<YOUR-ORG-ID>",
-                dataset_ids=["<YOUR-DATASET-ID-1>, <YOUR-DATASET-ID-2>"]
+                dataset_ids=["<YOUR-DATASET-ID-1>", "<YOUR-DATASET-ID-2>"]
             )
             print(dataset_id)
 
