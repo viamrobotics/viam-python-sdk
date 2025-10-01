@@ -10,7 +10,6 @@ from grpclib.client import Channel, Stream
 from typing_extensions import Self
 
 from viam import logging
-from viam.gen.app.dataset.v1.dataset_pb2 import MergeDatasetsRequest, MergeDatasetsResponse
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
@@ -92,6 +91,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
     RenameDatasetRequest,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadMetadata,
