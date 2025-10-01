@@ -10,6 +10,7 @@ from grpclib.client import Channel, Stream
 from typing_extensions import Self
 
 from viam import logging
+from viam.gen.app.dataset.v1.dataset_pb2 import MergeDatasetsRequest, MergeDatasetsResponse
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
@@ -1288,6 +1289,33 @@ class DataClient:
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
+
+
+    async def merge_datasets(self, name: str, organization_id: str, dataset_ids: List[str]) -> str:
+        """Merge multiple datasets into a new dataset.
+
+        ::
+
+            dataset_id = await data_client.merge_datasets(
+                name="<DATASET-NAME>",
+                organization_id="<YOUR-ORG-ID>",
+                dataset_ids=["<YOUR-DATASET-ID-1>, <YOUR-DATASET-ID-2>"]
+            )
+            print(dataset_id)
+
+        Args:
+            name (str): The name of the dataset being created.
+            organization_id (str): The ID of the organization where the dataset is being created.
+                To find your organization ID, visit the organization settings page.
+            dataset_ids (List[str]): The IDs of the datasets that you would like to merge.
+        Returns:
+            str: The dataset ID of the created dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+        """
+        request = MergeDatasetsRequest(name=name, organization_id=organization_id, dataset_ids=dataset_ids)
+        response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
+        return response.dataset_id
 
     async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
         """Get a list of datasets using their IDs.
