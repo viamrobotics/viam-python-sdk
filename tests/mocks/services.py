@@ -316,7 +316,6 @@ from viam.proto.common import (
     PointCloudObject,
     Pose,
     PoseInFrame,
-    ResourceName,
     Transform,
 )
 from viam.proto.provisioning import (
@@ -616,11 +615,11 @@ class MockMotion(MotionServiceBase):
     async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name: str = request.component_name
         self.constraints = request.constraints
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        success = self.move_responses[name.name]
+        success = self.move_responses[name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
 
@@ -655,10 +654,10 @@ class MockMotion(MotionServiceBase):
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name: str = request.component_name
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pose = self.get_pose_responses[name.name]
+        pose = self.get_pose_responses[name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
 
@@ -1071,9 +1070,10 @@ class MockData(UnimplementedDataServiceBase):
 
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset], merged_response: Optional[str] = None):
         self.create_response = create_response
         self.datasets_response = datasets_response
+        self.merged_response = merged_response
 
     async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
         request = await stream.recv_message()
@@ -1105,7 +1105,11 @@ class MockDataset(DatasetServiceBase):
     async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(MergeDatasetsResponse())
+        self.name = request.name
+        self.org_id = request.organization_id
+        self.dataset_ids = request.dataset_ids
+        self.merged_response = "".join(self.dataset_ids)
+        await stream.send_message(MergeDatasetsResponse(dataset_id=self.merged_response))
 
     async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
         request = await stream.recv_message()
