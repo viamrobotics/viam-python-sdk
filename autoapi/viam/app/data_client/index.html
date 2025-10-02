@@ -150,6 +150,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.get_database_connection"><code class="docutils literal notranslate"><span class="pre">DataClient.get_database_connection()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.configure_database_user"><code class="docutils literal notranslate"><span class="pre">DataClient.configure_database_user()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.create_dataset()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.merge_datasets"><code class="docutils literal notranslate"><span class="pre">DataClient.merge_datasets()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_dataset_by_ids"><code class="docutils literal notranslate"><span class="pre">DataClient.list_dataset_by_ids()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_datasets_by_organization_id"><code class="docutils literal notranslate"><span class="pre">DataClient.list_datasets_by_organization_id()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.rename_dataset"><code class="docutils literal notranslate"><span class="pre">DataClient.rename_dataset()</span></code></a></li>
@@ -1365,6 +1366,37 @@ To find your organization ID, visit the organization settings page.</p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#createdataset">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.merge_datasets">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">merge_datasets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.merge_datasets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.merge_datasets" title="Permalink to this definition"></a></dt>
+<dd><p>Merge multiple datasets into a new dataset.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">merge_datasets</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;DATASET-NAME&gt;&quot;</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-ORG-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">dataset_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;YOUR-DATASET-ID-1&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;YOUR-DATASET-ID-2&gt;&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the dataset being created.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization where the dataset is being created.
+To find your organization ID, visit the organization settings page.</p></li>
+<li><p><strong>dataset_ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The IDs of the datasets that you would like to merge.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dataset ID of the created dataset.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets">Data Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">

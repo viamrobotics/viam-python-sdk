@@ -180,6 +180,8 @@
     <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">,</span>
     <span class="n">ListDatasetsByOrganizationIDResponse</span><span class="p">,</span>
     <span class="n">RenameDatasetRequest</span><span class="p">,</span>
+    <span class="n">MergeDatasetsRequest</span><span class="p">,</span>
+    <span class="n">MergeDatasetsResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.datasync</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataCaptureUploadMetadata</span><span class="p">,</span>
@@ -1377,6 +1379,33 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+
+<div class="viewcode-block" id="DataClient.merge_datasets"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.merge_datasets">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">merge_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge multiple datasets into a new dataset.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            dataset_id = await data_client.merge_datasets(</span>
+<span class="sd">                name=&quot;&lt;DATASET-NAME&gt;&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;YOUR-ORG-ID&gt;&quot;,</span>
+<span class="sd">                dataset_ids=[&quot;&lt;YOUR-DATASET-ID-1&gt;&quot;, &quot;&lt;YOUR-DATASET-ID-2&gt;&quot;]</span>
+<span class="sd">            )</span>
+<span class="sd">            print(dataset_id)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The name of the dataset being created.</span>
+<span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            dataset_ids (List[str]): The IDs of the datasets that you would like to merge.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The dataset ID of the created dataset.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MergeDatasetsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_ids</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">MergeDatasetsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">MergeDatasets</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">dataset_id</span></div>
 
 <div class="viewcode-block" id="DataClient.list_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of datasets using their IDs.</span>

@@ -1123,6 +1123,36 @@ Module Contents
 
 
 
+   .. py:method:: merge_datasets(name: str, organization_id: str, dataset_ids: List[str]) -> str
+      :async:
+
+
+      Merge multiple datasets into a new dataset.
+
+      ::
+
+          dataset_id = await data_client.merge_datasets(
+              name="<DATASET-NAME>",
+              organization_id="<YOUR-ORG-ID>",
+              dataset_ids=["<YOUR-DATASET-ID-1>", "<YOUR-DATASET-ID-2>"]
+          )
+          print(dataset_id)
+
+      :param name: The name of the dataset being created.
+      :type name: str
+      :param organization_id: The ID of the organization where the dataset is being created.
+                              To find your organization ID, visit the organization settings page.
+      :type organization_id: str
+      :param dataset_ids: The IDs of the datasets that you would like to merge.
+      :type dataset_ids: List[str]
+
+      :returns: The dataset ID of the created dataset.
+      :rtype: str
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+
+
+
    .. py:method:: list_dataset_by_ids(ids: List[str]) -> Sequence[viam.proto.app.dataset.Dataset]
       :async:
 
