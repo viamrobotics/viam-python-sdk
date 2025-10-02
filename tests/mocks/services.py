@@ -316,7 +316,6 @@ from viam.proto.common import (
     PointCloudObject,
     Pose,
     PoseInFrame,
-    ResourceName,
     Transform,
 )
 from viam.proto.provisioning import (
