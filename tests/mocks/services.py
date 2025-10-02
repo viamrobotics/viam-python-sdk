@@ -620,7 +620,7 @@ class MockMotion(MotionServiceBase):
         self.constraints = request.constraints
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        success = self.move_responses[name.name]
+        success = self.move_responses[name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
 
@@ -655,10 +655,10 @@ class MockMotion(MotionServiceBase):
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name: str = request.component_name
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pose = self.get_pose_responses[name.name]
+        pose = self.get_pose_responses[name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
 
@@ -1109,7 +1109,8 @@ class MockDataset(DatasetServiceBase):
         self.name = request.name
         self.org_id = request.organization_id
         self.dataset_ids = request.dataset_ids
-        await stream.send_message(MergeDatasetsResponse(dataset_id=self.merged_response or ""))
+        self.merged_response = "".join(self.dataset_ids)
+        await stream.send_message(MergeDatasetsResponse(dataset_id=self.merged_response))
 
     async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
         request = await stream.recv_message()
