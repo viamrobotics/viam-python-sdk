@@ -1888,9 +1888,8 @@ class DataClient:
         path = Path(filepath)
         file_name = path.stem
         file_extension = path.suffix if path.suffix != "" else None
-        f = open(filepath, "rb")
-        data = f.read()
-        f.close()
+        with open(filepath, "rb") as f:
+            data = f.read()
 
         metadata = UploadMetadata(
             part_id=part_id,
