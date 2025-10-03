@@ -131,7 +131,7 @@ class TestViamClient:
                         creds = Credentials("robot-location-secret", "SOME_LOCATION_SECRET")
                         opts = DialOptions(credentials=creds, auth_entity="SOME.AUTH.ENTITY")
 
-                        async with ViamClient.create_from_dial_options(opts) as client:
+                        async with await ViamClient.create_from_dial_options(opts) as client:
                             assert client._closed is False
                         assert client._closed is True
 

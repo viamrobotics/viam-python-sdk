@@ -1,5 +1,5 @@
 import os
-from typing import Mapping, Optional
+from typing import Any, Mapping, Optional
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -205,6 +205,24 @@ class ViamClient:
                 provisioning_client = viam_client.provisioning_client
         """
         return ProvisioningClient(self._channel, self._metadata)
+
+    async def __aenter__(self) -> "ViamClient":
+        """A ViamClient can act as an asynchronous context manager. It will do nothing special when
+        the context is entered.
+        """
+        return self
+
+    async def __aexit__(self, exc_type: Optional[type], exc_value: Optional[BaseException], traceback: Optional[Any]) -> None:
+        """A ViamClient can act as an asynchronous context manager. It will close itself when
+        the context is exited.
+
+        ::
+
+            async with ViamClient.create_from_dial_options(...) as client:
+                await do_something_with(client)
+            # client is closed here
+        """
+        self.close()
 
     def close(self) -> None:
         """Close opened channels used for the various service stubs initialized."""
