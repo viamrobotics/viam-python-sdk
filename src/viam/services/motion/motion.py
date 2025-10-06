@@ -366,8 +366,7 @@ class Motion(ServiceBase):
             robot = await connect()
 
             motion = MotionClient.from_robot(robot=machine, name="builtin")
-            gripperName = "my_gripper"
-            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
+            gripperPoseInWorld = await motion.get_pose(component_name="my_gripper",
                                                     destination_frame="world")
 
         Args:
