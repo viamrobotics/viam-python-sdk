@@ -462,8 +462,7 @@ associated IDs of all plans within the TTL ordered by timestamp in ascending ord
 <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
 
 <span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
-<span class="n">gripperName</span> <span class="o">=</span> <span class="s2">&quot;my_gripper&quot;</span>
-<span class="n">gripperPoseInWorld</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripperName</span><span class="p">,</span>
+<span class="n">gripperPoseInWorld</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">,</span>
                                         <span class="n">destination_frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
 </pre></div>
 </div>

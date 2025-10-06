@@ -455,8 +455,7 @@
 <span class="sd">            robot = await connect()</span>
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
-<span class="sd">            gripperName = &quot;my_gripper&quot;</span>
-<span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,</span>
+<span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=&quot;my_gripper&quot;,</span>
 <span class="sd">                                                    destination_frame=&quot;world&quot;)</span>
 
 <span class="sd">        Args:</span>
