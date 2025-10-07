@@ -225,11 +225,9 @@
 
 <span class="sd">        async def main():</span>
 <span class="sd">            # Make a ViamClient</span>
-<span class="sd">            viam_client = await connect()</span>
-<span class="sd">            # Instantiate a DataClient to run data client API methods on</span>
-<span class="sd">            data_client = viam_client.data_client</span>
-
-<span class="sd">            viam_client.close()</span>
+<span class="sd">            async with await connect() as viam_client:</span>
+<span class="sd">                # Instantiate a DataClient to run data client API methods on</span>
+<span class="sd">                data_client = viam_client.data_client</span>
 
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>
@@ -1977,9 +1975,8 @@
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">stem</span>
         <span class="n">file_extension</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
             <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>

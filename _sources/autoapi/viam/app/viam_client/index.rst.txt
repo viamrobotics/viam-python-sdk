@@ -190,6 +190,30 @@ Module Contents
               provisioning_client = viam_client.provisioning_client
 
 
+   .. py:method:: __aenter__() -> ViamClient
+      :async:
+
+
+      A ViamClient can act as an asynchronous context manager. It will do nothing special when
+      the context is entered.
+
+
+
+   .. py:method:: __aexit__(exc_type: Optional[type], exc_value: Optional[BaseException], traceback: Optional[Any]) -> None
+      :async:
+
+
+      A ViamClient can act as an asynchronous context manager. It will close itself when
+      the context is exited.
+
+      ::
+
+          async with ViamClient.create_from_dial_options(...) as client:
+              await do_something_with(client)
+          # client is closed here
+
+
+
    .. py:method:: close() -> None
 
       Close opened channels used for the various service stubs initialized.

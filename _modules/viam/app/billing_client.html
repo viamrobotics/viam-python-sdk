@@ -131,11 +131,9 @@
 
 <span class="sd">        async def main():</span>
 <span class="sd">            # Make a ViamClient</span>
-<span class="sd">            viam_client = await connect()</span>
-<span class="sd">            # Instantiate a BillingClient to run billing client API methods on</span>
-<span class="sd">            billing_client = viam_client.billing_client</span>
-
-<span class="sd">            viam_client.close()</span>
+<span class="sd">            async with await connect() as viam_client:</span>
+<span class="sd">                # Instantiate a BillingClient to run billing client API methods on</span>
+<span class="sd">                billing_client = viam_client.billing_client</span>
 
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>

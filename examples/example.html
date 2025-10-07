@@ -153,9 +153,8 @@
         <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
 
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -165,7 +164,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f2ad4707b00&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f2adc326700&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f2adc3267a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f2adc3266b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f2adc3267f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f2adc326840&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f2adc326890&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f2adc3268e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f2adc326930&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f2adc326980&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f2adc3269d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f2adc326a20&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f2adc326a70&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f2adc326ac0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f2adc326b10&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fe2e4156570&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fe2e4156610&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fe2e4155940&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fe2e4156660&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fe2e41566b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fe2e4156700&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fe2e4156750&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fe2e41567a0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fe2e41567f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fe2e4156840&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fe2e4156890&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fe2e41568e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fe2e4156930&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fe2e4156980&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fe2e41569d0&gt;]
 </pre></div>
 </div>
 </div>
@@ -178,14 +177,11 @@
 <span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
 <span class="kn">from</span> <span class="nn">viam.media.utils.pil</span> <span class="kn">import</span> <span class="n">viam_to_pil_image</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;camera0&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">)</span>
-<span class="n">pil</span> <span class="o">=</span> <span class="n">viam_to_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="n">pil</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;foo.png&quot;</span><span class="p">)</span>
-
-<span class="c1"># Don&#39;t forget to close the robot when you&#39;re done!</span>
-<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;camera0&quot;</span><span class="p">)</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">)</span>
+    <span class="n">pil</span> <span class="o">=</span> <span class="n">viam_to_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">pil</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;foo.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -197,7 +193,7 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f2ad4b8fa10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7fe2dc7e8bc0&gt;
 </pre></div>
 </div>
 </div>
@@ -210,18 +206,9 @@
 
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-    <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
-    <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>At the end, don’t forget to close the connection</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span>
+        <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

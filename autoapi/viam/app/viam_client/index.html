@@ -77,6 +77,8 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.ml_training_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.ml_training_client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.billing_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.billing_client</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.provisioning_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.provisioning_client</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.__aenter__"><code class="docutils literal notranslate"><span class="pre">ViamClient.__aenter__()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.__aexit__"><code class="docutils literal notranslate"><span class="pre">ViamClient.__aexit__()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.close"><code class="docutils literal notranslate"><span class="pre">ViamClient.close()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.viam_client.ViamClient.connect_to_machine"><code class="docutils literal notranslate"><span class="pre">ViamClient.connect_to_machine()</span></code></a></li>
 </ul>
@@ -314,6 +316,25 @@ To use the <cite>ProvisioningClient</cite>, you must first instantiate a <cite>V
 
     <span class="c1"># Instantiate a ProvisioningClient to run provisioning API methods on</span>
     <span class="n">provisioning_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">provisioning_client</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.__aenter__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aenter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.viam_client.ViamClient" title="viam.app.viam_client.ViamClient"><span class="pre">ViamClient</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.__aenter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.__aenter__" title="Permalink to this definition"></a></dt>
+<dd><p>A ViamClient can act as an asynchronous context manager. It will do nothing special when
+the context is entered.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.__aexit__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aexit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseException</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traceback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.__aexit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.__aexit__" title="Permalink to this definition"></a></dt>
+<dd><p>A ViamClient can act as an asynchronous context manager. It will close itself when
+the context is exited.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="k">await</span> <span class="n">do_something_with</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<span class="c1"># client is closed here</span>
 </pre></div>
 </div>
 </dd></dl>

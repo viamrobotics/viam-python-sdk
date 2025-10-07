@@ -619,11 +619,9 @@
 <span class="sd">        async def main():</span>
 
 <span class="sd">            # Make a ViamClient</span>
-<span class="sd">            viam_client = await connect()</span>
-<span class="sd">            # Instantiate an AppClient called &quot;cloud&quot; to run cloud app API methods on</span>
-<span class="sd">            cloud = viam_client.app_client</span>
-
-<span class="sd">            viam_client.close()</span>
+<span class="sd">            async with await connect() as viam_client:</span>
+<span class="sd">                # Instantiate an AppClient called &quot;cloud&quot; to run cloud app API methods on</span>
+<span class="sd">                cloud = viam_client.app_client</span>
 
 <span class="sd">        if __name__ == &#39;__main__&#39;:</span>
 <span class="sd">            asyncio.run(main())</span>

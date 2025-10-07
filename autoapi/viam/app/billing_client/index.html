@@ -167,11 +167,9 @@
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># Make a ViamClient</span>
-    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
-    <span class="c1"># Instantiate a BillingClient to run billing client API methods on</span>
-    <span class="n">billing_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">billing_client</span>
-
-    <span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">viam_client</span><span class="p">:</span>
+        <span class="c1"># Instantiate a BillingClient to run billing client API methods on</span>
+        <span class="n">billing_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">billing_client</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
