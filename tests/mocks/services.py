@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, AsyncGenerator, Dict, List, Mapping, Optional, Sequence, Union
 
 import bson
 import numpy as np
@@ -213,10 +213,14 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterResponse,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
+    CreateIndexRequest,
+    CreateIndexResponse,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteIndexRequest,
+    DeleteIndexResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
@@ -225,6 +229,9 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    Index,
+    ListIndexesRequest,
+    ListIndexesResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -379,7 +386,7 @@ from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct
 class MockVision(Vision):
     def __init__(
         self,
-        name: str,
+        name,
         detectors: List[str],
         detections: List[Detection],
         classifiers: List[str],
@@ -845,6 +852,7 @@ class MockData(UnimplementedDataServiceBase):
         bbox_labels_response: List[str],
         hostname_response: str,
         additional_params: Mapping[str, ValueTypes],
+        list_indexes_response: List[Index],
     ):
         self.tabular_response = tabular_response
         self.tabular_export_response = tabular_export_response
@@ -857,6 +865,7 @@ class MockData(UnimplementedDataServiceBase):
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
         self.additional_params = additional_params
+        self.list_indexes_response = list_indexes_response
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1043,6 +1052,7 @@ class MockData(UnimplementedDataServiceBase):
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.query_prefix_name = request.query_prefix_name if request.HasField("query_prefix_name") else None
         await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
     async def GetLatestTabularData(self, stream: Stream[GetLatestTabularDataRequest, GetLatestTabularDataResponse]) -> None:
@@ -1067,6 +1077,24 @@ class MockData(UnimplementedDataServiceBase):
         self.additional_params = request.additional_parameters
         for tabular_data in self.tabular_export_response:
             await stream.send_message(tabular_data)
+
+    async def CreateIndex(self, stream: Stream[CreateIndexRequest, CreateIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.create_index_request = request
+        await stream.send_message(CreateIndexResponse())
+
+    async def ListIndexes(self, stream: Stream[ListIndexesRequest, ListIndexesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.list_indexes_request = request
+        await stream.send_message(ListIndexesResponse(indexes=self.list_indexes_response))
+
+    async def DeleteIndex(self, stream: Stream[DeleteIndexRequest, DeleteIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_index_request = request
+        await stream.send_message(DeleteIndexResponse())
 
 
 class MockDataset(DatasetServiceBase):
@@ -1931,7 +1959,7 @@ class MockWorldStateStore(WorldStateStore):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
-    ) -> AsyncIterator["StreamTransformChangesResponse"]:
+    ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         self.extra = extra
         self.timeout = timeout
 
