@@ -270,123 +270,109 @@ class TestRobotService:
 class TestRobotClient:
     async def test_refresh(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            assert len(client._resource_names) == len(RESOURCE_NAMES)
-            assert set(client._resource_names) == set(RESOURCE_NAMES)
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                assert len(client._resource_names) == len(RESOURCE_NAMES)
+                assert set(client._resource_names) == set(RESOURCE_NAMES)
 
-            service.manager.register(MockSensor("sensor1"))
-            await client.refresh()
-            assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
-            await client.close()
+                service.manager.register(MockSensor("sensor1"))
+                await client.refresh()
+                assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
 
     async def test_refresh_task(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            assert client._refresh_task is None
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                assert client._refresh_task is None
 
-            client = await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100))
-            assert client._refresh_task is not None
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100)) as client:
+                assert client._refresh_task is not None
 
     async def test_close(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100))
-            assert client._channel._connected is True
-            assert client._refresh_task is not None and client._refresh_task.cancelled() is False
+            async with await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100)) as client:
+                assert client._channel._connected is True
+                assert client._refresh_task is not None and client._refresh_task.cancelled() is False
 
-            await client.close()
             assert client._channel._connected is True  # Robots created with ``with_channel`` do not close Channels automatically
             with pytest.raises(asyncio.CancelledError):
                 await client._refresh_task
 
     async def test_resource_names(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            assert len(client._resource_names) == len(RESOURCE_NAMES)
-            assert set(client._resource_names) == set(RESOURCE_NAMES)
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                assert len(client._resource_names) == len(RESOURCE_NAMES)
+                assert set(client._resource_names) == set(RESOURCE_NAMES)
 
-            service.manager.register(MockSensor("sensor1"))
-            await client.refresh()
-            assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
-            await client.close()
+                service.manager.register(MockSensor("sensor1"))
+                await client.refresh()
+                assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
 
     async def test_get_component(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            component = client.get_component(MockArm.get_resource_name("arm1"))
-            assert isinstance(component, Arm)
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                component = client.get_component(MockArm.get_resource_name("arm1"))
+                assert isinstance(component, Arm)
 
-            with pytest.raises(ResourceNotFoundError):
-                client.get_component(MockArm.get_resource_name("arm2"))
+                with pytest.raises(ResourceNotFoundError):
+                    client.get_component(MockArm.get_resource_name("arm2"))
 
-            with pytest.raises(ValueError):
-                client.get_component(
-                    ResourceName(
-                        namespace=RESOURCE_NAMESPACE_RDK,
-                        type="service",
-                        subtype="vision",
+                with pytest.raises(ValueError):
+                    client.get_component(
+                        ResourceName(
+                            namespace=RESOURCE_NAMESPACE_RDK,
+                            type="service",
+                            subtype="vision",
+                        )
                     )
-                )
 
-            # Test BaseComponent.from_robot(...)
-            component = MockArm.from_robot(client, "arm1")
-            assert isinstance(component, Arm)
+                # Test BaseComponent.from_robot(...)
+                component = MockArm.from_robot(client, "arm1")
+                assert isinstance(component, Arm)
 
-            with pytest.raises(ResourceNotFoundError):
-                MockArm.from_robot(client, "arm2")
-
-            await client.close()
+                with pytest.raises(ResourceNotFoundError):
+                    MockArm.from_robot(client, "arm2")
 
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            with pytest.raises(ResourceNotFoundError):
-                MLModelClient.from_robot(client, "mlmodel")
-            MLModelClient.from_robot(client, "mlmodel1")
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                with pytest.raises(ResourceNotFoundError):
+                    MLModelClient.from_robot(client, "mlmodel")
+                MLModelClient.from_robot(client, "mlmodel1")
 
     async def test_get_frame_system_config(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            configs = await client.get_frame_system_config()
-            assert configs == CONFIG_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                configs = await client.get_frame_system_config()
+                assert configs == CONFIG_RESPONSE
 
     async def test_transform_pose(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            pose = await client.transform_pose(PoseInFrame(), "some dest")
-            assert pose == TRANSFORM_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                pose = await client.transform_pose(PoseInFrame(), "some dest")
+                assert pose == TRANSFORM_RESPONSE
 
     async def test_get_cloud_metadata(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            md = await client.get_cloud_metadata()
-            assert md == GET_CLOUD_METADATA_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                md = await client.get_cloud_metadata()
+                assert md == GET_CLOUD_METADATA_RESPONSE
 
     async def test_get_version(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            md = await client.get_version()
-            assert md == GET_VERVSION_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                md = await client.get_version()
+                assert md == GET_VERVSION_RESPONSE
 
     async def test_get_machine_status(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            statuses = await client.get_machine_status()
-            assert statuses == GET_MACHINE_STATUS_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                statuses = await client.get_machine_status()
+                assert statuses == GET_MACHINE_STATUS_RESPONSE
 
     async def test_get_operations(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            ops = await client.get_operations()
-            assert ops == OPERATIONS_RESPONSE
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                ops = await client.get_operations()
+                assert ops == OPERATIONS_RESPONSE
 
     async def test_cancel_operation(self, service: RobotService):
         cancelled = None
@@ -400,10 +386,9 @@ class TestRobotClient:
 
         service.CancelOperation = CancelOperation
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            await client.cancel_operation(id=OPERATION_ID)
-            assert cancelled == OPERATION_ID
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                await client.cancel_operation(id=OPERATION_ID)
+                assert cancelled == OPERATION_ID
 
     async def test_block_for_operation(self, service: RobotService):
         blocked = None
@@ -417,54 +402,48 @@ class TestRobotClient:
 
         service.BlockForOperation = BlockForOperation
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-            await client.block_for_operation(id=OPERATION_ID)
-            assert blocked == OPERATION_ID
-            await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                await client.block_for_operation(id=OPERATION_ID)
+                assert blocked == OPERATION_ID
 
     async def test_stop_all(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                arm = service.manager.get_resource(Arm, Arm.get_resource_name("arm1"))
+                assert isinstance(arm, MockArm)
+                motor = service.manager.get_resource(Motor, Motor.get_resource_name("motor1"))
+                assert isinstance(motor, MockMotor)
 
-            arm = service.manager.get_resource(Arm, Arm.get_resource_name("arm1"))
-            assert isinstance(arm, MockArm)
-            motor = service.manager.get_resource(Motor, Motor.get_resource_name("motor1"))
-            assert isinstance(motor, MockMotor)
+                await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+                assert await arm.is_moving() is True
+                await motor.set_power(1)
+                assert await motor.is_moving() is True
 
-            await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
-            assert await arm.is_moving() is True
-            await motor.set_power(1)
-            assert await motor.is_moving() is True
+                extra = {"foo": "bar", "baz": [1, 2, 3]}
+                await client.stop_all({arm.get_resource_name(arm.name): extra})  # type: ignore
 
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.stop_all({arm.get_resource_name(arm.name): extra})  # type: ignore
+                assert await arm.is_moving() is False
+                assert arm.extra == extra
 
-            assert await arm.is_moving() is False
-            assert arm.extra == extra
-
-            assert await motor.is_moving() is False
-            await client.close()
+                assert await motor.is_moving() is False
 
     async def test_create_or_reset_client(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-
-            # No change in channel
-            arm_client = ArmClient.from_robot(client, "arm1")
-            assert arm_client.channel is client._channel
-            await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
-            assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
-            assert arm_client.channel is client._channel
-
-            # Yes change in channel
-            async with ChannelFor([service]) as channel2:
-                arm_client.reset_channel(channel2)
-                assert arm_client.channel is not client._channel
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                # No change in channel
+                arm_client = ArmClient.from_robot(client, "arm1")
+                assert arm_client.channel is client._channel
                 await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
                 assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
                 assert arm_client.channel is client._channel
 
-            await client.close()
+                # Yes change in channel
+                async with ChannelFor([service]) as channel2:
+                    arm_client.reset_channel(channel2)
+                    assert arm_client.channel is not client._channel
+                    await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                    assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
+                    assert arm_client.channel is client._channel
 
             # Change in client
             class FakeArmClient(Arm, ResourceRPCClientBase):
@@ -534,15 +513,13 @@ class TestRobotClient:
             old_create_client = Registry._APIS[Arm.API].create_rpc_client
             Registry._APIS[Arm.API].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)
 
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                async with ChannelFor([service]) as channel2:
+                    arm_client.channel = channel2
+                    assert arm_client.channel is not client._channel
+                    await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                    assert arm_client is not client.get_component(Arm.get_resource_name(arm_client.name))  # Should be a new client now
 
-            async with ChannelFor([service]) as channel2:
-                arm_client.channel = channel2
-                assert arm_client.channel is not client._channel
-                await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
-                assert arm_client is not client.get_component(Arm.get_resource_name(arm_client.name))  # Should be a new client now
-
-            await client.close()
             Registry._APIS[Arm.API].create_rpc_client = old_create_client
 
     async def test_shutdown(self, service: RobotService):
@@ -551,23 +528,17 @@ class TestRobotClient:
             async def shutdown_client_mock(self):
                 return await self._client.Shutdown(ShutdownRequest())
 
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
+                    shutdown_mock.return_value = await shutdown_client_mock(client)
+                    shutdown_response = await client.shutdown()
 
-            with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
-                shutdown_mock.return_value = await shutdown_client_mock(client)
-                shutdown_response = await client.shutdown()
-
-                assert shutdown_response == ShutdownResponse()
-                shutdown_mock.assert_called_once()
-
-                await client.close()
+                    assert shutdown_response == ShutdownResponse()
+                    shutdown_mock.assert_called_once()
 
     async def test_restart_module(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            client = await RobotClient.with_channel(channel, RobotClient.Options())
-
-            with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
-                await client.restart_module(id=MODULE_ID, name=MODULE_NAME)
-                restart_module_mock.assert_called_once()
-
-                await client.close()
+            async with await RobotClient.with_channel(channel, RobotClient.Options()) as client:
+                with mock.patch("viam.robot.client.RobotClient.restart_module") as restart_module_mock:
+                    await client.restart_module(id=MODULE_ID, name=MODULE_NAME)
+                    restart_module_mock.assert_called_once()
