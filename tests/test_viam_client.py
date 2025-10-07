@@ -120,6 +120,21 @@ class TestViamClient:
                         client.close()
                         assert client._closed is True
 
+    async def test_context_manager(self):
+        async with ChannelFor([]) as channel:
+            with patch.object(channel, "close"):
+                with patch("viam.app.viam_client._dial_app") as patched_dial:
+                    patched_dial.return_value = channel
+                    with patch("viam.app.viam_client._get_access_token") as patched_auth:
+                        patched_auth.return_value = "MY_ACCESS_TOKEN"
+
+                        creds = Credentials("robot-location-secret", "SOME_LOCATION_SECRET")
+                        opts = DialOptions(credentials=creds, auth_entity="SOME.AUTH.ENTITY")
+
+                        async with await ViamClient.create_from_dial_options(opts) as client:
+                            assert client._closed is False
+                        assert client._closed is True
+
     class TestConnectToMachine:
         @pytest.fixture
         async def client(self):

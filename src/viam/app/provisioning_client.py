@@ -41,11 +41,9 @@ class ProvisioningClient:
         async def main():
 
             # Make a ViamClient
-            viam_client = await connect()
-            # Instantiate a ProvisioningClient to run provisioning client API methods on
-            provisioning_client = viam_client.provisioning_client
-
-            viam_client.close()
+            async with await connect() as viam_client:
+                # Instantiate a ProvisioningClient to run provisioning client API methods on
+                provisioning_client = viam_client.provisioning_client
 
         if __name__ == '__main__':
             asyncio.run(main())

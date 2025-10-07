@@ -136,11 +136,9 @@ class DataClient:
 
         async def main():
             # Make a ViamClient
-            viam_client = await connect()
-            # Instantiate a DataClient to run data client API methods on
-            data_client = viam_client.data_client
-
-            viam_client.close()
+            async with await connect() as viam_client:
+                # Instantiate a DataClient to run data client API methods on
+                data_client = viam_client.data_client
 
         if __name__ == '__main__':
             asyncio.run(main())
@@ -1888,9 +1886,8 @@ class DataClient:
         path = Path(filepath)
         file_name = path.stem
         file_extension = path.suffix if path.suffix != "" else None
-        f = open(filepath, "rb")
-        data = f.read()
-        f.close()
+        with open(filepath, "rb") as f:
+            data = f.read()
 
         metadata = UploadMetadata(
             part_id=part_id,
