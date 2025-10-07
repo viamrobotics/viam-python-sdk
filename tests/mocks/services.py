@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, AsyncGenerator, AsyncIterator, Dict, List, Mapping, Optional, Sequence, Union
 
 import bson
 import numpy as np
@@ -227,13 +227,9 @@ from viam.proto.app.data import (
     ExportTabularDataResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
-    GetIndexRequest,
-    GetIndexResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
     Index,
-    IndexableCollection,
-    IndexCreator,
     ListIndexesRequest,
     ListIndexesResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
@@ -327,7 +323,6 @@ from viam.proto.common import (
     PointCloudObject,
     Pose,
     PoseInFrame,
-    ResourceName,
     Transform,
 )
 from viam.proto.provisioning import (
@@ -391,6 +386,7 @@ from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct
 class MockVision(Vision):
     def __init__(
         self,
+        name,
         detectors: List[str],
         detections: List[Detection],
         classifiers: List[str],
@@ -410,7 +406,7 @@ class MockVision(Vision):
         self.properties = properties
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
-        super().__init__("mock-vision")
+        super().__init__(name)
 
     async def get_properties(
         self,
@@ -626,11 +622,11 @@ class MockMotion(MotionServiceBase):
     async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name = request.name
         self.constraints = request.constraints
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        success = self.move_responses[name.name]
+        success = self.move_responses[name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
 
@@ -665,10 +661,10 @@ class MockMotion(MotionServiceBase):
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name = request.component_name
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pose = self.get_pose_responses[name.name]
+        pose = self.get_pose_responses[name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
 
@@ -870,11 +866,6 @@ class MockData(UnimplementedDataServiceBase):
         self.was_binary_data_requested = False
         self.additional_params = additional_params
         self.list_indexes_response = list_indexes_response
-        self.collection_type: Optional[IndexableCollection.ValueType] = None
-        self.index_spec: Optional[List[bytes]] = None
-        self.index_name: Optional[str] = None
-        self.pipeline_name: Optional[str] = None
-        self.query_prefix_name: Optional[str] = None
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1090,27 +1081,19 @@ class MockData(UnimplementedDataServiceBase):
     async def CreateIndex(self, stream: Stream[CreateIndexRequest, CreateIndexResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
-        self.collection_type = request.collection_type
-        self.index_spec = list(request.index_spec)
-        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        self.create_index_request = request
         await stream.send_message(CreateIndexResponse())
 
     async def ListIndexes(self, stream: Stream[ListIndexesRequest, ListIndexesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
-        self.collection_type = request.collection_type
-        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        self.list_indexes_request = request
         await stream.send_message(ListIndexesResponse(indexes=self.list_indexes_response))
 
     async def DeleteIndex(self, stream: Stream[DeleteIndexRequest, DeleteIndexResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
-        self.collection_type = request.collection_type
-        self.index_name = request.index_name
-        self.pipeline_name = request.pipeline_name if request.HasField("pipeline_name") else None
+        self.delete_index_request = request
         await stream.send_message(DeleteIndexResponse())
 
 
@@ -1971,7 +1954,7 @@ class MockWorldStateStore(WorldStateStore):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
-    ) -> AsyncIterator["StreamTransformChangesResponse"]:
+    ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         self.extra = extra
         self.timeout = timeout
 

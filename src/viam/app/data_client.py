@@ -27,12 +27,14 @@ from viam.proto.app.data import (
     CaptureInterval,
     CaptureMetadata,
     ConfigureDatabaseUserRequest,
+    CreateIndexRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteIndexRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
@@ -42,6 +44,10 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    Index,
+    IndexableCollection,
+    ListIndexesRequest,
+    ListIndexesResponse,
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -59,15 +65,6 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    CreateIndexRequest,
-    CreateIndexResponse,
-    DeleteIndexRequest,
-    DeleteIndexResponse,
-    Index as ProtoIndex,
-    IndexableCollection,
-    IndexCreator,
-    ListIndexesRequest,
-    ListIndexesResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -373,35 +370,6 @@ class DataClient:
                 page_size=page_size,
                 runs=[DataClient.DataPipelineRun.from_proto(run) for run in data_pipeline_runs_page.runs],
                 next_page_token=data_pipeline_runs_page.next_page_token,
-            )
-
-    @dataclass
-    class Index:
-        """Represents a custom index."""
-
-        collection_type: IndexableCollection.ValueType
-        """The type of collection the index is on."""
-
-        pipeline_name: Optional[str]
-        """The name of the pipeline if the collection type is PIPELINE_SINK."""
-
-        index_name: str
-        """The name of the index."""
-
-        index_spec: List[bytes]
-        """The MongoDB index specification in JSON format."""
-
-        created_by: IndexCreator.ValueType
-        """The entity that created the index."""
-
-        @classmethod
-        def from_proto(cls, proto_index: ProtoIndex) -> Self:
-            return cls(
-                collection_type=proto_index.collection_type,
-                pipeline_name=proto_index.pipeline_name if proto_index.HasField("pipeline_name") else None,
-                index_name=proto_index.index_name,
-                index_spec=list(proto_index.index_spec),
-                created_by=proto_index.created_by,
             )
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -2084,7 +2052,7 @@ class DataClient:
         self,
         organization_id: str,
         collection_type: IndexableCollection.ValueType,
-        index_spec: List[Dict[str, Any]],
+        index_spec: Dict[str, Any],
         pipeline_name: Optional[str] = None,
     ) -> None:
         """Starts a custom index build.
@@ -2098,7 +2066,7 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
         """
-        index_spec_bytes = [bson.encode(spec) for spec in index_spec]
+        index_spec_bytes = [bson.encode(index_spec)]
         request = CreateIndexRequest(
             organization_id=organization_id,
             collection_type=collection_type,
@@ -2112,7 +2080,7 @@ class DataClient:
         organization_id: str,
         collection_type: IndexableCollection.ValueType,
         pipeline_name: Optional[str] = None,
-    ) -> List[Index]:
+    ) -> Sequence[Index]:
         """Returns all the indexes for a given collection.
 
         Args:
@@ -2132,7 +2100,7 @@ class DataClient:
             pipeline_name=pipeline_name,
         )
         response: ListIndexesResponse = await self._data_client.ListIndexes(request, metadata=self._metadata)
-        return [DataClient.Index.from_proto(idx) for idx in response.indexes]
+        return response.indexes
 
     async def delete_index(
         self,

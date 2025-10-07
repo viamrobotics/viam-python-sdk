@@ -85,6 +85,6 @@ class WorldStateStore(ServiceBase):
                 print(f"Transform {change.transform.uuid} {change.change_type}")
 
         Returns:
-            AsyncIterator[StreamTransformChangesResponse]: A stream of transform changes
+            AsyncGenerator[StreamTransformChangesResponse, None]: A stream of transform changes
         """
         ...

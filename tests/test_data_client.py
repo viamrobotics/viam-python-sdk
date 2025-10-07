@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List
 
+import bson
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
@@ -16,7 +17,6 @@ from viam.proto.app.data import (
     CaptureMetadata,
     CreateIndexRequest,
     CreateIndexResponse,
-    DataClient.TabularData,
     DeleteIndexRequest,
     DeleteIndexResponse,
     ExportTabularDataResponse,
@@ -29,7 +29,6 @@ from viam.proto.app.data import (
     Order,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
-import bson
 
 from .mocks.services import MockData
 
@@ -154,9 +153,9 @@ TAGS_RESPONSE = ["tag"]
 HOSTNAME_RESPONSE = "host"
 
 INDEX_NAME = "my_index"
-INDEX_SPEC = [{"key": 1}]
-INDEX_SPEC_BYTES = [bson.encode(spec) for spec in INDEX_SPEC]
-COLLECTION_TYPE = IndexableCollection.INDEXABLE_COLLECTION_HOT_STORE
+INDEX_SPEC = {"key": 1}
+INDEX_SPEC_BYTES = [bson.encode(INDEX_SPEC)]
+COLLECTION_TYPE = IndexableCollection.INDEXABLE_COLLECTION_PIPELINE_SINK
 PIPELINE_NAME = "my_pipeline"
 INDEX_CREATED_BY = IndexCreator.INDEX_CREATOR_CUSTOMER
 LIST_INDEXES_RESPONSE = [
@@ -468,10 +467,10 @@ class TestClient:
                 index_spec=INDEX_SPEC,
                 pipeline_name=PIPELINE_NAME,
             )
-            assert service.organization_id == ORG_ID
-            assert service.collection_type == COLLECTION_TYPE
-            assert service.index_spec == INDEX_SPEC_BYTES
-            assert service.pipeline_name == PIPELINE_NAME
+            assert service.create_index_request.organization_id == ORG_ID
+            assert service.create_index_request.collection_type == COLLECTION_TYPE
+            assert service.create_index_request.index_spec == INDEX_SPEC_BYTES
+            assert service.create_index_request.pipeline_name == PIPELINE_NAME
 
     async def test_list_indexes(self, service: MockData):
         async with ChannelFor([service]) as channel:
@@ -481,9 +480,10 @@ class TestClient:
                 collection_type=COLLECTION_TYPE,
                 pipeline_name=PIPELINE_NAME,
             )
-            assert service.organization_id == ORG_ID
-            assert service.collection_type == COLLECTION_TYPE
-            assert service.pipeline_name == PIPELINE_NAME
+            assert service.list_indexes_request.organization_id == ORG_ID
+            assert service.list_indexes_request.collection_type == COLLECTION_TYPE
+            assert service.list_indexes_request.pipeline_name == PIPELINE_NAME
+
             assert len(indexes) == len(LIST_INDEXES_RESPONSE)
             for i, index in enumerate(indexes):
                 expected_index = LIST_INDEXES_RESPONSE[i]
@@ -502,10 +502,10 @@ class TestClient:
                 index_name=INDEX_NAME,
                 pipeline_name=PIPELINE_NAME,
             )
-            assert service.organization_id == ORG_ID
-            assert service.collection_type == COLLECTION_TYPE
-            assert service.index_name == INDEX_NAME
-            assert service.pipeline_name == PIPELINE_NAME
+            assert service.delete_index_request.organization_id == ORG_ID
+            assert service.delete_index_request.collection_type == COLLECTION_TYPE
+            assert service.delete_index_request.index_name == INDEX_NAME
+            assert service.delete_index_request.pipeline_name == PIPELINE_NAME
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
