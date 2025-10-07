@@ -445,18 +445,15 @@
 <span class="sd">            # Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work</span>
 <span class="sd">            # (``Arm``, ``Base``, etc).</span>
 
-<span class="sd">            # Create a `component_name`:</span>
-<span class="sd">            component_name = &quot;my_gripper&quot;</span>
-
 <span class="sd">            from viam.components.gripper import Gripper</span>
 <span class="sd">            from viam.services.motion import MotionClient</span>
 
 <span class="sd">            # Assume that the connect function is written and will return a valid machine.</span>
-<span class="sd">            robot = await connect()</span>
+<span class="sd">            machine = await connect()</span>
 
 <span class="sd">            motion = MotionClient.from_robot(robot=machine, name=&quot;builtin&quot;)</span>
 <span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=&quot;my_gripper&quot;,</span>
-<span class="sd">                                                    destination_frame=&quot;world&quot;)</span>
+<span class="sd">                                                       destination_frame=&quot;world&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (str): Name of a component on a robot.</span>

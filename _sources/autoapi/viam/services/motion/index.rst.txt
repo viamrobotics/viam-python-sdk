@@ -457,18 +457,15 @@ Package Contents
           # Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work
           # (``Arm``, ``Base``, etc).
 
-          # Create a `component_name`:
-          component_name = "my_gripper"
-
           from viam.components.gripper import Gripper
           from viam.services.motion import MotionClient
 
           # Assume that the connect function is written and will return a valid machine.
-          robot = await connect()
+          machine = await connect()
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
           gripperPoseInWorld = await motion.get_pose(component_name="my_gripper",
-                                                  destination_frame="world")
+                                                     destination_frame="world")
 
       :param component_name: Name of a component on a robot.
       :type component_name: str
@@ -931,18 +928,15 @@ Package Contents
           # Note that the example uses the ``Gripper`` class, but any component class that inherits from ``ComponentBase`` will work
           # (``Arm``, ``Base``, etc).
 
-          # Create a `component_name`:
-          component_name = "my_gripper"
-
           from viam.components.gripper import Gripper
           from viam.services.motion import MotionClient
 
           # Assume that the connect function is written and will return a valid machine.
-          robot = await connect()
+          machine = await connect()
 
           motion = MotionClient.from_robot(robot=machine, name="builtin")
           gripperPoseInWorld = await motion.get_pose(component_name="my_gripper",
-                                                  destination_frame="world")
+                                                     destination_frame="world")
 
       :param component_name: Name of a component on a robot.
       :type component_name: str
