@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, AsyncGenerator, AsyncIterator, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, AsyncGenerator, Dict, List, Mapping, Optional, Sequence, Union
 
 import bson
 import numpy as np

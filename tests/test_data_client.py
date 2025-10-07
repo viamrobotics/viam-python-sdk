@@ -15,17 +15,11 @@ from viam.proto.app.data import (
     BoundingBox,
     CaptureInterval,
     CaptureMetadata,
-    CreateIndexRequest,
-    CreateIndexResponse,
-    DeleteIndexRequest,
-    DeleteIndexResponse,
     ExportTabularDataResponse,
     Filter,
     Index,
     IndexableCollection,
     IndexCreator,
-    ListIndexesRequest,
-    ListIndexesResponse,
     Order,
 )
 from viam.utils import create_filter, dict_to_struct, struct_to_dict
