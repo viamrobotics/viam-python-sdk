@@ -438,7 +438,7 @@ Module Contents
 
 
 
-   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None, tabular_data_source_type: viam.proto.app.data.TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD, pipeline_id: Optional[str] = None) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
+   .. py:method:: tabular_data_by_mql(organization_id: str, query: Union[List[bytes], List[Dict[str, Any]]], use_recent_data: Optional[bool] = None, tabular_data_source_type: viam.proto.app.data.TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD, pipeline_id: Optional[str] = None, query_prefix_name: Optional[str] = None) -> List[Dict[str, Union[viam.utils.ValueTypes, datetime.datetime]]]
       :async:
 
 
@@ -471,6 +471,8 @@ Module Contents
       :param pipeline_id: The ID of the data pipeline to query. Defaults to `None`.
                           Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.
       :type pipeline_id: str
+      :param query_prefix_name: Optional field that can be used to specify a saved query to run.
+      :type query_prefix_name: str
 
       :returns: An array of decoded BSON data objects.
       :rtype: List[Dict[str, Union[ValueTypes, datetime]]]
@@ -974,8 +976,8 @@ Module Contents
           print(bbox_id)
 
       :param binary_id: The binary data ID or :class:`BinaryID` of the image to add the bounding
-                        box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data
-                        IDs as a list of strings.*
+                        box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                        list of strings.*
       :type binary_id: Union[~viam.proto.app.data.BinaryID, str]
       :param label: A label for the bounding box.
       :type label: str
@@ -1735,6 +1737,67 @@ Module Contents
 
       :returns: A page of data pipeline runs with pagination support
       :rtype: DataPipelineRunsPage
+
+
+
+   .. py:method:: create_index(organization_id: str, collection_type: viam.proto.app.data.IndexableCollection.ValueType, index_spec: Dict[str, Any], pipeline_name: Optional[str] = None) -> None
+      :async:
+
+
+      Starts a custom index build.
+
+      :param organization_id: The ID of the organization that owns the data.
+                              To find your organization ID, visit the organization settings page.
+      :type organization_id: str
+      :param collection_type: The type of collection the index is on.
+      :type collection_type: IndexableCollection.ValueType
+      :param index_spec: The MongoDB index specification defined in JSON format.
+      :type index_spec: List[Dict[str, Any]]
+      :param pipeline_name: The name of the pipeline if the collection type is PIPELINE_SINK.
+      :type pipeline_name: Optional[str]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
+
+
+
+   .. py:method:: list_indexes(organization_id: str, collection_type: viam.proto.app.data.IndexableCollection.ValueType, pipeline_name: Optional[str] = None) -> Sequence[viam.proto.app.data.Index]
+      :async:
+
+
+      Returns all the indexes for a given collection.
+
+      :param organization_id: The ID of the organization that owns the data.
+                              To find your organization ID, visit the organization settings page.
+      :type organization_id: str
+      :param collection_type: The type of collection the index is on.
+      :type collection_type: IndexableCollection.ValueType
+      :param pipeline_name: The name of the pipeline if the collection type is PIPELINE_SINK.
+      :type pipeline_name: Optional[str]
+
+      :returns: A list of indexes.
+      :rtype: List[Index]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listindexes>`_.
+
+
+
+   .. py:method:: delete_index(organization_id: str, collection_type: viam.proto.app.data.IndexableCollection.ValueType, index_name: str, pipeline_name: Optional[str] = None) -> None
+      :async:
+
+
+      Drops the specified custom index from a collection.
+
+      :param organization_id: The ID of the organization that owns the data.
+                              To find your organization ID, visit the organization settings page.
+      :type organization_id: str
+      :param collection_type: The type of collection the index is on.
+      :type collection_type: IndexableCollection.ValueType
+      :param index_name: The name of the index to delete.
+      :type index_name: str
+      :param pipeline_name: The name of the pipeline if the collection type is PIPELINE_SINK.
+      :type pipeline_name: Optional[str]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deleteindex>`_.
 
 
 

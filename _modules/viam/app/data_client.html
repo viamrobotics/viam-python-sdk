@@ -116,12 +116,14 @@
     <span class="n">CaptureInterval</span><span class="p">,</span>
     <span class="n">CaptureMetadata</span><span class="p">,</span>
     <span class="n">ConfigureDatabaseUserRequest</span><span class="p">,</span>
+    <span class="n">CreateIndexRequest</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterResponse</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">DeleteIndexRequest</span><span class="p">,</span>
     <span class="n">DeleteTabularDataRequest</span><span class="p">,</span>
     <span class="n">DeleteTabularDataResponse</span><span class="p">,</span>
     <span class="n">ExportTabularDataRequest</span><span class="p">,</span>
@@ -131,6 +133,10 @@
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
     <span class="n">GetLatestTabularDataRequest</span><span class="p">,</span>
     <span class="n">GetLatestTabularDataResponse</span><span class="p">,</span>
+    <span class="n">Index</span><span class="p">,</span>
+    <span class="n">IndexableCollection</span><span class="p">,</span>
+    <span class="n">ListIndexesRequest</span><span class="p">,</span>
+    <span class="n">ListIndexesResponse</span><span class="p">,</span>
     <span class="n">Order</span><span class="p">,</span>
     <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
@@ -588,6 +594,7 @@
         <span class="n">use_recent_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tabular_data_source_type</span><span class="p">:</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">ValueType</span> <span class="o">=</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">TABULAR_DATA_SOURCE_TYPE_STANDARD</span><span class="p">,</span>
         <span class="n">pipeline_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">query_prefix_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
 
@@ -614,6 +621,7 @@
 <span class="sd">                Defaults to `TABULAR_DATA_SOURCE_TYPE_STANDARD`.</span>
 <span class="sd">            pipeline_id (str): The ID of the data pipeline to query. Defaults to `None`.</span>
 <span class="sd">                Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.</span>
+<span class="sd">            query_prefix_name (str): Optional field that can be used to specify a saved query to run.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.</span>
@@ -624,7 +632,12 @@
         <span class="n">data_source</span> <span class="o">=</span> <span class="n">TabularDataSource</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">tabular_data_source_type</span><span class="p">,</span> <span class="n">pipeline_id</span><span class="o">=</span><span class="n">pipeline_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">use_recent_data</span><span class="p">:</span>
             <span class="n">data_source</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">TabularDataSourceType</span><span class="o">.</span><span class="n">TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span> <span class="n">data_source</span><span class="o">=</span><span class="n">data_source</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">mql_binary</span><span class="o">=</span><span class="n">binary</span><span class="p">,</span>
+            <span class="n">data_source</span><span class="o">=</span><span class="n">data_source</span><span class="p">,</span>
+            <span class="n">query_prefix_name</span><span class="o">=</span><span class="n">query_prefix_name</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByMQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByMQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bson_bytes</span><span class="p">)</span> <span class="k">for</span> <span class="n">bson_bytes</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">raw_data</span><span class="p">]</span></div>
 
@@ -1220,8 +1233,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding</span>
-<span class="sd">                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data</span>
-<span class="sd">                IDs as a list of strings.*</span>
+<span class="sd">                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
+<span class="sd">                list of strings.*</span>
 <span class="sd">            label (str): A label for the bounding box.</span>
 <span class="sd">            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.</span>
 <span class="sd">            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.</span>
@@ -2149,6 +2162,86 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDataPipelineRunsRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDataPipelineRunsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_pipelines_client</span><span class="o">.</span><span class="n">ListDataPipelineRuns</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">DataPipelineRunsPage</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">page_size</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataClient.create_index"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_index">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
+        <span class="n">index_spec</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">pipeline_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts a custom index build.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            collection_type (IndexableCollection.ValueType): The type of collection the index is on.</span>
+<span class="sd">            index_spec (List[Dict[str, Any]]): The MongoDB index specification defined in JSON format.</span>
+<span class="sd">            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createindex&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index_spec_bytes</span> <span class="o">=</span> <span class="p">[</span><span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">index_spec</span><span class="p">)]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateIndexRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">collection_type</span><span class="o">=</span><span class="n">collection_type</span><span class="p">,</span>
+            <span class="n">index_spec</span><span class="o">=</span><span class="n">index_spec_bytes</span><span class="p">,</span>
+            <span class="n">pipeline_name</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateIndex</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.list_indexes"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_indexes">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_indexes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
+        <span class="n">pipeline_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Index</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns all the indexes for a given collection.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            collection_type (IndexableCollection.ValueType): The type of collection the index is on.</span>
+<span class="sd">            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Index]: A list of indexes.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#listindexes&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListIndexesRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">collection_type</span><span class="o">=</span><span class="n">collection_type</span><span class="p">,</span>
+            <span class="n">pipeline_name</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListIndexesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ListIndexes</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">indexes</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_index"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_index">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_index</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">collection_type</span><span class="p">:</span> <span class="n">IndexableCollection</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
+        <span class="n">index_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">pipeline_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Drops the specified custom index from a collection.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">                To find your organization ID, visit the organization settings page.</span>
+<span class="sd">            collection_type (IndexableCollection.ValueType): The type of collection the index is on.</span>
+<span class="sd">            index_name (str): The name of the index to delete.</span>
+<span class="sd">            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#deleteindex&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteIndexRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">collection_type</span><span class="o">=</span><span class="n">collection_type</span><span class="p">,</span>
+            <span class="n">index_name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span>
+            <span class="n">pipeline_name</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteIndex</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.create_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_filter">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
