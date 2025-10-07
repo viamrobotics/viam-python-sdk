@@ -96,9 +96,9 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
-    RenameDatasetRequest,
     MergeDatasetsRequest,
     MergeDatasetsResponse,
+    RenameDatasetRequest,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadMetadata,
@@ -1301,7 +1301,6 @@ class DataClient:
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
-
 
     async def merge_datasets(self, name: str, organization_id: str, dataset_ids: List[str]) -> str:
         """Merge multiple datasets into a new dataset.
