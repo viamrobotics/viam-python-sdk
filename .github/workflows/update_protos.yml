@@ -32,12 +32,12 @@ jobs:
           python-version: "3.13"
           enable-cache: true
 
-      - name: API Version
+      - name: API Version - Repository Dispatch
         if: github.event.client_payload.tag != ''
         run: |
           echo "API_VERSION=${{github.event.client_payload.tag}}" >> $GITHUB_ENV
 
-      - name: API Version
+      - name: API Version - User Input
         if: inputs.api_version != ''
         run: |
           echo "API_VERSION=${{inputs.api_version}}" >> $GITHUB_ENV
