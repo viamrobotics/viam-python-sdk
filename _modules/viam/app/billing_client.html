@@ -232,7 +232,12 @@
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">GetOrgBillingInformation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BillingClient.create_invoice_and_charge_immediately"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.create_invoice_and_charge_immediately">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_invoice_and_charge_immediately</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id_to_charge</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">org_id_for_branding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id_to_charge</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">org_id_for_branding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">disable_email</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.</span>
 <span class="sd">        This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.</span>
@@ -246,9 +251,14 @@
 <span class="sd">            amount (float): the amount to charge in dollars</span>
 <span class="sd">            description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)</span>
 <span class="sd">            org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email</span>
+<span class="sd">            disable_email (bool): whether or not to disable sending an email confirmation for the invoice</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateInvoiceAndChargeImmediatelyRequest</span><span class="p">(</span>
-            <span class="n">org_id_to_charge</span><span class="o">=</span><span class="n">org_id_to_charge</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">org_id_for_branding</span><span class="o">=</span><span class="n">org_id_for_branding</span>
+            <span class="n">org_id_to_charge</span><span class="o">=</span><span class="n">org_id_to_charge</span><span class="p">,</span>
+            <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">org_id_for_branding</span><span class="o">=</span><span class="n">org_id_for_branding</span><span class="p">,</span>
+            <span class="n">disable_email</span><span class="o">=</span><span class="n">disable_email</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">_</span><span class="p">:</span> <span class="n">CreateInvoiceAndChargeImmediatelyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">CreateInvoiceAndChargeImmediately</span><span class="p">(</span>
             <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>

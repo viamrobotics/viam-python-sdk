@@ -139,7 +139,7 @@ Module Contents
 
 
 
-   .. py:method:: create_invoice_and_charge_immediately(org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None) -> None
+   .. py:method:: create_invoice_and_charge_immediately(org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None, disable_email: bool = False) -> None
       :async:
 
 
@@ -158,6 +158,8 @@ Module Contents
       :type description: str
       :param org_id_for_branding: the organization whose branding to use in the invoice confirmation email
       :type org_id_for_branding: str
+      :param disable_email: whether or not to disable sending an email confirmation for the invoice
+      :type disable_email: bool
 
 
 
