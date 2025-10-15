@@ -527,18 +527,20 @@ class CreateInvoiceAndChargeImmediatelyRequest(google.protobuf.message.Message):
     AMOUNT_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     ORG_ID_FOR_BRANDING_FIELD_NUMBER: builtins.int
+    DISABLE_EMAIL_FIELD_NUMBER: builtins.int
     org_id_to_charge: builtins.str
     amount: builtins.float
     description: builtins.str
     org_id_for_branding: builtins.str
+    disable_email: builtins.bool
 
-    def __init__(self, *, org_id_to_charge: builtins.str=..., amount: builtins.float=..., description: builtins.str | None=..., org_id_for_branding: builtins.str | None=...) -> None:
+    def __init__(self, *, org_id_to_charge: builtins.str=..., amount: builtins.float=..., description: builtins.str | None=..., org_id_for_branding: builtins.str | None=..., disable_email: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'amount', b'amount', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge']) -> None:
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'amount', b'amount', 'description', b'description', 'disable_email', b'disable_email', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge']) -> None:
         ...
 
     @typing.overload
