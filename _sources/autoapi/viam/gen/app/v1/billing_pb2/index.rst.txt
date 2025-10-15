@@ -897,7 +897,7 @@ Module Contents
 
 .. py:data:: global___UpdateOrganizationBillingTierResponse
 
-.. py:class:: CreateInvoiceAndChargeImmediatelyRequest(*, org_id_to_charge: str = ..., amount: float = ..., description: str | None = ..., org_id_for_branding: str | None = ...)
+.. py:class:: CreateInvoiceAndChargeImmediatelyRequest(*, org_id_to_charge: str = ..., amount: float = ..., description: str | None = ..., org_id_for_branding: str | None = ..., disable_email: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -923,6 +923,10 @@ Module Contents
 
    .. py:attribute:: org_id_for_branding
       :type:  str
+
+
+   .. py:attribute:: disable_email
+      :type:  bool
 
 
    .. py:method:: HasField(field_name: Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> bool
