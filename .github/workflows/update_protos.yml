@@ -11,7 +11,7 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.REPO_READ_TOKEN }}
       - uses: bufbuild/buf-setup-action@v1
@@ -23,7 +23,7 @@ jobs:
           version: "29.2"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
@@ -50,8 +50,8 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
-          branch: 'workflow/update-proto'
+          commit-message: "[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}"
+          branch: "workflow/update-proto"
           delete-branch: true
           base: main
           title: Automated Protos Update
