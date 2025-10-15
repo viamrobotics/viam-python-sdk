@@ -143,7 +143,12 @@ class BillingClient:
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
 
     async def create_invoice_and_charge_immediately(
-        self, org_id_to_charge: str, amount: float, description: Optional[str] = None, org_id_for_branding: Optional[str] = None, disable_email: bool = False
+        self,
+        org_id_to_charge: str,
+        amount: float,
+        description: Optional[str] = None,
+        org_id_for_branding: Optional[str] = None,
+        disable_email: bool = False,
     ) -> None:
         """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
         This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.
@@ -160,7 +165,11 @@ class BillingClient:
             disable_email (bool): whether or not to disable sending an email confirmation for the invoice
         """
         request = CreateInvoiceAndChargeImmediatelyRequest(
-            org_id_to_charge=org_id_to_charge, amount=amount, description=description, org_id_for_branding=org_id_for_branding, disable_email=disable_email
+            org_id_to_charge=org_id_to_charge,
+            amount=amount,
+            description=description,
+            org_id_for_branding=org_id_for_branding,
+            disable_email=disable_email,
         )
         _: CreateInvoiceAndChargeImmediatelyResponse = await self._billing_client.CreateInvoiceAndChargeImmediately(
             request, metadata=self._metadata
