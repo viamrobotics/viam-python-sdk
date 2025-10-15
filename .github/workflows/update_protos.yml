@@ -50,8 +50,8 @@ jobs:
 
       - name: Store API version
         run: |
-          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.env.API_VERSION }}
-          echo "Updated API version to ${{ github.env.API_VERSION }} in src/viam/version_metadata.py"
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ env.API_VERSION }}
+          echo "Updated API version to ${{ env.API_VERSION }} in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: uv run make buf
