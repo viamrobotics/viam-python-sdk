@@ -1306,6 +1306,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
+        self.disable_email: bool = False
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1342,6 +1343,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.amount = request.amount
         self.description = request.description
         self.org_id_for_branding = request.org_id_for_branding
+        self.disable_email = request.disable_email
         await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 
@@ -1937,11 +1939,7 @@ class MockWorldStateStore(WorldStateStore):
         return [b"uuid1", b"uuid2", b"uuid3"]
 
     async def get_transform(
-        self,
-        uuid: bytes,
-        *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        self, uuid: bytes, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> "Transform":
         self.uuid = uuid
         self.extra = extra
@@ -1955,10 +1953,7 @@ class MockWorldStateStore(WorldStateStore):
         )
 
     async def stream_transform_changes(
-        self,
-        *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
         self.extra = extra
         self.timeout = timeout

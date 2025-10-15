@@ -113,13 +113,16 @@ class TestClient:
             org_id = "foo"
             description = "A short description"
             org_id_for_branding = "bar"
+            disable_email = True
             _: CreateInvoiceAndChargeImmediatelyResponse = await client.create_invoice_and_charge_immediately(
                 org_id_to_charge=org_id,
                 amount=OUTSTANDING_BALANCE,
                 description=description,
                 org_id_for_branding=org_id_for_branding,
+                disable_email=disable_email,
             )
             assert service.org_id_to_charge == org_id
             assert service.description == description
             assert service.org_id_for_branding == org_id_for_branding
             assert service.amount == OUTSTANDING_BALANCE
+            assert service.disable_email == disable_email
