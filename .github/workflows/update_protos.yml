@@ -2,6 +2,11 @@ name: Update Protos + Open PR
 
 on:
   workflow_dispatch:
+    inputs:
+      api_version:
+        description: "The API version, including the `v`"
+        type: string
+        required: true
   repository_dispatch:
     types:
       - protos-updated
@@ -27,6 +32,16 @@ jobs:
           python-version: "3.13"
           enable-cache: true
 
+      - name: API Version - Repository Dispatch
+        if: github.event.client_payload.tag != ''
+        run: |
+          echo "API_VERSION=${{github.event.client_payload.tag}}" >> $GITHUB_ENV
+
+      - name: API Version - User Input
+        if: inputs.api_version != ''
+        run: |
+          echo "API_VERSION=${{inputs.api_version}}" >> $GITHUB_ENV
+
       - name: prune origin
         run: git remote prune origin
 
@@ -35,8 +50,8 @@ jobs:
 
       - name: Store API version
         run: |
-          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ github.event.client_payload.tag }}
-          echo "Updated API version to ${{ github.event.client_payload.tag }} in src/viam/version_metadata.py"
+          uv run python3 etc/_update_version_metadata.py src/viam/version_metadata.py ${{ env.API_VERSION }}
+          echo "Updated API version to ${{ env.API_VERSION }} in src/viam/version_metadata.py"
 
       - name: Generate buf
         run: uv run make buf
