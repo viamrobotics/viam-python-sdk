@@ -18,7 +18,9 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from PIL import Image
 
 from viam.components.arm import Arm
+from viam.components.audio_in import AudioIn
 from viam.components.audio_input import AudioInput
+from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, TickStream
 from viam.components.camera import Camera
@@ -52,6 +54,7 @@ from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.encoder import PositionType
 from viam.utils import SensorReading
+from viam.proto.component.audioin import AudioChunk as AudioInChunk
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -167,6 +170,118 @@ class ExampleAudioInput(AudioInput):
             is_big_endian=sys.byteorder != "little",
             is_float=True,
             is_interleaved=True,
+        )
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
+
+class ExampleAudioIn(AudioIn):
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.sample_rate = 44100
+        self.num_channels = 2
+        self.supported_codecs = ["pcm16", "mp3"]
+        self.chunk_count = 0
+        self.latency = timedelta(milliseconds=20)
+
+    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp: int,
+                       *, timeout: Optional[float] = None, **kwargs) -> AudioIn.AudioStream:
+
+        async def read() -> AsyncIterator[AudioIn.AudioResponse]:
+            # Generate chunks based on duration
+            chunk_duration_ms = 100  # 100ms per chunk
+            chunks_to_generate = max(1, int((duration_seconds * 1000) / chunk_duration_ms))
+
+            for i in range(chunks_to_generate):
+                # Generate audio data (sine wave pattern)
+                chunk_data = b""
+                samples_per_chunk = int(self.sample_rate * (chunk_duration_ms / 1000))
+
+                for sample in range(samples_per_chunk):
+                    # Generate a simple sine wave at 440Hz
+                    time_offset = (i * chunk_duration_ms / 1000) + (sample / self.sample_rate)
+                    amplitude = int(32767 * 0.2 * math.sin(2 * math.pi * 440 * time_offset))
+
+                    # Convert to 16-bit PCM, stereo (2 channels)
+                    sample_bytes = amplitude.to_bytes(2, byteorder='little', signed=True)
+                    chunk_data += sample_bytes * self.num_channels
+
+                # Calculate timestamps
+                chunk_start_time = previous_timestamp + (i * chunk_duration_ms * 1000000)  # Convert ms to ns
+                chunk_end_time = chunk_start_time + (chunk_duration_ms * 1000000)
+
+                # send audiochunk
+                audio_response = AudioInChunk(
+                    audio_data=chunk_data,
+                    info=AudioIn.AudioResponse.AudioInfo(
+                        codec=codec,
+                        sample_rate=self.sample_rate,
+                        num_channels=self.num_channels
+                    ),
+                    sequence=i,
+                    start_timestamp_nanoseconds=chunk_start_time,
+                    end_timestamp_nanoseconds=chunk_end_time
+                )
+
+                yield audio_response
+
+                await asyncio.sleep(self.latency.total_seconds())
+
+        return StreamWithIterator(read())
+
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
+        """Return the audio input device properties."""
+        return AudioIn.Properties(
+            supported_codecs=self.supported_codecs,
+            sample_rate=self.sample_rate,
+            num_channels=self.num_channels
+        )
+
+
+class ExampleAudioOut(AudioOut):
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.sample_rate = 44100
+        self.num_channels = 2
+        self.supported_codecs = ["pcm16", "mp3", "wav"]
+        self.volume = 1.0
+        self.is_playing = False
+
+    async def play(self,
+                   data: bytes,
+                   info: AudioOut.AudioInfo,
+                   *,
+                   extra: Optional[Dict[str, Any]] = None,
+                   timeout: Optional[float] = None,
+                   **kwargs) -> None:
+        """Play the given audio data."""
+        if extra is None:
+            extra = {}
+
+        # Simulate playing audio
+        self.is_playing = True
+        print(f"Playing audio: {len(data)} bytes, codec={info.codec}, "
+              f"sample_rate={info.sample_rate}, channels={info.num_channels}")
+
+        # Simulate some processing time
+        await asyncio.sleep(0.1)
+
+        self.is_playing = False
+
+    async def get_properties(self,
+                           *,
+                           extra: Optional[Dict[str, Any]] = None,
+                           timeout: Optional[float] = None,
+                           **kwargs) -> AudioOut.Properties:
+        """Return the audio output device properties."""
+        if extra is None:
+            extra = {}
+
+        return AudioOut.Properties(
+            supported_codecs=self.supported_codecs,
+            sample_rate=self.sample_rate,
+            num_channels=self.num_channels
         )
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:

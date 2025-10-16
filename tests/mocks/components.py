@@ -14,6 +14,8 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
+from viam.components.audio_in import AudioIn, AudioResponse
+from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
 from viam.components.button import Button
@@ -112,6 +114,57 @@ class MockArm(Arm):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+
+class MockAudioIn(AudioIn):
+    def __init__(self, name: str, properties: AudioIn.Properties):
+        super().__init__(name)
+        self.geometries = GEOMETRIES
+        self.properties = properties
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Dict[str, Any]] = None
+
+    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp: int,
+                         *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        async def read() -> AsyncIterator[AudioResponse]:
+            # Generate mock audio chunks
+            for i in range(2):
+                chunk_data = f"audio_chunk_{i}".encode("utf-8")
+                timestamp_start = previous_timestamp + i * 1000000000  # 1 second intervals in nanoseconds
+                timestamp_end = timestamp_start + 1000000000
+
+                audio_response = AudioResponse(
+                    request_id = 1,
+                    audio_data=chunk_data,
+                    info=AudioResponse.AudioInfo(
+                        codec=codec,
+                        sample_rate=self.properties.sample_rate,
+                        num_channels=self.properties.num_channels
+                    ),
+                    sequence=i,
+                    start_timestamp_nanoseconds=timestamp_start,
+                    end_timestamp_nanoseconds=timestamp_end
+                )
+                yield audio_response
+
+        self.extra = extra
+        self.timeout = timeout
+        return StreamWithIterator(read())
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return self.properties
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
 
 
 class MockAudioInput(AudioInput):
@@ -1077,3 +1130,28 @@ class MockButton(Button):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+
+class MockAudioOut(AudioOut):
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.play_called = False
+        self.get_properties_called = False
+        self.last_audio_data = None
+        self.last_audio_info = None
+
+    async def play(self, data: bytes, info, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
+        self.play_called = True
+        self.last_audio_data = data
+        self.last_audio_info = info
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        from viam.proto.common import GetPropertiesResponse
+        self.get_properties_called = True
+        return GetPropertiesResponse()
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return command
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        return []
