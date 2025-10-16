@@ -5,6 +5,7 @@ Do not edit manually!
 
 from ...gen.common.v1.common_pb2 import (
     ActuatorStatus,
+    AudioInfo,
     Capsule,
     DoCommandRequest,
     DoCommandResponse,
@@ -16,6 +17,8 @@ from ...gen.common.v1.common_pb2 import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetReadingsRequest,
     GetReadingsResponse,
     KinematicsFileFormat,
@@ -37,6 +40,7 @@ from ...gen.common.v1.common_pb2 import (
 
 __all__ = [
     "ActuatorStatus",
+    "AudioInfo",
     "Capsule",
     "DoCommandRequest",
     "DoCommandResponse",
@@ -48,6 +52,8 @@ __all__ = [
     "GetGeometriesResponse",
     "GetKinematicsRequest",
     "GetKinematicsResponse",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
     "GetReadingsRequest",
     "GetReadingsResponse",
     "KinematicsFileFormat",
