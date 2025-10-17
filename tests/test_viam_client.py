@@ -34,9 +34,8 @@ class TestViamClient:
                     ACCESS_TOKEN = "MY_ACCESS_TOKEN"
                     patched_auth.return_value = ACCESS_TOKEN
 
-                    creds = Credentials("robot-location-secret", "SOME_LOCATION_SECRET")
-                    auth_entity = "SOME.AUTH.ENTITY"
-                    DIAL_OPTIONS = DialOptions(credentials=creds, auth_entity=auth_entity)
+                    creds = Credentials("api-key", "SOME_API_KEY")
+                    DIAL_OPTIONS = DialOptions(credentials=creds, auth_entity=str(uuid4()))
 
                     client = await ViamClient.create_from_dial_options(DIAL_OPTIONS)
 
@@ -54,8 +53,8 @@ class TestViamClient:
                     METADATA = {"authorization": f"Bearer {ACCESS_TOKEN}"}
                     patched_auth.return_value = ACCESS_TOKEN
 
-                    creds = Credentials("robot-location-secret", "SOME_LOCATION_SECRET")
-                    opts = DialOptions(credentials=creds, auth_entity="SOME.AUTH.ENTITY")
+                    creds = Credentials("api-key", "SOME_API_KEY")
+                    opts = DialOptions(credentials=creds, auth_entity=str(uuid4()))
 
                     client = await ViamClient.create_from_dial_options(opts)
 
@@ -111,8 +110,8 @@ class TestViamClient:
                     with patch("viam.app.viam_client._get_access_token") as patched_auth:
                         patched_auth.return_value = "MY_ACCESS_TOKEN"
 
-                        creds = Credentials("robot-location-secret", "SOME_LOCATION_SECRET")
-                        opts = DialOptions(credentials=creds, auth_entity="SOME.AUTH.ENTITY")
+                        creds = Credentials("api-key", "SOME_API_KEY")
+                        opts = DialOptions(credentials=creds, auth_entity=str(uuid4()))
 
                         client = await ViamClient.create_from_dial_options(opts)
 

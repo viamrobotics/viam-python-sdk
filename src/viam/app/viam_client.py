@@ -86,8 +86,6 @@ class ViamClient:
         self = cls()
         self._dial_options = dial_options
         self._location_id = None
-        if dial_options.credentials.type == "robot-location-secret":
-            self._location_id = dial_options.auth_entity.split(".")[1]
         if app_url is None:
             app_url = "app.viam.com"
         self._channel = await _dial_app(app_url)
