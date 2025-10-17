@@ -155,7 +155,7 @@ class BillingClient:
 
         ::
 
-            await billing_client.create_invoice_and_charge_immediately("<ORG-ID-TO-CHARGE>", <AMOUNT>, <DESCRIPTION>, "<ORG-ID-FOR-BRANDING>")
+            await billing_client.create_invoice_and_charge_immediately("<ORG-ID-TO-CHARGE>", <AMOUNT>, <DESCRIPTION>, "<ORG-ID-FOR-BRANDING>", False)
 
         Args:
             org_id_to_charge (str): the organization to charge
