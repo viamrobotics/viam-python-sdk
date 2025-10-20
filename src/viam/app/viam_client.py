@@ -85,7 +85,6 @@ class ViamClient:
 
         self = cls()
         self._dial_options = dial_options
-        self._location_id = None
         if app_url is None:
             app_url = "app.viam.com"
         self._channel = await _dial_app(app_url)
@@ -96,7 +95,6 @@ class ViamClient:
     _channel: Channel
     _metadata: Mapping[str, str]
     _closed: bool = False
-    _location_id: Optional[str]
     _dial_options: DialOptions
 
     @property
@@ -138,7 +136,7 @@ class ViamClient:
                 # Instantiate an AppClient called "fleet" to run fleet management API methods on
                 fleet = viam_client.app_client
         """
-        return AppClient(self._channel, self._metadata, self._location_id)
+        return AppClient(self._channel, self._metadata)
 
     @property
     def ml_training_client(self) -> MLTrainingClient:

@@ -542,22 +542,19 @@ class AppClient:
     For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/>`_.
     """
 
-    def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
+    def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create an `AppClient` that maintains a connection to app.
 
         Args:
             channel (grpclib.client.Channel): connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
-            location_id (Optional[str]): Default location ID.
         """
         self._metadata = metadata
         self._app_client = AppServiceStub(channel)
-        self._location_id = location_id
         self._channel = channel
 
     _app_client: AppServiceStub
     _metadata: Mapping[str, str]
-    _location_id: Optional[str]
     _channel: Channel
     _organization_id: Optional[str] = None
 
@@ -1018,7 +1015,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#getlocation>`_.
         """
-        request = GetLocationRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = GetLocationRequest(location_id=location_id if location_id else "")
         response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
@@ -1157,7 +1154,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#locationauth>`_.
         """
-        request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = LocationAuthRequest(location_id=location_id if location_id else "")
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
         return response.auth
 
@@ -1181,7 +1178,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#createlocationsecret>`_.
         """
-        request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = CreateLocationSecretRequest(location_id=location_id if location_id else "")
         response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
         return response.auth
 
@@ -1206,7 +1203,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret>`_.
         """
         request = DeleteLocationSecretRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "", secret_id=secret_id
+            location_id=location_id if location_id else "", secret_id=secret_id
         )
         await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
@@ -1655,7 +1652,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#listrobots>`_.
         """
-        request = ListRobotsRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        request = ListRobotsRequest(location_id=location_id if location_id else "")
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
         return list(response.robots)
 
@@ -1679,7 +1676,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#newrobot>`_.
         """
-        request = NewRobotRequest(location=location_id if location_id else self._location_id if self._location_id else "", name=name)
+        request = NewRobotRequest(location=location_id if location_id else "", name=name)
         response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
@@ -1710,7 +1707,7 @@ class AppClient:
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobot>`_.
         """
         request = UpdateRobotRequest(
-            id=robot_id, name=name, location=location_id if location_id else self._location_id if self._location_id else ""
+            id=robot_id, name=name, location=location_id if location_id else ""
         )
         response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot

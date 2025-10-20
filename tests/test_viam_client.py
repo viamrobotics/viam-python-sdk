@@ -41,7 +41,6 @@ class TestViamClient:
 
                     assert client._dial_options == DIAL_OPTIONS
                     assert DIAL_OPTIONS.auth_entity is not None
-                    assert client._location_id == DIAL_OPTIONS.auth_entity.split(".")[1]
                     assert client._metadata == {"authorization": f"Bearer {ACCESS_TOKEN}"}
 
     async def test_clients(self):
