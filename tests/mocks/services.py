@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, AsyncGenerator, Dict, List, Mapping, Optional, Sequence, Union
 
 import bson
 import numpy as np
@@ -213,10 +213,14 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterResponse,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
+    CreateIndexRequest,
+    CreateIndexResponse,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteIndexRequest,
+    DeleteIndexResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
@@ -225,6 +229,9 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    Index,
+    ListIndexesRequest,
+    ListIndexesResponse,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -316,7 +323,7 @@ from viam.proto.common import (
     PointCloudObject,
     Pose,
     PoseInFrame,
-    ResourceName,
+    Transform,
 )
 from viam.proto.provisioning import (
     GetNetworkListRequest,
@@ -372,13 +379,14 @@ from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_fl
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import CaptureAllResult, Vision
+from viam.services.worldstatestore import StreamTransformChangesResponse, TransformChangeType, WorldStateStore
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
 class MockVision(Vision):
     def __init__(
         self,
-        name: str,
+        name,
         detectors: List[str],
         detections: List[Detection],
         classifiers: List[str],
@@ -614,11 +622,11 @@ class MockMotion(MotionServiceBase):
     async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name: str = request.component_name
         self.constraints = request.constraints
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        success = self.move_responses[name.name]
+        success = self.move_responses[name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
 
@@ -653,10 +661,10 @@ class MockMotion(MotionServiceBase):
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name: ResourceName = request.component_name
+        name: str = request.component_name
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pose = self.get_pose_responses[name.name]
+        pose = self.get_pose_responses[name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
 
@@ -844,6 +852,7 @@ class MockData(UnimplementedDataServiceBase):
         bbox_labels_response: List[str],
         hostname_response: str,
         additional_params: Mapping[str, ValueTypes],
+        list_indexes_response: List[Index],
     ):
         self.tabular_response = tabular_response
         self.tabular_export_response = tabular_export_response
@@ -856,6 +865,7 @@ class MockData(UnimplementedDataServiceBase):
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
         self.additional_params = additional_params
+        self.list_indexes_response = list_indexes_response
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1042,6 +1052,7 @@ class MockData(UnimplementedDataServiceBase):
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.query_prefix_name = request.query_prefix_name if request.HasField("query_prefix_name") else None
         await stream.send_message(TabularDataByMQLResponse(raw_data=[bson.encode(dict) for dict in self.tabular_query_response]))
 
     async def GetLatestTabularData(self, stream: Stream[GetLatestTabularDataRequest, GetLatestTabularDataResponse]) -> None:
@@ -1067,11 +1078,30 @@ class MockData(UnimplementedDataServiceBase):
         for tabular_data in self.tabular_export_response:
             await stream.send_message(tabular_data)
 
+    async def CreateIndex(self, stream: Stream[CreateIndexRequest, CreateIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.create_index_request = request
+        await stream.send_message(CreateIndexResponse())
+
+    async def ListIndexes(self, stream: Stream[ListIndexesRequest, ListIndexesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.list_indexes_request = request
+        await stream.send_message(ListIndexesResponse(indexes=self.list_indexes_response))
+
+    async def DeleteIndex(self, stream: Stream[DeleteIndexRequest, DeleteIndexResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_index_request = request
+        await stream.send_message(DeleteIndexResponse())
+
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset], merged_response: Optional[str] = None):
         self.create_response = create_response
         self.datasets_response = datasets_response
+        self.merged_response = merged_response
 
     async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
         request = await stream.recv_message()
@@ -1103,7 +1133,11 @@ class MockDataset(DatasetServiceBase):
     async def MergeDatasets(self, stream: Stream[MergeDatasetsRequest, MergeDatasetsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        await stream.send_message(MergeDatasetsResponse())
+        self.name = request.name
+        self.org_id = request.organization_id
+        self.dataset_ids = request.dataset_ids
+        self.merged_response = "".join(self.dataset_ids)
+        await stream.send_message(MergeDatasetsResponse(dataset_id=self.merged_response))
 
     async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
         request = await stream.recv_message()
@@ -1272,6 +1306,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
+        self.disable_email: bool = False
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1308,6 +1343,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.amount = request.amount
         self.description = request.description
         self.org_id_for_branding = request.org_id_for_branding
+        self.disable_email = request.disable_email
         await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 
@@ -1883,3 +1919,55 @@ class MockGenericService(GenericService):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {key: True for key in command.keys()}
+
+
+class MockWorldStateStore(WorldStateStore):
+    def __init__(self, name: str):
+        self.extra: Optional[Mapping[str, Any]] = None
+        self.timeout: Optional[float] = None
+        self.uuid: Optional[bytes] = None
+        super().__init__(name)
+
+    async def list_uuids(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> List[bytes]:
+        self.extra = extra
+        self.timeout = timeout
+        return [b"uuid1", b"uuid2", b"uuid3"]
+
+    async def get_transform(
+        self, uuid: bytes, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> "Transform":
+        self.uuid = uuid
+        self.extra = extra
+        self.timeout = timeout
+        return Transform(
+            reference_frame="test_frame",
+            pose_in_observer_frame=PoseInFrame(
+                reference_frame="observer_frame", pose=Pose(x=1.0, y=2.0, z=3.0, o_x=0.0, o_y=0.0, o_z=1.0, theta=0.0)
+            ),
+            uuid=uuid,
+        )
+
+    async def stream_transform_changes(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> AsyncGenerator[StreamTransformChangesResponse, None]:
+        self.extra = extra
+        self.timeout = timeout
+
+        changes = [
+            StreamTransformChangesResponse(change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_ADDED, transform=Transform(uuid=b"uuid1")),
+            StreamTransformChangesResponse(
+                change_type=TransformChangeType.TRANSFORM_CHANGE_TYPE_UPDATED, transform=Transform(uuid=b"uuid2")
+            ),
+        ]
+
+        for change in changes:
+            yield change
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {"cmd": command}

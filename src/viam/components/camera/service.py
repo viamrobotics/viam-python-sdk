@@ -7,7 +7,6 @@ from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
-    Format,
     GetImageRequest,
     GetImageResponse,
     GetImagesRequest,
@@ -46,27 +45,23 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
+        camera = self.get_resource(request.name)
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         images, metadata = await camera.get_images(
             timeout=timeout,
             metadata=stream.metadata,
             extra=struct_to_dict(request.extra),
-            filter_source_names=list(request.filter_source_names),
+            filter_source_names=request.filter_source_names,
         )
         img_bytes_lst = []
         for img in images:
-            try:
-                mime_type = CameraMimeType.from_string(img.mime_type)  # this can ValueError if the mime_type is not a CameraMimeType
-                fmt = mime_type.to_proto()
-            except ValueError:
-                # TODO(RSDK-11728): remove this once we deleted the format field
-                fmt = Format.FORMAT_UNSPECIFIED
+            mime_type = CameraMimeType.from_string(img.mime_type)
+            # TODO(RSDK-11728): remove this fmt logic once we deleted the format field
+            fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
 
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 

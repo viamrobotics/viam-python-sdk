@@ -69,7 +69,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
         if return_image:
-            mime_type = CameraMimeType.from_proto(response.image.format)
+            # TODO(RSDK-11728): remove this branching logic once we deleted the format field
+            if response.image.mime_type:
+                mime_type = CameraMimeType.from_string(response.image.mime_type)
+            else:
+                mime_type = CameraMimeType.from_proto(response.image.format)
             img = ViamImage(response.image.image, mime_type)
             result.image = img
         if return_classifications:

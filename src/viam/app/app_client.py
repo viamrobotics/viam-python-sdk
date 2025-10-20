@@ -530,11 +530,9 @@ class AppClient:
         async def main():
 
             # Make a ViamClient
-            viam_client = await connect()
-            # Instantiate an AppClient called "cloud" to run cloud app API methods on
-            cloud = viam_client.app_client
-
-            viam_client.close()
+            async with await connect() as viam_client:
+                # Instantiate an AppClient called "cloud" to run cloud app API methods on
+                cloud = viam_client.app_client
 
         if __name__ == '__main__':
             asyncio.run(main())
@@ -2582,7 +2580,9 @@ class AppClient:
 
         ::
 
-             await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata=)
+             await cloud.update_organization_metadata(org_id="<YOUR-ORG-ID>", metadata={
+                 "TEST_API_KEY": "ABC123",
+             })
 
         Args:
             organization_id (str): The ID of the organization with which to associate the user-defined metadata.
@@ -2615,7 +2615,9 @@ class AppClient:
 
         ::
 
-             await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata=)
+             await cloud.update_location_metadata(location_id="<YOUR-LOCATION-ID>", metadata={
+                 "TEST_API_KEY": "ABC123",
+             })
 
         Args:
             location_id (str): The ID of the location with which to associate the user-defined metadata.
@@ -2648,7 +2650,9 @@ class AppClient:
 
         ::
 
-             await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata=)
+             await cloud.update_robot_metadata(robot_id="<YOUR-ROBOT-ID>", metadata={
+                 "TEST_API_KEY": "ABC123",
+             })
 
         Args:
             robot_id (str): The ID of the robot with which to associate the user-defined metadata.
@@ -2681,7 +2685,9 @@ class AppClient:
 
         ::
 
-             await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata=)
+             await cloud.update_robot_part_metadata(robot_part_id="<YOUR-ROBOT-PART-ID>", metadata={
+                 "TEST_API_KEY": "ABC123",
+             })
 
         Args:
             robot_id (str): The ID of the robot part with which to associate the user-defined metadata.

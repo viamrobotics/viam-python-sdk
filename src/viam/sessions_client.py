@@ -2,6 +2,8 @@ import asyncio
 import importlib
 import pkgutil
 import sys
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import asynccontextmanager
 from copy import deepcopy
 from datetime import timedelta
 from enum import IntEnum
@@ -46,6 +48,7 @@ class SessionsClient:
     _heartbeat_interval: Optional[timedelta]
     _supported: _SupportedState
     _thread: Optional[Thread]
+    _pool: ThreadPoolExecutor
 
     _HEARTBEAT_MONITORED_METHODS: MutableMapping[str, bool] = {}
 
@@ -71,6 +74,7 @@ class SessionsClient:
         self._heartbeat_interval = None
         self._supported = _SupportedState.UNKNOWN
         self._thread = None
+        self._pool = ThreadPoolExecutor()
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
@@ -105,39 +109,45 @@ class SessionsClient:
             LOGGER.debug("Session expired")
             self.reset()
 
+    @asynccontextmanager
+    async def _acquire_lock_async(self):
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(self._pool, self._lock.acquire)
+        try:
+            yield
+        finally:
+            self._lock.release()
+
     @property
     async def metadata(self) -> _MetadataLike:
-        with self._lock:
+        async with self._acquire_lock_async():
             if self._disabled or self._supported != _SupportedState.UNKNOWN:
                 return self._metadata
 
-        request = StartSessionRequest(resume=self._current_id)
-        try:
-            response: StartSessionResponse = await self.client.StartSession(request)
-        except GRPCError as error:
-            if error.status == Status.UNIMPLEMENTED:
-                with self._lock:
+            request = StartSessionRequest(resume=self._current_id)
+            try:
+                response: StartSessionResponse = await self.client.StartSession(request)
+            except GRPCError as error:
+                if error.status == Status.UNIMPLEMENTED:
                     self._reset()
                     self._supported = _SupportedState.FALSE
                     return self._metadata
-            else:
-                raise
+                else:
+                    raise
 
-        if response is None:
-            raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
+            if response is None:
+                raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
 
-        if response.heartbeat_window is None:
-            raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
+            if response.heartbeat_window is None:
+                raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
 
-        with self._lock:
             self._supported = _SupportedState.TRUE
             self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
             self._current_id = response.id
 
-        # tick once to ensure heartbeats are supported
-        await self._heartbeat_tick(self.client)
+            # tick once to ensure heartbeats are supported
+            await self._heartbeat_tick(self.client)
 
-        with self._lock:
             if self._thread is not None:
                 self._reset()
             if self._supported == _SupportedState.TRUE:
@@ -156,17 +166,16 @@ class SessionsClient:
             return self._metadata
 
     async def _heartbeat_tick(self, client: RobotServiceStub):
-        with self._lock:
-            if not self._current_id:
-                LOGGER.debug("Failed to send heartbeat, session client reset")
-                return
-            request = SendSessionHeartbeatRequest(id=self._current_id)
+        if not self._current_id:
+            LOGGER.debug("Failed to send heartbeat, session client reset")
+            return
+        request = SendSessionHeartbeatRequest(id=self._current_id)
 
         try:
             await client.SendSessionHeartbeat(request)
         except (GRPCError, StreamTerminatedError):
             LOGGER.debug("Heartbeat terminated", exc_info=True)
-            self.reset()
+            self._reset()
         else:
             LOGGER.debug("Sent heartbeat successfully")
 
@@ -185,10 +194,10 @@ class SessionsClient:
         channel = await dial(address=addr, options=self._dial_options)
         client = RobotServiceStub(channel.channel)
         while True:
-            with self._lock:
+            async with self._acquire_lock_async():
                 if self._supported != _SupportedState.TRUE:
                     return
-            await self._heartbeat_tick(client)
+                await self._heartbeat_tick(client)
             await asyncio.sleep(wait)
 
     @property

@@ -27,12 +27,14 @@ from viam.proto.app.data import (
     CaptureInterval,
     CaptureMetadata,
     ConfigureDatabaseUserRequest,
+    CreateIndexRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteIndexRequest,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     ExportTabularDataRequest,
@@ -42,6 +44,10 @@ from viam.proto.app.data import (
     GetDatabaseConnectionResponse,
     GetLatestTabularDataRequest,
     GetLatestTabularDataResponse,
+    Index,
+    IndexableCollection,
+    ListIndexesRequest,
+    ListIndexesResponse,
     Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
@@ -90,6 +96,8 @@ from viam.proto.app.dataset import (
     ListDatasetsByIDsResponse,
     ListDatasetsByOrganizationIDRequest,
     ListDatasetsByOrganizationIDResponse,
+    MergeDatasetsRequest,
+    MergeDatasetsResponse,
     RenameDatasetRequest,
 )
 from viam.proto.app.datasync import (
@@ -134,11 +142,9 @@ class DataClient:
 
         async def main():
             # Make a ViamClient
-            viam_client = await connect()
-            # Instantiate a DataClient to run data client API methods on
-            data_client = viam_client.data_client
-
-            viam_client.close()
+            async with await connect() as viam_client:
+                # Instantiate a DataClient to run data client API methods on
+                data_client = viam_client.data_client
 
         if __name__ == '__main__':
             asyncio.run(main())
@@ -499,6 +505,7 @@ class DataClient:
         use_recent_data: Optional[bool] = None,
         tabular_data_source_type: TabularDataSourceType.ValueType = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_STANDARD,
         pipeline_id: Optional[str] = None,
+        query_prefix_name: Optional[str] = None,
     ) -> List[Dict[str, Union[ValueTypes, datetime]]]:
         """Obtain unified tabular data and metadata, queried with MQL.
 
@@ -525,6 +532,7 @@ class DataClient:
                 Defaults to `TABULAR_DATA_SOURCE_TYPE_STANDARD`.
             pipeline_id (str): The ID of the data pipeline to query. Defaults to `None`.
                 Required if `tabular_data_source_type` is `TABULAR_DATA_SOURCE_TYPE_PIPELINE_SINK`.
+            query_prefix_name (str): Optional field that can be used to specify a saved query to run.
 
         Returns:
             List[Dict[str, Union[ValueTypes, datetime]]]: An array of decoded BSON data objects.
@@ -535,7 +543,12 @@ class DataClient:
         data_source = TabularDataSource(type=tabular_data_source_type, pipeline_id=pipeline_id)
         if use_recent_data:
             data_source.type = TabularDataSourceType.TABULAR_DATA_SOURCE_TYPE_HOT_STORAGE
-        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=binary, data_source=data_source)
+        request = TabularDataByMQLRequest(
+            organization_id=organization_id,
+            mql_binary=binary,
+            data_source=data_source,
+            query_prefix_name=query_prefix_name,
+        )
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [bson.decode(bson_bytes) for bson_bytes in response.raw_data]
 
@@ -1131,8 +1144,8 @@ class DataClient:
 
         Args:
             binary_id (Union[~viam.proto.app.data.BinaryID, str]): The binary data ID or :class:`BinaryID` of the image to add the bounding
-                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data
-                IDs as a list of strings.*
+                box to. *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
+                list of strings.*
             label (str): A label for the bounding box.
             x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
             y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
@@ -1288,6 +1301,32 @@ class DataClient:
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
+
+    async def merge_datasets(self, name: str, organization_id: str, dataset_ids: List[str]) -> str:
+        """Merge multiple datasets into a new dataset.
+
+        ::
+
+            dataset_id = await data_client.merge_datasets(
+                name="<DATASET-NAME>",
+                organization_id="<YOUR-ORG-ID>",
+                dataset_ids=["<YOUR-DATASET-ID-1>", "<YOUR-DATASET-ID-2>"]
+            )
+            print(dataset_id)
+
+        Args:
+            name (str): The name of the dataset being created.
+            organization_id (str): The ID of the organization where the dataset is being created.
+                To find your organization ID, visit the organization settings page.
+            dataset_ids (List[str]): The IDs of the datasets that you would like to merge.
+        Returns:
+            str: The dataset ID of the created dataset.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#mergedatasets>`_.
+        """
+        request = MergeDatasetsRequest(name=name, organization_id=organization_id, dataset_ids=dataset_ids)
+        response: MergeDatasetsResponse = await self._dataset_client.MergeDatasets(request, metadata=self._metadata)
+        return response.dataset_id
 
     async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
         """Get a list of datasets using their IDs.
@@ -1859,9 +1898,8 @@ class DataClient:
         path = Path(filepath)
         file_name = path.stem
         file_extension = path.suffix if path.suffix != "" else None
-        f = open(filepath, "rb")
-        data = f.read()
-        f.close()
+        with open(filepath, "rb") as f:
+            data = f.read()
 
         metadata = UploadMetadata(
             part_id=part_id,
@@ -2034,6 +2072,86 @@ class DataClient:
         request = ListDataPipelineRunsRequest(id=id, page_size=page_size, page_token=page_token)
         response: ListDataPipelineRunsResponse = await self._data_pipelines_client.ListDataPipelineRuns(request, metadata=self._metadata)
         return DataClient.DataPipelineRunsPage.from_proto(response, self, page_size)
+
+    async def create_index(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        index_spec: Dict[str, Any],
+        pipeline_name: Optional[str] = None,
+    ) -> None:
+        """Starts a custom index build.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            index_spec (List[Dict[str, Any]]): The MongoDB index specification defined in JSON format.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createindex>`_.
+        """
+        index_spec_bytes = [bson.encode(index_spec)]
+        request = CreateIndexRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            index_spec=index_spec_bytes,
+            pipeline_name=pipeline_name,
+        )
+        await self._data_client.CreateIndex(request, metadata=self._metadata)
+
+    async def list_indexes(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        pipeline_name: Optional[str] = None,
+    ) -> Sequence[Index]:
+        """Returns all the indexes for a given collection.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        Returns:
+            List[Index]: A list of indexes.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#listindexes>`_.
+        """
+        request = ListIndexesRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            pipeline_name=pipeline_name,
+        )
+        response: ListIndexesResponse = await self._data_client.ListIndexes(request, metadata=self._metadata)
+        return response.indexes
+
+    async def delete_index(
+        self,
+        organization_id: str,
+        collection_type: IndexableCollection.ValueType,
+        index_name: str,
+        pipeline_name: Optional[str] = None,
+    ) -> None:
+        """Drops the specified custom index from a collection.
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+                To find your organization ID, visit the organization settings page.
+            collection_type (IndexableCollection.ValueType): The type of collection the index is on.
+            index_name (str): The name of the index to delete.
+            pipeline_name (Optional[str]): The name of the pipeline if the collection type is PIPELINE_SINK.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#deleteindex>`_.
+        """
+        request = DeleteIndexRequest(
+            organization_id=organization_id,
+            collection_type=collection_type,
+            index_name=index_name,
+            pipeline_name=pipeline_name,
+        )
+        await self._data_client.DeleteIndex(request, metadata=self._metadata)
 
     @staticmethod
     def create_filter(

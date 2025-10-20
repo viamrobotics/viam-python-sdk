@@ -7,10 +7,12 @@ from PIL import Image
 
 from viam.errors import NotSupportedError
 from viam.media.utils.pil import pil_to_viam_image, viam_to_pil_image
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, Format, NamedImage, ViamImage
 
 
 class TestViamImage:
+    UNSUPPORTED_MIME_TYPE = "unsupported_string_mime_type"
+
     def test_supported_image(self):
         i = Image.new("RGBA", (100, 100), "#AABBCCDD")
         b = BytesIO()
@@ -41,6 +43,10 @@ class TestViamImage:
         assert img4.width is None
         assert img4.height is None
 
+        img5 = ViamImage(b"data", CameraMimeType.CUSTOM(self.UNSUPPORTED_MIME_TYPE))
+        assert img5.width is None
+        assert img5.height is None
+
     def test_bytes_to_depth_array(self):
         with open(f"{os.path.dirname(__file__)}/data/fakeDM.vnd.viam.dep", "rb") as depth_map:
             img = ViamImage(depth_map.read(), CameraMimeType.VIAM_RAW_DEPTH)
@@ -68,6 +74,92 @@ class TestNamedImage:
         assert img.name == name
 
 
+class TestCameraMimeType:
+    def test_name(self):
+        mime_type = CameraMimeType.VIAM_RGBA
+        assert mime_type.name == "VIAM_RGBA"
+
+        mime_type = CameraMimeType.VIAM_RAW_DEPTH
+        assert mime_type.name == "VIAM_RAW_DEPTH"
+
+        mime_type = CameraMimeType.JPEG
+        assert mime_type.name == "JPEG"
+
+        mime_type = CameraMimeType.PNG
+        assert mime_type.name == "PNG"
+
+        mime_type = CameraMimeType.PCD
+        assert mime_type.name == "PCD"
+
+        mime_type = CameraMimeType.CUSTOM("SOME CUSTOM MIME TYPE")
+        assert mime_type.name == "CUSTOM"
+
+    def test_value(self):
+        mime_type = CameraMimeType.VIAM_RGBA
+        assert mime_type.value == "image/vnd.viam.rgba"
+
+        mime_type = CameraMimeType.VIAM_RAW_DEPTH
+        assert mime_type.value == "image/vnd.viam.dep"
+
+        mime_type = CameraMimeType.JPEG
+        assert mime_type.value == "image/jpeg"
+
+        mime_type = CameraMimeType.PNG
+        assert mime_type.value == "image/png"
+
+        mime_type = CameraMimeType.PCD
+        assert mime_type.value == "pointcloud/pcd"
+
+        mime_type = CameraMimeType.CUSTOM("SOME CUSTOM MIME TYPE")
+        assert mime_type.value == "SOME CUSTOM MIME TYPE"
+
+    def test_from_proto(self):
+        format = Format.FORMAT_RAW_RGBA
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.VIAM_RGBA
+
+        format = Format.FORMAT_RAW_DEPTH
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.VIAM_RAW_DEPTH
+
+        format = Format.FORMAT_JPEG
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.JPEG
+
+        format = Format.FORMAT_PNG
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.PNG
+
+        format = Format.FORMAT_UNSPECIFIED
+        mime_type = CameraMimeType.from_proto(format)
+        assert mime_type == CameraMimeType.JPEG  # unspecified defaults to jpeg
+
+    def test_to_proto(self):
+        mime_type = CameraMimeType.VIAM_RGBA
+        format = mime_type.proto
+        assert format == Format.FORMAT_RAW_RGBA
+
+        mime_type = CameraMimeType.VIAM_RAW_DEPTH
+        format = mime_type.proto
+        assert format == Format.FORMAT_RAW_DEPTH
+
+        mime_type = CameraMimeType.JPEG
+        format = mime_type.proto
+        assert format == Format.FORMAT_JPEG
+
+        mime_type = CameraMimeType.PNG
+        format = mime_type.proto
+        assert format == Format.FORMAT_PNG
+
+        mime_type = CameraMimeType.PCD
+        format = mime_type.proto
+        assert format == Format.FORMAT_UNSPECIFIED
+
+        mime_type = CameraMimeType.CUSTOM("some custom mime")
+        format = mime_type.proto
+        assert format == Format.FORMAT_UNSPECIFIED
+
+
 def test_image_conversion():
     i = Image.new("RGBA", (100, 100), "#AABBCCDD")
 
@@ -78,3 +170,6 @@ def test_image_conversion():
     pil_img = viam_to_pil_image(v_img)
     v_img2 = pil_to_viam_image(pil_img, CameraMimeType.JPEG)
     assert v_img2.data == v_img.data
+
+    with pytest.raises(ValueError, match=f"Cannot encode to unsupported mimetype: {TestViamImage.UNSUPPORTED_MIME_TYPE}"):
+        pil_to_viam_image(i, CameraMimeType.CUSTOM(TestViamImage.UNSUPPORTED_MIME_TYPE))

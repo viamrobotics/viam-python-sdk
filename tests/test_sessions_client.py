@@ -106,7 +106,12 @@ async def test_sessions_heartbeat_thread_blocked():
     channel = await dial(address=addr, options=options)
 
     client = SessionsClient(channel.channel, addr, options)
-    assert await client.metadata == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
+    t1 = asyncio.create_task(client.metadata)
+    t2 = asyncio.create_task(client.metadata)
+
+    await asyncio.gather(t1, t2)
+    assert t1.result() == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
+    assert t2.result() == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
 
     assert client._supported == _SupportedState.TRUE
     assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == MockRobot.HEARTBEAT_INTERVAL

@@ -25,11 +25,13 @@ class _PaymentMethodTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapp
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     PAYMENT_METHOD_TYPE_UNSPECIFIED: _PaymentMethodType.ValueType
     PAYMENT_METHOD_TYPE_CARD: _PaymentMethodType.ValueType
+    PAYMENT_METHOD_TYPE_USBANKACCOUNT: _PaymentMethodType.ValueType
 
 class PaymentMethodType(_PaymentMethodType, metaclass=_PaymentMethodTypeEnumTypeWrapper):
     ...
 PAYMENT_METHOD_TYPE_UNSPECIFIED: PaymentMethodType.ValueType
 PAYMENT_METHOD_TYPE_CARD: PaymentMethodType.ValueType
+PAYMENT_METHOD_TYPE_USBANKACCOUNT: PaymentMethodType.ValueType
 global___PaymentMethodType = PaymentMethodType
 
 class _UsageCostType:
@@ -159,6 +161,51 @@ class PaymentMethodCard(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['brand', b'brand', 'last_four_digits', b'last_four_digits']) -> None:
         ...
 global___PaymentMethodCard = PaymentMethodCard
+
+@typing.final
+class VerificationInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ARRIVAL_DATE_FIELD_NUMBER: builtins.int
+    HOSTED_VERIFICATION_PAGE_URL_FIELD_NUMBER: builtins.int
+    arrival_date: builtins.int
+    hosted_verification_page_url: builtins.str
+
+    def __init__(self, *, arrival_date: builtins.int=..., hosted_verification_page_url: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['arrival_date', b'arrival_date', 'hosted_verification_page_url', b'hosted_verification_page_url']) -> None:
+        ...
+global___VerificationInfo = VerificationInfo
+
+@typing.final
+class PaymentMethodUSBankAccount(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BANK_NAME_FIELD_NUMBER: builtins.int
+    LAST_FOUR_DIGITS_ACCOUNT_NUMBER_FIELD_NUMBER: builtins.int
+    ROUTING_NUMBER_FIELD_NUMBER: builtins.int
+    ACCOUNT_TYPE_FIELD_NUMBER: builtins.int
+    VERIFICATION_INFO_FIELD_NUMBER: builtins.int
+    bank_name: builtins.str
+    last_four_digits_account_number: builtins.str
+    routing_number: builtins.str
+    account_type: builtins.str
+
+    @property
+    def verification_info(self) -> global___VerificationInfo:
+        """this is only set if the account is not verified"""
+
+    def __init__(self, *, bank_name: builtins.str=..., last_four_digits_account_number: builtins.str=..., routing_number: builtins.str=..., account_type: builtins.str=..., verification_info: global___VerificationInfo | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_verification_info', b'_verification_info', 'verification_info', b'verification_info']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_verification_info', b'_verification_info', 'account_type', b'account_type', 'bank_name', b'bank_name', 'last_four_digits_account_number', b'last_four_digits_account_number', 'routing_number', b'routing_number', 'verification_info', b'verification_info']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_verification_info', b'_verification_info']) -> typing.Literal['verification_info'] | None:
+        ...
+global___PaymentMethodUSBankAccount = PaymentMethodUSBankAccount
 
 @typing.final
 class GetCurrentMonthUsageRequest(google.protobuf.message.Message):
@@ -307,6 +354,7 @@ class GetOrgBillingInformationResponse(google.protobuf.message.Message):
     BILLING_EMAIL_FIELD_NUMBER: builtins.int
     METHOD_FIELD_NUMBER: builtins.int
     BILLING_TIER_FIELD_NUMBER: builtins.int
+    METHOD_US_BANK_ACCOUNT_FIELD_NUMBER: builtins.int
     type: global___PaymentMethodType.ValueType
     billing_email: builtins.str
     billing_tier: builtins.str
@@ -316,13 +364,17 @@ class GetOrgBillingInformationResponse(google.protobuf.message.Message):
     def method(self) -> global___PaymentMethodCard:
         """defined if type is PAYMENT_METHOD_TYPE_CARD"""
 
-    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=..., billing_tier: builtins.str | None=...) -> None:
+    @property
+    def method_us_bank_account(self) -> global___PaymentMethodUSBankAccount:
+        """defined if type is PAYMENT_METHOD_TYPE_USBANKACCOUNT"""
+
+    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=..., billing_tier: builtins.str | None=..., method_us_bank_account: global___PaymentMethodUSBankAccount | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_tier', b'billing_tier', 'method', b'method']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', '_method_us_bank_account', b'_method_us_bank_account', 'billing_tier', b'billing_tier', 'method', b'method', 'method_us_bank_account', b'method_us_bank_account']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_email', b'billing_email', 'billing_tier', b'billing_tier', 'method', b'method', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', '_method_us_bank_account', b'_method_us_bank_account', 'billing_email', b'billing_email', 'billing_tier', b'billing_tier', 'method', b'method', 'method_us_bank_account', b'method_us_bank_account', 'type', b'type']) -> None:
         ...
 
     @typing.overload
@@ -331,6 +383,10 @@ class GetOrgBillingInformationResponse(google.protobuf.message.Message):
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_method', b'_method']) -> typing.Literal['method'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_method_us_bank_account', b'_method_us_bank_account']) -> typing.Literal['method_us_bank_account'] | None:
         ...
 global___GetOrgBillingInformationResponse = GetOrgBillingInformationResponse
 
@@ -471,18 +527,20 @@ class CreateInvoiceAndChargeImmediatelyRequest(google.protobuf.message.Message):
     AMOUNT_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     ORG_ID_FOR_BRANDING_FIELD_NUMBER: builtins.int
+    DISABLE_EMAIL_FIELD_NUMBER: builtins.int
     org_id_to_charge: builtins.str
     amount: builtins.float
     description: builtins.str
     org_id_for_branding: builtins.str
+    disable_email: builtins.bool
 
-    def __init__(self, *, org_id_to_charge: builtins.str=..., amount: builtins.float=..., description: builtins.str | None=..., org_id_for_branding: builtins.str | None=...) -> None:
+    def __init__(self, *, org_id_to_charge: builtins.str=..., amount: builtins.float=..., description: builtins.str | None=..., org_id_for_branding: builtins.str | None=..., disable_email: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'amount', b'amount', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge']) -> None:
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'amount', b'amount', 'description', b'description', 'disable_email', b'disable_email', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge']) -> None:
         ...
 
     @typing.overload
