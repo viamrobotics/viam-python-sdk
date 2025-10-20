@@ -2,10 +2,11 @@ import abc
 import sys
 from typing import Any, Dict, Final, Optional
 
-from viam.proto.common import GetPropertiesResponse, AudioInfo
+from viam.proto.common import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
+from . import AudioInfo
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias

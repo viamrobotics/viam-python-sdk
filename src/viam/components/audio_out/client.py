@@ -7,7 +7,6 @@ from viam.proto.common import (
     DoCommandResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
-    AudioInfo,
     Geometry
 )
 from viam.proto.component.audioout import (
@@ -20,7 +19,7 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .audio_out import AudioOut
+from .audio_out import AudioOut, AudioInfo
 
 
 class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):

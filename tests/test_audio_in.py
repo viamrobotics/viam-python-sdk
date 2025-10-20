@@ -1,21 +1,19 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.audio_in import AudioIn, AudioInClient, AudioInRPCService
-from viam.components.audio_in.service import AudioInRPCService
+from viam.components.audio_in import AudioIn, AudioInClient, AudioInRPCService, AudioResponse
 from viam.components.generic.service import GenericRPCService
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
-    PropertiesRequest,
-    PropertiesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
 )
 from viam.proto.component.audioin import (
     AudioInServiceStub,
-    GetAudioRequest,
-    GetAudioResponse,
+    GetAudioRequest
 )
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -56,18 +54,18 @@ class TestAudioIn:
 
         stream = await audio_in.get_audio(codec, duration_seconds, previous_timestamp)
 
-        chunk_count = 3
-        async for chunk in stream:
-            assert chunk.audio_data is not None
-            assert chunk.info.codec == codec
-            assert chunk.info.sample_rate == PROPERTIES.sample_rate_hz
-            assert chunk.info.num_channels == PROPERTIES.num_channels
-            assert chunk.sequence == chunk_count
-            assert chunk.start_timestamp_nanoseconds >= previous_timestamp
-            assert chunk.end_timestamp_nanoseconds > chunk.start_timestamp_nanoseconds
+        chunk_count = 0
+        async for response in stream:
+            assert response.audio.audio_data is not None
+            assert response.audio.audio_info.codec == codec
+            assert response.audio.audio_info.sample_rate_hz == PROPERTIES.sample_rate_hz
+            assert response.audio.audio_info.num_channels == PROPERTIES.num_channels
+            assert response.audio.sequence == chunk_count
+            assert response.audio.start_timestamp_nanoseconds >= previous_timestamp
+            assert response.audio.end_timestamp_nanoseconds > response.audio.start_timestamp_nanoseconds
             chunk_count += 1
 
-        assert chunk_count is 3  # Should have received chunks
+        assert chunk_count == 2  # Should have received 2 chunks from mock
 
     async def test_get_properties(self, audio_in: AudioIn):
         properties = await audio_in.get_properties()
@@ -103,12 +101,12 @@ class TestService:
 
                 chunk_count = 0
                 async for response in stream:
-                    assert isinstance(response, GetAudioResponse)
+                    assert isinstance(response, AudioResponse)
                     assert response.audio.audio_data is not None
                     assert response.audio.audio_info.codec == codec
-                    assert response.audio.audio_info.sample_rate == PROPERTIES.sample_rate_hz
+                    assert response.audio.audio_info.sample_rate_hz == PROPERTIES.sample_rate_hz
                     assert response.audio.audio_info.num_channels == PROPERTIES.num_channels
-                    assert response.audio.audio_info.sequence == chunk_count
+                    assert response.audio.sequence == chunk_count
                     chunk_count += 1
 
                 assert chunk_count > 0
@@ -117,11 +115,11 @@ class TestService:
         assert audio_in.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInServiceStub(channel)
-            response: PropertiesResponse = await client.GetProperties(
-                PropertiesRequest(name=audio_in.name), timeout=1.82
+            response: GetPropertiesResponse = await client.GetProperties(
+                GetPropertiesRequest(name=audio_in.name), timeout=1.82
             )
             assert response.supported_codecs == PROPERTIES.supported_codecs
-            assert response.sample_rate == PROPERTIES.sample_rate_hz
+            assert response.sample_rate_hz == PROPERTIES.sample_rate_hz
             assert response.num_channels == PROPERTIES.num_channels
             assert audio_in.timeout == loose_approx(1.82)
 
@@ -157,7 +155,7 @@ class TestClient:
             async for resp in stream:
                 assert resp.audio.audio_data is not None
                 assert resp.audio.audio_info.codec == codec
-                assert resp.audio.audio_info.sample_rate == PROPERTIES.sample_rate_hz
+                assert resp.audio.audio_info.sample_rate_hz == PROPERTIES.sample_rate_hz
                 assert resp.audio.audio_info.num_channels == PROPERTIES.num_channels
                 assert resp.audio.sequence == chunk_count
                 chunk_count += 1

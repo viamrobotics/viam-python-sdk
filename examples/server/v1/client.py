@@ -1,8 +1,11 @@
 import asyncio
+import os
 
 from PIL.Image import Image
 
 from viam.components.arm import Arm, Pose
+from viam.components.audio_in import AudioIn
+from viam.components.audio_out import AudioOut, AudioInfo
 from viam.components.base import Base, Vector3
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
@@ -18,8 +21,34 @@ async def client():
         print("\n#### RESOURCES ####")
         print(f"Resources: {robot.resource_names}")
 
-        print("\n#### STATUS ####")
-        print(f"Robot status response received: {await robot.get_status()}")
+        # print("\n#### STATUS ####")
+        # print(f"Robot status response received: {await robot.get_status()}")
+
+
+        audio = AudioIn.from_robot(robot, "audio_in0")
+
+        try:
+            stream = await audio.get_audio("pcm16", 10, 0)
+            with open("audio.raw", "wb") as f:
+                async for chunk in stream:
+                    data = chunk.audio.audio_data
+                    f.write(data)
+                    f.flush()
+            print("audio.raw written to", os.path.abspath("audio.raw"))
+        except Exception as e:
+            print("EXCEPYION")
+            print(e)
+
+
+        with open("output.wav", "rb") as f:
+                audio_bytes = f.read()
+
+
+        audioout = AudioOut.from_robot(robot, "audio_out0")
+        await audioout.play(audio_bytes, AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2))
+
+
+        print("here stream done")
 
         print("\n#### ARM ####")
         arm = Arm.from_robot(robot, "arm0")

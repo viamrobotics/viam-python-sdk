@@ -41,6 +41,9 @@ from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
+from viam.proto.common import GetPropertiesResponse, AudioInfo
+from viam.proto.component.audioin import AudioChunk as Chunk
+
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -124,26 +127,30 @@ class MockAudioIn(AudioIn):
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
 
-    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp: int,
+    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp_ns: int,
                          *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         async def read() -> AsyncIterator[AudioResponse]:
             # Generate mock audio chunks
             for i in range(2):
                 chunk_data = f"audio_chunk_{i}".encode("utf-8")
-                timestamp_start = previous_timestamp + i * 1000000000  # 1 second intervals in nanoseconds
+                timestamp_start = previous_timestamp_ns + i * 1000000000  # 1 second intervals in nanoseconds
                 timestamp_end = timestamp_start + 1000000000
 
-                audio_response = AudioResponse(
-                    request_id = 1,
+                audio_chunk = Chunk(
                     audio_data=chunk_data,
-                    info=AudioResponse.AudioInfo(
+                    audio_info=AudioInfo(
                         codec=codec,
-                        sample_rate=self.properties.sample_rate,
+                        sample_rate_hz=self.properties.sample_rate_hz,
                         num_channels=self.properties.num_channels
                     ),
                     sequence=i,
                     start_timestamp_nanoseconds=timestamp_start,
                     end_timestamp_nanoseconds=timestamp_end
+                )
+
+                audio_response = AudioResponse(
+                    audio=audio_chunk,
+                    request_id="mock_request"
                 )
                 yield audio_response
 
@@ -1146,7 +1153,6 @@ class MockAudioOut(AudioOut):
         self.last_audio_info = info
 
     async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
-        from viam.proto.common import GetPropertiesResponse
         self.get_properties_called = True
         return GetPropertiesResponse()
 

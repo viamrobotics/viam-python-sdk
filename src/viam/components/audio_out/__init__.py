@@ -1,11 +1,13 @@
 from viam.resource.registry import Registry, ResourceRegistration
 
+from viam.proto.common import AudioInfo
 from .audio_out import AudioOut
 from .client import AudioOutClient
 from .service import AudioOutRPCService
 
 __all__ = [
     "AudioOut",
+    "AudioInfo"
 ]
 
 Registry.register_api(

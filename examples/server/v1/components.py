@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from PIL import Image
 
 from viam.components.arm import Arm
-from viam.components.audio_in import AudioIn
+from viam.components.audio_in import AudioIn, AudioResponse
 from viam.components.audio_input import AudioInput
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
@@ -55,6 +55,7 @@ from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFo
 from viam.proto.component.encoder import PositionType
 from viam.utils import SensorReading
 from viam.proto.component.audioin import AudioChunk as AudioInChunk
+from viam.proto.common import AudioInfo
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -181,11 +182,11 @@ class ExampleAudioIn(AudioIn):
         super().__init__(name)
         self.sample_rate = 44100
         self.num_channels = 2
-        self.supported_codecs = ["pcm16", "mp3"]
+        self.supported_codecs = ["pcm16"]
         self.chunk_count = 0
         self.latency = timedelta(milliseconds=20)
 
-    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp: int,
+    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp_ns: int,
                        *, timeout: Optional[float] = None, **kwargs) -> AudioIn.AudioStream:
 
         async def read() -> AsyncIterator[AudioIn.AudioResponse]:
@@ -199,31 +200,28 @@ class ExampleAudioIn(AudioIn):
                 samples_per_chunk = int(self.sample_rate * (chunk_duration_ms / 1000))
 
                 for sample in range(samples_per_chunk):
-                    # Generate a simple sine wave at 440Hz
                     time_offset = (i * chunk_duration_ms / 1000) + (sample / self.sample_rate)
                     amplitude = int(32767 * 0.2 * math.sin(2 * math.pi * 440 * time_offset))
 
-                    # Convert to 16-bit PCM, stereo (2 channels)
+                    # Convert to 16-bit PCM stereo
                     sample_bytes = amplitude.to_bytes(2, byteorder='little', signed=True)
                     chunk_data += sample_bytes * self.num_channels
 
-                # Calculate timestamps
-                chunk_start_time = previous_timestamp + (i * chunk_duration_ms * 1000000)  # Convert ms to ns
+                chunk_start_time = previous_timestamp_ns + (i * chunk_duration_ms * 1000000)  # Convert ms to ns
                 chunk_end_time = chunk_start_time + (chunk_duration_ms * 1000000)
 
-                # send audiochunk
-                audio_response = AudioInChunk(
-                    audio_data=chunk_data,
-                    info=AudioIn.AudioResponse.AudioInfo(
+                audio_chunk = AudioInChunk(
+                    audio_data=bytes(chunk_data),
+                    audio_info=AudioInfo(
                         codec=codec,
-                        sample_rate=self.sample_rate,
+                        sample_rate_hz=int(self.sample_rate),
                         num_channels=self.num_channels
                     ),
                     sequence=i,
                     start_timestamp_nanoseconds=chunk_start_time,
                     end_timestamp_nanoseconds=chunk_end_time
                 )
-
+                audio_response = AudioResponse(audio=audio_chunk)
                 yield audio_response
 
                 await asyncio.sleep(self.latency.total_seconds())
@@ -234,7 +232,7 @@ class ExampleAudioIn(AudioIn):
         """Return the audio input device properties."""
         return AudioIn.Properties(
             supported_codecs=self.supported_codecs,
-            sample_rate=self.sample_rate,
+            sample_rate_hz=self.sample_rate,
             num_channels=self.num_channels
         )
 
@@ -250,7 +248,7 @@ class ExampleAudioOut(AudioOut):
 
     async def play(self,
                    data: bytes,
-                   info: AudioOut.AudioInfo,
+                   info: AudioInfo,
                    *,
                    extra: Optional[Dict[str, Any]] = None,
                    timeout: Optional[float] = None,
@@ -262,9 +260,8 @@ class ExampleAudioOut(AudioOut):
         # Simulate playing audio
         self.is_playing = True
         print(f"Playing audio: {len(data)} bytes, codec={info.codec}, "
-              f"sample_rate={info.sample_rate}, channels={info.num_channels}")
+              f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
 
-        # Simulate some processing time
         await asyncio.sleep(0.1)
 
         self.is_playing = False
@@ -280,7 +277,7 @@ class ExampleAudioOut(AudioOut):
 
         return AudioOut.Properties(
             supported_codecs=self.supported_codecs,
-            sample_rate=self.sample_rate,
+            sample_rate_hz=self.sample_rate,
             num_channels=self.num_channels
         )
 

@@ -1,19 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.audio_out import AudioOut, AudioOutClient, AudioOutRPCService
+from viam.components.audio_out import AudioOutClient, AudioOutRPCService
 from viam.proto.common import (
-    GetPropertiesResponse,
     GetGeometriesResponse,
       AudioInfo,
       GetPropertiesRequest,
       GetPropertiesResponse,
       DoCommandRequest,
-      DoCommandResponse
 )
-from viam.components.audio_out.service import AudioOutRPCService
 from viam.resource.manager import ResourceManager
-from viam.utils import create_filter, dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 from viam.proto.component.audioout import PlayRequest, AudioOutServiceStub
 
 from .mocks.components import MockAudioOut
@@ -139,8 +136,7 @@ class TestClient:
             client = AudioOutClient(audio_out.name, channel)
             command = {"command": "args"}
             resp = await client.do_command(command)
-            assert resp == {"command": command}
-
+            assert resp == command
 
     @pytest.mark.asyncio
     async def test_get_geometries(self, audio_out: MockAudioOut, service: AudioOutRPCService):

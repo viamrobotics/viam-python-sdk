@@ -1,4 +1,3 @@
-from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.proto.common import (

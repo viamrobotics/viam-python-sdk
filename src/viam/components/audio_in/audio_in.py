@@ -1,14 +1,12 @@
 import abc
 import sys
-from typing import Any, Dict, Final, Optional
+from typing import Final, Optional
 
 from viam.streams import Stream
-from typing_extensions import Self
 
 from viam.proto.common import GetPropertiesResponse
 from viam.proto.component.audioin import GetAudioResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-from viam.streams import StreamSource
 
 from ..component_base import ComponentBase
 
