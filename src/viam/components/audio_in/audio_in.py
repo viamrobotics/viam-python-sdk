@@ -39,20 +39,23 @@ class AudioIn(ComponentBase):
                         previous_timestamp_ns:int,
                         *, timeout: Optional[float] = None, **kwargs) -> AudioStream:
         """
-        Get the audio device's properties
+        Get a stream of audio from the device
 
         ::
 
             my_audio_in = AudioIn.from_robot(robot=machine, name="my_audio_in")
 
-            stream = await my_audio_in.get_audio
+            stream = await my_audio_in.get_audio()
 
+        Args:
+            codec (str): The desired codec of the returned audio data
+            duration_seconds (float): duration of the stream. 0 = indefinite stream
+            previous_timestamp_ns (int): starting timestamp in nanoseconds for recording continuity.
+            Set to 0 to begin recording from the current time.
         Returns:
-            AudioStream:  stream of audio chunks.
+            AudioStream: stream of audio chunks.
         ...
         """
-
-
 
     @abc.abstractmethod
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
@@ -69,10 +72,3 @@ class AudioIn(ComponentBase):
             Properties: The properties of the audio in device.
         ...
         """
-
-
-
-
-
-
-

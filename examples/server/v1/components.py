@@ -236,6 +236,9 @@ class ExampleAudioIn(AudioIn):
             num_channels=self.num_channels
         )
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleAudioOut(AudioOut):
     def __init__(self, name: str):

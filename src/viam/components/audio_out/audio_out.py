@@ -47,8 +47,8 @@ class AudioOut(ComponentBase):
             await my_audio_out.play(audio_data, audio_info)
 
         Args:
-            data: Raw audio bytes to play
-            info: Information about the audio data such as codec, sample rate, and channel count
+            data: audio bytes to play
+            info: information about the audio data such as codec, sample rate, and channel count
         """
 
     @abc.abstractmethod
@@ -68,8 +68,3 @@ class AudioOut(ComponentBase):
         Returns:
             Properties: The properties of the audio output device
         """
-
-
-
-
-

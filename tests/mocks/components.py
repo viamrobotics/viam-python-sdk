@@ -171,9 +171,6 @@ class MockAudioIn(AudioIn):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-
-
-
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
         super().__init__(name)
