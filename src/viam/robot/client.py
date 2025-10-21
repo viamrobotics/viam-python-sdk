@@ -901,7 +901,7 @@ class RobotClient:
             config_status = machine_status.config
 
         Returns:
-            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), resources (List[ResourceStatus]) and config of the machine.
+            viam.proto.robot.GetMachineStatusResponse: current status of the machine (initializing or running), current status of the resources (List[ResourceStatus]) and the revision of the config of the machine.
 
         For more information, see `Machine Management API <https://docs.viam.com/appendix/apis/robot/>`_.
         """
