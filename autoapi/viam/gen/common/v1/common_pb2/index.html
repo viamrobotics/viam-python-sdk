@@ -195,10 +195,19 @@ The following is a list of messages that are used across multiple resource subty
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.global___LogEntry" title="viam.gen.common.v1.common_pb2.global___LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___LogEntry</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER" title="viam.gen.common.v1.common_pb2.SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.global___AudioInfo" title="viam.gen.common.v1.common_pb2.global___AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___AudioInfo</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.safety_heartbeat_monitored" title="viam.gen.common.v1.common_pb2.safety_heartbeat_monitored"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_heartbeat_monitored</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.global___GetPropertiesRequest" title="viam.gen.common.v1.common_pb2.global___GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.global___GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.global___GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER" title="viam.gen.common.v1.common_pb2.SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.safety_heartbeat_monitored" title="viam.gen.common.v1.common_pb2.safety_heartbeat_monitored"><code class="xref py py-obj docutils literal notranslate"><span class="pre">safety_heartbeat_monitored</span></code></a></p></td>
 <td><p>safety_heartbeat_monitored is used on methods to signify that if a session is in use</p></td>
 </tr>
 </tbody>
@@ -293,6 +302,15 @@ The following is a list of messages that are used across multiple resource subty
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.LogEntry" title="viam.gen.common.v1.common_pb2.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.AudioInfo" title="viam.gen.common.v1.common_pb2.AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInfo</span></code></a></p></td>
+<td><p>Information about an audio stream or device.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.GetPropertiesRequest" title="viam.gen.common.v1.common_pb2.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Shared properties for AudioIn and AudioOut components.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -1546,6 +1564,114 @@ be raised.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.global___LogEntry">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">global___LogEntry</span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.global___LogEntry" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.AudioInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">AudioInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.AudioInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Information about an audio stream or device.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.AudioInfo.codec">
+<span class="sig-name descname"><span class="pre">codec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.AudioInfo.codec" title="Permalink to this definition"></a></dt>
+<dd><p>Audio codec used for the stream or device (e.g., “pcm16”, “pcm32float”, “mp3”)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.AudioInfo.sample_rate_hz">
+<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.AudioInfo.sample_rate_hz" title="Permalink to this definition"></a></dt>
+<dd><p>Sample rate of the audio in Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.AudioInfo.num_channels">
+<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.AudioInfo.num_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Number of audio channels in the recording or playback</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.global___AudioInfo">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">global___AudioInfo</span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.global___AudioInfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Shared properties for AudioIn and AudioOut components.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.global___GetPropertiesRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetPropertiesRequest</span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.global___GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supported_codecs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesResponse.sample_rate_hz">
+<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesResponse.sample_rate_hz" title="Permalink to this definition"></a></dt>
+<dd><p>current sample rate in Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesResponse.num_channels">
+<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesResponse.num_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.GetPropertiesResponse.supported_codecs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_codecs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.GetPropertiesResponse.supported_codecs" title="Permalink to this definition"></a></dt>
+<dd><p>List of audio codecs supported by the system (e.g., “mp3”, “pcm16”, “pcm32float”)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.global___GetPropertiesResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetPropertiesResponse</span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.global___GetPropertiesResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py data">

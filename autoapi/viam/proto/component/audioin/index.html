@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.proto.component.audioin &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.proto.component.audioinput" href="../audioinput/index.html" />
+    <link rel="prev" title="viam.proto.component.arm" href="../arm/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.proto</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../app/index.html">viam.proto.app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common/index.html">viam.proto.common</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.proto.component</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../arm/index.html">viam.proto.component.arm</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">viam.proto.component.audioin</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase.GetAudio"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase.GetAudio()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase.GetProperties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase.GetGeometries()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">AudioInServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub"><code class="docutils literal notranslate"><span class="pre">AudioInServiceStub</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub.GetAudio"><code class="docutils literal notranslate"><span class="pre">AudioInServiceStub.GetAudio</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub.GetProperties"><code class="docutils literal notranslate"><span class="pre">AudioInServiceStub.GetProperties</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">AudioInServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">AudioInServiceStub.GetGeometries</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetAudio"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase.GetAudio()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase.GetProperties()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase.GetGeometries()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk"><code class="docutils literal notranslate"><span class="pre">AudioChunk</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.audio_data"><code class="docutils literal notranslate"><span class="pre">AudioChunk.audio_data</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.start_timestamp_nanoseconds"><code class="docutils literal notranslate"><span class="pre">AudioChunk.start_timestamp_nanoseconds</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.end_timestamp_nanoseconds"><code class="docutils literal notranslate"><span class="pre">AudioChunk.end_timestamp_nanoseconds</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.sequence"><code class="docutils literal notranslate"><span class="pre">AudioChunk.sequence</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.audio_info"><code class="docutils literal notranslate"><span class="pre">AudioChunk.audio_info</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk.HasField"><code class="docutils literal notranslate"><span class="pre">AudioChunk.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.name"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.name</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.duration_seconds"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.duration_seconds</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.codec"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.codec</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.request_id"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.request_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.previous_timestamp_nanoseconds"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.previous_timestamp_nanoseconds</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.extra</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetAudioRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioResponse"><code class="docutils literal notranslate"><span class="pre">GetAudioResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioResponse.request_id"><code class="docutils literal notranslate"><span class="pre">GetAudioResponse.request_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioResponse.audio"><code class="docutils literal notranslate"><span class="pre">GetAudioResponse.audio</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioin.GetAudioResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetAudioResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../audioinput/index.html">viam.proto.component.audioinput</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../audioout/index.html">viam.proto.component.audioout</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../base/index.html">viam.proto.component.base</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../board/index.html">viam.proto.component.board</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../button/index.html">viam.proto.component.button</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../camera/index.html">viam.proto.component.camera</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../encoder/index.html">viam.proto.component.encoder</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../gantry/index.html">viam.proto.component.gantry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../generic/index.html">viam.proto.component.generic</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../gripper/index.html">viam.proto.component.gripper</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../inputcontroller/index.html">viam.proto.component.inputcontroller</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../motor/index.html">viam.proto.component.motor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../movementsensor/index.html">viam.proto.component.movementsensor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../posetracker/index.html">viam.proto.component.posetracker</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../powersensor/index.html">viam.proto.component.powersensor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../sensor/index.html">viam.proto.component.sensor</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../servo/index.html">viam.proto.component.servo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../switch/index.html">viam.proto.component.switch</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../testecho/index.html">viam.proto.component.testecho</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../module/index.html">viam.proto.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../provisioning/index.html">viam.proto.provisioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../robot/index.html">viam.proto.robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rpc/index.html">viam.proto.rpc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../service/index.html">viam.proto.service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html">viam.proto.stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tagger/index.html">viam.proto.tagger</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">viam.proto</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">viam.proto.component</a></li>
+      <li class="breadcrumb-item active">viam.proto.component.audioin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/proto/component/audioin/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.proto.component.audioin">
+<span id="viam-proto-component-audioin"></span><h1>viam.proto.component.audioin<a class="headerlink" href="#module-viam.proto.component.audioin" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by Viam.
+Do not edit manually!</p>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase" title="viam.proto.component.audioin.AudioInServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceStub" title="viam.proto.component.audioin.AudioInServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase" title="viam.proto.component.audioin.UnimplementedAudioInServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedAudioInServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.audioin.AudioChunk" title="viam.proto.component.audioin.AudioChunk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioChunk</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.audioin.GetAudioRequest" title="viam.proto.component.audioin.GetAudioRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAudioRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.audioin.GetAudioResponse" title="viam.proto.component.audioin.GetAudioResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAudioResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">AudioInServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase.GetAudio">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetAudio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioin/v1/audioin_pb2/index.html#viam.gen.component.audioin.v1.audioin_pb2.GetAudioRequest" title="viam.gen.component.audioin.v1.audioin_pb2.GetAudioRequest"><span class="pre">component.audioin.v1.audioin_pb2.GetAudioRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioin/v1/audioin_pb2/index.html#viam.gen.component.audioin.v1.audioin_pb2.GetAudioResponse" title="viam.gen.component.audioin.v1.audioin_pb2.GetAudioResponse"><span class="pre">component.audioin.v1.audioin_pb2.GetAudioResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase.GetAudio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase.GetAudio" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase.GetProperties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesRequest" title="viam.gen.common.v1.common_pb2.GetPropertiesRequest"><span class="pre">common.v1.common_pb2.GetPropertiesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.GetPropertiesResponse"><span class="pre">common.v1.common_pb2.GetPropertiesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase.GetProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase.GetProperties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase.DoCommand">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase.GetGeometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetGeometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesRequest" title="viam.gen.common.v1.common_pb2.GetGeometriesRequest"><span class="pre">common.v1.common_pb2.GetGeometriesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesResponse" title="viam.gen.common.v1.common_pb2.GetGeometriesResponse"><span class="pre">common.v1.common_pb2.GetGeometriesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase.GetGeometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase.GetGeometries" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">AudioInServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#AudioInServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceStub" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceStub.GetAudio">
+<span class="sig-name descname"><span class="pre">GetAudio</span></span><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceStub.GetAudio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceStub.GetProperties">
+<span class="sig-name descname"><span class="pre">GetProperties</span></span><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceStub.GetProperties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceStub.DoCommand">
+<span class="sig-name descname"><span class="pre">DoCommand</span></span><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceStub.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioInServiceStub.GetGeometries">
+<span class="sig-name descname"><span class="pre">GetGeometries</span></span><a class="headerlink" href="#viam.proto.component.audioin.AudioInServiceStub.GetGeometries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.UnimplementedAudioInServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">UnimplementedAudioInServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#UnimplementedAudioInServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.component.audioin.AudioInServiceBase" title="viam.proto.component.audioin.AudioInServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetAudio">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetAudio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/audioin/v1/audioin_pb2/index.html#viam.gen.component.audioin.v1.audioin_pb2.GetAudioRequest" title="viam.gen.component.audioin.v1.audioin_pb2.GetAudioRequest"><span class="pre">component.audioin.v1.audioin_pb2.GetAudioRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/audioin/v1/audioin_pb2/index.html#viam.gen.component.audioin.v1.audioin_pb2.GetAudioResponse" title="viam.gen.component.audioin.v1.audioin_pb2.GetAudioResponse"><span class="pre">component.audioin.v1.audioin_pb2.GetAudioResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#UnimplementedAudioInServiceBase.GetAudio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetAudio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetProperties">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesRequest" title="viam.gen.common.v1.common_pb2.GetPropertiesRequest"><span class="pre">common.v1.common_pb2.GetPropertiesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetPropertiesResponse" title="viam.gen.common.v1.common_pb2.GetPropertiesResponse"><span class="pre">common.v1.common_pb2.GetPropertiesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#UnimplementedAudioInServiceBase.GetProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetProperties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.UnimplementedAudioInServiceBase.DoCommand">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#UnimplementedAudioInServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetGeometries">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetGeometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesRequest" title="viam.gen.common.v1.common_pb2.GetGeometriesRequest"><span class="pre">common.v1.common_pb2.GetGeometriesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesResponse" title="viam.gen.common.v1.common_pb2.GetGeometriesResponse"><span class="pre">common.v1.common_pb2.GetGeometriesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/audioin/v1/audioin_grpc.html#UnimplementedAudioInServiceBase.GetGeometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.audioin.UnimplementedAudioInServiceBase.GetGeometries" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">AudioChunk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AudioInfo" title="viam.gen.common.v1.common_pb2.AudioInfo"><span class="pre">viam.gen.common.v1.common_pb2.AudioInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_timestamp_nanoseconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_timestamp_nanoseconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.audio_data">
+<span class="sig-name descname"><span class="pre">audio_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.audio_data" title="Permalink to this definition"></a></dt>
+<dd><p>Audio data for this chunk, encoded according to the requested codec.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.start_timestamp_nanoseconds">
+<span class="sig-name descname"><span class="pre">start_timestamp_nanoseconds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.start_timestamp_nanoseconds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.end_timestamp_nanoseconds">
+<span class="sig-name descname"><span class="pre">end_timestamp_nanoseconds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.end_timestamp_nanoseconds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.sequence">
+<span class="sig-name descname"><span class="pre">sequence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.sequence" title="Permalink to this definition"></a></dt>
+<dd><p>Sequential chunk number</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.audio_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">audio_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AudioInfo" title="viam.gen.common.v1.common_pb2.AudioInfo"><span class="pre">viam.gen.common.v1.common_pb2.AudioInfo</span></a></em><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.audio_info" title="Permalink to this definition"></a></dt>
+<dd><p>Info about the audio stream for this chunk</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.AudioChunk.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'audio_info'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'audio_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.audioin.AudioChunk.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">GetAudioRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previous_timestamp_nanoseconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.duration_seconds">
+<span class="sig-name descname"><span class="pre">duration_seconds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.duration_seconds" title="Permalink to this definition"></a></dt>
+<dd><p>Desired duration of audio stream
+If not set or set to 0, the stream is infinite</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.codec">
+<span class="sig-name descname"><span class="pre">codec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.codec" title="Permalink to this definition"></a></dt>
+<dd><p>Requested audio codec for the response (e.g., “mp3”, “pcm16”)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.request_id">
+<span class="sig-name descname"><span class="pre">request_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.request_id" title="Permalink to this definition"></a></dt>
+<dd><p>To match a request to it’s responses</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.previous_timestamp_nanoseconds">
+<span class="sig-name descname"><span class="pre">previous_timestamp_nanoseconds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.previous_timestamp_nanoseconds" title="Permalink to this definition"></a></dt>
+<dd><p>Timestamp of the previous audio chunk, in nanoseconds, used for resuming and continuity.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.audioin.GetAudioRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.audioin.</span></span><span class="sig-name descname"><span class="pre">GetAudioResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___AudioChunk</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.audioin.GetAudioResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioResponse.request_id">
+<span class="sig-name descname"><span class="pre">request_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioResponse.request_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioResponse.audio">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">audio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___AudioChunk</span></em><a class="headerlink" href="#viam.proto.component.audioin.GetAudioResponse.audio" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.audioin.GetAudioResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'audio'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'audio'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.audioin.GetAudioResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../arm/index.html" class="btn btn-neutral float-left" title="viam.proto.component.arm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../audioinput/index.html" class="btn btn-neutral float-right" title="viam.proto.component.audioinput" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

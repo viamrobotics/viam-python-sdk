@@ -1,0 +1,102 @@
+viam.gen.component.audioout.v1.audioout_grpc
+============================================
+
+.. py:module:: viam.gen.component.audioout.v1.audioout_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.component.audioout.v1.audioout_grpc.AudioOutServiceBase
+   viam.gen.component.audioout.v1.audioout_grpc.UnimplementedAudioOutServiceBase
+   viam.gen.component.audioout.v1.audioout_grpc.AudioOutServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: AudioOutServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: Play(stream: grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedAudioOutServiceBase
+
+   Bases: :py:obj:`AudioOutServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: Play(stream: grpclib.server.Stream[component.audioout.v1.audioout_pb2.PlayRequest, component.audioout.v1.audioout_pb2.PlayResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[common.v1.common_pb2.GetPropertiesRequest, common.v1.common_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
+
+
+
+.. py:class:: AudioOutServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: Play
+
+
+   .. py:attribute:: GetProperties
+
+
+   .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetGeometries
+
+

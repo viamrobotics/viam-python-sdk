@@ -72,6 +72,12 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.ActuatorStatus.is_moving"><code class="docutils literal notranslate"><span class="pre">ActuatorStatus.is_moving</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.AudioInfo"><code class="docutils literal notranslate"><span class="pre">AudioInfo</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AudioInfo.codec"><code class="docutils literal notranslate"><span class="pre">AudioInfo.codec</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AudioInfo.sample_rate_hz"><code class="docutils literal notranslate"><span class="pre">AudioInfo.sample_rate_hz</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AudioInfo.num_channels"><code class="docutils literal notranslate"><span class="pre">AudioInfo.num_channels</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Capsule"><code class="docutils literal notranslate"><span class="pre">Capsule</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Capsule.radius_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.radius_mm</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Capsule.length_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.length_mm</span></code></a></li>
@@ -135,6 +141,18 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.format"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.format</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse.kinematics_data"><code class="docutils literal notranslate"><span class="pre">GetKinematicsResponse.kinematics_data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse.sample_rate_hz"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.sample_rate_hz</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse.num_channels"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.num_channels</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse.supported_codecs"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.supported_codecs</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetReadingsRequest"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a><ul>
@@ -303,88 +321,97 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ActuatorStatus" title="viam.proto.common.ActuatorStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActuatorStatus</span></code></a></p></td>
 <td><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.AudioInfo" title="viam.proto.common.AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInfo</span></code></a></p></td>
+<td><p>Information about an audio stream or device.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
 <td><p>DoCommandRequest represents a generic DoCommand input</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
 <td><p>DoCommandResponse represents a generic DoCommand output</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a></p></td>
 <td><p>GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
 <td><p>GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesResponse" title="viam.proto.common.GetGeometriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesResponse" title="viam.proto.common.GetGeometriesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest" title="viam.proto.common.GetKinematicsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsRequest" title="viam.proto.common.GetKinematicsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse" title="viam.proto.common.GetKinematicsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetKinematicsResponse" title="viam.proto.common.GetKinematicsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetKinematicsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsRequest" title="viam.proto.common.GetReadingsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesRequest" title="viam.proto.common.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Shared properties for AudioIn and AudioOut components.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetPropertiesResponse" title="viam.proto.common.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsResponse" title="viam.proto.common.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsRequest" title="viam.proto.common.GetReadingsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat" title="viam.proto.common.KinematicsFileFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GetReadingsResponse" title="viam.proto.common.GetReadingsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.KinematicsFileFormat" title="viam.proto.common.KinematicsFileFormat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.LogEntry" title="viam.proto.common.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.LogEntry" title="viam.proto.common.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Mesh" title="viam.proto.common.Mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mesh</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Mesh" title="viam.proto.common.Mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mesh</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Orientation" title="viam.proto.common.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PointCloud" title="viam.proto.common.PointCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloud</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PointCloud" title="viam.proto.common.PointCloud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloud</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
 <td><p>PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Pose" title="viam.proto.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Pose" title="viam.proto.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
 <td><p>Pose is a combination of location and orientation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
 <td><p>PoseInFrame contains a pose and the and the reference frame in which it was observed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.RectangularPrism" title="viam.proto.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.RectangularPrism" title="viam.proto.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
 <td><p>RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ResponseMetadata" title="viam.proto.common.ResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResponseMetadata</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.ResponseMetadata" title="viam.proto.common.ResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResponseMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Sphere" title="viam.proto.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Sphere" title="viam.proto.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Transform" title="viam.proto.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Transform" title="viam.proto.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
 <td><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Vector3" title="viam.proto.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Vector3" title="viam.proto.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
 <td><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,</p></td>
 </tr>
 </tbody>
@@ -401,6 +428,31 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.common.ActuatorStatus.is_moving">
 <span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.common.ActuatorStatus.is_moving" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.AudioInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">AudioInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.AudioInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Information about an audio stream or device.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AudioInfo.codec">
+<span class="sig-name descname"><span class="pre">codec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.AudioInfo.codec" title="Permalink to this definition"></a></dt>
+<dd><p>Audio codec used for the stream or device (e.g., “pcm16”, “pcm32float”, “mp3”)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AudioInfo.sample_rate_hz">
+<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.AudioInfo.sample_rate_hz" title="Permalink to this definition"></a></dt>
+<dd><p>Sample rate of the audio in Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.AudioInfo.num_channels">
+<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.AudioInfo.num_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Number of audio channels in the recording or playback</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -794,6 +846,74 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.common.GetKinematicsResponse.kinematics_data">
 <span class="sig-name descname"><span class="pre">kinematics_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.common.GetKinematicsResponse.kinematics_data" title="Permalink to this definition"></a></dt>
 <dd><p>The byte contents of the file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Shared properties for AudioIn and AudioOut components.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.common.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GetPropertiesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supported_codecs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesResponse.sample_rate_hz">
+<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.GetPropertiesResponse.sample_rate_hz" title="Permalink to this definition"></a></dt>
+<dd><p>current sample rate in Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesResponse.num_channels">
+<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.GetPropertiesResponse.num_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.GetPropertiesResponse.supported_codecs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_codecs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.GetPropertiesResponse.supported_codecs" title="Permalink to this definition"></a></dt>
+<dd><p>List of audio codecs supported by the system (e.g., “mp3”, “pcm16”, “pcm32float”)</p>
 </dd></dl>
 
 </dd></dl>
