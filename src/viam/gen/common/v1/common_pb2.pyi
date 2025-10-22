@@ -44,22 +44,15 @@ class ResourceName(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    REMOTE_PATH_FIELD_NUMBER: builtins.int
-    LOCAL_NAME_FIELD_NUMBER: builtins.int
     namespace: builtins.str
     type: builtins.str
     subtype: builtins.str
     name: builtins.str
-    local_name: builtins.str
 
-    @property
-    def remote_path(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=..., remote_path: collections.abc.Iterable[builtins.str] | None=..., local_name: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['local_name', b'local_name', 'name', b'name', 'namespace', b'namespace', 'remote_path', b'remote_path', 'subtype', b'subtype', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
         ...
 global___ResourceName = ResourceName
 
