@@ -44,22 +44,15 @@ class ResourceName(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    REMOTE_PATH_FIELD_NUMBER: builtins.int
-    LOCAL_NAME_FIELD_NUMBER: builtins.int
     namespace: builtins.str
     type: builtins.str
     subtype: builtins.str
     name: builtins.str
-    local_name: builtins.str
 
-    @property
-    def remote_path(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=..., remote_path: collections.abc.Iterable[builtins.str] | None=..., local_name: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['local_name', b'local_name', 'name', b'name', 'namespace', b'namespace', 'remote_path', b'remote_path', 'subtype', b'subtype', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
         ...
 global___ResourceName = ResourceName
 
@@ -713,6 +706,71 @@ class LogEntry(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['caller', b'caller', 'fields', b'fields', 'host', b'host', 'level', b'level', 'logger_name', b'logger_name', 'message', b'message', 'stack', b'stack', 'time', b'time']) -> None:
         ...
 global___LogEntry = LogEntry
+
+@typing.final
+class AudioInfo(google.protobuf.message.Message):
+    """Information about an audio stream or device."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CODEC_FIELD_NUMBER: builtins.int
+    SAMPLE_RATE_HZ_FIELD_NUMBER: builtins.int
+    NUM_CHANNELS_FIELD_NUMBER: builtins.int
+    codec: builtins.str
+    'Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")'
+    sample_rate_hz: builtins.int
+    'Sample rate of the audio in Hz'
+    num_channels: builtins.int
+    'Number of audio channels in the recording or playback'
+
+    def __init__(self, *, codec: builtins.str=..., sample_rate_hz: builtins.int=..., num_channels: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['codec', b'codec', 'num_channels', b'num_channels', 'sample_rate_hz', b'sample_rate_hz']) -> None:
+        ...
+global___AudioInfo = AudioInfo
+
+@typing.final
+class GetPropertiesRequest(google.protobuf.message.Message):
+    """Shared properties for AudioIn and AudioOut components."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+@typing.final
+class GetPropertiesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUPPORTED_CODECS_FIELD_NUMBER: builtins.int
+    SAMPLE_RATE_HZ_FIELD_NUMBER: builtins.int
+    NUM_CHANNELS_FIELD_NUMBER: builtins.int
+    sample_rate_hz: builtins.int
+    'current sample rate in Hz'
+    num_channels: builtins.int
+    'Maximum number of audio channels supported (e.g., 1 for mono, 2 for stereo)'
+
+    @property
+    def supported_codecs(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """List of audio codecs supported by the system (e.g., "mp3", "pcm16", "pcm32float")"""
+
+    def __init__(self, *, supported_codecs: collections.abc.Iterable[builtins.str] | None=..., sample_rate_hz: builtins.int=..., num_channels: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['num_channels', b'num_channels', 'sample_rate_hz', b'sample_rate_hz', 'supported_codecs', b'supported_codecs']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse
 SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int
 safety_heartbeat_monitored: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, builtins.bool]
 'safety_heartbeat_monitored is used on methods to signify that if a session is in use\nand the session was the last to call this method, the resource associated with the\nmethod will be stopped.\n'
