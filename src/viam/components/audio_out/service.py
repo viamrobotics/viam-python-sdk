@@ -30,7 +30,9 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         name = request.name
         audio_out = self.get_resource(name)
         extra = struct_to_dict(request.extra)
-        await audio_out.play(request.audio_data, request.audio_info, extra=extra)
+        # Check if audio_info was provided in the request
+        audio_info = request.audio_info if request.HasField("audio_info") else None
+        await audio_out.play(request.audio_data, audio_info, extra=extra)
         await stream.send_message(PlayResponse())
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:

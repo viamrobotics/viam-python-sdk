@@ -38,6 +38,14 @@ class TestAudioOut:
         assert audio_out.last_audio_info == audio_info
 
     @pytest.mark.asyncio
+    async def test_play_without_audio_info(self, audio_out: MockAudioOut):
+        audio_data = b"test_audio_data"
+        await audio_out.play(audio_data)
+        assert audio_out.play_called
+        assert audio_out.last_audio_data == audio_data
+        assert audio_out.last_audio_info is None
+
+    @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut):
         properties = await audio_out.get_properties()
         assert isinstance(properties, GetPropertiesResponse)
@@ -71,6 +79,25 @@ class TestService:
             assert audio_out.play_called
             assert audio_out.last_audio_data == audio_data
             assert audio_out.last_audio_info == audio_info
+
+    @pytest.mark.asyncio
+    async def test_play_without_audio_info(self, audio_out: MockAudioOut, service: AudioOutRPCService):
+        audio_data = b"test_audio_data"
+
+        async with ChannelFor([service]) as channel:
+            client = AudioOutServiceStub(channel)
+            request = PlayRequest(
+                name=audio_out.name,
+                audio_data=audio_data,
+                audio_info=None,
+                extra=dict_to_struct({}),
+            )
+
+            await client.Play(request)
+
+            assert audio_out.play_called
+            assert audio_out.last_audio_data == audio_data
+            assert audio_out.last_audio_info is None
 
     @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut, service: AudioOutRPCService):
@@ -121,6 +148,18 @@ class TestClient:
             assert audio_out.play_called
             assert audio_out.last_audio_data == audio_data
             assert audio_out.last_audio_info == audio_info
+
+    @pytest.mark.asyncio
+    async def test_play_without_audio_info(self, audio_out: MockAudioOut, service: AudioOutRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioOutClient(audio_out.name, channel)
+            audio_data = b"test_audio_data"
+
+            await client.play(audio_data)
+
+            assert audio_out.play_called
+            assert audio_out.last_audio_data == audio_data
+            assert audio_out.last_audio_info is None
 
     @pytest.mark.asyncio
     async def test_get_properties(self, audio_out: MockAudioOut,service: AudioOutRPCService):

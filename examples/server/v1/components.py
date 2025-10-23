@@ -251,7 +251,7 @@ class ExampleAudioOut(AudioOut):
 
     async def play(self,
                    data: bytes,
-                   info: AudioInfo,
+                   info: Optional[AudioInfo] = None,
                    *,
                    extra: Optional[Dict[str, Any]] = None,
                    timeout: Optional[float] = None,
@@ -262,8 +262,11 @@ class ExampleAudioOut(AudioOut):
 
         # Simulate playing audio
         self.is_playing = True
-        print(f"Playing audio: {len(data)} bytes, codec={info.codec}, "
-              f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
+        if info:
+            print(f"Playing audio: {len(data)} bytes, codec={info.codec}, "
+                  f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
+        else:
+            print(f"Playing audio: {len(data)} bytes (no audio info provided)")
 
         await asyncio.sleep(0.1)
 

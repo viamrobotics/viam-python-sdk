@@ -1144,7 +1144,7 @@ class MockAudioOut(AudioOut):
         self.last_audio_data = None
         self.last_audio_info = None
 
-    async def play(self, data: bytes, info, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
+    async def play(self, data: bytes, info: Optional[AudioInfo] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
         self.play_called = True
         self.last_audio_data = data
         self.last_audio_info = info

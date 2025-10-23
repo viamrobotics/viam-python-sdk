@@ -31,7 +31,7 @@ class AudioOut(ComponentBase):
     @abc.abstractmethod
     async def play(self,
                    data: bytes,
-                   info: AudioInfo,
+                   info: Optional[AudioInfo] = None,
                    *,
                    extra: Optional[Dict[str, Any]] = None,
                    timeout: Optional[float] = None,
@@ -40,15 +40,18 @@ class AudioOut(ComponentBase):
         Play the given audio data.
 
         ::
-
             my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
 
-            audio_info = AudioInfo(codec="pcm16", sample_rate=44100, num_channels=2)
+            # With audio info
+            audio_info = AudioInfo(codec=AudioCodec.PCM16, sample_rate_hz=44100, num_channels=2)
             await my_audio_out.play(audio_data, audio_info)
+
+            # Without audio info (when codec encodes information within audio_data)
+            await my_audio_out.play(audio_data)
 
         Args:
             data: audio bytes to play
-            info: information about the audio data such as codec, sample rate, and channel count
+            info: (optional) information about the audio data such as codec, sample rate, and channel count
         """
 
     @abc.abstractmethod
@@ -61,7 +64,6 @@ class AudioOut(ComponentBase):
         Get the audio output device's properties.
 
         ::
-
             my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
             properties = await my_audio_out.get_properties()
 

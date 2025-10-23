@@ -32,7 +32,7 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
 
     async def play(self,
                    data: bytes,
-                   info: AudioInfo,
+                   info: Optional[AudioInfo] = None,
                    *,
                    extra: Optional[Dict[str, Any]] = None,
                    timeout: Optional[float] = None,
