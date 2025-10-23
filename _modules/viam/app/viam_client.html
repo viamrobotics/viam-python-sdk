@@ -174,9 +174,6 @@
 
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span> <span class="o">=</span> <span class="n">dial_options</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;robot-location-secret&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">app_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">app_url</span> <span class="o">=</span> <span class="s2">&quot;app.viam.com&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_app</span><span class="p">(</span><span class="n">app_url</span><span class="p">)</span>
@@ -187,7 +184,6 @@
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">_dial_options</span><span class="p">:</span> <span class="n">DialOptions</span>
 
     <span class="nd">@property</span>
@@ -229,7 +225,7 @@
 <span class="sd">                # Instantiate an AppClient called &quot;fleet&quot; to run fleet management API methods on</span>
 <span class="sd">                fleet = viam_client.app_client</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">AppClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AppClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ml_training_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MLTrainingClient</span><span class="p">:</span>

@@ -629,22 +629,19 @@
 <span class="sd">    For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/&gt;`_.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an `AppClient` that maintains a connection to app.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            channel (grpclib.client.Channel): connection to app.</span>
 <span class="sd">            metadata (Mapping[str, str]): Required authorization token to send requests to app.</span>
-<span class="sd">            location_id (Optional[str]): Default location ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span> <span class="o">=</span> <span class="n">AppServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">location_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
     <span class="n">_app_client</span><span class="p">:</span> <span class="n">AppServiceStub</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
-    <span class="n">_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_organization_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -1105,7 +1102,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#getlocation&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">location</span></div>
 
@@ -1244,7 +1241,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#locationauth&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">LocationAuthRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">LocationAuthRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">LocationAuthResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">LocationAuth</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">auth</span></div>
 
@@ -1268,7 +1265,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#createlocationsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationSecretRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationSecretRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationSecretResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">auth</span></div>
 
@@ -1293,7 +1290,7 @@
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationSecretRequest</span><span class="p">(</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
@@ -1742,7 +1739,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#listrobots&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
@@ -1766,7 +1763,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#newrobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotRequest</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotRequest</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">NewRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">NewRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
@@ -1797,7 +1794,7 @@
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">robot</span></div>
