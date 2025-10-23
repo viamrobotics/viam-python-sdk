@@ -241,33 +241,33 @@ def service() -> MockApp:
 class TestClient:
     async def test_get_user_id_by_email(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             id = await client.get_user_id_by_email(EMAIL)
             assert id == ID
 
     async def test_create_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             org = await client.create_organization(NAME)
             assert org == ORGANIZATION
 
     async def test_get_organizations_with_access_to_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             orgs = await client.get_organizations_with_access_to_location(ID)
             assert orgs[0].name == NAME
             assert orgs[0].id == ID
 
     async def test_list_organizations_by_user(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             orgs = await client.list_organizations_by_user(ID)
             assert orgs[0].org_name == NAME
             assert orgs[0].org_id == ID
 
     async def test_get_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             org = await client.get_organization(org_id=ID)
             assert org == ORGANIZATION
             available = await client.get_organization_namespace_availability(public_namespace=NAMESPACE)
@@ -276,27 +276,27 @@ class TestClient:
 
     async def test_get_organization_namespace_availability(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             available = await client.get_organization_namespace_availability(public_namespace=NAMESPACE)
             assert available == AVAILABLE
             assert service.namespace == NAMESPACE
 
     async def test_list_organization_members(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             members, invites = await client.list_organization_members(org_id=ID)
             assert members == MEMBERS
             assert invites == INVITES
 
     async def test_list_organizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             organizations = await client.list_organizations()
             assert organizations == ORGANIZATIONS
 
     async def test_update_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             org = await client.update_organization(org_id=ID, name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
             assert org == ORGANIZATION
             assert service.update_region == DEFAULT_REGION
@@ -306,7 +306,7 @@ class TestClient:
 
     async def test_update_organization_invite_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             invite = await client.update_organization_invite_authorizations(
                 org_id=ID, email=EMAIL, add_authorizations=AUTHORIZATIONS, remove_authorizations=AUTHORIZATIONS
             )
@@ -317,19 +317,19 @@ class TestClient:
 
     async def test_delete_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_organization(ID)
             assert service.delete_org_called is True
 
     async def test_delete_organization_member(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_organization_member(org_id=ID, user_id=ID)
             assert service.deleted_member_id == ID
 
     async def test_create_organization_invite(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             invite = await client.create_organization_invite(org_id=ID, email=EMAIL, authorizations=AUTHORIZATIONS)
             assert invite == INVITE
             assert service.send_email_invite is True
@@ -339,19 +339,19 @@ class TestClient:
 
     async def test_delete_organization_invite(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_organization_invite(org_id=ID, email=EMAIL)
             assert service.deleted_invite_email == EMAIL
 
     async def test_resend_organization_invite(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.resend_organization_invite(org_id=ID, email=EMAIL)
             assert service.resent_invite_email == EMAIL
 
     async def test_create_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             new_location = await client.create_location(org_id=ID, name=NAME, parent_location_id=ID)
             assert service.name == NAME
             assert service.parent_location_id == ID
@@ -359,14 +359,14 @@ class TestClient:
 
     async def test_get_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             location = await client.get_location(location_id=ID)
             assert service.location_id == ID
             assert location == LOCATION
 
     async def test_update_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             updated_location = await client.update_location(location_id=ID, name=NAME, parent_location_id=ID)
             assert service.location_id == ID
             assert service.name == NAME
@@ -375,81 +375,81 @@ class TestClient:
 
     async def test_delete_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_location(location_id=ID)
             assert service.location_id == ID
 
     async def test_list_locations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             locations = await client.list_locations(org_id=ID)
             assert locations == locations
 
     async def test_share_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.share_location(organization_id=ID, location_id=ID)
             assert service.location_id == ID
             assert service.organization_id == ID
 
     async def test_unshare_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.unshare_location(organization_id=ID, location_id=ID)
             assert service.location_id == ID
             assert service.organization_id == ID
 
     async def test_location_auth(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             location_auth = await client.location_auth(location_id=ID)
             assert location_auth == LOCATION_AUTH
             assert service.location_id == ID
 
     async def test_create_location_secret(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             location_auth = await client.create_location_secret(location_id=ID)
             assert location_auth == LOCATION_AUTH
             assert service.location_id == ID
 
     async def test_delete_location_secret(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_location_secret(secret_id=ID, location_id=ID)
             assert service.secret_id == ID
             assert service.location_id == ID
 
     async def test_get_robot(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robot = await client.get_robot(robot_id=ID)
             assert service.robot_id == ID
             assert robot == ROBOT
 
     async def test_get_rover_rental_robots(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robots = await client.get_rover_rental_robots(org_id=ID)
             assert robots == ROVER_RENTAL_ROBOTS
 
     async def test_get_robot_parts(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robot_parts = await client.get_robot_parts(robot_id=ID)
             assert service.robot_id == ID
             assert [robot_part.proto for robot_part in robot_parts] == ROBOT_PARTS
 
     async def test_get_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robot_part = await client.get_robot_part(robot_part_id=ID, indent=NUM)
             assert service.robot_part_id == ID
             assert robot_part.proto == ROBOT_PART
 
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
@@ -458,7 +458,7 @@ class TestClient:
 
     async def test_tail_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             logs_stream = await client.tail_robot_part_logs(robot_part_id=ID, errors_only=ERRORS_ONLY, filter=FILTER)
             [logs async for logs in logs_stream]  # Iterate over returned value to implicitly call __anext__() so server runs properly.
             assert service.robot_part_id == ID
@@ -467,7 +467,7 @@ class TestClient:
 
     async def test_get_robot_part_history(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robot_part_history = await client.get_robot_part_history(robot_part_id=ID)
             assert service.robot_part_id == ID
             assert len(robot_part_history) == len(ROBOT_PART_HISTORY)
@@ -477,7 +477,7 @@ class TestClient:
     async def test_update_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             last_known_update = datetime.now()
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             updated_robot_part = await client.update_robot_part(
                 robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG, last_known_update=last_known_update
             )
@@ -489,7 +489,7 @@ class TestClient:
 
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             new_robot_part_id = await client.new_robot_part(robot_id=ID, part_name=NAME)
             assert service.robot_id == ID
             assert service.part_name == NAME
@@ -497,53 +497,53 @@ class TestClient:
 
     async def test_delete_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_robot_part(robot_part_id=ID)
             assert service.robot_part_id == ID
 
     async def test_get_robot_api_keys(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             keys = await client.get_robot_api_keys(ID)
             assert keys[0].api_key == API_KEY_WITH_AUTHORIZATIONS.api_key
             assert keys[0].authorizations[0] == AUTHORIZATION_DETAIL
 
     async def test_mark_part_as_main(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.mark_part_as_main(robot_part_id=ID)
             assert service.robot_part_id == ID
 
     async def test_mark_part_for_restart(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.mark_part_for_restart(robot_part_id=ID)
             assert service.robot_part_id == ID
 
     async def test_create_robot_part_secret(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robot_part = await client.create_robot_part_secret(robot_part_id=ID)
             assert service.robot_part_id == ID
             assert robot_part.proto == ROBOT_PART
 
     async def test_delete_robot_part_secret(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_robot_part_secret(robot_part_id=ID, secret_id=ID)
             assert service.robot_part_id == ID
             assert service.secret_id == ID
 
     async def test_list_robots(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             robots = await client.list_robots(location_id=ID)
             assert service.location_id == ID
             assert robots == [ROBOT]
 
     async def test_new_robot(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             new_robot_id = await client.new_robot(name=NAME, location_id=ID)
             assert service.name == NAME
             assert service.location_id == ID
@@ -551,7 +551,7 @@ class TestClient:
 
     async def test_update_robot(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             updated_robot = await client.update_robot(robot_id=ID, name=NAME, location_id=ID)
             assert service.robot_id == ID
             assert service.name == NAME
@@ -560,20 +560,20 @@ class TestClient:
 
     async def test_delete_robot(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_robot(robot_id=ID)
             assert service.robot_id == ID
 
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             fragments = await client.list_fragments(org_id=ID, visibilities=FRAGMENT_VISIBILITY)
             assert service.fragment_visibility == FRAGMENT_VISIBILITY_PB
             assert [fragment.proto for fragment in fragments] == [FRAGMENT]
 
     async def test_get_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             fragment = await client.get_fragment(fragment_id=ID, version=VERSION)
             assert service.fragment_id == ID
             assert service.version == VERSION
@@ -581,14 +581,14 @@ class TestClient:
 
     async def test_create_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             fragment = await client.create_fragment(org_id=ID, name=NAME)
             assert service.name == NAME
             assert fragment.proto == FRAGMENT
 
     async def test_update_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             last_known_update = datetime.now()
             fragment = await client.update_fragment(fragment_id=ID, name=NAME, public=PUBLIC, last_known_update=last_known_update)
             assert service.fragment_id == ID
@@ -599,13 +599,13 @@ class TestClient:
 
     async def test_delete_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_fragment(fragment_id=ID)
             assert service.id == ID
 
     async def test_get_fragment_history(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             fragment_history = await client.get_fragment_history(id=ID, page_token=PAGE_TOKEN, page_limit=PAGE_LIMIT)
             assert service.fragment.id == ID
             assert len(fragment_history) == len(FRAGMENT_HISTORY)
@@ -617,7 +617,7 @@ class TestClient:
 
     async def test_add_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.add_role(org_id=ID, identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
@@ -626,7 +626,7 @@ class TestClient:
 
     async def test_remove_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.remove_role(org_id=ID, identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
@@ -635,7 +635,7 @@ class TestClient:
 
     async def test_change_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.change_role(
                 organization_id=ID,
                 old_identity_id=ID,
@@ -651,20 +651,20 @@ class TestClient:
 
     async def test_check_permissions(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             permissions = await client.check_permissions(permissions=PERMISSIONS)
             assert permissions == PERMISSIONS
 
     async def test_list_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             authorizations = await client.list_authorizations(org_id=ID, resource_ids=IDS)
             assert service.resource_ids == IDS
             assert authorizations == AUTHORIZATIONS
 
     async def test_get_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             item = await client.get_registry_item(ID, include_markdown_documentation=True)
             assert service.include_markdown_documentation is True
             assert item.item_id == ITEM.item_id
@@ -674,7 +674,7 @@ class TestClient:
 
     async def test_create_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.create_registry_item(ID, NAME, PACKAGE_TYPE)
             assert service.name == NAME
             assert service.package_type == PACKAGE_TYPE
@@ -682,7 +682,7 @@ class TestClient:
 
     async def test_update_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.update_registry_item(ID, PACKAGE_TYPE, DESCRIPTION, VISIBILITY)
             assert service.id == ID
             assert service.package_type == PACKAGE_TYPE
@@ -691,7 +691,7 @@ class TestClient:
 
     async def test_list_registry_items(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             items = await client.list_registry_items(ID, [PACKAGE_TYPE], [VISIBILITY], [PLATFORM], [STATUS])
             assert items[0].item_id == ID
             assert items[0].public_namespace == PUBLIC_NAMESPACE
@@ -699,14 +699,14 @@ class TestClient:
 
     async def test_delete_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_registry_item(ID)
             assert service.id == ID
             assert service.delete_item_called is True
 
     async def test_create_module(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             id, url = await client.create_module(org_id=ID, name=NAME)
             assert service.name == NAME
             assert id == ID
@@ -714,7 +714,7 @@ class TestClient:
 
     async def test_update_module(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             url = await client.update_module(
                 module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT, public=PUBLIC
             )
@@ -728,7 +728,7 @@ class TestClient:
 
     async def test_created_module(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             url = await client.update_module(module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT)
             assert service.module_id == ID
             assert service.description == DESCRIPTION
@@ -738,7 +738,7 @@ class TestClient:
 
     async def test_upload_module_file(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             id = await client.upload_module_file(module_file_info=MODULE_FILE_INFO, file=FILE)
             assert id == ID
             assert service.module_file_info == MODULE_FILE_INFO
@@ -746,52 +746,52 @@ class TestClient:
 
     async def test_get_module(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             module = await client.get_module(module_id=ID)
             assert service.module_id == ID
             assert module == MODULE
 
     async def test_list_modules(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             modules = await client.list_modules(org_id=ID)
             assert modules == MODULES
 
     async def test_create_key(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             api_key = await client.create_key(org_id=ID, authorizations=API_KEY_AUTHORIZATIONS, name=NAME)
             assert (API_KEY, ID) == api_key
 
     async def test_delete_key(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             await client.delete_key(ID)
             assert service.id == ID
             assert service.delete_key_called is True
 
     async def test_create_key_from_existing_key_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             api_key = await client.create_key_from_existing_key_authorizations(id=ID)
             assert (API_KEY, ID) == api_key
 
     async def list_keys(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             api_keys = await client.list_keys(org_id=ID)
             assert api_keys == API_KEYS_WITH_AUTHORIZATIONS
 
     async def test_rotate_key(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             key, id = await client.rotate_key(ID)
             assert key == API_KEY
             assert id == ID
 
     async def test_get_and_update_organization_metadata(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             user_defined_metadata = await client.get_organization_metadata(ID)
             assert len(user_defined_metadata) == 0
 
@@ -801,7 +801,7 @@ class TestClient:
 
     async def test_get_and_update_location_metadata(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             user_defined_metadata = await client.get_location_metadata(ID)
             assert len(user_defined_metadata) == 0
 
@@ -811,7 +811,7 @@ class TestClient:
 
     async def test_get_and_update_robot_metadata(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             user_defined_metadata = await client.get_robot_metadata(ID)
             assert len(user_defined_metadata) == 0
 
@@ -821,7 +821,7 @@ class TestClient:
 
     async def test_get_and_update_robot_part_metadata(self, service: MockApp):
         async with ChannelFor([service]) as channel:
-            client = AppClient(channel, METADATA, ID)
+            client = AppClient(channel, METADATA)
             user_defined_metadata = await client.get_robot_part_metadata(ID)
             assert len(user_defined_metadata) == 0
 

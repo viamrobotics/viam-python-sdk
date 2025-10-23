@@ -31,7 +31,7 @@ LOGGER = logging.getLogger(__name__)
 class Credentials:
     """Credentials to connect to the machine and app.viam.com."""
 
-    type: Union[Literal["robot-location-secret"], Literal["robot-secret"], Literal["api-key"]]
+    type: Union[Literal["robot-secret"], Literal["api-key"]]
     """The type of credential
     """
 
