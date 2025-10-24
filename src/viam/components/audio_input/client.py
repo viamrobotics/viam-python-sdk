@@ -1,4 +1,5 @@
 from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Union
+import warnings
 
 from grpclib.client import Channel
 
@@ -21,10 +22,17 @@ from .audio_input import AudioInput
 
 class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
     """
+    DEPRECATED: AudioInput is deprecated, use AudioIn instead.
     gRPC client for the AudioInput component.
     """
 
     def __init__(self, name: str, channel: Channel):
+        warnings.warn(
+            "AudioInputClient is deprecated and will be removed in a future release. "
+            "Use AudioIn instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         self.channel = channel
         self.client = AudioInputServiceStub(channel)
         super().__init__(name)
