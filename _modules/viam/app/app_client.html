@@ -1361,13 +1361,15 @@
         <span class="k">return</span> <span class="p">[</span><span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">part</span><span class="p">)</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">parts</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a machine part.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a machine part including its part config, part address, and other information.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            my_robot_part = await cloud.get_robot_part(</span>
 <span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span>
 <span class="sd">            )</span>
+<span class="sd">            # Get the part&#39;s config</span>
+<span class="sd">            machine_part_config = my_robot_part.robot_config</span>
 <span class="sd">            # Get the part&#39;s address</span>
 <span class="sd">            address = my_robot_part.fqdn</span>
 <span class="sd">            # Check if machine is live (last access time less than 10 sec ago)</span>
