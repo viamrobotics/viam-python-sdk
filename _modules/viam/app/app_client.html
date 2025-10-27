@@ -1289,9 +1289,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationSecretRequest</span><span class="p">(</span>
-            <span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationSecretRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
@@ -1795,9 +1793,7 @@
 
 <span class="sd">        For more information, see `Fleet Management API &lt;https://docs.viam.com/dev/reference/apis/fleet/#updaterobot&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">robot</span></div>
 
