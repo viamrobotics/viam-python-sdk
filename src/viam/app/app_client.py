@@ -1200,9 +1200,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#deletelocationsecret>`_.
         """
-        request = DeleteLocationSecretRequest(
-            location_id=location_id if location_id else "", secret_id=secret_id
-        )
+        request = DeleteLocationSecretRequest(location_id=location_id if location_id else "", secret_id=secret_id)
         await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
     async def get_robot(self, robot_id: str) -> Robot:
@@ -1706,9 +1704,7 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updaterobot>`_.
         """
-        request = UpdateRobotRequest(
-            id=robot_id, name=name, location=location_id if location_id else ""
-        )
+        request = UpdateRobotRequest(id=robot_id, name=name, location=location_id if location_id else "")
         response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot
 
