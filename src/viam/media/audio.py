@@ -36,7 +36,7 @@ class AudioCodec(str, Enum):
 
     PCM16 = "pcm16"
     PCM32 = "pcm32"
-    PCM32_FLOAT = "pcm32float"
+    PCM32_FLOAT = "pcm32_float"
     MP3 = "mp3"
     AAC = "aac"
     OPUS = "opus"
