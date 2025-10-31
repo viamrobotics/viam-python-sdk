@@ -58,6 +58,6 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         assert request is not None
         audio_out = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await audio_out.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        geometries = await audio_out.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

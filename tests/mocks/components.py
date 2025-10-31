@@ -41,7 +41,7 @@ from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
-from viam.proto.common import GetPropertiesResponse, AudioInfo
+from viam.proto.common import AudioInfo
 from viam.proto.component.audioin import AudioChunk as Chunk
 
 
