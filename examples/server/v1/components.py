@@ -185,6 +185,8 @@ class ExampleAudioIn(AudioIn):
         self.supported_codecs = ["pcm16"]
         self.chunk_count = 0
         self.latency = timedelta(milliseconds=20)
+        self.volume_scale = 0.2
+        self.frequency_hz = 440
 
     async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp_ns: int,
                        *, timeout: Optional[float] = None, **kwargs) -> AudioIn.AudioStream:
@@ -200,8 +202,11 @@ class ExampleAudioIn(AudioIn):
                 samples_per_chunk = int(self.sample_rate * (chunk_duration_ms / 1000))
 
                 for sample in range(samples_per_chunk):
+                    # Calculate the timing in seconds of this audio sample
                     time_offset = (i * chunk_duration_ms / 1000) + (sample / self.sample_rate)
-                    amplitude = int(32767 * 0.2 * math.sin(2 * math.pi * 440 * time_offset))
+                    # Generate one 16-bit PCM audio sample for a sine wave
+                    # 32767 scales the value from (-1,1) to full 16 bit signed range (-32768,32767)
+                    amplitude = int(32767 * self.volume_scale * math.sin(2 * math.pi * self.frequency_hz * time_offset))
 
                     # Convert to 16-bit PCM stereo
                     sample_bytes = amplitude.to_bytes(2, byteorder='little', signed=True)
@@ -257,8 +262,6 @@ class ExampleAudioOut(AudioOut):
                    timeout: Optional[float] = None,
                    **kwargs) -> None:
         """Play the given audio data."""
-        if extra is None:
-            extra = {}
 
         # Simulate playing audio
         self.is_playing = True
@@ -278,8 +281,6 @@ class ExampleAudioOut(AudioOut):
                            timeout: Optional[float] = None,
                            **kwargs) -> AudioOut.Properties:
         """Return the audio output device properties."""
-        if extra is None:
-            extra = {}
 
         return AudioOut.Properties(
             supported_codecs=self.supported_codecs,

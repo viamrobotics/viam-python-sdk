@@ -78,8 +78,10 @@ class TestAudioIn:
         resp = await audio_in.do_command(command)
         assert resp == {"command": command}
 
-            #
-
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, audio_in: AudioIn):
+        geometries = await audio_in.get_geometries()
+        assert geometries == GEOMETRIES
 
 class TestService:
     async def test_get_audio(self, audio_in: AudioIn, service: AudioInRPCService):
@@ -178,3 +180,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, audio_in: AudioIn, service: AudioInRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInClient(audio_in.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

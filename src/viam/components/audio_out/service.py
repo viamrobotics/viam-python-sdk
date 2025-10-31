@@ -29,10 +29,10 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         assert request is not None
         name = request.name
         audio_out = self.get_resource(name)
-        extra = struct_to_dict(request.extra)
         # Check if audio_info was provided in the request
         audio_info = request.audio_info if request.HasField("audio_info") else None
-        await audio_out.play(request.audio_data, audio_info, extra=extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await audio_out.play(request.audio_data, audio_info, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(PlayResponse())
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
@@ -40,23 +40,24 @@ class AudioOutRPCService(AudioOutServiceBase, ResourceRPCServiceBase[AudioOut]):
         assert request is not None
         name = request.name
         audio_out = self.get_resource(name)
-        extra = struct_to_dict(request.extra)
-        properties = await audio_out.get_properties(extra=extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await audio_out.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(properties)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         audio_out = self.get_resource(request.name)
-        result = await audio_out.do_command(struct_to_dict(request.command))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await audio_out.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        arm = self.get_resource(request.name)
+        audio_out = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await audio_out.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

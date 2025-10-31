@@ -205,6 +205,33 @@ class MockAudioInput(AudioInput):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+class MockAudioOut(AudioOut):
+    def __init__(self, name: str, properties: AudioOut.Properties):
+        super().__init__(name)
+        self.play_called = False
+        self.properties = properties
+        self.last_audio_data = None
+        self.last_audio_info = None
+        self.geometries = GEOMETRIES
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Dict[str, Any]] = None
+
+    async def play(self, data: bytes, info: Optional[AudioInfo] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
+        self.play_called = True
+        self.last_audio_data = data
+        self.last_audio_info = info
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.timeout = timeout
+        return self.properties
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return command
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
 class MockBase(Base):
     def __init__(self, name: str):
@@ -1135,26 +1162,3 @@ class MockButton(Button):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-
-class MockAudioOut(AudioOut):
-    def __init__(self, name: str):
-        super().__init__(name)
-        self.play_called = False
-        self.get_properties_called = False
-        self.last_audio_data = None
-        self.last_audio_info = None
-
-    async def play(self, data: bytes, info: Optional[AudioInfo] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
-        self.play_called = True
-        self.last_audio_data = data
-        self.last_audio_info = info
-
-    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
-        self.get_properties_called = True
-        return GetPropertiesResponse()
-
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        return command
-
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
-        return []
