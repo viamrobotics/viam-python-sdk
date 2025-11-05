@@ -1,0 +1,176 @@
+viam.components.audio_out.client
+================================
+
+.. py:module:: viam.components.audio_out.client
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.audio_out.client.AudioOutClient
+
+
+Module Contents
+---------------
+
+.. py:class:: AudioOutClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.components.audio_out.audio_out.AudioOut`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+
+   gRPC client for AudioOut component.
+
+
+   .. py:attribute:: channel
+
+
+   .. py:attribute:: client
+
+
+   .. py:method:: play(data: bytes, info: Optional[viam.components.audio_out.audio_out.AudioInfo] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None
+      :async:
+
+
+      Play the given audio data.
+
+      ::
+          my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
+
+          # With audio info
+          audio_info = AudioInfo(codec=AudioCodec.PCM16, sample_rate_hz=44100, num_channels=2)
+          await my_audio_out.play(audio_data, audio_info)
+
+          # Without audio info (when codec encodes information within audio_data)
+          await my_audio_out.play(audio_data)
+
+      :param data: audio bytes to play
+      :param info: (optional) information about the audio data such as codec, sample rate, and channel count
+
+
+
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.audio_out.audio_out.AudioOut.Properties
+      :async:
+
+
+      Get the audio output device's properties.
+
+      ::
+          my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
+          properties = await my_audio_out.get_properties()
+
+      :returns: The properties of the audio output device
+      :rtype: Properties
+
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+
+      Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = await component.do_command(command)
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
+      :async:
+
+
+      Get all geometries associated with the component, in their current configuration, in the
+      `frame <https://docs.viam.com/operate/mobility/define-geometry/>`__ of the component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+
+      Get the ResourceName for this Resource with the given name
+
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm_name = Arm.get_resource_name("my_arm")
+
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
+
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+   .. py:method:: close()
+      :async:
+
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
+      non-Close methods are called.
+
+      ::
+
+          await component.close()
+
+
+
+

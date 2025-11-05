@@ -74,6 +74,16 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioReader"><code class="docutils literal notranslate"><span class="pre">AudioReader</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioStream"><code class="docutils literal notranslate"><span class="pre">AudioStream</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioCodec"><code class="docutils literal notranslate"><span class="pre">AudioCodec</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.PCM16"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM16</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.PCM32"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM32</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.PCM32_FLOAT"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM32_FLOAT</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.MP3"><code class="docutils literal notranslate"><span class="pre">AudioCodec.MP3</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.AAC"><code class="docutils literal notranslate"><span class="pre">AudioCodec.AAC</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.OPUS"><code class="docutils literal notranslate"><span class="pre">AudioCodec.OPUS</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.FLAC"><code class="docutils literal notranslate"><span class="pre">AudioCodec.FLAC</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -135,6 +145,9 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.Audio" title="viam.media.audio.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a></p></td>
 <td><p>A block of audio data containing information about the block and the audio data</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.audio.AudioCodec" title="viam.media.audio.AudioCodec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioCodec</span></code></a></p></td>
+<td><p>Common audio codec identifiers.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -165,6 +178,61 @@
 <dt class="sig sig-object py" id="viam.media.audio.AudioStream">
 <span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioStream</span></span><a class="headerlink" href="#viam.media.audio.AudioStream" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioCodec</span></span><a class="reference internal" href="../../../../_modules/viam/media/audio.html#AudioCodec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.AudioCodec" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Common audio codec identifiers.</p>
+<p>These constants represent commonly supported audio codecs
+for audioin and audioout components.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.codecs</span> <span class="kn">import</span> <span class="n">AudioCodec</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">AudioInfo</span>
+
+<span class="n">audio_info</span> <span class="o">=</span> <span class="n">AudioInfo</span><span class="p">(</span>
+    <span class="n">codec</span><span class="o">=</span><span class="n">AudioCodec</span><span class="o">.</span><span class="n">PCM16</span><span class="p">,</span>
+    <span class="n">sample_rate_hz</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span>
+    <span class="n">num_channels</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.PCM16">
+<span class="sig-name descname"><span class="pre">PCM16</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pcm16'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.PCM16" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.PCM32">
+<span class="sig-name descname"><span class="pre">PCM32</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pcm32'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.PCM32" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.PCM32_FLOAT">
+<span class="sig-name descname"><span class="pre">PCM32_FLOAT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pcm32_float'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.PCM32_FLOAT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.MP3">
+<span class="sig-name descname"><span class="pre">MP3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mp3'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.MP3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.AAC">
+<span class="sig-name descname"><span class="pre">AAC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'aac'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.AAC" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.OPUS">
+<span class="sig-name descname"><span class="pre">OPUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'opus'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.OPUS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.audio.AudioCodec.FLAC">
+<span class="sig-name descname"><span class="pre">FLAC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'flac'</span></em><a class="headerlink" href="#viam.media.audio.AudioCodec.FLAC" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 </section>
 </section>

@@ -23,7 +23,7 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="viam.components.base" href="../../base/index.html" />
+    <link rel="next" title="viam.components.audio_out" href="../../audio_out/index.html" />
     <link rel="prev" title="viam.components.audio_input.client" href="../client/index.html" /> 
 </head>
 
@@ -57,6 +57,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../arm/index.html">viam.components.arm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_in/index.html">viam.components.audio_in</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.components.audio_input</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="../audio_input/index.html">viam.components.audio_input.audio_input</a></li>
@@ -83,6 +84,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_out/index.html">viam.components.audio_out</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../base/index.html">viam.components.base</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../board/index.html">viam.components.board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../button/index.html">viam.components.button</a></li>
@@ -147,7 +149,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.service.AudioInputRPCService" title="viam.components.audio_input.service.AudioInputRPCService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInputRPCService</span></code></a></p></td>
-<td><p>gRPC Service for a generic AudioInput</p></td>
+<td><p>DEPRECATED: AudioInput is deprecated, use AudioIn instead.</p></td>
 </tr>
 </tbody>
 </table>
@@ -156,9 +158,10 @@
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.service.AudioInputRPCService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.service.</span></span><span class="sig-name descname"><span class="pre">AudioInputRPCService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/service.html#AudioInputRPCService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.service.AudioInputRPCService" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.service.</span></span><span class="sig-name descname"><span class="pre">AudioInputRPCService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/service.html#AudioInputRPCService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.service.AudioInputRPCService" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.AudioInputServiceBase" title="viam.proto.component.audioinput.AudioInputServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.proto.component.audioinput.AudioInputServiceBase</span></code></a>, <a class="reference internal" href="../../../resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base.ResourceRPCServiceBase</span></code></a>[<a class="reference internal" href="../audio_input/index.html#viam.components.audio_input.audio_input.AudioInput" title="viam.components.audio_input.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.components.audio_input.audio_input.AudioInput</span></code></a>]</p>
-<p>gRPC Service for a generic AudioInput</p>
+<p>DEPRECATED: AudioInput is deprecated, use AudioIn instead.
+gRPC Service for a generic AudioInput</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.audio_input.service.AudioInputRPCService.RESOURCE_TYPE">
 <span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.audio_input.service.AudioInputRPCService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
@@ -199,7 +202,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../client/index.html" class="btn btn-neutral float-left" title="viam.components.audio_input.client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../base/index.html" class="btn btn-neutral float-right" title="viam.components.base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../audio_out/index.html" class="btn btn-neutral float-right" title="viam.components.audio_out" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

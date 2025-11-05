@@ -1,0 +1,112 @@
+viam.components.audio_out
+=========================
+
+.. py:module:: viam.components.audio_out
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/viam/components/audio_out/audio_out/index
+   /autoapi/viam/components/audio_out/client/index
+   /autoapi/viam/components/audio_out/service/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.components.audio_out.AudioInfo
+   viam.components.audio_out.AudioCodec
+
+
+Package Contents
+----------------
+
+.. py:class:: AudioInfo(*, codec: str = ..., sample_rate_hz: int = ..., num_channels: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Information about an audio stream or device.
+
+
+   .. py:attribute:: codec
+      :type:  str
+
+      Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
+
+
+   .. py:attribute:: sample_rate_hz
+      :type:  int
+
+      Sample rate of the audio in Hz
+
+
+   .. py:attribute:: num_channels
+      :type:  int
+
+      Number of audio channels in the recording or playback
+
+
+.. py:class:: AudioCodec
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Common audio codec identifiers.
+
+   These constants represent commonly supported audio codecs
+   for audioin and audioout components.
+
+   Example::
+
+       from viam.components.codecs import AudioCodec
+       from viam.proto.common import AudioInfo
+
+       audio_info = AudioInfo(
+           codec=AudioCodec.PCM16,
+           sample_rate_hz=44100,
+           num_channels=2
+       )
+
+
+   .. py:attribute:: PCM16
+      :value: 'pcm16'
+
+
+
+   .. py:attribute:: PCM32
+      :value: 'pcm32'
+
+
+
+   .. py:attribute:: PCM32_FLOAT
+      :value: 'pcm32_float'
+
+
+
+   .. py:attribute:: MP3
+      :value: 'mp3'
+
+
+
+   .. py:attribute:: AAC
+      :value: 'aac'
+
+
+
+   .. py:attribute:: OPUS
+      :value: 'opus'
+
+
+
+   .. py:attribute:: FLAC
+      :value: 'flac'
+
+
+

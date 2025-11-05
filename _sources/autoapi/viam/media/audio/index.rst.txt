@@ -19,6 +19,7 @@ Classes
 .. autoapisummary::
 
    viam.media.audio.Audio
+   viam.media.audio.AudioCodec
 
 
 Module Contents
@@ -40,4 +41,61 @@ Module Contents
 .. py:data:: AudioReader
 
 .. py:data:: AudioStream
+
+.. py:class:: AudioCodec
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+
+   Common audio codec identifiers.
+
+   These constants represent commonly supported audio codecs
+   for audioin and audioout components.
+
+   Example::
+
+       from viam.components.codecs import AudioCodec
+       from viam.proto.common import AudioInfo
+
+       audio_info = AudioInfo(
+           codec=AudioCodec.PCM16,
+           sample_rate_hz=44100,
+           num_channels=2
+       )
+
+
+   .. py:attribute:: PCM16
+      :value: 'pcm16'
+
+
+
+   .. py:attribute:: PCM32
+      :value: 'pcm32'
+
+
+
+   .. py:attribute:: PCM32_FLOAT
+      :value: 'pcm32_float'
+
+
+
+   .. py:attribute:: MP3
+      :value: 'mp3'
+
+
+
+   .. py:attribute:: AAC
+      :value: 'aac'
+
+
+
+   .. py:attribute:: OPUS
+      :value: 'opus'
+
+
+
+   .. py:attribute:: FLAC
+      :value: 'flac'
+
+
 

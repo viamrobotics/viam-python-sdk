@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="viam.components.audio_input.audio_input" href="audio_input/index.html" />
-    <link rel="prev" title="viam.components.arm.service" href="../arm/service/index.html" /> 
+    <link rel="prev" title="viam.components.audio_in.service" href="../audio_in/service/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,6 +57,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../arm/index.html">viam.components.arm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../audio_in/index.html">viam.components.audio_in</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">viam.components.audio_input</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="audio_input/index.html">viam.components.audio_input.audio_input</a></li>
@@ -94,6 +95,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../audio_out/index.html">viam.components.audio_out</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../base/index.html">viam.components.base</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../board/index.html">viam.components.board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../button/index.html">viam.components.button</a></li>
@@ -167,7 +169,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.AudioInput" title="viam.components.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInput</span></code></a></p></td>
-<td><p>AudioInput represents a component that can capture audio.</p></td>
+<td><p>DEPRECATED: AudioInput is deprecated, use AudioIn instead</p></td>
 </tr>
 </tbody>
 </table>
@@ -178,7 +180,8 @@
 <dt class="sig sig-object py" id="viam.components.audio_input.AudioInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.</span></span><span class="sig-name descname"><span class="pre">AudioInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">logging.Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.AudioInput" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a>, <a class="reference internal" href="../../streams/index.html#viam.streams.StreamSource" title="viam.streams.StreamSource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.streams.StreamSource</span></code></a>[<a class="reference internal" href="../../media/audio/index.html#viam.media.audio.Audio" title="viam.media.audio.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.media.audio.Audio</span></code></a>]</p>
-<p>AudioInput represents a component that can capture audio.</p>
+<p>DEPRECATED: AudioInput is deprecated, use AudioIn instead
+AudioInput represents a component that can capture audio.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 audio input implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
@@ -406,7 +409,7 @@ non-Close methods are called.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../arm/service/index.html" class="btn btn-neutral float-left" title="viam.components.arm.service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../audio_in/service/index.html" class="btn btn-neutral float-left" title="viam.components.audio_in.service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="audio_input/index.html" class="btn btn-neutral float-right" title="viam.components.audio_input.audio_input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

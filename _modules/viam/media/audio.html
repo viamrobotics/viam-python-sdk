@@ -88,12 +88,13 @@
              
   <h1>Source code for viam.media.audio</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="n">AudioChunk</span><span class="p">,</span> <span class="n">AudioChunkInfo</span>
 <span class="kn">from</span> <span class="nn">viam.streams</span> <span class="kn">import</span> <span class="n">Stream</span><span class="p">,</span> <span class="n">StreamReader</span>
 
 
-<div class="viewcode-block" id="Audio"><a class="viewcode-back" href="../../../autoapi/viam/media/audio/index.html#viam.media.audio.Audio">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="Audio"><a class="viewcode-back" href="../../../autoapi/viam/media/audio/index.html#viam.components.audio_in.Audio">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Audio</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A block of audio data containing information about the block and the audio data&quot;&quot;&quot;</span>
 
@@ -103,6 +104,32 @@
 
 <span class="n">AudioReader</span> <span class="o">=</span> <span class="n">StreamReader</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
 <span class="n">AudioStream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
+
+<div class="viewcode-block" id="AudioCodec"><a class="viewcode-back" href="../../../autoapi/viam/media/audio/index.html#viam.components.audio_in.AudioCodec">[docs]</a><span class="k">class</span> <span class="nc">AudioCodec</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Common audio codec identifiers.</span>
+
+<span class="sd">    These constants represent commonly supported audio codecs</span>
+<span class="sd">    for audioin and audioout components.</span>
+
+<span class="sd">    Example::</span>
+
+<span class="sd">        from viam.components.codecs import AudioCodec</span>
+<span class="sd">        from viam.proto.common import AudioInfo</span>
+
+<span class="sd">        audio_info = AudioInfo(</span>
+<span class="sd">            codec=AudioCodec.PCM16,</span>
+<span class="sd">            sample_rate_hz=44100,</span>
+<span class="sd">            num_channels=2</span>
+<span class="sd">        )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PCM16</span> <span class="o">=</span> <span class="s2">&quot;pcm16&quot;</span>
+    <span class="n">PCM32</span> <span class="o">=</span> <span class="s2">&quot;pcm32&quot;</span>
+    <span class="n">PCM32_FLOAT</span> <span class="o">=</span> <span class="s2">&quot;pcm32_float&quot;</span>
+    <span class="n">MP3</span> <span class="o">=</span> <span class="s2">&quot;mp3&quot;</span>
+    <span class="n">AAC</span> <span class="o">=</span> <span class="s2">&quot;aac&quot;</span>
+    <span class="n">OPUS</span> <span class="o">=</span> <span class="s2">&quot;opus&quot;</span>
+    <span class="n">FLAC</span> <span class="o">=</span> <span class="s2">&quot;flac&quot;</span></div>
 </pre></div>
 
            </div>

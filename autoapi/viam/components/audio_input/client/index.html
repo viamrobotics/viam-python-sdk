@@ -57,6 +57,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">viam.components</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../arm/index.html">viam.components.arm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_in/index.html">viam.components.audio_in</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">viam.components.audio_input</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="../audio_input/index.html">viam.components.audio_input.audio_input</a></li>
@@ -87,6 +88,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_out/index.html">viam.components.audio_out</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../base/index.html">viam.components.base</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../board/index.html">viam.components.board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../button/index.html">viam.components.button</a></li>
@@ -151,7 +153,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.client.AudioInputClient" title="viam.components.audio_input.client.AudioInputClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInputClient</span></code></a></p></td>
-<td><p>gRPC client for the AudioInput component.</p></td>
+<td><p>DEPRECATED: AudioInput is deprecated, use AudioIn instead.</p></td>
 </tr>
 </tbody>
 </table>
@@ -162,7 +164,8 @@
 <dt class="sig sig-object py" id="viam.components.audio_input.client.AudioInputClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.client.</span></span><span class="sig-name descname"><span class="pre">AudioInputClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/client.html#AudioInputClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.client.AudioInputClient" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../audio_input/index.html#viam.components.audio_input.audio_input.AudioInput" title="viam.components.audio_input.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.components.audio_input.audio_input.AudioInput</span></code></a>, <a class="reference internal" href="../../../resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase</span></code></a></p>
-<p>gRPC client for the AudioInput component.</p>
+<p>DEPRECATED: AudioInput is deprecated, use AudioIn instead.
+gRPC client for the AudioInput component.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.audio_input.client.AudioInputClient.channel">
 <span class="sig-name descname"><span class="pre">channel</span></span><a class="headerlink" href="#viam.components.audio_input.client.AudioInputClient.channel" title="Permalink to this definition"></a></dt>
