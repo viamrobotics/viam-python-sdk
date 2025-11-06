@@ -611,6 +611,64 @@ class GetGeometriesResponse(google.protobuf.message.Message):
 global___GetGeometriesResponse = GetGeometriesResponse
 
 @typing.final
+class Get3DModelsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The component name'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___Get3DModelsRequest = Get3DModelsRequest
+
+@typing.final
+class Get3DModelsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class ModelsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___Mesh:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___Mesh | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    MODELS_FIELD_NUMBER: builtins.int
+
+    @property
+    def models(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___Mesh]:
+        """the 3D models associated with the component"""
+
+    def __init__(self, *, models: collections.abc.Mapping[builtins.str, global___Mesh] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['models', b'models']) -> None:
+        ...
+global___Get3DModelsResponse = Get3DModelsResponse
+
+@typing.final
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int

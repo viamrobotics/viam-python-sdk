@@ -1,5 +1,5 @@
-import wave
 import warnings
+import wave
 from datetime import timedelta
 from io import BytesIO
 
@@ -32,8 +32,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
 
     def __init__(self, *args, **kwargs):
         warnings.warn(
-            "AudioInput is deprecated and will be removed in a future release. "
-            "Use AudioIn instead.",
+            "AudioInput is deprecated and will be removed in a future release. " "Use AudioIn instead.",
             DeprecationWarning,
             stacklevel=2,
         )

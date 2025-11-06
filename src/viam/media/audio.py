@@ -16,6 +16,7 @@ class Audio:
 AudioReader = StreamReader[Audio]
 AudioStream = Stream[Audio]
 
+
 class AudioCodec(str, Enum):
     """Common audio codec identifiers.
 
