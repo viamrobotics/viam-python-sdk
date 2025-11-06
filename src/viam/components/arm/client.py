@@ -2,7 +2,16 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
+    Mesh,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -17,7 +26,7 @@ from viam.proto.component.arm import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, get_3d_models, struct_to_dict
 
 from . import Arm, KinematicsFileFormat, Pose
 
@@ -122,3 +131,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)
+
+    async def get_3d_models(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Mesh]:
+        md = kwargs.get("metadata", self.Metadata())
+        return await get_3d_models(self.client, self.name, extra, timeout, md)

@@ -35,7 +35,8 @@ from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
-from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Mesh, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.proto.component.audioin import AudioChunk as Chunk
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -50,6 +51,8 @@ GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
 ]
 
+MODELS = {"test_mesh": Mesh(content_type="text/plain", mesh=b"test mesh data")}
+
 
 class MockArm(Arm):
     def __init__(self, name: str):
@@ -58,6 +61,7 @@ class MockArm(Arm):
         self.is_stopped = True
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         self.geometries = GEOMETRIES
+        self._3d_models = MODELS
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -114,6 +118,11 @@ class MockArm(Arm):
         self.extra = extra
         self.timeout = timeout
         return self.geometries
+
+    async def get_3d_models(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Mesh]:
+        self.extra = extra
+        self.timeout = timeout
+        return self._3d_models
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

@@ -1,10 +1,12 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
+from viam.proto.common import Mesh, Pose
+from viam.proto.component.arm import JointPositions
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
-from . import JointPositions, KinematicsFileFormat, Pose
+from . import KinematicsFileFormat
 
 
 class Arm(ComponentBase):
@@ -219,5 +221,29 @@ class Arm(ComponentBase):
             and the second [1] value represents the byte contents of the file.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_3d_models(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Mesh]:
+        """
+        Get the 3D models associated with the arm.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Get the 3D models associated with the arm.
+            models = await my_arm.get_3d_models()
+
+            # Get the mesh for a specific model.
+            mesh = models["my_model"]
+
+        Returns:
+            Mapping[str, Mesh]: A mapping of model names to their corresponding ``Mesh`` objects.
+
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#get3dmodels>`_.
         """
         ...

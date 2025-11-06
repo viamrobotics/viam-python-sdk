@@ -9,6 +9,9 @@ from viam.proto.common import (
     GetGeometriesResponse,
     GetKinematicsRequest,
     GetKinematicsResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
+    Mesh,
     Pose,
 )
 from viam.proto.component.arm import (
@@ -28,7 +31,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import GEOMETRIES, MockArm
+from .mocks.components import GEOMETRIES, MockArm, MODELS
 
 
 class TestArm:
@@ -36,6 +39,7 @@ class TestArm:
     pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
     kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+    _3d_models = MODELS
 
     async def test_move_to_position(self):
         await self.arm.move_to_position(self.pose)
@@ -73,6 +77,15 @@ class TestArm:
         geometries = await self.arm.get_geometries()
         assert geometries == GEOMETRIES
 
+    async def test_get_3d_models(self):
+        models = await self.arm.get_3d_models()
+        assert models == self._3d_models
+        assert self.arm.extra == {}
+
+        models = await self.arm.get_3d_models(extra={"1": "2"})
+        assert models == self._3d_models
+        assert self.arm.extra == {"1": "2"}
+
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
@@ -93,6 +106,7 @@ class TestService:
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls._3d_models = MODELS
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
@@ -141,15 +155,6 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
-    async def test_do(self):
-        async with ChannelFor([self.service]) as channel:
-            client = ArmServiceStub(channel)
-            command = {"command": "args"}
-            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-            response: DoCommandResponse = await client.DoCommand(request)
-            result = struct_to_dict(response.result)
-            assert result == {"command": command}
-
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -163,6 +168,29 @@ class TestService:
             request = GetGeometriesRequest(name=self.name)
             response: GetGeometriesResponse = await client.GetGeometries(request)
             assert [geometry for geometry in response.geometries] == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = Get3DModelsRequest(name=self.name)
+            response: Get3DModelsResponse = await client.Get3DModels(request)
+            assert [mesh for mesh in response.meshes] == self._3d_models
+            assert self.arm.extra == {}
+
+            extra = {"1": "2"}
+            request = Get3DModelsRequest(name=self.name, extra=dict_to_struct(extra))
+            response: Get3DModelsResponse = await client.Get3DModels(request)
+            assert [mesh for mesh in response.meshes] == self._3d_models
+            assert self.arm.extra == extra
+
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
 
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
@@ -183,6 +211,7 @@ class TestClient:
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls._3d_models = MODELS
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
@@ -236,6 +265,17 @@ class TestClient:
             client = ArmClient(self.name, channel)
             geometries = await client.get_geometries()
             assert geometries == GEOMETRIES
+
+    async def test_get_3d_models(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            models = await client.get_3d_models()
+            assert models == self._3d_models
+            assert self.arm.extra == {}
+
+            models = await client.get_3d_models(extra={"1": "2"})
+            assert models == self._3d_models
+            assert self.arm.extra == {"1": "2"}
 
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:

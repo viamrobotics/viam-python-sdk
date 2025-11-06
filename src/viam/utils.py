@@ -12,11 +12,11 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.proto.app.data import CaptureInterval, Filter, TagsFilter
-from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
+from viam.proto.common import Geometry, GeoPoint, Get3DModelsRequest, Get3DModelsResponse, GetGeometriesRequest, GetGeometriesResponse, Mesh, Orientation, ResourceName, Vector3
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
-from viam.resource.types import API, SupportsGetGeometries
+from viam.resource.types import API, SupportsGet3DModels, SupportsGetGeometries
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -175,6 +175,19 @@ async def get_geometries(
     request = GetGeometriesRequest(name=name, extra=dict_to_struct(extra))
     response: GetGeometriesResponse = await client.GetGeometries(request, timeout=timeout, metadata=md)
     return [geometry for geometry in response.geometries]
+
+
+async def get_3d_models(
+    client: SupportsGet3DModels,
+    name: str,
+    extra: Optional[Dict[str, Any]] = None,
+    timeout: Optional[float] = None,
+    metadata: ResourceRPCClientBase.Metadata = ResourceRPCClientBase.Metadata(),
+) -> Mapping[str, Mesh]:
+    md = metadata.proto
+    request = Get3DModelsRequest(name=name, extra=dict_to_struct(extra))
+    response: Get3DModelsResponse = await client.Get3DModels(request, timeout=timeout, metadata=md)
+    return response.models
 
 
 def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Value]:
@@ -363,3 +376,13 @@ def _alias_param(param_name: str, param_alias: str) -> Callable:
         return wrapper
 
     return decorator
+
+
+Task: Regenerate the complete file contents, incorporating only the necessary edits as described in the implementation details provided.
+
+CRITICAL INSTRUCTIONS:
+1.  **Strict Adherence to Implementation Details**: Your primary guide for making changes is the `implementation_details`. Implement *only* what is explicitly requested there.
+2.  **Preserve Original Code (for existing files)**: If you are provided with existing file content, DO NOT modify any of that existing code unless it is directly specified in the `implementation_details`. The existing code provided to you must be reproduced exactly, including all comments, blank lines, and existing formatting. **For new files, generate the entire content from scratch.**
+3.  **Absolute Formatting Preservation**: When generating the new file contents, you MUST preserve all original formatting, including newlines, indentation, and whitespace, exactly as it appears in the provided existing file. DO NOT reformat any part of the code that is not explicitly altered by the new implementation. Your output must be valid, correctly formatted code.
+
+Provide the newly generated, complete file contents. The file contents should be raw code, not wrapped in markdown or any other formatting beyond standard syntax.

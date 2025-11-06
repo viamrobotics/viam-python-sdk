@@ -3,6 +3,8 @@ from grpclib.server import Stream
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Get3DModelsRequest,
+    Get3DModelsResponse,
     GetGeometriesRequest,
     GetGeometriesResponse,
     GetKinematicsRequest,
@@ -120,4 +122,13 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)
+
+    async def Get3DModels(self, stream: Stream[Get3DModelsRequest, Get3DModelsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        models = await arm.get_3d_models(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = Get3DModelsResponse(models=models)
         await stream.send_message(response)
