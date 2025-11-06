@@ -1,3 +1,6 @@
+import datetime
+import os
+import uuid
 from unittest import mock
 
 import pytest
@@ -5,6 +8,7 @@ from grpclib.testing import ChannelFor
 
 from viam.errors import GRPCError
 from viam.module import Module
+from viam.module.resource_data_consumer import ResourceDataConsumer
 from viam.module.service import ModuleRPCService
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
@@ -42,6 +46,24 @@ async def module(request):
 @pytest.fixture
 def service(module: Module) -> ModuleRPCService:
     return ModuleRPCService(module)
+
+
+class TestResourceDataConsumer:
+    async def test_historical_data(self):
+        with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql") as mocked:
+            with mock.patch("viam.app.viam_client._get_access_token") as patched_auth:
+                ACCESS_TOKEN = "MY_ACCESS_TOKEN"
+                METADATA = {"authorization": f"Bearer {ACCESS_TOKEN}"}
+                patched_auth.return_value = ACCESS_TOKEN
+
+                os.environ["VIAM_API_KEY"] = "MY_API_KEY"
+                os.environ["VIAM_API_KEY_ID"] = str(uuid.uuid4())
+                os.environ["VIAM_PRIMARY_ORG_ID"] = "my_org"
+                os.environ["VIAM_MACHINE_PART_ID"] = "my_part"
+
+                _ = ResourceDataConsumer.query_tabular_data("resource", datetime.timedelta(hours=2))
+
+                assert mocked.calledOnce_with(resource_name="resource", time_back=datetime.timedelta(hours=2))
 
 
 class TestModule:
