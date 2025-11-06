@@ -53,7 +53,6 @@ class TestResourceDataConsumer:
         with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql") as mocked:
             with mock.patch("viam.app.viam_client._get_access_token") as patched_auth:
                 ACCESS_TOKEN = "MY_ACCESS_TOKEN"
-                METADATA = {"authorization": f"Bearer {ACCESS_TOKEN}"}
                 patched_auth.return_value = ACCESS_TOKEN
 
                 os.environ["VIAM_API_KEY"] = "MY_API_KEY"
