@@ -49,6 +49,7 @@ class TestViamClient:
                 patched_dial.return_value = channel
                 with patch("viam.app.viam_client._get_access_token") as patched_auth:
                     ACCESS_TOKEN = "MY_ACCESS_TOKEN"
+                    METADATA = {"authorization": f"Bearer {ACCESS_TOKEN}"}
                     patched_auth.return_value = ACCESS_TOKEN
 
                     creds = Credentials("api-key", "SOME_API_KEY")
