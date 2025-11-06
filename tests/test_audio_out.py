@@ -1,21 +1,20 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.audio_out import AudioOutClient, AudioOutRPCService, AudioOut
+from viam.components.audio_out import AudioOut, AudioOutClient, AudioOutRPCService
 from viam.proto.common import (
+    AudioInfo,
+    DoCommandRequest,
     GetGeometriesResponse,
-      AudioInfo,
-      GetPropertiesRequest,
-      GetPropertiesResponse,
-      DoCommandRequest,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
 )
+from viam.proto.component.audioout import AudioOutServiceStub, PlayRequest
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
-from viam.proto.component.audioout import PlayRequest, AudioOutServiceStub
+
 from . import loose_approx
-
-from .mocks.components import MockAudioOut, GEOMETRIES
-
+from .mocks.components import GEOMETRIES, MockAudioOut
 
 # Test properties for the mock AudioIn
 PROPERTIES = AudioOut.Properties(
@@ -23,6 +22,7 @@ PROPERTIES = AudioOut.Properties(
     sample_rate_hz=44100,
     num_channels=2,
 )
+
 
 @pytest.fixture(scope="function")
 def audio_out() -> MockAudioOut:
@@ -72,10 +72,10 @@ class TestAudioOut:
         geometries = await audio_out.get_geometries()
         assert geometries == GEOMETRIES
 
+
 class TestService:
     @pytest.mark.asyncio
     async def test_play(self, audio_out: MockAudioOut, service: AudioOutRPCService):
-
         audio_data = b"test_audio_data"
         audio_info = AudioInfo(codec="pcm16", sample_rate_hz=44100, num_channels=2)
 
@@ -117,9 +117,7 @@ class TestService:
     async def test_get_properties(self, audio_out: MockAudioOut, service: AudioOutRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioOutServiceStub(channel)
-            response: GetPropertiesResponse = await client.GetProperties(
-                GetPropertiesRequest(name=audio_out.name), timeout=1.82
-            )
+            response: GetPropertiesResponse = await client.GetProperties(GetPropertiesRequest(name=audio_out.name), timeout=1.82)
             assert response.supported_codecs == PROPERTIES.supported_codecs
             assert response.sample_rate_hz == PROPERTIES.sample_rate_hz
             assert response.num_channels == PROPERTIES.num_channels
@@ -127,7 +125,6 @@ class TestService:
 
     @pytest.mark.asyncio
     async def test_do_command(self, audio_out: MockAudioOut, service: AudioOutRPCService):
-
         command = {"test": "command"}
 
         async with ChannelFor([service]) as channel:
@@ -178,7 +175,7 @@ class TestClient:
             assert audio_out.last_audio_info is None
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, audio_out: MockAudioOut,service: AudioOutRPCService):
+    async def test_get_properties(self, audio_out: MockAudioOut, service: AudioOutRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioOutClient(audio_out.name, channel)
             properties = await client.get_properties(timeout=4.4)
@@ -190,7 +187,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do_command(self, audio_out: MockAudioOut, service: AudioOutRPCService):
-      async with ChannelFor([service]) as channel:
+        async with ChannelFor([service]) as channel:
             client = AudioOutClient(audio_out.name, channel)
             command = {"command": "args"}
             resp = await client.do_command(command)

@@ -1,44 +1,42 @@
-from typing import Any, Dict, List, Mapping, Optional
 import uuid
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
-
-from viam.proto.component.audioin import GetAudioRequest, GetAudioResponse
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    GetPropertiesRequest,
-    Geometry)
 from grpclib.client import Stream as ClientStream
-from viam.proto.component.audioin import AudioInServiceStub
+
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetPropertiesRequest
+from viam.proto.component.audioin import AudioInServiceStub, GetAudioRequest, GetAudioResponse
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.streams import StreamWithIterator
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .audio_in import AudioIn
-from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 
 class AudioInClient(AudioIn, ReconfigurableResourceRPCClientBase):
-
     def __init__(self, name: str, channel: Channel) -> None:
         self.channel = channel
         self.client = AudioInServiceStub(channel)
         super().__init__(name)
 
+    async def get_audio(
+        self,
+        codec: str,
+        duration_seconds: float,
+        previous_timestamp_ns: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
+        request = GetAudioRequest(
+            name=self.name,
+            codec=codec,
+            duration_seconds=duration_seconds,
+            previous_timestamp_nanoseconds=previous_timestamp_ns,
+            request_id=str(uuid.uuid4()),
+            extra=dict_to_struct(extra),
+        )
 
-    async def get_audio(self,
-                        codec:str,
-                        duration_seconds: float,
-                        previous_timestamp_ns:int,
-                        *,
-                        extra: Optional[Dict[str, Any]] = None,
-                        **kwargs,
-                     ):
-        request = GetAudioRequest(name=self.name, codec = codec,
-                                  duration_seconds=duration_seconds,
-                                  previous_timestamp_nanoseconds = previous_timestamp_ns,
-                                  request_id = str(uuid.uuid4()),
-                                  extra=dict_to_struct(extra))
         async def read():
             md = kwargs.get("metadata", self.Metadata()).proto
             audio_stream: ClientStream[GetAudioRequest, GetAudioResponse]
@@ -51,7 +49,6 @@ class AudioInClient(AudioIn, ReconfigurableResourceRPCClientBase):
                     raise (e)
 
         return StreamWithIterator(read())
-
 
     async def get_properties(
         self,
