@@ -113,12 +113,11 @@ class EasyResource:
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         """
-        This is passed to register_resource_creator; the default implementation calls reconfigure()
+        This is passed to register_resource_creator. The default implementation only sets the resource name
         when an instance of your model is instantiated. You can override this in your subclass.
         """
         self = cls(config.name)
         logger.debug("created %s %s %s", cls.API, cls.MODEL, config.name)
-        self.reconfigure(config, dependencies)
         return self
 
     @classmethod
@@ -148,6 +147,3 @@ class EasyResource:
             cls.MODEL,
             ResourceCreatorRegistration(cls.new, cls.validate_config),  # pyright: ignore [reportArgumentType]
         )
-
-    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
-        logger.debug("reconfigure %s %s", self.API, self.MODEL)
