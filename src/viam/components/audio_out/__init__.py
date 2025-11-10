@@ -1,7 +1,7 @@
+from viam.media.audio import AudioCodec
+from viam.proto.common import AudioInfo
 from viam.resource.registry import Registry, ResourceRegistration
 
-from viam.proto.common import AudioInfo
-from viam.media.audio import AudioCodec
 from .audio_out import AudioOut
 from .client import AudioOutClient
 from .service import AudioOutRPCService

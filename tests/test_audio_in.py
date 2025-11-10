@@ -11,10 +11,7 @@ from viam.proto.common import (
     GetPropertiesRequest,
     GetPropertiesResponse,
 )
-from viam.proto.component.audioin import (
-    AudioInServiceStub,
-    GetAudioRequest
-)
+from viam.proto.component.audioin import AudioInServiceStub, GetAudioRequest
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
@@ -83,6 +80,7 @@ class TestAudioIn:
         geometries = await audio_in.get_geometries()
         assert geometries == GEOMETRIES
 
+
 class TestService:
     async def test_get_audio(self, audio_in: AudioIn, service: AudioInRPCService):
         async with ChannelFor([service]) as channel:
@@ -92,10 +90,7 @@ class TestService:
             duration_seconds = 2.0
 
             request = GetAudioRequest(
-                name=audio_in.name,
-                codec=codec,
-                duration_seconds=duration_seconds,
-                previous_timestamp_nanoseconds=previous_timestamp
+                name=audio_in.name, codec=codec, duration_seconds=duration_seconds, previous_timestamp_nanoseconds=previous_timestamp
             )
 
             async with client.GetAudio.open() as stream:
@@ -117,9 +112,7 @@ class TestService:
         assert audio_in.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInServiceStub(channel)
-            response: GetPropertiesResponse = await client.GetProperties(
-                GetPropertiesRequest(name=audio_in.name), timeout=1.82
-            )
+            response: GetPropertiesResponse = await client.GetProperties(GetPropertiesRequest(name=audio_in.name), timeout=1.82)
             assert response.supported_codecs == PROPERTIES.supported_codecs
             assert response.sample_rate_hz == PROPERTIES.sample_rate_hz
             assert response.num_channels == PROPERTIES.num_channels
