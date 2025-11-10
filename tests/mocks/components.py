@@ -13,8 +13,8 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
-from viam.components.audio_input import AudioInput
 from viam.components.audio_in import AudioIn, AudioResponse
+from viam.components.audio_input import AudioInput
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
@@ -42,9 +42,6 @@ from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
-from viam.proto.common import AudioInfo
-from viam.proto.component.audioin import AudioChunk as Chunk
-
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -136,8 +133,16 @@ class MockAudioIn(AudioIn):
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
 
-    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp_ns: int,
-                         *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    async def get_audio(
+        self,
+        codec: str,
+        duration_seconds: float,
+        previous_timestamp_ns: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         async def read() -> AsyncIterator[AudioResponse]:
             # Generate mock audio chunks
             for i in range(2):
@@ -148,26 +153,23 @@ class MockAudioIn(AudioIn):
                 audio_chunk = Chunk(
                     audio_data=chunk_data,
                     audio_info=AudioInfo(
-                        codec=codec,
-                        sample_rate_hz=self.properties.sample_rate_hz,
-                        num_channels=self.properties.num_channels
+                        codec=codec, sample_rate_hz=self.properties.sample_rate_hz, num_channels=self.properties.num_channels
                     ),
                     sequence=i,
                     start_timestamp_nanoseconds=timestamp_start,
-                    end_timestamp_nanoseconds=timestamp_end
+                    end_timestamp_nanoseconds=timestamp_end,
                 )
 
-                audio_response = AudioResponse(
-                    audio=audio_chunk,
-                    request_id="mock_request"
-                )
+                audio_response = AudioResponse(audio=audio_chunk, request_id="mock_request")
                 yield audio_response
 
         self.extra = extra
         self.timeout = timeout
         return StreamWithIterator(read())
 
-    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> AudioIn.Properties:
         self.extra = extra
         self.timeout = timeout
         return self.properties
@@ -179,6 +181,7 @@ class MockAudioIn(AudioIn):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
 
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
@@ -214,6 +217,7 @@ class MockAudioInput(AudioInput):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+
 class MockAudioOut(AudioOut):
     def __init__(self, name: str, properties: AudioOut.Properties):
         super().__init__(name)
@@ -225,7 +229,15 @@ class MockAudioOut(AudioOut):
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
 
-    async def play(self, data: bytes, info: Optional[AudioInfo] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> None:
+    async def play(
+        self,
+        data: bytes,
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
         self.play_called = True
         self.last_audio_data = data
         self.last_audio_info = info
@@ -241,6 +253,7 @@ class MockAudioOut(AudioOut):
         self.extra = extra
         self.timeout = timeout
         return self.geometries
+
 
 class MockBase(Base):
     def __init__(self, name: str):
@@ -1170,4 +1183,3 @@ class MockButton(Button):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
-

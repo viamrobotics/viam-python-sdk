@@ -2,11 +2,10 @@ import abc
 import sys
 from typing import Final, Optional
 
-from viam.streams import Stream
-
 from viam.proto.common import GetPropertiesResponse
 from viam.proto.component.audioin import GetAudioResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
+from viam.streams import Stream
 
 from ..component_base import ComponentBase
 
@@ -32,12 +31,10 @@ class AudioIn(ComponentBase):
     AudioResponse: "TypeAlias" = GetAudioResponse
     AudioStream = Stream[AudioResponse]
 
-
     @abc.abstractmethod
-    async def get_audio(self, codec: str,
-                        duration_seconds: float,
-                        previous_timestamp_ns:int,
-                        *, timeout: Optional[float] = None, **kwargs) -> AudioStream:
+    async def get_audio(
+        self, codec: str, duration_seconds: float, previous_timestamp_ns: int, *, timeout: Optional[float] = None, **kwargs
+    ) -> AudioStream:
         """
         Get a stream of audio from the device
 

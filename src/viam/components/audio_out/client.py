@@ -2,24 +2,12 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    GetPropertiesRequest,
-    GetPropertiesResponse,
-    Geometry
-)
-from viam.proto.component.audioout import (
-    AudioOutServiceStub,
-    PlayRequest
-)
-
-
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetPropertiesRequest, GetPropertiesResponse
+from viam.proto.component.audioout import AudioOutServiceStub, PlayRequest
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .audio_out import AudioOut, AudioInfo
+from .audio_out import AudioInfo, AudioOut
 
 
 class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
@@ -30,13 +18,15 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
         self.client = AudioOutServiceStub(channel)
         super().__init__(name)
 
-    async def play(self,
-                   data: bytes,
-                   info: Optional[AudioInfo] = None,
-                   *,
-                   extra: Optional[Dict[str, Any]] = None,
-                   timeout: Optional[float] = None,
-                   **kwargs) -> None:
+    async def play(
+        self,
+        data: bytes,
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
         if extra is None:
             extra = {}
 
@@ -49,11 +39,9 @@ class AudioOutClient(AudioOut, ReconfigurableResourceRPCClientBase):
         )
         await self.client.Play(request, timeout=timeout, metadata=md)
 
-    async def get_properties(self,
-                           *,
-                           extra: Optional[Dict[str, Any]] = None,
-                           timeout: Optional[float] = None,
-                           **kwargs) -> AudioOut.Properties:
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> AudioOut.Properties:
         if extra is None:
             extra = {}
 

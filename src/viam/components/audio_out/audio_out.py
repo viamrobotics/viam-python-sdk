@@ -29,13 +29,15 @@ class AudioOut(ComponentBase):
     Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
-    async def play(self,
-                   data: bytes,
-                   info: Optional[AudioInfo] = None,
-                   *,
-                   extra: Optional[Dict[str, Any]] = None,
-                   timeout: Optional[float] = None,
-                   **kwargs) -> None:
+    async def play(
+        self,
+        data: bytes,
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
         """
         Play the given audio data.
 
@@ -55,11 +57,7 @@ class AudioOut(ComponentBase):
         """
 
     @abc.abstractmethod
-    async def get_properties(self,
-                           *,
-                           extra: Optional[Dict[str, Any]] = None,
-                           timeout: Optional[float] = None,
-                           **kwargs) -> Properties:
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties:
         """
         Get the audio output device's properties.
 
