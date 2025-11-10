@@ -122,6 +122,22 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest.name"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest.name</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest.extra"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest.extra</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">Get3DModelsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse.ModelsEntry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.key"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse.ModelsEntry.key</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.value"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse.ModelsEntry.value</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse.ModelsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse.models"><code class="docutils literal notranslate"><span class="pre">Get3DModelsResponse.models</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest"><code class="docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetGeometriesRequest.name</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetGeometriesRequest.extra</span></code></a></li>
@@ -341,6 +357,12 @@ Do not edit manually!</p>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsRequest" title="viam.proto.common.Get3DModelsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Get3DModelsResponse" title="viam.proto.common.Get3DModelsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Get3DModelsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GetGeometriesRequest" title="viam.proto.common.GetGeometriesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetGeometriesRequest</span></code></a></p></td>
@@ -716,6 +738,110 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.common.GeoPoint.longitude">
 <span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Get3DModelsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Get3DModelsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.Get3DModelsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>The component name</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.common.Get3DModelsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'extra'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.Get3DModelsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Get3DModelsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___Mesh</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse.ModelsEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ModelsEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Mesh</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse.ModelsEntry.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse.ModelsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Mesh</span></em><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse.ModelsEntry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'value'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'value'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse.ModelsEntry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Get3DModelsResponse.models">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">models</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___Mesh</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.Get3DModelsResponse.models" title="Permalink to this definition"></a></dt>
+<dd><p>the 3D models associated with the component</p>
+</dd></dl>
 
 </dd></dl>
 

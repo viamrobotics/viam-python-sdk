@@ -119,6 +119,13 @@ Package Contents
 
 
 
+   .. py:method:: Get3DModels(stream: grpclib.server.Stream[common.v1.common_pb2.Get3DModelsRequest, common.v1.common_pb2.Get3DModelsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -152,6 +159,9 @@ Package Contents
 
 
    .. py:attribute:: GetGeometries
+
+
+   .. py:attribute:: Get3DModels
 
 
 .. py:class:: UnimplementedArmServiceBase
@@ -209,6 +219,11 @@ Package Contents
 
 
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: Get3DModels(stream: grpclib.server.Stream[common.v1.common_pb2.Get3DModelsRequest, common.v1.common_pb2.Get3DModelsResponse]) -> None
       :async:
 
 
