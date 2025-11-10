@@ -67,12 +67,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.components.audio_in.AudioInfo"><code class="docutils literal notranslate"><span class="pre">AudioInfo</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.codec"><code class="docutils literal notranslate"><span class="pre">AudioInfo.codec</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.sample_rate_hz"><code class="docutils literal notranslate"><span class="pre">AudioInfo.sample_rate_hz</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.num_channels"><code class="docutils literal notranslate"><span class="pre">AudioInfo.num_channels</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.audio_in.AudioCodec"><code class="docutils literal notranslate"><span class="pre">AudioCodec</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioCodec.PCM16"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM16</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioCodec.PCM32"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM32</span></code></a></li>
@@ -81,6 +75,12 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioCodec.AAC"><code class="docutils literal notranslate"><span class="pre">AudioCodec.AAC</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioCodec.OPUS"><code class="docutils literal notranslate"><span class="pre">AudioCodec.OPUS</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioCodec.FLAC"><code class="docutils literal notranslate"><span class="pre">AudioCodec.FLAC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.components.audio_in.AudioInfo"><code class="docutils literal notranslate"><span class="pre">AudioInfo</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.codec"><code class="docutils literal notranslate"><span class="pre">AudioInfo.codec</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.sample_rate_hz"><code class="docutils literal notranslate"><span class="pre">AudioInfo.sample_rate_hz</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.audio_in.AudioInfo.num_channels"><code class="docutils literal notranslate"><span class="pre">AudioInfo.num_channels</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.audio_in.AudioIn"><code class="docutils literal notranslate"><span class="pre">AudioIn</span></code></a><ul>
@@ -187,11 +187,11 @@
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_in.AudioInfo" title="viam.components.audio_in.AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInfo</span></code></a></p></td>
-<td><p>Information about an audio stream or device.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_in.AudioCodec" title="viam.components.audio_in.AudioCodec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioCodec</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_in.AudioCodec" title="viam.components.audio_in.AudioCodec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioCodec</span></code></a></p></td>
 <td><p>Common audio codec identifiers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.audio_in.AudioInfo" title="viam.components.audio_in.AudioInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInfo</span></code></a></p></td>
+<td><p>Information about an audio stream or device.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_in.AudioIn" title="viam.components.audio_in.AudioIn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioIn</span></code></a></p></td>
 <td><p>AudioIn represents a component that can capture audio.</p></td>
@@ -201,31 +201,6 @@
 </section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_in.</span></span><span class="sig-name descname"><span class="pre">AudioInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.audio_in.AudioInfo" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Information about an audio stream or device.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.codec">
-<span class="sig-name descname"><span class="pre">codec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.codec" title="Permalink to this definition"></a></dt>
-<dd><p>Audio codec used for the stream or device (e.g., “pcm16”, “pcm32float”, “mp3”)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.sample_rate_hz">
-<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.sample_rate_hz" title="Permalink to this definition"></a></dt>
-<dd><p>Sample rate of the audio in Hz</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.num_channels">
-<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.num_channels" title="Permalink to this definition"></a></dt>
-<dd><p>Number of audio channels in the recording or playback</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_in.AudioCodec">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_in.</span></span><span class="sig-name descname"><span class="pre">AudioCodec</span></span><a class="reference internal" href="../../../../_modules/viam/media/audio.html#AudioCodec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_in.AudioCodec" title="Permalink to this definition"></a></dt>
@@ -278,6 +253,31 @@ for audioin and audioout components.</p>
 <dt class="sig sig-object py" id="viam.components.audio_in.AudioCodec.FLAC">
 <span class="sig-name descname"><span class="pre">FLAC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'flac'</span></em><a class="headerlink" href="#viam.components.audio_in.AudioCodec.FLAC" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_in.</span></span><span class="sig-name descname"><span class="pre">AudioInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.audio_in.AudioInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Information about an audio stream or device.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.codec">
+<span class="sig-name descname"><span class="pre">codec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.codec" title="Permalink to this definition"></a></dt>
+<dd><p>Audio codec used for the stream or device (e.g., “pcm16”, “pcm32float”, “mp3”)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.sample_rate_hz">
+<span class="sig-name descname"><span class="pre">sample_rate_hz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.sample_rate_hz" title="Permalink to this definition"></a></dt>
+<dd><p>Sample rate of the audio in Hz</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.audio_in.AudioInfo.num_channels">
+<span class="sig-name descname"><span class="pre">num_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.components.audio_in.AudioInfo.num_channels" title="Permalink to this definition"></a></dt>
+<dd><p>Number of audio channels in the recording or playback</p>
+</dd></dl>
 
 </dd></dl>
 

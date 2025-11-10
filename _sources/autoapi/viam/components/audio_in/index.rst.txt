@@ -28,39 +28,13 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.audio_in.AudioInfo
    viam.components.audio_in.AudioCodec
+   viam.components.audio_in.AudioInfo
    viam.components.audio_in.AudioIn
 
 
 Package Contents
 ----------------
-
-.. py:class:: AudioInfo(*, codec: str = ..., sample_rate_hz: int = ..., num_channels: int = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-
-   Information about an audio stream or device.
-
-
-   .. py:attribute:: codec
-      :type:  str
-
-      Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
-
-
-   .. py:attribute:: sample_rate_hz
-      :type:  int
-
-      Sample rate of the audio in Hz
-
-
-   .. py:attribute:: num_channels
-      :type:  int
-
-      Number of audio channels in the recording or playback
-
 
 .. py:class:: AudioCodec
 
@@ -117,6 +91,32 @@ Package Contents
    .. py:attribute:: FLAC
       :value: 'flac'
 
+
+
+.. py:class:: AudioInfo(*, codec: str = ..., sample_rate_hz: int = ..., num_channels: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Information about an audio stream or device.
+
+
+   .. py:attribute:: codec
+      :type:  str
+
+      Audio codec used for the stream or device (e.g., "pcm16", "pcm32float", "mp3")
+
+
+   .. py:attribute:: sample_rate_hz
+      :type:  int
+
+      Sample rate of the audio in Hz
+
+
+   .. py:attribute:: num_channels
+      :type:  int
+
+      Number of audio channels in the recording or playback
 
 
 .. py:class:: AudioIn(name: str, *, logger: Optional[logging.Logger] = None)

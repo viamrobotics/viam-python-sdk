@@ -90,27 +90,23 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">h2.exceptions</span> <span class="kn">import</span> <span class="n">StreamClosedError</span>
 
-
 <span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DoCommandRequest</span><span class="p">,</span>
     <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">GetGeometriesRequest</span><span class="p">,</span>
+    <span class="n">GetGeometriesResponse</span><span class="p">,</span>
     <span class="n">GetPropertiesRequest</span><span class="p">,</span>
     <span class="n">GetPropertiesResponse</span><span class="p">,</span>
-    <span class="n">GetGeometriesRequest</span><span class="p">,</span>
-    <span class="n">GetGeometriesResponse</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.component.audioin</span> <span class="kn">import</span> <span class="p">(</span>
-   <span class="n">AudioInServiceBase</span><span class="p">,</span>
-   <span class="n">GetAudioRequest</span><span class="p">,</span>
-   <span class="n">GetAudioResponse</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.audioin</span> <span class="kn">import</span> <span class="n">AudioInServiceBase</span><span class="p">,</span> <span class="n">GetAudioRequest</span><span class="p">,</span> <span class="n">GetAudioResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.audio_in</span> <span class="kn">import</span> <span class="n">AudioIn</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="AudioInRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_in/service/index.html#viam.components.audio_in.service.AudioInRPCService">[docs]</a><span class="k">class</span> <span class="nc">AudioInRPCService</span><span class="p">(</span><span class="n">AudioInServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">AudioIn</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -119,14 +115,17 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">AudioIn</span>
 
-
 <div class="viewcode-block" id="AudioInRPCService.GetAudio"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_in/service/index.html#viam.components.audio_in.service.AudioInRPCService.GetAudio">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetAudio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetAudioRequest</span><span class="p">,</span> <span class="n">GetAudioResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
         <span class="n">audio_in</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">audio_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_in</span><span class="o">.</span><span class="n">get_audio</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">codec</span><span class="p">,</span> <span class="n">duration_seconds</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">duration_seconds</span><span class="p">,</span>
-                                                    <span class="n">previous_timestamp_ns</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">previous_timestamp_nanoseconds</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">audio_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_in</span><span class="o">.</span><span class="n">get_audio</span><span class="p">(</span>
+            <span class="n">codec</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">codec</span><span class="p">,</span>
+            <span class="n">duration_seconds</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">duration_seconds</span><span class="p">,</span>
+            <span class="n">previous_timestamp_ns</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">previous_timestamp_nanoseconds</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">async</span> <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">audio_stream</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">response</span><span class="o">.</span><span class="n">request_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">request_id</span>
@@ -136,7 +135,6 @@
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
                 <span class="k">return</span></div>
-
 
 <div class="viewcode-block" id="AudioInRPCService.GetProperties"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_in/service/index.html#viam.components.audio_in.service.AudioInRPCService.GetProperties">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPropertiesRequest</span><span class="p">,</span> <span class="n">GetPropertiesResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
@@ -154,7 +152,7 @@
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">audio_in</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">audio_in</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_in</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span>
             <span class="n">command</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">command</span><span class="p">),</span>
