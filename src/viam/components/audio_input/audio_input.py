@@ -15,7 +15,7 @@ from ..component_base import ComponentBase
 
 
 class AudioInput(ComponentBase, StreamSource[Audio]):
-    """ DEPRECATED: AudioInput is deprecated, use AudioIn instead
+    """DEPRECATED: AudioInput is deprecated, use AudioIn instead
     AudioInput represents a component that can capture audio.
 
     This acts as an abstract base class for any drivers representing specific
