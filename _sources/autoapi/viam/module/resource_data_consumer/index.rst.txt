@@ -1,0 +1,39 @@
+viam.module.resource_data_consumer
+==================================
+
+.. py:module:: viam.module.resource_data_consumer
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.module.resource_data_consumer.ResourceDataConsumer
+
+
+Module Contents
+---------------
+
+.. py:class:: ResourceDataConsumer
+
+   Client for retrieving historical module data from app.
+
+   Inherit from this class in a module to get access to historical module data.
+
+
+   .. py:method:: construct_query(part_id: str, resource_name: str, time_back: datetime.timedelta)
+      :classmethod:
+
+
+
+   .. py:method:: query_tabular_data(resource_name: str, time_back: datetime.timedelta, **kwargs) -> List[Dict[str, Any]]
+      :classmethod:
+
+      :async:
+
+
+      Return historical data for this module, queried with MQL.
+
+
+
