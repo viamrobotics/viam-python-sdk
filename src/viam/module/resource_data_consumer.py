@@ -12,14 +12,8 @@ class ResourceDataConsumer:
     """
 
     @classmethod
-    async def query_tabular_data(cls, resource_name: str, time_back: datetime.timedelta, **kwargs) -> List[Dict[str, Any]]:
-        """Return historical data for this module, queried with MQL."""
-        viam_client = await ViamClient.create_from_env_vars()
-
-        org_id = os.environ["VIAM_PRIMARY_ORG_ID"]
-        part_id = os.environ["VIAM_MACHINE_PART_ID"]
-
-        query = [
+    def construct_query(cls, part_id: str, resource_name: str, time_back: datetime.timedelta):
+        return [
             {
                 "$match": {
                     "part_id": part_id,
@@ -29,4 +23,13 @@ class ResourceDataConsumer:
             }
         ]
 
+    @classmethod
+    async def query_tabular_data(cls, resource_name: str, time_back: datetime.timedelta, **kwargs) -> List[Dict[str, Any]]:
+        """Return historical data for this module, queried with MQL."""
+        viam_client = await ViamClient.create_from_env_vars()
+
+        org_id = os.environ["VIAM_PRIMARY_ORG_ID"]
+        part_id = os.environ["VIAM_MACHINE_PART_ID"]
+
+        query = cls.construct_query(part_id=part_id, resource_name=resource_name, time_back=time_back)
         return await viam_client.data_client.tabular_data_by_mql(org_id, query)

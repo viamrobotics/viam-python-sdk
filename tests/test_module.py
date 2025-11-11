@@ -50,7 +50,7 @@ def service(module: Module) -> ModuleRPCService:
 
 class TestResourceDataConsumer:
     async def test_historical_data(self):
-        with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql") as mocked:
+        with mock.patch("viam.app.data_client.DataClient.tabular_data_by_mql", new=mock.AsyncMock()) as mocked:
             with mock.patch("viam.app.viam_client._get_access_token") as patched_auth:
                 ACCESS_TOKEN = "MY_ACCESS_TOKEN"
                 patched_auth.return_value = ACCESS_TOKEN
@@ -60,9 +60,19 @@ class TestResourceDataConsumer:
                 os.environ["VIAM_PRIMARY_ORG_ID"] = "my_org"
                 os.environ["VIAM_MACHINE_PART_ID"] = "my_part"
 
-                _ = ResourceDataConsumer.query_tabular_data("resource", datetime.timedelta(hours=2))
+                delta = datetime.timedelta(hours=2)
 
-                assert mocked.calledOnce_with(resource_name="resource", time_back=datetime.timedelta(hours=2))
+                # Define a helper approx matcher because the time received fields will vary slightly
+                class DeltaApprox:
+                    def __eq__(self, other):
+                        gte = datetime.datetime.now() - delta
+                        return other - gte < datetime.timedelta(seconds=1)
+
+                query = ResourceDataConsumer.construct_query("my_part", "resource", delta)
+                query[0]["$match"]["time_received"]["$gte"] = DeltaApprox()
+
+                await ResourceDataConsumer.query_tabular_data("resource", delta)
+                mocked.assert_called_once_with("my_org", query)
 
 
 class TestModule:
