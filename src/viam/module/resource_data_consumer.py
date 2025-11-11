@@ -1,6 +1,6 @@
 import datetime
 import os
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from viam.app.viam_client import ViamClient
 
@@ -25,7 +25,7 @@ class ResourceDataConsumer:
 
     @classmethod
     async def query_tabular_data(
-        cls, resource_name: str, time_back: datetime.timedelta, additional_stages: List[Dict[str, Any]] | None = None, **kwargs
+        cls, resource_name: str, time_back: datetime.timedelta, additional_stages: Optional[List[Dict[str, Any]]] = None, **kwargs
     ) -> List[Dict[str, Any]]:
         """Return historical data for this module, queried with MQL."""
         viam_client = await ViamClient.create_from_env_vars()
