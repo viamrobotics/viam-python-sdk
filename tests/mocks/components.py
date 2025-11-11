@@ -13,7 +13,9 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
+from viam.components.audio_in import AudioIn, AudioResponse
 from viam.components.audio_input import AudioInput
+from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
 from viam.components.button import Button
@@ -33,7 +35,8 @@ from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
-from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.proto.component.audioin import AudioChunk as Chunk
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -114,6 +117,64 @@ class MockArm(Arm):
         return {"command": command}
 
 
+class MockAudioIn(AudioIn):
+    def __init__(self, name: str, properties: AudioIn.Properties):
+        super().__init__(name)
+        self.geometries = GEOMETRIES
+        self.properties = properties
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Dict[str, Any]] = None
+
+    async def get_audio(
+        self,
+        codec: str,
+        duration_seconds: float,
+        previous_timestamp_ns: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        async def read() -> AsyncIterator[AudioResponse]:
+            # Generate mock audio chunks
+            for i in range(2):
+                chunk_data = f"audio_chunk_{i}".encode("utf-8")
+                timestamp_start = previous_timestamp_ns + i * 1000000000  # 1 second intervals in nanoseconds
+                timestamp_end = timestamp_start + 1000000000
+
+                audio_chunk = Chunk(
+                    audio_data=chunk_data,
+                    audio_info=AudioInfo(
+                        codec=codec, sample_rate_hz=self.properties.sample_rate_hz, num_channels=self.properties.num_channels
+                    ),
+                    sequence=i,
+                    start_timestamp_nanoseconds=timestamp_start,
+                    end_timestamp_nanoseconds=timestamp_end,
+                )
+
+                audio_response = AudioResponse(audio=audio_chunk, request_id="mock_request")
+                yield audio_response
+
+        self.extra = extra
+        self.timeout = timeout
+        return StreamWithIterator(read())
+
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> AudioIn.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return self.properties
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
         super().__init__(name)
@@ -147,6 +208,43 @@ class MockAudioInput(AudioInput):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+
+class MockAudioOut(AudioOut):
+    def __init__(self, name: str, properties: AudioOut.Properties):
+        super().__init__(name)
+        self.play_called = False
+        self.properties = properties
+        self.last_audio_data = None
+        self.last_audio_info = None
+        self.geometries = GEOMETRIES
+        self.timeout: Optional[float] = None
+        self.extra: Optional[Dict[str, Any]] = None
+
+    async def play(
+        self,
+        data: bytes,
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
+        self.play_called = True
+        self.last_audio_data = data
+        self.last_audio_info = info
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.timeout = timeout
+        return self.properties
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return command
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
 
 class MockBase(Base):

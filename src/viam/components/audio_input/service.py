@@ -1,3 +1,4 @@
+import warnings
 import wave
 from datetime import timedelta
 from io import BytesIO
@@ -25,8 +26,17 @@ from .audio_input import AudioInput
 
 class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioInput]):
     """
+    DEPRECATED: AudioInput is deprecated, use AudioIn instead.
     gRPC Service for a generic AudioInput
     """
+
+    def __init__(self, *args, **kwargs):
+        warnings.warn(
+            "AudioInput is deprecated and will be removed in a future release. " "Use AudioIn instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        super().__init__(*args, **kwargs)
 
     RESOURCE_TYPE = AudioInput
 
