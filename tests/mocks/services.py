@@ -1301,13 +1301,11 @@ class MockBilling(UnimplementedBillingServiceBase):
         curr_month_usage: GetCurrentMonthUsageResponse,
         invoices_summary: GetInvoicesSummaryResponse,
         billing_info: GetOrgBillingInformationResponse,
-        invoice_id_response: CreateInvoiceAndChargeImmediatelyResponse,
     ):
         self.pdf = pdf
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
-        self.invoice_id_response = invoice_id_response
         self.disable_email: bool = False
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
@@ -1346,7 +1344,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.description = request.description
         self.org_id_for_branding = request.org_id_for_branding
         self.disable_email = request.disable_email
-        await stream.send_message(self.invoice_id_response)
+        await stream.send_message(CreateInvoiceAndChargeImmediatelyResponse())
 
 
 class MockApp(UnimplementedAppServiceBase):

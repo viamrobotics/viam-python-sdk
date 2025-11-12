@@ -64,7 +64,6 @@ ORG_BILLING_INFO = GetOrgBillingInformationResponse(
     billing_email=EMAIL,
     billing_tier=BILLING_TIER,
 )
-INVOICE_ID_RESPONSE = CreateInvoiceAndChargeImmediatelyResponse(invoice_id=INVOICE_ID)
 
 AUTH_TOKEN = "auth_token"
 BILLING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -77,7 +76,6 @@ def service() -> MockBilling:
         curr_month_usage=CURR_MONTH_USAGE,
         invoices_summary=INVOICES_SUMMARY,
         billing_info=ORG_BILLING_INFO,
-        invoice_id_response=INVOICE_ID_RESPONSE,
     )
 
 
@@ -116,14 +114,13 @@ class TestClient:
             description = "A short description"
             org_id_for_branding = "bar"
             disable_email = True
-            invoice_id_response = await client.create_invoice_and_charge_immediately(
+            _: CreateInvoiceAndChargeImmediatelyResponse = await client.create_invoice_and_charge_immediately(
                 org_id_to_charge=org_id,
                 amount=OUTSTANDING_BALANCE,
                 description=description,
                 org_id_for_branding=org_id_for_branding,
                 disable_email=disable_email,
             )
-            assert invoice_id_response == INVOICE_ID_RESPONSE
             assert service.org_id_to_charge == org_id
             assert service.description == description
             assert service.org_id_for_branding == org_id_for_branding

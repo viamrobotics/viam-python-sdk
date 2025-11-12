@@ -149,21 +149,13 @@ class BillingClient:
         description: Optional[str] = None,
         org_id_for_branding: Optional[str] = None,
         disable_email: bool = False,
-    ) -> CreateInvoiceAndChargeImmediatelyResponse:
+    ) -> None:
         """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
-        This function returns the invoice id once the payment intent is successfully sent for processing. Callers may poll the invoice for
-        its status using the `get_invoices_summary` function and the returned invoice id. The status will be "payment_processing" if the
-        payment is being processed, "paid" if it succeeds, or "outstanding" if it fails.
+        This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.
 
         ::
 
-            invoice_id = await billing_client.create_invoice_and_charge_immediately(
-                "<ORG-ID-TO-CHARGE>",
-                <AMOUNT>,
-                <DESCRIPTION>,
-                "<ORG-ID-FOR-BRANDING>",
-                False,
-            )
+            await billing_client.create_invoice_and_charge_immediately("<ORG-ID-TO-CHARGE>", <AMOUNT>, <DESCRIPTION>, "<ORG-ID-FOR-BRANDING>", False)
 
         Args:
             org_id_to_charge (str): the organization to charge
@@ -171,9 +163,6 @@ class BillingClient:
             description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)
             org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email
             disable_email (bool): whether or not to disable sending an email confirmation for the invoice
-
-        Returns:
-            viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse: the invoice id
         """
         request = CreateInvoiceAndChargeImmediatelyRequest(
             org_id_to_charge=org_id_to_charge,
@@ -182,4 +171,6 @@ class BillingClient:
             org_id_for_branding=org_id_for_branding,
             disable_email=disable_email,
         )
-        return await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata)
+        _: CreateInvoiceAndChargeImmediatelyResponse = await self._billing_client.CreateInvoiceAndChargeImmediately(
+            request, metadata=self._metadata
+        )
