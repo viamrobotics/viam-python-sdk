@@ -22,12 +22,12 @@ Module Contents
    Inherit from this class in a module to get access to historical module data.
 
 
-   .. py:method:: construct_query(part_id: str, resource_name: str, time_back: datetime.timedelta)
+   .. py:method:: construct_query(part_id: str, resource_name: str, time_back: datetime.timedelta) -> List[Dict[str, Any]]
       :classmethod:
 
 
 
-   .. py:method:: query_tabular_data(resource_name: str, time_back: datetime.timedelta, **kwargs) -> List[Dict[str, Any]]
+   .. py:method:: query_tabular_data(resource_name: str, time_back: datetime.timedelta, additional_stages: Optional[List[Dict[str, Any]]] = None, **kwargs) -> List[Dict[str, Any]]
       :classmethod:
 
       :async:
