@@ -42,6 +42,7 @@ class AudioOut(ComponentBase):
         Play the given audio data.
 
         ::
+
             my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
 
             # With audio info
@@ -62,6 +63,7 @@ class AudioOut(ComponentBase):
         Get the audio output device's properties.
 
         ::
+
             my_audio_out = AudioOut.from_robot(robot=machine, name="my_audio_out")
             properties = await my_audio_out.get_properties()
 
