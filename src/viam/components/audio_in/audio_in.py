@@ -39,6 +39,7 @@ class AudioIn(ComponentBase):
         Get a stream of audio from the device
 
         ::
+
             my_audio_in = AudioIn.from_robot(robot=machine, name="my_audio_in")
 
             stream = await my_audio_in.get_audio(
@@ -63,6 +64,7 @@ class AudioIn(ComponentBase):
         Get the audio device's properties
 
         ::
+
             my_audio_in = AudioIn.from_robot(robot=machine, name="my_audio_in")
             properties = await my_audio_in.get_properties()
 
