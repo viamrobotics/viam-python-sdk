@@ -1686,3 +1686,188 @@ class Index(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing.Literal['_pipeline_name', b'_pipeline_name']) -> typing.Literal['pipeline_name'] | None:
         ...
 global___Index = Index
+
+@typing.final
+class CreateSavedQueryRequest(google.protobuf.message.Message):
+    """CreateSavedQueryRequest saves a mql query."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    name: builtins.str
+
+    @property
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        ...
+
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['mql_binary', b'mql_binary', 'name', b'name', 'organization_id', b'organization_id']) -> None:
+        ...
+global___CreateSavedQueryRequest = CreateSavedQueryRequest
+
+@typing.final
+class CreateSavedQueryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___CreateSavedQueryResponse = CreateSavedQueryResponse
+
+@typing.final
+class Query(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    UPDATED_AT_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    organization_id: builtins.str
+    name: builtins.str
+
+    @property
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        ...
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def updated_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., organization_id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'updated_at', b'updated_at']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'mql_binary', b'mql_binary', 'name', b'name', 'organization_id', b'organization_id', 'updated_at', b'updated_at']) -> None:
+        ...
+global___Query = Query
+
+@typing.final
+class DeleteSavedQueryRequest(google.protobuf.message.Message):
+    """DeleteSavedQuery deletes a saved query based on the given id."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___DeleteSavedQueryRequest = DeleteSavedQueryRequest
+
+@typing.final
+class DeleteSavedQueryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteSavedQueryResponse = DeleteSavedQueryResponse
+
+@typing.final
+class GetSavedQueryRequest(google.protobuf.message.Message):
+    """GetSavedQuery retrieves a saved query by id."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
+        ...
+global___GetSavedQueryRequest = GetSavedQueryRequest
+
+@typing.final
+class GetSavedQueryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SAVED_QUERY_FIELD_NUMBER: builtins.int
+
+    @property
+    def saved_query(self) -> global___Query:
+        ...
+
+    def __init__(self, *, saved_query: global___Query | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['saved_query', b'saved_query']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['saved_query', b'saved_query']) -> None:
+        ...
+global___GetSavedQueryResponse = GetSavedQueryResponse
+
+@typing.final
+class UpdateSavedQueryRequest(google.protobuf.message.Message):
+    """UpdateSavedQuery updates the saved query with the given id."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    name: builtins.str
+
+    @property
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'mql_binary', b'mql_binary', 'name', b'name']) -> None:
+        ...
+global___UpdateSavedQueryRequest = UpdateSavedQueryRequest
+
+@typing.final
+class UpdateSavedQueryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateSavedQueryResponse = UpdateSavedQueryResponse
+
+@typing.final
+class ListSavedQueriesRequest(google.protobuf.message.Message):
+    """ListSavedQueries lists saved queries for a given organization."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    LIMIT_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    limit: builtins.int
+
+    def __init__(self, *, organization_id: builtins.str=..., limit: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['limit', b'limit', 'organization_id', b'organization_id']) -> None:
+        ...
+global___ListSavedQueriesRequest = ListSavedQueriesRequest
+
+@typing.final
+class ListSavedQueriesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    QUERIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Query]:
+        ...
+
+    def __init__(self, *, queries: collections.abc.Iterable[global___Query] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['queries', b'queries']) -> None:
+        ...
+global___ListSavedQueriesResponse = ListSavedQueriesResponse

@@ -555,7 +555,12 @@ global___CreateInvoiceAndChargeImmediatelyRequest = CreateInvoiceAndChargeImmedi
 @typing.final
 class CreateInvoiceAndChargeImmediatelyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INVOICE_ID_FIELD_NUMBER: builtins.int
+    invoice_id: builtins.str
 
-    def __init__(self) -> None:
+    def __init__(self, *, invoice_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['invoice_id', b'invoice_id']) -> None:
         ...
 global___CreateInvoiceAndChargeImmediatelyResponse = CreateInvoiceAndChargeImmediatelyResponse
