@@ -93,7 +93,7 @@ Module Contents
       :classmethod:
 
 
-      This is passed to register_resource_creator; the default implementation calls reconfigure()
+      This is passed to register_resource_creator. The default implementation only sets the resource name
       when an instance of your model is instantiated. You can override this in your subclass.
 
 
@@ -120,8 +120,5 @@ Module Contents
       This adds the model to the global registry. It is called by __init_subclass__ and you typically
       won't call it directly.
 
-
-
-   .. py:method:: reconfigure(config: viam.proto.app.robot.ComponentConfig, dependencies: Mapping[viam.proto.common.ResourceName, viam.resource.base.ResourceBase])
 
 

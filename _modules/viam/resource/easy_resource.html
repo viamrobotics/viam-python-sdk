@@ -202,12 +202,11 @@
 <div class="viewcode-block" id="EasyResource.new"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.new">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This is passed to register_resource_creator; the default implementation calls reconfigure()</span>
+<span class="sd">        This is passed to register_resource_creator. The default implementation only sets the resource name</span>
 <span class="sd">        when an instance of your model is instantiated. You can override this in your subclass.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;created </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="EasyResource.validate_config"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.validate_config">[docs]</a>    <span class="nd">@classmethod</span>
@@ -236,10 +235,7 @@
             <span class="bp">cls</span><span class="o">.</span><span class="n">API</span><span class="p">,</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span>
             <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">validate_config</span><span class="p">),</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="EasyResource.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;reconfigure </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span></div></div>
+        <span class="p">)</span></div></div>
 </pre></div>
 
            </div>

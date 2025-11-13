@@ -77,7 +77,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.new"><code class="docutils literal notranslate"><span class="pre">EasyResource.new()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.validate_config"><code class="docutils literal notranslate"><span class="pre">EasyResource.validate_config()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.register"><code class="docutils literal notranslate"><span class="pre">EasyResource.register()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.easy_resource.EasyResource.reconfigure"><code class="docutils literal notranslate"><span class="pre">EasyResource.reconfigure()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -225,7 +224,7 @@ and resources (the resource classes provided by those extension programs).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.new">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/robot/index.html#viam.proto.app.robot.ComponentConfig" title="viam.proto.app.robot.ComponentConfig"><span class="pre">viam.proto.app.robot.ComponentConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/easy_resource.html#EasyResource.new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.new" title="Permalink to this definition"></a></dt>
-<dd><p>This is passed to register_resource_creator; the default implementation calls reconfigure()
+<dd><p>This is passed to register_resource_creator. The default implementation only sets the resource name
 when an instance of your model is instantiated. You can override this in your subclass.</p>
 </dd></dl>
 
@@ -253,11 +252,6 @@ as well as to return any implicit dependencies based on that <cite>config</cite>
 <dd><p>This adds the model to the global registry. It is called by __init_subclass__ and you typically
 won’t call it directly.</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.easy_resource.EasyResource.reconfigure">
-<span class="sig-name descname"><span class="pre">reconfigure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/robot/index.html#viam.proto.app.robot.ComponentConfig" title="viam.proto.app.robot.ComponentConfig"><span class="pre">viam.proto.app.robot.ComponentConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/easy_resource.html#EasyResource.reconfigure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.easy_resource.EasyResource.reconfigure" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
