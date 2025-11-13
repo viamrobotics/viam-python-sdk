@@ -318,17 +318,15 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get a stream of audio from the device</p>
-<dl>
-<dt>::</dt><dd><p>my_audio_in = AudioIn.from_robot(robot=machine, name=”my_audio_in”)</p>
-<dl class="simple">
-<dt>stream = await my_audio_in.get_audio(</dt><dd><p>codec=AudioCodec.PCM16,
-duration_seconds=10.0,
-previous_timestamp_ns=0</p>
-</dd>
-</dl>
-<p>)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_audio_in</span> <span class="o">=</span> <span class="n">AudioIn</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_audio_in&quot;</span><span class="p">)</span>
+
+<span class="n">stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_audio_in</span><span class="o">.</span><span class="n">get_audio</span><span class="p">(</span>
+    <span class="n">codec</span><span class="o">=</span><span class="n">AudioCodec</span><span class="o">.</span><span class="n">PCM16</span><span class="p">,</span>
+    <span class="n">duration_seconds</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="n">previous_timestamp_ns</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -356,11 +354,10 @@ previous_timestamp_ns=0</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the audio device’s properties</p>
-<dl class="simple">
-<dt>::</dt><dd><p>my_audio_in = AudioIn.from_robot(robot=machine, name=”my_audio_in”)
-properties = await my_audio_in.get_properties()</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_audio_in</span> <span class="o">=</span> <span class="n">AudioIn</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_audio_in&quot;</span><span class="p">)</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_audio_in</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The properties of the audio in device.</p>

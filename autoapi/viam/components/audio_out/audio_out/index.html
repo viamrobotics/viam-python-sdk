@@ -187,15 +187,16 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Play the given audio data.</p>
-<dl>
-<dt>::</dt><dd><p>my_audio_out = AudioOut.from_robot(robot=machine, name=”my_audio_out”)</p>
-<p># With audio info
-audio_info = AudioInfo(codec=AudioCodec.PCM16, sample_rate_hz=44100, num_channels=2)
-await my_audio_out.play(audio_data, audio_info)</p>
-<p># Without audio info (when codec encodes information within audio_data)
-await my_audio_out.play(audio_data)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_audio_out</span> <span class="o">=</span> <span class="n">AudioOut</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_audio_out&quot;</span><span class="p">)</span>
+
+<span class="c1"># With audio info</span>
+<span class="n">audio_info</span> <span class="o">=</span> <span class="n">AudioInfo</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="n">AudioCodec</span><span class="o">.</span><span class="n">PCM16</span><span class="p">,</span> <span class="n">sample_rate_hz</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">num_channels</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">my_audio_out</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_data</span><span class="p">,</span> <span class="n">audio_info</span><span class="p">)</span>
+
+<span class="c1"># Without audio info (when codec encodes information within audio_data)</span>
+<span class="k">await</span> <span class="n">my_audio_out</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_data</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -214,11 +215,10 @@ await my_audio_out.play(audio_data)</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p>Get the audio output device’s properties.</p>
-<dl class="simple">
-<dt>::</dt><dd><p>my_audio_out = AudioOut.from_robot(robot=machine, name=”my_audio_out”)
-properties = await my_audio_out.get_properties()</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_audio_out</span> <span class="o">=</span> <span class="n">AudioOut</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_audio_out&quot;</span><span class="p">)</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_audio_out</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The properties of the audio output device</p>
