@@ -44,6 +44,8 @@ Classes
    viam.proto.app.data.ConfigureDatabaseUserResponse
    viam.proto.app.data.CreateIndexRequest
    viam.proto.app.data.CreateIndexResponse
+   viam.proto.app.data.CreateSavedQueryRequest
+   viam.proto.app.data.CreateSavedQueryResponse
    viam.proto.app.data.DataRequest
    viam.proto.app.data.DeleteBinaryDataByFilterRequest
    viam.proto.app.data.DeleteBinaryDataByFilterResponse
@@ -51,6 +53,8 @@ Classes
    viam.proto.app.data.DeleteBinaryDataByIDsResponse
    viam.proto.app.data.DeleteIndexRequest
    viam.proto.app.data.DeleteIndexResponse
+   viam.proto.app.data.DeleteSavedQueryRequest
+   viam.proto.app.data.DeleteSavedQueryResponse
    viam.proto.app.data.DeleteTabularDataRequest
    viam.proto.app.data.DeleteTabularDataResponse
    viam.proto.app.data.ExportTabularDataRequest
@@ -60,12 +64,17 @@ Classes
    viam.proto.app.data.GetDatabaseConnectionResponse
    viam.proto.app.data.GetLatestTabularDataRequest
    viam.proto.app.data.GetLatestTabularDataResponse
+   viam.proto.app.data.GetSavedQueryRequest
+   viam.proto.app.data.GetSavedQueryResponse
    viam.proto.app.data.Index
    viam.proto.app.data.IndexableCollection
    viam.proto.app.data.IndexCreator
    viam.proto.app.data.ListIndexesRequest
    viam.proto.app.data.ListIndexesResponse
+   viam.proto.app.data.ListSavedQueriesRequest
+   viam.proto.app.data.ListSavedQueriesResponse
    viam.proto.app.data.Order
+   viam.proto.app.data.Query
    viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsRequest
    viam.proto.app.data.RemoveBinaryDataFromDatasetByIDsResponse
    viam.proto.app.data.RemoveBoundingBoxFromImageByIDRequest
@@ -89,6 +98,8 @@ Classes
    viam.proto.app.data.TagsFilterType
    viam.proto.app.data.UpdateBoundingBoxRequest
    viam.proto.app.data.UpdateBoundingBoxResponse
+   viam.proto.app.data.UpdateSavedQueryRequest
+   viam.proto.app.data.UpdateSavedQueryResponse
 
 
 Package Contents
@@ -285,6 +296,41 @@ Package Contents
 
 
 
+   .. py:method:: CreateSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateSavedQueryRequest, app.data.v1.data_pb2.CreateSavedQueryResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: UpdateSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.UpdateSavedQueryRequest, app.data.v1.data_pb2.UpdateSavedQueryResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: GetSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetSavedQueryRequest, app.data.v1.data_pb2.GetSavedQueryResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DeleteSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteSavedQueryRequest, app.data.v1.data_pb2.DeleteSavedQueryResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: ListSavedQueries(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSavedQueriesRequest, app.data.v1.data_pb2.ListSavedQueriesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -366,6 +412,21 @@ Package Contents
 
 
    .. py:attribute:: DeleteIndex
+
+
+   .. py:attribute:: CreateSavedQuery
+
+
+   .. py:attribute:: UpdateSavedQuery
+
+
+   .. py:attribute:: GetSavedQuery
+
+
+   .. py:attribute:: DeleteSavedQuery
+
+
+   .. py:attribute:: ListSavedQueries
 
 
 .. py:class:: UnimplementedDataServiceBase
@@ -503,6 +564,31 @@ Package Contents
 
 
    .. py:method:: DeleteIndex(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteIndexRequest, app.data.v1.data_pb2.DeleteIndexResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: CreateSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.CreateSavedQueryRequest, app.data.v1.data_pb2.CreateSavedQueryResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: UpdateSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.UpdateSavedQueryRequest, app.data.v1.data_pb2.UpdateSavedQueryResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetSavedQueryRequest, app.data.v1.data_pb2.GetSavedQueryResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DeleteSavedQuery(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteSavedQueryRequest, app.data.v1.data_pb2.DeleteSavedQueryResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: ListSavedQueries(stream: grpclib.server.Stream[app.data.v1.data_pb2.ListSavedQueriesRequest, app.data.v1.data_pb2.ListSavedQueriesResponse]) -> None
       :async:
 
 
@@ -1352,6 +1438,43 @@ Package Contents
    shown below.
 
 
+.. py:class:: CreateSavedQueryRequest(*, organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   CreateSavedQueryRequest saves a mql query.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+
+
+.. py:class:: CreateSavedQueryResponse(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
 .. py:class:: DataRequest(*, filter: global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: global___Order = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1536,6 +1659,30 @@ Package Contents
 
 
 .. py:class:: DeleteIndexResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: DeleteSavedQueryRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   DeleteSavedQuery deletes a saved query based on the given id.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: DeleteSavedQueryResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1962,6 +2109,53 @@ Package Contents
 
 
 
+.. py:class:: GetSavedQueryRequest(*, id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   GetSavedQuery retrieves a saved query by id.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+.. py:class:: GetSavedQueryResponse(*, saved_query: global___Query | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: saved_query
+      :type: global___Query
+
+
+
+   .. py:method:: HasField(field_name: Literal['saved_query', b'saved_query']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
 .. py:class:: Index(*, collection_type: global___IndexableCollection = ..., pipeline_name: str | None = ..., index_name: str = ..., index_spec: collections.abc.Iterable[bytes] | None = ..., created_by: global___IndexCreator = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -2117,12 +2311,102 @@ Package Contents
 
 
 
+.. py:class:: ListSavedQueriesRequest(*, organization_id: str = ..., limit: int = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   ListSavedQueries lists saved queries for a given organization.
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: limit
+      :type:  int
+
+
+.. py:class:: ListSavedQueriesResponse(*, queries: collections.abc.Iterable[global___Query] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:property:: queries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Query]
+
+
+
 .. py:class:: Order
 
    Bases: :py:obj:`_Order`
 
 
    Order specifies the order in which data is returned.
+
+
+.. py:class:: Query(*, id: str = ..., organization_id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: organization_id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+
+
+   .. py:property:: created_on
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:property:: updated_at
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+
+   .. py:method:: HasField(field_name: Literal['created_on', b'created_on', 'updated_at', b'updated_at']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., binary_data_ids: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
@@ -2739,6 +3023,39 @@ Package Contents
 
 
 .. py:class:: UpdateBoundingBoxResponse
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:class:: UpdateSavedQueryRequest(*, id: str = ..., name: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   UpdateSavedQuery updates the saved query with the given id.
+
+
+   .. py:attribute:: id
+      :type:  str
+
+
+   .. py:attribute:: name
+      :type:  str
+
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+
+
+.. py:class:: UpdateSavedQueryResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

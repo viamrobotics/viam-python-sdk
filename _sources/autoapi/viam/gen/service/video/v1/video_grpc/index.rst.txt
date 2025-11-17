@@ -1,0 +1,72 @@
+viam.gen.service.video.v1.video_grpc
+====================================
+
+.. py:module:: viam.gen.service.video.v1.video_grpc
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   viam.gen.service.video.v1.video_grpc.VideoServiceBase
+   viam.gen.service.video.v1.video_grpc.UnimplementedVideoServiceBase
+   viam.gen.service.video.v1.video_grpc.VideoServiceStub
+
+
+Module Contents
+---------------
+
+.. py:class:: VideoServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetVideo(stream: grpclib.server.Stream[service.video.v1.video_pb2.GetVideoRequest, service.video.v1.video_pb2.GetVideoResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+.. py:class:: UnimplementedVideoServiceBase
+
+   Bases: :py:obj:`VideoServiceBase`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: GetVideo(stream: grpclib.server.Stream[service.video.v1.video_pb2.GetVideoRequest, service.video.v1.video_pb2.GetVideoResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+.. py:class:: VideoServiceStub(channel: grpclib.client.Channel)
+
+   .. py:attribute:: GetVideo
+
+
+   .. py:attribute:: DoCommand
+
+
