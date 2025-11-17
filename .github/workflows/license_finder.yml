@@ -21,11 +21,11 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Setup pip version
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
-          pip-version: '24.0'
+      #- name: Setup pip version
+        #uses: actions/setup-python@v6
+        #with:
+          #python-version: '3.13'
+          #pip-version: '24.0'
 
       - name: display pip version
         run: pip --version
@@ -45,9 +45,6 @@ jobs:
         run: |
           uv pip compile pyproject.toml -o requirements.txt
           uv pip install -r requirements.txt
-
-      - name: show requirements
-        run: cat requirements.txt
 
       - name: Run license finder
         run: |
