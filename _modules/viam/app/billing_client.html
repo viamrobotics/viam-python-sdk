@@ -238,13 +238,21 @@
         <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">org_id_for_branding</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">disable_email</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CreateInvoiceAndChargeImmediatelyResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.</span>
-<span class="sd">        This function blocks until payment is confirmed, but will time out after 2 minutes if there is no confirmation.</span>
+<span class="sd">        This function returns the invoice id once the payment intent is successfully sent for processing. Callers may poll the invoice for</span>
+<span class="sd">        its status using the `get_invoices_summary` function and the returned invoice id. The status will be &quot;payment_processing&quot; if the</span>
+<span class="sd">        payment is being processed, &quot;paid&quot; if it succeeds, or &quot;outstanding&quot; if it fails.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await billing_client.create_invoice_and_charge_immediately(&quot;&lt;ORG-ID-TO-CHARGE&gt;&quot;, &lt;AMOUNT&gt;, &lt;DESCRIPTION&gt;, &quot;&lt;ORG-ID-FOR-BRANDING&gt;&quot;, False)</span>
+<span class="sd">            invoice_id = await billing_client.create_invoice_and_charge_immediately(</span>
+<span class="sd">                &quot;&lt;ORG-ID-TO-CHARGE&gt;&quot;,</span>
+<span class="sd">                &lt;AMOUNT&gt;,</span>
+<span class="sd">                &lt;DESCRIPTION&gt;,</span>
+<span class="sd">                &quot;&lt;ORG-ID-FOR-BRANDING&gt;&quot;,</span>
+<span class="sd">                False,</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id_to_charge (str): the organization to charge</span>
@@ -252,6 +260,9 @@
 <span class="sd">            description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)</span>
 <span class="sd">            org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email</span>
 <span class="sd">            disable_email (bool): whether or not to disable sending an email confirmation for the invoice</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse: the invoice id</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateInvoiceAndChargeImmediatelyRequest</span><span class="p">(</span>
             <span class="n">org_id_to_charge</span><span class="o">=</span><span class="n">org_id_to_charge</span><span class="p">,</span>
@@ -260,9 +271,7 @@
             <span class="n">org_id_for_branding</span><span class="o">=</span><span class="n">org_id_for_branding</span><span class="p">,</span>
             <span class="n">disable_email</span><span class="o">=</span><span class="n">disable_email</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">_</span><span class="p">:</span> <span class="n">CreateInvoiceAndChargeImmediatelyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">CreateInvoiceAndChargeImmediately</span><span class="p">(</span>
-            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_billing_client</span><span class="o">.</span><span class="n">CreateInvoiceAndChargeImmediately</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
