@@ -46,6 +46,9 @@ jobs:
           uv pip compile pyproject.toml -o requirements.txt
           uv pip install -r requirements.txt
 
+      - name: show requirements
+        run: cat requirements.txt
+
       - name: Run license finder
         run: |
           uv run license_finder
