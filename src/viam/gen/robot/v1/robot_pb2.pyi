@@ -877,6 +877,7 @@ class GetMachineStatusResponse(google.protobuf.message.Message):
     RESOURCES_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     STATE_FIELD_NUMBER: builtins.int
+    JOB_STATUSES_FIELD_NUMBER: builtins.int
     state: global___GetMachineStatusResponse.State.ValueType
 
     @property
@@ -887,15 +888,42 @@ class GetMachineStatusResponse(google.protobuf.message.Message):
     def config(self) -> global___ConfigStatus:
         ...
 
-    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=..., state: global___GetMachineStatusResponse.State.ValueType=...) -> None:
+    @property
+    def job_statuses(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JobStatus]:
+        ...
+
+    def __init__(self, *, resources: collections.abc.Iterable[global___ResourceStatus] | None=..., config: global___ConfigStatus | None=..., state: global___GetMachineStatusResponse.State.ValueType=..., job_statuses: collections.abc.Iterable[global___JobStatus] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['config', b'config', 'resources', b'resources', 'state', b'state']) -> None:
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'job_statuses', b'job_statuses', 'resources', b'resources', 'state', b'state']) -> None:
         ...
 global___GetMachineStatusResponse = GetMachineStatusResponse
+
+@typing.final
+class JobStatus(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    JOB_NAME_FIELD_NUMBER: builtins.int
+    RECENT_SUCCESSFUL_RUNS_FIELD_NUMBER: builtins.int
+    RECENT_FAILED_RUNS_FIELD_NUMBER: builtins.int
+    job_name: builtins.str
+
+    @property
+    def recent_successful_runs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.timestamp_pb2.Timestamp]:
+        ...
+
+    @property
+    def recent_failed_runs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.timestamp_pb2.Timestamp]:
+        ...
+
+    def __init__(self, *, job_name: builtins.str=..., recent_successful_runs: collections.abc.Iterable[google.protobuf.timestamp_pb2.Timestamp] | None=..., recent_failed_runs: collections.abc.Iterable[google.protobuf.timestamp_pb2.Timestamp] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['job_name', b'job_name', 'recent_failed_runs', b'recent_failed_runs', 'recent_successful_runs', b'recent_successful_runs']) -> None:
+        ...
+global___JobStatus = JobStatus
 
 @typing.final
 class ResourceStatus(google.protobuf.message.Message):
