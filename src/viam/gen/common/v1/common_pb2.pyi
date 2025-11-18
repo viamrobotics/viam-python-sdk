@@ -122,7 +122,7 @@ global___Orientation = Orientation
 
 @typing.final
 class PoseInFrame(google.protobuf.message.Message):
-    """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
+    """PoseInFrame contains a pose and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_FIELD_NUMBER: builtins.int

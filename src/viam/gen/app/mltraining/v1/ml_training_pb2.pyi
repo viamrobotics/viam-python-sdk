@@ -148,21 +148,23 @@ class SubmitCustomTrainingJobRequest(google.protobuf.message.Message):
     MODEL_NAME_FIELD_NUMBER: builtins.int
     MODEL_VERSION_FIELD_NUMBER: builtins.int
     ARGUMENTS_FIELD_NUMBER: builtins.int
+    CONTAINER_VERSION_FIELD_NUMBER: builtins.int
     dataset_id: builtins.str
     registry_item_id: builtins.str
     registry_item_version: builtins.str
     organization_id: builtins.str
     model_name: builtins.str
     model_version: builtins.str
+    container_version: builtins.str
 
     @property
     def arguments(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         ...
 
-    def __init__(self, *, dataset_id: builtins.str=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., arguments: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+    def __init__(self, *, dataset_id: builtins.str=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., arguments: collections.abc.Mapping[builtins.str, builtins.str] | None=..., container_version: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['arguments', b'arguments', 'dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
+    def ClearField(self, field_name: typing.Literal['arguments', b'arguments', 'container_version', b'container_version', 'dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version']) -> None:
         ...
 global___SubmitCustomTrainingJobRequest = SubmitCustomTrainingJobRequest
 
@@ -278,6 +280,7 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     SYNCED_MODEL_ID_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     ARGUMENTS_FIELD_NUMBER: builtins.int
+    CONTAINER_VERSION_FIELD_NUMBER: builtins.int
     id: builtins.str
     dataset_id: builtins.str
     organization_id: builtins.str
@@ -290,6 +293,7 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     registry_item_version: builtins.str
     status: global___TrainingStatus.ValueType
     synced_model_id: builtins.str
+    container_version: builtins.str
 
     @property
     def error_status(self) -> google.rpc.status_pb2.Status:
@@ -319,13 +323,13 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     def arguments(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         ...
 
-    def __init__(self, *, id: builtins.str=..., dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., model_framework: global___ModelFramework.ValueType=..., is_custom_job: builtins.bool=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., status: global___TrainingStatus.ValueType=..., error_status: google.rpc.status_pb2.Status | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., training_started: google.protobuf.timestamp_pb2.Timestamp | None=..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., arguments: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., model_framework: global___ModelFramework.ValueType=..., is_custom_job: builtins.bool=..., registry_item_id: builtins.str=..., registry_item_version: builtins.str=..., status: global___TrainingStatus.ValueType=..., error_status: google.rpc.status_pb2.Status | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., training_started: google.protobuf.timestamp_pb2.Timestamp | None=..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., arguments: collections.abc.Mapping[builtins.str, builtins.str] | None=..., container_version: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['arguments', b'arguments', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> None:
+    def ClearField(self, field_name: typing.Literal['arguments', b'arguments', 'container_version', b'container_version', 'created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'registry_item_version', b'registry_item_version', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> None:
         ...
 global___TrainingJobMetadata = TrainingJobMetadata
 
@@ -432,3 +436,83 @@ class GetTrainingJobLogsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['logs', b'logs', 'next_page_token', b'next_page_token']) -> None:
         ...
 global___GetTrainingJobLogsResponse = GetTrainingJobLogsResponse
+
+@typing.final
+class ListSupportedContainersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ListSupportedContainersRequest = ListSupportedContainersRequest
+
+@typing.final
+class ListSupportedContainersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class ContainerMapEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___Container:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___Container | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    CONTAINER_MAP_FIELD_NUMBER: builtins.int
+
+    @property
+    def container_map(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___Container]:
+        """ex value:
+        container_map: {
+          "tf:2.15": Container {
+            key: "tf:2.15"
+            uri: "us-docker.pkg.dev/vertex-ai/training/tf-gpu.2-15.py310:latest"
+            description: "Tensorflow 2.15"
+            eol: { seconds: 1772630400, nanos: 0 } // 2026-03-03T00:00:00Z
+          }
+        }
+        """
+
+    def __init__(self, *, container_map: collections.abc.Mapping[builtins.str, global___Container] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['container_map', b'container_map']) -> None:
+        ...
+global___ListSupportedContainersResponse = ListSupportedContainersResponse
+
+@typing.final
+class Container(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    KEY_FIELD_NUMBER: builtins.int
+    URI_FIELD_NUMBER: builtins.int
+    FRAMEWORK_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
+    EOL_FIELD_NUMBER: builtins.int
+    key: builtins.str
+    uri: builtins.str
+    framework: builtins.str
+    description: builtins.str
+
+    @property
+    def eol(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, key: builtins.str=..., uri: builtins.str=..., framework: builtins.str=..., description: builtins.str=..., eol: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['eol', b'eol']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['description', b'description', 'eol', b'eol', 'framework', b'framework', 'key', b'key', 'uri', b'uri']) -> None:
+        ...
+global___Container = Container
