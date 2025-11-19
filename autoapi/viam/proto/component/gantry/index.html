@@ -88,6 +88,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.GetKinematics"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.GetKinematics()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.GetGeometries()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -100,6 +101,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.Stop"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.Stop</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.IsMoving"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.IsMoving</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.DoCommand"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.DoCommand</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.GetKinematics"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.GetKinematics</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub.GetGeometries"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub.GetGeometries</span></code></a></li>
 </ul>
 </li>
@@ -111,6 +113,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.DoCommand()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.GetKinematics"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.GetKinematics()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">UnimplementedGantryServiceBase.GetGeometries()</span></code></a></li>
 </ul>
 </li>
@@ -363,6 +366,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceBase.GetKinematics">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetKinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetKinematicsRequest" title="viam.gen.common.v1.common_pb2.GetKinematicsRequest"><span class="pre">common.v1.common_pb2.GetKinematicsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetKinematicsResponse" title="viam.gen.common.v1.common_pb2.GetKinematicsResponse"><span class="pre">common.v1.common_pb2.GetKinematicsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#GantryServiceBase.GetKinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceBase.GetKinematics" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceBase.GetGeometries">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetGeometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesRequest" title="viam.gen.common.v1.common_pb2.GetGeometriesRequest"><span class="pre">common.v1.common_pb2.GetGeometriesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetGeometriesResponse" title="viam.gen.common.v1.common_pb2.GetGeometriesResponse"><span class="pre">common.v1.common_pb2.GetGeometriesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#GantryServiceBase.GetGeometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceBase.GetGeometries" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -417,6 +429,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.GetKinematics">
+<span class="sig-name descname"><span class="pre">GetKinematics</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.GetKinematics" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceStub.GetGeometries">
 <span class="sig-name descname"><span class="pre">GetGeometries</span></span><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceStub.GetGeometries" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -462,6 +479,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.UnimplementedGantryServiceBase.DoCommand">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#UnimplementedGantryServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.UnimplementedGantryServiceBase.GetKinematics">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetKinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetKinematicsRequest" title="viam.gen.common.v1.common_pb2.GetKinematicsRequest"><span class="pre">common.v1.common_pb2.GetKinematicsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GetKinematicsResponse" title="viam.gen.common.v1.common_pb2.GetKinematicsResponse"><span class="pre">common.v1.common_pb2.GetKinematicsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#UnimplementedGantryServiceBase.GetKinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.UnimplementedGantryServiceBase.GetKinematics" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

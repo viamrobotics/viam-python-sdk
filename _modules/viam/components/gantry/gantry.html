@@ -88,8 +88,9 @@
              
   <h1>Source code for viam.components.gantry.gantry</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">KinematicsFileFormat</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
 
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
@@ -241,6 +242,36 @@
 <span class="sd">            bool: Whether the gantry is moving.</span>
 
 <span class="sd">        For more information, see `Gantry component &lt;https://docs.viam.com/dev/reference/apis/components/gantry/#ismoving&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Gantry.get_kinematics"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/index.html#viam.components.gantry.gantry.Gantry.get_kinematics">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the kinematics information associated with the gantry.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=machine, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Get the kinematics information associated with the gantry.</span>
+<span class="sd">            kinematics = await my_gantry.get_kinematics()</span>
+
+<span class="sd">            # Get the format of the kinematics file.</span>
+<span class="sd">            k_file = kinematics[0]</span>
+
+<span class="sd">            # Get the byte contents of the file.</span>
+<span class="sd">            k_bytes = kinematics[1]</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the</span>
+<span class="sd">            file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or</span>
+<span class="sd">            Viam&#39;s kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),</span>
+<span class="sd">            and the second [1] value represents the byte contents of the file.</span>
+
+<span class="sd">        For more information, see `Arm component &lt;https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics&gt;`_.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

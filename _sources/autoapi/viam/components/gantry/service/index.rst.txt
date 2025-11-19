@@ -17,7 +17,7 @@ Module Contents
 
 .. py:class:: GantryRPCService(manager: viam.resource.manager.ResourceManager)
 
-   Bases: :py:obj:`viam.proto.component.gantry.GantryServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.gantry.gantry.Gantry`\ ]
+   Bases: :py:obj:`viam.proto.component.gantry.UnimplementedGantryServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.components.gantry.gantry.Gantry`\ ]
 
 
    gRPC Service for a Gantry
@@ -57,6 +57,11 @@ Module Contents
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[viam.proto.common.GetKinematicsRequest, viam.proto.common.GetKinematicsResponse]) -> None
       :async:
 
 

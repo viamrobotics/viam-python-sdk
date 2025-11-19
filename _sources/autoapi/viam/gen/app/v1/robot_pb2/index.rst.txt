@@ -295,7 +295,7 @@ Module Contents
 
 .. py:data:: global___LogPatternConfig
 
-.. py:class:: JobConfig(*, name: str = ..., schedule: str = ..., resource: str = ..., method: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: JobConfig(*, name: str = ..., schedule: str = ..., resource: str = ..., method: str = ..., command: google.protobuf.struct_pb2.Struct | None = ..., log_configuration: global___LogConfiguration | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -339,7 +339,13 @@ Module Contents
       command argument of the gRPC request.
 
 
-   .. py:method:: HasField(field_name: Literal['command', b'command']) -> bool
+   .. py:property:: log_configuration
+      :type: global___LogConfiguration
+
+      configuration for this job's logger.
+
+
+   .. py:method:: HasField(field_name: Literal['command', b'command', 'log_configuration', b'log_configuration']) -> bool
 
       Checks if a certain field is set for the message.
 

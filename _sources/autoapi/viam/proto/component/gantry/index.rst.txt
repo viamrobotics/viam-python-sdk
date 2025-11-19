@@ -94,6 +94,13 @@ Package Contents
 
 
 
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
       :abstractmethod:
 
@@ -125,6 +132,9 @@ Package Contents
 
 
    .. py:attribute:: DoCommand
+
+
+   .. py:attribute:: GetKinematics
 
 
    .. py:attribute:: GetGeometries
@@ -170,6 +180,11 @@ Package Contents
 
 
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
       :async:
 
 

@@ -180,6 +180,35 @@ Module Contents
 
 
 
+   .. py:method:: get_kinematics(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.proto.common.KinematicsFileFormat.ValueType, bytes]
+      :async:
+
+
+      Get the kinematics information associated with the gantry.
+
+      ::
+
+          my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
+
+          # Get the kinematics information associated with the gantry.
+          kinematics = await my_gantry.get_kinematics()
+
+          # Get the format of the kinematics file.
+          k_file = kinematics[0]
+
+          # Get the byte contents of the file.
+          k_bytes = kinematics[1]
+
+      :returns: A tuple containing two values; the first [0] value represents the format of the
+                file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
+                Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
+                and the second [1] value represents the byte contents of the file.
+      :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
+
+      For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+
+
+
    .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[viam.proto.common.Geometry]
       :async:
 

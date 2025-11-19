@@ -82,6 +82,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.get_lengths"><code class="docutils literal notranslate"><span class="pre">Gantry.get_lengths()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.stop"><code class="docutils literal notranslate"><span class="pre">Gantry.stop()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.is_moving"><code class="docutils literal notranslate"><span class="pre">Gantry.is_moving()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.get_kinematics"><code class="docutils literal notranslate"><span class="pre">Gantry.get_kinematics()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.from_robot"><code class="docutils literal notranslate"><span class="pre">Gantry.from_robot()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.do_command"><code class="docutils literal notranslate"><span class="pre">Gantry.do_command()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gantry.Gantry.get_geometries"><code class="docutils literal notranslate"><span class="pre">Gantry.get_geometries()</span></code></a></li>
@@ -337,6 +338,40 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/gantry/#ismoving">Gantry component</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gantry.Gantry.get_kinematics">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.components.arm.KinematicsFileFormat.ValueType</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/gantry/gantry.html#Gantry.get_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gantry.Gantry.get_kinematics" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Get the kinematics information associated with the gantry.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_gantry</span> <span class="o">=</span> <span class="n">Gantry</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_gantry&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the kinematics information associated with the gantry.</span>
+<span class="n">kinematics</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_gantry</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">()</span>
+
+<span class="c1"># Get the format of the kinematics file.</span>
+<span class="n">k_file</span> <span class="o">=</span> <span class="n">kinematics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Get the byte contents of the file.</span>
+<span class="n">k_bytes</span> <span class="o">=</span> <span class="n">kinematics</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing two values; the first [0] value represents the format of the
+file, either in URDF format (<code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF</span></code>) or
+Viam’s kinematic parameter format (spatial vector algebra) (<code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA</span></code>),
+and the second [1] value represents the byte contents of the file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple[KinematicsFileFormat.ValueType, bytes]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics">Arm component</a>.</p>
 </dd></dl>
 
 <dl class="py method">
