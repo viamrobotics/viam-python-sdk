@@ -179,6 +179,7 @@ class JobConfig(google.protobuf.message.Message):
     RESOURCE_FIELD_NUMBER: builtins.int
     METHOD_FIELD_NUMBER: builtins.int
     COMMAND_FIELD_NUMBER: builtins.int
+    LOG_CONFIGURATION_FIELD_NUMBER: builtins.int
     name: builtins.str
     'unique name of the job.'
     schedule: builtins.str
@@ -194,13 +195,17 @@ class JobConfig(google.protobuf.message.Message):
         command argument of the gRPC request.
         """
 
-    def __init__(self, *, name: builtins.str=..., schedule: builtins.str=..., resource: builtins.str=..., method: builtins.str=..., command: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def log_configuration(self) -> global___LogConfiguration:
+        """configuration for this job's logger."""
+
+    def __init__(self, *, name: builtins.str=..., schedule: builtins.str=..., resource: builtins.str=..., method: builtins.str=..., command: google.protobuf.struct_pb2.Struct | None=..., log_configuration: global___LogConfiguration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['command', b'command']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['command', b'command', 'log_configuration', b'log_configuration']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['command', b'command', 'method', b'method', 'name', b'name', 'resource', b'resource', 'schedule', b'schedule']) -> None:
+    def ClearField(self, field_name: typing.Literal['command', b'command', 'log_configuration', b'log_configuration', 'method', b'method', 'name', b'name', 'resource', b'resource', 'schedule', b'schedule']) -> None:
         ...
 global___JobConfig = JobConfig
 
