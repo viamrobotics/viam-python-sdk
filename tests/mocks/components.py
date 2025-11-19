@@ -556,6 +556,7 @@ class MockGantry(Gantry):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         self.extra = None
         self.homed = True
         self.speeds = Optional[List[float]]
@@ -601,6 +602,13 @@ class MockGantry(Gantry):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def get_kinematics(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.kinematics
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra

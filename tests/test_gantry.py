@@ -2,7 +2,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient
 from viam.components.gantry.service import GantryRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetKinematicsRequest, GetKinematicsResponse, KinematicsFileFormat
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
@@ -63,6 +63,11 @@ class TestGantry:
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await self.gantry.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
         assert self.gantry.extra == extra
+
+    async def test_get_kinematics(self):
+        format, data = await self.gantry.get_kinematics()
+        assert format == self.gantry.kinematics[0]
+        assert data == self.gantry.kinematics[1]
 
     async def test_timeout(self):
         assert self.gantry.timeout is None
@@ -160,6 +165,15 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    async def test_get_kinematics(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryServiceStub(channel)
+            request = GetKinematicsRequest(name=self.gantry.name)
+            response: GetKinematicsResponse = await client.GetKinematics(request, timeout=1.1)
+            assert response.format == self.gantry.kinematics[0]
+            assert response.kinematics_data == self.gantry.kinematics[1]
+            assert self.gantry.timeout == loose_approx(1.1)
+
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
@@ -233,6 +247,14 @@ class TestClient:
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             await client.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
             assert self.gantry.extra == extra
+
+    async def test_get_kinematics(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            format, data = await client.get_kinematics(timeout=1.1)
+            assert format == self.gantry.kinematics[0]
+            assert data == self.gantry.kinematics[1]
+            assert self.gantry.timeout == loose_approx(1.1)
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

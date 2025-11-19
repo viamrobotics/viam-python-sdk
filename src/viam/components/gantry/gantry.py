@@ -1,6 +1,7 @@
 import abc
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Optional, Tuple
 
+from viam.components.arm import KinematicsFileFormat
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
@@ -152,5 +153,45 @@ class Gantry(ComponentBase):
             bool: Whether the gantry is moving.
 
         For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#ismoving>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_kinematics(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        """
+        Get the kinematics of the gantry.
+
+        ::
+
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
+
+            # Get the kinematics of the gantry.
+            format, data = await my_gantry.get_kinematics()
+
+        Returns:
+            Tuple[KinematicsFileFormat.ValueType, bytes]: The kinematics file format and the data.
+
+        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
+        """
+        Get geometries of the gantry.
+
+        ::
+
+            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
+
+            # Get the geometries of the gantry.
+            geometries = await my_gantry.get_geometries()
+
+        Returns:
+            List[Geometry]: A list of geometries of the gantry.
+
+        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getgeometries>`_.
         """
         ...
