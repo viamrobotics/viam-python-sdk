@@ -161,37 +161,27 @@ class Gantry(ComponentBase):
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         """
-        Get the kinematics of the gantry.
+        Get the kinematics information associated with the gantry.
 
         ::
 
             my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
 
-            # Get the kinematics of the gantry.
-            format, data = await my_gantry.get_kinematics()
+            # Get the kinematics information associated with the gantry.
+            kinematics = await my_gantry.get_kinematics()
+
+            # Get the format of the kinematics file.
+            k_file = kinematics[0]
+
+            # Get the byte contents of the file.
+            k_bytes = kinematics[1]
 
         Returns:
-            Tuple[KinematicsFileFormat.ValueType, bytes]: The kinematics file format and the data.
+            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
+            file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
+            Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
+            and the second [1] value represents the byte contents of the file.
 
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getkinematics>`_.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
-        """
-        Get geometries of the gantry.
-
-        ::
-
-            my_gantry = Gantry.from_robot(robot=machine, name="my_gantry")
-
-            # Get the geometries of the gantry.
-            geometries = await my_gantry.get_geometries()
-
-        Returns:
-            List[Geometry]: A list of geometries of the gantry.
-
-        For more information, see `Gantry component <https://docs.viam.com/dev/reference/apis/components/gantry/#getgeometries>`_.
+        For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """
         ...

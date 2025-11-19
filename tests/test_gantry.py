@@ -2,7 +2,14 @@ from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient
 from viam.components.gantry.service import GantryRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, GetKinematicsRequest, GetKinematicsResponse, KinematicsFileFormat
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
