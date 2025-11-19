@@ -1,8 +1,14 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.gantry import (
-    GantryServiceBase,
     GetLengthsRequest,
     GetLengthsResponse,
     GetPositionRequest,
@@ -15,6 +21,7 @@ from viam.proto.component.gantry import (
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
+    UnimplementedGantryServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -22,7 +29,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .gantry import Gantry
 
 
-class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
+class GantryRPCService(UnimplementedGantryServiceBase, ResourceRPCServiceBase[Gantry]):
     """
     gRPC Service for a Gantry
     """
@@ -103,11 +110,20 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
+    async def GetKinematics(self, stream: Stream[GetKinematicsRequest, GetKinematicsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        gantry = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        format, data = await gantry.get_kinematics(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetKinematicsResponse(format=format, kinematics_data=data)
+        await stream.send_message(response)
+
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        arm = self.get_resource(request.name)
+        gantry = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await gantry.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)
