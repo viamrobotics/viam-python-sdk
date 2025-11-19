@@ -201,6 +201,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         mode: PowerMode.ValueType,
         duration: Optional[timedelta] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -208,7 +209,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         duration_pb: Optional[Duration] = None
         if duration is not None:
             duration_pb = [(d, d.FromTimedelta(duration)) for d in [Duration()]][0][0]
-        request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration_pb)
+        request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration_pb, extra=dict_to_struct(extra))
         await self.client.SetPowerMode(request, timeout=timeout, metadata=md)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
