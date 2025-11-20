@@ -61,11 +61,6 @@ from ..services.navigation import Navigation  # noqa: F401
 from ..services.slam import SLAM  # noqa: F401
 from ..services.vision import Vision  # noqa: F401
 
-try:
-    from ..services.mlmodel import MLModel  # noqa: F401
-except ImportError:
-    pass
-
 from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
