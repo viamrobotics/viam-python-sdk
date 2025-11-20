@@ -34,11 +34,11 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.operations import run_with_operation
 from viam.proto.common import (
+    AudioInfo,
     Capsule,
     Geometry,
     GeoPoint,
@@ -51,11 +51,11 @@ from viam.proto.common import (
     Vector3,
 )
 from viam.proto.component.arm import JointPositions
+from viam.proto.component.audioin import AudioChunk as AudioInChunk
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.encoder import PositionType
+from viam.streams import StreamWithIterator
 from viam.utils import SensorReading
-from viam.proto.component.audioin import AudioChunk as AudioInChunk
-from viam.proto.common import AudioInfo
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -188,9 +188,9 @@ class ExampleAudioIn(AudioIn):
         self.volume_scale = 0.2
         self.frequency_hz = 440
 
-    async def get_audio(self, codec: str, duration_seconds: float, previous_timestamp_ns: int,
-                       *, timeout: Optional[float] = None, **kwargs) -> AudioIn.AudioStream:
-
+    async def get_audio(
+        self, codec: str, duration_seconds: float, previous_timestamp_ns: int, *, timeout: Optional[float] = None, **kwargs
+    ) -> AudioIn.AudioStream:
         async def read() -> AsyncIterator[AudioIn.AudioResponse]:
             # Generate chunks based on duration
             chunk_duration_ms = 100  # 100ms per chunk
@@ -209,7 +209,7 @@ class ExampleAudioIn(AudioIn):
                     amplitude = int(32767 * self.volume_scale * math.sin(2 * math.pi * self.frequency_hz * time_offset))
 
                     # Convert to 16-bit PCM stereo
-                    sample_bytes = amplitude.to_bytes(2, byteorder='little', signed=True)
+                    sample_bytes = amplitude.to_bytes(2, byteorder="little", signed=True)
                     chunk_data += sample_bytes * self.num_channels
 
                 chunk_start_time = previous_timestamp_ns + (i * chunk_duration_ms * 1000000)  # Convert ms to ns
@@ -217,14 +217,10 @@ class ExampleAudioIn(AudioIn):
 
                 audio_chunk = AudioInChunk(
                     audio_data=bytes(chunk_data),
-                    audio_info=AudioInfo(
-                        codec=codec,
-                        sample_rate_hz=int(self.sample_rate),
-                        num_channels=self.num_channels
-                    ),
+                    audio_info=AudioInfo(codec=codec, sample_rate_hz=int(self.sample_rate), num_channels=self.num_channels),
                     sequence=i,
                     start_timestamp_nanoseconds=chunk_start_time,
-                    end_timestamp_nanoseconds=chunk_end_time
+                    end_timestamp_nanoseconds=chunk_end_time,
                 )
                 audio_response = AudioResponse(audio=audio_chunk)
                 yield audio_response
@@ -235,11 +231,7 @@ class ExampleAudioIn(AudioIn):
 
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
         """Return the audio input device properties."""
-        return AudioIn.Properties(
-            supported_codecs=self.supported_codecs,
-            sample_rate_hz=self.sample_rate,
-            num_channels=self.num_channels
-        )
+        return AudioIn.Properties(supported_codecs=self.supported_codecs, sample_rate_hz=self.sample_rate, num_channels=self.num_channels)
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
@@ -254,20 +246,23 @@ class ExampleAudioOut(AudioOut):
         self.volume = 1.0
         self.is_playing = False
 
-    async def play(self,
-                   data: bytes,
-                   info: Optional[AudioInfo] = None,
-                   *,
-                   extra: Optional[Dict[str, Any]] = None,
-                   timeout: Optional[float] = None,
-                   **kwargs) -> None:
+    async def play(
+        self,
+        data: bytes,
+        info: Optional[AudioInfo] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:
         """Play the given audio data."""
 
         # Simulate playing audio
         self.is_playing = True
         if info:
-            print(f"Playing audio: {len(data)} bytes, codec={info.codec}, "
-                  f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}")
+            print(
+                f"Playing audio: {len(data)} bytes, codec={info.codec}, " f"sample_rate={info.sample_rate_hz}, channels={info.num_channels}"
+            )
         else:
             print(f"Playing audio: {len(data)} bytes (no audio info provided)")
 
@@ -275,18 +270,12 @@ class ExampleAudioOut(AudioOut):
 
         self.is_playing = False
 
-    async def get_properties(self,
-                           *,
-                           extra: Optional[Dict[str, Any]] = None,
-                           timeout: Optional[float] = None,
-                           **kwargs) -> AudioOut.Properties:
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> AudioOut.Properties:
         """Return the audio output device properties."""
 
-        return AudioOut.Properties(
-            supported_codecs=self.supported_codecs,
-            sample_rate_hz=self.sample_rate,
-            num_channels=self.num_channels
-        )
+        return AudioOut.Properties(supported_codecs=self.supported_codecs, sample_rate_hz=self.sample_rate, num_channels=self.num_channels)
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
@@ -627,6 +616,9 @@ class ExampleGantry(Gantry):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
+    async def get_kinematics(self, *, extra=None, timeout=None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_UNSPECIFIED, b"abc")
+
 
 class ExampleGripper(Gripper):
     def __init__(self, name: str):
@@ -647,12 +639,7 @@ class ExampleGripper(Gripper):
         self.holding_something = random.choice([True, False])
         return self.holding_something
 
-    async def is_holding_something(
-        self,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        **kwargs
-    ) -> Gripper.HoldingStatus:
+    async def is_holding_something(self, *, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Gripper.HoldingStatus:
         return Gripper.HoldingStatus(self.holding_something)
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
