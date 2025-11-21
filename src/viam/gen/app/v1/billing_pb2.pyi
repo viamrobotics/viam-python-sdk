@@ -65,6 +65,8 @@ class _UsageCostTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._
     USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE: _UsageCostType.ValueType
     USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE: _UsageCostType.ValueType
     USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: _UsageCostType.ValueType
+    USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: _UsageCostType.ValueType
+    USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: _UsageCostType.ValueType
 
 class UsageCostType(_UsageCostType, metaclass=_UsageCostTypeEnumTypeWrapper):
     ...
@@ -93,6 +95,8 @@ USAGE_COST_TYPE_TRAINING_LOGS_EGRESS: UsageCostType.ValueType
 USAGE_COST_TYPE_TABULAR_DATA_DATABASE_CLOUD_STORAGE: UsageCostType.ValueType
 USAGE_COST_TYPE_TABULAR_DATA_DATABASE_COMPUTE: UsageCostType.ValueType
 USAGE_COST_TYPE_BINARY_DATA_CROSS_REGION_EGRESS: UsageCostType.ValueType
+USAGE_COST_TYPE_PIPELINE_SINK_CLOUD_STORAGE: UsageCostType.ValueType
+USAGE_COST_TYPE_PIPELINE_SINK_COMPUTE: UsageCostType.ValueType
 global___UsageCostType = UsageCostType
 
 class _SourceType:
