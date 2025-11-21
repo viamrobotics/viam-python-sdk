@@ -164,101 +164,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:268,</span> in <span class="ni">RobotClient._with_channel</span><span class="nt">(cls, channel, options, close_channel, robot_addr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">268</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:312,</span> in <span class="ni">RobotClient.refresh</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="sd"> Manually refresh the underlying parts of this machine.</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span><span class="sd"> For more information, see `Machine Management API &lt;https://docs.viam.com/appendix/apis/robot/&gt;`_.</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">312</span> <span class="n">response</span><span class="p">:</span> <span class="n">ResourceNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">ResourceNames</span><span class="p">(</span><span class="n">ResourceNamesRequest</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span> <span class="n">resource_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">resources</span><span class="p">)</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/.venv/lib/python3.12/site-packages/grpclib/client.py:903,</span> in <span class="ni">UnaryUnaryMethod.__call__</span><span class="nt">(self, message, timeout, metadata)</span>
-<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">903</span>     <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="n">reply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/.venv/lib/python3.12/site-packages/grpclib/client.py:241,</span> in <span class="ni">Stream.send_message</span><span class="nt">(self, message, end)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request_done</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="n">end_stream</span> <span class="o">=</span> <span class="n">end</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/.venv/lib/python3.12/site-packages/grpclib/client.py:173,</span> in <span class="ni">Stream.send_request</span><span class="nt">(self, end)</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">__connect__</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">protocol</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">connection</span>\
-<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">)</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/.venv/lib/python3.12/site-packages/grpclib/client.py:748,</span> in <span class="ni">Channel.__connect__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">748</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/.venv/lib/python3.12/site-packages/grpclib/client.py:725,</span> in <span class="ni">Channel._create_connection</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">724</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">725</span>     <span class="n">_</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">726</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_factory</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">727</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>         <span class="n">ssl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">730</span>         <span class="n">server_hostname</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">ssl_target_name_override</span>
-<span class="g g-Whitespace">    </span><span class="mi">732</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">733</span>         <span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">734</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">735</span> <span class="k">return</span> <span class="n">protocol</span>
-
-<span class="nn">File ~/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py:1140,</span> in <span class="ni">BaseEventLoop.create_connection</span><span class="nt">(self, protocol_factory, host, port, ssl, family, proto, flags, sock, local_addr, server_hostname, ssl_handshake_timeout, ssl_shutdown_timeout, happy_eyeballs_delay, interleave, all_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1138</span>         <span class="c1"># Raise a combined exception so the user can see all</span>
-<span class="g g-Whitespace">   </span><span class="mi">1139</span>         <span class="c1"># the various error messages.</span>
-<span class="ne">-&gt; </span><span class="mi">1140</span>         <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;Multiple exceptions: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1141</span>             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span> <span class="k">for</span> <span class="n">exc</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">)))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1142</span> <span class="k">finally</span><span class="p">:</span>
-
-<span class="ne">OSError</span>: Multiple exceptions: [Errno 111] Connect call failed (&#39;::1&#39;, 9091, 0, 0), [Errno 111] Connect call failed (&#39;127.0.0.1&#39;, 9091)
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s2">&quot;localhost:9091&quot;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
-
-<span class="nn">Cell In[3], line 8,</span> in <span class="ni">connect_with_channel</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">connect_with_channel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s2">&quot;localhost:9091&quot;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>         <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:238,</span> in <span class="ni">RobotClient.with_channel</span><span class="nt">(cls, channel, options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Create a machine that is connected to a machine over the given channel.</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="sd"> Any machines created using this method will *NOT* automatically close the channel upon exit.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span><span class="sd"> For more information, see `Establish a connection &lt;https://docs.viam.com/appendix/apis/robot/#establish-a-connection&gt;`_.</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">237</span> <span class="n">logging</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">238</span> <span class="k">return</span> <span class="k">await</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="nn">File ~/work/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:272,</span> in <span class="ni">RobotClient._with_channel</span><span class="nt">(cls, channel, options, close_channel, robot_addr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the machine. Ensure the machine is online and reachable and try again.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">271</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">272</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">&quot;Unable to establish a connection to the machine.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_refresh_metadata&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">277</span>     <span class="p">)</span>
-
-<span class="ne">ConnectionError</span>: Unable to establish a connection to the machine.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:audio_out/audio_out0 at 0x7fe3e845fbf0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fe3e8f48ae0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fe3e8f48a40&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fe3e8f48b30&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fe3e8f48b80&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fe3e8f48bd0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fe3e8f48c20&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fe3e8f48c70&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_in/audio_in0 at 0x7fe3e8f48cc0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fe3e8f48d10&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fe3e8f48d60&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fe3e8f48db0&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fe3e8f48e00&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fe3e8f48e50&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fe3e8f48ea0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fe3e8f48ef0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fe3e8f48f40&gt;]
 </pre></div>
 </div>
 </div>
@@ -287,7 +193,9 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<img alt="../_images/942fd3e1b0447021e5c19e0a0db6fe1551482233879b5c2d27c6880b66b0a115.png" src="../_images/942fd3e1b0447021e5c19e0a0db6fe1551482233879b5c2d27c6880b66b0a115.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7fe3f00c6570&gt;
+</pre></div>
+</div>
 </div>
 </details>
 </div>
@@ -714,6 +622,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight .gr { color: #E40000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #008400 } /* Generic.Inserted */
@@ -772,10 +681,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
 <span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">Capsule</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">Sphere</span>
 
 
 <span class="k">class</span> <span class="nc">MyCoolArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
@@ -796,6 +706,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="c1"># Starting joint positions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Geometry</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">Pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">o_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">o_y</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">o_z</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span> <span class="n">sphere</span><span class="o">=</span><span class="n">Sphere</span><span class="p">(</span><span class="n">radius_mm</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+            <span class="n">Geometry</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">Pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">o_x</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">o_y</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">o_z</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span> <span class="n">capsule</span><span class="o">=</span><span class="n">Capsule</span><span class="p">(</span><span class="n">radius_mm</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">length_mm</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="p">]</span>
 
         <span class="c1"># Minimal working kinematics model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
@@ -862,8 +776,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span>
 
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span>
+
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">KINEMATICS_FILE_FORMAT_SVA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This is a completely optional function to include. This will be called when the resource is removed from the config or the module</span>
+        <span class="c1"># is shutting down.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is closed.&quot;</span><span class="p">)</span>
 </pre></div>
 </div></div>
 </div>
@@ -894,13 +816,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vh/04mycgp163125hlq8k9bkl8w0000gn/T/ipykernel_50114/2037726754.py:15: RuntimeWarning: coroutine &#39;main&#39; was never awaited
-  pass
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 </pre></div>
 </div>
 </div>
@@ -1114,19 +1029,10 @@ RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}
-method_name: &quot;IsPowered&quot;
-Time requested: 2022-01-01 01:01:01
-Time received: 2022-12-31 23:59:59
-
-{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}
-location_id: &quot;loc-id&quot;
-Time requested: 2023-01-02 00:00:00
-Time received: 2023-03-04 00:00:00
-
-{&#39;Position&#39;: 0.0}
-Time requested: 2023-05-06 00:00:00
-Time received: 2023-07-08 00:00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=method_name: &quot;IsPowered&quot;
+, time_requested=datetime.datetime(2022, 1, 1, 1, 1, 1), time_received=datetime.datetime(2022, 12, 31, 23, 59, 59)), DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=location_id: &quot;loc-id&quot;
+, time_requested=datetime.datetime(2023, 1, 2, 0, 0), time_received=datetime.datetime(2023, 3, 4, 0, 0)), DataClient.TabularData(data={&#39;Position&#39;: 0.0}, metadata=, time_requested=datetime.datetime(2023, 5, 6, 0, 0), time_received=datetime.datetime(2023, 7, 8, 0, 0))]
+0
 </pre></div>
 </div>
 </div>
@@ -1147,6 +1053,11 @@ Time received: 2023-07-08 00:00:00
     <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_received_1</span><span class="p">)],</span>
     <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;PowerPCT&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;IsPowered&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&#39;
 </pre></div>
 </div>
 </div>

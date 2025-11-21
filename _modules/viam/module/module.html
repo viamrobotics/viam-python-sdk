@@ -150,11 +150,6 @@
 <span class="kn">from</span> <span class="nn">..services.slam</span> <span class="kn">import</span> <span class="n">SLAM</span>  <span class="c1"># noqa: F401</span>
 <span class="kn">from</span> <span class="nn">..services.vision</span> <span class="kn">import</span> <span class="n">Vision</span>  <span class="c1"># noqa: F401</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..services.mlmodel</span> <span class="kn">import</span> <span class="n">MLModel</span>  <span class="c1"># noqa: F401</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">pass</span>
-
 <span class="kn">from</span> <span class="nn">.service</span> <span class="kn">import</span> <span class="n">ModuleRPCService</span>
 <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Reconfigurable</span><span class="p">,</span> <span class="n">Stoppable</span>
 
