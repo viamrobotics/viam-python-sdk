@@ -60,7 +60,6 @@ from ..services.motion import Motion  # noqa: F401
 from ..services.navigation import Navigation  # noqa: F401
 from ..services.slam import SLAM  # noqa: F401
 from ..services.vision import Vision  # noqa: F401
-
 from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
