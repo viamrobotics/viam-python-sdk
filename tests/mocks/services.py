@@ -215,6 +215,8 @@ from viam.proto.app.data import (
     ConfigureDatabaseUserResponse,
     CreateIndexRequest,
     CreateIndexResponse,
+    CreateBinaryDataSignedURLRequest,
+    CreateBinaryDataSignedURLResponse,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
@@ -866,6 +868,8 @@ class MockData(UnimplementedDataServiceBase):
         self.was_binary_data_requested = False
         self.additional_params = additional_params
         self.list_indexes_response = list_indexes_response
+        self.signed_url_request_binary_data_id: Optional[str] = None
+        self.signed_url_request_expiration_minutes: Optional[int] = None
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -1095,6 +1099,17 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.delete_index_request = request
         await stream.send_message(DeleteIndexResponse())
+
+    async def CreateBinaryDataSignedURL(
+        self, stream: Stream[CreateBinaryDataSignedURLRequest, CreateBinaryDataSignedURLResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.signed_url_request_binary_data_id = request.binary_data_id
+        self.signed_url_request_expiration_minutes = request.expiration_minutes if request.HasField("expiration_minutes") else None
+        expires_at_ts = Timestamp()
+        expires_at_ts.FromDatetime(datetime.now())
+        await stream.send_message(CreateBinaryDataSignedURLResponse(signed_url="mock_signed_url", expires_at=expires_at_ts))
 
 
 class MockDataset(DatasetServiceBase):
