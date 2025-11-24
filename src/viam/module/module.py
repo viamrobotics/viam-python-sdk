@@ -63,6 +63,8 @@ from ..services.vision import Vision  # noqa: F401
 from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
+NO_MODULE_PARENT = os.environ.get("VIAM_NO_MODULE_PARENT", "").lower() == "true"
+
 
 def _parse_module_args() -> argparse.Namespace:
     """
@@ -156,6 +158,8 @@ class Module:
         self._lock = Lock()
 
     async def _connect_to_parent(self):
+        if NO_MODULE_PARENT:
+            return
         if self.parent is None:
             if self._parent_address is None:
                 raise ValueError("Parent address not found")
