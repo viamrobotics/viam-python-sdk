@@ -116,6 +116,8 @@
     <span class="n">CaptureInterval</span><span class="p">,</span>
     <span class="n">CaptureMetadata</span><span class="p">,</span>
     <span class="n">ConfigureDatabaseUserRequest</span><span class="p">,</span>
+    <span class="n">CreateBinaryDataSignedURLRequest</span><span class="p">,</span>
+    <span class="n">CreateBinaryDataSignedURLResponse</span><span class="p">,</span>
     <span class="n">CreateIndexRequest</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
@@ -2241,6 +2243,43 @@
             <span class="n">pipeline_name</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteIndex</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.create_binary_data_signed_url"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_binary_data_signed_url">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_binary_data_signed_url</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">binary_data_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">expiration_minutes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a signed URL for binary data.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            signed_url, expires_at = await data_client.create_binary_data_signed_url(</span>
+<span class="sd">                binary_data_id=&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;,</span>
+<span class="sd">                expiration_minutes=60</span>
+<span class="sd">            )</span>
+
+<span class="sd">            print(f&quot;Signed URL: {signed_url}&quot;)</span>
+<span class="sd">            print(f&quot;Expires at: {expires_at}&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_data_id (str): The binary data ID of the file to create a signed URL for.</span>
+<span class="sd">            expiration_minutes (Optional[int]): Expiration time in minutes. Defaults to 15 minutes if not specified.</span>
+<span class="sd">                Maximum allowed is 10080 minutes (7 days).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[str, datetime]: A tuple containing:</span>
+<span class="sd">                - ``signed_url`` (*str*): The signed URL for the binary data file.</span>
+<span class="sd">                - ``expires_at`` (*datetime*): The expiration time of the signed URL token.</span>
+
+<span class="sd">        For more information, see `Data Client API &lt;https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateBinaryDataSignedURLRequest</span><span class="p">(</span><span class="n">binary_data_id</span><span class="o">=</span><span class="n">binary_data_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">expiration_minutes</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">expiration_minutes</span> <span class="o">=</span> <span class="n">expiration_minutes</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateBinaryDataSignedURLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">CreateBinaryDataSignedURL</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">signed_url</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">expires_at</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DataClient.create_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_filter">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>

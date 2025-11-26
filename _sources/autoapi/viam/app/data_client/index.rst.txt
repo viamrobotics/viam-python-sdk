@@ -1801,6 +1801,39 @@ Module Contents
 
 
 
+   .. py:method:: create_binary_data_signed_url(binary_data_id: str, expiration_minutes: Optional[int] = None) -> Tuple[str, datetime.datetime]
+      :async:
+
+
+      Create a signed URL for binary data.
+
+      ::
+
+          signed_url, expires_at = await data_client.create_binary_data_signed_url(
+              binary_data_id="<YOUR-BINARY-DATA-ID>",
+              expiration_minutes=60
+          )
+
+          print(f"Signed URL: {signed_url}")
+          print(f"Expires at: {expires_at}")
+
+      :param binary_data_id: The binary data ID of the file to create a signed URL for.
+      :type binary_data_id: str
+      :param expiration_minutes: Expiration time in minutes. Defaults to 15 minutes if not specified.
+                                 Maximum allowed is 10080 minutes (7 days).
+      :type expiration_minutes: Optional[int]
+
+      :returns:
+
+                A tuple containing:
+                    - ``signed_url`` (*str*): The signed URL for the binary data file.
+                    - ``expires_at`` (*datetime*): The expiration time of the signed URL token.
+      :rtype: Tuple[str, datetime]
+
+      For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl>`_.
+
+
+
    .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None, dataset_id: Optional[str] = None) -> viam.proto.app.data.Filter
       :staticmethod:
 

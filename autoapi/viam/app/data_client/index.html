@@ -171,6 +171,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_index"><code class="docutils literal notranslate"><span class="pre">DataClient.create_index()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.list_indexes"><code class="docutils literal notranslate"><span class="pre">DataClient.list_indexes()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_index"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_index()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_binary_data_signed_url"><code class="docutils literal notranslate"><span class="pre">DataClient.create_binary_data_signed_url()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.app.data_client.DataClient.create_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.create_filter()</span></code></a></li>
 </ul>
 </li>
@@ -2035,6 +2036,44 @@ To find your organization ID, visit the organization settings page.</p></li>
 </dd>
 </dl>
 <p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#deleteindex">Data Client API</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.create_binary_data_signed_url">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_binary_data_signed_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expiration_minutes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.create_binary_data_signed_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.create_binary_data_signed_url" title="Permalink to this definition"></a></dt>
+<dd><p>Create a signed URL for binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signed_url</span><span class="p">,</span> <span class="n">expires_at</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_binary_data_signed_url</span><span class="p">(</span>
+    <span class="n">binary_data_id</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR-BINARY-DATA-ID&gt;&quot;</span><span class="p">,</span>
+    <span class="n">expiration_minutes</span><span class="o">=</span><span class="mi">60</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Signed URL: </span><span class="si">{</span><span class="n">signed_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expires at: </span><span class="si">{</span><span class="n">expires_at</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>binary_data_id</strong> (<em>str</em>) – The binary data ID of the file to create a signed URL for.</p></li>
+<li><p><strong>expiration_minutes</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Expiration time in minutes. Defaults to 15 minutes if not specified.
+Maximum allowed is 10080 minutes (7 days).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A tuple containing:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">signed_url</span></code> (<em>str</em>): The signed URL for the binary data file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expires_at</span></code> (<em>datetime</em>): The expiration time of the signed URL token.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[str, datetime]</p>
+</dd>
+</dl>
+<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl">Data Client API</a>.</p>
 </dd></dl>
 
 <dl class="py method">
