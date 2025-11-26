@@ -501,6 +501,27 @@ class TestClient:
             assert service.delete_index_request.index_name == INDEX_NAME
             assert service.delete_index_request.pipeline_name == PIPELINE_NAME
 
+    async def test_create_binary_data_signed_url(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            signed_url, expires_at = await client.create_binary_data_signed_url(
+                binary_data_id=BINARY_DATA_ID,
+                expiration_minutes=60,
+            )
+            assert service.binary_data_id == BINARY_DATA_ID
+            assert service.expiration_minutes == 60
+            assert signed_url == "https://example.com/signed-url"
+            assert expires_at == datetime(2024, 12, 25, 12, 0, 0)
+
+    async def test_create_binary_data_signed_url_default_expiration(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            signed_url, expires_at = await client.create_binary_data_signed_url(binary_data_id=BINARY_DATA_ID)
+            assert service.binary_data_id == BINARY_DATA_ID
+            assert service.expiration_minutes is None
+            assert signed_url == "https://example.com/signed-url"
+            assert expires_at == datetime(2024, 12, 25, 12, 0, 0)
+
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
         assert filter.component_type == COMPONENT_TYPE
