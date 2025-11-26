@@ -65,6 +65,8 @@ from viam.proto.app.data import (
     TabularDataSourceType,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    CreateBinaryDataSignedURLRequest,
+    CreateBinaryDataSignedURLResponse,
 )
 from viam.proto.app.datapipelines import (
     CreateDataPipelineRequest,
@@ -2189,3 +2191,36 @@ class DataClient:
             bbox_labels,
             dataset_id,
         )
+
+    async def create_binary_data_signed_url(
+        self,
+        binary_data_id: str,
+        expiration_minutes: Optional[int] = None,
+    ) -> Tuple[str, datetime]:
+        """Create a signed URL for binary data.
+
+        ::
+
+            signed_url, expires_at = await data_client.create_binary_data_signed_url(
+                binary_data_id="<YOUR-BINARY-DATA-ID>",
+                expiration_minutes=60
+            )
+
+            print(f"Signed URL: {signed_url}")
+            print(f"Expires At: {expires_at}")
+
+        Args:
+            binary_data_id (str): The binary data ID of the file to create a signed URL for.
+            expiration_minutes (Optional[int]): Expiration time in minutes. Defaults to 15 minutes if not specified.
+                Maximum allowed is 10080 minutes (7 days).
+
+        Returns:
+            Tuple[str, datetime]: A tuple containing the signed URL and its expiration time.
+
+        For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#createbinarydatasignedurl>`_.
+        """
+        request = CreateBinaryDataSignedURLRequest(binary_data_id=binary_data_id)
+        if expiration_minutes is not None:
+            request.expiration_minutes = expiration_minutes
+        response: CreateBinaryDataSignedURLResponse = await self._data_client.CreateBinaryDataSignedURL(request, metadata=self._metadata)
+        return response.signed_url, response.expires_at.ToDatetime()

@@ -15,6 +15,8 @@ from viam.proto.app.data import (
     BoundingBox,
     CaptureInterval,
     CaptureMetadata,
+    CreateBinaryDataSignedURLRequest,
+    CreateBinaryDataSignedURLResponse,
     ExportTabularDataResponse,
     Filter,
     Index,
@@ -500,6 +502,25 @@ class TestClient:
             assert service.delete_index_request.collection_type == COLLECTION_TYPE
             assert service.delete_index_request.index_name == INDEX_NAME
             assert service.delete_index_request.pipeline_name == PIPELINE_NAME
+
+    async def test_create_binary_data_signed_url(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            binary_data_id = "test_binary_data_id"
+            expiration_minutes = 30
+            signed_url, expires_at = await client.create_binary_data_signed_url(binary_data_id, expiration_minutes)
+
+            assert service.signed_url_request_binary_data_id == binary_data_id
+            assert service.signed_url_request_expiration_minutes == expiration_minutes
+            assert signed_url == "mock_signed_url"
+            assert isinstance(expires_at, datetime)
+
+            # Test with default expiration_minutes
+            signed_url, expires_at = await client.create_binary_data_signed_url(binary_data_id)
+            assert service.signed_url_request_binary_data_id == binary_data_id
+            assert service.signed_url_request_expiration_minutes is None
+            assert signed_url == "mock_signed_url"
+            assert isinstance(expires_at, datetime)
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
