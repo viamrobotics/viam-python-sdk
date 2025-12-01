@@ -2187,9 +2187,7 @@ class DataClient:
         request = CreateBinaryDataSignedURLRequest(binary_data_id=binary_data_id)
         if expiration_minutes is not None:
             request.expiration_minutes = expiration_minutes
-        response: CreateBinaryDataSignedURLResponse = await self._data_client.CreateBinaryDataSignedURL(
-            request, metadata=self._metadata
-        )
+        response: CreateBinaryDataSignedURLResponse = await self._data_client.CreateBinaryDataSignedURL(request, metadata=self._metadata)
         return response.signed_url, response.expires_at.ToDatetime()
 
     @staticmethod
