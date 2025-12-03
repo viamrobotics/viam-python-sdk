@@ -275,12 +275,14 @@ class TestService:
             pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
             pm_duration = Duration()
             pm_duration.FromTimedelta(timedelta(minutes=1))
-            request = SetPowerModeRequest(name=board.name, power_mode=pm_mode, duration=pm_duration)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            request = SetPowerModeRequest(name=board.name, power_mode=pm_mode, duration=pm_duration, extra=dict_to_struct(extra))
             response: SetPowerModeResponse = await client.SetPowerMode(request, timeout=6.66)
             assert response == SetPowerModeResponse()
             assert board.timeout == loose_approx(6.66)
             assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
             assert board.power_mode_duration == pm_duration.ToTimedelta()
+            assert board.extra == extra
 
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:

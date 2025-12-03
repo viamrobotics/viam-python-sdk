@@ -164,6 +164,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         await board.set_power_mode(
             mode=request.power_mode,
             duration=request.duration.ToTimedelta(),
+            extra=struct_to_dict(request.extra),
             timeout=timeout,
             metadata=stream.metadata,
         )
