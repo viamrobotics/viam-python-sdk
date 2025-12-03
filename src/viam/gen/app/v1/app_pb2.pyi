@@ -1953,6 +1953,7 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     END_FIELD_NUMBER: builtins.int
     LIMIT_FIELD_NUMBER: builtins.int
     SOURCE_FIELD_NUMBER: builtins.int
+    USER_FACING_ONLY_FIELD_NUMBER: builtins.int
     id: builtins.str
     errors_only: builtins.bool
     'TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field'
@@ -1960,6 +1961,7 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     page_token: builtins.str
     limit: builtins.int
     source: builtins.str
+    user_facing_only: builtins.bool
 
     @property
     def levels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -1973,13 +1975,13 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     def end(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=..., start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=..., limit: builtins.int | None=..., source: builtins.str | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=..., start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=..., limit: builtins.int | None=..., source: builtins.str | None=..., user_facing_only: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> None:
+    def ClearField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']) -> None:
         ...
 
     @typing.overload
@@ -2004,6 +2006,10 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_start', b'_start']) -> typing.Literal['start'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_user_facing_only', b'_user_facing_only']) -> typing.Literal['user_facing_only'] | None:
         ...
 global___GetRobotPartLogsRequest = GetRobotPartLogsRequest
 
