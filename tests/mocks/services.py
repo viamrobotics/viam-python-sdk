@@ -213,6 +213,8 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterResponse,
     ConfigureDatabaseUserRequest,
     ConfigureDatabaseUserResponse,
+    CreateBinaryDataSignedURLRequest,
+    CreateBinaryDataSignedURLResponse,
     CreateIndexRequest,
     CreateIndexResponse,
     DeleteBinaryDataByFilterRequest,
@@ -1095,6 +1097,17 @@ class MockData(UnimplementedDataServiceBase):
         assert request is not None
         self.delete_index_request = request
         await stream.send_message(DeleteIndexResponse())
+
+    async def CreateBinaryDataSignedURL(self, stream: Stream[CreateBinaryDataSignedURLRequest, CreateBinaryDataSignedURLResponse]) -> None:
+        from google.protobuf.timestamp_pb2 import Timestamp
+
+        request = await stream.recv_message()
+        assert request is not None
+        self.binary_data_id = request.binary_data_id
+        self.expiration_minutes = request.expiration_minutes if request.HasField("expiration_minutes") else None
+        expires_at = Timestamp()
+        expires_at.FromDatetime(datetime(2024, 12, 25, 12, 0, 0))
+        await stream.send_message(CreateBinaryDataSignedURLResponse(signed_url="https://example.com/signed-url", expires_at=expires_at))
 
 
 class MockDataset(DatasetServiceBase):

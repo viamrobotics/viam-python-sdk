@@ -1871,3 +1871,48 @@ class ListSavedQueriesResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['queries', b'queries']) -> None:
         ...
 global___ListSavedQueriesResponse = ListSavedQueriesResponse
+
+@typing.final
+class CreateBinaryDataSignedURLRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BINARY_DATA_ID_FIELD_NUMBER: builtins.int
+    EXPIRATION_MINUTES_FIELD_NUMBER: builtins.int
+    binary_data_id: builtins.str
+    'The binary data ID of the file to create a signed URL for.'
+    expiration_minutes: builtins.int
+    'Expiration time in minutes. Defaults to 15 minutes if not specified.\n    Maximum allowed is 10080 minutes (7 days).\n    '
+
+    def __init__(self, *, binary_data_id: builtins.str=..., expiration_minutes: builtins.int | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_expiration_minutes', b'_expiration_minutes', 'expiration_minutes', b'expiration_minutes']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_expiration_minutes', b'_expiration_minutes', 'binary_data_id', b'binary_data_id', 'expiration_minutes', b'expiration_minutes']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_expiration_minutes', b'_expiration_minutes']) -> typing.Literal['expiration_minutes'] | None:
+        ...
+global___CreateBinaryDataSignedURLRequest = CreateBinaryDataSignedURLRequest
+
+@typing.final
+class CreateBinaryDataSignedURLResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SIGNED_URL_FIELD_NUMBER: builtins.int
+    EXPIRES_AT_FIELD_NUMBER: builtins.int
+    signed_url: builtins.str
+    'The signed URL for the binary data file.'
+
+    @property
+    def expires_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Expiration time of the signed URL token."""
+
+    def __init__(self, *, signed_url: builtins.str=..., expires_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['expires_at', b'expires_at']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['expires_at', b'expires_at', 'signed_url', b'signed_url']) -> None:
+        ...
+global___CreateBinaryDataSignedURLResponse = CreateBinaryDataSignedURLResponse
