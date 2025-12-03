@@ -253,6 +253,7 @@
         <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">set_power_mode</span><span class="p">(</span>
             <span class="n">mode</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">power_mode</span><span class="p">,</span>
             <span class="n">duration</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">duration</span><span class="o">.</span><span class="n">ToTimedelta</span><span class="p">(),</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">),</span>
             <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span>
         <span class="p">)</span>
