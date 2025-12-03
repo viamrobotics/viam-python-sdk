@@ -5,6 +5,7 @@ import grpclib.client
 import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
+from .... import app
 from .... import common
 import google.api.annotations_pb2
 import google.api.httpbody_pb2
