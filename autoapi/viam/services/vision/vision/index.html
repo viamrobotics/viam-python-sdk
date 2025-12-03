@@ -312,7 +312,8 @@ from the given camera, with the given detector applied to it.</p>
 <span class="n">my_detector</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_detector&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
-<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># Get detections for that image</span>
 <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_detector</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
@@ -381,7 +382,8 @@ from the given camera, with the given detector applied to it.</p>
 <span class="n">my_classifier</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_classifier&quot;</span><span class="p">)</span>
 
 <span class="c1"># Get an image from the camera</span>
-<span class="n">img</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># Get the 2 classifications with the highest confidence scores for the image</span>
 <span class="n">classifications</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_classifier</span><span class="o">.</span><span class="n">get_classifications</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>

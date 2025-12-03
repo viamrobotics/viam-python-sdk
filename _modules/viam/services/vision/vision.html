@@ -257,7 +257,8 @@
 <span class="sd">            my_detector = VisionClient.from_robot(robot=machine, &quot;my_detector&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
-<span class="sd">            img = await my_camera.get_image()</span>
+<span class="sd">            images, _ = await my_camera.get_images()</span>
+<span class="sd">            img = images[0]</span>
 
 <span class="sd">            # Get detections for that image</span>
 <span class="sd">            detections = await my_detector.get_detections(img)</span>
@@ -324,7 +325,8 @@
 <span class="sd">            my_classifier = VisionClient.from_robot(robot=machine, &quot;my_classifier&quot;)</span>
 
 <span class="sd">            # Get an image from the camera</span>
-<span class="sd">            img = await my_camera.get_image()</span>
+<span class="sd">            images, _ = await my_camera.get_images()</span>
+<span class="sd">            img = images[0]</span>
 
 <span class="sd">            # Get the 2 classifications with the highest confidence scores for the image</span>
 <span class="sd">            classifications = await my_classifier.get_classifications(img, 2)</span>
