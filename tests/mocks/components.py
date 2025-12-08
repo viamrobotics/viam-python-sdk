@@ -436,7 +436,13 @@ class MockBoard(Board):
         return {"command": command}
 
     async def set_power_mode(
-        self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        mode: PowerMode.ValueType,
+        duration: Optional[timedelta] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ):
         self.extra = extra
         self.timeout = timeout
