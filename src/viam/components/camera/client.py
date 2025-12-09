@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 
 from grpclib.client import Channel
 
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -15,9 +15,10 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict, annotations_from_proto
 
 from . import Camera
+from ..camera import Image as CameraImage
 
 
 class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
@@ -50,7 +51,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[Sequence[NamedImage], ResponseMetadata]:
+    ) -> Tuple[Sequence[CameraImage], ResponseMetadata]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetImagesRequest(name=self.name, extra=dict_to_struct(extra), filter_source_names=filter_source_names)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
@@ -61,7 +62,8 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
             else:
                 # TODO(RSDK-11728): remove this once we deleted the format field
                 mime_type = CameraMimeType.from_proto(img_data.format)
-            img = NamedImage(img_data.source_name, img_data.image, mime_type)
+            annotations = annotations_from_proto(img_data.annotations) if img_data.HasField("annotations") else None
+            img = CameraImage(img_data.source_name, img_data.image, mime_type, annotations)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata
         return imgs, resp_metadata

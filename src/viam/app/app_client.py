@@ -171,6 +171,7 @@ from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
 from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
+from viam.proto.app.data.v1 import Annotations as AnnotationsPB, BoundingBox as BoundingBoxPB, Classification as ClassificationPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
@@ -210,6 +211,8 @@ class RobotPart:
         self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
         self.secrets = list(robot_part.secrets)
         self.last_updated = robot_part.last_updated.ToDatetime() if robot_part.HasField("last_updated") else None
+        self.online_state = OnlineState(robot_part.online_state)
+        self.seconds_since_online = robot_part.seconds_since_online
         return self
 
     id: str
@@ -227,6 +230,8 @@ class RobotPart:
     created_on: Optional[datetime]
     secrets: Optional[List[SharedSecret]]
     last_updated: Optional[datetime]
+    online_state: OnlineState
+    seconds_since_online: int
 
     @property
     def proto(self) -> RobotPartPB:
@@ -246,6 +251,8 @@ class RobotPart:
             created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
             secrets=self.secrets,
             last_updated=datetime_to_timestamp(self.last_updated) if self.last_updated else None,
+            online_state=self.online_state.value,
+            seconds_since_online=self.seconds_since_online,
         )
 
 
@@ -1140,8 +1147,7 @@ class AppClient:
             loc_auth = await cloud.location_auth(location_id="123xy12345")
 
         Args:
-            location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`
-                instantiation.
+            location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient` instantiation.
 
         Raises:
             GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
@@ -1319,6 +1325,7 @@ class AppClient:
         dest: Optional[str] = None,
         log_levels: List[str] = [],
         num_log_entries: int = 100,
+        user_facing_only: bool = False,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -1337,6 +1344,7 @@ class AppClient:
             log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                 `num_log_entries` logs will be returned, whichever comes first.
+            user_facing_only (bool): If true, only return logs that are intended for the end-user. Defaults to False.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -1354,7 +1362,7 @@ class AppClient:
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels
+                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels, user_facing_only=user_facing_only
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1382,14 +1390,14 @@ class AppClient:
         return logs
 
     async def _get_robot_part_logs(
-        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str], user_facing_only: bool
     ) -> Tuple[List[LogEntry], str]:
-        request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
+        request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels, user_facing_only=user_facing_only)
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
     async def tail_robot_part_logs(
-        self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
+        self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None, user_facing_only: bool = False
     ) -> _LogsStream[List[LogEntry]]:
         """Get an asynchronous iterator that receives live machine part logs.
 
@@ -1404,6 +1412,7 @@ class AppClient:
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (that is,
                 no filter).
+            user_facing_only (bool): If true, only return logs that are intended for the end-user. Defaults to False.
 
         Returns:
             _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live machine part logs.
@@ -1412,7 +1421,7 @@ class AppClient:
         async def read() -> AsyncIterator[List[LogEntry]]:
             async with self._app_client.TailRobotPartLogs.open(metadata=self._metadata) as stream:
                 await stream.send_message(
-                    TailRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter if filter else "")
+                    TailRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter if filter else "", user_facing_only=user_facing_only)
                 )
 
                 while True:

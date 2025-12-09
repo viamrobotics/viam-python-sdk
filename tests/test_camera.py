@@ -28,6 +28,9 @@ from viam.proto.component.camera import (
 )
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import Annotations, BoundingBox, Classification
+from viam.proto.app.data.v1 import Annotations as AnnotationsPB, BoundingBox as BoundingBoxPB, Classification as ClassificationPB
+from viam.components.camera.camera import Image as CameraImage
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockCamera
@@ -68,8 +71,21 @@ def properties() -> Camera.Properties:
 
 
 @pytest.fixture(scope="function")
-def camera() -> MockCamera:
-    return MockCamera("camera")
+def bbox() -> BoundingBox:
+    return BoundingBox(id="bbox_id", label="label", x_min_normalized=0.1, y_min_normalized=0.2, x_max_normalized=0.3, y_max_normalized=0.4, confidence=0.9)
+
+@pytest.fixture(scope="function")
+def classification() -> Classification:
+    return Classification(id="class_id", label="class_label", confidence=0.8)
+
+@pytest.fixture(scope="function")
+def annotations(bbox: BoundingBox, classification: Classification) -> Annotations:
+    return Annotations(bboxes=[bbox], classifications=[classification])
+
+
+@pytest.fixture(scope="function")
+def camera(annotations: Annotations) -> MockCamera:
+    return MockCamera("camera", annotations=annotations)
 
 
 @pytest.fixture(scope="function")
@@ -93,11 +109,12 @@ class TestCamera:
         img = await camera.get_image(CameraMimeType.PNG, {"1": 1})
         assert camera.extra == {"1": 1}
 
-    async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
+    async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata, annotations: Annotations):
         imgs, md = await camera.get_images()
-        assert isinstance(imgs[0], NamedImage)
+        assert isinstance(imgs[0], CameraImage)
         assert imgs[0].name == camera.name
         assert imgs[0].data == image.data
+        assert imgs[0].annotations == annotations
         assert md == metadata
 
     async def test_get_point_cloud(self, camera: MockCamera, point_cloud: bytes):
@@ -152,7 +169,7 @@ class TestService:
             assert response.image == image.data
             assert response.mime_type == image.mime_type
 
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata):
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata, annotations: Annotations):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -163,20 +180,22 @@ class TestService:
             assert raw_img.format == Format.FORMAT_PNG
             assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
+            assert raw_img.annotations.bboxes[0].label == annotations.bboxes[0].label
+            assert raw_img.annotations.classifications[0].label == annotations.classifications[0].label
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.1)
 
     async def test_get_images_uses_source_name_not_resource_name(self):
         class MockCameraWithCustomSource(MockCamera):
-            def __init__(self, name: str, source_name: str):
-                super().__init__(name)
+            def __init__(self, name: str, source_name: str, annotations: Annotations):
+                super().__init__(name, annotations=annotations)
                 self._source_name = source_name
 
             async def get_images(self, timeout: Optional[float] = None, **kwargs):
                 self.timeout = timeout
-                return [NamedImage(self._source_name, self.image.data, self.image.mime_type)], self.metadata
+                return [CameraImage(self._source_name, self.image.data, self.image.mime_type, self.annotations)], self.metadata
 
-        custom_camera = MockCameraWithCustomSource("camera", "the_source")
+        custom_camera = MockCameraWithCustomSource("camera", "the_source", annotations)
         rm = ResourceManager([custom_camera])
         service = CameraRPCService(rm)
 
@@ -244,15 +263,16 @@ class TestClient:
             assert img.data == image.data
             assert img.mime_type == image.mime_type
 
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: ViamImage, metadata: ResponseMetadata):
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: ViamImage, metadata: ResponseMetadata, annotations: Annotations):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
             imgs, md = await client.get_images(timeout=1.82)
-            assert isinstance(imgs[0], NamedImage)
+            assert isinstance(imgs[0], CameraImage)
             assert imgs[0].name == camera.name
             assert imgs[0].data == image.data
+            assert imgs[0].annotations == annotations
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)
 

@@ -42,6 +42,8 @@ from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
+from viam.utils import Annotations, BoundingBox, Classification
+from viam.components.camera.camera import Image as CameraImage
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -457,7 +459,7 @@ class MockBoard(Board):
 
 
 class MockCamera(Camera):
-    def __init__(self, name: str):
+    def __init__(self, name: str, annotations: Optional[Annotations] = None):
         self.image = ViamImage(b"data", CameraMimeType.PNG)
         self.geometries = GEOMETRIES
         self.point_cloud = b"THIS IS A POINT CLOUD"
@@ -473,6 +475,7 @@ class MockCamera(Camera):
         ts = Timestamp()
         ts.FromDatetime(datetime(1970, 1, 1))
         self.metadata = ResponseMetadata(captured_at=ts)
+        self.annotations: Optional[Annotations] = annotations
         super().__init__(name)
 
     async def get_image(
@@ -482,9 +485,10 @@ class MockCamera(Camera):
         self.timeout = timeout
         return self.image
 
-    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(self, *, filter_source_names: Optional[Sequence[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[List[CameraImage], ResponseMetadata]:
         self.timeout = timeout
-        return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
+        self.extra = extra
+        return [CameraImage(self.name, self.image.data, self.image.mime_type, self.annotations)], self.metadata
 
     async def get_point_cloud(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs

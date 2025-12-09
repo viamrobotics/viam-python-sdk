@@ -12,6 +12,7 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.proto.app.data import CaptureInterval, Filter, TagsFilter
+from viam.proto.app.data.v1 import Annotations as AnnotationsPB, BoundingBox as BoundingBoxPB, Classification as ClassificationPB
 from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
@@ -242,6 +243,103 @@ class PointerCounter:
         with self._lock:
             return self._count
 
+
+@dataclass(frozen=True)
+class BoundingBox:
+    """BoundingBox represents a labeled bounding box on an image.
+x and y values are normalized ratios between 0 and 1.
+"""
+
+    id: str
+    label: str
+    x_min_normalized: float
+    y_min_normalized: float
+    x_max_normalized: float
+    y_max_normalized: float
+    confidence: Optional[float]
+
+    @classmethod
+    def from_proto(cls, bbox: BoundingBoxPB) -> "BoundingBox":
+        return cls(
+            id=bbox.id,
+            label=bbox.label,
+            x_min_normalized=bbox.x_min_normalized,
+            y_min_normalized=bbox.y_min_normalized,
+            x_max_normalized=bbox.x_max_normalized,
+            y_max_normalized=bbox.y_max_normalized,
+            confidence=bbox.confidence if bbox.HasField("confidence") else None,
+        )
+
+    @property
+    def proto(self) -> BoundingBoxPB:
+        return BoundingBoxPB(
+            id=self.id,
+            label=self.label,
+            x_min_normalized=self.x_min_normalized,
+            y_min_normalized=self.y_min_normalized,
+            x_max_normalized=self.x_max_normalized,
+            y_max_normalized=self.y_max_normalized,
+            confidence=self.confidence,
+        )
+
+
+@dataclass(frozen=True)
+class Classification:
+    """Classification represents a confidence score with a label.
+"""
+
+    id: str
+    label: str
+    confidence: Optional[float]
+
+    @classmethod
+    def from_proto(cls, classification: ClassificationPB) -> "Classification":
+        return cls(
+            id=classification.id,
+            label=classification.label,
+            confidence=classification.confidence if classification.HasField("confidence") else None,
+        )
+
+    @property
+    def proto(self) -> ClassificationPB:
+        return ClassificationPB(
+            id=self.id,
+            label=self.label,
+            confidence=self.confidence,
+        )
+
+
+@dataclass(frozen=True)
+class Annotations:
+    """Annotations are data annotations used for machine learning.
+"""
+
+    bboxes: List[BoundingBox]
+    classifications: List[Classification]
+
+    @classmethod
+    def from_proto(cls, annotations: AnnotationsPB) -> "Annotations":
+        return cls(
+            bboxes=[BoundingBox.from_proto(bbox) for bbox in annotations.bboxes],
+            classifications=[Classification.from_proto(classification) for classification in annotations.classifications],
+        )
+
+    @property
+    def proto(self) -> AnnotationsPB:
+        return AnnotationsPB(
+            bboxes=[bbox.proto for bbox in self.bboxes],
+            classifications=[classification.proto for classification in self.classifications],
+        )
+
+def annotations_from_proto(annotations_proto: AnnotationsPB) -> Optional[Annotations]:
+    if not annotations_proto.bboxes and not annotations_proto.classifications:
+        return None
+    return Annotations.from_proto(annotations_proto)
+
+def annotations_to_proto(annotations: Optional[Annotations]) -> Optional[AnnotationsPB]:
+    if annotations is None:
+        return None
+    return annotations.proto
 
 _P = ParamSpec("_P")
 _R = TypeVar("_R")

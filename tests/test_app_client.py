@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
+from viam.app.app_client import APIKeyAuthorization, AppClient, OnlineState, Fragment, FragmentVisibilityPB
 from viam.proto.app import (
     APIKey,
     APIKeyWithAuthorizations,
@@ -30,6 +30,7 @@ from viam.proto.app import (
     Visibility,
 )
 from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import OnlineState as OnlineStatePB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry
 from viam.utils import datetime_to_timestamp, struct_to_dict
@@ -88,6 +89,8 @@ ROBOT_PART = RobotPart(
     created_on=TIME,
     secrets=None,
     last_updated=TIME,
+    online_state=OnlineStatePB.ONLINE_STATE_ONLINE,
+    seconds_since_online=123,
 )
 ROBOT_PARTS = [ROBOT_PART]
 ROVER_RENTAL_ROBOT = RoverRentalRobot(
@@ -105,7 +108,7 @@ LEVEL = "level"
 LOGGER_NAME = "logger_name"
 MESSAGE = "message"
 STACK = "stack"
-LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None)
+LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None, user_facing_only=True)
 LOG_ENTRIES = [LOG_ENTRY]
 ROBOT_CONFIG = {"key": "value"}
 FRAGMENT_VISIBILITY = [Fragment.Visibility.PUBLIC]
@@ -235,6 +238,8 @@ def service() -> MockApp:
         api_keys_with_authorizations=API_KEYS_WITH_AUTHORIZATIONS,
         items=[ITEM],
         package_type=PACKAGE_TYPE,
+        online_state=OnlineStatePB.ONLINE_STATE_ONLINE,
+        seconds_since_online=123,
     )
 
 
@@ -446,24 +451,28 @@ class TestClient:
             robot_part = await client.get_robot_part(robot_part_id=ID, indent=NUM)
             assert service.robot_part_id == ID
             assert robot_part.proto == ROBOT_PART
+            assert robot_part.online_state == OnlineState.ONLINE
+            assert robot_part.seconds_since_online == 123
 
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)
-            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM)
+            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, log_levels=LOG_LEVELS, num_log_entries=NUM, user_facing_only=True)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
             assert service.levels == LOG_LEVELS
+            assert service.user_facing_only is True
             assert [log_entry.proto for log_entry in log_entries] == LOG_ENTRIES
 
     async def test_tail_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)
-            logs_stream = await client.tail_robot_part_logs(robot_part_id=ID, errors_only=ERRORS_ONLY, filter=FILTER)
+            logs_stream = await client.tail_robot_part_logs(robot_part_id=ID, errors_only=ERRORS_ONLY, filter=FILTER, user_facing_only=True)
             [logs async for logs in logs_stream]  # Iterate over returned value to implicitly call __anext__() so server runs properly.
             assert service.robot_part_id == ID
             assert service.errors_only == ERRORS_ONLY
             assert service.filter == FILTER
+            assert service.user_facing_only is True
 
     async def test_get_robot_part_history(self, service: MockApp):
         async with ChannelFor([service]) as channel:

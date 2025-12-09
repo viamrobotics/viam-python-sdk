@@ -1,11 +1,13 @@
 import abc
 import sys
+from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Sequence, Tuple
 
-from viam.media.video import NamedImage, ViamImage
+from viam.media.video import ViamImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
+from viam.utils import Annotations
 
 from ..component_base import ComponentBase
 
@@ -62,6 +64,21 @@ class Camera(ComponentBase):
         """
         ...
 
+    @dataclass(frozen=True)
+    class Image:
+        """
+        Image represents a single image returned from a camera.
+        """
+
+        name: str
+        """The name of the sensor where the image came from"""
+        data: bytes
+        """Image in bytes"""
+        mime_type: str
+        """The mime type of the image"""
+        annotations: Optional[Annotations] = None
+        """Annotations can be used to store additional information about the image"""
+
     @abc.abstractmethod
     async def get_images(
         self,
@@ -70,7 +87,7 @@ class Camera(ComponentBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[Sequence[NamedImage], ResponseMetadata]:
+    ) -> Tuple[Sequence[Image], ResponseMetadata]:
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
 
@@ -87,7 +104,7 @@ class Camera(ComponentBase):
                 source names. When unspecified, all images are returned.
 
         Returns:
-            Tuple[Sequence[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
+            Tuple[Sequence[Image], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
             returned from the camera system, and the second [1] the metadata associated with this response.
 
         For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimages>`_.

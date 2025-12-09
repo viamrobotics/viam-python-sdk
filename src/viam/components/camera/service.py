@@ -19,9 +19,10 @@ from viam.proto.component.camera import (
     RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, Annotations, annotations_to_proto
 
 from . import Camera
+from . import Image as CameraImage
 
 
 class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
@@ -61,7 +62,8 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
 
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            annotations_proto = annotations_to_proto(img.annotations)
+            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes, annotations=annotations_proto))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
