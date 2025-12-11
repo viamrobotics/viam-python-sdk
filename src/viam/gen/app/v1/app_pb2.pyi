@@ -20,6 +20,25 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _OnlineState:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _OnlineStateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_OnlineState.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    ONLINE_STATE_UNSPECIFIED: _OnlineState.ValueType
+    ONLINE_STATE_ONLINE: _OnlineState.ValueType
+    ONLINE_STATE_OFFLINE: _OnlineState.ValueType
+    ONLINE_STATE_AWAITING_SETUP: _OnlineState.ValueType
+
+class OnlineState(_OnlineState, metaclass=_OnlineStateEnumTypeWrapper):
+    ...
+ONLINE_STATE_UNSPECIFIED: OnlineState.ValueType
+ONLINE_STATE_ONLINE: OnlineState.ValueType
+ONLINE_STATE_OFFLINE: OnlineState.ValueType
+ONLINE_STATE_AWAITING_SETUP: OnlineState.ValueType
+global___OnlineState = OnlineState
+
 class _AuthenticationType:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -226,9 +245,13 @@ class Robot(google.protobuf.message.Message):
     LOCATION_FIELD_NUMBER: builtins.int
     LAST_ACCESS_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
+    ONLINE_STATE_FIELD_NUMBER: builtins.int
+    SECONDS_SINCE_ONLINE_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     location: builtins.str
+    online_state: global___OnlineState.ValueType
+    seconds_since_online: builtins.int
 
     @property
     def last_access(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -238,13 +261,13 @@ class Robot(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., online_state: global___OnlineState.ValueType=..., seconds_since_online: builtins.int=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name', 'online_state', b'online_state', 'seconds_since_online', b'seconds_since_online']) -> None:
         ...
 global___Robot = Robot
 
@@ -266,6 +289,8 @@ class RobotPart(google.protobuf.message.Message):
     CREATED_ON_FIELD_NUMBER: builtins.int
     SECRETS_FIELD_NUMBER: builtins.int
     LAST_UPDATED_FIELD_NUMBER: builtins.int
+    ONLINE_STATE_FIELD_NUMBER: builtins.int
+    SECONDS_SINCE_ONLINE_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     dns_name: builtins.str
@@ -277,6 +302,8 @@ class RobotPart(google.protobuf.message.Message):
     main_part: builtins.bool
     fqdn: builtins.str
     local_fqdn: builtins.str
+    online_state: global___OnlineState.ValueType
+    seconds_since_online: builtins.int
 
     @property
     def robot_config(self) -> google.protobuf.struct_pb2.Struct:
@@ -302,13 +329,13 @@ class RobotPart(google.protobuf.message.Message):
     def last_updated(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """latest timestamp when a robot part was updated"""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None=..., online_state: global___OnlineState.ValueType=..., seconds_since_online: builtins.int=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access', 'last_updated', b'last_updated', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'last_updated', b'last_updated', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'last_updated', b'last_updated', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'online_state', b'online_state', 'robot', b'robot', 'robot_config', b'robot_config', 'seconds_since_online', b'seconds_since_online', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
         ...
 global___RobotPart = RobotPart
 
@@ -1953,6 +1980,7 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     END_FIELD_NUMBER: builtins.int
     LIMIT_FIELD_NUMBER: builtins.int
     SOURCE_FIELD_NUMBER: builtins.int
+    USER_FACING_ONLY_FIELD_NUMBER: builtins.int
     id: builtins.str
     errors_only: builtins.bool
     'TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field'
@@ -1960,6 +1988,7 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     page_token: builtins.str
     limit: builtins.int
     source: builtins.str
+    user_facing_only: builtins.bool
 
     @property
     def levels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -1973,13 +2002,13 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     def end(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=..., start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=..., limit: builtins.int | None=..., source: builtins.str | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=..., start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=..., limit: builtins.int | None=..., source: builtins.str | None=..., user_facing_only: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> None:
+    def ClearField(self, field_name: typing.Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']) -> None:
         ...
 
     @typing.overload
@@ -2004,6 +2033,10 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_start', b'_start']) -> typing.Literal['start'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_user_facing_only', b'_user_facing_only']) -> typing.Literal['user_facing_only'] | None:
         ...
 global___GetRobotPartLogsRequest = GetRobotPartLogsRequest
 
@@ -3184,6 +3217,9 @@ class PartSummary(google.protobuf.message.Message):
     PART_ID_FIELD_NUMBER: builtins.int
     PART_NAME_FIELD_NUMBER: builtins.int
     IS_MAIN_PART_FIELD_NUMBER: builtins.int
+    ONLINE_STATE_FIELD_NUMBER: builtins.int
+    SECONDS_SINCE_ONLINE_FIELD_NUMBER: builtins.int
+    LAST_ACCESS_FIELD_NUMBER: builtins.int
     LAST_ONLINE_FIELD_NUMBER: builtins.int
     VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
     VIAM_AGENT_VERSION_FIELD_NUMBER: builtins.int
@@ -3195,10 +3231,16 @@ class PartSummary(google.protobuf.message.Message):
     part_id: builtins.str
     part_name: builtins.str
     is_main_part: builtins.bool
+    online_state: global___OnlineState.ValueType
+    seconds_since_online: builtins.int
     os: builtins.str
     platform: builtins.str
     public_ip_address: builtins.str
     dns_name: builtins.str
+
+    @property
+    def last_access(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
 
     @property
     def last_online(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -3216,17 +3258,21 @@ class PartSummary(google.protobuf.message.Message):
     def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentSummary]:
         ...
 
-    def __init__(self, *, part_id: builtins.str=..., part_name: builtins.str=..., is_main_part: builtins.bool=..., last_online: google.protobuf.timestamp_pb2.Timestamp | None=..., viam_server_version: global___ViamServerVersion | None=..., viam_agent_version: global___ViamAgentVersion | None=..., os: builtins.str | None=..., platform: builtins.str | None=..., public_ip_address: builtins.str | None=..., dns_name: builtins.str | None=..., fragments: collections.abc.Iterable[global___FragmentSummary] | None=...) -> None:
+    def __init__(self, *, part_id: builtins.str=..., part_name: builtins.str=..., is_main_part: builtins.bool=..., online_state: global___OnlineState.ValueType=..., seconds_since_online: builtins.int=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., last_online: google.protobuf.timestamp_pb2.Timestamp | None=..., viam_server_version: global___ViamServerVersion | None=..., viam_agent_version: global___ViamAgentVersion | None=..., os: builtins.str | None=..., platform: builtins.str | None=..., public_ip_address: builtins.str | None=..., dns_name: builtins.str | None=..., fragments: collections.abc.Iterable[global___FragmentSummary] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_access', b'_last_access', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_access', b'last_access', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'fragments', b'fragments', 'is_main_part', b'is_main_part', 'last_online', b'last_online', 'os', b'os', 'part_id', b'part_id', 'part_name', b'part_name', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> None:
+    def ClearField(self, field_name: typing.Literal['_dns_name', b'_dns_name', '_last_access', b'_last_access', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'fragments', b'fragments', 'is_main_part', b'is_main_part', 'last_access', b'last_access', 'last_online', b'last_online', 'online_state', b'online_state', 'os', b'os', 'part_id', b'part_id', 'part_name', b'part_name', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'seconds_since_online', b'seconds_since_online', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> None:
         ...
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_dns_name', b'_dns_name']) -> typing.Literal['dns_name'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_last_access', b'_last_access']) -> typing.Literal['last_access'] | None:
         ...
 
     @typing.overload
