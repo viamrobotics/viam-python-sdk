@@ -12,6 +12,7 @@ import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
+from ... import opentelemetry
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -36,6 +37,30 @@ PEER_CONNECTION_TYPE_UNSPECIFIED: PeerConnectionType.ValueType
 PEER_CONNECTION_TYPE_GRPC: PeerConnectionType.ValueType
 PEER_CONNECTION_TYPE_WEBRTC: PeerConnectionType.ValueType
 global___PeerConnectionType = PeerConnectionType
+
+@typing.final
+class SendTracesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_SPANS_FIELD_NUMBER: builtins.int
+
+    @property
+    def resource_spans(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans]:
+        ...
+
+    def __init__(self, *, resource_spans: collections.abc.Iterable[opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['resource_spans', b'resource_spans']) -> None:
+        ...
+global___SendTracesRequest = SendTracesRequest
+
+@typing.final
+class SendTracesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SendTracesResponse = SendTracesResponse
 
 @typing.final
 class TunnelRequest(google.protobuf.message.Message):
