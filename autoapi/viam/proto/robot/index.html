@@ -68,6 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../common/index.html">viam.proto.common</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component/index.html">viam.proto.component</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../module/index.html">viam.proto.module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../opentelemetry/index.html">viam.proto.opentelemetry</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../provisioning/index.html">viam.proto.provisioning</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">viam.proto.robot</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
@@ -97,6 +98,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetPose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.TransformPose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPCD"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.TransformPCD()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.SendTraces"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.SendTraces()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -125,6 +127,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceStub.GetPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub.GetPose</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceStub.TransformPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub.TransformPose</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceStub.TransformPCD"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub.TransformPCD</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceStub.SendTraces"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub.SendTraces</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase</span></code></a><ul>
@@ -152,6 +155,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.GetPose"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.GetPose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.TransformPose"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.TransformPose()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.TransformPCD"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.TransformPCD()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.UnimplementedRobotServiceBase.SendTraces"><code class="docutils literal notranslate"><span class="pre">UnimplementedRobotServiceBase.SendTraces()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.BlockForOperationRequest"><code class="docutils literal notranslate"><span class="pre">BlockForOperationRequest</span></code></a><ul>
@@ -338,6 +342,11 @@
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatResponse"><code class="docutils literal notranslate"><span class="pre">SendSessionHeartbeatResponse</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.SendTracesRequest"><code class="docutils literal notranslate"><span class="pre">SendTracesRequest</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.SendTracesRequest.resource_spans"><code class="docutils literal notranslate"><span class="pre">SendTracesRequest.resource_spans</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.SendTracesResponse"><code class="docutils literal notranslate"><span class="pre">SendTracesResponse</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.robot.Session"><code class="docutils literal notranslate"><span class="pre">Session</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Session.id"><code class="docutils literal notranslate"><span class="pre">Session.id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Session.peer_connection_info"><code class="docutils literal notranslate"><span class="pre">Session.peer_connection_info</span></code></a></li>
@@ -605,6 +614,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatResponse" title="viam.proto.robot.SendSessionHeartbeatResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendSessionHeartbeatResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.SendTracesRequest" title="viam.proto.robot.SendTracesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendTracesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.SendTracesResponse" title="viam.proto.robot.SendTracesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendTracesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.Session" title="viam.proto.robot.Session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Session</span></code></a></p></td>
@@ -889,6 +904,15 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.SendTraces">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SendTraces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendTracesRequest" title="viam.gen.robot.v1.robot_pb2.SendTracesRequest"><span class="pre">robot.v1.robot_pb2.SendTracesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.SendTracesResponse"><span class="pre">robot.v1.robot_pb2.SendTracesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.SendTraces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.SendTraces" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1018,6 +1042,11 @@ inheritance.</p>
 <span class="sig-name descname"><span class="pre">TransformPCD</span></span><a class="headerlink" href="#viam.proto.robot.RobotServiceStub.TransformPCD" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceStub.SendTraces">
+<span class="sig-name descname"><span class="pre">SendTraces</span></span><a class="headerlink" href="#viam.proto.robot.RobotServiceStub.SendTraces" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1144,6 +1173,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.UnimplementedRobotServiceBase.TransformPCD">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TransformPCD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPCDRequest" title="viam.gen.robot.v1.robot_pb2.TransformPCDRequest"><span class="pre">robot.v1.robot_pb2.TransformPCDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPCDResponse" title="viam.gen.robot.v1.robot_pb2.TransformPCDResponse"><span class="pre">robot.v1.robot_pb2.TransformPCDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#UnimplementedRobotServiceBase.TransformPCD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.UnimplementedRobotServiceBase.TransformPCD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.UnimplementedRobotServiceBase.SendTraces">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SendTraces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendTracesRequest" title="viam.gen.robot.v1.robot_pb2.SendTracesRequest"><span class="pre">robot.v1.robot_pb2.SendTracesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.SendTracesResponse"><span class="pre">robot.v1.robot_pb2.SendTracesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#UnimplementedRobotServiceBase.SendTraces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.UnimplementedRobotServiceBase.SendTraces" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2277,6 +2311,31 @@ shown below.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.SendSessionHeartbeatResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">SendSessionHeartbeatResponse</span></span><a class="headerlink" href="#viam.proto.robot.SendSessionHeartbeatResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.SendTracesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">SendTracesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/opentelemetry/proto/trace/v1/trace_pb2/index.html#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.SendTracesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.SendTracesRequest.resource_spans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_spans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/opentelemetry/proto/trace/v1/trace_pb2/index.html#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.SendTracesRequest.resource_spans" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.SendTracesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">SendTracesResponse</span></span><a class="headerlink" href="#viam.proto.robot.SendTracesResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol

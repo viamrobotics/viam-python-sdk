@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.gen.opentelemetry.proto.trace.v1.trace_pb2 &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../../../../../" id="documentation_options" src="../../../../../../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../proto/index.html">viam.proto</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">viam.gen.opentelemetry.proto.trace.v1.trace_pb2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../../../_sources/autoapi/viam/gen/opentelemetry/proto/trace/v1/trace_pb2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.gen.opentelemetry.proto.trace.v1.trace_pb2">
+<span id="viam-gen-opentelemetry-proto-trace-v1-trace-pb2"></span><h1>viam.gen.opentelemetry.proto.trace.v1.trace_pb2<a class="headerlink" href="#module-viam.gen.opentelemetry.proto.trace.v1.trace_pb2" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by mypy-protobuf.  Do not edit manually!
+isort:skip_file
+Copyright 2019, OpenTelemetry Authors</p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div></blockquote>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.DESCRIPTOR" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.DESCRIPTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTOR</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_DO_NOT_USE" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_DO_NOT_USE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SPAN_FLAGS_DO_NOT_USE</span></code></a></p></td>
+<td><p>The zero value for the enum. Should not be used for comparisons.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_TRACE_FLAGS_MASK" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_TRACE_FLAGS_MASK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SPAN_FLAGS_TRACE_FLAGS_MASK</span></code></a></p></td>
+<td><p>Bits 0-7 are used for trace flags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK</span></code></a></p></td>
+<td><p>Bits 8 and 9 are used to indicate that the parent span or link span is remote.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___SpanFlags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SpanFlags</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___TracesData" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___TracesData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TracesData</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ResourceSpans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ResourceSpans</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ScopeSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ScopeSpans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ScopeSpans</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Span"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Span</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Status" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Status</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SpanFlags</span></code></a></p></td>
+<td><p>SpanFlags represents constants used to interpret the</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TracesData</span></code></a></p></td>
+<td><p>TracesData represents the traces data that can be stored in a persistent storage,</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceSpans</span></code></a></p></td>
+<td><p>A collection of ScopeSpans from a Resource.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScopeSpans</span></code></a></p></td>
+<td><p>A collection of Spans produced by an InstrumentationScope.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Span</span></code></a></p></td>
+<td><p>A Span represents a single operation performed by a single component of the system.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
+<td><p>The Status type defines a logical error model that is suitable for different</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.DESCRIPTOR">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.descriptor.FileDescriptor</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.DESCRIPTOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">SpanFlags</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_SpanFlags</span></code></p>
+<p>SpanFlags represents constants used to interpret the
+Span.flags field, which is protobuf ‘fixed32’ type and is to
+be used as bit-fields. Each non-zero value defined in this enum is
+a bit-mask.  To extract the bit-field, for example, use an
+expression like:</p>
+<blockquote>
+<div><p>(span.flags &amp; SPAN_FLAGS_TRACE_FLAGS_MASK)</p>
+</div></blockquote>
+<p>See <a class="reference external" href="https://www.w3.org/TR/trace-context-2/#trace-flags">https://www.w3.org/TR/trace-context-2/#trace-flags</a> for the flag definitions.</p>
+<p>Note that Span flags were introduced in version 1.1 of the
+OpenTelemetry protocol.  Older Span producers do not set this
+field, consequently consumers should not rely on the absence of a
+particular flag bit to indicate the presence of a particular feature.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_DO_NOT_USE">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">SPAN_FLAGS_DO_NOT_USE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags"><span class="pre">SpanFlags</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_DO_NOT_USE" title="Permalink to this definition"></a></dt>
+<dd><p>The zero value for the enum. Should not be used for comparisons.
+Instead use bitwise “and” with the appropriate mask as shown above.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_TRACE_FLAGS_MASK">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">SPAN_FLAGS_TRACE_FLAGS_MASK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags"><span class="pre">SpanFlags</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_TRACE_FLAGS_MASK" title="Permalink to this definition"></a></dt>
+<dd><p>Bits 0-7 are used for trace flags.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags"><span class="pre">SpanFlags</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK" title="Permalink to this definition"></a></dt>
+<dd><p>Bits 8 and 9 are used to indicate that the parent span or link span is remote.
+Bit 8 (<cite>HAS_IS_REMOTE</cite>) indicates whether the value is known.
+Bit 9 (<cite>IS_REMOTE</cite>) indicates whether the span or link is remote.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SpanFlags"><span class="pre">SpanFlags</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___SpanFlags">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SpanFlags</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___SpanFlags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">TracesData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceSpans</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TracesData represents the traces data that can be stored in a persistent storage,
+OR can be embedded by other protocols that transfer OTLP traces data but do
+not implement the OTLP protocol.</p>
+<p>The main difference between this message and collector protocol is that
+in this message there will not be any “control” or “metadata” specific to
+OTLP protocol.</p>
+<p>When new fields are added into this message, the OTLP request MUST be updated
+as well.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData.resource_spans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_spans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceSpans</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.TracesData.resource_spans" title="Permalink to this definition"></a></dt>
+<dd><p>An array of ResourceSpans.
+For data coming from a single resource this array will typically contain
+one element. Intermediary nodes that receive data from multiple origins
+typically batch the data before forwarding further and in that case this
+array will contain multiple elements.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___TracesData">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___TracesData</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___TracesData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">ResourceSpans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/v1/resource_pb2/index.html#viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource" title="viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource"><span class="pre">viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope_spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ScopeSpans</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A collection of ScopeSpans from a Resource.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.schema_url">
+<span class="sig-name descname"><span class="pre">schema_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.schema_url" title="Permalink to this definition"></a></dt>
+<dd><p>The Schema URL, if known. This is the identifier of the Schema that the resource data
+is recorded in. Notably, the last part of the URL path is the version number of the
+schema: http[s]://server[:port]/path/&lt;version&gt;. To learn more about Schema URL see
+<a class="reference external" href="https://opentelemetry.io/docs/specs/otel/schemas/#schema-url">https://opentelemetry.io/docs/specs/otel/schemas/#schema-url</a>
+This schema_url applies to the data in the “resource” field. It does not apply
+to the data in the “scope_spans” field which have their own schema_url field.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.resource">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../resource/v1/resource_pb2/index.html#viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource" title="viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource"><span class="pre">viam.gen.opentelemetry.proto.resource.v1.resource_pb2.Resource</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.resource" title="Permalink to this definition"></a></dt>
+<dd><p>The resource for the spans in this message.
+If this field is not set then no resource info is known.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.scope_spans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scope_spans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ScopeSpans</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.scope_spans" title="Permalink to this definition"></a></dt>
+<dd><p>A list of ScopeSpans that originate from a resource.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'resource'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'resource'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ResourceSpans">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ResourceSpans</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ResourceSpans" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">ScopeSpans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A collection of Spans produced by an InstrumentationScope.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.schema_url">
+<span class="sig-name descname"><span class="pre">schema_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.schema_url" title="Permalink to this definition"></a></dt>
+<dd><p>The Schema URL, if known. This is the identifier of the Schema that the span data
+is recorded in. Notably, the last part of the URL path is the version number of the
+schema: http[s]://server[:port]/path/&lt;version&gt;. To learn more about Schema URL see
+<a class="reference external" href="https://opentelemetry.io/docs/specs/otel/schemas/#schema-url">https://opentelemetry.io/docs/specs/otel/schemas/#schema-url</a>
+This schema_url applies to the data in the “scope” field and all spans and span
+events in the “spans” field.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.scope">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scope</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.InstrumentationScope</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.scope" title="Permalink to this definition"></a></dt>
+<dd><p>The instrumentation scope information for the spans in this message.
+Semantically when InstrumentationScope isn’t set, it is equivalent with
+an empty instrumentation scope name (unknown).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.spans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.spans" title="Permalink to this definition"></a></dt>
+<dd><p>A list of Spans that originate from an instrumentation scope.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'scope'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'scope'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ScopeSpans.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ScopeSpans">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ScopeSpans</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___ScopeSpans" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">Span</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_span_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Span</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_unix_nano</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_unix_nano</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_attributes_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_events_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_links_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Status</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A Span represents a single operation performed by a single component of the system.</p>
+<p>The next available field id is 17.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SpanKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpanKind</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SpanKind" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_SpanKind</span></code></p>
+<p>SpanKind is the type of span. Can be used to specify additional relationships between spans
+in addition to a parent/child relationship.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_UNSPECIFIED">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_UNSPECIFIED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_UNSPECIFIED" title="Permalink to this definition"></a></dt>
+<dd><p>Unspecified. Do NOT use as default.
+Implementations MAY assume SpanKind to be INTERNAL when receiving UNSPECIFIED.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_INTERNAL">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_INTERNAL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_INTERNAL" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates that the span represents an internal operation within an application,
+as opposed to an operation happening at the boundaries. Default value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_SERVER">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_SERVER</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_SERVER" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates that the span covers server-side handling of an RPC or other
+remote network request.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_CLIENT">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_CLIENT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_CLIENT" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates that the span describes a request to some remote service.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_PRODUCER">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_PRODUCER</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_PRODUCER" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates that the span describes a producer sending a message to a broker.
+Unlike CLIENT and SERVER, there is often no direct critical path latency relationship
+between producer and consumer spans. A PRODUCER span ends when the message was accepted
+by the broker while the logical processing of the message might span a much longer time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_CONSUMER">
+<span class="sig-name descname"><span class="pre">SPAN_KIND_CONSUMER</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span"><span class="pre">Span</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.SPAN_KIND_CONSUMER" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates that the span describes consumer receiving a message from a broker.
+Like the PRODUCER kind, there is often no direct critical path latency relationship
+between producer and consumer spans.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unix_nano</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_attributes_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Event is a time-stamped annotation of the span, consisting of user-supplied
+text description and key-value pairs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.time_unix_nano">
+<span class="sig-name descname"><span class="pre">time_unix_nano</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.time_unix_nano" title="Permalink to this definition"></a></dt>
+<dd><p>The time the event occurred.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the event.
+This field is semantically required to be set to non-empty string.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.dropped_attributes_count">
+<span class="sig-name descname"><span class="pre">dropped_attributes_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.dropped_attributes_count" title="Permalink to this definition"></a></dt>
+<dd><p>The number of dropped attributes. If the value is 0,
+then no attributes were dropped.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Event.attributes" title="Permalink to this definition"></a></dt>
+<dd><p>A collection of attribute key/value pairs on the event.
+Attribute keys MUST be unique (it is not allowed to have more than one
+attribute with the same key).
+The behavior of software that receives duplicated keys can be unpredictable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropped_attributes_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A pointer from the current span to another span in the same trace or in a
+different trace. For example, this can be used in batching operations,
+where a single batch handler processes multiple requests from different
+traces or when the handler receives a request from a different project.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.trace_id">
+<span class="sig-name descname"><span class="pre">trace_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.trace_id" title="Permalink to this definition"></a></dt>
+<dd><p>A unique identifier of a trace that this linked span is part of. The ID is a
+16-byte array.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.span_id">
+<span class="sig-name descname"><span class="pre">span_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.span_id" title="Permalink to this definition"></a></dt>
+<dd><p>A unique identifier for the linked span. The ID is an 8-byte array.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.trace_state">
+<span class="sig-name descname"><span class="pre">trace_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.trace_state" title="Permalink to this definition"></a></dt>
+<dd><p>The trace_state associated with the link.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.dropped_attributes_count">
+<span class="sig-name descname"><span class="pre">dropped_attributes_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.dropped_attributes_count" title="Permalink to this definition"></a></dt>
+<dd><p>The number of dropped attributes. If the value is 0,
+then no attributes were dropped.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.flags" title="Permalink to this definition"></a></dt>
+<dd><p>Flags, a bit field.</p>
+<p>Bits 0-7 (8 least significant bits) are the trace flags as defined in W3C Trace
+Context specification. To read the 8-bit W3C trace flag, use
+<cite>flags &amp; SPAN_FLAGS_TRACE_FLAGS_MASK</cite>.</p>
+<p>See <a class="reference external" href="https://www.w3.org/TR/trace-context-2/#trace-flags">https://www.w3.org/TR/trace-context-2/#trace-flags</a> for the flag definitions.</p>
+<p>Bits 8 and 9 represent the 3 states of whether the link is remote.
+The states are (unknown, is not remote, is remote).
+To read whether the value is known, use <cite>(flags &amp; SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK) != 0</cite>.
+To read whether the link is remote, use <cite>(flags &amp; SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK) != 0</cite>.</p>
+<p>Readers MUST NOT assume that bits 10-31 (22 most significant bits) will be zero.
+When creating new spans, bits 10-31 (most-significant 22-bits) MUST be zero.</p>
+<p>[Optional].</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.Link.attributes" title="Permalink to this definition"></a></dt>
+<dd><p>A collection of attribute key/value pairs on the link.
+Attribute keys MUST be unique (it is not allowed to have more than one
+attribute with the same key).
+The behavior of software that receives duplicated keys can be unpredictable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.trace_id">
+<span class="sig-name descname"><span class="pre">trace_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.trace_id" title="Permalink to this definition"></a></dt>
+<dd><p>A unique identifier for a trace. All spans from the same trace share
+the same <cite>trace_id</cite>. The ID is a 16-byte array. An ID with all zeroes OR
+of length other than 16 bytes is considered invalid (empty string in OTLP/JSON
+is zero-length and thus is also invalid).</p>
+<p>This field is required.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.span_id">
+<span class="sig-name descname"><span class="pre">span_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.span_id" title="Permalink to this definition"></a></dt>
+<dd><p>A unique identifier for a span within a trace, assigned when the span
+is created. The ID is an 8-byte array. An ID with all zeroes OR of length
+other than 8 bytes is considered invalid (empty string in OTLP/JSON
+is zero-length and thus is also invalid).</p>
+<p>This field is required.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.trace_state">
+<span class="sig-name descname"><span class="pre">trace_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.trace_state" title="Permalink to this definition"></a></dt>
+<dd><p>trace_state conveys information about request position in multiple distributed tracing graphs.
+It is a trace_state in w3c-trace-context format: <a class="reference external" href="https://www.w3.org/TR/trace-context/#tracestate-header">https://www.w3.org/TR/trace-context/#tracestate-header</a>
+See also <a class="reference external" href="https://github.com/w3c/distributed-tracing">https://github.com/w3c/distributed-tracing</a> for more details about this field.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.parent_span_id">
+<span class="sig-name descname"><span class="pre">parent_span_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.parent_span_id" title="Permalink to this definition"></a></dt>
+<dd><p>The <cite>span_id</cite> of this span’s parent span. If this is a root span, then this
+field must be empty. The ID is an 8-byte array.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.flags" title="Permalink to this definition"></a></dt>
+<dd><p>Flags, a bit field.</p>
+<p>Bits 0-7 (8 least significant bits) are the trace flags as defined in W3C Trace
+Context specification. To read the 8-bit W3C trace flag, use
+<cite>flags &amp; SPAN_FLAGS_TRACE_FLAGS_MASK</cite>.</p>
+<p>See <a class="reference external" href="https://www.w3.org/TR/trace-context-2/#trace-flags">https://www.w3.org/TR/trace-context-2/#trace-flags</a> for the flag definitions.</p>
+<p>Bits 8 and 9 represent the 3 states of whether a span’s parent
+is remote. The states are (unknown, is not remote, is remote).
+To read whether the value is known, use <cite>(flags &amp; SPAN_FLAGS_CONTEXT_HAS_IS_REMOTE_MASK) != 0</cite>.
+To read whether the span is remote, use <cite>(flags &amp; SPAN_FLAGS_CONTEXT_IS_REMOTE_MASK) != 0</cite>.</p>
+<p>When creating span messages, if the message is logically forwarded from another source
+with an equivalent flags fields (i.e., usually another OTLP span message), the field SHOULD
+be copied as-is. If creating from a source that does not have an equivalent flags field
+(such as a runtime representation of an OpenTelemetry span), the high 22 bits MUST
+be set to zero.
+Readers MUST NOT assume that bits 10-31 (22 most significant bits) will be zero.</p>
+<p>[Optional].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.name" title="Permalink to this definition"></a></dt>
+<dd><p>A description of the span’s operation.</p>
+<p>For example, the name can be a qualified method name or a file name
+and a line number where the operation is called. A best practice is to use
+the same display name at the same call point in an application.
+This makes it easier to correlate spans in different traces.</p>
+<p>This field is semantically required to be set to non-empty string.
+Empty value is equivalent to an unknown span name.</p>
+<p>This field is required.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Span.SpanKind.ValueType</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.kind" title="Permalink to this definition"></a></dt>
+<dd><p>Distinguishes between spans generated in a particular context. For example,
+two spans with the same name may be distinguished using <cite>CLIENT</cite> (caller)
+and <cite>SERVER</cite> (callee) to identify queueing latency associated with the span.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.start_time_unix_nano">
+<span class="sig-name descname"><span class="pre">start_time_unix_nano</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.start_time_unix_nano" title="Permalink to this definition"></a></dt>
+<dd><p>The start time of the span. On the client side, this is the time
+kept by the local machine where the span execution starts. On the server side, this
+is the time when the server’s application handler starts running.
+Value is UNIX Epoch time in nanoseconds since 00:00:00 UTC on 1 January 1970.</p>
+<p>This field is semantically required and it is expected that end_time &gt;= start_time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.end_time_unix_nano">
+<span class="sig-name descname"><span class="pre">end_time_unix_nano</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.end_time_unix_nano" title="Permalink to this definition"></a></dt>
+<dd><p>The end time of the span. On the client side, this is the time
+kept by the local machine where the span execution ends. On the server side, this
+is the time when the server application handler stops running.
+Value is UNIX Epoch time in nanoseconds since 00:00:00 UTC on 1 January 1970.</p>
+<p>This field is semantically required and it is expected that end_time &gt;= start_time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_attributes_count">
+<span class="sig-name descname"><span class="pre">dropped_attributes_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_attributes_count" title="Permalink to this definition"></a></dt>
+<dd><p>The number of attributes that were discarded. Attributes
+can be discarded because their keys are too long or because there are too many
+attributes. If this value is 0, then no attributes were dropped.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_events_count">
+<span class="sig-name descname"><span class="pre">dropped_events_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_events_count" title="Permalink to this definition"></a></dt>
+<dd><p>The number of dropped events. If the value is 0, then no
+events were dropped.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_links_count">
+<span class="sig-name descname"><span class="pre">dropped_links_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.dropped_links_count" title="Permalink to this definition"></a></dt>
+<dd><p>The number of dropped links after the maximum size was
+enforced. If this value is 0, then no links were dropped.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../common/v1/common_pb2/index.html#viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue" title="viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue"><span class="pre">viam.gen.opentelemetry.proto.common.v1.common_pb2.KeyValue</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.attributes" title="Permalink to this definition"></a></dt>
+<dd><p>A collection of key/value pairs. Note, global attributes
+like server name can be set using the resource API. Examples of attributes:</p>
+<blockquote>
+<div><p>“/http/user_agent”: “Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36”
+“/http/server_latency”: 300
+“example.com/myattribute”: true
+“example.com/score”: 10.239</p>
+</div></blockquote>
+<p>Attribute keys MUST be unique (it is not allowed to have more than one
+attribute with the same key).
+The behavior of software that receives duplicated keys can be unpredictable.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.events">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.events" title="Permalink to this definition"></a></dt>
+<dd><p>A collection of Event items.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.links">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Span</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.links" title="Permalink to this definition"></a></dt>
+<dd><p>A collection of Links, which are references from this span to a span
+in the same or different trace.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Status</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.status" title="Permalink to this definition"></a></dt>
+<dd><p>An optional final status for this span. Semantically when Status isn’t set, it means
+span’s status code is unset, i.e. assume STATUS_CODE_UNSET (code = 0).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'status'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Span.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Span">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Span</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Span" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>The Status type defines a logical error model that is suitable for different
+programming environments, including REST APIs and RPC APIs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.StatusCode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StatusCode</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.StatusCode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_StatusCode</span></code></p>
+<p>For the semantics of status codes see
+<a class="reference external" href="https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#set-status">https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#set-status</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_UNSET">
+<span class="sig-name descname"><span class="pre">STATUS_CODE_UNSET</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_UNSET" title="Permalink to this definition"></a></dt>
+<dd><p>The default status.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_OK">
+<span class="sig-name descname"><span class="pre">STATUS_CODE_OK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_OK" title="Permalink to this definition"></a></dt>
+<dd><p>The Span has been validated by an Application developer or Operator to
+have completed successfully.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_ERROR">
+<span class="sig-name descname"><span class="pre">STATUS_CODE_ERROR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.STATUS_CODE_ERROR" title="Permalink to this definition"></a></dt>
+<dd><p>The Span contains an error.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.message" title="Permalink to this definition"></a></dt>
+<dd><p>A developer-facing human readable error message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.code">
+<span class="sig-name descname"><span class="pre">code</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Status.StatusCode.ValueType</span></em><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.Status.code" title="Permalink to this definition"></a></dt>
+<dd><p>The status code.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Status">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Status</span></span><a class="headerlink" href="#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.global___Status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2024, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

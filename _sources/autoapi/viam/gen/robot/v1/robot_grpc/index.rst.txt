@@ -194,6 +194,13 @@ Module Contents
 
 
 
+   .. py:method:: SendTraces(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendTracesRequest, robot.v1.robot_pb2.SendTracesResponse]) -> None
+      :abstractmethod:
+
+      :async:
+
+
+
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
@@ -326,6 +333,11 @@ Module Contents
 
 
 
+   .. py:method:: SendTraces(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendTracesRequest, robot.v1.robot_pb2.SendTracesResponse]) -> None
+      :async:
+
+
+
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
 
    .. py:attribute:: GetOperations
@@ -398,5 +410,8 @@ Module Contents
 
 
    .. py:attribute:: TransformPCD
+
+
+   .. py:attribute:: SendTraces
 
 

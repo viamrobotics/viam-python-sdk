@@ -110,6 +110,12 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___PeerConnectionType" title="viam.gen.robot.v1.robot_pb2.global___PeerConnectionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___PeerConnectionType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___SendTracesRequest" title="viam.gen.robot.v1.robot_pb2.global___SendTracesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SendTracesRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.global___SendTracesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SendTracesResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___TunnelRequest" title="viam.gen.robot.v1.robot_pb2.global___TunnelRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TunnelRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -299,6 +305,12 @@ isort:skip_file</p>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.PeerConnectionType" title="viam.gen.robot.v1.robot_pb2.PeerConnectionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeerConnectionType</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.SendTracesRequest" title="viam.gen.robot.v1.robot_pb2.SendTracesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendTracesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="viam.gen.robot.v1.robot_pb2.SendTracesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendTracesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.TunnelRequest" title="viam.gen.robot.v1.robot_pb2.TunnelRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TunnelRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -514,6 +526,41 @@ isort:skip_file</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___PeerConnectionType">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___PeerConnectionType</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___PeerConnectionType" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.SendTracesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">SendTracesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../opentelemetry/proto/trace/v1/trace_pb2/index.html#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.SendTracesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.SendTracesRequest.resource_spans">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_spans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../opentelemetry/proto/trace/v1/trace_pb2/index.html#viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans" title="viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans"><span class="pre">viam.gen.opentelemetry.proto.trace.v1.trace_pb2.ResourceSpans</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.SendTracesRequest.resource_spans" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___SendTracesRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SendTracesRequest</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___SendTracesRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.SendTracesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">SendTracesResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.SendTracesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___SendTracesResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SendTracesResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___SendTracesResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

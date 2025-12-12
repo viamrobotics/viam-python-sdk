@@ -526,7 +526,7 @@ Package Contents
 
 
 
-.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ..., mime_type: str = ...)
+.. py:class:: Image(*, source_name: str = ..., format: global___Format = ..., image: bytes = ..., mime_type: str = ..., annotations: viam.gen.app.data.v1.data_pb2.Annotations | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -560,6 +560,30 @@ Package Contents
       :type:  str
 
       The mime type of the image
+
+
+   .. py:property:: annotations
+      :type: viam.gen.app.data.v1.data_pb2.Annotations
+
+      annotations can be used to store additional information about the image
+
+
+   .. py:method:: HasField(field_name: Literal['annotations', b'annotations']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: IntrinsicParameters(*, width_px: int = ..., height_px: int = ..., focal_x_px: float = ..., focal_y_px: float = ..., center_x_px: float = ..., center_y_px: float = ...)

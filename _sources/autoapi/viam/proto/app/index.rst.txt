@@ -239,6 +239,7 @@ Classes
    viam.proto.app.NewRobotRequest
    viam.proto.app.NewRobotResponse
    viam.proto.app.OAuthConfig
+   viam.proto.app.OnlineState
    viam.proto.app.Organization
    viam.proto.app.OrganizationGetLogoRequest
    viam.proto.app.OrganizationGetLogoResponse
@@ -5226,7 +5227,7 @@ Package Contents
 
 
 
-.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ...)
+.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ..., levels: collections.abc.Iterable[str] | None = ..., start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ..., limit: int | None = ..., source: str | None = ..., user_facing_only: bool | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -5268,6 +5269,10 @@ Package Contents
       :type:  str
 
 
+   .. py:attribute:: user_facing_only
+      :type:  bool
+
+
    .. py:property:: levels
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
@@ -5284,7 +5289,7 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start']) -> bool
+   .. py:method:: HasField(field_name: Literal['_end', b'_end', '_filter', b'_filter', '_limit', b'_limit', '_page_token', b'_page_token', '_source', b'_source', '_start', b'_start', '_user_facing_only', b'_user_facing_only', 'end', b'end', 'filter', b'filter', 'limit', b'limit', 'page_token', b'page_token', 'source', b'source', 'start', b'start', 'user_facing_only', b'user_facing_only']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -5308,6 +5313,7 @@ Package Contents
                   WhichOneof(oneof_group: Literal['_page_token', b'_page_token']) -> Literal['page_token'] | None
                   WhichOneof(oneof_group: Literal['_source', b'_source']) -> Literal['source'] | None
                   WhichOneof(oneof_group: Literal['_start', b'_start']) -> Literal['start'] | None
+                  WhichOneof(oneof_group: Literal['_user_facing_only', b'_user_facing_only']) -> Literal['user_facing_only'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7402,6 +7408,11 @@ Package Contents
 
 
 
+.. py:class:: OnlineState
+
+   Bases: :py:obj:`_OnlineState`
+
+
 .. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ..., cid: str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -7814,7 +7825,7 @@ Package Contents
 
 
 
-.. py:class:: PartSummary(*, part_id: str = ..., part_name: str = ..., is_main_part: bool = ..., last_online: google.protobuf.timestamp_pb2.Timestamp | None = ..., viam_server_version: global___ViamServerVersion | None = ..., viam_agent_version: global___ViamAgentVersion | None = ..., os: str | None = ..., platform: str | None = ..., public_ip_address: str | None = ..., dns_name: str | None = ..., fragments: collections.abc.Iterable[global___FragmentSummary] | None = ...)
+.. py:class:: PartSummary(*, part_id: str = ..., part_name: str = ..., is_main_part: bool = ..., online_state: global___OnlineState = ..., seconds_since_online: int = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_online: google.protobuf.timestamp_pb2.Timestamp | None = ..., viam_server_version: global___ViamServerVersion | None = ..., viam_agent_version: global___ViamAgentVersion | None = ..., os: str | None = ..., platform: str | None = ..., public_ip_address: str | None = ..., dns_name: str | None = ..., fragments: collections.abc.Iterable[global___FragmentSummary] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7838,6 +7849,14 @@ Package Contents
       :type:  bool
 
 
+   .. py:attribute:: online_state
+      :type:  global___OnlineState
+
+
+   .. py:attribute:: seconds_since_online
+      :type:  int
+
+
    .. py:attribute:: os
       :type:  str
 
@@ -7852,6 +7871,11 @@ Package Contents
 
    .. py:attribute:: dns_name
       :type:  str
+
+
+   .. py:property:: last_access
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
 
 
    .. py:property:: last_online
@@ -7874,7 +7898,7 @@ Package Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_dns_name', b'_dns_name', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> bool
+   .. py:method:: HasField(field_name: Literal['_dns_name', b'_dns_name', '_last_access', b'_last_access', '_last_online', b'_last_online', '_os', b'_os', '_platform', b'_platform', '_public_ip_address', b'_public_ip_address', '_viam_agent_version', b'_viam_agent_version', '_viam_server_version', b'_viam_server_version', 'dns_name', b'dns_name', 'last_access', b'last_access', 'last_online', b'last_online', 'os', b'os', 'platform', b'platform', 'public_ip_address', b'public_ip_address', 'viam_agent_version', b'viam_agent_version', 'viam_server_version', b'viam_server_version']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7893,6 +7917,7 @@ Package Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_dns_name', b'_dns_name']) -> Literal['dns_name'] | None
+                  WhichOneof(oneof_group: Literal['_last_access', b'_last_access']) -> Literal['last_access'] | None
                   WhichOneof(oneof_group: Literal['_last_online', b'_last_online']) -> Literal['last_online'] | None
                   WhichOneof(oneof_group: Literal['_os', b'_os']) -> Literal['os'] | None
                   WhichOneof(oneof_group: Literal['_platform', b'_platform']) -> Literal['platform'] | None
@@ -8416,7 +8441,7 @@ Package Contents
 
 
 
-.. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., online_state: global___OnlineState = ..., seconds_since_online: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8438,6 +8463,14 @@ Package Contents
 
    .. py:attribute:: location
       :type:  str
+
+
+   .. py:attribute:: online_state
+      :type:  global___OnlineState
+
+
+   .. py:attribute:: seconds_since_online
+      :type:  int
 
 
    .. py:property:: last_access
@@ -8468,7 +8501,7 @@ Package Contents
 
 
 
-.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ..., last_updated: google.protobuf.timestamp_pb2.Timestamp | None = ..., online_state: global___OnlineState = ..., seconds_since_online: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8519,6 +8552,14 @@ Package Contents
 
    .. py:attribute:: local_fqdn
       :type:  str
+
+
+   .. py:attribute:: online_state
+      :type:  global___OnlineState
+
+
+   .. py:attribute:: seconds_since_online
+      :type:  int
 
 
    .. py:property:: robot_config
