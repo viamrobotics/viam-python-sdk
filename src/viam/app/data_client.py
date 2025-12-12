@@ -790,6 +790,7 @@ class DataClient:
     async def binary_data_by_ids(
         self,
         binary_ids: Union[List[BinaryID], List[str]],
+        include_binary_data: bool = True,
         dest: Optional[str] = None,
     ) -> List[BinaryData]:
         """Filter and download binary data.
@@ -812,6 +813,8 @@ class DataClient:
                 :class:`BinaryID` objects. Must be non-empty.
                 *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                 list of strings.*
+            include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.
+                Defaults to true (that is, both the files' data and metadata are returned).
             dest (str): Optional filepath for writing retrieved data.
 
         Raises:
@@ -825,10 +828,10 @@ class DataClient:
         request = BinaryDataByIDsRequest()
         if len(binary_ids) > 0 and isinstance(binary_ids[0], str):
             binary_data_ids = cast(List[str], binary_ids)
-            request = BinaryDataByIDsRequest(binary_data_ids=binary_data_ids, include_binary=True)
+            request = BinaryDataByIDsRequest(binary_data_ids=binary_data_ids, include_binary=include_binary_data)
         else:
             bin_ids = cast(List[BinaryID], binary_ids)
-            request = BinaryDataByIDsRequest(binary_ids=bin_ids, include_binary=True)
+            request = BinaryDataByIDsRequest(binary_ids=bin_ids, include_binary=include_binary_data)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
         if dest:
             try:
