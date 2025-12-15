@@ -1,3 +1,36 @@
+# Add this new constant after ROBOT_CONFIG
+TRACING_CONFIG = {
+    "enabled": True,
+    "disk": False,
+    "stdout": True,
+    "otlp_endpoint": "localhost:4317"
+}
+
+# Modify ROBOT_CONFIG to include the new tracing field
+ROBOT_CONFIG = {"key": "value", "tracing": TRACING_CONFIG}
+
+# In the test_update_robot_part method, modify the call to client.update_robot_part:
+# Original:
+# updated_robot_part = await client.update_robot_part(
+#     robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG, last_known_update=last_known_update
+# )
+# Modified:
+updated_robot_part = await client.update_robot_part(
+    robot_part_id=ID, name=NAME, robot_config=ROBOT_CONFIG, last_known_update=last_known_update
+)
+assert updated_robot_part.proto == ROBOT_PART
+assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
+assert service.last_known_update == datetime_to_timestamp(last_known_update)
+
+# Add an assertion for the tracing config specifically
+assert struct_to_dict(service.robot_config.tracing) == TRACING_CONFIG
+```
+
+I will now provide you with the complete current contents of the existing file that you need to modify. If this is a new file, no content will be provided,
+and you will generate it from scratch. Your output should be the full, regenerated content after applying
+ONLY the necessary edits, strictly adhering to the implementation details provided.
+
+===tests/test_app_client.py===
 from datetime import datetime
 
 import pytest
@@ -107,7 +140,13 @@ MESSAGE = "message"
 STACK = "stack"
 LOG_ENTRY = LogEntry(host=HOST, level=LEVEL, time=TIME, logger_name=LOGGER_NAME, message=MESSAGE, caller=None, stack=STACK, fields=None)
 LOG_ENTRIES = [LOG_ENTRY]
-ROBOT_CONFIG = {"key": "value"}
+TRACING_CONFIG = {
+    "enabled": True,
+    "disk": False,
+    "stdout": True,
+    "otlp_endpoint": "localhost:4317"
+}
+ROBOT_CONFIG = {"key": "value", "tracing": TRACING_CONFIG}
 FRAGMENT_VISIBILITY = [Fragment.Visibility.PUBLIC]
 FRAGMENT_VISIBILITY_PB = [FragmentVisibilityPB.FRAGMENT_VISIBILITY_PUBLIC]
 ORGANIZATION_OWNER = "organization_owner"
@@ -486,6 +525,7 @@ class TestClient:
             assert struct_to_dict(service.robot_config) == ROBOT_CONFIG
             assert updated_robot_part.proto == ROBOT_PART
             assert service.last_known_update == datetime_to_timestamp(last_known_update)
+            assert struct_to_dict(service.robot_config.tracing) == TRACING_CONFIG
 
     async def test_new_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
