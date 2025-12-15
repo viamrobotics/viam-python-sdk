@@ -649,7 +649,7 @@ Module Contents
 
 
 
-   .. py:method:: binary_data_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
+   .. py:method:: binary_data_by_ids(binary_ids: Union[List[viam.proto.app.data.BinaryID], List[str]], include_binary_data: bool = True, dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
       :async:
 
 
@@ -673,6 +673,9 @@ Module Contents
                          *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a
                          list of strings.*
       :type binary_ids: Union[List[~viam.proto.app.data.BinaryID], List[str]]
+      :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
+                                  Defaults to true (that is, both the files' data and metadata are returned).
+      :type include_binary_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 

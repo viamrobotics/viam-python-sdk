@@ -879,6 +879,7 @@
 <div class="viewcode-block" id="DataClient.binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_ids</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_ids</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+        <span class="n">include_binary_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
@@ -901,6 +902,8 @@
 <span class="sd">                :class:`BinaryID` objects. Must be non-empty.</span>
 <span class="sd">                *DEPRECATED:* :class:`BinaryID` *is deprecated and will be removed in a future release. Instead, pass binary data IDs as a</span>
 <span class="sd">                list of strings.*</span>
+<span class="sd">            include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.</span>
+<span class="sd">                Defaults to true (that is, both the files&#39; data and metadata are returned).</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Raises:</span>
@@ -914,10 +917,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">binary_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">binary_data_ids</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">)</span>
-            <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_data_ids</span><span class="o">=</span><span class="n">binary_data_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_data_ids</span><span class="o">=</span><span class="n">binary_data_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="n">include_binary_data</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">bin_ids</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">)</span>
-            <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">bin_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">bin_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="n">include_binary_data</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
