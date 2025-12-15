@@ -308,10 +308,18 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             binary_data = await client.binary_data_by_ids(binary_ids=BINARY_IDS)
             assert binary_data == BINARY_RESPONSE
+            assert service.include_binary is True
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
             binary_data = await client.binary_data_by_ids(binary_ids=BINARY_DATA_IDS)
             assert binary_data == BINARY_RESPONSE
+            assert service.include_binary is True
             self.assert_binary_data_ids(binary_data_ids=list(service.binary_data_ids))
+            binary_data = await client.binary_data_by_ids(binary_ids=BINARY_IDS, include_binary_data=False)
+            assert binary_data == BINARY_RESPONSE
+            assert service.include_binary is False
+            binary_data = await client.binary_data_by_ids(binary_ids=BINARY_DATA_IDS, include_binary_data=False)
+            assert binary_data == BINARY_RESPONSE
+            assert service.include_binary is False
 
     async def test_delete_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
