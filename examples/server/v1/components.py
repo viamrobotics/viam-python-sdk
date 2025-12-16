@@ -434,9 +434,6 @@ class ExampleCamera(Camera):
         img.close()
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> ViamImage:
-        return self.image
-
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         raise NotImplementedError()
 

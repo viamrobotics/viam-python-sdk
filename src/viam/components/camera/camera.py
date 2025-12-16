@@ -37,32 +37,6 @@ class Camera(ComponentBase):
     Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
-    async def get_image(
-        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> ViamImage:
-        """Get the next image from the camera as a ViamImage.
-        Be sure to close the image when finished.
-
-        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
-        to convert the data to a standard representation.
-
-        ::
-
-            my_camera = Camera.from_robot(machine, "my_camera")
-            frame = await my_camera.get_image()
-            print(f"Frame: {frame}")
-
-        Args:
-            mime_type (str): The desired mime type of the image. This does not guarantee output type
-
-        Returns:
-            ViamImage: The frame.
-
-        For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimage>`_.
-        """
-        ...
-
-    @abc.abstractmethod
     async def get_images(
         self,
         *,

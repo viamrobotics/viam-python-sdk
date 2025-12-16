@@ -30,19 +30,6 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(
-        self,
-        mime_type: str = "",
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ) -> ViamImage:
-        md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
-        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout, metadata=md)
-        return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
-
     async def get_images(
         self,
         *,

@@ -31,17 +31,6 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
-
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetImageResponse(mime_type=image.mime_type, image=image.data)
-        await stream.send_message(response)
-
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -63,16 +52,6 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             img_bytes = img.data
             img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
-        await stream.send_message(response)
-
-    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:  # pyright: ignore [reportInvalidTypeForm]
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
-        response = HttpBody(data=image.data, content_type=image.mime_type)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
