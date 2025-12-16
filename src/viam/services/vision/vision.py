@@ -36,7 +36,7 @@ class CaptureAllResult:
     ):
         """
         Args:
-            image (ViamImage|None): The image from the GetImage request of the camera, if it was requested.
+            image (ViamImage|None): The image from the GetImages request of the camera, if it was requested.
             classifications (List[Classification]|None): The classifications from GetClassifications, if it was requested.
             detections (List[Detection]|None): The detections from GetDetections, if it was requested.
             objects (List[PointCloudObject]|None): the object point clouds from GetObjectPointClouds, if it was requested.

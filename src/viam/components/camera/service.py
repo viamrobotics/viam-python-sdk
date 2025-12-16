@@ -7,8 +7,6 @@ from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
-    GetImageRequest,
-    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
