@@ -2,7 +2,7 @@ import abc
 import sys
 from typing import Any, Dict, Final, Optional, Sequence, Tuple
 
-from viam.media.video import NamedImage, ViamImage
+from viam.media.video import NamedImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT

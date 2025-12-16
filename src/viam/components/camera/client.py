@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 
 from grpclib.client import Channel
 
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, NamedImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
