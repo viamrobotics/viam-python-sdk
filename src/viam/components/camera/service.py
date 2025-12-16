@@ -1,6 +1,5 @@
 # TODO: Update type checking based with RSDK-4089
 # pyright: reportGeneralTypeIssues=false
-from google.api.httpbody_pb2 import HttpBody  # type: ignore
 from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType
@@ -14,7 +13,6 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     Image,
-    RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict

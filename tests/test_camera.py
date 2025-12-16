@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import Optional
 
 import pytest
-from google.api.httpbody_pb2 import HttpBody
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
@@ -22,7 +21,6 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     IntrinsicParameters,
-    RenderFrameRequest,
 )
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -154,16 +152,6 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request)
             assert response.images[0].source_name == "the_source"
-
-    async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
-        assert camera.timeout is None
-        async with ChannelFor([service]) as channel:
-            client = CameraServiceStub(channel)
-            request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: HttpBody = await client.RenderFrame(request, timeout=4.4)
-            assert response.content_type == CameraMimeType.PNG
-            assert response.data == image.data
-            assert camera.timeout == loose_approx(4.4)
 
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
