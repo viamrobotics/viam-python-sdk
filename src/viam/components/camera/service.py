@@ -27,6 +27,14 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
+    async def GetImage(self, stream: Stream) -> None:
+        """Deprecated: Use GetImages instead."""
+        raise NotImplementedError("GetImage is deprecated. Use GetImages instead.")
+
+    async def RenderFrame(self, stream: Stream) -> None:
+        """Deprecated: Use GetImages instead."""
+        raise NotImplementedError("RenderFrame is deprecated. Use GetImages instead.")
+
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
