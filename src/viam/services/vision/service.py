@@ -50,11 +50,8 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase[Vi
         )
         img = None
         if result.image is not None:
-            mime_type = CameraMimeType.from_string(result.image.mime_type)
-            # TODO(RSDK-11728): remove this fmt logic once we deleted the format field
-            fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
             img_bytes = result.image.data
-            img = Image(source_name=request.camera_name, mime_type=mime_type, format=fmt, image=img_bytes)
+            img = Image(source_name=request.camera_name, mime_type=result.image.mime_type, image=img_bytes)
         response = CaptureAllFromCameraResponse(
             image=img,
             detections=result.detections,

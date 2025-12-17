@@ -2,7 +2,6 @@
 # pyright: reportGeneralTypeIssues=false
 from grpclib.server import Stream
 
-from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
@@ -49,12 +48,8 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         )
         img_bytes_lst = []
         for img in images:
-            mime_type = CameraMimeType.from_string(img.mime_type)
-            # TODO(RSDK-11728): remove this fmt logic once we deleted the format field
-            fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
-
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
