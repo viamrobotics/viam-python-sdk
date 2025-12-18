@@ -243,7 +243,7 @@ class Controller(ComponentBase):
 
 
             async def main():
-                # ... < INSERT CONNECTION CODE FROM MACHINE'S CODE SAMPLE TAB >
+                # ... < INSERT CONNECTION CODE FROM MACHINE'S CONNECT TAB >
 
                 # Get your controller from the machine.
                 my_controller = Controller.from_robot(

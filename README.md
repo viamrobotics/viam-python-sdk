@@ -80,7 +80,7 @@ To create a client application, to navigate to [app.viam.com](https://app.viam.c
       sudo systemctl restart viam-server
       ```
 
-Next, select the `CODE SAMPLE` tab in the Viam Web UI, and copy the boilerplate code from the section labeled `Python SDK`.
+Next, select the `CONNECT` tab in the Viam Web UI, and copy the boilerplate code from the section labeled `Python SDK`.
 
 To ensure the installation succeeded and the systems are functional, save and run this simple program. If the program runs successfully, the python-sdk is properly installed, the `viam-server` instance on your robot is alive, and the computer running the program is able to connect to that instance.
 
