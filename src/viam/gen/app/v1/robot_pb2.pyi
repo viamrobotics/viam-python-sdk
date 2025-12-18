@@ -61,6 +61,7 @@ class RobotConfig(google.protobuf.message.Message):
     MAINTENANCE_FIELD_NUMBER: builtins.int
     DISABLE_LOG_DEDUPLICATION_FIELD_NUMBER: builtins.int
     JOBS_FIELD_NUMBER: builtins.int
+    TRACING_FIELD_NUMBER: builtins.int
     debug: builtins.bool
     'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
     disable_partial_start: builtins.bool
@@ -123,13 +124,17 @@ class RobotConfig(google.protobuf.message.Message):
     def jobs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___JobConfig]:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=..., disable_log_deduplication: builtins.bool=..., jobs: collections.abc.Iterable[global___JobConfig] | None=...) -> None:
+    @property
+    def tracing(self) -> global___TracingConfig:
         ...
 
-    def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network']) -> builtins.bool:
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=..., enable_web_profile: builtins.bool=..., log: collections.abc.Iterable[global___LogPatternConfig] | None=..., revision: builtins.str=..., maintenance: global___MaintenanceConfig | None=..., disable_log_deduplication: builtins.bool=..., jobs: collections.abc.Iterable[global___JobConfig] | None=..., tracing: global___TracingConfig | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_log_deduplication', b'disable_log_deduplication', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'jobs', b'jobs', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services']) -> None:
+    def HasField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', '_tracing', b'_tracing', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network', 'tracing', b'tracing']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', '_tracing', b'_tracing', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_log_deduplication', b'disable_log_deduplication', 'disable_partial_start', b'disable_partial_start', 'enable_web_profile', b'enable_web_profile', 'jobs', b'jobs', 'log', b'log', 'maintenance', b'maintenance', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'revision', b'revision', 'services', b'services', 'tracing', b'tracing']) -> None:
         ...
 
     @typing.overload
@@ -150,6 +155,10 @@ class RobotConfig(google.protobuf.message.Message):
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_network', b'_network']) -> typing.Literal['network'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_tracing', b'_tracing']) -> typing.Literal['tracing'] | None:
         ...
 global___RobotConfig = RobotConfig
 
@@ -208,6 +217,32 @@ class JobConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['command', b'command', 'log_configuration', b'log_configuration', 'method', b'method', 'name', b'name', 'resource', b'resource', 'schedule', b'schedule']) -> None:
         ...
 global___JobConfig = JobConfig
+
+@typing.final
+class TracingConfig(google.protobuf.message.Message):
+    """TracingConfig configures whether viam-server will record traces and if so
+    where it will export them.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ENABLED_FIELD_NUMBER: builtins.int
+    DISK_FIELD_NUMBER: builtins.int
+    CONSOLE_FIELD_NUMBER: builtins.int
+    OTLP_ENDPOINT_FIELD_NUMBER: builtins.int
+    enabled: builtins.bool
+    'Globally enable or disable tracing support.'
+    disk: builtins.bool
+    'Save trace spans to a file on disk.'
+    console: builtins.bool
+    'Print trace spans to the console.'
+    otlp_endpoint: builtins.str
+    'Send trace spans to an OTLP gRPC endpoint.'
+
+    def __init__(self, *, enabled: builtins.bool=..., disk: builtins.bool=..., console: builtins.bool=..., otlp_endpoint: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['console', b'console', 'disk', b'disk', 'enabled', b'enabled', 'otlp_endpoint', b'otlp_endpoint']) -> None:
+        ...
+global___TracingConfig = TracingConfig
 
 @typing.final
 class LocationSecret(google.protobuf.message.Message):
