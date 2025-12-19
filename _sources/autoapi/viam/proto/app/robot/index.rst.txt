@@ -52,6 +52,7 @@ Classes
    viam.proto.app.robot.RobotConfig
    viam.proto.app.robot.ServiceConfig
    viam.proto.app.robot.SessionsConfig
+   viam.proto.app.robot.TracingConfig
    viam.proto.app.robot.TrafficTunnelEndpoint
    viam.proto.app.robot.Translation
 
@@ -1712,7 +1713,7 @@ Module Contents
 
 
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: global___MaintenanceConfig | None = ..., disable_log_deduplication: bool = ..., jobs: collections.abc.Iterable[global___JobConfig] | None = ...)
+.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ..., log: collections.abc.Iterable[global___LogPatternConfig] | None = ..., revision: str = ..., maintenance: global___MaintenanceConfig | None = ..., disable_log_deduplication: bool = ..., jobs: collections.abc.Iterable[global___JobConfig] | None = ..., tracing: global___TracingConfig | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1818,7 +1819,12 @@ Module Contents
 
 
 
-   .. py:method:: HasField(field_name: Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network']) -> bool
+   .. py:property:: tracing
+      :type: global___TracingConfig
+
+
+
+   .. py:method:: HasField(field_name: Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_maintenance', b'_maintenance', '_network', b'_network', '_tracing', b'_tracing', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'maintenance', b'maintenance', 'network', b'network', 'tracing', b'tracing']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1841,6 +1847,7 @@ Module Contents
                   WhichOneof(oneof_group: Literal['_disable_partial_start', b'_disable_partial_start']) -> Literal['disable_partial_start'] | None
                   WhichOneof(oneof_group: Literal['_maintenance', b'_maintenance']) -> Literal['maintenance'] | None
                   WhichOneof(oneof_group: Literal['_network', b'_network']) -> Literal['network'] | None
+                  WhichOneof(oneof_group: Literal['_tracing', b'_tracing']) -> Literal['tracing'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1963,6 +1970,39 @@ Module Contents
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: TracingConfig(*, enabled: bool = ..., disk: bool = ..., console: bool = ..., otlp_endpoint: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   TracingConfig configures whether viam-server will record traces and if so
+   where it will export them.
+
+
+   .. py:attribute:: enabled
+      :type:  bool
+
+      Globally enable or disable tracing support.
+
+
+   .. py:attribute:: disk
+      :type:  bool
+
+      Save trace spans to a file on disk.
+
+
+   .. py:attribute:: console
+      :type:  bool
+
+      Print trace spans to the console.
+
+
+   .. py:attribute:: otlp_endpoint
+      :type:  str
+
+      Send trace spans to an OTLP gRPC endpoint.
 
 
 .. py:class:: TrafficTunnelEndpoint(*, port: int = ..., connection_timeout: google.protobuf.duration_pb2.Duration | None = ...)
