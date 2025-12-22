@@ -30,6 +30,7 @@ class _MimeTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumT
     MIME_TYPE_IMAGE_JPEG: _MimeType.ValueType
     MIME_TYPE_IMAGE_PNG: _MimeType.ValueType
     MIME_TYPE_APPLICATION_PCD: _MimeType.ValueType
+    MIME_TYPE_VIDEO_MP4: _MimeType.ValueType
 
 class MimeType(_MimeType, metaclass=_MimeTypeEnumTypeWrapper):
     ...
@@ -37,6 +38,7 @@ MIME_TYPE_UNSPECIFIED: MimeType.ValueType
 MIME_TYPE_IMAGE_JPEG: MimeType.ValueType
 MIME_TYPE_IMAGE_PNG: MimeType.ValueType
 MIME_TYPE_APPLICATION_PCD: MimeType.ValueType
+MIME_TYPE_VIDEO_MP4: MimeType.ValueType
 global___MimeType = MimeType
 
 class _DataType:
