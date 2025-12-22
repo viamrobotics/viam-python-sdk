@@ -611,6 +611,22 @@ class GetOrganizationNamespaceAvailabilityResponse(google.protobuf.message.Messa
 global___GetOrganizationNamespaceAvailabilityResponse = GetOrganizationNamespaceAvailabilityResponse
 
 @typing.final
+class FragmentImportList(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IMPORTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def imports(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentImport]:
+        ...
+
+    def __init__(self, *, imports: collections.abc.Iterable[global___FragmentImport] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['imports', b'imports']) -> None:
+        ...
+global___FragmentImportList = FragmentImportList
+
+@typing.final
 class UpdateOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -618,6 +634,7 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     REGION_FIELD_NUMBER: builtins.int
     CID_FIELD_NUMBER: builtins.int
+    FRAGMENT_IMPORTS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     name: builtins.str
     public_namespace: builtins.str
@@ -625,17 +642,25 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     'The new GCS region to associate the org with.'
     cid: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=...) -> None:
+    @property
+    def fragment_imports(self) -> global___FragmentImportList:
         ...
 
-    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=..., fragment_imports: global___FragmentImportList | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_fragment_imports', b'_fragment_imports', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'fragment_imports', b'fragment_imports', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_fragment_imports', b'_fragment_imports', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'fragment_imports', b'fragment_imports', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
         ...
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_cid', b'_cid']) -> typing.Literal['cid'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_fragment_imports', b'_fragment_imports']) -> typing.Literal['fragment_imports'] | None:
         ...
 
     @typing.overload
@@ -2512,6 +2537,50 @@ class FragmentUsage(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing.Literal['_version', b'_version']) -> typing.Literal['version'] | None:
         ...
 global___FragmentUsage = FragmentUsage
+
+@typing.final
+class FragmentImport(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class VariablesEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+
+        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    FRAGMENT_ID_FIELD_NUMBER: builtins.int
+    VERSION_FIELD_NUMBER: builtins.int
+    PREFIX_FIELD_NUMBER: builtins.int
+    VARIABLES_FIELD_NUMBER: builtins.int
+    fragment_id: builtins.str
+    version: builtins.str
+    'revision or tag'
+    prefix: builtins.str
+    'namespace prefix'
+
+    @property
+    def variables(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+        """key-value pairs for fragment variables"""
+
+    def __init__(self, *, fragment_id: builtins.str=..., version: builtins.str=..., prefix: builtins.str | None=..., variables: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_prefix', b'_prefix', 'prefix', b'prefix']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_prefix', b'_prefix', 'fragment_id', b'fragment_id', 'prefix', b'prefix', 'variables', b'variables', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_prefix', b'_prefix']) -> typing.Literal['prefix'] | None:
+        ...
+global___FragmentImport = FragmentImport
 
 @typing.final
 class ResolvedFragment(google.protobuf.message.Message):
