@@ -61,6 +61,8 @@ from viam.proto.app import (
     DeleteRobotRequest,
     DeleteRobotResponse,
     Fragment,
+    FragmentImport,
+    FragmentImportList,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationMetadataRequest,
@@ -1388,6 +1390,7 @@ class MockApp(UnimplementedAppServiceBase):
         api_keys_with_authorizations: List[APIKeyWithAuthorizations],
         items: List[RegistryItem],
         package_type: PackageType.ValueType,
+        fragment_imports: Optional[FragmentImportList] = None,
     ):
         self.organizations = organizations
         self.location = location
@@ -1416,6 +1419,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.location_metadata = {}
         self.robot_metadata = {}
         self.robot_part_metadata = {}
+        self.update_fragment_imports = fragment_imports
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         request = await stream.recv_message()
@@ -1457,6 +1461,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.update_cid = request.cid
         self.update_name = request.name
         self.update_namespace = request.public_namespace
+        self.update_fragment_imports = request.fragment_imports
         await stream.send_message(UpdateOrganizationResponse(organization=self.organizations[0]))
 
     async def DeleteOrganization(self, stream: Stream[DeleteOrganizationRequest, DeleteOrganizationResponse]) -> None:

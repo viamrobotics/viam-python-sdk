@@ -168,6 +168,8 @@ from viam.proto.app import (
 )
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
+from viam.proto.app import FragmentImport as FragmentImportPB
+from viam.proto.app import FragmentImportList as FragmentImportListPB
 from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
@@ -507,6 +509,73 @@ class APIKeyAuthorization:
     _resource_id: str
 
 
+class FragmentImport:
+    """A class that mirrors the `FragmentImport` proto message.
+
+    Use this class to make the attributes of a `viam.proto.app.FragmentImport` more accessible and easier to read/interpret.
+    """
+
+    @classmethod
+    def from_proto(cls, fragment_import: FragmentImportPB) -> Self:
+        """Create a `FragmentImport` from the .proto defined `FragmentImport`.
+
+        Args:
+            fragment_import (viam.proto.app.FragmentImport): The object to copy from.
+
+        Returns:
+            FragmentImport: The `FragmentImport`.
+        """
+        self = cls()
+        self.fragment_id = fragment_import.fragment_id
+        self.version = fragment_import.version if fragment_import.HasField("version") else None
+        self.prefix = fragment_import.prefix if fragment_import.HasField("prefix") else None
+        self.variables = dict(fragment_import.variables)
+        return self
+
+    fragment_id: str
+    version: Optional[str]
+    prefix: Optional[str]
+    variables: Mapping[str, str]
+
+    @property
+    def proto(self) -> FragmentImportPB:
+        return FragmentImportPB(
+            fragment_id=self.fragment_id,
+            version=self.version,
+            prefix=self.prefix,
+            variables=self.variables,
+        )
+
+
+class FragmentImportList:
+    """A class that mirrors the `FragmentImportList` proto message.
+
+    Use this class to make the attributes of a `viam.proto.app.FragmentImportList` more accessible and easier to read/interpret.
+    """
+
+    @classmethod
+    def from_proto(cls, fragment_import_list: FragmentImportListPB) -> Self:
+        """Create a `FragmentImportList` from the .proto defined `FragmentImportList`.
+
+        Args:
+            fragment_import_list (viam.proto.app.FragmentImportList): The object to copy from.
+
+        Returns:
+            FragmentImportList: The `FragmentImportList`.
+        """
+        self = cls()
+        self.imports = [FragmentImport.from_proto(imp) for imp in fragment_import_list.imports]
+        return self
+
+    imports: List[FragmentImport]
+
+    @property
+    def proto(self) -> FragmentImportListPB:
+        return FragmentImportListPB(
+            imports=[imp.proto for imp in self.imports],
+        )
+
+
 class AppClient:
     """gRPC client for method calls to app.
 
@@ -736,6 +805,7 @@ class AppClient:
         public_namespace: Optional[str] = None,
         region: Optional[str] = None,
         cid: Optional[str] = None,
+        fragment_imports: Optional[List[FragmentImport]] = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -744,7 +814,8 @@ class AppClient:
             organization = await cloud.update_organization(
                 org_id="<YOUR-ORG-ID>",
                 name="Artoo's Org",
-                public_namespace="artoo"
+                public_namespace="artoo",
+                fragment_imports=[FragmentImport(fragment_id="frag1", version="1.0.0")]
             )
 
         Args:
@@ -753,6 +824,7 @@ class AppClient:
             public_namespace (Optional[str]): If provided, sets the org's namespace if it hasn't already been set.
             region (Optional[str]): If provided, updates the org's region.
             cid (Optional[str]): If provided, update's the org's CRM ID.
+            fragment_imports (Optional[List[FragmentImport]]): If provided, updates the org's fragment imports.
 
         Raises:
             GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
@@ -762,12 +834,14 @@ class AppClient:
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updateorganization>`_.
         """
+        fragment_imports_pb = FragmentImportListPB(imports=[fi.proto for fi in fragment_imports]) if fragment_imports else None
         request = UpdateOrganizationRequest(
             organization_id=org_id,
             public_namespace=public_namespace,
             region=region,
             cid=cid,
             name=name,
+            fragment_imports=fragment_imports_pb,
         )
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
