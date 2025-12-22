@@ -3,7 +3,7 @@ from datetime import datetime
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentVisibilityPB
+from viam.app.app_client import APIKeyAuthorization, AppClient, Fragment, FragmentImport, FragmentImportList, FragmentVisibilityPB
 from viam.proto.app import (
     APIKey,
     APIKeyWithAuthorizations,
@@ -30,6 +30,8 @@ from viam.proto.app import (
     Visibility,
 )
 from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import FragmentImport as FragmentImportPB
+from viam.proto.app import FragmentImportList as FragmentImportListPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry
 from viam.utils import datetime_to_timestamp, struct_to_dict
@@ -209,6 +211,15 @@ MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFO
 FILE = b"file"
 USER_DEFINED_METADATA = {"number": 0, "string": "string"}
 
+FRAGMENT_IMPORT_VARIABLES = {"key1": "value1", "key2": "value2"}
+FRAGMENT_IMPORT = FragmentImportPB(
+    fragment_id="frag_id_1",
+    version="1.0.0",
+    prefix="my_prefix",
+    variables=FRAGMENT_IMPORT_VARIABLES,
+)
+FRAGMENT_IMPORTS_LIST = FragmentImportListPB(imports=[FRAGMENT_IMPORT])
+
 
 @pytest.fixture(scope="function")
 def service() -> MockApp:
@@ -297,12 +308,20 @@ class TestClient:
     async def test_update_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA)
-            org = await client.update_organization(org_id=ID, name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
+            org = await client.update_organization(
+                org_id=ID,
+                name=NAME,
+                public_namespace=PUBLIC_NAMESPACE,
+                region=DEFAULT_REGION,
+                cid=CID,
+                fragment_imports=[FragmentImport.from_proto(FRAGMENT_IMPORT)],
+            )
             assert org == ORGANIZATION
             assert service.update_region == DEFAULT_REGION
             assert service.update_cid == CID
             assert service.update_name == NAME
             assert service.update_namespace == PUBLIC_NAMESPACE
+            assert service.update_fragment_imports == FRAGMENT_IMPORTS_LIST
 
     async def test_update_organization_invite_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
