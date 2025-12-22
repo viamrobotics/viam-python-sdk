@@ -6,7 +6,6 @@ Do not edit manually!
 from ....gen.component.camera.v1.camera_grpc import CameraServiceBase, CameraServiceStub, UnimplementedCameraServiceBase
 from ....gen.component.camera.v1.camera_pb2 import (
     DistortionParameters,
-    Format,
     GetImageRequest,
     GetImageResponse,
     GetImagesRequest,
@@ -28,7 +27,6 @@ __all__ = [
     "CameraServiceStub",
     "UnimplementedCameraServiceBase",
     "DistortionParameters",
-    "Format",
     "GetImageRequest",
     "GetImageResponse",
     "GetImagesRequest",
