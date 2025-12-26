@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from enum import Enum
 
 class AudioCodec(str, Enum):
