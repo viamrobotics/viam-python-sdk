@@ -50,11 +50,6 @@ from viam.proto.common import (
     Vector3,
 )
 from viam.proto.component.arm import JointPositions
-<<<<<<< Updated upstream
-from viam.proto.component.audioin import AudioChunk as AudioInChunk
-from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
-=======
->>>>>>> Stashed changes
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading

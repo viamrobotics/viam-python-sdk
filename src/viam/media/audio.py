@@ -3,22 +3,6 @@ from enum import Enum
 
 from viam.streams import Stream, StreamReader
 
-<<<<<<< Updated upstream
-
-@dataclass
-class Audio:
-    """A block of audio data containing information about the block and the audio data"""
-
-    info: AudioChunkInfo
-    chunk: AudioChunk
-
-
-AudioReader = StreamReader[Audio]
-AudioStream = Stream[Audio]
-
-
-=======
->>>>>>> Stashed changes
 class AudioCodec(str, Enum):
     """Common audio codec identifiers.
 
