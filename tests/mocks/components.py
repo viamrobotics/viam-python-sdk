@@ -14,7 +14,6 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_in import AudioIn, AudioResponse
-from viam.components.audio_input import AudioInput
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
@@ -34,7 +33,7 @@ from viam.components.servo import Servo
 from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
-from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
