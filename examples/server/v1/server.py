@@ -78,7 +78,6 @@ async def run(host: str, port: int, log_level: int):
         resources=[
             my_arm,
             my_audio_in,
-            my_audio_input,
             my_audio_out,
             my_base,
             my_board,
