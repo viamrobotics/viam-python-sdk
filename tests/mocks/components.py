@@ -36,6 +36,7 @@ from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
+from viam.proto.component.audioin import AudioChunk as Chunk
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
 

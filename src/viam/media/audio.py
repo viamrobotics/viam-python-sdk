@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from viam.streams import Stream, StreamReader
-
 class AudioCodec(str, Enum):
     """Common audio codec identifiers.
 
