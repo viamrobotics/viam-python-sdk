@@ -35,9 +35,13 @@ from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
+<<<<<<< Updated upstream
 from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
 from viam.proto.component.audioin import AudioChunk as Chunk
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
+=======
+from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+>>>>>>> Stashed changes
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
@@ -173,6 +177,7 @@ class MockAudioIn(AudioIn):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+<<<<<<< Updated upstream
 
 
 class MockAudioInput(AudioInput):
@@ -210,6 +215,8 @@ class MockAudioInput(AudioInput):
         return {"command": command}
 
 
+=======
+>>>>>>> Stashed changes
 class MockAudioOut(AudioOut):
     def __init__(self, name: str, properties: AudioOut.Properties):
         super().__init__(name)

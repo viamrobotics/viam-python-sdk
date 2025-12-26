@@ -19,7 +19,6 @@ from PIL import Image
 
 from viam.components.arm import Arm
 from viam.components.audio_in import AudioIn, AudioResponse
-from viam.components.audio_input import AudioInput
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, TickStream
@@ -51,8 +50,11 @@ from viam.proto.common import (
     Vector3,
 )
 from viam.proto.component.arm import JointPositions
+<<<<<<< Updated upstream
 from viam.proto.component.audioin import AudioChunk as AudioInChunk
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
+=======
+>>>>>>> Stashed changes
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading
@@ -109,73 +111,6 @@ class ExampleArm(Arm):
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
-
-
-class ExampleAudioInput(AudioInput):
-    def __init__(self, name: str):
-        super().__init__(name)
-        self.latency = timedelta(milliseconds=20)
-        self.sample_rate = 48_000
-        self.channel_count = 1
-        self.step = 0
-        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
-
-    def run_task(self):
-        self.step += 1
-        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
-
-    def __del__(self):
-        self.timer.cancel()
-
-    @run_with_operation
-    async def stream(self, **kwargs) -> AudioStream:
-        """Generate and stream a sine wave at 440Hz"""
-        operation = self.get_operation(kwargs)
-
-        length = self.sample_rate * self.latency.total_seconds()  # the length of the sample
-        num_chunks = self.sample_rate / length  # the number of chunks needed
-        angle = math.pi * 2 / (length * num_chunks)
-
-        async def read() -> AsyncIterator[Audio]:
-            while True:
-                if await operation.is_cancelled():
-                    break
-                output = bytes()
-                step = int(self.step % num_chunks)  # current location on the sine wave
-                for i in range(int(length)):
-                    value = float(10) * math.sin(angle * 440 * (float(length * step) + i))  # calculate the value at the current location
-                    output += bytes(struct.pack("f", value))
-
-                yield Audio(
-                    AudioChunkInfo(
-                        sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
-                        channels=self.channel_count,
-                        sampling_rate=self.sample_rate,
-                    ),
-                    AudioChunk(
-                        data=output,
-                        length=int(length),
-                    ),
-                )
-
-                await asyncio.sleep(self.latency.total_seconds())
-
-        return StreamWithIterator(read())
-
-    async def get_properties(self) -> AudioInput.Properties:
-        return AudioInput.Properties(
-            channel_count=self.channel_count,
-            latency=self.latency,
-            sample_rate=self.sample_rate,
-            sample_size=4,
-            is_big_endian=sys.byteorder != "little",
-            is_float=True,
-            is_interleaved=True,
-        )
-
-    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
-        return GEOMETRIES
-
 
 class ExampleAudioIn(AudioIn):
     def __init__(self, name: str):

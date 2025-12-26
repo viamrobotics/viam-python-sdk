@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo
 from viam.streams import Stream, StreamReader
 
+<<<<<<< Updated upstream
 
 @dataclass
 class Audio:
@@ -17,6 +17,8 @@ AudioReader = StreamReader[Audio]
 AudioStream = Stream[Audio]
 
 
+=======
+>>>>>>> Stashed changes
 class AudioCodec(str, Enum):
     """Common audio codec identifiers.
 
