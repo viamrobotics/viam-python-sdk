@@ -4,6 +4,7 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.provisioning import (
+    APIKey,
     CloudConfig,
     GetNetworkListRequest,
     GetNetworkListResponse,

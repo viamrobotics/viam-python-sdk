@@ -33,6 +33,8 @@ from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry
 from viam.utils import datetime_to_timestamp, struct_to_dict
+from viam.proto.app.app_client import ModuleLanguage, ModuleSourceType
+from viam.proto.app.module import UpdateModuleMetadata
 
 from .mocks.services import MockApp
 
@@ -209,6 +211,9 @@ MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFO
 FILE = b"file"
 USER_DEFINED_METADATA = {"number": 0, "string": "string"}
 
+MODULE_SOURCE_TYPE_EXTERNAL_PB = ModuleSourceType.MODULE_SOURCE_TYPE_EXTERNAL
+MODULE_LANGUAGE_PYTHON_PB = ModuleLanguage.MODULE_LANGUAGE_PYTHON
+
 
 @pytest.fixture(scope="function")
 def service() -> MockApp:
@@ -235,6 +240,11 @@ def service() -> MockApp:
         api_keys_with_authorizations=API_KEYS_WITH_AUTHORIZATIONS,
         items=[ITEM],
         package_type=PACKAGE_TYPE,
+        public_namespaces=[PUBLIC_NAMESPACE],
+        include_markdown_documentation=True,
+        module_source_types=[MODULE_SOURCE_TYPE_EXTERNAL_PB],
+        module_languages=[MODULE_LANGUAGE_PYTHON_PB],
+        update_module_metadata=UpdateModuleMetadata(source_type=MODULE_SOURCE_TYPE_EXTERNAL_PB, language=MODULE_LANGUAGE_PYTHON_PB),
     )
 
 
@@ -828,3 +838,38 @@ class TestClient:
             await client.update_robot_part_metadata(ID, USER_DEFINED_METADATA)
             user_defined_metadata = await client.get_robot_part_metadata(ID)
             assert user_defined_metadata == USER_DEFINED_METADATA
+
+    async def test_list_registry_items(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            items = await client.list_registry_items(
+                ID,
+                [PACKAGE_TYPE],
+                [VISIBILITY],
+                [PLATFORM],
+                [STATUS],
+                public_namespaces=[NAMESPACE],
+                include_markdown_documentation=True,
+                module_source_types=[ModuleSourceType.EXTERNAL],
+                module_languages=[ModuleLanguage.PYTHON],
+            )
+            assert items[0].item_id == ID
+            assert items[0].public_namespace == PUBLIC_NAMESPACE
+            assert items[0].total_external_organization_usage == USAGE
+            assert service.public_namespaces == [NAMESPACE]
+            assert service.include_markdown_documentation is True
+            assert service.module_source_types == [MODULE_SOURCE_TYPE_EXTERNAL_PB]
+            assert service.module_languages == [MODULE_LANGUAGE_PYTHON_PB]
+
+    async def test_update_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA)
+            await client.update_registry_item(
+                ID, PACKAGE_TYPE, DESCRIPTION, VISIBILITY, module_source_type=ModuleSourceType.EXTERNAL, module_language=ModuleLanguage.PYTHON
+            )
+            assert service.id == ID
+            assert service.package_type == PACKAGE_TYPE
+            assert service.description == DESCRIPTION
+            assert service.visibility == VISIBILITY
+            assert service.update_module_metadata.source_type == MODULE_SOURCE_TYPE_EXTERNAL_PB
+            assert service.update_module_metadata.language == MODULE_LANGUAGE_PYTHON_PB

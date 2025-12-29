@@ -128,6 +128,8 @@ from viam.proto.app import (
     MarkPartForRestartRequest,
     MarkPartForRestartResponse,
     Module,
+    ModuleLanguagePB,
+    ModuleSourceTypePB,
     NewRobotPartRequest,
     NewRobotPartResponse,
     NewRobotRequest,
@@ -181,6 +183,7 @@ from viam.proto.app import (
     UpdateRobotResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
+    UpdateModuleMetadata,
 )
 from viam.proto.app.billing import (
     CreateInvoiceAndChargeImmediatelyRequest,
@@ -328,6 +331,7 @@ from viam.proto.common import (
     Transform,
 )
 from viam.proto.provisioning import (
+    APIKey,
     GetNetworkListRequest,
     GetNetworkListResponse,
     GetSmartMachineStatusRequest,
@@ -813,6 +817,7 @@ class MockProvisioning(UnimplementedProvisioningServiceBase):
     ):
         self.smart_machine_status = smart_machine_status
         self.network_info = network_info
+        self.cloud_config: Optional[CloudConfig] = None
 
     async def GetNetworkList(self, stream: Stream[GetNetworkListRequest, GetNetworkListResponse]) -> None:
         request = await stream.recv_message()
@@ -1388,6 +1393,11 @@ class MockApp(UnimplementedAppServiceBase):
         api_keys_with_authorizations: List[APIKeyWithAuthorizations],
         items: List[RegistryItem],
         package_type: PackageType.ValueType,
+        public_namespaces: Optional[List[str]] = None,
+        include_markdown_documentation: Optional[bool] = None,
+        module_source_types: Optional[List[ModuleSourceTypePB.ValueType]] = None,
+        module_languages: Optional[List[ModuleLanguagePB.ValueType]] = None,
+        update_module_metadata: Optional[UpdateModuleMetadata] = None,
     ):
         self.organizations = organizations
         self.location = location
@@ -1411,6 +1421,11 @@ class MockApp(UnimplementedAppServiceBase):
         self.api_keys_with_authorizations = api_keys_with_authorizations
         self.items = items
         self.package_type = package_type
+        self.public_namespaces = public_namespaces
+        self.include_markdown_documentation = include_markdown_documentation
+        self.module_source_types = module_source_types
+        self.module_languages = module_languages
+        self.update_module_metadata = update_module_metadata
         self.send_email_invite = False
         self.organization_metadata = {}
         self.location_metadata = {}
@@ -1857,6 +1872,10 @@ class MockApp(UnimplementedAppServiceBase):
     async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.public_namespaces = request.public_namespaces
+        self.include_markdown_documentation = request.include_markdown_documentation
+        self.module_source_types = request.module_source_types
+        self.module_languages = request.module_languages
         await stream.send_message(ListRegistryItemsResponse(items=self.items))
 
     async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
@@ -1866,6 +1885,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.package_type = request.type
         self.description = request.description
         self.visibility = request.visibility
+        self.update_module_metadata = request.update_module_metadata
         await stream.send_message(UpdateRegistryItemResponse())
 
     async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:

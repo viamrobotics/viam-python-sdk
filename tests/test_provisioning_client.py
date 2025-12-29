@@ -2,7 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.app.provisioning_client import ProvisioningClient
-from viam.proto.provisioning import CloudConfig, GetSmartMachineStatusResponse, NetworkInfo, ProvisioningInfo
+from viam.proto.provisioning import APIKey, CloudConfig, GetSmartMachineStatusResponse, NetworkInfo, ProvisioningInfo
 
 from .mocks.services import MockProvisioning
 
@@ -35,7 +35,10 @@ SMART_MACHINE_STATUS_RESPONSE = GetSmartMachineStatusResponse(
     latest_connection_attempt=NETWORK_INFO_LATEST,
     errors=ERRORS,
 )
-CLOUD_CONFIG = CloudConfig(id=ID, secret=SECRET, app_address=APP_ADDRESS)
+API_KEY_PROVISIONING_ID = "api_key_id"
+API_KEY_PROVISIONING_KEY = "api_key_key"
+API_KEY_PROVISIONING = APIKey(id=API_KEY_PROVISIONING_ID, key=API_KEY_PROVISIONING_KEY)
+CLOUD_CONFIG = CloudConfig(id=ID, secret=SECRET, app_address=APP_ADDRESS, api_key=API_KEY_PROVISIONING)
 
 AUTH_TOKEN = "auth_token"
 PROVISIONING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -72,3 +75,4 @@ class TestClient:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
             await client.set_smart_machine_credentials(cloud_config=CLOUD_CONFIG)
             assert service.cloud_config == CLOUD_CONFIG
+            assert service.cloud_config.api_key == API_KEY_PROVISIONING
