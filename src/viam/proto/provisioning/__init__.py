@@ -5,6 +5,7 @@ Do not edit manually!
 
 from ...gen.provisioning.v1.provisioning_grpc import ProvisioningServiceBase, ProvisioningServiceStub, UnimplementedProvisioningServiceBase
 from ...gen.provisioning.v1.provisioning_pb2 import (
+    APIKey,
     CloudConfig,
     ExitProvisioningRequest,
     ExitProvisioningResponse,
@@ -24,6 +25,7 @@ __all__ = [
     "ProvisioningServiceBase",
     "ProvisioningServiceStub",
     "UnimplementedProvisioningServiceBase",
+    "APIKey",
     "CloudConfig",
     "ExitProvisioningRequest",
     "ExitProvisioningResponse",
