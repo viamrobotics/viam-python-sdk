@@ -100,6 +100,46 @@ FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID: FragmentErrorType.ValueType
 FRAGMENT_ERROR_TYPE_CYCLE_DETECTED: FragmentErrorType.ValueType
 global___FragmentErrorType = FragmentErrorType
 
+class _ModuleSourceType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _ModuleSourceTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ModuleSourceType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    MODULE_SOURCE_TYPE_UNSPECIFIED: _ModuleSourceType.ValueType
+    MODULE_SOURCE_TYPE_EXTERNAL: _ModuleSourceType.ValueType
+    'Module source code is stored externally, such as in github.'
+    MODULE_SOURCE_TYPE_VIAM_HOSTED: _ModuleSourceType.ValueType
+    'Module source code is versioned and managed within Viam.'
+
+class ModuleSourceType(_ModuleSourceType, metaclass=_ModuleSourceTypeEnumTypeWrapper):
+    ...
+MODULE_SOURCE_TYPE_UNSPECIFIED: ModuleSourceType.ValueType
+MODULE_SOURCE_TYPE_EXTERNAL: ModuleSourceType.ValueType
+'Module source code is stored externally, such as in github.'
+MODULE_SOURCE_TYPE_VIAM_HOSTED: ModuleSourceType.ValueType
+'Module source code is versioned and managed within Viam.'
+global___ModuleSourceType = ModuleSourceType
+
+class _ModuleLanguage:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _ModuleLanguageEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ModuleLanguage.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    MODULE_LANGUAGE_UNSPECIFIED: _ModuleLanguage.ValueType
+    MODULE_LANGUAGE_GOLANG: _ModuleLanguage.ValueType
+    MODULE_LANGUAGE_PYTHON: _ModuleLanguage.ValueType
+    MODULE_LANGUAGE_CPP: _ModuleLanguage.ValueType
+
+class ModuleLanguage(_ModuleLanguage, metaclass=_ModuleLanguageEnumTypeWrapper):
+    ...
+MODULE_LANGUAGE_UNSPECIFIED: ModuleLanguage.ValueType
+MODULE_LANGUAGE_GOLANG: ModuleLanguage.ValueType
+MODULE_LANGUAGE_PYTHON: ModuleLanguage.ValueType
+MODULE_LANGUAGE_CPP: ModuleLanguage.ValueType
+global___ModuleLanguage = ModuleLanguage
+
 class _RegistryItemStatus:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -3916,12 +3956,18 @@ class ModuleMetadata(google.protobuf.message.Message):
     FIRST_RUN_FIELD_NUMBER: builtins.int
     MARKDOWN_DESCRIPTION_FIELD_NUMBER: builtins.int
     APPS_FIELD_NUMBER: builtins.int
+    SOURCE_TYPE_FIELD_NUMBER: builtins.int
+    LANGUAGE_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
     first_run: builtins.str
     'The path to a setup script that is run before a newly downloaded module starts.'
     markdown_description: builtins.str
     'markdown content for the entire module'
+    source_type: global___ModuleSourceType.ValueType
+    'Determines the type of module, either a registry module or an inline module.'
+    language: global___ModuleLanguage.ValueType
+    'Specifies the language that the module is written in.'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
@@ -3937,13 +3983,13 @@ class ModuleMetadata(google.protobuf.message.Message):
     def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=..., first_run: builtins.str | None=..., markdown_description: builtins.str | None=..., apps: collections.abc.Iterable[global___App] | None=..., source_type: global___ModuleSourceType.ValueType | None=..., language: global___ModuleLanguage.ValueType | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_source_type', b'_source_type', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'source_type', b'source_type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'apps', b'apps', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'markdown_description', b'markdown_description', 'models', b'models', 'versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'models', b'models', 'source_type', b'source_type', 'versions', b'versions']) -> None:
         ...
 
     @typing.overload
@@ -3951,7 +3997,15 @@ class ModuleMetadata(google.protobuf.message.Message):
         ...
 
     @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_language', b'_language']) -> typing.Literal['language'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_markdown_description', b'_markdown_description']) -> typing.Literal['markdown_description'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_source_type', b'_source_type']) -> typing.Literal['source_type'] | None:
         ...
 global___ModuleMetadata = ModuleMetadata
 
@@ -4237,6 +4291,8 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACES_FIELD_NUMBER: builtins.int
     INCLUDE_MARKDOWN_DOCUMENTATION_FIELD_NUMBER: builtins.int
+    MODULE_SOURCE_TYPES_FIELD_NUMBER: builtins.int
+    MODULE_LANGUAGES_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The id of the organization to return registry items for.'
     search_term: builtins.str
@@ -4263,13 +4319,21 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     def public_namespaces(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """One or more public namespaces to return results for."""
 
-    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=..., public_namespaces: collections.abc.Iterable[builtins.str] | None=..., include_markdown_documentation: builtins.bool | None=...) -> None:
+    @property
+    def module_source_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___ModuleSourceType.ValueType]:
+        ...
+
+    @property
+    def module_languages(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___ModuleLanguage.ValueType]:
+        ...
+
+    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=..., public_namespaces: collections.abc.Iterable[builtins.str] | None=..., include_markdown_documentation: builtins.bool | None=..., module_source_types: collections.abc.Iterable[global___ModuleSourceType.ValueType] | None=..., module_languages: collections.abc.Iterable[global___ModuleLanguage.ValueType] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
+    def ClearField(self, field_name: typing.Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'module_languages', b'module_languages', 'module_source_types', b'module_source_types', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
         ...
 
     @typing.overload
@@ -4531,8 +4595,14 @@ class UpdateModuleMetadata(google.protobuf.message.Message):
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     APPS_FIELD_NUMBER: builtins.int
+    SOURCE_TYPE_FIELD_NUMBER: builtins.int
+    LANGUAGE_FIELD_NUMBER: builtins.int
     entrypoint: builtins.str
     'The executable to run to start the module program'
+    source_type: global___ModuleSourceType.ValueType
+    'Determines where the source code of module is managed, either externally or hosted by viam.'
+    language: global___ModuleLanguage.ValueType
+    'The language the module is written in'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
@@ -4542,10 +4612,21 @@ class UpdateModuleMetadata(google.protobuf.message.Message):
     def apps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]:
         """A list of applications associated with the module"""
 
-    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., apps: collections.abc.Iterable[global___App] | None=...) -> None:
+    def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., apps: collections.abc.Iterable[global___App] | None=..., source_type: global___ModuleSourceType.ValueType | None=..., language: global___ModuleLanguage.ValueType | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['apps', b'apps', 'entrypoint', b'entrypoint', 'models', b'models']) -> None:
+    def HasField(self, field_name: typing.Literal['_language', b'_language', '_source_type', b'_source_type', 'language', b'language', 'source_type', b'source_type']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_language', b'_language', '_source_type', b'_source_type', 'apps', b'apps', 'entrypoint', b'entrypoint', 'language', b'language', 'models', b'models', 'source_type', b'source_type']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_language', b'_language']) -> typing.Literal['language'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_source_type', b'_source_type']) -> typing.Literal['source_type'] | None:
         ...
 global___UpdateModuleMetadata = UpdateModuleMetadata
 
