@@ -7,6 +7,7 @@ from viam.components.base import Base, Vector3
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.motor import Motor
+from viam.media.utils.pil import viam_to_pil_image
 from viam.media.video import CameraMimeType
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
@@ -34,7 +35,8 @@ async def client():
 
         print("\n#### CAMERA ####")
         camera = Camera.from_robot(robot, "camera0")
-        img = await camera.get_image(mime_type=CameraMimeType.PNG)
+        images, _ = await camera.get_images()
+        img = viam_to_pil_image(images[0])
         assert isinstance(img, Image)
         img.show()
         await asyncio.sleep(1)

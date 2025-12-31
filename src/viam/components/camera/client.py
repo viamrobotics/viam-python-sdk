@@ -2,12 +2,10 @@ from typing import Any, Dict, Mapping, Optional, Sequence, Tuple
 
 from grpclib.client import Channel
 
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, NamedImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
-    GetImageRequest,
-    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -30,19 +28,6 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(
-        self,
-        mime_type: str = "",
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ) -> ViamImage:
-        md = kwargs.get("metadata", self.Metadata()).proto
-        request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
-        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout, metadata=md)
-        return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
-
     async def get_images(
         self,
         *,
@@ -56,11 +41,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout, metadata=md)
         imgs = []
         for img_data in response.images:
-            if img_data.mime_type:
-                mime_type = CameraMimeType.from_string(img_data.mime_type)
-            else:
-                # TODO(RSDK-11728): remove this once we deleted the format field
-                mime_type = CameraMimeType.from_proto(img_data.format)
+            mime_type = CameraMimeType.from_string(img_data.mime_type)
             img = NamedImage(img_data.source_name, img_data.image, mime_type)
             imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata

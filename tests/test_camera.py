@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import Optional
 
 import pytest
-from google.api.httpbody_pb2 import HttpBody
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
@@ -14,9 +13,6 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometries
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
-    Format,
-    GetImageRequest,
-    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -24,7 +20,6 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     IntrinsicParameters,
-    RenderFrameRequest,
 )
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -85,14 +80,6 @@ def generic_service(camera: Camera) -> GenericRPCService:
 
 
 class TestCamera:
-    async def test_get_image(self, camera: MockCamera, image: ViamImage):
-        img = await camera.get_image(CameraMimeType.PNG)
-        assert img.data == image.data
-        assert img.mime_type == image.mime_type
-
-        img = await camera.get_image(CameraMimeType.PNG, {"1": 1})
-        assert camera.extra == {"1": 1}
-
     async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
         imgs, md = await camera.get_images()
         assert isinstance(imgs[0], NamedImage)
@@ -119,9 +106,6 @@ class TestCamera:
     async def test_timeout(self, camera: MockCamera):
         assert camera.timeout is None
 
-        await camera.get_image(timeout=1.82)
-        assert camera.timeout == loose_approx(1.82)
-
         await camera.get_point_cloud(timeout=4.4)
         assert camera.timeout == loose_approx(4.4)
 
@@ -134,24 +118,6 @@ class TestCamera:
 
 
 class TestService:
-    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
-        assert camera.timeout is None
-        async with ChannelFor([service]) as channel:
-            client = CameraServiceStub(channel)
-
-            # Test known mime type
-            request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: GetImageResponse = await client.GetImage(request, timeout=18.1)
-            assert response.image == image.data
-            assert response.mime_type == CameraMimeType.PNG
-            assert camera.timeout == loose_approx(18.1)
-
-            # Test empty mime type. Empty mime type should default to response mime type
-            request = GetImageRequest(name="camera")
-            response: GetImageResponse = await client.GetImage(request)
-            assert response.image == image.data
-            assert response.mime_type == image.mime_type
-
     async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
@@ -160,7 +126,6 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request, timeout=18.1)
             raw_img = response.images[0]
-            assert raw_img.format == Format.FORMAT_PNG
             assert raw_img.mime_type == CameraMimeType.PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
@@ -185,16 +150,6 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request)
             assert response.images[0].source_name == "the_source"
-
-    async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
-        assert camera.timeout is None
-        async with ChannelFor([service]) as channel:
-            client = CameraServiceStub(channel)
-            request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: HttpBody = await client.RenderFrame(request, timeout=4.4)
-            assert response.content_type == CameraMimeType.PNG
-            assert response.data == image.data
-            assert camera.timeout == loose_approx(4.4)
 
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
@@ -235,15 +190,6 @@ class TestService:
 
 
 class TestClient:
-    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
-        assert camera.timeout is None
-        async with ChannelFor([service]) as channel:
-            client = CameraClient("camera", channel)
-
-            img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
-            assert img.data == image.data
-            assert img.mime_type == image.mime_type
-
     async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: ViamImage, metadata: ResponseMetadata):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:

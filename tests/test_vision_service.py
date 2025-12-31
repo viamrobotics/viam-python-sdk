@@ -207,7 +207,6 @@ class TestService:
             response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
             assert response.image.image == VISION_IMAGE.data
             assert response.image.mime_type == VISION_IMAGE.mime_type
-            assert response.image.format == VISION_IMAGE.mime_type.to_proto()
             assert response.classifications == CLASSIFICATIONS
             assert response.detections == []
             assert response.objects == []
