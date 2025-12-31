@@ -9,7 +9,6 @@ from .components import (
     ExampleAnalog,
     ExampleArm,
     ExampleAudioIn,
-    ExampleAudioInput,
     ExampleAudioOut,
     ExampleBase,
     ExampleBoard,
@@ -31,7 +30,6 @@ from .services import ExampleMLModel, ExampleSLAM
 
 async def run(host: str, port: int, log_level: int):
     my_arm = ExampleArm("arm0")
-    my_audio_input = ExampleAudioInput("audio_input0")
     my_audio_in = ExampleAudioIn("audio_in0")
     my_audio_out = ExampleAudioOut("audio_out0")
     my_base = ExampleBase("base0")
@@ -80,7 +78,6 @@ async def run(host: str, port: int, log_level: int):
         resources=[
             my_arm,
             my_audio_in,
-            my_audio_input,
             my_audio_out,
             my_base,
             my_board,
