@@ -2,6 +2,7 @@
 # pyright: reportGeneralTypeIssues=false
 from grpclib.server import Stream
 
+from viam.errors import NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
@@ -28,11 +29,11 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
     async def GetImage(self, stream: Stream) -> None:
         """Deprecated: Use GetImages instead."""
-        raise NotImplementedError("GetImage is deprecated. Use GetImages instead.")
+        raise NotSupportedError("GetImage is deprecated. Use GetImages instead.")
 
     async def RenderFrame(self, stream: Stream) -> None:
         """Deprecated: Use GetImages instead."""
-        raise NotImplementedError("RenderFrame is deprecated. Use GetImages instead.")
+        raise NotSupportedError("RenderFrame is deprecated. Use GetImages instead.")
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
