@@ -473,12 +473,93 @@ class RobotPartHistoryEntry:
 
     @property
     def proto(self) -> RobotPartHistoryEntryPB:
-        return RobotPartHistoryEntryPB(
+        return RobotPartPiecePB(
             part=self.part,
             robot=self.robot,
             when=datetime_to_timestamp(self.when) if self.when else None,
             old=self.old.proto if self.old else None,
         )
+
+
+class ModuleSourceType(str, Enum):
+    """
+    ModuleSourceType specifies the source of the module.
+    """
+
+    MODULE_SOURCE_TYPE_UNSPECIFIED = "unspecified"
+    """
+    Uninitialized source type.
+    """
+
+    MODULE_SOURCE_TYPE_LOCAL = "local"
+    """
+    Module is local to the machine.
+    """
+
+    MODULE_SOURCE_TYPE_REGISTRY = "registry"
+    """
+    Module is from the Viam registry.
+    """
+
+    @classmethod
+    def from_proto(cls, source_type: "viam.proto.app.packages_pb2.ModuleSourceType.ValueType") -> "ModuleSourceType":
+        if source_type == viam.proto.app.packages_pb2.ModuleSourceType.MODULE_SOURCE_TYPE_LOCAL:
+            return cls.MODULE_SOURCE_TYPE_LOCAL
+        if source_type == viam.proto.app.packages_pb2.ModuleSourceType.MODULE_SOURCE_TYPE_REGISTRY:
+            return cls.MODULE_SOURCE_TYPE_REGISTRY
+        return cls.MODULE_SOURCE_TYPE_UNSPECIFIED
+
+    def to_proto(self) -> "viam.proto.app.packages_pb2.ModuleSourceType.ValueType":
+        if self == self.MODULE_SOURCE_TYPE_LOCAL:
+            return viam.proto.app.packages_pb2.ModuleSourceType.MODULE_SOURCE_TYPE_LOCAL
+        if self == self.MODULE_SOURCE_TYPE_REGISTRY:
+            return viam.proto.app.packages_pb2.ModuleSourceType.MODULE_SOURCE_TYPE_REGISTRY
+        return viam.proto.app.packages_pb2.ModuleSourceType.MODULE_SOURCE_TYPE_UNSPECIFIED
+
+
+class ModuleLanguage(str, Enum):
+    """
+    ModuleLanguage specifies the language the module is written in.
+    """
+
+    MODULE_LANGUAGE_UNSPECIFIED = "unspecified"
+    """
+    Uninitialized language.
+    """
+
+    MODULE_LANGUAGE_GO = "go"
+    """
+    Module is written in Go.
+    """
+
+    MODULE_LANGUAGE_PYTHON = "python"
+    """
+    Module is written in Python.
+    """
+
+    MODULE_LANGUAGE_OTHER = "other"
+    """
+    Module is written in another language.
+    """
+
+    @classmethod
+    def from_proto(cls, language: "viam.proto.app.packages_pb2.ModuleLanguage.ValueType") -> "ModuleLanguage":
+        if language == viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_GO:
+            return cls.MODULE_LANGUAGE_GO
+        if language == viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_PYTHON:
+            return cls.MODULE_LANGUAGE_PYTHON
+        if language == viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_OTHER:
+            return cls.MODULE_LANGUAGE_OTHER
+        return cls.MODULE_LANGUAGE_UNSPECIFIED
+
+    def to_proto(self) -> "viam.proto.app.packages_pb2.ModuleLanguage.ValueType":
+        if self == self.MODULE_LANGUAGE_GO:
+            return viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_GO
+        if self == self.MODULE_LANGUAGE_PYTHON:
+            return viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_PYTHON
+        if self == self.MODULE_LANGUAGE_OTHER:
+            return viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_OTHER
+        return viam.proto.app.packages_pb2.ModuleLanguage.MODULE_LANGUAGE_UNSPECIFIED
 
 
 class APIKeyAuthorization:
@@ -1406,7 +1487,7 @@ class AppClient:
                 no filter).
 
         Returns:
-            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live machine part logs.
+            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving machine part logs.
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
@@ -2138,6 +2219,7 @@ class AppClient:
                 form `namespace:name`. For example, `Viam's csi-cam-pi module's <https://app.viam.com/module/viam/csi-cam-pi>`_ item ID
                 would be `viam:csi-cam-pi`. You can also use `org-id:name`. For example,
                 `abc01234-0123-4567-ab12-a11a00a2aa22:training-script`.
+            include_markdown_documentation (bool): Whether or not to include markdown documentation in the response. Defaults to False.
 
         Returns:
             RegistryItem: The registry item.
@@ -2168,7 +2250,13 @@ class AppClient:
         await self._app_client.CreateRegistryItem(request, metadata=self._metadata)
 
     async def update_registry_item(
-        self, item_id: str, type: PackageType.ValueType, description: str, visibility: Visibility.ValueType
+        self,
+        item_id: str,
+        type: PackageType.ValueType,
+        description: str,
+        visibility: Visibility.ValueType,
+        module_source_type: Optional[ModuleSourceType] = None,
+        module_language: Optional[ModuleLanguage] = None,
     ) -> None:
         """Update a registry item.
 
@@ -2176,12 +2264,24 @@ class AppClient:
 
             from viam.proto.app.packages import PackageType
             from viam.proto.app import Visibility
+            from viam.proto.app import ModuleSourceType, ModuleLanguage
 
+            # Update a module's description and visibility
             await cloud.update_registry_item(
                 "your-namespace:your-name",
-                PackageType.PACKAGE_TYPE_ML_TRAINING,
-                "description",
-                Visibility.VISIBILITY_PUBLIC
+                PackageType.PACKAGE_TYPE_MODULE,
+                "A new description for my module.",
+                Visibility.VISIBILITY_PUBLIC,
+                module_source_type=ModuleSourceType.MODULE_SOURCE_TYPE_REGISTRY,
+                module_language=ModuleLanguage.MODULE_LANGUAGE_PYTHON
+            )
+
+            # Update an ML model's description and visibility
+            await cloud.update_registry_item(
+                "your-namespace:your-model",
+                PackageType.PACKAGE_TYPE_ML_MODEL,
+                "An updated description for my ML model.",
+                Visibility.VISIBILITY_PRIVATE
             )
 
         Args:
@@ -2190,11 +2290,25 @@ class AppClient:
             type (PackageType.ValueType): The type of the item in the registry.
             description (str): The description of the registry item.
             visibility (Visibility.ValueType): The visibility of the registry item.
+            module_source_type (Optional[ModuleSourceType]): The source type of the module. Only applicable if type is PACKAGE_TYPE_MODULE.
+            module_language (Optional[ModuleLanguage]): The language of the module. Only applicable if type is PACKAGE_TYPE_MODULE.
 
         For more information, see `Fleet Management API <https://docs.viam.com/dev/reference/apis/fleet/#updateregistryitem>`_.
         """
+        update_module_metadata = None
+        if type == PackageType.PACKAGE_TYPE_MODULE and (module_source_type or module_language):
+            update_module_metadata = UpdateModuleMetadata(
+                module_source_type=module_source_type.to_proto() if module_source_type else None,
+                module_language=module_language.to_proto() if module_language else None,
+            )
 
-        request = UpdateRegistryItemRequest(item_id=item_id, type=type, description=description, visibility=visibility)
+        request = UpdateRegistryItemRequest(
+            item_id=item_id,
+            type=type,
+            description=description,
+            visibility=visibility,
+            update_module_metadata=update_module_metadata,
+        )
         await self._app_client.UpdateRegistryItem(request, metadata=self._metadata)
 
     async def list_registry_items(
@@ -2206,6 +2320,10 @@ class AppClient:
         statuses: List[RegistryItemStatus.ValueType],
         search_term: Optional[str] = None,
         page_token: Optional[str] = None,
+        public_namespaces: Optional[List[str]] = None,
+        include_markdown_documentation: Optional[bool] = None,
+        module_source_types: Optional[List[ModuleSourceType]] = None,
+        module_languages: Optional[List[ModuleLanguage]] = None,
     ) -> List[RegistryItem]:
         """List the registry items in an organization.
 
@@ -2213,23 +2331,27 @@ class AppClient:
 
             from viam.proto.app.packages import PackageType
             from viam.proto.app import Visibility, RegistryItemStatus
+            from viam.proto.app import ModuleSourceType, ModuleLanguage
 
-            # List private, published ml training scripts in your organization
+            # List private, published linux modules in your organization
             registry_items = await cloud.list_registry_items(
                 organization_id="<YOUR-ORG-ID>",
-                types=[PackageType.PACKAGE_TYPE_ML_TRAINING],
+                types=[PackageType.PACKAGE_TYPE_MODULE],
                 visibilities=[Visibility.VISIBILITY_PRIVATE],
-                platforms=[""],
-                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+                platforms=["linux/amd64"],
+                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED],
+                module_source_types=[ModuleSourceType.MODULE_SOURCE_TYPE_REGISTRY],
+                module_languages=[ModuleLanguage.MODULE_LANGUAGE_GO]
             )
 
-            # List public, published linux modules in all organizations
+            # List public, published ml training scripts in all organizations
             registry_items = await cloud.list_registry_items(
                 organization_id="",
-                types=[PackageType.PACKAGE_TYPE_MODULE],
+                types=[PackageType.PACKAGE_TYPE_ML_TRAINING],
                 visibilities=[Visibility.VISIBILITY_PUBLIC],
-                platforms=["linux/any"],
-                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED]
+                platforms=[""],
+                statuses=[RegistryItemStatus.REGISTRY_ITEM_STATUS_PUBLISHED],
+                public_namespaces=["viam"]
             )
 
         Args:
@@ -2240,6 +2362,10 @@ class AppClient:
             statuses (List[RegistryItemStatus.ValueType]): The types of the items in the registry.
             search_term (Optional[str]): The search term of the registry items.
             page_token (Optional[str]): The page token of the registry items.
+            public_namespaces (Optional[List[str]]): List of public namespaces to filter by.
+            include_markdown_documentation (Optional[bool]): Whether or not to include markdown documentation in the response.
+            module_source_types (Optional[List[ModuleSourceType]]): List of module source types to filter by.
+            module_languages (Optional[List[ModuleLanguage]]): List of module languages to filter by.
 
         Returns:
             List[RegistryItem]: The list of registry items.
@@ -2254,6 +2380,10 @@ class AppClient:
             statuses=statuses,
             search_term=search_term if search_term is not None else "",
             page_token=page_token if page_token is not None else "",
+            public_namespaces=public_namespaces,
+            include_markdown_documentation=include_markdown_documentation,
+            module_source_types=[source_type.to_proto() for source_type in module_source_types] if module_source_types else None,
+            module_languages=[language.to_proto() for language in module_languages] if module_languages else None,
         )
         response: ListRegistryItemsResponse = await self._app_client.ListRegistryItems(request, metadata=self._metadata)
         return list(response.items)
