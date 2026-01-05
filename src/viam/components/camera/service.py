@@ -1,14 +1,11 @@
 # TODO: Update type checking based with RSDK-4089
 # pyright: reportGeneralTypeIssues=false
-from google.api.httpbody_pb2 import HttpBody  # type: ignore
 from grpclib.server import Stream
 
-from viam.media.video import CameraMimeType
+from viam.errors import NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
-    GetImageRequest,
-    GetImageResponse,
     GetImagesRequest,
     GetImagesResponse,
     GetPointCloudRequest,
@@ -16,7 +13,6 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     Image,
-    RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -31,16 +27,13 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
+    async def GetImage(self, stream: Stream) -> None:
+        """Deprecated: Use GetImages instead."""
+        raise NotSupportedError("GetImage is deprecated. Use GetImages instead.")
 
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetImageResponse(mime_type=image.mime_type, image=image.data)
-        await stream.send_message(response)
+    async def RenderFrame(self, stream: Stream) -> None:
+        """Deprecated: Use GetImages instead."""
+        raise NotSupportedError("RenderFrame is deprecated. Use GetImages instead.")
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
         request = await stream.recv_message()
@@ -56,23 +49,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         )
         img_bytes_lst = []
         for img in images:
-            mime_type = CameraMimeType.from_string(img.mime_type)
-            # TODO(RSDK-11728): remove this fmt logic once we deleted the format field
-            fmt = mime_type.to_proto()  # Will be Format.FORMAT_UNSPECIFIED if an unsupported/custom mime type is set
-
             img_bytes = img.data
-            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, format=fmt, image=img_bytes))
+            img_bytes_lst.append(Image(source_name=img.name, mime_type=img.mime_type, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
-        await stream.send_message(response)
-
-    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:  # pyright: ignore [reportInvalidTypeForm]
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        camera = self.get_resource(name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
-        response = HttpBody(data=image.data, content_type=image.mime_type)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:

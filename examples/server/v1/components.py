@@ -9,12 +9,13 @@ if sys.version_info >= (3, 9):
 else:
     from typing import AsyncIterator
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from io import BytesIO
 from multiprocessing import Lock
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
+from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
 from viam.components.arm import Arm
@@ -434,11 +435,11 @@ class ExampleCamera(Camera):
         img.close()
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> ViamImage:
-        return self.image
-
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
-        raise NotImplementedError()
+        ts = Timestamp()
+        ts.FromDatetime(datetime.now())
+        metadata = ResponseMetadata(captured_at=ts)
+        return [NamedImage(self.name, self.image.data, self.image.mime_type)], metadata
 
     async def get_point_cloud(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bytes, str]:
         raise NotImplementedError()

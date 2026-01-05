@@ -4,7 +4,6 @@ from typing import Any, List, Optional, Tuple
 from typing_extensions import ClassVar, Self
 
 from viam.errors import NotSupportedError
-from viam.proto.component.camera import Format
 
 from .viam_rgba import RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
@@ -70,44 +69,6 @@ class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
         value_mime = value[:-5] if value.endswith("+lazy") else value  # ViamImage lazy encodes by default
         return cls(value_mime)
 
-    @classmethod
-    def from_proto(cls, format: Format.ValueType) -> Self:
-        """Returns the mimetype from a proto enum.
-
-        Args:
-            format (Format.ValueType): The mimetype in a proto enum.
-
-        Returns:
-            Self: The mimetype.
-        """
-        mimetypes = {
-            Format.FORMAT_RAW_RGBA: cls.VIAM_RGBA,
-            Format.FORMAT_RAW_DEPTH: cls.VIAM_RAW_DEPTH,
-            Format.FORMAT_JPEG: cls.JPEG,
-            Format.FORMAT_PNG: cls.PNG,
-        }
-        return cls(mimetypes.get(format, cls.JPEG))
-
-    @property
-    def proto(self) -> Format.ValueType:
-        """Returns the mimetype in a proto enum.
-
-        Returns:
-            Format.ValueType: The mimetype in a proto enum.
-        """
-        formats = {
-            self.VIAM_RGBA: Format.FORMAT_RAW_RGBA,
-            self.VIAM_RAW_DEPTH: Format.FORMAT_RAW_DEPTH,
-            self.JPEG: Format.FORMAT_JPEG,
-            self.PNG: Format.FORMAT_PNG,
-        }
-        return formats.get(self, Format.FORMAT_UNSPECIFIED)
-
-    def to_proto(self) -> Format.ValueType:
-        """
-        DEPRECATED: Use `CameraMimeType.proto`
-        """
-        return self.proto
 
 
 CameraMimeType.VIAM_RGBA = CameraMimeType.from_string("image/vnd.viam.rgba")
