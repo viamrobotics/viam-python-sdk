@@ -38,6 +38,15 @@ Attributes
    viam.gen.app.v1.app_pb2.FRAGMENT_ERROR_TYPE_CHILD_ID_INVALID
    viam.gen.app.v1.app_pb2.FRAGMENT_ERROR_TYPE_CYCLE_DETECTED
    viam.gen.app.v1.app_pb2.global___FragmentErrorType
+   viam.gen.app.v1.app_pb2.MODULE_SOURCE_TYPE_UNSPECIFIED
+   viam.gen.app.v1.app_pb2.MODULE_SOURCE_TYPE_EXTERNAL
+   viam.gen.app.v1.app_pb2.MODULE_SOURCE_TYPE_VIAM_HOSTED
+   viam.gen.app.v1.app_pb2.global___ModuleSourceType
+   viam.gen.app.v1.app_pb2.MODULE_LANGUAGE_UNSPECIFIED
+   viam.gen.app.v1.app_pb2.MODULE_LANGUAGE_GOLANG
+   viam.gen.app.v1.app_pb2.MODULE_LANGUAGE_PYTHON
+   viam.gen.app.v1.app_pb2.MODULE_LANGUAGE_CPP
+   viam.gen.app.v1.app_pb2.global___ModuleLanguage
    viam.gen.app.v1.app_pb2.REGISTRY_ITEM_STATUS_UNSPECIFIED
    viam.gen.app.v1.app_pb2.REGISTRY_ITEM_STATUS_PUBLISHED
    viam.gen.app.v1.app_pb2.REGISTRY_ITEM_STATUS_IN_DEVELOPMENT
@@ -357,6 +366,8 @@ Classes
    viam.gen.app.v1.app_pb2.AuthenticationType
    viam.gen.app.v1.app_pb2.FragmentVisibility
    viam.gen.app.v1.app_pb2.FragmentErrorType
+   viam.gen.app.v1.app_pb2.ModuleSourceType
+   viam.gen.app.v1.app_pb2.ModuleLanguage
    viam.gen.app.v1.app_pb2.RegistryItemStatus
    viam.gen.app.v1.app_pb2.Visibility
    viam.gen.app.v1.app_pb2.AppType
@@ -727,6 +738,45 @@ Module Contents
    :type:  FragmentErrorType
 
 .. py:data:: global___FragmentErrorType
+
+.. py:class:: ModuleSourceType
+
+   Bases: :py:obj:`_ModuleSourceType`
+
+
+.. py:data:: MODULE_SOURCE_TYPE_UNSPECIFIED
+   :type:  ModuleSourceType
+
+.. py:data:: MODULE_SOURCE_TYPE_EXTERNAL
+   :type:  ModuleSourceType
+
+   Module source code is stored externally, such as in github.
+
+.. py:data:: MODULE_SOURCE_TYPE_VIAM_HOSTED
+   :type:  ModuleSourceType
+
+   Module source code is versioned and managed within Viam.
+
+.. py:data:: global___ModuleSourceType
+
+.. py:class:: ModuleLanguage
+
+   Bases: :py:obj:`_ModuleLanguage`
+
+
+.. py:data:: MODULE_LANGUAGE_UNSPECIFIED
+   :type:  ModuleLanguage
+
+.. py:data:: MODULE_LANGUAGE_GOLANG
+   :type:  ModuleLanguage
+
+.. py:data:: MODULE_LANGUAGE_PYTHON
+   :type:  ModuleLanguage
+
+.. py:data:: MODULE_LANGUAGE_CPP
+   :type:  ModuleLanguage
+
+.. py:data:: global___ModuleLanguage
 
 .. py:class:: RegistryItemStatus
 
@@ -7048,7 +7098,7 @@ Module Contents
 
 .. py:data:: global___ModuleVersion
 
-.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ...)
+.. py:class:: ModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., versions: collections.abc.Iterable[global___ModuleVersion] | None = ..., entrypoint: str = ..., first_run: str | None = ..., markdown_description: str | None = ..., apps: collections.abc.Iterable[global___App] | None = ..., source_type: global___ModuleSourceType | None = ..., language: global___ModuleLanguage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7078,6 +7128,18 @@ Module Contents
       markdown content for the entire module
 
 
+   .. py:attribute:: source_type
+      :type:  global___ModuleSourceType
+
+      Determines the type of module, either a registry module or an inline module.
+
+
+   .. py:attribute:: language
+      :type:  global___ModuleLanguage
+
+      Specifies the language that the module is written in.
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
@@ -7097,7 +7159,7 @@ Module Contents
       A list of applications associated with the module
 
 
-   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_markdown_description', b'_markdown_description', 'first_run', b'first_run', 'markdown_description', b'markdown_description']) -> bool
+   .. py:method:: HasField(field_name: Literal['_first_run', b'_first_run', '_language', b'_language', '_markdown_description', b'_markdown_description', '_source_type', b'_source_type', 'first_run', b'first_run', 'language', b'language', 'markdown_description', b'markdown_description', 'source_type', b'source_type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -7116,7 +7178,9 @@ Module Contents
 
 
    .. py:method:: WhichOneof(oneof_group: Literal['_first_run', b'_first_run']) -> Literal['first_run'] | None
+                  WhichOneof(oneof_group: Literal['_language', b'_language']) -> Literal['language'] | None
                   WhichOneof(oneof_group: Literal['_markdown_description', b'_markdown_description']) -> Literal['markdown_description'] | None
+                  WhichOneof(oneof_group: Literal['_source_type', b'_source_type']) -> Literal['source_type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -7627,7 +7691,7 @@ Module Contents
 
 .. py:data:: global___UpdateRegistryItemResponse
 
-.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ..., include_markdown_documentation: bool | None = ...)
+.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ..., include_markdown_documentation: bool | None = ..., module_source_types: collections.abc.Iterable[global___ModuleSourceType] | None = ..., module_languages: collections.abc.Iterable[global___ModuleLanguage] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -7681,6 +7745,16 @@ Module Contents
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       One or more public namespaces to return results for.
+
+
+   .. py:property:: module_source_types
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___ModuleSourceType]
+
+
+
+   .. py:property:: module_languages
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___ModuleLanguage]
+
 
 
    .. py:method:: HasField(field_name: Literal['_include_markdown_documentation', b'_include_markdown_documentation', '_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'include_markdown_documentation', b'include_markdown_documentation', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> bool
@@ -8137,7 +8211,7 @@ Module Contents
 
 .. py:data:: global___UpdateModuleResponse
 
-.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[global___App] | None = ...)
+.. py:class:: UpdateModuleMetadata(*, models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., apps: collections.abc.Iterable[global___App] | None = ..., source_type: global___ModuleSourceType | None = ..., language: global___ModuleLanguage | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -8155,6 +8229,18 @@ Module Contents
       The executable to run to start the module program
 
 
+   .. py:attribute:: source_type
+      :type:  global___ModuleSourceType
+
+      Determines where the source code of module is managed, either externally or hosted by viam.
+
+
+   .. py:attribute:: language
+      :type:  global___ModuleLanguage
+
+      The language the module is written in
+
+
    .. py:property:: models
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
 
@@ -8165,6 +8251,41 @@ Module Contents
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___App]
 
       A list of applications associated with the module
+
+
+   .. py:method:: HasField(field_name: Literal['_language', b'_language', '_source_type', b'_source_type', 'language', b'language', 'source_type', b'source_type']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_language', b'_language']) -> Literal['language'] | None
+                  WhichOneof(oneof_group: Literal['_source_type', b'_source_type']) -> Literal['source_type'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___UpdateModuleMetadata

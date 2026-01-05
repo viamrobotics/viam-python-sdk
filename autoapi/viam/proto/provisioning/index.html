@@ -97,10 +97,17 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.UnimplementedProvisioningServiceBase.ExitProvisioning"><code class="docutils literal notranslate"><span class="pre">UnimplementedProvisioningServiceBase.ExitProvisioning()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.proto.provisioning.APIKey"><code class="docutils literal notranslate"><span class="pre">APIKey</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.APIKey.id"><code class="docutils literal notranslate"><span class="pre">APIKey.id</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.APIKey.key"><code class="docutils literal notranslate"><span class="pre">APIKey.key</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig"><code class="docutils literal notranslate"><span class="pre">CloudConfig</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig.id"><code class="docutils literal notranslate"><span class="pre">CloudConfig.id</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig.secret"><code class="docutils literal notranslate"><span class="pre">CloudConfig.secret</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig.app_address"><code class="docutils literal notranslate"><span class="pre">CloudConfig.app_address</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig.api_key"><code class="docutils literal notranslate"><span class="pre">CloudConfig.api_key</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.provisioning.CloudConfig.HasField"><code class="docutils literal notranslate"><span class="pre">CloudConfig.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.proto.provisioning.ExitProvisioningRequest"><code class="docutils literal notranslate"><span class="pre">ExitProvisioningRequest</span></code></a></li>
@@ -206,43 +213,46 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.UnimplementedProvisioningServiceBase" title="viam.proto.provisioning.UnimplementedProvisioningServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedProvisioningServiceBase</span></code></a></p></td>
 <td><p>Helper class that provides a standard way to create an ABC using</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.CloudConfig" title="viam.proto.provisioning.CloudConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloudConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.APIKey" title="viam.proto.provisioning.APIKey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKey</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.CloudConfig" title="viam.proto.provisioning.CloudConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloudConfig</span></code></a></p></td>
 <td><p>minimal CloudConfig to create /etc/viam.json</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.ExitProvisioningRequest" title="viam.proto.provisioning.ExitProvisioningRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExitProvisioningRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.ExitProvisioningRequest" title="viam.proto.provisioning.ExitProvisioningRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExitProvisioningRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.ExitProvisioningResponse" title="viam.proto.provisioning.ExitProvisioningResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExitProvisioningResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.ExitProvisioningResponse" title="viam.proto.provisioning.ExitProvisioningResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExitProvisioningResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetNetworkListRequest" title="viam.proto.provisioning.GetNetworkListRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetNetworkListRequest" title="viam.proto.provisioning.GetNetworkListRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetNetworkListResponse" title="viam.proto.provisioning.GetNetworkListResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetNetworkListResponse" title="viam.proto.provisioning.GetNetworkListResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetSmartMachineStatusRequest" title="viam.proto.provisioning.GetSmartMachineStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetSmartMachineStatusRequest" title="viam.proto.provisioning.GetSmartMachineStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetSmartMachineStatusResponse" title="viam.proto.provisioning.GetSmartMachineStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.GetSmartMachineStatusResponse" title="viam.proto.provisioning.GetSmartMachineStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.NetworkInfo" title="viam.proto.provisioning.NetworkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NetworkInfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.NetworkInfo" title="viam.proto.provisioning.NetworkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NetworkInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.ProvisioningInfo" title="viam.proto.provisioning.ProvisioningInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProvisioningInfo</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.ProvisioningInfo" title="viam.proto.provisioning.ProvisioningInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProvisioningInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetNetworkCredentialsRequest" title="viam.proto.provisioning.SetNetworkCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetNetworkCredentialsRequest" title="viam.proto.provisioning.SetNetworkCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetNetworkCredentialsResponse" title="viam.proto.provisioning.SetNetworkCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetNetworkCredentialsResponse" title="viam.proto.provisioning.SetNetworkCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetSmartMachineCredentialsRequest" title="viam.proto.provisioning.SetSmartMachineCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetSmartMachineCredentialsRequest" title="viam.proto.provisioning.SetSmartMachineCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetSmartMachineCredentialsResponse" title="viam.proto.provisioning.SetSmartMachineCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.provisioning.SetSmartMachineCredentialsResponse" title="viam.proto.provisioning.SetSmartMachineCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -372,8 +382,28 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.provisioning.APIKey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.provisioning.</span></span><span class="sig-name descname"><span class="pre">APIKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.provisioning.APIKey" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.provisioning.APIKey.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.provisioning.APIKey.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.provisioning.APIKey.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.provisioning.APIKey.key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.provisioning.CloudConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.provisioning.</span></span><span class="sig-name descname"><span class="pre">CloudConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.provisioning.CloudConfig" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.provisioning.</span></span><span class="sig-name descname"><span class="pre">CloudConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___APIKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.provisioning.CloudConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>minimal CloudConfig to create /etc/viam.json</p>
 <dl class="py attribute">
@@ -392,6 +422,34 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.provisioning.CloudConfig.app_address">
 <span class="sig-name descname"><span class="pre">app_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.provisioning.CloudConfig.app_address" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.provisioning.CloudConfig.api_key">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___APIKey</span></em><a class="headerlink" href="#viam.proto.provisioning.CloudConfig.api_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.provisioning.CloudConfig.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'api_key'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'api_key'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.provisioning.CloudConfig.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
