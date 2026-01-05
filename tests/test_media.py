@@ -114,7 +114,6 @@ class TestCameraMimeType:
         assert mime_type.value == "SOME CUSTOM MIME TYPE"
 
 
-
 def test_image_conversion():
     i = Image.new("RGBA", (100, 100), "#AABBCCDD")
 
