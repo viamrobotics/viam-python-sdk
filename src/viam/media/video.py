@@ -70,7 +70,6 @@ class CameraMimeType(str, metaclass=_FrozenClassAttributesMeta):
         return cls(value_mime)
 
 
-
 CameraMimeType.VIAM_RGBA = CameraMimeType.from_string("image/vnd.viam.rgba")
 CameraMimeType.VIAM_RAW_DEPTH = CameraMimeType.from_string("image/vnd.viam.dep")
 CameraMimeType.JPEG = CameraMimeType.from_string("image/jpeg")
