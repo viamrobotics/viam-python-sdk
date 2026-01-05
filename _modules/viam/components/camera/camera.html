@@ -91,7 +91,7 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">NamedImage</span><span class="p">,</span> <span class="n">ViamImage</span>
+<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">NamedImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResponseMetadata</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.camera</span> <span class="kn">import</span> <span class="n">GetPropertiesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">API</span><span class="p">,</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span>
@@ -124,32 +124,6 @@
     <span class="p">)</span>
 
     <span class="n">Properties</span><span class="p">:</span> <span class="s2">&quot;TypeAlias&quot;</span> <span class="o">=</span> <span class="n">GetPropertiesResponse</span>
-
-<div class="viewcode-block" id="Camera.get_image"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/index.html#viam.components.camera.camera.Camera.get_image">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ViamImage</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the next image from the camera as a ViamImage.</span>
-<span class="sd">        Be sure to close the image when finished.</span>
-
-<span class="sd">        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`</span>
-<span class="sd">        to convert the data to a standard representation.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_camera = Camera.from_robot(machine, &quot;my_camera&quot;)</span>
-<span class="sd">            frame = await my_camera.get_image()</span>
-<span class="sd">            print(f&quot;Frame: {frame}&quot;)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            mime_type (str): The desired mime type of the image. This does not guarantee output type</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            ViamImage: The frame.</span>
-
-<span class="sd">        For more information, see `Camera component &lt;https://docs.viam.com/dev/reference/apis/components/camera/#getimage&gt;`_.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Camera.get_images"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/index.html#viam.components.camera.camera.Camera.get_images">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_images</span><span class="p">(</span>

@@ -158,34 +158,6 @@ Package Contents
 
 
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.media.video.ViamImage
-      :abstractmethod:
-
-      :async:
-
-
-      Get the next image from the camera as a ViamImage.
-      Be sure to close the image when finished.
-
-      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
-      to convert the data to a standard representation.
-
-      ::
-
-          my_camera = Camera.from_robot(machine, "my_camera")
-          frame = await my_camera.get_image()
-          print(f"Frame: {frame}")
-
-      :param mime_type: The desired mime type of the image. This does not guarantee output type
-      :type mime_type: str
-
-      :returns: The frame.
-      :rtype: ViamImage
-
-      For more information, see `Camera component <https://docs.viam.com/dev/reference/apis/components/camera/#getimage>`_.
-
-
-
    .. py:method:: get_images(*, filter_source_names: Optional[Sequence[str]] = None, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[Sequence[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :abstractmethod:
 

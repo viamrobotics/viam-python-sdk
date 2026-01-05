@@ -26,17 +26,23 @@ Module Contents
    .. py:attribute:: RESOURCE_TYPE
 
 
-   .. py:method:: GetImage(stream: grpclib.server.Stream[viam.proto.component.camera.GetImageRequest, viam.proto.component.camera.GetImageResponse]) -> None
+   .. py:method:: GetImage(stream: grpclib.server.Stream) -> None
       :async:
+
+
+      Deprecated: Use GetImages instead.
+
+
+
+   .. py:method:: RenderFrame(stream: grpclib.server.Stream) -> None
+      :async:
+
+
+      Deprecated: Use GetImages instead.
 
 
 
    .. py:method:: GetImages(stream: grpclib.server.Stream[viam.proto.component.camera.GetImagesRequest, viam.proto.component.camera.GetImagesResponse]) -> None
-      :async:
-
-
-
-   .. py:method:: RenderFrame(stream: grpclib.server.Stream[viam.proto.component.camera.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
       :async:
 
 

@@ -97,7 +97,6 @@
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.camera.Camera"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.API"><code class="docutils literal notranslate"><span class="pre">Camera.API</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.Properties"><code class="docutils literal notranslate"><span class="pre">Camera.Properties</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.get_image"><code class="docutils literal notranslate"><span class="pre">Camera.get_image()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.get_images"><code class="docutils literal notranslate"><span class="pre">Camera.get_images()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud"><code class="docutils literal notranslate"><span class="pre">Camera.get_point_cloud()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera.get_properties"><code class="docutils literal notranslate"><span class="pre">Camera.get_properties()</span></code></a></li>
@@ -328,36 +327,6 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dt class="sig sig-object py" id="viam.components.camera.Camera.Properties">
 <span class="sig-name descname"><span class="pre">Properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">GetPropertiesResponse</span></em><a class="headerlink" href="#viam.components.camera.Camera.Properties" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.camera.Camera.get_image">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../media/video/index.html#viam.media.video.ViamImage" title="viam.media.video.ViamImage"><span class="pre">viam.media.video.ViamImage</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_image" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Async<span class="colon">:</span></dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>Get the next image from the camera as a ViamImage.
-Be sure to close the image when finished.</p>
-<p>NOTE: If the mime type is <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> you can use <a class="reference internal" href="../../media/video/index.html#viam.media.video.ViamImage.bytes_to_depth_array" title="viam.media.video.ViamImage.bytes_to_depth_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">viam.media.video.ViamImage.bytes_to_depth_array()</span></code></a>
-to convert the data to a standard representation.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">machine</span><span class="p">,</span> <span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
-<span class="n">frame</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Frame: </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mime_type</strong> (<em>str</em>) – The desired mime type of the image. This does not guarantee output type</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The frame.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#viam.components.camera.ViamImage" title="viam.components.camera.ViamImage">ViamImage</a></p>
-</dd>
-</dl>
-<p>For more information, see <a class="reference external" href="https://docs.viam.com/dev/reference/apis/components/camera/#getimage">Camera component</a>.</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.Camera.get_images">

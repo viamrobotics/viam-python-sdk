@@ -93,7 +93,6 @@
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.component.camera</span> <span class="kn">import</span> <span class="n">Format</span>
 
 <span class="kn">from</span> <span class="nn">.viam_rgba</span> <span class="kn">import</span> <span class="n">RGBA_HEADER_LENGTH</span><span class="p">,</span> <span class="n">RGBA_MAGIC_NUMBER</span>
 
@@ -157,46 +156,8 @@
 <span class="sd">            Self: The mimetype</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">value_mime</span> <span class="o">=</span> <span class="n">value</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">]</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;+lazy&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span>  <span class="c1"># ViamImage lazy encodes by default</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value_mime</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value_mime</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="CameraMimeType.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mimetype from a proto enum.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            format (Format.ValueType): The mimetype in a proto enum.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Self: The mimetype.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">mimetypes</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_RGBA</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">VIAM_RGBA</span><span class="p">,</span>
-            <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_DEPTH</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">,</span>
-            <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_JPEG</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">JPEG</span><span class="p">,</span>
-            <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_PNG</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">PNG</span><span class="p">,</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">mimetypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">JPEG</span><span class="p">))</span></div>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mimetype in a proto enum.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Format.ValueType: The mimetype in a proto enum.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">formats</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">VIAM_RGBA</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_RGBA</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_DEPTH</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">JPEG</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_JPEG</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">PNG</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_PNG</span><span class="p">,</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="n">formats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span><span class="p">)</span>
-
-<div class="viewcode-block" id="CameraMimeType.to_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.to_proto">[docs]</a>    <span class="k">def</span> <span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DEPRECATED: Use `CameraMimeType.proto`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proto</span></div></div>
 
 
 <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RGBA</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="s2">&quot;image/vnd.viam.rgba&quot;</span><span class="p">)</span>

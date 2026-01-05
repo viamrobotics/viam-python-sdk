@@ -82,35 +82,6 @@ Module Contents
 
 
 
-   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> typing_extensions.Self
-      :classmethod:
-
-
-      Returns the mimetype from a proto enum.
-
-      :param format: The mimetype in a proto enum.
-      :type format: Format.ValueType
-
-      :returns: The mimetype.
-      :rtype: Self
-
-
-
-   .. py:property:: proto
-      :type: viam.proto.component.camera.Format.ValueType
-
-      Returns the mimetype in a proto enum.
-
-      :returns: The mimetype in a proto enum.
-      :rtype: Format.ValueType
-
-
-   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
-
-      DEPRECATED: Use `CameraMimeType.proto`
-
-
-
 .. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
 
    A native implementation of an image.
