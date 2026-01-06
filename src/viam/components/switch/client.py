@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping, Optional, Sequence, Tuple
 
 from grpclib.client import Channel
 
@@ -64,11 +64,11 @@ class SwitchClient(Switch, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> int:
+    ) -> Tuple[int, Sequence[str]]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetNumberOfPositionsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetNumberOfPositionsResponse = await self.client.GetNumberOfPositions(request, timeout=timeout, metadata=md)
-        return response.number_of_positions
+        return response.number_of_positions, response.labels
 
     async def do_command(
         self,

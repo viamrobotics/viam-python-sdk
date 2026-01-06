@@ -56,7 +56,7 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         await stream.send_message(response)
 
     async def StreamEvents(self, stream: Stream[StreamEventsRequest, StreamEventsResponse]) -> None:
-        request = await stream.recv_message()
+        request: StreamEventsRequest = await stream.recv_message()
         assert request is not None
         name = request.controller
         controller = self.get_resource(name)

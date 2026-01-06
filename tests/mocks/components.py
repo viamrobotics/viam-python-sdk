@@ -8,7 +8,7 @@ else:
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
@@ -1141,8 +1141,11 @@ class MockServo(Servo):
 
 
 class MockSwitch(Switch):
-    def __init__(self, name: str, number_of_positions: int = 3, position: int = 0):
+    def __init__(self, name: str, number_of_positions: int = 3, labels: Sequence[str] = ["a", "b", "c"], position: int = 0):
+        if labels:
+            assert number_of_positions == len(labels), "Label length must equal number of positions"
         self.number_of_positions = number_of_positions
+        self.labels = labels
         self.position = position
         self.timeout: Optional[float] = None
         self.extra: Optional[Mapping[str, Any]] = None
@@ -1153,10 +1156,12 @@ class MockSwitch(Switch):
         self.timeout = timeout
         return self.position
 
-    async def get_number_of_positions(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_number_of_positions(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[int, Sequence[str]]:
         self.extra = extra
         self.timeout = timeout
-        return self.number_of_positions
+        return (self.number_of_positions, self.labels)
 
     async def set_position(
         self, position: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
