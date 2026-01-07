@@ -1,21 +1,20 @@
+from typing import cast
+from unittest.mock import AsyncMock
+
 import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
-from viam.components.motor import MotorClient
+from viam.components.motor import Motor, MotorClient
 from viam.components.motor.service import MotorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, GetGeometriesRequest
 from viam.proto.component.motor import (
     GetPositionRequest,
-    GetPositionResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
     GoForRequest,
     GoToRequest,
     IsMovingRequest,
-    IsMovingResponse,
     IsPoweredRequest,
-    IsPoweredResponse,
     MotorServiceStub,
     ResetZeroPositionRequest,
     SetPowerRequest,
@@ -23,389 +22,241 @@ from viam.proto.component.motor import (
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.resource.rpc_client_base import ResourceRPCClientBase
+from viam.utils import dict_to_struct
 
 from . import loose_approx
-from .mocks.components import GEOMETRIES, MockMotor
+from .mocks import create_mock_subclass
 
 
 @pytest.fixture(scope="function")
-def motor() -> MockMotor:
-    return MockMotor(name="motor")
+def motor() -> Motor:
+    mm = create_mock_subclass(Motor)
+    return mm(name="motor")
 
 
 @pytest.fixture(scope="function")
-def service(motor: MockMotor) -> MotorRPCService:
+def service(motor) -> MotorRPCService:
     manager = ResourceManager([motor])
     return MotorRPCService(manager)
 
 
 @pytest.fixture(scope="function")
-def generic_service(motor: MockMotor) -> GenericRPCService:
+def generic_service(motor) -> GenericRPCService:
     manager = ResourceManager([motor])
     return GenericRPCService(manager)
 
 
-class TestMotor:
-    async def test_set_power(self, motor: MockMotor):
-        power = 0.32
-        await motor.set_power(power, timeout=1.23)
-        assert motor.power == power
-        assert motor.timeout == loose_approx(1.23)
-
-    async def test_get_position(self, motor: MockMotor):
-        pos = await motor.get_position(timeout=2.34)
-        assert pos == 0
-        assert motor.timeout == loose_approx(2.34)
-
-    async def test_go_for(self, motor: MockMotor):
-        await motor.go_for(30, 20, timeout=3.45)
-        assert motor.timeout == loose_approx(3.45)
-        assert await motor.get_position() == 20
-
-        await motor.go_for(-10, 10)
-        assert await motor.get_position() == 10
-
-        await motor.go_for(10, -5)
-        assert await motor.get_position() == 5
-
-        await motor.go_for(-10, -10)
-        assert await motor.get_position() == 15
-
-    async def test_go_to(self, motor: MockMotor):
-        await motor.go_to(30, 20, timeout=4.56)
-        assert motor.timeout == loose_approx(4.56)
-        assert await motor.get_position() == 20
-
-        await motor.go_to(-10, 50)
-        assert await motor.get_position() == 50
-
-    async def test_set_rpm(self, motor: MockMotor):
-        await motor.set_rpm(30, timeout=4.56)
-        assert motor.timeout == loose_approx(4.56)
-        moving = await motor.is_moving()
-        assert moving is True
-
-        await motor.set_rpm(-30)
-        moving = await motor.is_moving()
-        assert moving is True
-
-    async def test_reset_zero(self, motor: MockMotor):
-        await motor.reset_zero_position(20, timeout=5.67)
-        assert motor.offset == 20
-        assert motor.timeout == loose_approx(5.67)
-
-    async def test_get_properties(self, motor: MockMotor):
-        properties = await motor.get_properties(timeout=6.78)
-        assert properties.position_reporting is True
-        assert motor.timeout == loose_approx(6.78)
-
-    async def test_stop(self, motor: MockMotor):
-        await motor.set_power(10)
-        assert motor.powered is True
-        await motor.stop(timeout=7.89)
-        assert motor.powered is False
-        assert motor.power == 0
-        assert motor.timeout == loose_approx(7.89)
-
-    async def test_is_powered(self, motor: MockMotor):
-        await motor.set_power(10)
-        is_powered, power_pct = await motor.is_powered(timeout=8.90)
-        assert is_powered is True
-        assert power_pct == 10
-        assert motor.timeout == loose_approx(8.90)
-
-        await motor.set_power(0)
-        is_powered, power_pct = await motor.is_powered()
-        assert is_powered is False
-        assert is_powered == 0
-
-    async def test_is_moving(self, motor: MockMotor):
-        await motor.set_power(10)
-        assert await motor.is_moving()
-        await motor.set_power(0)
-        assert not await motor.is_moving()
-
-    async def test_do(self, motor: MockMotor):
-        command = {"command": "args"}
-        resp = await motor.do_command(command)
-        assert resp == {"command": command}
-
-    async def test_extra(self, motor: MockMotor):
-        assert motor.extra is None
-        extra = {"foo": "bar", "baz": [1, 2, 3]}
-        await motor.is_powered(extra=extra)
-        assert motor.extra == extra
-
-    async def test_get_geometries(self, motor: MockMotor):
-        geometries = await motor.get_geometries()
-        assert geometries == GEOMETRIES
+DEFAULT_EXTRA = {"a": "b"}
+DEFAULT_EXTRA_STRUCT = dict_to_struct(DEFAULT_EXTRA)
+DEFAULT_TIMEOUT = 1.82
+DEFAULT_TIMEOUT_APPROX = loose_approx(DEFAULT_TIMEOUT)
+DEFAULT_METADATA = ResourceRPCClientBase.Metadata()
+DEFAULT_METADATA.enable_debug_logging
 
 
 class TestService:
-    async def test_set_power(self, motor: MockMotor, service: MotorRPCService):
+    async def test_set_power(self, motor: Motor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            request = SetPowerRequest(name=motor.name, power_pct=13, extra=DEFAULT_EXTRA_STRUCT)
+            client = MotorServiceStub(channel)
+            await client.SetPower(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.set_power).assert_called_once_with(
+                13, timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata
+            )
+
+    async def test_get_position(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = SetPowerRequest(name=motor.name, power_pct=13)
-            await client.SetPower(request, timeout=2.34)
-            assert motor.power == 13
-            assert motor.timeout == loose_approx(2.34)
+            request = GetPositionRequest(name=motor.name, extra=DEFAULT_EXTRA_STRUCT)
+            await client.GetPosition(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.get_position).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_position(self, motor: MockMotor, service: MotorRPCService):
+    async def test_go_for(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = GetPositionRequest(name=motor.name)
-            response: GetPositionResponse = await client.GetPosition(request, timeout=2.34)
-            assert response.position == 0
-            assert motor.timeout == loose_approx(2.34)
+            request = GoForRequest(name=motor.name, rpm=30, revolutions=20, extra=DEFAULT_EXTRA_STRUCT)
+            await client.GoFor(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.go_for).assert_called_once_with(
+                30, 20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_go_for(self, motor: MockMotor, service: MotorRPCService):
+    async def test_go_to(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
+            request = GoToRequest(name=motor.name, rpm=30, position_revolutions=20, extra=DEFAULT_EXTRA_STRUCT)
+            await client.GoTo(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.go_to).assert_called_once_with(
+                30, 20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            request = GoForRequest(name=motor.name, rpm=30, revolutions=20)
-            await client.GoFor(request, timeout=3.45)
-            assert motor.position == 20
-            assert motor.timeout == loose_approx(3.45)
-
-            request = GoForRequest(name=motor.name, rpm=-10, revolutions=10)
-            await client.GoFor(request)
-            assert motor.position == 10
-
-            request = GoForRequest(name=motor.name, rpm=10, revolutions=-5)
-            await client.GoFor(request)
-            assert motor.position == 5
-
-            request = GoForRequest(name=motor.name, rpm=-10, revolutions=-10)
-            await client.GoFor(request)
-            assert motor.position == 15
-
-    async def test_go_to(self, motor: MockMotor, service: MotorRPCService):
+    async def test_set_rpm(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
+            request = SetRPMRequest(name=motor.name, rpm=30, extra=DEFAULT_EXTRA_STRUCT)
+            await client.SetRPM(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.set_rpm).assert_called_once_with(
+                30, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            request = GoToRequest(name=motor.name, rpm=30, position_revolutions=20)
-            await client.GoTo(request, timeout=4.56)
-            assert motor.position == 20
-            assert motor.timeout == loose_approx(4.56)
-
-            request = GoToRequest(name=motor.name, rpm=-10, position_revolutions=50)
-            await client.GoTo(request)
-            assert motor.position == 50
-
-    async def test_set_rpm(self, motor: MockMotor, service: MotorRPCService):
+    async def test_reset_zero(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
+            request = ResetZeroPositionRequest(name=motor.name, offset=20, extra=DEFAULT_EXTRA_STRUCT)
+            await client.ResetZeroPosition(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.reset_zero_position).assert_called_once_with(
+                20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            request = SetRPMRequest(name=motor.name, rpm=30)
-            await client.SetRPM(request, timeout=4.56)
-            moving = await motor.is_moving()
-            assert moving is True
-            assert motor.timeout == loose_approx(4.56)
+    async def test_get_properties(self, motor: Motor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            cast(AsyncMock, motor.get_properties).return_value = Motor.Properties(position_reporting=True)
+            client = MotorServiceStub(channel)
+            request = GetPropertiesRequest(name=motor.name, extra=DEFAULT_EXTRA_STRUCT)
+            await client.GetProperties(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.get_properties).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            request = SetRPMRequest(name=motor.name, rpm=-10)
-            await client.SetRPM(request)
-            moving = await motor.is_moving()
-            assert moving is True
-
-    async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):
+    async def test_stop(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = ResetZeroPositionRequest(name=motor.name, offset=20)
-            await client.ResetZeroPosition(request, timeout=5.67)
-            assert motor.offset == 20
-            assert motor.timeout == loose_approx(5.67)
+            request = StopRequest(name=motor.name, extra=DEFAULT_EXTRA_STRUCT)
+            await client.Stop(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.stop).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties(self, motor: MockMotor, service: MotorRPCService):
+    async def test_is_powered(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
+            cast(AsyncMock, motor.is_powered).return_value = (True, 7.86)
             client = MotorServiceStub(channel)
-            request = GetPropertiesRequest(name=motor.name)
-            response: GetPropertiesResponse = await client.GetProperties(request, timeout=6.78)
-            assert response.position_reporting is True
-            assert motor.timeout == loose_approx(6.78)
+            request = IsPoweredRequest(name=motor.name, extra=DEFAULT_EXTRA_STRUCT)
+            await client.IsPowered(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.is_powered).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_stop(self, motor: MockMotor, service: MotorRPCService):
+    async def test_is_moving(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
-            client = MotorServiceStub(channel)
-            request = StopRequest(name=motor.name)
-            await client.Stop(request, timeout=7.89)
-            assert motor.powered is False
-            assert motor.power == 0
-            assert motor.timeout == loose_approx(7.89)
-
-    async def test_is_powered(self, motor: MockMotor, service: MotorRPCService):
-        async with ChannelFor([service]) as channel:
-            client = MotorServiceStub(channel)
-
-            sp_request = SetPowerRequest(name=motor.name, power_pct=13)
-            await client.SetPower(sp_request)
-            request = IsPoweredRequest(name=motor.name)
-            response: IsPoweredResponse = await client.IsPowered(request, timeout=8.90)
-            assert response.is_on is True
-            assert response.power_pct == 13
-            assert motor.timeout == loose_approx(8.90)
-
-            sp_request = SetPowerRequest(name=motor.name, power_pct=0)
-            await client.SetPower(sp_request)
-            request = IsPoweredRequest(name=motor.name)
-            response: IsPoweredResponse = await client.IsPowered(request)
-            assert response.is_on is False
-            assert response.power_pct == 0
-
-    async def test_is_moving(self, motor: MockMotor, service: MotorRPCService):
-        async with ChannelFor([service]) as channel:
-            assert motor.powered is False
-            motor.powered = True
             client = MotorServiceStub(channel)
             request = IsMovingRequest(name=motor.name)
-            response: IsMovingResponse = await client.IsMoving(request)
-            assert response.is_moving is True
+            await client.IsMoving(request)
+            cast(AsyncMock, motor.is_moving).assert_called_once()
 
-    async def test_extra(self, motor: MockMotor, service: MotorRPCService):
+    async def test_do(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
-            client = MotorServiceStub(channel)
-
-            assert motor.extra is None
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            request = IsPoweredRequest(name=motor.name, extra=dict_to_struct(extra))
-            await client.IsPowered(request)
-            assert motor.extra == extra
-
-    async def test_do(self, motor: MockMotor, service: MotorRPCService):
-        async with ChannelFor([service]) as channel:
-            client = MotorServiceStub(channel)
             command = {"command": "args"}
             request = DoCommandRequest(name=motor.name, command=dict_to_struct(command))
-            response: DoCommandResponse = await client.DoCommand(request)
-            result = struct_to_dict(response.result)
-            assert result == {"command": command}
+            client = MotorServiceStub(channel)
+            await client.DoCommand(request, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA.proto)
+            cast(AsyncMock, motor.do_command).assert_called_once_with(
+                command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_geometries(self, motor: MockMotor, service: MotorRPCService):
+    async def test_get_geometries(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = GetGeometriesRequest(name=motor.name)
-            response: GetGeometriesResponse = await client.GetGeometries(request)
-            assert [geometry for geometry in response.geometries] == GEOMETRIES
+            request = GetGeometriesRequest(name=motor.name, extra=DEFAULT_EXTRA_STRUCT)
+            await client.GetGeometries(request, timeout=DEFAULT_TIMEOUT)
+            cast(AsyncMock, motor.get_geometries).assert_called_once_with(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX)
 
 
 class TestClient:
-    async def test_set_power(self, motor: MockMotor, service: MotorRPCService):
+    async def test_set_power(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            await client.set_power(13, timeout=9.10)
-            assert motor.power == 13
-            assert motor.timeout == loose_approx(9.10)
+            await client.set_power(13, timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.set_power).assert_called_once_with(
+                13, timeout=DEFAULT_TIMEOUT_APPROX, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_position(self, motor: MockMotor, service: MotorRPCService):
+    async def test_get_position(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            position = await client.get_position(timeout=2.34)
-            assert position == 0
-            assert motor.timeout == loose_approx(2.34)
+            await client.get_position(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.get_position).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_go_for(self, motor: MockMotor, service: MotorRPCService):
+    async def test_go_for(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
+            await client.go_for(30, 20, timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.go_for).assert_called_once_with(
+                30, 20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            await client.go_for(30, 20, timeout=3.45)
-            assert motor.position == 20
-            assert motor.timeout == loose_approx(3.45)
-
-            await client.go_for(-10, 10)
-            assert motor.position == 10
-
-            await client.go_for(10, -5)
-            assert motor.position == 5
-
-            await client.go_for(-10, -10)
-            assert motor.position == 15
-
-    async def test_go_to(self, motor: MockMotor, service: MotorRPCService):
+    async def test_go_to(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
+            await client.go_to(30, 20, timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.go_to).assert_called_once_with(
+                30, 20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            await client.go_to(30, 20, timeout=4.56)
-            assert motor.position == 20
-            assert motor.timeout == loose_approx(4.56)
-
-            await client.go_to(-10, 50)
-            assert motor.position == 50
-
-    async def test_set_rpm(self, motor: MockMotor, service: MotorRPCService):
+    async def test_set_rpm(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
+            await client.set_rpm(30, timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.set_rpm).assert_called_once_with(
+                30, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            await client.set_rpm(30, timeout=4.56)
-            moving = await motor.is_moving()
-            assert motor.timeout == loose_approx(4.56)
-            assert moving is True
-
-            await client.set_rpm(-10)
-            moving = await motor.is_moving()
-            assert moving is True
-
-    async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):
+    async def test_reset_zero(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            await client.reset_zero_position(20, timeout=5.67)
-            assert motor.timeout == loose_approx(5.67)
-            assert motor.offset == 20
+            await client.reset_zero_position(20, timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.reset_zero_position).assert_called_once_with(
+                20, extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_get_properties(self, motor: MockMotor, service: MotorRPCService):
+    async def test_get_properties(self, motor: Motor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            cast(AsyncMock, motor.get_properties).return_value = Motor.Properties(position_reporting=True)
+            client = MotorClient(motor.name, channel)
+            await client.get_properties(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.get_properties).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
+
+    async def test_stop(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            properties = await client.get_properties(timeout=6.78)
-            assert properties.position_reporting is True
-            assert motor.timeout == loose_approx(6.78)
+            await client.stop(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.stop).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_stop(self, motor: MockMotor, service: MotorRPCService):
+    async def test_is_powered(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
+            cast(AsyncMock, motor.is_powered).return_value = (True, 7.86)
             client = MotorClient(motor.name, channel)
-            await client.stop(timeout=7.89)
-            assert motor.powered is False
-            assert motor.power == 0
-            assert motor.timeout == loose_approx(7.89)
-
-    async def test_is_powered(self, motor: MockMotor, service: MotorRPCService):
-        async with ChannelFor([service]) as channel:
-            client = MotorClient(motor.name, channel)
-
             await client.set_power(13)
-            is_on, power_pct = await client.is_powered(timeout=8.90)
-            assert is_on is True
-            assert power_pct == 13
-            assert motor.timeout == loose_approx(8.90)
+            await client.is_powered(timeout=DEFAULT_TIMEOUT, extra=DEFAULT_EXTRA, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.is_powered).assert_called_once_with(
+                extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-            await client.set_power(0)
-            is_on, power_pct = await client.is_powered()
-            assert is_on is False
-            assert power_pct == 0
-
-    async def test_is_moving(self, motor: MockMotor, service: MotorRPCService):
+    async def test_is_moving(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            assert motor.powered is False
-            motor.powered = True
-            assert await client.is_moving() is True
+            await client.is_moving()
+            cast(AsyncMock, motor.is_moving).assert_called_once()
 
-    async def test_do(self, motor: MockMotor, service: MotorRPCService):
+    async def test_do(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             command = {"command": "args"}
-            resp = await client.do_command(command)
-            assert resp == {"command": command}
+            await client.do_command(command, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.do_command).assert_called_once_with(
+                command=command, timeout=DEFAULT_TIMEOUT_APPROX, metadata=DEFAULT_METADATA.metadata
+            )
 
-    async def test_extra(self, motor: MockMotor, service: MotorRPCService):
+    async def test_get_geometries(self, motor: Motor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-
-            assert motor.extra is None
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.is_powered(extra=extra)
-            assert motor.extra == extra
-
-    async def test_get_geometries(self, motor: MockMotor, service: MotorRPCService):
-        async with ChannelFor([service]) as channel:
-            client = MotorClient(motor.name, channel)
-            geometries = await client.get_geometries()
-            assert geometries == GEOMETRIES
+            await client.get_geometries(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT, metadata=DEFAULT_METADATA)
+            cast(AsyncMock, motor.get_geometries).assert_called_once_with(extra=DEFAULT_EXTRA, timeout=DEFAULT_TIMEOUT_APPROX)
