@@ -323,7 +323,7 @@ def _create_chan(path: str) -> Channel:
 
 async def _dial_inner(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     async def send_request(event: SendRequest):
-        event.metadata["viam-client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
+        event.metadata["viam_client"] = f"python;v{SDK_VERSION};v{API_VERSION}"
 
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
