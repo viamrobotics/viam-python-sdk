@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, List, Mapping, Tuple, cast
+from typing import Any, List, Mapping, Tuple, cast, Optional
 
 import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -29,6 +29,7 @@ TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
 FILE_EXT = ".file_extension"
 FILE_UPLOAD_RESPONSE = "ID"
+MIME_TYPE = "image/jpeg"
 
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -54,9 +55,10 @@ class TestClient:
                 binary_data=BINARY_DATA,
                 file_extension=".txt",
                 dataset_ids=DATASET_IDS,
+                mime_type=MIME_TYPE,
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
-            self.assert_metadata(metadata=service.metadata)
+            self.assert_metadata(metadata=service.metadata, expected_mime_type=MIME_TYPE)
             assert service.metadata.file_extension == ".txt"
             assert file_id == FILE_UPLOAD_RESPONSE
 
@@ -73,7 +75,10 @@ class TestClient:
                 file_extension="txt",
                 dataset_ids=["dataset_1"],
             )
+            self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
+            self.assert_metadata(metadata=service.metadata, expected_mime_type="")
             assert service.metadata.file_extension == ".txt"
+            assert file_id == FILE_UPLOAD_RESPONSE
 
     async def test_tabular_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
@@ -89,7 +94,7 @@ class TestClient:
                 tabular_data=cast(List[Mapping[str, Any]], TABULAR_DATA),
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=False)
-            self.assert_metadata(metadata=service.metadata, test_dataset_ids=False)
+            self.assert_metadata(metadata=service.metadata, test_dataset_ids=False, expected_mime_type="")
             assert file_id == FILE_UPLOAD_RESPONSE
 
     async def test_file_upload(self, service: MockDataSync):
@@ -106,9 +111,29 @@ class TestClient:
                 tags=TAGS,
                 data=BINARY_DATA,
                 dataset_ids=DATASET_IDS,
+                mime_type=MIME_TYPE,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
-            self.assert_metadata(service.metadata)
+            self.assert_metadata(service.metadata, expected_mime_type=MIME_TYPE)
+            assert service.metadata.file_name == FILE_NAME
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
+            # Test without mime_type
+            file_id = await client.file_upload(
+                part_id=PART_ID,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                file_name=FILE_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                file_extension=FILE_EXT,
+                tags=TAGS,
+                data=BINARY_DATA,
+                dataset_ids=DATASET_IDS,
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata, expected_mime_type="")
             assert service.metadata.file_name == FILE_NAME
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
@@ -127,9 +152,27 @@ class TestClient:
                 tags=TAGS,
                 dataset_ids=DATASET_IDS,
                 filepath=path.resolve(),
+                mime_type=MIME_TYPE,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
-            self.assert_metadata(service.metadata)
+            self.assert_metadata(service.metadata, expected_mime_type=MIME_TYPE)
+            assert service.metadata.file_name == FILE_NAME
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
+            # Test without mime_type
+            file_id = await client.file_upload_from_path(
+                part_id=PART_ID,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                tags=TAGS,
+                dataset_ids=DATASET_IDS,
+                filepath=path.resolve(),
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata, expected_mime_type="")
             assert service.metadata.file_name == FILE_NAME
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
@@ -148,9 +191,28 @@ class TestClient:
                 data_request_times=DATETIMES,
                 tags=TAGS,
                 dataset_ids=DATASET_IDS,
+                mime_type=MIME_TYPE,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
-            self.assert_metadata(service.metadata)
+            self.assert_metadata(service.metadata, expected_mime_type=MIME_TYPE)
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
+            # Test without mime_type
+            file_id = await client.streaming_data_capture_upload(
+                data=BINARY_DATA,
+                part_id=PART_ID,
+                file_ext=FILE_EXT,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                data_request_times=DATETIMES,
+                tags=TAGS,
+                dataset_ids=DATASET_IDS,
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata, expected_mime_type="")
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
@@ -165,12 +227,13 @@ class TestClient:
             else:
                 assert struct_to_dict(sensor_content.struct) == TABULAR_DATA[idx]
 
-    def assert_metadata(self, metadata: UploadMetadata, test_dataset_ids: bool = True) -> None:
+    def assert_metadata(self, metadata: UploadMetadata, test_dataset_ids: bool = True, expected_mime_type: Optional[str] = None) -> None:
         assert metadata.part_id == PART_ID
         assert metadata.component_type == COMPONENT_TYPE
         assert metadata.component_name == COMPONENT_NAME
         assert metadata.method_name == METHOD_NAME
         assert metadata.method_parameters == METHOD_PARAMETERS
         assert metadata.tags == TAGS
+        assert metadata.mime_type == (expected_mime_type if expected_mime_type is not None else "")
         if test_dataset_ids:
             assert metadata.dataset_ids == DATASET_IDS
