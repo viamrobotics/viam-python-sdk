@@ -37,7 +37,6 @@ from viam.rpc.server import Server
 
 # These imports are required to register built-in resources with the registry
 from ..components.arm import Arm  # noqa: F401
-from ..components.audio_input import AudioInput  # noqa: F401
 from ..components.base import Base  # noqa: F401
 from ..components.board import Board  # noqa: F401
 from ..components.button import Button  # noqa: F401

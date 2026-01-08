@@ -14,7 +14,6 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_in import AudioIn, AudioResponse
-from viam.components.audio_input import AudioInput
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
@@ -33,13 +32,11 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
-from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
-from viam.proto.component.audioin import AudioChunk as Chunk
-from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
+from viam.proto.component.audioin import AudioChunk as Chunk
 from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
 
@@ -163,41 +160,6 @@ class MockAudioIn(AudioIn):
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> AudioIn.Properties:
         self.extra = extra
-        self.timeout = timeout
-        return self.properties
-
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        self.extra = extra
-        self.timeout = timeout
-        return self.geometries
-
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        return {"command": command}
-
-
-class MockAudioInput(AudioInput):
-    def __init__(self, name: str, properties: AudioInput.Properties):
-        super().__init__(name)
-        self.geometries = GEOMETRIES
-        self.properties = properties
-        self.timeout: Optional[float] = None
-
-    async def stream(self, *, timeout: Optional[float] = None, **kwargs) -> AudioStream:
-        async def read() -> AsyncIterator[Audio]:
-            for i in range(10):
-                yield Audio(
-                    AudioChunkInfo(
-                        sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
-                        channels=self.properties.channel_count,
-                        sampling_rate=self.properties.sample_rate,
-                    ),
-                    AudioChunk(data=f"{i}".encode("utf-8"), length=182),
-                )
-
-        self.timeout = timeout
-        return StreamWithIterator(read())
-
-    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioInput.Properties:
         self.timeout = timeout
         return self.properties
 
