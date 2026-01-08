@@ -51,10 +51,10 @@ class SwitchRPCService(SwitchServiceBase, ResourceRPCServiceBase[Switch]):
         name = request.name
         switch = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        number_of_positions = await switch.get_number_of_positions(
+        number_of_positions, labels = await switch.get_number_of_positions(
             extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
         )
-        response = GetNumberOfPositionsResponse(number_of_positions=number_of_positions)
+        response = GetNumberOfPositionsResponse(number_of_positions=number_of_positions, labels=labels)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

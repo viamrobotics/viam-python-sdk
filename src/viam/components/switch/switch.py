@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Final, Mapping, Optional
+from typing import Any, Final, Mapping, Optional, Sequence, Tuple
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
@@ -77,7 +77,9 @@ class Switch(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_number_of_positions(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_number_of_positions(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[int, Sequence[str]]:
         """
         Get the number of available positions on the switch.
 
@@ -88,7 +90,8 @@ class Switch(ComponentBase):
             print(await my_switch.get_number_of_positions())
 
         Returns:
-            int: The number of available positions.
+            Tuple[int, Sequence[str]]: The number of available positions and their labels
+
 
         For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#getnumberofpositions>`_.
         """

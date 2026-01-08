@@ -22,19 +22,21 @@ from . import loose_approx
 from .mocks.components import MockSwitch
 
 DEFAULT_POSITION = 0
-DEFAULT_NUMBER_OF_POSITIONS = 0
+DEFAULT_NUMBER_OF_POSITIONS = 3
+DEFAULT_LABELS = ["a", "b", "c"]
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 
 
 @pytest.fixture(scope="function")
 def switch() -> MockSwitch:
-    return MockSwitch(name="sensor", number_of_positions=DEFAULT_NUMBER_OF_POSITIONS, position=DEFAULT_POSITION)
+    return MockSwitch(name="sensor", number_of_positions=DEFAULT_NUMBER_OF_POSITIONS, labels=DEFAULT_LABELS, position=DEFAULT_POSITION)
 
 
 class TestSwitch:
     pos = 2
 
     async def test_set_position(self, switch):
+        assert switch.position != self.pos
         await switch.set_position(self.pos, timeout=1.23, extra=EXTRA_PARAMS)
         assert switch.position == self.pos
         assert switch.timeout == loose_approx(1.23)
@@ -43,13 +45,14 @@ class TestSwitch:
     async def test_get_position(self, switch):
         assert switch.extra is None
         position = await switch.get_position(timeout=2.34, extra=EXTRA_PARAMS)
-        assert position == DEFAULT_NUMBER_OF_POSITIONS
+        assert position == DEFAULT_POSITION
         assert switch.extra == EXTRA_PARAMS
         assert switch.timeout == loose_approx(2.34)
 
     async def test_get_number_of_positions(self, switch):
-        number_of_positions = await switch.get_number_of_positions(timeout=3.45, extra=EXTRA_PARAMS)
+        number_of_positions, labels = await switch.get_number_of_positions(timeout=3.45, extra=EXTRA_PARAMS)
         assert number_of_positions == DEFAULT_NUMBER_OF_POSITIONS
+        assert labels == DEFAULT_LABELS
         assert switch.extra == EXTRA_PARAMS
         assert switch.timeout == loose_approx(3.45)
 
@@ -99,6 +102,7 @@ class TestService:
             assert switch.extra is None
             result: GetNumberOfPositionsResponse = await client.GetNumberOfPositions(request, timeout=4.56)
             assert result.number_of_positions == DEFAULT_NUMBER_OF_POSITIONS
+            assert result.labels == DEFAULT_LABELS
             assert switch.extra == EXTRA_PARAMS
             assert switch.timeout == loose_approx(4.56)
 
@@ -137,8 +141,9 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = SwitchClient(switch.name, channel)
             assert switch.extra is None
-            value_number_of_positions = await client.get_number_of_positions(timeout=3.45, extra=EXTRA_PARAMS)
-            assert DEFAULT_NUMBER_OF_POSITIONS == value_number_of_positions
+            value_number_of_positions, value_labels = await client.get_number_of_positions(timeout=3.45, extra=EXTRA_PARAMS)
+            assert value_number_of_positions == DEFAULT_NUMBER_OF_POSITIONS
+            assert value_labels == DEFAULT_LABELS
             assert switch.extra == EXTRA_PARAMS
             assert switch.timeout == loose_approx(3.45)
 
