@@ -192,15 +192,38 @@ class CloudConfig(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
     APP_ADDRESS_FIELD_NUMBER: builtins.int
+    API_KEY_FIELD_NUMBER: builtins.int
     id: builtins.str
     'SmartMachine part id'
     secret: builtins.str
     'SmartMachine part secret'
     app_address: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., secret: builtins.str=..., app_address: builtins.str=...) -> None:
+    @property
+    def api_key(self) -> global___APIKey:
         ...
 
-    def ClearField(self, field_name: typing.Literal['app_address', b'app_address', 'id', b'id', 'secret', b'secret']) -> None:
+    def __init__(self, *, id: builtins.str=..., secret: builtins.str=..., app_address: builtins.str=..., api_key: global___APIKey | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['api_key', b'api_key']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['api_key', b'api_key', 'app_address', b'app_address', 'id', b'id', 'secret', b'secret']) -> None:
         ...
 global___CloudConfig = CloudConfig
+
+@typing.final
+class APIKey(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    KEY_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    key: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., key: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
+        ...
+global___APIKey = APIKey

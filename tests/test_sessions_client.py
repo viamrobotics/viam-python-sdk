@@ -136,5 +136,5 @@ async def test_safete_heartbeat_monitored():
         is_monitored = client._is_safety_heartbeat_monitored("/viam.component.arm.v1.ArmService/MoveToPosition")
         assert is_monitored is True
 
-        is_monitored = client._is_safety_heartbeat_monitored("/viam.component.camera.v1.CameraService/GetImage")
+        is_monitored = client._is_safety_heartbeat_monitored("/viam.component.camera.v1.CameraService/GetImages")
         assert is_monitored is False

@@ -437,13 +437,6 @@ class MockCamera(Camera):
         self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
-    async def get_image(
-        self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> ViamImage:
-        self.extra = extra
-        self.timeout = timeout
-        return self.image
-
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         self.timeout = timeout
         return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
