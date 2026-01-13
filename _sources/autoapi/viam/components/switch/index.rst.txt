@@ -106,7 +106,7 @@ Package Contents
 
 
 
-   .. py:method:: get_number_of_positions(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+   .. py:method:: get_number_of_positions(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[int, Sequence[str]]
       :abstractmethod:
 
       :async:
@@ -120,8 +120,8 @@ Package Contents
 
           print(await my_switch.get_number_of_positions())
 
-      :returns: The number of available positions.
-      :rtype: int
+      :returns: The number of available positions and their labels
+      :rtype: Tuple[int, Sequence[str]]
 
       For more information, see `Switch component <https://docs.viam.com/dev/reference/apis/components/switch/#getnumberofpositions>`_.
 
