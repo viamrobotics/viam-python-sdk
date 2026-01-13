@@ -64,16 +64,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#subpackages">Subpackages</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">viam.media.audio</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.Audio"><code class="docutils literal notranslate"><span class="pre">Audio</span></code></a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio.info"><code class="docutils literal notranslate"><span class="pre">Audio.info</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio.chunk"><code class="docutils literal notranslate"><span class="pre">Audio.chunk</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioReader"><code class="docutils literal notranslate"><span class="pre">AudioReader</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioStream"><code class="docutils literal notranslate"><span class="pre">AudioStream</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.media.audio.AudioCodec"><code class="docutils literal notranslate"><span class="pre">AudioCodec</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.PCM16"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM16</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioCodec.PCM32"><code class="docutils literal notranslate"><span class="pre">AudioCodec.PCM32</span></code></a></li>
@@ -125,27 +117,11 @@
              
   <section id="module-viam.media.audio">
 <span id="viam-media-audio"></span><h1>viam.media.audio<a class="headerlink" href="#module-viam.media.audio" title="Permalink to this heading"></a></h1>
-<section id="attributes">
-<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.AudioReader" title="viam.media.audio.AudioReader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioReader</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.audio.AudioStream" title="viam.media.audio.AudioStream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioStream</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.Audio" title="viam.media.audio.Audio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Audio</span></code></a></p></td>
-<td><p>A block of audio data containing information about the block and the audio data</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.audio.AudioCodec" title="viam.media.audio.AudioCodec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioCodec</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.audio.AudioCodec" title="viam.media.audio.AudioCodec"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioCodec</span></code></a></p></td>
 <td><p>Common audio codec identifiers.</p></td>
 </tr>
 </tbody>
@@ -153,32 +129,6 @@
 </section>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.media.audio.Audio">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">Audio</span></span><a class="reference internal" href="../../../../_modules/viam/media/audio.html#Audio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.Audio" title="Permalink to this definition"></a></dt>
-<dd><p>A block of audio data containing information about the block and the audio data</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.Audio.info">
-<span class="sig-name descname"><span class="pre">info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/component/audioinput/index.html#viam.proto.component.audioinput.AudioChunkInfo" title="viam.proto.component.audioinput.AudioChunkInfo"><span class="pre">viam.proto.component.audioinput.AudioChunkInfo</span></a></em><a class="headerlink" href="#viam.media.audio.Audio.info" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.audio.Audio.chunk">
-<span class="sig-name descname"><span class="pre">chunk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/component/audioinput/index.html#viam.proto.component.audioinput.AudioChunk" title="viam.proto.component.audioinput.AudioChunk"><span class="pre">viam.proto.component.audioinput.AudioChunk</span></a></em><a class="headerlink" href="#viam.media.audio.Audio.chunk" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.media.audio.AudioReader">
-<span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioReader</span></span><a class="headerlink" href="#viam.media.audio.AudioReader" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.media.audio.AudioStream">
-<span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioStream</span></span><a class="headerlink" href="#viam.media.audio.AudioStream" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.audio.AudioCodec">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.audio.</span></span><span class="sig-name descname"><span class="pre">AudioCodec</span></span><a class="reference internal" href="../../../../_modules/viam/media/audio.html#AudioCodec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.audio.AudioCodec" title="Permalink to this definition"></a></dt>
