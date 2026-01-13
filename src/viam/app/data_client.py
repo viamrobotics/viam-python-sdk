@@ -1531,6 +1531,7 @@ class DataClient:
         component_name: str,
         method_name: str,
         file_extension: str,
+        mime_type: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
@@ -1568,6 +1569,7 @@ class DataClient:
             file_extension (str): The file extension of binary data, *including the period*, for example ``.jpg``, ``.png``, ``.pcd``.
                 The backend routes the binary to its corresponding mime type based on this extension. Files with a ``.jpeg``, ``.jpg``,
                 or ``.png`` extension will appear in the **Images** tab.
+            mime_type (Optional[str]): Optional MIME type of the binary data. If provided, this will be used directly. If not provided, the MIME type will be inferred from `file_extension`.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
@@ -1603,6 +1605,8 @@ class DataClient:
             method_parameters=method_parameters,
             tags=tags,
             dataset_ids=dataset_ids,
+            file_extension=file_extension,
+            mime_type=mime_type,
         )
         if file_extension:
             metadata.file_extension = file_extension if file_extension[0] == "." else f".{file_extension}"
@@ -1714,6 +1718,7 @@ class DataClient:
         data: bytes,
         part_id: str,
         file_ext: str,
+        mime_type: Optional[str] = None,
         component_type: Optional[str] = None,
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
@@ -1745,6 +1750,7 @@ class DataClient:
             data (bytes): The data to be uploaded.
             part_id (str): Part ID of the resource associated with the file.
             file_ext (str): File extension type for the data. required for determining MIME type.
+            mime_type (Optional[str]): Optional MIME type of the binary data. If provided, this will be used directly. If not provided, the MIME type will be inferred from `file_ext`.
             component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
@@ -1773,6 +1779,7 @@ class DataClient:
             file_extension=file_ext if file_ext[0] == "." else f".{file_ext}",
             tags=tags,
             dataset_ids=dataset_ids,
+            mime_type=mime_type,
         )
         sensor_metadata = SensorMetadata(
             time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
@@ -1800,6 +1807,7 @@ class DataClient:
         file_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         file_extension: Optional[str] = None,
+        mime_type: Optional[str] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
     ) -> str:
@@ -1830,6 +1838,7 @@ class DataClient:
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string ``""`` will be assigned as the file extension if one
                 isn't provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.
+            mime_type (Optional[str]): Optional MIME type of the file. If provided, this will be used directly. If not provided, the MIME type will be inferred from `file_extension`.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
 
@@ -1850,6 +1859,7 @@ class DataClient:
             file_name=file_name if file_name else "",
             method_parameters=method_parameters,
             file_extension=file_extension if file_extension else "",
+            mime_type=mime_type,
             tags=tags,
             dataset_ids=dataset_ids,
         )
@@ -1864,6 +1874,7 @@ class DataClient:
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
+        mime_type: Optional[str] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
     ) -> str:
@@ -1888,6 +1899,7 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
+            mime_type (Optional[str]): Optional MIME type of the file. If provided, this will be used directly. If not provided, the MIME type will be inferred from the file's extension.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
 
@@ -1915,6 +1927,7 @@ class DataClient:
             file_name=file_name,
             method_parameters=method_parameters,
             file_extension=file_extension if file_extension else "",
+            mime_type=mime_type,
             tags=tags,
             dataset_ids=dataset_ids,
         )
