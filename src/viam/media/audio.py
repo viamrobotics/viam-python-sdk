@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class AudioCodec(str, Enum):
     """Common audio codec identifiers.
 
