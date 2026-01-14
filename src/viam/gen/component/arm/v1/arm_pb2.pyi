@@ -9,6 +9,7 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
+import google.protobuf.timestamp_pb2
 import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -113,6 +114,61 @@ class GetJointPositionsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['positions', b'positions']) -> None:
         ...
 global___GetJointPositionsResponse = GetJointPositionsResponse
+
+@typing.final
+class StreamJointPositionsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    FPS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of an arm'
+    fps: builtins.int
+    'Target frames per second for the stream'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., fps: builtins.int | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_fps', b'_fps', 'extra', b'extra', 'fps', b'fps']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_fps', b'_fps', 'extra', b'extra', 'fps', b'fps', 'name', b'name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_fps', b'_fps']) -> typing.Literal['fps'] | None:
+        ...
+global___StreamJointPositionsRequest = StreamJointPositionsRequest
+
+@typing.final
+class StreamJointPositionsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POSITIONS_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    SEQUENCE_FIELD_NUMBER: builtins.int
+    sequence: builtins.int
+    'Sequential message number, used to detect dropped messages'
+
+    @property
+    def positions(self) -> global___JointPositions:
+        """Current joint positions"""
+
+    @property
+    def timestamp(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Timestamp when positions were captured from the arm hardware"""
+
+    def __init__(self, *, positions: global___JointPositions | None=..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None=..., sequence: builtins.int=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['positions', b'positions', 'timestamp', b'timestamp']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['positions', b'positions', 'sequence', b'sequence', 'timestamp', b'timestamp']) -> None:
+        ...
+global___StreamJointPositionsResponse = StreamJointPositionsResponse
 
 @typing.final
 class MoveToPositionRequest(google.protobuf.message.Message):

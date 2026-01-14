@@ -1,6 +1,8 @@
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
+from grpclib.client import Stream as ClientStream
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
 from viam.proto.component.arm import (
@@ -15,11 +17,15 @@ from viam.proto.component.arm import (
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
     StopRequest,
+    StreamJointPositionsRequest,
+    StreamJointPositionsResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.streams import Stream, StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import Arm, KinematicsFileFormat, Pose
+from .arm import JointPositionStream
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
@@ -122,3 +128,34 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())
         return await get_geometries(self.client, self.name, extra, timeout, md)
+
+    async def stream_joint_positions(
+        self,
+        *,
+        fps: Optional[int] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Stream[JointPositionStream]:
+        request = StreamJointPositionsRequest(
+            name=self.name,
+            fps=fps,
+            extra=dict_to_struct(extra),
+        )
+
+        async def read():
+            md = kwargs.get("metadata", self.Metadata()).proto
+            stream: ClientStream[StreamJointPositionsRequest, StreamJointPositionsResponse]
+            async with self.client.StreamJointPositions.open(metadata=md) as stream:
+                await stream.send_message(request, end=True)
+                async for response in stream:
+                    yield JointPositionStream(
+                        positions=response.positions,
+                        timestamp=datetime.fromtimestamp(
+                            response.timestamp.seconds + response.timestamp.nanos / 1e9,
+                            tz=timezone.utc,
+                        ),
+                        sequence=response.sequence,
+                    )
+
+        return StreamWithIterator(read())
