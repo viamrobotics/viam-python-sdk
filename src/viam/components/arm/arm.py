@@ -1,10 +1,27 @@
 import abc
+from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
+from viam.streams import Stream
 
 from ..component_base import ComponentBase
 from . import JointPositions, KinematicsFileFormat, Pose
+
+
+@dataclass
+class JointPositionStream:
+    """A single frame from a joint position stream."""
+
+    positions: JointPositions
+    """Current joint positions."""
+
+    timestamp: datetime
+    """Timestamp when positions were captured from the arm hardware."""
+
+    sequence: int
+    """Sequential message number, used to detect dropped messages."""
 
 
 class Arm(ComponentBase):
@@ -219,5 +236,37 @@ class Arm(ComponentBase):
             and the second [1] value represents the byte contents of the file.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def stream_joint_positions(
+        self,
+        *,
+        fps: Optional[int] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Stream[JointPositionStream]:
+        """
+        Stream joint positions from the arm at the specified rate.
+
+        ::
+
+            my_arm = Arm.from_robot(robot=machine, name="my_arm")
+
+            # Stream joint positions at 30 fps
+            stream = await my_arm.stream_joint_positions(fps=30)
+            async for position_frame in stream:
+                print(f"Positions: {position_frame.positions.values}")
+                print(f"Timestamp: {position_frame.timestamp}")
+
+        Args:
+            fps: Target frames per second for the stream. If not specified, uses the arm's default rate.
+            extra: Additional arguments to the method.
+            timeout: Optional timeout in seconds.
+
+        Returns:
+            Stream[JointPositionStream]: A stream of joint position frames containing positions, timestamps, and sequence numbers.
         """
         ...

@@ -1,5 +1,8 @@
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.server import Stream
+from h2.exceptions import StreamClosedError
 
+from viam.logging import getLogger
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -15,18 +18,23 @@ from viam.proto.component.arm import (
     GetJointPositionsResponse,
     IsMovingRequest,
     IsMovingResponse,
+    JointPositions,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
+    StreamJointPositionsRequest,
+    StreamJointPositionsResponse,
     UnimplementedArmServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .arm import Arm
+
+LOGGER = getLogger(__name__)
 
 
 class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
@@ -121,3 +129,31 @@ class ArmRPCService(UnimplementedArmServiceBase, ResourceRPCServiceBase[Arm]):
         geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)
+
+    async def StreamJointPositions(
+        self, stream: Stream[StreamJointPositionsRequest, StreamJointPositionsResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        fps = request.fps if request.HasField("fps") else None
+        position_stream = await arm.stream_joint_positions(
+            fps=fps,
+            extra=struct_to_dict(request.extra),
+            metadata=stream.metadata,
+        )
+        async for frame in position_stream:
+            try:
+                timestamp = Timestamp()
+                timestamp.FromDatetime(frame.timestamp)
+                response = StreamJointPositionsResponse(
+                    positions=JointPositions(values=list(frame.positions.values)),
+                    timestamp=timestamp,
+                    sequence=frame.sequence,
+                )
+                await stream.send_message(response)
+            except StreamClosedError:
+                return
+            except Exception as e:
+                LOGGER.error(e)
+                return

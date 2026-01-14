@@ -2,13 +2,14 @@ from viam.proto.common import KinematicsFileFormat, Pose
 from viam.proto.component.arm import JointPositions
 from viam.resource.registry import Registry, ResourceRegistration
 
-from .arm import Arm
+from .arm import Arm, JointPositionStream
 from .client import ArmClient
 from .service import ArmRPCService
 
 __all__ = [
     "Arm",
     "JointPositions",
+    "JointPositionStream",
     "KinematicsFileFormat",
     "Pose",
 ]

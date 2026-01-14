@@ -52,6 +52,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services.mlmodel.client import MLModelClient
+from viam.streams import Stream as ViamStream
 from viam.utils import dict_to_struct
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
@@ -488,6 +489,16 @@ class TestRobotClient:
                     timeout: Optional[float] = None,
                 ) -> JointPositions:
                     return await self.actual_client.get_joint_positions(extra=extra, timeout=timeout)
+
+                async def stream_joint_positions(
+                    self,
+                    *,
+                    fps: Optional[int] = None,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                    **kwargs,
+                ) -> ViamStream[JointPositions]:
+                    return await self.actual_client.stream_joint_positions(fps=fps, extra=extra, timeout=timeout, **kwargs)
 
                 async def stop(
                     self,

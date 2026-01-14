@@ -90,6 +90,22 @@ class MockArm(Arm):
         self.extra = extra
         self.timeout = timeout
 
+    async def stream_joint_positions(
+        self,
+        *,
+        fps: Optional[int] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        async def read() -> AsyncIterator[JointPositions]:
+            for _ in range(5):
+                yield JointPositions(values=[choice([-1, 0, 1]) for _ in self.joint_positions.values])
+
+        self.extra = extra
+        self.timeout = timeout
+        return StreamWithIterator(read())
+
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
         self.extra = extra
