@@ -9,6 +9,7 @@ from viam.proto.common import (
     GetKinematicsRequest,
     GetKinematicsResponse,
     KinematicsFileFormat,
+    Mesh,
 )
 from viam.proto.component.gantry import (
     GantryServiceStub,
@@ -119,11 +120,11 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
 
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
-        return (response.format, response.kinematics_data)
+        return (response.format, response.kinematics_data, dict(response.meshes_by_urdf_filepath))
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())

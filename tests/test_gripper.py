@@ -87,7 +87,7 @@ class TestGripper:
         assert geometries == GEOMETRIES
 
     async def test_get_kinematics(self, gripper: MockGripper):
-        kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         kd = await gripper.get_kinematics(extra={"1": "2"})
         assert kd == kinematics
         assert gripper.extra == {"1": "2"}
@@ -162,10 +162,11 @@ class TestService:
     async def test_get_kinematics(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
-            kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
             request = GetKinematicsRequest(name=gripper.name)
             response: GetKinematicsResponse = await client.GetKinematics(request)
-            assert (response.format, response.kinematics_data) == kinematics
+            assert response.format == KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA
+            assert response.kinematics_data == b"\x00\x01\x02"
+            assert dict(response.meshes_by_urdf_filepath) == {}
 
 
 class TestClient:
@@ -226,7 +227,7 @@ class TestClient:
     async def test_get_kinematics(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
-            kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+            kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
             kd = await client.get_kinematics(extra={"1": "2"})
             assert kd == kinematics
             assert gripper.extra == {"1": "2"}

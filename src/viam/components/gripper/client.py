@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse, Mesh
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -101,8 +101,8 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
-        return (response.format, response.kinematics_data)
+        return (response.format, response.kinematics_data, dict(response.meshes_by_urdf_filepath))

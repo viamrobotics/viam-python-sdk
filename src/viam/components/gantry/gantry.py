@@ -1,7 +1,7 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Tuple
+from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 
-from viam.components.arm import KinematicsFileFormat
+from viam.components.arm import KinematicsFileFormat, Mesh
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
@@ -159,7 +159,7 @@ class Gantry(ComponentBase):
     @abc.abstractmethod
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         """
         Get the kinematics information associated with the gantry.
 
@@ -176,11 +176,15 @@ class Gantry(ComponentBase):
             # Get the byte contents of the file.
             k_bytes = kinematics[1]
 
+            # Get the meshes by URDF filepath.
+            meshes = kinematics[2]
+
         Returns:
-            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
-            file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
+            Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]: A tuple containing three values; the first [0] value
+            represents the format of the file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
-            and the second [1] value represents the byte contents of the file.
+            the second [1] value represents the byte contents of the file, and the third [2] value is a mapping of URDF filepaths
+            to their corresponding meshes.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """

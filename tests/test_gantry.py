@@ -72,9 +72,10 @@ class TestGantry:
         assert self.gantry.extra == extra
 
     async def test_get_kinematics(self):
-        format, data = await self.gantry.get_kinematics()
+        format, data, meshes = await self.gantry.get_kinematics()
         assert format == self.gantry.kinematics[0]
         assert data == self.gantry.kinematics[1]
+        assert meshes == self.gantry.kinematics[2]
 
     async def test_timeout(self):
         assert self.gantry.timeout is None
@@ -179,6 +180,7 @@ class TestService:
             response: GetKinematicsResponse = await client.GetKinematics(request, timeout=1.1)
             assert response.format == self.gantry.kinematics[0]
             assert response.kinematics_data == self.gantry.kinematics[1]
+            assert dict(response.meshes_by_urdf_filepath) == self.gantry.kinematics[2]
             assert self.gantry.timeout == loose_approx(1.1)
 
     async def test_get_geometries(self):
@@ -258,9 +260,10 @@ class TestClient:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
-            format, data = await client.get_kinematics(timeout=1.1)
+            format, data, meshes = await client.get_kinematics(timeout=1.1)
             assert format == self.gantry.kinematics[0]
             assert data == self.gantry.kinematics[1]
+            assert meshes == self.gantry.kinematics[2]
             assert self.gantry.timeout == loose_approx(1.1)
 
     async def test_get_geometries(self):

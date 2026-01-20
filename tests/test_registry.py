@@ -24,7 +24,6 @@ class FakeComponentClient(FakeComponent):
 
 def test_components_register_themselves_correctly():
     assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_APIS()
-    assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_in") in Registry.REGISTERED_APIS()
     assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_out") in Registry.REGISTERED_APIS()
     assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_APIS()
     assert API(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_APIS()

@@ -35,7 +35,7 @@ class TestArm:
     arm = MockArm(name="arm")
     pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
-    kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+    kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
 
     async def test_move_to_position(self):
         await self.arm.move_to_position(self.pose)
@@ -92,7 +92,7 @@ class TestService:
         cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
-        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
@@ -155,7 +155,9 @@ class TestService:
             client = ArmServiceStub(channel)
             request = GetKinematicsRequest(name=self.name)
             response: GetKinematicsResponse = await client.GetKinematics(request)
-            assert (response.format, response.kinematics_data) == self.kinematics
+            assert response.format == self.kinematics[0]
+            assert response.kinematics_data == self.kinematics[1]
+            assert dict(response.meshes_by_urdf_filepath) == self.kinematics[2]
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
@@ -182,7 +184,7 @@ class TestClient:
         cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
-        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
 
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:

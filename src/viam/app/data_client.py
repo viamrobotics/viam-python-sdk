@@ -404,6 +404,7 @@ class DataClient:
         count_only: bool = False,
         include_internal_data: bool = False,
         dest: Optional[str] = None,
+        mime_type: Optional[List[str]] = None,
     ) -> Tuple[List[TabularData], int, str]:
         """Filter and download tabular data. The data will be paginated into pages of ``limit`` items; the returned tuple will include
         the pagination ID. If a destination is provided, this method saves returned data to that file, overwriting any existing file content.
@@ -434,6 +435,7 @@ class DataClient:
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
                 like cloud SLAM. Defaults to ``False``.
             dest (str): Optional filepath for writing retrieved data.
+            mime_type (Optional[List[str]]): Optional mime types of data to filter on (for example, ["image/png"]).
 
         Returns:
             Tuple[List[TabularData], int, str]: A tuple containing the following:
@@ -445,6 +447,23 @@ class DataClient:
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#tabulardatabyfilter>`_.
         """
         filter = filter if filter else Filter()
+        if mime_type:
+            filter = Filter(
+                component_name=filter.component_name,
+                component_type=filter.component_type,
+                method=filter.method,
+                robot_name=filter.robot_name,
+                robot_id=filter.robot_id,
+                part_name=filter.part_name,
+                part_id=filter.part_id,
+                location_ids=filter.location_ids,
+                organization_ids=filter.organization_ids,
+                mime_type=mime_type,
+                interval=filter.interval,
+                tags_filter=filter.tags_filter,
+                bbox_labels=filter.bbox_labels,
+                dataset_id=filter.dataset_id,
+            )
 
         data_request = DataRequest(filter=filter)
         if limit:
@@ -697,6 +716,7 @@ class DataClient:
         count_only: bool = False,
         include_internal_data: bool = False,
         dest: Optional[str] = None,
+        mime_type: Optional[List[str]] = None,
     ) -> Tuple[List[BinaryData], int, str]:
         """Filter and download binary data. The data will be paginated into pages of ``limit`` items, and the pagination ID will be included
         in the returned tuple as ``last``. If a destination is provided, this method saves returned data to that file,
@@ -751,6 +771,7 @@ class DataClient:
             include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
                 like cloud SLAM. Defaults to ``False``.
             dest (str): Optional filepath for writing retrieved data.
+            mime_type (Optional[List[str]]): Optional mime types of data to filter on (for example, ["image/png"]).
 
         Returns:
             Tuple[List[~viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
@@ -761,6 +782,24 @@ class DataClient:
 
         For more information, see `Data Client API <https://docs.viam.com/dev/reference/apis/data-client/#binarydatabyfilter>`_.
         """
+        filter = filter if filter else Filter()
+        if mime_type:
+            filter = Filter(
+                component_name=filter.component_name,
+                component_type=filter.component_type,
+                method=filter.method,
+                robot_name=filter.robot_name,
+                robot_id=filter.robot_id,
+                part_name=filter.part_name,
+                part_id=filter.part_id,
+                location_ids=filter.location_ids,
+                organization_ids=filter.organization_ids,
+                mime_type=mime_type,
+                interval=filter.interval,
+                tags_filter=filter.tags_filter,
+                bbox_labels=filter.bbox_labels,
+                dataset_id=filter.dataset_id,
+            )
 
         data_request = DataRequest(filter=filter)
         if limit:

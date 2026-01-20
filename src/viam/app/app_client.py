@@ -168,6 +168,7 @@ from viam.proto.app import (
 )
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
+from viam.proto.app import FragmentImportList
 from viam.proto.app import FragmentVisibility as FragmentVisibilityPB
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
@@ -736,6 +737,7 @@ class AppClient:
         public_namespace: Optional[str] = None,
         region: Optional[str] = None,
         cid: Optional[str] = None,
+        default_fragments: Optional[FragmentImportList] = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -753,6 +755,7 @@ class AppClient:
             public_namespace (Optional[str]): If provided, sets the org's namespace if it hasn't already been set.
             region (Optional[str]): If provided, updates the org's region.
             cid (Optional[str]): If provided, update's the org's CRM ID.
+            default_fragments (Optional[FragmentImportList]): If provided, updates the org's default fragments.
 
         Raises:
             GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
@@ -768,6 +771,7 @@ class AppClient:
             region=region,
             cid=cid,
             name=name,
+            default_fragments=default_fragments,
         )
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
