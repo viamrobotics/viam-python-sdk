@@ -558,17 +558,42 @@ global___GetKinematicsRequest = GetKinematicsRequest
 @typing.final
 class GetKinematicsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class MeshesByUrdfFilepathEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___Mesh:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___Mesh | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
     FORMAT_FIELD_NUMBER: builtins.int
     KINEMATICS_DATA_FIELD_NUMBER: builtins.int
+    MESHES_BY_URDF_FILEPATH_FIELD_NUMBER: builtins.int
     format: global___KinematicsFileFormat.ValueType
     'The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)\n    https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters\n    '
     kinematics_data: builtins.bytes
     'The byte contents of the file'
 
-    def __init__(self, *, format: global___KinematicsFileFormat.ValueType=..., kinematics_data: builtins.bytes=...) -> None:
+    @property
+    def meshes_by_urdf_filepath(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___Mesh]:
+        """Map of URDF mesh file paths to mesh data"""
+
+    def __init__(self, *, format: global___KinematicsFileFormat.ValueType=..., kinematics_data: builtins.bytes=..., meshes_by_urdf_filepath: collections.abc.Mapping[builtins.str, global___Mesh] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['format', b'format', 'kinematics_data', b'kinematics_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['format', b'format', 'kinematics_data', b'kinematics_data', 'meshes_by_urdf_filepath', b'meshes_by_urdf_filepath']) -> None:
         ...
 global___GetKinematicsResponse = GetKinematicsResponse
 

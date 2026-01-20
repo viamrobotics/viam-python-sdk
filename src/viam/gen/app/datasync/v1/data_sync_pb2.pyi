@@ -302,6 +302,7 @@ class UploadMetadata(google.protobuf.message.Message):
     FILE_EXTENSION_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     DATASET_IDS_FIELD_NUMBER: builtins.int
+    MIME_TYPE_FIELD_NUMBER: builtins.int
     part_id: builtins.str
     component_type: builtins.str
     component_name: builtins.str
@@ -309,6 +310,7 @@ class UploadMetadata(google.protobuf.message.Message):
     type: global___DataType.ValueType
     file_name: builtins.str
     file_extension: builtins.str
+    mime_type: builtins.str
 
     @property
     def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
@@ -322,10 +324,10 @@ class UploadMetadata(google.protobuf.message.Message):
     def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'dataset_ids', b'dataset_ids', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'component_type', b'component_type', 'dataset_ids', b'dataset_ids', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
         ...
 global___UploadMetadata = UploadMetadata
 
