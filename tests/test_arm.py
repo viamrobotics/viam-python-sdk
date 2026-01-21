@@ -155,7 +155,7 @@ class TestService:
             client = ArmServiceStub(channel)
             request = GetKinematicsRequest(name=self.name)
             response: GetKinematicsResponse = await client.GetKinematics(request)
-            assert (response.format, response.kinematics_data) == self.kinematics
+            assert (response.format, response.kinematics_data, response.meshes_by_urdf_filepath) == self.kinematics
 
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:

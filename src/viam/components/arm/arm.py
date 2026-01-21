@@ -1,10 +1,11 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple
+from typing import Any, Dict, Final, Optional, Tuple, Mapping
 
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
 from . import JointPositions, KinematicsFileFormat, Pose
+from viam.proto.common import Mesh
 
 
 class Arm(ComponentBase):
@@ -195,7 +196,7 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         """
         Get the kinematics information associated with the arm.
 

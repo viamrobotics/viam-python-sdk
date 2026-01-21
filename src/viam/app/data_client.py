@@ -1535,6 +1535,7 @@ class DataClient:
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
+        mime_type: Optional[str] = None,
     ) -> str:
         """Upload binary sensor data.
 
@@ -1573,6 +1574,7 @@ class DataClient:
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing datetime objects
                 denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
+            mime_type (Optional[str]): Optional mime type of the data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1603,6 +1605,7 @@ class DataClient:
             method_parameters=method_parameters,
             tags=tags,
             dataset_ids=dataset_ids,
+            mime_type=mime_type or "",
         )
         if file_extension:
             metadata.file_extension = file_extension if file_extension[0] == "." else f".{file_extension}"
@@ -1721,6 +1724,7 @@ class DataClient:
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
+        mime_type: Optional[str] = None,
     ) -> str:
         """Uploads the metadata and contents of streaming binary data.
 
@@ -1753,6 +1757,7 @@ class DataClient:
                 denoting the times this data was requested ``[0]`` by the robot and received ``[1]`` from the appropriate sensor.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
+            mime_type (Optional[str]): Optional mime type of the data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1773,6 +1778,7 @@ class DataClient:
             file_extension=file_ext if file_ext[0] == "." else f".{file_ext}",
             tags=tags,
             dataset_ids=dataset_ids,
+            mime_type=mime_type or "",
         )
         sensor_metadata = SensorMetadata(
             time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
@@ -1802,6 +1808,7 @@ class DataClient:
         file_extension: Optional[str] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
+        mime_type: Optional[str] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -1832,6 +1839,7 @@ class DataClient:
                 isn't provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
+            mime_type (Optional[str]): Optional mime type of the data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1866,6 +1874,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
+        mime_type: Optional[str] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -1890,6 +1899,7 @@ class DataClient:
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
+            mime_type (Optional[str]): Optional mime type of the data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -1917,6 +1927,7 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
             dataset_ids=dataset_ids,
+            mime_type=mime_type or "",
         )
         response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
         return response.binary_data_id
