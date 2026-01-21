@@ -1,8 +1,9 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Tuple
+from typing import Any, Dict, Final, List, Optional, Tuple, Mapping
 
 from viam.components.arm import KinematicsFileFormat
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
+from viam.proto.common import Mesh
 
 from ..component_base import ComponentBase
 
@@ -159,7 +160,7 @@ class Gantry(ComponentBase):
     @abc.abstractmethod
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         """
         Get the kinematics information associated with the gantry.
 

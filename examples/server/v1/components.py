@@ -19,7 +19,6 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
 from viam.components.arm import Arm
-from viam.components.audio_in import AudioIn, AudioResponse
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, TickStream
@@ -48,6 +47,7 @@ from viam.proto.common import (
     ResponseMetadata,
     Sphere,
     Vector3,
+    Mesh,
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.encoder import PositionType
@@ -73,7 +73,7 @@ class ExampleArm(Arm):
         )
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
@@ -101,67 +101,8 @@ class ExampleArm(Arm):
     async def is_moving(self):
         return not self.is_stopped
 
-    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return self.kinematics
-
-    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
-        return GEOMETRIES
-
-class ExampleAudioIn(AudioIn):
-    def __init__(self, name: str):
-        super().__init__(name)
-        self.sample_rate = 44100
-        self.num_channels = 2
-        self.supported_codecs = ["pcm16"]
-        self.chunk_count = 0
-        self.latency = timedelta(milliseconds=20)
-        self.volume_scale = 0.2
-        self.frequency_hz = 440
-
-    async def get_audio(
-        self, codec: str, duration_seconds: float, previous_timestamp_ns: int, *, timeout: Optional[float] = None, **kwargs
-    ) -> AudioIn.AudioStream:
-        async def read() -> AsyncIterator[AudioIn.AudioResponse]:
-            # Generate chunks based on duration
-            chunk_duration_ms = 100  # 100ms per chunk
-            chunks_to_generate = max(1, int((duration_seconds * 1000) / chunk_duration_ms))
-
-            for i in range(chunks_to_generate):
-                # Generate audio data (sine wave pattern)
-                chunk_data = b""
-                samples_per_chunk = int(self.sample_rate * (chunk_duration_ms / 1000))
-
-                for sample in range(samples_per_chunk):
-                    # Calculate the timing in seconds of this audio sample
-                    time_offset = (i * chunk_duration_ms / 1000) + (sample / self.sample_rate)
-                    # Generate one 16-bit PCM audio sample for a sine wave
-                    # 32767 scales the value from (-1,1) to full 16 bit signed range (-32768,32767)
-                    amplitude = int(32767 * self.volume_scale * math.sin(2 * math.pi * self.frequency_hz * time_offset))
-
-                    # Convert to 16-bit PCM stereo
-                    sample_bytes = amplitude.to_bytes(2, byteorder="little", signed=True)
-                    chunk_data += sample_bytes * self.num_channels
-
-                chunk_start_time = previous_timestamp_ns + (i * chunk_duration_ms * 1000000)  # Convert ms to ns
-                chunk_end_time = chunk_start_time + (chunk_duration_ms * 1000000)
-
-                audio_chunk = AudioInChunk(
-                    audio_data=bytes(chunk_data),
-                    audio_info=AudioInfo(codec=codec, sample_rate_hz=int(self.sample_rate), num_channels=self.num_channels),
-                    sequence=i,
-                    start_timestamp_nanoseconds=chunk_start_time,
-                    end_timestamp_nanoseconds=chunk_end_time,
-                )
-                audio_response = AudioResponse(audio=audio_chunk)
-                yield audio_response
-
-                await asyncio.sleep(self.latency.total_seconds())
-
-        return StreamWithIterator(read())
-
-    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
-        """Return the audio input device properties."""
-        return AudioIn.Properties(supported_codecs=self.supported_codecs, sample_rate_hz=self.sample_rate, num_channels=self.num_channels)
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
@@ -546,8 +487,8 @@ class ExampleGantry(Gantry):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
-    async def get_kinematics(self, *, extra=None, timeout=None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
-        return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_UNSPECIFIED, b"abc")
+    async def get_kinematics(self, *, extra=None, timeout=None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+        return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_UNSPECIFIED, b"abc", {})
 
 
 class ExampleGripper(Gripper):
@@ -555,7 +496,7 @@ class ExampleGripper(Gripper):
         self.opened = False
         self.is_stopped = True
         self.holding_something = False
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         super().__init__(name)
 
     async def open(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
@@ -581,7 +522,7 @@ class ExampleGripper(Gripper):
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
 
-    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         return self.kinematics
 
 
