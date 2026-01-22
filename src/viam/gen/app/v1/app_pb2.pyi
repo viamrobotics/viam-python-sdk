@@ -653,16 +653,16 @@ global___GetOrganizationNamespaceAvailabilityResponse = GetOrganizationNamespace
 @typing.final
 class FragmentImportList(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    IMPORTS_FIELD_NUMBER: builtins.int
+    FRAGMENTS_FIELD_NUMBER: builtins.int
 
     @property
-    def imports(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentImport]:
+    def fragments(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FragmentImport]:
         ...
 
-    def __init__(self, *, imports: collections.abc.Iterable[global___FragmentImport] | None=...) -> None:
+    def __init__(self, *, fragments: collections.abc.Iterable[global___FragmentImport] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['imports', b'imports']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
         ...
 global___FragmentImportList = FragmentImportList
 
@@ -674,7 +674,7 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     REGION_FIELD_NUMBER: builtins.int
     CID_FIELD_NUMBER: builtins.int
-    FRAGMENT_IMPORTS_FIELD_NUMBER: builtins.int
+    DEFAULT_FRAGMENTS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     name: builtins.str
     public_namespace: builtins.str
@@ -683,16 +683,16 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     cid: builtins.str
 
     @property
-    def fragment_imports(self) -> global___FragmentImportList:
+    def default_fragments(self) -> global___FragmentImportList:
         ...
 
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=..., fragment_imports: global___FragmentImportList | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=..., default_fragments: global___FragmentImportList | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_fragment_imports', b'_fragment_imports', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'fragment_imports', b'fragment_imports', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_fragment_imports', b'_fragment_imports', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'fragment_imports', b'fragment_imports', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'default_fragments', b'default_fragments', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
         ...
 
     @typing.overload
@@ -700,7 +700,7 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal['_fragment_imports', b'_fragment_imports']) -> typing.Literal['fragment_imports'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_default_fragments', b'_default_fragments']) -> typing.Literal['default_fragments'] | None:
         ...
 
     @typing.overload
@@ -4010,11 +4010,33 @@ class ModuleMetadata(google.protobuf.message.Message):
 global___ModuleMetadata = ModuleMetadata
 
 @typing.final
+class MLModelVersion(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VERSION_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    version: builtins.str
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, version: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'version', b'version']) -> None:
+        ...
+global___MLModelVersion = MLModelVersion
+
+@typing.final
 class MLModelMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    DETAILED_VERSIONS_FIELD_NUMBER: builtins.int
     model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
     model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
 
@@ -4022,10 +4044,14 @@ class MLModelMetadata(google.protobuf.message.Message):
     def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """A list of package versions for a ML model"""
 
-    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=...) -> None:
+    @property
+    def detailed_versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MLModelVersion]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
+    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., detailed_versions: collections.abc.Iterable[global___MLModelVersion] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['detailed_versions', b'detailed_versions', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
         ...
 global___MLModelMetadata = MLModelMetadata
 
