@@ -1,12 +1,17 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Final, Optional, Tuple, Mapping
+from typing import Any, Dict, Final, Optional, Tuple, Mapping, Union
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 from viam.proto.common import Mesh
 
 from . import KinematicsFileFormat
+
+KinematicsReturn = Union[
+    Tuple[KinematicsFileFormat.ValueType, bytes],
+    Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]],
+]
 
 
 class Gripper(ComponentBase):
@@ -162,7 +167,7 @@ class Gripper(ComponentBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the gripper.
 
@@ -184,6 +189,7 @@ class Gripper(ComponentBase):
             file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
+            If available, a third [2] value provides meshes keyed by URDF filepath.
 
         For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
         """

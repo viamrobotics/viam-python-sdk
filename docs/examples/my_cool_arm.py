@@ -2,11 +2,11 @@
 
 import asyncio
 import json
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
-from viam.proto.common import Capsule, Geometry, Sphere
+from viam.proto.common import Capsule, Geometry, Mesh, Sphere
 
 
 class MyCoolArm(Arm):
@@ -100,7 +100,9 @@ class MyCoolArm(Arm):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         return self.geometries
 
-    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(
+        self, extra: Optional[Dict[str, Any]] = None, **kwargs
+    ) -> Union[Tuple[KinematicsFileFormat.ValueType, bytes], Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]]:
         return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
 
     async def close(self):

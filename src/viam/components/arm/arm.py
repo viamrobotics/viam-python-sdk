@@ -1,11 +1,16 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple, Mapping
+from typing import Any, Dict, Final, Optional, Tuple, Mapping, Union
 
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
 from ..component_base import ComponentBase
 from . import JointPositions, KinematicsFileFormat, Pose
 from viam.proto.common import Mesh
+
+KinematicsReturn = Union[
+    Tuple[KinematicsFileFormat.ValueType, bytes],
+    Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]],
+]
 
 
 class Arm(ComponentBase):
@@ -196,7 +201,7 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
+    ) -> KinematicsReturn:
         """
         Get the kinematics information associated with the arm.
 
@@ -218,6 +223,7 @@ class Arm(ComponentBase):
             file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
             Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
             and the second [1] value represents the byte contents of the file.
+            If available, a third [2] value provides meshes keyed by URDF filepath.
 
         For more information, see `Arm component <https://docs.viam.com/dev/reference/apis/components/arm/#getkinematics>`_.
         """
