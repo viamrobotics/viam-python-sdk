@@ -4010,11 +4010,33 @@ class ModuleMetadata(google.protobuf.message.Message):
 global___ModuleMetadata = ModuleMetadata
 
 @typing.final
+class MLModelVersion(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VERSION_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    version: builtins.str
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, version: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'version', b'version']) -> None:
+        ...
+global___MLModelVersion = MLModelVersion
+
+@typing.final
 class MLModelMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    DETAILED_VERSIONS_FIELD_NUMBER: builtins.int
     model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
     model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
 
@@ -4022,10 +4044,14 @@ class MLModelMetadata(google.protobuf.message.Message):
     def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """A list of package versions for a ML model"""
 
-    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=...) -> None:
+    @property
+    def detailed_versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MLModelVersion]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
+    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., detailed_versions: collections.abc.Iterable[global___MLModelVersion] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['detailed_versions', b'detailed_versions', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
         ...
 global___MLModelMetadata = MLModelMetadata
 
