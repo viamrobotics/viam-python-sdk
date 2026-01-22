@@ -1955,7 +1955,7 @@ Module Contents
 
 .. py:data:: global___TagsByFilterResponse
 
-.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
+.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., confidence: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1988,12 +1988,16 @@ Module Contents
       :type:  float
 
 
+   .. py:attribute:: confidence
+      :type:  float
+
+
    .. py:property:: binary_id
       :type: global___BinaryID
 
 
 
-   .. py:method:: HasField(field_name: Literal['binary_id', b'binary_id']) -> bool
+   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', 'binary_id', b'binary_id', 'confidence', b'confidence']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2008,6 +2012,22 @@ Module Contents
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -2082,7 +2102,7 @@ Module Contents
 
 .. py:data:: global___RemoveBoundingBoxFromImageByIDResponse
 
-.. py:class:: UpdateBoundingBoxRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ...)
+.. py:class:: UpdateBoundingBoxRequest(*, binary_id: global___BinaryID | None = ..., binary_data_id: str = ..., bbox_id: str = ..., label: str | None = ..., x_min_normalized: float | None = ..., y_min_normalized: float | None = ..., x_max_normalized: float | None = ..., y_max_normalized: float | None = ..., confidence: float | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2118,12 +2138,16 @@ Module Contents
       :type:  float
 
 
+   .. py:attribute:: confidence
+      :type:  float
+
+
    .. py:property:: binary_id
       :type: global___BinaryID
 
 
 
-   .. py:method:: HasField(field_name: Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> bool
+   .. py:method:: HasField(field_name: Literal['_confidence', b'_confidence', '_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'confidence', b'confidence', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -2141,7 +2165,8 @@ Module Contents
 
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal['_label', b'_label']) -> Literal['label'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal['_confidence', b'_confidence']) -> Literal['confidence'] | None
+                  WhichOneof(oneof_group: Literal['_label', b'_label']) -> Literal['label'] | None
                   WhichOneof(oneof_group: Literal['_x_max_normalized', b'_x_max_normalized']) -> Literal['x_max_normalized'] | None
                   WhichOneof(oneof_group: Literal['_x_min_normalized', b'_x_min_normalized']) -> Literal['x_min_normalized'] | None
                   WhichOneof(oneof_group: Literal['_y_max_normalized', b'_y_max_normalized']) -> Literal['y_max_normalized'] | None
