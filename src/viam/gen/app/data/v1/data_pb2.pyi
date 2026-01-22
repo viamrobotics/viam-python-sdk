@@ -1254,24 +1254,29 @@ class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
     Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
     binary_data_id: builtins.str
     label: builtins.str
     x_min_normalized: builtins.float
     y_min_normalized: builtins.float
     x_max_normalized: builtins.float
     y_max_normalized: builtins.float
+    confidence: builtins.float
 
     @property
     def binary_id(self) -> global___BinaryID:
         ...
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
+    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=..., confidence: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['binary_id', b'binary_id']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_confidence', b'_confidence', 'binary_id', b'binary_id', 'confidence', b'confidence']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', 'binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'confidence', b'confidence', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_confidence', b'_confidence']) -> typing.Literal['confidence'] | None:
         ...
 global___AddBoundingBoxToImageByIDRequest = AddBoundingBoxToImageByIDRequest
 
@@ -1333,6 +1338,7 @@ class UpdateBoundingBoxRequest(google.protobuf.message.Message):
     Y_MIN_NORMALIZED_FIELD_NUMBER: builtins.int
     X_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
     binary_data_id: builtins.str
     bbox_id: builtins.str
     label: builtins.str
@@ -1340,18 +1346,23 @@ class UpdateBoundingBoxRequest(google.protobuf.message.Message):
     y_min_normalized: builtins.float
     x_max_normalized: builtins.float
     y_max_normalized: builtins.float
+    confidence: builtins.float
 
     @property
     def binary_id(self) -> global___BinaryID:
         ...
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., bbox_id: builtins.str=..., label: builtins.str | None=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=...) -> None:
+    def __init__(self, *, binary_id: global___BinaryID | None=..., binary_data_id: builtins.str=..., bbox_id: builtins.str=..., label: builtins.str | None=..., x_min_normalized: builtins.float | None=..., y_min_normalized: builtins.float | None=..., x_max_normalized: builtins.float | None=..., y_max_normalized: builtins.float | None=..., confidence: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_confidence', b'_confidence', '_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'binary_id', b'binary_id', 'confidence', b'confidence', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'bbox_id', b'bbox_id', 'binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+    def ClearField(self, field_name: typing.Literal['_confidence', b'_confidence', '_label', b'_label', '_x_max_normalized', b'_x_max_normalized', '_x_min_normalized', b'_x_min_normalized', '_y_max_normalized', b'_y_max_normalized', '_y_min_normalized', b'_y_min_normalized', 'bbox_id', b'bbox_id', 'binary_data_id', b'binary_data_id', 'binary_id', b'binary_id', 'confidence', b'confidence', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_confidence', b'_confidence']) -> typing.Literal['confidence'] | None:
         ...
 
     @typing.overload
