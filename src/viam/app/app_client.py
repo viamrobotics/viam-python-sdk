@@ -165,6 +165,8 @@ from viam.proto.app import (
     UpdateRobotResponse,
     UploadModuleFileRequest,
     Visibility,
+    FragmentImport,
+    FragmentImportList,
 )
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
@@ -736,6 +738,7 @@ class AppClient:
         public_namespace: Optional[str] = None,
         region: Optional[str] = None,
         cid: Optional[str] = None,
+        default_fragments: Optional[List[FragmentImport]] = None,
     ) -> Organization:
         """Updates organization details.
 
@@ -768,6 +771,11 @@ class AppClient:
             region=region,
             cid=cid,
             name=name,
+            default_fragments=(
+                FragmentImportList(fragments=default_fragments)
+                if default_fragments is not None
+                else None
+            ),
         )
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization

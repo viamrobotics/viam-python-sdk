@@ -1,7 +1,8 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
+from viam.components import KinematicsReturn
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
@@ -19,7 +20,7 @@ from viam.proto.component.arm import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Arm, KinematicsFileFormat, Pose
+from . import Arm, Pose
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
@@ -113,11 +114,11 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
 
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> KinematicsReturn:
         md = kwargs.get("metadata", self.Metadata()).proto
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout, metadata=md)
-        return (response.format, response.kinematics_data)
+        return (response.format, response.kinematics_data, response.meshes_by_urdf_filepath)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Geometry]:
         md = kwargs.get("metadata", self.Metadata())

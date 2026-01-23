@@ -13,7 +13,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
-from viam.components.audio_in import AudioIn, AudioResponse
+from viam.components.audio_in import AudioIn
 from viam.components.audio_out import AudioOut
 from viam.components.base import Base
 from viam.components.board import Board, Tick
@@ -33,8 +33,8 @@ from viam.components.servo import Servo
 from viam.components.switch import Switch
 from viam.errors import ResourceNotFoundError
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
-from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
-from viam.proto.component.audioin import AudioChunk as Chunk
+from viam.proto.common import AudioInfo, Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3, Mesh
+from viam.proto.component.audioin import AudioChunk, GetAudioResponse
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.streams import StreamWithIterator
@@ -51,7 +51,7 @@ class MockArm(Arm):
         self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
@@ -100,7 +100,7 @@ class MockArm(Arm):
 
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
@@ -117,59 +117,47 @@ class MockArm(Arm):
 class MockAudioIn(AudioIn):
     def __init__(self, name: str, properties: AudioIn.Properties):
         super().__init__(name)
-        self.geometries = GEOMETRIES
         self.properties = properties
+        self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Dict[str, Any]] = None
 
     async def get_audio(
-        self,
-        codec: str,
-        duration_seconds: float,
-        previous_timestamp_ns: int,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ):
-        async def read() -> AsyncIterator[AudioResponse]:
-            # Generate mock audio chunks
-            for i in range(2):
-                chunk_data = f"audio_chunk_{i}".encode("utf-8")
-                timestamp_start = previous_timestamp_ns + i * 1000000000  # 1 second intervals in nanoseconds
-                timestamp_end = timestamp_start + 1000000000
+        self, codec: str, duration_seconds: float, previous_timestamp_ns: int, *, timeout: Optional[float] = None, **kwargs
+    ) -> StreamWithIterator[GetAudioResponse]:
+        self.timeout = timeout
 
-                audio_chunk = Chunk(
-                    audio_data=chunk_data,
-                    audio_info=AudioInfo(
-                        codec=codec, sample_rate_hz=self.properties.sample_rate_hz, num_channels=self.properties.num_channels
-                    ),
-                    sequence=i,
-                    start_timestamp_nanoseconds=timestamp_start,
-                    end_timestamp_nanoseconds=timestamp_end,
+        async def read() -> AsyncIterator[GetAudioResponse]:
+            for sequence in range(2):
+                start_ts = previous_timestamp_ns + (sequence + 1) * 1_000_000_000
+                end_ts = start_ts + 1_000_000_000
+                yield GetAudioResponse(
+                    audio=AudioChunk(
+                        audio_data=b"mock-audio-data",
+                        audio_info=AudioInfo(
+                            codec=codec,
+                            sample_rate_hz=self.properties.sample_rate_hz,
+                            num_channels=self.properties.num_channels,
+                        ),
+                        start_timestamp_nanoseconds=start_ts,
+                        end_timestamp_nanoseconds=end_ts,
+                        sequence=sequence,
+                    )
                 )
 
-                audio_response = AudioResponse(audio=audio_chunk, request_id="mock_request")
-                yield audio_response
-
-        self.extra = extra
-        self.timeout = timeout
         return StreamWithIterator(read())
 
-    async def get_properties(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> AudioIn.Properties:
-        self.extra = extra
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioIn.Properties:
         self.timeout = timeout
         return self.properties
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
         self.timeout = timeout
         return self.geometries
-
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        return {"command": command}
 
 
 class MockAudioOut(AudioOut):
@@ -518,7 +506,7 @@ class MockGantry(Gantry):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         self.extra = None
         self.homed = True
         self.speeds = Optional[List[float]]
@@ -567,7 +555,7 @@ class MockGantry(Gantry):
 
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
@@ -599,7 +587,7 @@ class MockGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
         self.geometries = GEOMETRIES
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02", {})
         self.holding_something = False
         self.extra = None
         self.is_stopped = True
@@ -642,7 +630,7 @@ class MockGripper(Gripper):
 
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]]:
         self.extra = extra
         self.timeout = timeout
         return self.kinematics
