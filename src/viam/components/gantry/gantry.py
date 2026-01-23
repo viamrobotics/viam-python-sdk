@@ -1,16 +1,10 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Tuple, Mapping, Union
+from typing import Any, Dict, Final, List, Optional
 
-from viam.components.arm import KinematicsFileFormat
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-from viam.proto.common import Mesh
 
+from .. import KinematicsReturn
 from ..component_base import ComponentBase
-
-KinematicsReturn = Union[
-    Tuple[KinematicsFileFormat.ValueType, bytes],
-    Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]],
-]
 
 
 class Gantry(ComponentBase):

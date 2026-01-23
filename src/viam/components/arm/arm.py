@@ -1,16 +1,11 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple, Mapping, Union
+from typing import Any, Dict, Final, Optional
 
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
 
+from .. import KinematicsReturn
 from ..component_base import ComponentBase
-from . import JointPositions, KinematicsFileFormat, Pose
-from viam.proto.common import Mesh
-
-KinematicsReturn = Union[
-    Tuple[KinematicsFileFormat.ValueType, bytes],
-    Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]],
-]
+from . import JointPositions, Pose
 
 
 class Arm(ComponentBase):

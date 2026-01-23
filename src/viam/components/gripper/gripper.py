@@ -1,17 +1,11 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Final, Optional, Tuple, Mapping, Union
+from typing import Any, Dict, Final, Optional
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import API, RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT
-from viam.proto.common import Mesh
 
-from . import KinematicsFileFormat
-
-KinematicsReturn = Union[
-    Tuple[KinematicsFileFormat.ValueType, bytes],
-    Tuple[KinematicsFileFormat.ValueType, bytes, Mapping[str, Mesh]],
-]
+from .. import KinematicsReturn
 
 
 class Gripper(ComponentBase):
