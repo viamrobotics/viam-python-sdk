@@ -63,8 +63,10 @@
 <li class="toctree-l5"><a class="reference internal" href="service/index.html">viam.components.arm.service</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#attributes">Attributes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.components.arm.KinematicsReturn"><code class="docutils literal notranslate"><span class="pre">KinematicsReturn</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.arm.KinematicsFileFormat"><code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.components.arm.Pose"><code class="docutils literal notranslate"><span class="pre">Pose</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Pose.x"><code class="docutils literal notranslate"><span class="pre">Pose.x</span></code></a></li>
@@ -122,6 +124,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#attributes">Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../services/index.html">viam.services</a></li>
@@ -171,6 +175,16 @@
 </ul>
 </div>
 </section>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.KinematicsReturn" title="viam.components.arm.KinematicsReturn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">KinematicsReturn</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <table class="autosummary longtable docutils align-default">
@@ -192,6 +206,11 @@
 </section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.arm.KinematicsReturn">
+<span class="sig-prename descclassname"><span class="pre">viam.components.arm.</span></span><span class="sig-name descname"><span class="pre">KinematicsReturn</span></span><a class="headerlink" href="#viam.components.arm.KinematicsReturn" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.arm.KinematicsFileFormat">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.</span></span><span class="sig-name descname"><span class="pre">KinematicsFileFormat</span></span><a class="headerlink" href="#viam.components.arm.KinematicsFileFormat" title="Permalink to this definition"></a></dt>
@@ -452,7 +471,7 @@ and translational values (mm).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.get_kinematics">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.components.arm.KinematicsFileFormat.ValueType</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.get_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.get_kinematics" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.components.KinematicsReturn</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.get_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.get_kinematics" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Async<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -475,7 +494,8 @@ and translational values (mm).</p>
 <dd class="field-odd"><p>A tuple containing two values; the first [0] value represents the format of the
 file, either in URDF format (<code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF</span></code>) or
 Viam’s kinematic parameter format (spatial vector algebra) (<code class="docutils literal notranslate"><span class="pre">KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA</span></code>),
-and the second [1] value represents the byte contents of the file.</p>
+and the second [1] value represents the byte contents of the file.
+If available, a third [2] value provides meshes keyed by URDF filepath.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Tuple[KinematicsFileFormat.ValueType, bytes]</p>

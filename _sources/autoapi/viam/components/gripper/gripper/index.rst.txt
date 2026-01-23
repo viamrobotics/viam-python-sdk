@@ -165,7 +165,7 @@ Module Contents
 
 
 
-   .. py:method:: get_kinematics(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.components.gripper.KinematicsFileFormat.ValueType, bytes]
+   .. py:method:: get_kinematics(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.KinematicsReturn
       :abstractmethod:
 
       :async:
@@ -190,6 +190,7 @@ Module Contents
                 file, either in URDF format (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_URDF``) or
                 Viam's kinematic parameter format (spatial vector algebra) (``KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA``),
                 and the second [1] value represents the byte contents of the file.
+                If available, a third [2] value provides meshes keyed by URDF filepath.
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
       For more information, see `Gripper component <https://docs.viam.com/dev/reference/apis/components/gripper/#getkinematics>`_.
