@@ -137,6 +137,8 @@
     <span class="n">DeleteRobotPartRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
+    <span class="n">FragmentImport</span><span class="p">,</span>
+    <span class="n">FragmentImportList</span><span class="p">,</span>
     <span class="n">GetFragmentHistoryRequest</span><span class="p">,</span>
     <span class="n">GetFragmentHistoryResponse</span><span class="p">,</span>
     <span class="n">GetFragmentRequest</span><span class="p">,</span>
@@ -254,8 +256,6 @@
     <span class="n">UpdateRobotResponse</span><span class="p">,</span>
     <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
     <span class="n">Visibility</span><span class="p">,</span>
-    <span class="n">FragmentImport</span><span class="p">,</span>
-    <span class="n">FragmentImportList</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">FragmentHistoryEntry</span> <span class="k">as</span> <span class="n">FragmentHistoryEntryPB</span>
@@ -860,11 +860,7 @@
             <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
             <span class="n">cid</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">default_fragments</span><span class="o">=</span><span class="p">(</span>
-                <span class="n">FragmentImportList</span><span class="p">(</span><span class="n">fragments</span><span class="o">=</span><span class="n">default_fragments</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">default_fragments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                <span class="k">else</span> <span class="kc">None</span>
-            <span class="p">),</span>
+            <span class="n">default_fragments</span><span class="o">=</span><span class="p">(</span><span class="n">FragmentImportList</span><span class="p">(</span><span class="n">fragments</span><span class="o">=</span><span class="n">default_fragments</span><span class="p">)</span> <span class="k">if</span> <span class="n">default_fragments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">organization</span></div>
