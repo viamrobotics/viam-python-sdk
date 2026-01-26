@@ -48,6 +48,8 @@ from viam.proto.app import (
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
+    FragmentImport,
+    FragmentImportList,
     GetFragmentHistoryRequest,
     GetFragmentHistoryResponse,
     GetFragmentRequest,
@@ -165,8 +167,6 @@ from viam.proto.app import (
     UpdateRobotResponse,
     UploadModuleFileRequest,
     Visibility,
-    FragmentImport,
-    FragmentImportList,
 )
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import FragmentHistoryEntry as FragmentHistoryEntryPB
@@ -771,11 +771,7 @@ class AppClient:
             region=region,
             cid=cid,
             name=name,
-            default_fragments=(
-                FragmentImportList(fragments=default_fragments)
-                if default_fragments is not None
-                else None
-            ),
+            default_fragments=(FragmentImportList(fragments=default_fragments) if default_fragments is not None else None),
         )
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
