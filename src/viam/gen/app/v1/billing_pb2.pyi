@@ -525,7 +525,104 @@ class UpdateOrganizationBillingTierResponse(google.protobuf.message.Message):
 global___UpdateOrganizationBillingTierResponse = UpdateOrganizationBillingTierResponse
 
 @typing.final
+class GetLocationBillingOrganizationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+
+    def __init__(self, *, location_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
+        ...
+global___GetLocationBillingOrganizationRequest = GetLocationBillingOrganizationRequest
+
+@typing.final
+class GetLocationBillingOrganizationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BILLING_ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    billing_organization_id: builtins.str
+
+    def __init__(self, *, billing_organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_organization_id', b'billing_organization_id']) -> None:
+        ...
+global___GetLocationBillingOrganizationResponse = GetLocationBillingOrganizationResponse
+
+@typing.final
+class UpdateLocationBillingOrganizationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    BILLING_ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+    billing_organization_id: builtins.str
+
+    def __init__(self, *, location_id: builtins.str=..., billing_organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['billing_organization_id', b'billing_organization_id', 'location_id', b'location_id']) -> None:
+        ...
+global___UpdateLocationBillingOrganizationRequest = UpdateLocationBillingOrganizationRequest
+
+@typing.final
+class UpdateLocationBillingOrganizationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateLocationBillingOrganizationResponse = UpdateLocationBillingOrganizationResponse
+
+@typing.final
+class ChargeOrganizationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_TO_CHARGE_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
+    SUBTOTAL_FIELD_NUMBER: builtins.int
+    TAX_FIELD_NUMBER: builtins.int
+    ORG_ID_FOR_BRANDING_FIELD_NUMBER: builtins.int
+    DISABLE_CONFIRMATION_EMAIL_FIELD_NUMBER: builtins.int
+    org_id_to_charge: builtins.str
+    description: builtins.str
+    subtotal: builtins.float
+    tax: builtins.float
+    org_id_for_branding: builtins.str
+    disable_confirmation_email: builtins.bool
+
+    def __init__(self, *, org_id_to_charge: builtins.str=..., description: builtins.str | None=..., subtotal: builtins.float=..., tax: builtins.float=..., org_id_for_branding: builtins.str | None=..., disable_confirmation_email: builtins.bool=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'org_id_for_branding', b'org_id_for_branding']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_description', b'_description', '_org_id_for_branding', b'_org_id_for_branding', 'description', b'description', 'disable_confirmation_email', b'disable_confirmation_email', 'org_id_for_branding', b'org_id_for_branding', 'org_id_to_charge', b'org_id_to_charge', 'subtotal', b'subtotal', 'tax', b'tax']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_description', b'_description']) -> typing.Literal['description'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_org_id_for_branding', b'_org_id_for_branding']) -> typing.Literal['org_id_for_branding'] | None:
+        ...
+global___ChargeOrganizationRequest = ChargeOrganizationRequest
+
+@typing.final
+class ChargeOrganizationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INVOICE_ID_FIELD_NUMBER: builtins.int
+    invoice_id: builtins.str
+
+    def __init__(self, *, invoice_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['invoice_id', b'invoice_id']) -> None:
+        ...
+global___ChargeOrganizationResponse = ChargeOrganizationResponse
+
+@typing.final
 class CreateInvoiceAndChargeImmediatelyRequest(google.protobuf.message.Message):
+    """Deprecated: Use ChargeOrganizationRequest instead"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_TO_CHARGE_FIELD_NUMBER: builtins.int
     AMOUNT_FIELD_NUMBER: builtins.int
@@ -558,6 +655,7 @@ global___CreateInvoiceAndChargeImmediatelyRequest = CreateInvoiceAndChargeImmedi
 
 @typing.final
 class CreateInvoiceAndChargeImmediatelyResponse(google.protobuf.message.Message):
+    """Deprecated: Use ChargeOrganizationResponse instead"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVOICE_ID_FIELD_NUMBER: builtins.int
     invoice_id: builtins.str
