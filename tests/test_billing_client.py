@@ -9,6 +9,9 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
+    GetLocationBillingOrganizationResponse,
+    UpdateLocationBillingOrganizationResponse,
+    ChargeOrganizationResponse,
 )
 
 from .mocks.services import MockBilling
@@ -66,6 +69,11 @@ ORG_BILLING_INFO = GetOrgBillingInformationResponse(
 )
 INVOICE_ID_RESPONSE = CreateInvoiceAndChargeImmediatelyResponse(invoice_id=INVOICE_ID)
 
+BILLING_ORG_ID = "billing_org_id"
+GET_LOCATION_BILLING_ORG_RESPONSE = GetLocationBillingOrganizationResponse(billing_organization_id=BILLING_ORG_ID)
+UPDATE_LOCATION_BILLING_ORG_RESPONSE = UpdateLocationBillingOrganizationResponse()
+CHARGE_ORG_RESPONSE = ChargeOrganizationResponse(invoice_id=INVOICE_ID)
+
 AUTH_TOKEN = "auth_token"
 BILLING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
@@ -78,6 +86,9 @@ def service() -> MockBilling:
         invoices_summary=INVOICES_SUMMARY,
         billing_info=ORG_BILLING_INFO,
         invoice_id_response=INVOICE_ID_RESPONSE,
+        get_location_billing_org_response=GET_LOCATION_BILLING_ORG_RESPONSE,
+        update_location_billing_org_response=UPDATE_LOCATION_BILLING_ORG_RESPONSE,
+        charge_org_response=CHARGE_ORG_RESPONSE,
     )
 
 
@@ -129,3 +140,48 @@ class TestClient:
             assert service.org_id_for_branding == org_id_for_branding
             assert service.amount == OUTSTANDING_BALANCE
             assert service.disable_email == disable_email
+
+    async def test_get_location_billing_organization(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            location_id = "test_location_id"
+            response = await client.get_location_billing_organization(location_id=location_id)
+            assert response == GET_LOCATION_BILLING_ORG_RESPONSE
+            assert service.location_id == location_id
+
+    async def test_update_location_billing_organization(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            location_id = "test_location_id"
+            billing_org_id = "test_billing_org_id"
+            response = await client.update_location_billing_organization(
+                location_id=location_id, billing_organization_id=billing_org_id
+            )
+            assert response == UPDATE_LOCATION_BILLING_ORG_RESPONSE
+            assert service.location_id == location_id
+            assert service.billing_organization_id == billing_org_id
+
+    async def test_charge_organization(self, service: MockBilling):
+        async with ChannelFor([service]) as channel:
+            client = BillingClient(channel, BILLING_SERVICE_METADATA)
+            org_id_to_charge = "test_org_id_to_charge"
+            subtotal = 100.0
+            tax = 10.0
+            description = "Test charge"
+            org_id_for_branding = "branding_org"
+            disable_confirmation_email = True
+            response = await client.charge_organization(
+                org_id_to_charge=org_id_to_charge,
+                subtotal=subtotal,
+                tax=tax,
+                description=description,
+                org_id_for_branding=org_id_for_branding,
+                disable_confirmation_email=disable_confirmation_email,
+            )
+            assert response == CHARGE_ORG_RESPONSE
+            assert service.org_id_to_charge_charge_org == org_id_to_charge
+            assert service.subtotal == subtotal
+            assert service.tax == tax
+            assert service.description_charge_org == description
+            assert service.org_id_for_branding_charge_org == org_id_for_branding
+            assert service.disable_confirmation_email == disable_confirmation_email
