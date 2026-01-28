@@ -446,6 +446,7 @@ class Organization(google.protobuf.message.Message):
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     DEFAULT_REGION_FIELD_NUMBER: builtins.int
     CID_FIELD_NUMBER: builtins.int
+    DEFAULT_FRAGMENTS_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     public_namespace: builtins.str
@@ -457,16 +458,25 @@ class Organization(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., public_namespace: builtins.str=..., default_region: builtins.str=..., cid: builtins.str | None=...) -> None:
+    @property
+    def default_fragments(self) -> global___FragmentImportList:
         ...
 
-    def HasField(self, field_name: typing.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., public_namespace: builtins.str=..., default_region: builtins.str=..., cid: builtins.str | None=..., default_fragments: global___FragmentImportList | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments']) -> builtins.bool:
         ...
 
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_default_fragments', b'_default_fragments', 'cid', b'cid', 'created_on', b'created_on', 'default_fragments', b'default_fragments', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_cid', b'_cid']) -> typing.Literal['cid'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_default_fragments', b'_default_fragments']) -> typing.Literal['default_fragments'] | None:
         ...
 global___Organization = Organization
 
@@ -5404,14 +5414,16 @@ class GetAppContentResponse(google.protobuf.message.Message):
     BLOB_PATH_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     APP_TYPE_FIELD_NUMBER: builtins.int
+    PUBLIC_FIELD_NUMBER: builtins.int
     blob_path: builtins.str
     entrypoint: builtins.str
     app_type: global___AppType.ValueType
+    public: builtins.bool
 
-    def __init__(self, *, blob_path: builtins.str=..., entrypoint: builtins.str=..., app_type: global___AppType.ValueType=...) -> None:
+    def __init__(self, *, blob_path: builtins.str=..., entrypoint: builtins.str=..., app_type: global___AppType.ValueType=..., public: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['app_type', b'app_type', 'blob_path', b'blob_path', 'entrypoint', b'entrypoint']) -> None:
+    def ClearField(self, field_name: typing.Literal['app_type', b'app_type', 'blob_path', b'blob_path', 'entrypoint', b'entrypoint', 'public', b'public']) -> None:
         ...
 global___GetAppContentResponse = GetAppContentResponse
 
