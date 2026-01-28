@@ -15,6 +15,12 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
+    GetLocationBillingOrganizationRequest,
+    GetLocationBillingOrganizationResponse,
+    UpdateLocationBillingOrganizationRequest,
+    UpdateLocationBillingOrganizationResponse,
+    ChargeOrganizationRequest,
+    ChargeOrganizationResponse,
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -150,7 +156,9 @@ class BillingClient:
         org_id_for_branding: Optional[str] = None,
         disable_email: bool = False,
     ) -> CreateInvoiceAndChargeImmediatelyResponse:
-        """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
+        """Deprecated: Use `charge_organization` instead.
+
+        Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
         This function returns the invoice id once the payment intent is successfully sent for processing. Callers may poll the invoice for
         its status using the `get_invoices_summary` function and the returned invoice id. The status will be "payment_processing" if the
         payment is being processed, "paid" if it succeeds, or "outstanding" if it fails.
@@ -183,3 +191,88 @@ class BillingClient:
             disable_email=disable_email,
         )
         return await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata)
+
+    async def get_location_billing_organization(self, location_id: str, timeout: Optional[float] = None) -> GetLocationBillingOrganizationResponse:
+        """Get the billing organization for a location.
+
+        ::
+
+            billing_org = await billing_client.get_location_billing_organization("<LOCATION-ID>")
+
+        Args:
+            location_id (str): The ID of the location.
+
+        Returns:
+            viam.proto.app.billing.GetLocationBillingOrganizationResponse: The billing organization ID.
+
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getlocationbillingorganization>`_.
+        """
+        request = GetLocationBillingOrganizationRequest(location_id=location_id)
+        return await self._billing_client.GetLocationBillingOrganization(request, metadata=self._metadata, timeout=timeout)
+
+    async def update_location_billing_organization(
+        self, location_id: str, billing_organization_id: str, timeout: Optional[float] = None
+    ) -> UpdateLocationBillingOrganizationResponse:
+        """Update the billing organization for a location.
+
+        ::
+
+            await billing_client.update_location_billing_organization("<LOCATION-ID>", "<BILLING-ORG-ID>")
+
+        Args:
+            location_id (str): The ID of the location.
+            billing_organization_id (str): The ID of the billing organization.
+
+        Returns:
+            viam.proto.app.billing.UpdateLocationBillingOrganizationResponse: An empty response.
+
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#updatelocationbillingorganization>`_.
+        """
+        request = UpdateLocationBillingOrganizationRequest(location_id=location_id, billing_organization_id=billing_organization_id)
+        return await self._billing_client.UpdateLocationBillingOrganization(request, metadata=self._metadata, timeout=timeout)
+
+    async def charge_organization(
+        self,
+        org_id_to_charge: str,
+        subtotal: float,
+        tax: float,
+        description: Optional[str] = None,
+        org_id_for_branding: Optional[str] = None,
+        disable_confirmation_email: bool = False,
+        timeout: Optional[float] = None,
+    ) -> ChargeOrganizationResponse:
+        """Charge an organization for a given amount.
+
+        ::
+
+            invoice_id = await billing_client.charge_organization(
+                "<ORG-ID-TO-CHARGE>",
+                <SUBTOTAL>,
+                <TAX>,
+                <DESCRIPTION>,
+                "<ORG-ID-FOR-BRANDING>",
+                False,
+            )
+
+        Args:
+            org_id_to_charge (str): The ID of the organization to charge.
+            subtotal (float): The subtotal amount to charge in dollars.
+            tax (float): The tax amount to charge in dollars.
+            description (Optional[str]): A short description of the charge to display on the invoice PDF (must be 100 characters or less).
+            org_id_for_branding (Optional[str]): The ID of the organization whose branding to use in the invoice confirmation email.
+            disable_confirmation_email (bool): Whether or not to disable sending an email confirmation for the invoice.
+
+        Returns:
+            viam.proto.app.billing.ChargeOrganizationResponse: The invoice ID.
+
+        For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#chargeorganization>`_.
+        """
+        request = ChargeOrganizationRequest(
+            org_id_to_charge=org_id_to_charge,
+            subtotal=subtotal,
+            tax=tax,
+            description=description,
+            org_id_for_branding=org_id_for_branding,
+            disable_confirmation_email=disable_confirmation_email,
+        )
+        return await self._billing_client.ChargeOrganization(request, metadata=self._metadata, timeout=timeout)

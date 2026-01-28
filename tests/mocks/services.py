@@ -111,6 +111,7 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
+    ListOrganizationsWithAccessToLocationResponse,
     ListOrganizationsByUserRequest,
     ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
@@ -183,6 +184,8 @@ from viam.proto.app import (
     UploadModuleFileResponse,
 )
 from viam.proto.app.billing import (
+    ChargeOrganizationRequest,
+    ChargeOrganizationResponse,
     CreateInvoiceAndChargeImmediatelyRequest,
     CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
@@ -191,8 +194,12 @@ from viam.proto.app.billing import (
     GetInvoicePdfResponse,
     GetInvoicesSummaryRequest,
     GetInvoicesSummaryResponse,
+    GetLocationBillingOrganizationRequest,
+    GetLocationBillingOrganizationResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
+    UpdateLocationBillingOrganizationRequest,
+    UpdateLocationBillingOrganizationResponse,
     UnimplementedBillingServiceBase,
 )
 from viam.proto.app.data import (
@@ -1316,13 +1323,27 @@ class MockBilling(UnimplementedBillingServiceBase):
         invoices_summary: GetInvoicesSummaryResponse,
         billing_info: GetOrgBillingInformationResponse,
         invoice_id_response: CreateInvoiceAndChargeImmediatelyResponse,
+        get_location_billing_org_response: GetLocationBillingOrganizationResponse,
+        update_location_billing_org_response: UpdateLocationBillingOrganizationResponse,
+        charge_org_response: ChargeOrganizationResponse,
     ):
         self.pdf = pdf
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
         self.invoice_id_response = invoice_id_response
+        self.get_location_billing_org_response = get_location_billing_org_response
+        self.update_location_billing_org_response = update_location_billing_org_response
+        self.charge_org_response = charge_org_response
         self.disable_email: bool = False
+        self.location_id: Optional[str] = None
+        self.billing_organization_id: Optional[str] = None
+        self.org_id_to_charge_charge_org: Optional[str] = None
+        self.subtotal: Optional[float] = None
+        self.tax: Optional[float] = None
+        self.description_charge_org: Optional[str] = None
+        self.org_id_for_branding_charge_org: Optional[str] = None
+        self.disable_confirmation_email: bool = False
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1361,6 +1382,34 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.org_id_for_branding = request.org_id_for_branding
         self.disable_email = request.disable_email
         await stream.send_message(self.invoice_id_response)
+
+    async def GetLocationBillingOrganization(
+        self, stream: Stream[GetLocationBillingOrganizationRequest, GetLocationBillingOrganizationResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(self.get_location_billing_org_response)
+
+    async def UpdateLocationBillingOrganization(
+        self, stream: Stream[UpdateLocationBillingOrganizationRequest, UpdateLocationBillingOrganizationResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        self.billing_organization_id = request.billing_organization_id
+        await stream.send_message(self.update_location_billing_org_response)
+
+    async def ChargeOrganization(self, stream: Stream[ChargeOrganizationRequest, ChargeOrganizationResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id_to_charge_charge_org = request.org_id_to_charge
+        self.subtotal = request.subtotal
+        self.tax = request.tax
+        self.description_charge_org = request.description
+        self.org_id_for_branding_charge_org = request.org_id_for_branding
+        self.disable_confirmation_email = request.disable_confirmation_email
+        await stream.send_message(self.charge_org_response)
 
 
 class MockApp(UnimplementedAppServiceBase):
