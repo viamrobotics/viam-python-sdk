@@ -4,6 +4,7 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.provisioning import (
+    APIKey,
     CloudConfig,
     GetNetworkListRequest,
     GetNetworkListResponse,
@@ -88,6 +89,30 @@ class ProvisioningClient:
         request = SetNetworkCredentialsRequest(type=network_type, ssid=ssid, psk=psk)
         await self._provisioning_client.SetNetworkCredentials(request, metadata=self._metadata)
 
-    async def set_smart_machine_credentials(self, cloud_config: Optional[CloudConfig] = None) -> None:
+    async def set_smart_machine_credentials(
+        self,
+        cloud_config: Optional[CloudConfig] = None,
+        *,
+        id: Optional[str] = None,
+        secret: Optional[str] = None,
+        app_address: Optional[str] = None,
+        api_key_id: Optional[str] = None,
+        api_key: Optional[str] = None,
+    ) -> None:
+        """Sets the smart machine credentials.
+
+        Args:
+            cloud_config (Optional[CloudConfig]): The cloud configuration. If provided, other parameters are ignored.
+            id (Optional[str]): The smart machine part ID.
+            secret (Optional[str]): The smart machine part secret.
+            app_address (Optional[str]): The app address.
+            api_key_id (Optional[str]): The API key ID.
+            api_key (Optional[str]): The API key value.
+        """
+        if cloud_config is None and id is not None:
+            api_key_config = None
+            if api_key_id is not None and api_key is not None:
+                api_key_config = APIKey(id=api_key_id, key=api_key)
+            cloud_config = CloudConfig(id=id, secret=secret or "", app_address=app_address or "", api_key=api_key_config)
         request = SetSmartMachineCredentialsRequest(cloud=cloud_config)
         await self._provisioning_client.SetSmartMachineCredentials(request, metadata=self._metadata)
