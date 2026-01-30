@@ -282,12 +282,15 @@
         <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_local_addr</span><span class="p">()</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">addr</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_dial_options</span><span class="p">)</span>
         <span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acquire_lock_async</span><span class="p">():</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">!=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span><span class="p">:</span>
-                    <span class="k">return</span>
-                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acquire_lock_async</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span> <span class="o">!=</span> <span class="n">_SupportedState</span><span class="o">.</span><span class="n">TRUE</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_MetadataLike</span><span class="p">:</span>
