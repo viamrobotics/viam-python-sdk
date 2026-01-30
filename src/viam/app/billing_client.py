@@ -8,7 +8,6 @@ from viam.proto.app.billing import (
     BillingServiceStub,
     ChargeOrganizationRequest,
     ChargeOrganizationResponse,
-    CreateInvoiceAndChargeImmediatelyRequest,
     CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
