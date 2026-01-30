@@ -193,12 +193,15 @@ class SessionsClient:
         addr = self._get_local_addr()
         channel = await dial(address=addr, options=self._dial_options)
         client = RobotServiceStub(channel.channel)
-        while True:
-            async with self._acquire_lock_async():
-                if self._supported != _SupportedState.TRUE:
-                    return
-                await self._heartbeat_tick(client)
-            await asyncio.sleep(wait)
+        try:
+            while True:
+                async with self._acquire_lock_async():
+                    if self._supported != _SupportedState.TRUE:
+                        return
+                    await self._heartbeat_tick(client)
+                await asyncio.sleep(wait)
+        finally:
+            channel.close()
 
     @property
     def _metadata(self) -> _MetadataLike:
