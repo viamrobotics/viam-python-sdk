@@ -3,6 +3,7 @@ from typing import Mapping, Optional
 from grpclib.client import Channel, Stream
 
 from viam import logging
+from viam.errors import NotSupportedError
 from viam.proto.app.billing import (
     BillingServiceStub,
     ChargeOrganizationRequest,
