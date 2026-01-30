@@ -78,6 +78,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.SendPaymentRequiredEmail"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.SendPaymentRequiredEmail()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.GetAvailableBillingTiers"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.GetAvailableBillingTiers()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.UpdateOrganizationBillingTier"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.UpdateOrganizationBillingTier()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.GetLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.GetLocationBillingOrganization()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.UpdateLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.UpdateLocationBillingOrganization()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.ChargeOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.ChargeOrganization()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.CreateInvoiceAndChargeImmediately"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.CreateInvoiceAndChargeImmediately()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">BillingServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -90,6 +93,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.SendPaymentRequiredEmail"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.SendPaymentRequiredEmail</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.GetAvailableBillingTiers"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.GetAvailableBillingTiers</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.UpdateOrganizationBillingTier"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.UpdateOrganizationBillingTier</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.GetLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.GetLocationBillingOrganization</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.UpdateLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.UpdateLocationBillingOrganization</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.ChargeOrganization"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.ChargeOrganization</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub.CreateInvoiceAndChargeImmediately"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub.CreateInvoiceAndChargeImmediately</span></code></a></li>
 </ul>
 </li>
@@ -101,7 +107,25 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.SendPaymentRequiredEmail"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.SendPaymentRequiredEmail()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetAvailableBillingTiers"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetAvailableBillingTiers()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.UpdateOrganizationBillingTier"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.UpdateOrganizationBillingTier()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetLocationBillingOrganization()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.UpdateLocationBillingOrganization"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.UpdateLocationBillingOrganization()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.ChargeOrganization"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.ChargeOrganization()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.CreateInvoiceAndChargeImmediately"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.CreateInvoiceAndChargeImmediately()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.org_id_to_charge"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.org_id_to_charge</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.description"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.description</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.subtotal"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.subtotal</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.tax"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.tax</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.org_id_for_branding"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.org_id_for_branding</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.disable_confirmation_email"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.disable_confirmation_email</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationResponse"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationResponse.invoice_id"><code class="docutils literal notranslate"><span class="pre">ChargeOrganizationResponse.invoice_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest"><code class="docutils literal notranslate"><span class="pre">CreateInvoiceAndChargeImmediatelyRequest</span></code></a><ul>
@@ -162,6 +186,14 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse.outstanding_balance"><code class="docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse.outstanding_balance</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse.invoices"><code class="docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse.invoices</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationRequest"><code class="docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationRequest.location_id"><code class="docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationRequest.location_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationResponse"><code class="docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationResponse</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationResponse.billing_organization_id"><code class="docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationResponse.billing_organization_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a><ul>
@@ -225,6 +257,12 @@
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.SendPaymentRequiredEmailResponse"><code class="docutils literal notranslate"><span class="pre">SendPaymentRequiredEmailResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.SourceType"><code class="docutils literal notranslate"><span class="pre">SourceType</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest"><code class="docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationRequest</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.location_id"><code class="docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationRequest.location_id</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.billing_organization_id"><code class="docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationRequest.billing_organization_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationResponse"><code class="docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationResponse</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest"><code class="docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest.organization_id</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest.billing_tier"><code class="docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest.billing_tier</span></code></a></li>
@@ -313,11 +351,17 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase" title="viam.proto.app.billing.UnimplementedBillingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase</span></code></a></p></td>
 <td><p>Helper class that provides a standard way to create an ABC using</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest" title="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateInvoiceAndChargeImmediatelyRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationRequest" title="viam.proto.app.billing.ChargeOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChargeOrganizationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse" title="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateInvoiceAndChargeImmediatelyResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.ChargeOrganizationResponse" title="viam.proto.app.billing.ChargeOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChargeOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest" title="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateInvoiceAndChargeImmediatelyRequest</span></code></a></p></td>
+<td><p>Deprecated: Use ChargeOrganizationRequest instead</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse" title="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateInvoiceAndChargeImmediatelyResponse</span></code></a></p></td>
+<td><p>Deprecated: Use ChargeOrganizationResponse instead</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetAvailableBillingTiersRequest" title="viam.proto.app.billing.GetAvailableBillingTiersRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAvailableBillingTiersRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -341,6 +385,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationRequest" title="viam.proto.app.billing.GetLocationBillingOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetLocationBillingOrganizationResponse" title="viam.proto.app.billing.GetLocationBillingOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLocationBillingOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest" title="viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a></p></td>
@@ -375,6 +425,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.SourceType" title="viam.proto.app.billing.SourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SourceType</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest" title="viam.proto.app.billing.UpdateLocationBillingOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationResponse" title="viam.proto.app.billing.UpdateLocationBillingOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationBillingOrganizationResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UpdateOrganizationBillingTierRequest" title="viam.proto.app.billing.UpdateOrganizationBillingTierRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationBillingTierRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -466,6 +522,33 @@ inheritance.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceBase.GetLocationBillingOrganization">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetLocationBillingOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationRequest" title="viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationRequest"><span class="pre">app.v1.billing_pb2.GetLocationBillingOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationResponse" title="viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationResponse"><span class="pre">app.v1.billing_pb2.GetLocationBillingOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#BillingServiceBase.GetLocationBillingOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.BillingServiceBase.GetLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceBase.UpdateLocationBillingOrganization">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateLocationBillingOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest" title="viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest"><span class="pre">app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse" title="viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse"><span class="pre">app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#BillingServiceBase.UpdateLocationBillingOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.BillingServiceBase.UpdateLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceBase.ChargeOrganization">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ChargeOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.ChargeOrganizationRequest" title="viam.gen.app.v1.billing_pb2.ChargeOrganizationRequest"><span class="pre">app.v1.billing_pb2.ChargeOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.ChargeOrganizationResponse" title="viam.gen.app.v1.billing_pb2.ChargeOrganizationResponse"><span class="pre">app.v1.billing_pb2.ChargeOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#BillingServiceBase.ChargeOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.BillingServiceBase.ChargeOrganization" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceBase.CreateInvoiceAndChargeImmediately">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateInvoiceAndChargeImmediately</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest" title="viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest"><span class="pre">app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse" title="viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse"><span class="pre">app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#BillingServiceBase.CreateInvoiceAndChargeImmediately"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.BillingServiceBase.CreateInvoiceAndChargeImmediately" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -520,6 +603,21 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceStub.GetLocationBillingOrganization">
+<span class="sig-name descname"><span class="pre">GetLocationBillingOrganization</span></span><a class="headerlink" href="#viam.proto.app.billing.BillingServiceStub.GetLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceStub.UpdateLocationBillingOrganization">
+<span class="sig-name descname"><span class="pre">UpdateLocationBillingOrganization</span></span><a class="headerlink" href="#viam.proto.app.billing.BillingServiceStub.UpdateLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceStub.ChargeOrganization">
+<span class="sig-name descname"><span class="pre">ChargeOrganization</span></span><a class="headerlink" href="#viam.proto.app.billing.BillingServiceStub.ChargeOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceStub.CreateInvoiceAndChargeImmediately">
 <span class="sig-name descname"><span class="pre">CreateInvoiceAndChargeImmediately</span></span><a class="headerlink" href="#viam.proto.app.billing.BillingServiceStub.CreateInvoiceAndChargeImmediately" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -568,8 +666,124 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.GetLocationBillingOrganization">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetLocationBillingOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationRequest" title="viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationRequest"><span class="pre">app.v1.billing_pb2.GetLocationBillingOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationResponse" title="viam.gen.app.v1.billing_pb2.GetLocationBillingOrganizationResponse"><span class="pre">app.v1.billing_pb2.GetLocationBillingOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.GetLocationBillingOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.UpdateLocationBillingOrganization">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateLocationBillingOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest" title="viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest"><span class="pre">app.v1.billing_pb2.UpdateLocationBillingOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse" title="viam.gen.app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse"><span class="pre">app.v1.billing_pb2.UpdateLocationBillingOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.UpdateLocationBillingOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.UpdateLocationBillingOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.ChargeOrganization">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ChargeOrganization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.ChargeOrganizationRequest" title="viam.gen.app.v1.billing_pb2.ChargeOrganizationRequest"><span class="pre">app.v1.billing_pb2.ChargeOrganizationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.ChargeOrganizationResponse" title="viam.gen.app.v1.billing_pb2.ChargeOrganizationResponse"><span class="pre">app.v1.billing_pb2.ChargeOrganizationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.ChargeOrganization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.ChargeOrganization" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.CreateInvoiceAndChargeImmediately">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateInvoiceAndChargeImmediately</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest" title="viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest"><span class="pre">app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse" title="viam.gen.app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse"><span class="pre">app.v1.billing_pb2.CreateInvoiceAndChargeImmediatelyResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.CreateInvoiceAndChargeImmediately"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.CreateInvoiceAndChargeImmediately" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">ChargeOrganizationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id_to_charge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtotal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id_for_branding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_confirmation_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.org_id_to_charge">
+<span class="sig-name descname"><span class="pre">org_id_to_charge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.org_id_to_charge" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.description" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.subtotal">
+<span class="sig-name descname"><span class="pre">subtotal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.subtotal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.tax">
+<span class="sig-name descname"><span class="pre">tax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.tax" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.org_id_for_branding">
+<span class="sig-name descname"><span class="pre">org_id_for_branding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.org_id_for_branding" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.disable_confirmation_email">
+<span class="sig-name descname"><span class="pre">disable_confirmation_email</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.disable_confirmation_email" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_description'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_description'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_org_id_for_branding'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_id_for_branding'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'description'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'description'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'org_id_for_branding'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'org_id_for_branding'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_description'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_description'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'description'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_org_id_for_branding'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_org_id_for_branding'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'org_id_for_branding'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">ChargeOrganizationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.ChargeOrganizationResponse.invoice_id">
+<span class="sig-name descname"><span class="pre">invoice_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.ChargeOrganizationResponse.invoice_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -578,10 +792,7 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">CreateInvoiceAndChargeImmediatelyRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id_to_charge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id_for_branding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>Deprecated: Use ChargeOrganizationRequest instead</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge">
 <span class="sig-name descname"><span class="pre">org_id_to_charge</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyRequest.org_id_to_charge" title="Permalink to this definition"></a></dt>
@@ -659,10 +870,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">CreateInvoiceAndChargeImmediatelyResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoice_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>Deprecated: Use ChargeOrganizationResponse instead</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse.invoice_id">
 <span class="sig-name descname"><span class="pre">invoice_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse.invoice_id" title="Permalink to this definition"></a></dt>
@@ -888,6 +1096,36 @@ shown below.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invoices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___InvoiceSummary</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.billing.GetInvoicesSummaryResponse.invoices" title="Permalink to this definition"></a></dt>
 <dd><p>all previous invoices</p>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetLocationBillingOrganizationRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetLocationBillingOrganizationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetLocationBillingOrganizationRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetLocationBillingOrganizationRequest.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.GetLocationBillingOrganizationRequest.location_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetLocationBillingOrganizationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">GetLocationBillingOrganizationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.GetLocationBillingOrganizationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.GetLocationBillingOrganizationResponse.billing_organization_id">
+<span class="sig-name descname"><span class="pre">billing_organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.GetLocationBillingOrganizationResponse.billing_organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1273,6 +1511,36 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.SourceType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">SourceType</span></span><a class="headerlink" href="#viam.proto.app.billing.SourceType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_SourceType</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UpdateLocationBillingOrganizationRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UpdateLocationBillingOrganizationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">billing_organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.location_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.billing_organization_id">
+<span class="sig-name descname"><span class="pre">billing_organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationRequest.billing_organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UpdateLocationBillingOrganizationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UpdateLocationBillingOrganizationResponse</span></span><a class="headerlink" href="#viam.proto.app.billing.UpdateLocationBillingOrganizationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 <dl class="py class">
