@@ -183,8 +183,8 @@ from viam.proto.app import (
     UploadModuleFileResponse,
 )
 from viam.proto.app.billing import (
-    CreateInvoiceAndChargeImmediatelyRequest,
-    CreateInvoiceAndChargeImmediatelyResponse,
+    ChargeOrganizationRequest,
+    ChargeOrganizationResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
     GetInvoicePdfRequest,
@@ -1315,14 +1315,14 @@ class MockBilling(UnimplementedBillingServiceBase):
         curr_month_usage: GetCurrentMonthUsageResponse,
         invoices_summary: GetInvoicesSummaryResponse,
         billing_info: GetOrgBillingInformationResponse,
-        invoice_id_response: CreateInvoiceAndChargeImmediatelyResponse,
+        invoice_id_response: ChargeOrganizationResponse,
     ):
         self.pdf = pdf
         self.curr_month_usage = curr_month_usage
         self.invoices_summary = invoices_summary
         self.billing_info = billing_info
         self.invoice_id_response = invoice_id_response
-        self.disable_email: bool = False
+        self.disable_confirmation_email: bool = False
 
     async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
         request = await stream.recv_message()
@@ -1350,16 +1350,17 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
 
-    async def CreateInvoiceAndChargeImmediately(
-        self, stream: Stream[CreateInvoiceAndChargeImmediatelyRequest, CreateInvoiceAndChargeImmediatelyResponse]
+    async def ChargeOrganization(
+        self, stream: Stream[ChargeOrganizationRequest, ChargeOrganizationResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.org_id_to_charge = request.org_id_to_charge
-        self.amount = request.amount
+        self.subtotal = request.subtotal
+        self.tax = request.tax
         self.description = request.description
         self.org_id_for_branding = request.org_id_for_branding
-        self.disable_email = request.disable_email
+        self.disable_confirmation_email = request.disable_confirmation_email
         await stream.send_message(self.invoice_id_response)
 
 
