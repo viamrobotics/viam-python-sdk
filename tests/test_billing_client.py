@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 
 from viam.app.billing_client import BillingClient
 from viam.proto.app.billing import (
-    CreateInvoiceAndChargeImmediatelyResponse,
+    ChargeOrganizationResponse,
     GetCurrentMonthUsageResponse,
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
@@ -23,6 +23,7 @@ DISCOUNT_AMOUNT = 0.0
 TOTAL_USAGE_WITH_DISCOUNT = 105.0
 TOTAL_USAGE_WITHOUT_DISCOUNT = 106.0
 OUTSTANDING_BALANCE = 1000.0
+TAX = 10.0
 SECONDS_START = 978310861
 NANOS_START = 0
 SECONDS_END = 998310861
@@ -64,7 +65,7 @@ ORG_BILLING_INFO = GetOrgBillingInformationResponse(
     billing_email=EMAIL,
     billing_tier=BILLING_TIER,
 )
-INVOICE_ID_RESPONSE = CreateInvoiceAndChargeImmediatelyResponse(invoice_id=INVOICE_ID)
+INVOICE_ID_RESPONSE = ChargeOrganizationResponse(invoice_id=INVOICE_ID)
 
 AUTH_TOKEN = "auth_token"
 BILLING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -109,23 +110,25 @@ class TestClient:
             assert org_billing_info == ORG_BILLING_INFO
             assert service.org_id == org_id
 
-    async def test_create_invoice_and_charge_immediately(self, service: MockBilling):
+    async def test_charge_organization(self, service: MockBilling):
         async with ChannelFor([service]) as channel:
             client = BillingClient(channel, BILLING_SERVICE_METADATA)
             org_id = "foo"
             description = "A short description"
             org_id_for_branding = "bar"
-            disable_email = True
-            invoice_id_response = await client.create_invoice_and_charge_immediately(
+            disable_confirmation_email = True
+            invoice_id_response = await client.charge_organization(
                 org_id_to_charge=org_id,
-                amount=OUTSTANDING_BALANCE,
+                subtotal=OUTSTANDING_BALANCE,
+                tax=TAX,
                 description=description,
                 org_id_for_branding=org_id_for_branding,
-                disable_email=disable_email,
+                disable_confirmation_email=disable_confirmation_email,
             )
             assert invoice_id_response == INVOICE_ID_RESPONSE
             assert service.org_id_to_charge == org_id
+            assert service.subtotal == OUTSTANDING_BALANCE
+            assert service.tax == TAX
             assert service.description == description
             assert service.org_id_for_branding == org_id_for_branding
-            assert service.amount == OUTSTANDING_BALANCE
-            assert service.disable_email == disable_email
+            assert service.disable_confirmation_email == disable_confirmation_email

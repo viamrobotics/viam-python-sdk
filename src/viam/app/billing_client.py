@@ -3,9 +3,11 @@ from typing import Mapping, Optional
 from grpclib.client import Channel, Stream
 
 from viam import logging
+from viam.errors import NotSupportedError
 from viam.proto.app.billing import (
     BillingServiceStub,
-    CreateInvoiceAndChargeImmediatelyRequest,
+    ChargeOrganizationRequest,
+    ChargeOrganizationResponse,
     CreateInvoiceAndChargeImmediatelyResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
@@ -142,6 +144,52 @@ class BillingClient:
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
 
+    async def charge_organization(
+        self,
+        org_id_to_charge: str,
+        subtotal: float,
+        tax: float,
+        description: Optional[str] = None,
+        org_id_for_branding: Optional[str] = None,
+        disable_confirmation_email: bool = False,
+    ) -> ChargeOrganizationResponse:
+        """Charge an organization on the spot. The caller must be an owner of the organization being charged.
+        This function returns the invoice id once the payment intent is successfully sent for processing.
+        Callers may poll the invoice for its status using the `get_invoices_summary` function and the returned invoice id.
+        The status will be "payment_processing" if the payment is being processed, "paid" if it succeeds, or "outstanding" if it fails.
+
+        ::
+
+            invoice_id = await billing_client.charge_organization(
+                "<ORG-ID-TO-CHARGE>",
+                <SUBTOTAL>,
+                <TAX>,
+                <DESCRIPTION>,
+                <ORG-ID-FOR-BRANDING>,
+                False,
+            )
+
+        Args:
+            org_id_to_charge (str): the organization to charge
+            subtotal (float): the subtotal amount in dollars
+            †ax (float): the tax amount in dollars to add to the subtotal
+            description (str): a short description of the charge to display on the invoice PDF (must be 1000 characters or less)
+            org_id_for_branding (str): the organization whose branding to use in the invoice PDF and confirmation email
+            disable_confirmation_email (bool): whether or not to disable sending an email confirmation for the invoice
+
+        Returns:
+            viam.proto.app.billing.ChargeOrganizationResponse: the invoice id
+        """
+        request = ChargeOrganizationRequest(
+            org_id_to_charge=org_id_to_charge,
+            subtotal=subtotal,
+            tax=tax,
+            description=description,
+            org_id_for_branding=org_id_for_branding,
+            disable_confirmation_email=disable_confirmation_email,
+        )
+        return await self._billing_client.ChargeOrganization(request, metadata=self._metadata)
+
     async def create_invoice_and_charge_immediately(
         self,
         org_id_to_charge: str,
@@ -150,36 +198,5 @@ class BillingClient:
         org_id_for_branding: Optional[str] = None,
         disable_email: bool = False,
     ) -> CreateInvoiceAndChargeImmediatelyResponse:
-        """Create a flat fee invoice and charge the organization on the spot. The caller must be an owner of the organization being charged.
-        This function returns the invoice id once the payment intent is successfully sent for processing. Callers may poll the invoice for
-        its status using the `get_invoices_summary` function and the returned invoice id. The status will be "payment_processing" if the
-        payment is being processed, "paid" if it succeeds, or "outstanding" if it fails.
-
-        ::
-
-            invoice_id = await billing_client.create_invoice_and_charge_immediately(
-                "<ORG-ID-TO-CHARGE>",
-                <AMOUNT>,
-                <DESCRIPTION>,
-                "<ORG-ID-FOR-BRANDING>",
-                False,
-            )
-
-        Args:
-            org_id_to_charge (str): the organization to charge
-            amount (float): the amount to charge in dollars
-            description (str): a short description of the charge to display on the invoice PDF (must be 100 characters or less)
-            org_id_for_branding (str): the organization whose branding to use in the invoice confirmation email
-            disable_email (bool): whether or not to disable sending an email confirmation for the invoice
-
-        Returns:
-            viam.proto.app.billing.CreateInvoiceAndChargeImmediatelyResponse: the invoice id
-        """
-        request = CreateInvoiceAndChargeImmediatelyRequest(
-            org_id_to_charge=org_id_to_charge,
-            amount=amount,
-            description=description,
-            org_id_for_branding=org_id_for_branding,
-            disable_email=disable_email,
-        )
-        return await self._billing_client.CreateInvoiceAndChargeImmediately(request, metadata=self._metadata)
+        """Deprecated: Use charge_organization instead."""
+        raise NotSupportedError("create_invoice_and_charge_immediately is deprecated. Use charge_organization instead.")
