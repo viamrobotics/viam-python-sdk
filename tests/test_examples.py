@@ -50,22 +50,14 @@ def verify_python_file_imports(filepath: Path, module_name: str, add_to_path: Pa
             module_name = str(path_to_convert).replace("/", ".").replace("\\", ".")
 
             # Use importlib.import_module - Python handles all package setup
-            try:
-                importlib.import_module(module_name)
-            except ModuleNotFoundError as e:
-                # Skip if module depends on optional packages (PIL, numpy, etc.)
-                pytest.skip(f"Skipping {filepath.name} - missing optional dependency: {e.name}")
+            importlib.import_module(module_name)
         else:
             # For files without add_to_path, load directly (no relative imports expected)
             spec = importlib.util.spec_from_file_location(module_name, filepath)
             if spec is None or spec.loader is None:
                 raise ImportError(f"Could not load spec for {filepath}")
             module = importlib.util.module_from_spec(spec)
-            try:
-                spec.loader.exec_module(module)
-            except ModuleNotFoundError as e:
-                # Skip if module depends on optional packages (PIL, numpy, etc.)
-                pytest.skip(f"Skipping {filepath.name} - missing optional dependency: {e.name}")
+            spec.loader.exec_module(module)
     finally:
         # Clean up sys.path
         if path_added:
