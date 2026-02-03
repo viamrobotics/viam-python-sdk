@@ -1,5 +1,3 @@
-"""Tests to verify that example code compiles and imports correctly."""
-
 import importlib
 import importlib.util
 import py_compile
@@ -65,12 +63,6 @@ def get_all_python_files() -> list[Path]:
 _ALL_PYTHON_FILES = get_all_python_files()
 
 
-class TestExamplesSyntax:
-    @pytest.mark.parametrize("py_file", _ALL_PYTHON_FILES, ids=lambda p: str(p.relative_to(EXAMPLES_DIR)))
-    def test_python_file_syntax(self, py_file: Path):
-        py_compile.compile(str(py_file), doraise=True)
-
-
 def get_package_root_for_file(file_path: Path) -> Optional[Path]:
     # List of example directories that use relative imports and need their directory in sys.path
     EXAMPLES_WITH_PACKAGES = {"complex_module", "simple_module", "server"}
@@ -85,6 +77,12 @@ def get_package_root_for_file(file_path: Path) -> Optional[Path]:
         return current
 
     return None
+
+
+class TestExamplesSyntax:
+    @pytest.mark.parametrize("py_file", _ALL_PYTHON_FILES, ids=lambda p: str(p.relative_to(EXAMPLES_DIR)))
+    def test_python_file_syntax(self, py_file: Path):
+        py_compile.compile(str(py_file), doraise=True)
 
 
 class TestExamplesImports:
