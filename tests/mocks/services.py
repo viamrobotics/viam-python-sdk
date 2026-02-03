@@ -1350,9 +1350,7 @@ class MockBilling(UnimplementedBillingServiceBase):
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
 
-    async def ChargeOrganization(
-        self, stream: Stream[ChargeOrganizationRequest, ChargeOrganizationResponse]
-    ) -> None:
+    async def ChargeOrganization(self, stream: Stream[ChargeOrganizationRequest, ChargeOrganizationResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.org_id_to_charge = request.org_id_to_charge
