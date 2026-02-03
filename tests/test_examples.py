@@ -7,6 +7,8 @@ from typing import List, Optional
 
 import pytest
 
+from viam.errors import DuplicateResourceError
+
 EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
 
 
@@ -27,14 +29,21 @@ def verify_python_file_imports(filepath: Path, module_name: str, package_root: O
             path_to_convert = rel_to_package_root.parent if filepath.name == "__init__.py" else rel_to_package_root.with_suffix("")
             module_name = str(path_to_convert).replace("/", ".").replace("\\", ".")
 
-            importlib.import_module(module_name)
+            try:
+                importlib.import_module(module_name)
+            except DuplicateResourceError:
+                # building all examples files leads to registering resources multiple times, which is expected
+                pass
         else:
             # For files without relative imports, load directly (no relative imports expected)
             spec = importlib.util.spec_from_file_location(module_name, filepath)
             if spec is None or spec.loader is None:
                 raise ImportError(f"Could not load spec for {filepath}")
             module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
+            try:
+                spec.loader.exec_module(module)
+            except DuplicateResourceError:
+                pass
     finally:
         # Clean up sys.path
         if path_added:
