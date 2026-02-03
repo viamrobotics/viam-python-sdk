@@ -1806,6 +1806,8 @@ class DataClient:
         file_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         file_extension: Optional[str] = None,
+        file_create_time: Optional[datetime] = None,
+        file_modify_time: Optional[datetime] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
         mime_type: Optional[str] = None,
@@ -1837,6 +1839,8 @@ class DataClient:
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string ``""`` will be assigned as the file extension if one
                 isn't provided. Files with a ``.jpeg``, ``.jpg``, or ``.png`` extension will be saved to the **Images** tab.
+            file_create_time (Optional[datetime]): Optional datetime object representing the creation time of the file.
+            file_modify_time (Optional[datetime]): Optional datetime object representing the last modification time of the file.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
             mime_type (Optional[str]): Optional mime type of the data.
@@ -1858,6 +1862,8 @@ class DataClient:
             file_name=file_name if file_name else "",
             method_parameters=method_parameters,
             file_extension=file_extension if file_extension else "",
+            file_create_time=datetime_to_timestamp(file_create_time),
+            file_modify_time=datetime_to_timestamp(file_modify_time),
             tags=tags,
             dataset_ids=dataset_ids,
         )
@@ -1872,6 +1878,8 @@ class DataClient:
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
+        file_create_time: Optional[datetime] = None,
+        file_modify_time: Optional[datetime] = None,
         tags: Optional[List[str]] = None,
         dataset_ids: Optional[List[str]] = None,
         mime_type: Optional[str] = None,
@@ -1897,6 +1905,8 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
+            file_create_time (Optional[datetime]): Optional datetime object representing the creation time of the file.
+            file_modify_time (Optional[datetime]): Optional datetime object representing the last modification time of the file.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             dataset_ids (Optional[List[str]]): Optional list of datasets to add the data to.
             mime_type (Optional[str]): Optional mime type of the data.
@@ -1925,6 +1935,8 @@ class DataClient:
             file_name=file_name,
             method_parameters=method_parameters,
             file_extension=file_extension if file_extension else "",
+            file_create_time=datetime_to_timestamp(file_create_time),
+            file_modify_time=datetime_to_timestamp(file_modify_time),
             tags=tags,
             dataset_ids=dataset_ids,
             mime_type=mime_type or "",
