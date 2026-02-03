@@ -1323,6 +1323,8 @@ class AppClient:
         dest: Optional[str] = None,
         log_levels: List[str] = [],
         num_log_entries: int = 100,
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -1341,6 +1343,8 @@ class AppClient:
             log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                 `num_log_entries` logs will be returned, whichever comes first.
+            start (Optional[datetime]): Optional start time for log retrieval. Only logs created after this time will be returned.
+            end (Optional[datetime]): Optional end time for log retrieval. Only logs created before this time will be returned.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -1358,7 +1362,7 @@ class AppClient:
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels
+                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels, start=start, end=end
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1386,9 +1390,22 @@ class AppClient:
         return logs
 
     async def _get_robot_part_logs(
-        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+        self,
+        robot_part_id: str,
+        filter: str,
+        page_token: str,
+        log_levels: List[str],
+        start: Optional[datetime] = None,
+        end: Optional[datetime] = None,
     ) -> Tuple[List[LogEntry], str]:
-        request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
+        request = GetRobotPartLogsRequest(
+            id=robot_part_id,
+            filter=filter,
+            page_token=page_token,
+            levels=log_levels,
+            start=datetime_to_timestamp(start),
+            end=datetime_to_timestamp(end),
+        )
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
