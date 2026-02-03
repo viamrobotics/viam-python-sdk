@@ -2,31 +2,16 @@
 
 import importlib
 import importlib.util
-import os
 import py_compile
 from pathlib import Path
+from typing import Optional
 
 import pytest
 
 EXAMPLES_DIR = Path(__file__).parent.parent / "examples"
 
 
-def verify_python_file_syntax(filepath: Path) -> None:
-    try:
-        py_compile.compile(str(filepath), doraise=True)
-    finally:
-        # Clean up .pyc file if created
-        pyc_file = str(filepath) + 'c'
-        if os.path.exists(pyc_file):
-            os.remove(pyc_file)
-        # Also check __pycache__ directory
-        pycache_dir = filepath.parent / "__pycache__"
-        if pycache_dir.exists():
-            for pyc in pycache_dir.glob(f"{filepath.stem}.*.pyc"):
-                pyc.unlink()
-
-
-def verify_python_file_imports(filepath: Path, module_name: str, add_to_path: Path | None = None) -> None:
+def verify_python_file_imports(filepath: Path, module_name: str, add_to_path: Optional[Path] = None) -> None:
     import sys
 
     # Temporarily add directory to sys.path if needed for relative imports
@@ -75,10 +60,6 @@ def get_all_python_files() -> list[Path]:
         # Recursively walk directory, skipping __pycache__ directories.
         try:
             for item in dir_path.iterdir():
-                # Skip __pycache__ directories entirely
-                if item.is_dir() and item.name == "__pycache__":
-                    continue
-
                 if item.is_dir():
                     walk_directory(item)
                 elif item.is_file() and item.suffix == ".py":
@@ -101,10 +82,10 @@ class TestExamplesSyntax:
     @pytest.mark.parametrize("py_file", _ALL_PYTHON_FILES, ids=lambda p: str(p.relative_to(EXAMPLES_DIR)))
     def test_python_file_syntax(self, py_file: Path):
         """Verify a Python file has valid syntax."""
-        verify_python_file_syntax(py_file)
+        py_compile.compile(str(py_file), doraise=True)
 
 
-def get_add_to_path_for_file(file_path: Path) -> Path | None:
+def get_add_to_path_for_file(file_path: Path) -> Optional[Path]:
     """
     Determine if a file needs add_to_path for imports.
 
@@ -136,12 +117,8 @@ _PYTHON_FILES_IDS = [str(py_file.relative_to(EXAMPLES_DIR)) for py_file in _ALL_
 class TestExamplesImports:
     """Verify all example Python files can be imported (checks import statements)."""
 
-    @pytest.mark.parametrize(
-        "py_file,add_to_path",
-        _PYTHON_FILES_WITH_PATH,
-        ids=_PYTHON_FILES_IDS
-    )
-    def test_python_file_imports(self, py_file: Path, add_to_path: Path | None):
+    @pytest.mark.parametrize("py_file,add_to_path", _PYTHON_FILES_WITH_PATH, ids=_PYTHON_FILES_IDS)
+    def test_python_file_imports(self, py_file: Path, add_to_path: Optional[Path]):
         """Verify a Python file can be imported."""
         # Generate a module name (only used when add_to_path is None)
         # When add_to_path is set, verify_python_file_imports recalculates it properly
