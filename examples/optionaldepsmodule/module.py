@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Sequence, cast
+from typing import ClassVar, Mapping, Sequence, Tuple, cast
 
 from typing_extensions import Self
 
@@ -30,7 +30,7 @@ class Foo(Generic, Reconfigurable):
     # Validate validates the config and returns a required dependency on
     # `required_motor` and an optional dependency on `optional_motor`.
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> tuple[Sequence[str], Sequence[str]]:
+    def validate_config(cls, config: ComponentConfig) -> Tuple[Sequence[str], Sequence[str]]:
         attributes_dict = struct_to_dict(config.attributes)
 
         cfg_required_motor: str = cast(str, attributes_dict.get("required_motor"))

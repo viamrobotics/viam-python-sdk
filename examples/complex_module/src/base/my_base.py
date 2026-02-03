@@ -139,7 +139,7 @@ class MyBase(Base, Reconfigurable):
         return await self.left.is_moving() or await self.right.is_moving()
 
     # Not implemented
-    async def get_properties(self, *, timeout: Optional[float] | None = None, **kwargs) -> Base.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
         raise NotImplementedError()
 
     # Not implemented
