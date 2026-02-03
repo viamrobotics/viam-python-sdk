@@ -3,7 +3,7 @@ import importlib.util
 import py_compile
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import List, Optional
 
 import pytest
 
@@ -41,7 +41,7 @@ def verify_python_file_imports(filepath: Path, module_name: str, package_root: O
             sys.path.remove(str(package_root))
 
 
-def get_all_python_files() -> list[Path]:
+def get_all_python_files() -> List[Path]:
     python_files = []
 
     def walk_directory(dir_path: Path) -> None:
