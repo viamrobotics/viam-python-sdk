@@ -37,8 +37,8 @@ class BillingClient:
 
 
         async def connect() -> ViamClient:
-            # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
-            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+            # Replace <API-KEY> with your API key and <API-KEY-ID> with your API key ID
+            dial_options = DialOptions.with_api_key(<API-KEY>, <API-KEY-ID>)
             return await ViamClient.create_from_dial_options(dial_options)
 
 
@@ -74,10 +74,10 @@ class BillingClient:
 
         ::
 
-           usage = await billing_client.get_current_month_usage("<ORG-ID>")
+           usage = await billing_client.get_current_month_usage(<ORG-ID>)
 
         Args:
-            org_id (str): the ID of the organization to request usage data for
+            org_id (str): the ID of the org to request usage data for
 
         Returns:
             viam.proto.app.billing.GetCurrentMonthUsageResponse: the current month usage information
@@ -92,7 +92,7 @@ class BillingClient:
 
         ::
 
-            await billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "invoice.pdf")
+            await billing_client.get_invoice_pdf(<INVOICE-ID>, <ORG-ID>, "invoice.pdf")
 
         Args:
             invoice_id (str): the ID of the invoice being requested
@@ -113,7 +113,7 @@ class BillingClient:
 
         ::
 
-            summary = await billing_client.get_invoices_summary("<ORG-ID>")
+            summary = await billing_client.get_invoices_summary(<ORG-ID>)
 
         Args:
             org_id (str): the ID of the org to request data for
@@ -161,18 +161,18 @@ class BillingClient:
         ::
 
             invoice_id = await billing_client.charge_organization(
-                "<ORG-ID-TO-CHARGE>",
-                <SUBTOTAL>,
-                <TAX>,
-                <DESCRIPTION>,
+                <ORG-ID-TO-CHARGE>,
+                9.99,
+                0.70,
+                "A charge with tax.",
                 <ORG-ID-FOR-BRANDING>,
-                False,
+                True,
             )
 
         Args:
             org_id_to_charge (str): the organization to charge
             subtotal (float): the subtotal amount in dollars
-            †ax (float): the tax amount in dollars to add to the subtotal
+            tax (float): the tax amount in dollars to add to the subtotal
             description (str): a short description of the charge to display on the invoice PDF (must be 1000 characters or less)
             org_id_for_branding (str): the organization whose branding to use in the invoice PDF and confirmation email
             disable_confirmation_email (bool): whether or not to disable sending an email confirmation for the invoice
