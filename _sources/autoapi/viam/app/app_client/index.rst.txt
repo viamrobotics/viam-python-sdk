@@ -1142,7 +1142,7 @@ Module Contents
 
 
 
-   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: Optional[str] = None, dest: Optional[str] = None, log_levels: List[str] = [], num_log_entries: int = 100) -> List[LogEntry]
+   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: Optional[str] = None, dest: Optional[str] = None, log_levels: List[str] = [], num_log_entries: int = 100, start: Optional[datetime.datetime] = None, end: Optional[datetime.datetime] = None) -> List[LogEntry]
       :async:
 
 
@@ -1167,6 +1167,10 @@ Module Contents
       :param num_log_entries: Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                               `num_log_entries` logs will be returned, whichever comes first.
       :type num_log_entries: int
+      :param start: Optional start time for log retrieval. Only logs created after this time will be returned.
+      :type start: Optional[datetime]
+      :param end: Optional end time for log retrieval. Only logs created before this time will be returned.
+      :type end: Optional[datetime]
 
       :raises GRPCError: If an invalid robot part ID is passed.
 

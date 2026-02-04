@@ -1412,6 +1412,8 @@
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">log_levels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
         <span class="n">num_log_entries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the logs associated with a robot part.</span>
 
@@ -1430,6 +1432,8 @@
 <span class="sd">            log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.</span>
 <span class="sd">            num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first</span>
 <span class="sd">                `num_log_entries` logs will be returned, whichever comes first.</span>
+<span class="sd">            start (Optional[datetime]): Optional start time for log retrieval. Only logs created after this time will be returned.</span>
+<span class="sd">            end (Optional[datetime]): Optional end time for log retrieval. Only logs created before this time will be returned.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
@@ -1447,7 +1451,7 @@
 
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">new_logs</span><span class="p">,</span> <span class="n">next_page_token</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_robot_part_logs</span><span class="p">(</span>
-                <span class="n">robot_part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">log_levels</span><span class="o">=</span><span class="n">log_levels</span>
+                <span class="n">robot_part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">log_levels</span><span class="o">=</span><span class="n">log_levels</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="n">num_log_entries</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_logs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">logs_left</span><span class="p">:</span>
                 <span class="n">logs</span> <span class="o">+=</span> <span class="n">new_logs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">logs_left</span><span class="p">]</span>
@@ -1475,9 +1479,22 @@
         <span class="k">return</span> <span class="n">logs</span></div>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_robot_part_logs</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">log_levels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="nb">filter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">page_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">log_levels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartLogsRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">log_levels</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartLogsRequest</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span>
+            <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span>
+            <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span>
+            <span class="n">levels</span><span class="o">=</span><span class="n">log_levels</span><span class="p">,</span>
+            <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+            <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartLogsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartLogs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">LogEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">logs</span><span class="p">],</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span>
 
