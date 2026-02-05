@@ -77,7 +77,7 @@ class BillingClient:
            usage = await billing_client.get_current_month_usage(<ORG-ID>)
 
         Args:
-            org_id (str): the ID of the org to request usage data for
+            org_id (str): the ID of the organization to request usage data for
 
         Returns:
             viam.proto.app.billing.GetCurrentMonthUsageResponse: the current month usage information
@@ -96,7 +96,7 @@ class BillingClient:
 
         Args:
             invoice_id (str): the ID of the invoice being requested
-            org_id (str): the ID of the org to request data from
+            org_id (str): the ID of the organization to request data from
             dest (str): the filepath to save the invoice to
 
         For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicepdf>`_.
@@ -109,17 +109,17 @@ class BillingClient:
                     file.write(response.chunk)
 
     async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
-        """Access total outstanding balance plus invoice summaries for a given org.
+        """Access total outstanding balance plus invoice summaries for a given organization.
 
         ::
 
             summary = await billing_client.get_invoices_summary(<ORG-ID>)
 
         Args:
-            org_id (str): the ID of the org to request data for
+            org_id (str): the ID of the organization to request data for
 
         Returns:
-            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all org invoices
+            viam.proto.app.billing.GetInvoicesSummaryResponse: the summaries of all organization invoices
 
         For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getinvoicessummary>`_.
         """
@@ -127,17 +127,17 @@ class BillingClient:
         return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata, timeout=timeout)
 
     async def get_org_billing_information(self, org_id: str, timeout: Optional[float] = None) -> GetOrgBillingInformationResponse:
-        """Access billing information (payment method, billing tier, etc.) for a given org.
+        """Access billing information (payment method, billing tier, etc.) for a given organization.
 
         ::
 
             information = await billing_client.get_org_billing_information("<ORG-ID>")
 
         Args:
-            org_id (str): the ID of the org to request data for
+            org_id (str): the ID of the organization to request data for
 
         Returns:
-            viam.proto.app.billing.GetOrgBillingInformationResponse: the org billing information
+            viam.proto.app.billing.GetOrgBillingInformationResponse: the organization billing information
 
         For more information, see `Billing Client API <https://docs.viam.com/dev/reference/apis/billing-client/#getorgbillinginformation>`_.
         """
