@@ -58,6 +58,292 @@ jobs:
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
+      - name: Update Python Wrappers with OpenCode
+        uses: anomalyco/opencode/github@latest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          model: anthropic/claude-sonnet-4-20250514
+          share: false
+          prompt: |
+            The protobuf definitions have been updated and compiled into Python files in `src/viam/gen/`.
+            
+            Your task is to update the Python wrapper functions to reflect the changes in the gRPC service definitions.
+            
+            ## Context
+            This repository wraps protobuf messages and gRPC calls into native Python functions for ergonomic, Pythonic usage.
+            
+            ## Wrapper Architecture
+            
+            ### Components and Services
+            For each component/service, there are typically three files:
+            1. **Abstract base class** (`src/viam/components/<name>/<name>.py` or `src/viam/services/<name>/<name>.py`)
+               - Defines the Python API contract with abstract methods
+            2. **Client wrapper** (`src/viam/components/<name>/client.py` or `src/viam/services/<name>/client.py`)
+               - Wraps gRPC client calls into Pythonic async methods
+               - Inherits from the abstract base and ReconfigurableResourceRPCClientBase
+            3. **Server wrapper** (`src/viam/components/<name>/service.py` or `src/viam/services/<name>/service.py`)
+               - Handles incoming gRPC calls and delegates to Python implementations
+               - Inherits from Unimplemented<Name>ServiceBase and ResourceRPCServiceBase
+            4. **Test file** (`tests/test_<name>.py` or `tests/test_<name>_service.py`)
+               - Tests both client and server wrappers
+               - Uses pytest fixtures and grpclib.testing.ChannelFor
+            
+            ### App API Clients
+            The `src/viam/app/` directory contains clients for the application API (data, billing, provisioning, ML training, etc.):
+            - **Client files** (`src/viam/app/<name>_client.py`)
+              - Wrap gRPC calls to app services (from `src/viam/gen/app/`)
+              - Do NOT inherit from component base classes
+              - Take `channel` and `metadata` in constructor (metadata is for auth)
+              - Methods directly call the service stub and return protobuf responses
+            - **Test files** (`tests/test_<name>_client.py`)
+              - Test the app client methods
+              - Use mock services from `tests/mocks/services.py`
+            
+            ## Your Task
+            
+            ### For Components and Services (`src/viam/components/` and `src/viam/services/`)
+            1. **Identify changes**: Compare the newly generated protobuf files in `src/viam/gen/component/` and `src/viam/gen/service/` with the existing wrapper implementations.
+            
+            2. **Add new methods**: For any new RPC methods in the protobuf definitions:
+               - Add the abstract method signature to the base class
+               - Implement the client-side wrapper in `client.py`
+               - Implement the server-side wrapper in `service.py`
+               - Add tests for both client and server in the appropriate test file
+            
+            3. **Update existing methods**: For any modified RPC methods:
+               - Update method signatures to match new request/response message fields
+               - Update parameter mappings and transformations
+               - Preserve the Pythonic naming (snake_case for methods, descriptive parameter names)
+               - Update tests to reflect the changes
+            
+            4. **Remove obsolete methods**: For any RPC methods removed from protobuf:
+               - Remove the method from the abstract base class
+               - Remove the client-side wrapper
+               - Remove the server-side wrapper
+               - Remove the corresponding tests
+            
+            ### For App API Clients (`src/viam/app/`)
+            1. **Identify changes**: Compare the newly generated protobuf files in `src/viam/gen/app/` with the existing app client implementations.
+            
+            2. **Add new methods**: For any new RPC methods in app service protobuf definitions:
+               - Implement the method in the appropriate `*_client.py` file (e.g., `data_client.py`, `billing_client.py`)
+               - Add tests in the corresponding test file (e.g., `tests/test_data_client.py`)
+            
+            3. **Update existing methods**: For any modified RPC methods:
+               - Update method signatures and request/response handling
+               - Update the corresponding tests
+            
+            4. **Remove obsolete methods**: For any RPC methods removed from protobuf:
+               - Remove the method from the client file
+               - Remove the corresponding tests
+            
+            ## Wrapper Patterns to Follow
+            
+            ### For Components/Services
+            
+            #### Client-side pattern (in `client.py`):
+            ```python
+            async def method_name(
+                self,
+                param1: Type1,
+                param2: Type2,
+                *,
+                extra: Optional[Dict[str, Any]] = None,
+                timeout: Optional[float] = None,
+                **kwargs,
+            ) -> ReturnType:
+                md = kwargs.get("metadata", self.Metadata()).proto
+                request = MethodRequest(
+                    name=self.name,
+                    field1=param1,
+                    field2=param2,
+                    extra=dict_to_struct(extra)
+                )
+                response: MethodResponse = await self.client.Method(
+                    request, timeout=timeout, metadata=md
+                )
+                return response.result_field  # or appropriate transformation
+            ```
+            
+            ### Server-side pattern (in `service.py`):
+            ```python
+            async def Method(self, stream: Stream[MethodRequest, MethodResponse]) -> None:
+                request = await stream.recv_message()
+                assert request is not None
+                resource = self.get_resource(request.name)
+                timeout = stream.deadline.time_remaining() if stream.deadline else None
+                result = await resource.method_name(
+                    request.field1,
+                    request.field2,
+                    extra=struct_to_dict(request.extra),
+                    timeout=timeout,
+                    metadata=stream.metadata
+                )
+                await stream.send_message(MethodResponse(result_field=result))
+            ```
+            
+            #### Abstract base class pattern (in `<name>.py`):
+            ```python
+            @abc.abstractmethod
+            async def method_name(
+                self,
+                param1: Type1,
+                param2: Type2,
+                *,
+                extra: Optional[Dict[str, Any]] = None,
+                timeout: Optional[float] = None,
+                **kwargs,
+            ) -> ReturnType:
+                """
+                Brief description of what this method does.
+                
+                Args:
+                    param1: Description
+                    param2: Description
+                
+                Returns:
+                    Description of return value
+                """
+                ...
+            ```
+            
+            #### Test pattern (in `tests/test_<name>.py`):
+            ```python
+            from typing import cast
+            from unittest.mock import AsyncMock
+            import pytest
+            from grpclib.testing import ChannelFor
+            from viam.components.<name> import <Name>, <Name>Client
+            from viam.components.<name>.service import <Name>RPCService
+            from viam.proto.component.<name> import <Name>ServiceStub, MethodRequest
+            from viam.resource.manager import ResourceManager
+            from viam.utils import dict_to_struct
+            
+            @pytest.fixture(scope="function")
+            def <name>() -> <Name>:
+                mock = create_mock_subclass(<Name>)
+                return mock(name="<name>")
+            
+            @pytest.fixture(scope="function")
+            def service(<name>) -> <Name>RPCService:
+                manager = ResourceManager([<name>])
+                return <Name>RPCService(manager)
+            
+            class TestService:
+                async def test_method_name(self, <name>: <Name>, service: <Name>RPCService):
+                    async with ChannelFor([service]) as channel:
+                        request = MethodRequest(name=<name>.name, field1=value1, extra=dict_to_struct({"a": "b"}))
+                        client = <Name>ServiceStub(channel)
+                        await client.Method(request, timeout=1.82)
+                        cast(AsyncMock, <name>.method_name).assert_called_once_with(
+                            value1, timeout=loose_approx(1.82), extra={"a": "b"}, metadata={}
+                        )
+            
+            class TestClient:
+                # Similar pattern for testing client methods
+            ```
+            
+            ### For App API Clients
+            
+            #### App client pattern (in `src/viam/app/<name>_client.py`):
+            ```python
+            from typing import Optional
+            from grpclib.client import Channel
+            from viam.proto.app.<service> import (
+                <Service>ServiceStub,
+                MethodRequest,
+                MethodResponse,
+            )
+            
+            class <Name>Client:
+                """gRPC client for <purpose> from app."""
+                
+                def __init__(self, channel: Channel, metadata: Mapping[str, str]):
+                    self._metadata = metadata
+                    self._client = <Service>ServiceStub(channel)
+                    self._channel = channel
+                
+                async def method_name(
+                    self,
+                    param1: Type1,
+                    timeout: Optional[float] = None
+                ) -> MethodResponse:
+                    """Method description.
+                    
+                    Args:
+                        param1: Description
+                        timeout: Optional timeout
+                    
+                    Returns:
+                        Description of return value
+                    """
+                    request = MethodRequest(field1=param1)
+                    return await self._client.Method(request, metadata=self._metadata, timeout=timeout)
+            ```
+            
+            #### App client test pattern (in `tests/test_<name>_client.py`):
+            ```python
+            import pytest
+            from grpclib.testing import ChannelFor
+            from viam.app.<name>_client import <Name>Client
+            from viam.proto.app.<service> import MethodResponse
+            from .mocks.services import Mock<Name>
+            
+            AUTH_TOKEN = "auth_token"
+            METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
+            
+            @pytest.fixture(scope="function")
+            def service() -> Mock<Name>:
+                return Mock<Name>(expected_response=MethodResponse(...))
+            
+            class TestClient:
+                async def test_method_name(self, service: Mock<Name>):
+                    async with ChannelFor([service]) as channel:
+                        client = <Name>Client(channel, METADATA)
+                        response = await client.method_name(param1="value")
+                        assert response == expected_response
+                        assert service.param1 == "value"
+            ```
+            
+            ## Key Guidelines
+            
+            ### For Components/Services:
+            - Use snake_case for Python method names (convert from PascalCase RPC names)
+            - Keep the signature pattern: required params, then `*`, then `extra`, `timeout`, `**kwargs`
+            - Always extract metadata: `md = kwargs.get("metadata", self.Metadata()).proto`
+            - Use `dict_to_struct()` for extra fields going to protobuf
+            - Use `struct_to_dict()` for extra fields coming from protobuf
+            - Import new Request/Response types at the top of the file
+            - Maintain consistent error handling and type hints
+            - For methods that return void, don't return anything in the client wrapper
+            - For methods that return values, extract and return the appropriate field from the response
+            - Tests should use `grpclib.testing.ChannelFor` for mocking
+            - Tests should use `create_mock_subclass` from `tests.mocks` for creating mock resources
+            - Tests should verify method calls with `cast(AsyncMock, resource.method).assert_called_once_with(...)`
+            
+            ### For App API Clients:
+            - Methods take direct parameters (not `extra`, `**kwargs` patterns)
+            - Always pass `self._metadata` and optional `timeout` to stub calls
+            - Return protobuf response objects directly (minimal transformation)
+            - Constructor takes `channel: Channel` and `metadata: Mapping[str, str]`
+            - Store stub in `self._client`, channel in `self._channel`, metadata in `self._metadata`
+            - Tests use mock services from `tests/mocks/services.py`
+            - Tests verify request parameters by checking service attributes
+            
+            ## Output
+            Do NOT create any new files. Only update existing wrapper and test files.
+            Make focused, surgical changes - only modify what's necessary for the protobuf updates.
+            Ensure all imports are updated to include new Request/Response types.
+            
+            After making changes, verify that:
+            - All new RPC methods have corresponding Python wrappers
+            - All updated RPC methods reflect the new message structure
+            - All removed RPC methods are deleted from wrappers
+            - Tests are added/updated/removed for all wrapper changes
+            - The code follows the established patterns in the repository
+            - Both component/service wrappers AND app API client wrappers are updated
+
       - name: Format
         run: uv run make format
 
