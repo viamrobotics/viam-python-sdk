@@ -15,7 +15,6 @@ from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
     UpdateBoundingBoxRequest,
-    UpdateBoundingBoxResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryData,
