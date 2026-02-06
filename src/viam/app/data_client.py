@@ -1202,7 +1202,7 @@ class DataClient:
         y_min_normalized: float,
         x_max_normalized: float,
         y_max_normalized: float,
-        confidence_score=None,
+        confidence_score: Optional[float] = None,
     ) -> None:
         """Update a bounding box in an image.
 
