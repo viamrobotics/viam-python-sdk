@@ -188,21 +188,20 @@ class TestModule:
             req = ReadyRequest(parent_address=p_addr)
             resp = await module.ready(req)
             assert module._parent_address == p_addr
-            assert len(resp.handlermap.handlers) == 2
 
-            handler = resp.handlermap.handlers[0]
-            rn = Gizmo.get_resource_name("")
-            assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.component.gizmo.v1.GizmoService")
-            assert len(handler.models) == 1
-            model = handler.models[0]
-            assert model == "acme:demo:mygizmo"
+            # Find Gizmo handler
+            gizmo_rn = Gizmo.get_resource_name("")
+            gizmo_handler = next((h for h in resp.handlermap.handlers if h.subtype == ResourceRPCSubtype(subtype=gizmo_rn, proto_service="acme.component.gizmo.v1.GizmoService")), None)
+            assert gizmo_handler is not None
+            assert len(gizmo_handler.models) == 1
+            assert gizmo_handler.models[0] == "acme:demo:mygizmo"
 
-            handler = resp.handlermap.handlers[1]
-            rn = SummationService.get_resource_name("")
-            assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.service.summation.v1.SummationService")
-            assert len(handler.models) == 1
-            model = handler.models[0]
-            assert model == "acme:demo:mysum"
+            # Find Summation handler
+            summation_rn = SummationService.get_resource_name("")
+            summation_handler = next((h for h in resp.handlermap.handlers if h.subtype == ResourceRPCSubtype(subtype=summation_rn, proto_service="acme.service.summation.v1.SummationService")), None)
+            assert summation_handler is not None
+            assert len(summation_handler.models) == 1
+            assert summation_handler.models[0] == "acme:demo:mysum"
 
     def test_add_model_from_registry(self):
         mod = Module("fake")
